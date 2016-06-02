@@ -1,0 +1,276 @@
+<section id="my-pois" class="clearfix">
+<!-- 	<div class="content-area"> -->
+		<div class="container">
+			<!-- page-header -->
+			<div class="page-header widget-box">
+				<div class="poi-alerts-xs visible-xs">
+					<div class="row">
+						<div class="col-xs-6 numPoi">{{vm.poiList.length}} Total POIs</div>
+						<div class="col-xs-6 btnAddPoi"><span class="add button" ng-click="vm.openPoiModal('add')" ng-class="{setOpacity:vm.poiStatus.poiStatus == 'P'}">+ ADD POI</span></div>
+						
+					</div>
+					<div class="row manage-buttons" ng-show="!vm.showManageMenu" ng-if="vm.poiList.length>0">
+						<div class="col-xs-6">
+							<div class="button btnNewest" sort-dropdown>
+								{{vm.sortOptionValue}}
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="button btnManage" ng-class="{setOpacity:vm.poiStatus.poiStatus == 'P'}" ng-click="vm.toggleManageMenu()" ng-hide="vm.hideManageMenu" ng-class="{setOpacity:vm.poiStatus.poiStatus == 'P'}">
+								MANAGE
+							</div>
+						</div>
+						<ul class="dropdown-sort-menu" ng-show="vm.showSort" ng-hide="!vm.hideManageMenu">
+			
+							<li ng-click="vm.sortPoi(0)">NEWEST</li>
+							<li ng-click="vm.sortPoi(1)">OLDEST</li>
+							<li ng-click="vm.sortPoi(2)">CITY</li>
+							<li ng-click="vm.sortPoi(3)">STATE</li>
+							<li ng-click="vm.sortPoi(4)">NAME OF LOCATION</li>
+						</ul>
+					</div> <!-- row manage-buttons -->
+					<div class="row delete-buttons" ng-show="vm.showManageMenu">
+						<div class="col-xs-4 button delete-all" ng-click="vm.openConfirmDelete('all')">DELETE ALL</div>
+						<div class="col-xs-3 button delete" ng-class="{inactive:!vm.checkSelected()}" ng-click="vm.openConfirmDelete('selected')">DELETE</div>
+						<div class="col-xs-3 button active" ng-click="vm.toggleManageMenu()">DONE</div>
+                	</div>
+				</div> <!-- poi-alerts-xs visible-xs -->
+
+				<div class="poi-alerts hidden-xs">
+					<div class="alert-menu" ng-class="{hide:vm.showManageMenu}">
+						<!-- delete buttons -->
+	                	<div class="delete-buttons actions">
+	                    	<span class="button delete-selected" ng-class="{inactive:!vm.checkSelected()}" ng-click="vm.openConfirmDelete('selected')">DELETE SELECTED</span>&nbsp;&nbsp;
+	                    	<span class="button delete-all" ng-click="vm.openConfirmDelete('all')">DELETE ALL</span>&nbsp;&nbsp;
+	                    	<span class="button active" ng-click="vm.toggleManageMenu()">DONE</span>&nbsp;&nbsp;
+	                	</div>
+	                	<!-- EO delete buttons-->
+						<!-- manage buttons -->
+						<div class="manage-buttons actions">
+							<span class="button manage-button" ng-class="{setOpacity:vm.poiStatus.poiStatus == 'P'}" ng-click="vm.toggleManageMenu()" ng-hide="vm.hideManageMenu">MANAGE</span>&nbsp;&nbsp;
+							<span class="dropdown button" ng-hide="vm.hideManageMenu" sort-dropdown>{{vm.sortOptionValue}}</span>
+							<ul class="dropdown-sort-menu" ng-show="vm.showSort">
+								<li ng-click="vm.sortPoi(0)">NEWEST</li>
+								<li ng-click="vm.sortPoi(1)">OLDEST</li>
+								<li ng-click="vm.sortPoi(2)">CITY</li>
+								<li ng-click="vm.sortPoi(3)">STATE</li>
+								<li ng-click="vm.sortPoi(4)">NAME OF LOCATION</li>
+							</ul>
+						</div>
+						<!-- EO manage buttons -->
+					</div>
+					<div class="message actions">
+						<div class="alert-msj"><strong>{{vm.poiList.length}}</strong> TOTAL POIs &nbsp;&nbsp;</div>
+						<div class="button-container actions" style="padding:0px ! important;">
+							<span class="add button" ng-click="vm.openPoiModal('add')" ng-class="{setOpacity:vm.poiStatus.poiStatus == 'P'}">+ ADD POI</span>
+						</div>
+					</div>
+				</div> <!-- poi-alerts hidden-xs -->
+	        </div> <!-- end page-header -->
+	        <div id="pending-msg-container" class="text-right" ng-show="vm.poiStatus.poiStatus == 'P'">
+	        	<span class="pending-msg">Please wait. Changes are being sent to the vehicle.</span>
+	        </div>
+	       
+	        <div id="error-msg-container" class="text-right" ng-show="vm.poiStatus.poiStatus == 'E'" ng-if="!vm.isMobile">
+	        	<span class="pending-msg error" style="color:#bd1e2e">Your previous request did not complete.</span>
+	        	<img src="images/warning-1.png"><span type="button" class="resend-button" ng-click="vm.reSendRequest()">RESEND</span>
+	        </div>
+	        <div class="clear"></div>
+	        <!-- Desktop poi list toggle -->
+	        
+	        <div class="button nav-hide hidden-xs" ng-hide="vm.hideManageMenu" ng-class="{show:!vm.showPoiList}" ng-click="vm.showPoiList = !vm.showPoiList; vm.resizeMap();">
+	        	<span ng-show="vm.showPoiList">HIDE </span>
+	        	<span ng-hide="vm.showPoiList">SHOW </span>
+	        	<img ng-show="vm.showPoiList" class="nav-hide-img" alt="Hide Left Nav Bar" src="images/kh/img/my-pois/arrow-left.png">
+	        	<img ng-hide="vm.showPoiList" class="nav-hide-img" alt="Hide Left Nav Bar" src="images/kh/img/my-pois/arrow-right.png">
+	        </div> <!-- button nav-hide hidden-xs -->
+
+	        <!-- Poi List and Map Stuff -->
+			<div class="poi-interface-container hidden-xs">
+			    <!-- Desktop Poi List -->
+				<div class="poi-container actions" ng-show="vm.showPoiList">
+					<div id="scroller" class="poi-list">
+						<div class="poi-row" ng-repeat-start= "poi in vm.poiList | orderBy:vm.sortOption:vm.sortReverse"  ng-hide="vm.currentPoiIndex == poi.markerId">
+	                        <div class="poi-selected-container" ng-show="vm.showManageMenu">
+	                            <input class="poi-selected" id="poi-option-{{$index}}" type="checkbox" ng-model="poi.poiSelected"/>
+	                            <label class="poi-selected-label" for="poi-option-{{$index}}"></label>
+	                        </div>
+	                        <div class="poi-name" ng-class="{managed:vm.showManageMenu}" ng-click="vm.selectCurrentPoi(poi.markerId,null,(vm.currentPoiIndex == poi.markerId))">{{poi.poiNm}}</div>
+	                    </div>
+	                    <div class="poi-more-info" ng-show="vm.currentPoiIndex == poi.markerId">
+	                    <div class="poi-selected-container" ng-show="vm.showManageMenu">
+	                            <input class="poi-selected" id="poi-option-{{$index}}" type="checkbox" ng-model="poi.poiSelected"/>
+	                            <label class="poi-selected-label" for="poi-option-{{$index}}"></label>
+	                        </div>
+					    	<p class="poi-name" ng-click="vm.selectCurrentPoi(poi.markerId,null,(vm.currentPoiIndex == poi.markerId))">{{poi.poiNm}}</p>
+					    	<p>{{poi.stetNm}}</p>
+					    	<p>{{poi.formattedAddress}}</p>
+					    	<p>{{poi.tn | phoneNumber}}</p>
+					    	<p>{{poi.userNote|nl2Space}}</p>
+					    	<div class="poi-buttons" ng-class="{invisible:vm.isPending()}">
+					    		<img ng-click="vm.openConfirmDelete('single')" title="Delete POI" alt="Delete POI" src="images/kh/img/my-pois/icon-delete-white.png" />
+								<img ng-click="vm.viewPoiOnMap(poi.markerId)" title="View POI on map" alt="View POI on map" src="images/kh/img/my-pois/mypois_magglass.png" />
+								<img ng-click="vm.openPoiModal('edit')" title="Edit POI"  alt="Edit POI" src="images/kh/img/my-pois/mypois_edit.png" />
+					    	</div>
+
+						</div>
+						<div class="poi-hr" ng-repeat-end ></div>
+	                </div>
+				</div>
+				<!-- Desktop Maps -->
+				<div class="md-map" ng-class="{collapsed:vm.showPoiList}">
+		        	<ui-gmap-google-map events="vm.map.mapEvents" control="vm.map.control" center="vm.map.center" zoom="vm.map.zoom" options="vm.map.options">
+			        	<ui-gmap-markers click="vm.selectCurrentPoi(id,true,vm.currentPoiIndex)" control="vm.map.markerControl" models="vm.map.markers" coords="'self'" icon="{url: 'images/poi/marker_red.png' }" events="vm.map.markerEvents" fit="true">
+
+	<ui-gmap-window show="vm.map.window.show && vm.map.window.isOpen" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.map.window.closeClick()">
+		        			<div class="uvo-ib">
+				        		<div class="uvo-ib-content">
+					       			<div class="uvo-ib-title">{{vm.map.window.model.name | uppercase}}</div>
+							        <div>{{vm.map.window.model.street}}</div>				 			        
+							        <div>{{vm.map.window.model.city}} {{vm.map.window.model.state}} {{vm.map.window.model.zip}}</div>
+				 			        <div>{{vm.map.window.model.tn | phoneNumber}}</div>
+				 			        <div class="lineBreak">{{vm.map.window.model.userNote|nl2Space}}</div>
+				 			    </div>
+								<div class="uvo-ib-point-down">
+									<img src="images/kh/img/station/point-down.png" alt="X" />
+								</div>
+							</div>
+			        	</ui-gmap-window>
+
+
+			        	</ui-gmap-markers>
+					</ui-gmap-google-map>
+				</div>
+			</div>
+			<!-- MOBILE POI LIST -->
+			<div class="row poi-list-xs visible-xs">
+				<div class="poi-hr"></div>
+				<div class="poi-row button" id="poi-anchor-{{$index}}" ng-repeat-start="poi in vm.poiList | orderBy:vm.sortOption:vm.sortReverse">
+					<div class="row poi-option">
+						<div ng-hide="vm.showManageMenu">
+							<img src="images/kh/img/my-pois/poi-black.png" alt="poi"/>
+						</div>
+						<div ng-show="vm.showManageMenu">
+							<input type="checkbox" id="poi-option-mobile-{{$index}}" name="poi-option-mobile-{{$index}}" ng-model="poi.poiSelected" />
+							<label for="poi-option-mobile-{{$index}}" />
+						</div>
+					</div>
+					<div class="row-detail" ng-click="vm.selectCurrentPoi(poi.markerId)">
+						<div class="poi-name">{{poi.poiNm}}</div>
+						<div class="poi-addr" ng-class="{open:vm.currentPoiIndex == poi.markerId}">{{poi.stetNm}}<br>{{poi.cityNm}}<a href="" ng-if="poi.stNm">, </a> {{poi.stNm}} {{poi.zip}}</div>
+					</div>
+				</div>
+				<!-- Mobile Map -->
+
+        <div  class="poi-map" ng-if=" ((vm.isSmallScreen) && (vm.currentPoiIndex == poi.markerId))">
+          <div class="xs-map">
+            <ui-gmap-google-map events='vm.map.events' control='vm.map.control' center='vm.map.center' zoom='vm.map.zoom' options="vm.map.options">
+              <ui-gmap-marker options="{clickable:false}" icon="{url: 'images/poi/marker_red.png' }" coords="{'latitude':poi.lae,'longitude':poi.loc}" fit="'true'" idKey="poi.mobileMapId">
+                <ui-gmap-window
+                  options="poi.mobileInfoBoxOptions"
+                  control='poi.mobileInfoBoxOptions.control' show="'true'">
+                  <div>
+                    <div class="uvo-ib-content" ng-init="isMobile = true">
+                      <div class="uvo-ib-title">{{poi.poiNm}}</div>
+                      <div>{{poi.stetNm}}</div>
+                      <div>{{poi.formattedAddress}}</div>
+                      <!-- <div class="add-button button" ng-click="$parent.vm.openPoiModal('add')"><span class="plus">+</span> <span>ADD</span></div> -->
+                    </div>
+                    <div class="uvo-ib-point-down">
+                      <img src="images/kh/img/station/point-down.png" alt="X" />
+                    </div>
+                  </div>
+                </ui-gmap-window>
+              </ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+
+          <div class="mobilemap_list">
+            <div class="mobilemap_phone">
+              <h5 ><span class="glyphicon glyphicon-earphone" ></span><a href="tel:\{{poi.tn}}">{{poi.tn | phoneNumber}}</a></h5>
+            </div>
+            <div class="mobilemap_comment">
+              <h6>{{poi.userNote|nl2Space}}</h6>
+            </div>
+            <div class="mobilemap_content" ng-class="{invisible:vm.isPending()}">
+              <span class="glyphicon glyphicon-edit" ng-click="vm.openPoiModal('edit')"></span>
+              <span class="mobilemapmobilemap_edit button" ng-click="vm.openPoiModal('edit')">EDIT</span>
+              <span class="mobilemapmobilemap_delete button" ng-click="vm.openConfirmDelete('single')">DELETE</span>
+              <span class="glyphicon glyphicon-trash" ng-click="vm.openConfirmDelete('single')"></span>
+            </div>
+          </div>
+        </div>
+				<div class="poi-hr" ng-repeat-end></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal my-poi-xs enabled dark-bg hidden-sm hidden-md hidden-lg" ng-show="vm.showPoiModal">
+		<div class="content">
+	        <div class="header"><span class="title">ADD POI</span><a class="close clickable" ng-click="vm.togglePoiModal()"></a></div>
+	        	<div class="search-n-list-poi" ng-hide="vm.search_n_list">
+		            <div class="search-box">
+		            	<span class="glyphicon glyphicon-search" ng-click="vm.searchPoi()"></span>
+		            	<input type="text" placeholder="Name and Location/City/Zipcode" autofocus>
+		            </div> <!-- search-box -->
+		            <div class="line"></div>
+		            <div class="poi-list" ng-show="vm.showPoiList">
+		            	<div class="row poi-view-option">
+		            		<div class="col-xs-5 button active list-view" ng-click="vm.poiListView()">LIST VIEW</div>
+		            		<div class="col-xs-5 button map-view" ng-click="vm.poiMapView()">MAP VIEW</div>
+		            	</div>
+		            	<div class="poi-list-item" ng-show="vm.showPoiListView" ng-init="vm.showPoiListView = true">
+		            		<ul>
+		            			<li>
+		            				<div class="poi-name">The Home Depot</div>
+		            				<div class="poi-addr">7530 BroadWay<br>Lemon Grove, CA 92602<span class="btnAdd" ng-click="vm.poiAdd()"><span class="glyphicon glyphicon-plus"></span>ADD</span></div>
+		            			</li>
+		            			<li>
+		            				<div class="poi-name">The Home Depot</div>
+		            				<div class="poi-addr">3600 West McFadden Avenue<br>San Diego, CA 92110<span class="btnAdd" ng-click="vm.poiAdd()"><span class="glyphicon glyphicon-plus"></span>ADD</span></div>
+		            			</li>
+		            		</ul>
+		            	</div> <!-- poi-list-item -->
+		            	<div class="poi-map-item" ng-show="vm.showPoiMapView">
+		            		MAP VIEW OF POIs.<br>TO IMPLEMENT LATER.
+		            	</div> <!-- poi-map-item -->
+		            </div> <!-- poi-list -->
+		        </div> <!-- search-n-list-poi -->
+		        <div class="add-n-edit-poi" ng-show="vm.search_n_list">
+		        	<div class="poi-name">The Home Depot</div>
+		        	<div class="poi-addr">7530 BroadWay<br>Lemon Grove, CA 92602</div>
+		        	<div class="poi-phone">(619)280-0230</div>
+		        	<label>NOTES(80)</label>
+		        	<textarea rows="6"></textarea>
+		        	<div class="row">
+		        		<div class="col-xs-5 button cancelBtn" ng-click="vm.togglePoiModal()">CANCEL</div>
+		        		<div class="col-xs-5 button doneBtn">DONE</div>
+		        	</div>
+
+		        </div> <!-- add-n-edit-poi -->
+	        </div>
+	    </div>
+<!--     </div> -->     <!-- modal my-poi-xs enabled -->
+
+
+</section>
+
+<div alert-modal
+	alert-id="poi-confirm-delete"
+	alert-type="confirm"
+	alert-message="Are you sure you want to delete the selected POI(s)?">
+</div>
+
+<div alert-modal
+	alert-id="poi-confirm-delete-all"
+	alert-type="confirm"
+	alert-message="Are you sure you want to delete all POIs?">
+</div>
+
+<div alert-modal
+	alert-id="poi-limit"
+	alert-type="fail"
+	alert-message="My POI only supports 25 POIs.">
+</div>
+
+

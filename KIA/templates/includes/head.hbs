@@ -1,0 +1,58 @@
+<head>
+  <meta charset="UTF-8">
+  <title ng-bind="'MyUVO' + $state.current.data.title">{{site.title}}</title>
+  <meta name="description" content="">
+  {{!-- <meta name="viewport" content="width=device-width"> --}}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> {{!-- prevent zoom out on iphones --}}
+  <meta name="fragment" content="!" />
+  <base href="/" />
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:css(.tmp) styles/styles.css -->
+  <link rel="stylesheet" href="styles/styles.css">
+<!-- endbuild -->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- build:css(.tmp) styles/min-styles_1.css -->
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="styles/min-styles_page_1.css">
+
+<![endif]-->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/min-styles_2.css -->
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="styles/min-styles_page_2.css">
+<![endif]-->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/min-styles_3.css -->
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="styles/min-styles_page_3.css">
+<![endif]-->
+<!-- endbuild -->
+<!--[if lte IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<script>if (!history.pushState) {
+    //if hashbang url found and we are not on our base then go to base
+    if (window.location.hash.charAt(1) === "!" && window.location.pathname !== '/') {
+        window.location.replace('/ccw/#!' + window.location.hash.substring(2));
+    }
+    //if hasbang not found then convert link to hashbang mode
+    if(window.location.hash.charAt(1) !== "!") {
+        window.location.replace('/ccw/#!' + window.location.pathname + window.location.search+window.location.hash);
+    }
+
+}
+/////IE 9 trying to fix
+window.console = window.console || {};
+window.console.log = window.console.log || function() {};
+
+</script>

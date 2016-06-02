@@ -1,0 +1,74 @@
+<div class="dealer-modal-content">
+        <div class="header" >
+            Select Dealer
+              <a class="close clickable" ng-click="close()"><span>Close window</span></a>
+        </div>
+        <div class="detail" style="height: 215px;">
+            <div class="action-bar">
+                <div class="box-1">
+                    ZIP Code:
+                </div>
+                <div class="box-2">
+                    <input type="text" class="zipcode" name="zipcode" id="zipcode" maxlength="5" ng-model="zipcode" ng-keyup="locateDealer($event)">
+                </div>
+                <div class="box-3" ng-click="locateDealer()">
+                    <button class="select"><span>Select</span></button>
+                </div>
+            </div>
+
+            <select id="selectVehicleType" style="margin:5px 35px; width: 250px" disabled="">
+              <!-- <option value="all">ALL</option> -->
+              <option value="ev">SOUL EV</option>
+              <!-- <option value="K900">K900</option> -->
+            </select>
+            
+            <div id="dealerZip" style="color:red; margin-left:35px; height:40px; display:none">Please enter a valid ZIP Code.</div>
+            <div id="noDealerForVin" style="color:red; margin-left:35px; height:60px; display:none">This vehicle doesn't have a preferred dealer. Please search &amp; select one.</div>
+            <div id="noDealerMsg" style="color:red; margin-left:35px; display:none">Sorry, we couldn't find any Certified dealerships in that area. Here is the next closest location(s).</div>
+            <div id="dealerSearchList" style="height: 150px;">
+                <div class="dealerSearchScroller">
+
+                    <ul class="results">
+                        <li class="active">
+                            <div class="distance"></div>
+                            <div class="info">
+                                <div class="name">
+                                    <!-- Car Pros Kia Glendale -->
+                                     {{com.preferredDealer.data.name}}
+                                </div>
+                                <div class="contact">
+                                    <!-- 400 South Brand Blvd.
+                                    <br>Glendale, CA 91204
+                                    <br>1(818)745-1400 -->
+                                     {{com.preferredDealer.data.address}}<br />
+                       {{com.preferredDealer.data.city}}, {{com.preferredDealer.data.state}} {{com.preferredDealer.data.zipCode}}<br />
+                       {{com.preferredDealer.data.phoneNumber | phoneNumber}}
+                                </div>
+                                
+                            </div>
+                          </li>
+                            <li class="active" ng-repeat="item in locatedDealers | limitTo:pageLimit">
+                            <div class="distance"></div>
+                            <div class="info">
+                            <div class="name" >
+                                    <!-- Car Pros Kia Glendale -->
+                                     {{item.name}}
+                                </div>
+                                <div class="contact" >
+                                    
+                                     {{item.address}}<br />
+                       {{item.city}}, {{item.state}} {{item.zipCode}}<br />
+                       {{item.phoneNumber | phoneNumber}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+               <!--  <div class="iScrollVerticalScrollbar iScrollLoneScrollbar" style="overflow: hidden;"><div class="iScrollIndicator" style="transition-duration: 0ms; display: block; height: 365px; transform: translate(0px, 0px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);"></div></div> -->
+            </div>
+            <div class="ctas">
+                    <a class="cta secondary clickable" ng-show="showLoadMore" ng-click="loadMore()">Load More</a>
+                    <!-- <a class="cta tertiary" href="#">More Kia dealer info &gt;</a> -->
+                </div>
+        </div>
+    </div>

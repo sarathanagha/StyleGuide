@@ -1,0 +1,74 @@
+<style>
+.mob-pending-list{
+	text-align: left;
+   	padding: 10px;
+    line-height: 25px;box-sizing: initial;border:none;width:auto;
+    margin: 100px 10px;
+}
+.mob-pending-list h5{
+	font-size: 22px;
+    padding-bottom: 10px
+}
+.mob-pending-list ul{
+	list-style: initial;
+    padding-left: 20px;
+}
+</style>
+<div>
+<script type="text/ng-template" id="viewpending.html">
+<div class="mob-pending-list" ng-show="!vm.loading&&(vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange||vm.ActiveOn)" ng-if="vm.loadit">
+            <h5 ng-show="vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange">CHANGES PENDING</h5>
+                <ul>
+                <li class="pending-list-master-on" ng-show="vm.isOn&&vm.alerton">Turn Geo Fence Alerts ON</li>
+                    <li class="pending-list-master-off" ng-show="!vm.isOn&&vm.alerton">Turn Geo Fence Alerts OFF</li>
+                    <li class="pending-list-add" ng-show="vm.added">Adding Alert</li>
+                    <li class="pending-list-delete" ng-show="vm.deleted">Deleting Alert</li>
+                    <li class="pending-list-modify" ng-show="vm.nameChange">Modifying Alert</li>
+                    <li class="pending-list-interval" ng-show="vm.intervalchange">Interval Changed</li>
+                    
+                </ul>
+                <div class="actions modal-footer" style="padding: 20px 0px;">
+                <button class="cancel" ng-click="vm.cancelPending()" style="color:black;
+                     background-color: white; border: 1px solid black; font-weight: bold; margin-left:auto;width:50%;padding: 10px 0px;font-size: 13px;">
+                     <span>CANCEL PENDING</span>
+                </button>
+                <button class="highlighted delete all" ng-click="vm.closePending()" style="color: white;background-color: #BC1728;padding: 10px 0px;border: 1px solid #BC1728;font-weight: bold;margin-left:auto;width:48%">
+                    <span>CLOSE</span>
+                </button>
+            </div>
+	</div>
+</script>
+    <div class="hidden-xs">
+		<div class="kh-button-pending" ng-show="vm.loading&&!vm.hasError">Request in Progress</div>
+		<div class="submit-button" ng-click="vm.submit()" ng-class="{'disabled':vm.disableButton||!(vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange)||vm.ActiveOn}" ng-hide="vm.loading||vm.hasError" ng-disabled="!vm.isOn" >SUBMIT REQUEST</div>
+         <div class="kh-button kh-button-error" ng-show="vm.hasError&&!vm.loading" ng-click="vm.submit()">Retry</div> 
+		<div class="pending-list has-master" ng-show="!vm.loading&&(vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange)&&!vm.disableButton">
+            <h5 ng-show="vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange">CHANGES PENDING</h5>
+                <ul>
+                <li class="pending-list-master-on" ng-show="vm.isOn&&vm.alerton">Turn Geo Fence Alerts ON</li>
+                    <li class="pending-list-master-off" ng-show="!vm.isOn&&vm.alerton">Turn Geo Fence Alerts OFF</li>
+                    <li class="pending-list-add" ng-show="vm.added">Adding Alert</li>
+                    <li class="pending-list-delete" ng-show="vm.deleted">Deleting Alert</li>
+                    <li class="pending-list-modify" ng-show="vm.nameChange">Modifying Alert</li>
+                    <li class="pending-list-interval" ng-show="vm.intervalchange">Interval Changed</li>
+                </ul>
+		</div>
+	</div>
+	<div class="visible-xs container-fluid">
+		<div class="kh-button-pending" ng-show="vm.loading">Request in Progress</div>
+		<div class="row text-center" ng-show="vm.alerton||vm.added||vm.deleted||vm.intervalchange||vm.nameChange">
+		
+			<div  ng-hide="vm.loading"class="col-xs-6 no-side-pad view-pending-column" ng-click="vm.viewPending()" ng-disabled="!vm.alerton||!vm.added||!vm.deleted||!vm.intervalchange">
+				<div class="button view-pending-button" >
+					VIEW PENDING <span ng-show="vm.count > 0">({{vm.count}})</span>
+				</div>
+			</div>
+			<div class="col-xs-6 no-side-pad">
+			
+				<div class="button submit-button" style="opacity:1!important;" ng-click="vm.submit()" ng-hide="vm.loading" ng-disabled="!vm.isOn" >
+					SUBMIT 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

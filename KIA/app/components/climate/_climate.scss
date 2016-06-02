@@ -1,0 +1,569 @@
+#climate{
+    padding-top: 45px;
+    #red{
+        height: 6px;
+        width: 350px;
+        margin: 17px 0 0 8px;
+        left: 38px;
+        border: 1px solid;
+        position: relative;
+        background: #0088cc;
+        border-radius: 4px;
+    }
+    .ui-slider .ui-slider-range{
+        position: absolute;
+        z-index: 1;
+        display: block;
+        height: 100%;
+        background-position: 0 0;
+        background-color:#c4172c;
+    }
+
+    .ui-state-default {
+        background: #f6f6f6 url('../images/kh/img/schedule/control-climate.jpg') 50% 50% repeat-x;
+        font-weight: bold;
+        margin-top: -20px;
+        position: absolute;
+        border-radius: 50%;
+        display: block;
+    }
+    .ui-slider-handle {
+        width:50px;
+        height:50px;
+    }
+
+    .panel-1{ height: 450px; }
+    .panel-1 .dial { position: relative; margin-left:83px; }
+    .panel-1 .value-group { position: absolute; width:120px; height:190px; left:200px; bottom: 200px; }
+    .panel-1 .value-group h3 {
+        font-size: 18px;
+        line-height: 22px;
+        width: 137px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 0 13px 7px;
+        text-spacing: 0;
+    }
+    .panel-1 .value-group h1 { font-size: 9em; width:200px; }
+    .panel-1 .value-group h1 span { font-size: .5em; margin-left: -30px; }
+    .panel-1 .btn-group {
+        position: relative;
+        padding: 0;
+        margin: -120px 0 0 58px;
+        width: 400px;
+        height: auto;
+        overflow: hidden;
+
+    }
+    .panel-1 .btn-group .temp-group.lower {
+        position: relative;
+        float:left;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        height: auto;
+        color: #448ccb;
+    }
+    .panel-1 .btn-group .temp-group.lower .temp-hud {
+        padding: 25px 0 0 0;
+        margin: 0;
+        float: left;
+        width: 55px;
+        cursor: pointer;
+    }
+    .panel-1 .btn-group .temp-group.lower .temp-hud .value {
+        margin-left: 17px;
+        font-size: 18px;
+    }
+    .panel-1 .btn-group .temp-group.lower .temp-hud .down-arrow {
+        margin: 4px auto 0 auto;
+        width: 0;
+        height: 0;
+        border-top: 11px solid #448ccb;
+        border-right: 10.5px solid transparent;
+        border-left: 10.5px solid transparent;
+    }
+    .panel-1 .btn-group .temp-group .control {
+        float: left;
+        padding: 6px;
+        margin: 0;
+        z-index: 10;
+        cursor: pointer;
+        background: url(../images/climate/temp-btn.png) no-repeat 0px 0px;
+        height: 80px;
+        width: 80px;
+    }
+    .panel-1 .btn-group .temp-group .control .inner {
+        display: inline-block;
+        border-radius: 50% !important;
+        height: 64px;
+        width: 64px;
+    }
+    .panel-1 .btn-group .temp-group .control .subtract-temp {
+        margin: -3px 0 0 2px;
+    }
+    .panel-1 .btn-group .temp-group .control .add-temp {
+        margin: 4px 0 0 4px;
+    }
+    .panel-1 .btn-group .temp-group .control a {
+        display: inline-block;
+        text-align: center;
+        font-size: 72px;
+        line-height: 61px;
+        width: 65px;
+        vertical-align: middle;
+    }
+    .panel-1 .btn-group .temp-group.raise { float:left; width: auto; padding:0; margin:0; color: #c4172c; }
+    .panel-1 .btn-group .temp-group.raise .temp-hud {
+        float: left;
+        padding: 20px 0 0 15px;
+        margin: 0;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .panel-1 .btn-group .temp-group.raise .temp-hud .up-arrow {
+        width: 0;
+        height: 0;
+        border-right: 10.5px solid transparent;
+        border-bottom: 11px solid #c4172c;
+        border-left: 10.5px solid transparent;
+    }
+    .panel-1 .btn-group .action-area {
+        float: left;
+        z-index: 10;
+        cursor: pointer;
+        font-size: 25px;
+        color: #444444;
+        margin: 15px 15px 0 15px;
+        width: 100px;
+        height: 100px;
+        line-height: 95px;
+        text-align: center;
+        background: url(../images/climate/send-btn.png) no-repeat 0px 0px;
+    }
+    .panel-1 .btn-group .action-area.disable {
+        cursor: default;
+        background: url(../images/climate/send-btn-gray.png) no-repeat 0px 0px;
+    }
+    .panel-1 .notification {
+        text-align: center;
+        padding: 10px 0 0 20px;
+    }
+    .panel-1 .notification a.btn {
+        display: inline-block;
+        font-size: 12px;
+        text-align: center;
+        padding: 0 14px 0 12px;
+        line-height: 25px;
+        border: 0;
+        min-width: 130px !important;
+        letter-spacing: 0px;
+        border: 1px solid #bdbdbd;
+    }
+    .panel-1 .notification a.btn img {
+        text-align: left;
+        vertical-align: middle;
+        width: 11px;
+        height: 11px;
+        padding: 0 3px 0 0;
+        margin: 0 0 0 -3px;
+    }
+    .panel-1 .notification a.btn .divider {
+        display: inline-block;
+        width: 5px;
+        height: 22px;
+        margin: -5px 8px 0 0;
+        border-right: 1px solid #bdbdbd;
+        padding: 0;
+    }
+    .panel-1 .notification p {
+        padding-top: 10px;
+        color: #448CCB;
+        cursor: pointer;
+    }
+    .panel-1 .notification .hintBox {
+        background-color: #333;
+        color: #fff;
+        padding: 15px;
+        text-align: left;
+        line-height: normal;
+        float: right;
+        margin-top: -65px;
+        margin-right: -140px;
+    }
+    .panel-1 .notification .hintBox span { color: #888; }
+    .panel-1 .notification .hintBox .leftArrow { float:left; margin:29px 0 0 -29px; }
+
+	.panel-2{
+		position: relative;
+    	text-align: center;
+    	border: 1px solid #e6e6e6;
+        .section { padding:0 0 15px 0; color:#444; border-bottom: 1px solid #e6e6e6; }
+        .section ul { margin: 24px 0 0 0;}
+        .section ul li:first-child { margin:0 !important;}
+    	.section ul li {
+            display: inline-block;
+            margin: 0 0 0 30px;
+            font-size: 18px;
+    		.radio-btn {
+    			display:inline-block;
+    			float:left;
+    			width:18px;
+    			height:18px;
+    			padding:0;
+                margin:0 13px 0 0;
+    			cursor:pointer;
+    			background-image: url("../images/climate/radio-btn.png");
+    			background-repeat:no-repeat;
+    		}
+    		.radio-btn.active { background-image: url("../images/climate/radio-btn-active.png"); }
+            sub { color: #444; top: -0.3em; }
+    	}
+        .section h1 {
+            font-size: 52px;
+            margin: 0;
+            padding: 20px 10px 5px 3px;
+            letter-spacing: -1px;
+            line-height: 52px;
+        }
+        .section .status .status-container img { margin: 20px 0; }
+        .section a.btn {
+            display: inline-block;
+            font-size: 12px;
+            text-align: center;
+            height: 25px;
+            padding: 0 14px 0 12px;
+            line-height: 25px;
+            border: 0;
+            min-width: 130px !important;
+            letter-spacing: 0px;
+            color: white;
+            background-color: #cccccc;
+            cursor: default;
+        }
+        .section a.btn.start { background-color: #7CB60A; cursor: pointer; }
+        .section a.btn.stop { background-color: #C4172C; cursor: pointer; }
+        .section .outsiteTemp { padding:18px 18px 25px 45px; color:#999; }
+        .section .outsiteTemp img { float:left; }
+	}
+    .schedule-tap {
+        margin: 30px 0 0 30px;
+        font-weight: bold;
+        .line { border-bottom: 2px solid #444; }
+        .req-schedule {
+            margin: 10px 10px 50px;
+            p { float: left; }
+            button { float: right; }
+            .myBtn { background: #7CB60A; border: #7CB60A; color: #fff; padding: 5px 20px; }
+            .myBtn.disabled { background: #CCC; border: #CCC; cursor:default; }
+        }
+        .toggle-up { margin-bottom: 20px; border: 1px solid #e6e6e6; position: relative; }
+        .toggle-up .toggle-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .toggle-up .on {
+            cursor: pointer;
+            background: url("../images/schedule/btn-green.jpg") no-repeat 5px 10px;
+            width:80px;
+            height:40px;
+            float:left;
+            padding:5px;
+        }
+        .toggle-up .on.off {
+            background-image: url("../images/schedule/btn-gray.jpg");
+        }
+        .toggle-up .show-schedule {
+            display:block;
+            border-top:1px solid #c4c4c4;
+        }
+        .toggle-up .show-schedule .txt-set .on{
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            background: url("../images/schedule/btn-green.jpg") 20px -2px;
+            background-repeat:no-repeat;
+            display: inline-block;
+            margin-top:-7px;
+        }
+        .toggle-up .show-schedule .txt-set .on.off{
+            background-image: url("../images/schedule/btn-gray.jpg");
+        }
+        .toggle-up .show-schedule .control-battery .txtControl { margin:-50px 0 0 200px; }
+        .toggle-up .show-schedule .control-battery .red-bar {
+            width:40px; float:left; cursor:pointer;
+        }
+        .toggle-up .show-schedule .control-battery .blue-bar {
+            margin:-23px 0 0 400px; cursor:pointer;
+            @media (max-width: 640px) and (min-width: 360px){ margin: -23px 15px 0 0px !important;}
+        }
+        .toggle-up .line-vert01 {
+            float: left;
+            border-right: 2px solid #e6e6e6;
+            height: 26px;
+            margin: 15px -7px 0 -6px;
+        }
+        .toggle-up .txt01 { float: left; margin: 17px 20px 0 14px; color: #888;}
+        .toggle-up .txt02 {
+            font-size: 15px;
+            color: #888;
+            float: left;
+            margin: 18px 27px 0 14px;
+        }
+        .toggle-up .txt03 {
+            font-size: 15px;
+            color: #888;
+            float: left;
+            margin: 18px 75px 0 16px;
+        }
+        .toggle-up .arrow-down.pos06 {
+            position:absolute;
+            left: 658px;
+            top:15px;
+            cursor:pointer;
+        }
+        .toggle-up .arrow-down.pos06 .down {
+            background-image: url("../images/schedule/arrow-down.jpg");
+            background-repeat: no-repeat;
+            width:26px;
+            height:20px;
+        }
+        .toggle-up .arrow-down.pos06 .down.up {
+            background-image: url("../images/schedule/arrow-up.jpg");
+        }
+        .toggle-up .txt-set {
+            font-size: 12px;
+            color: #444;
+            margin: 60px 0 0 30px;
+        }
+        .toggle-up .txt-set.defrost {
+            margin:0 0 20px 30px;
+            height: 20px;
+        }
+        .toggle-up .txt-set.defrost label { float:left; font-size: 12px; font-weight:bold; color: #444; }
+        .toggle-up .control-battery {
+            margin: -25px 0 0 200px;
+            font-size: 21px;
+            color: #888888;
+            padding-bottom:30px;
+        }
+        .toggle-up .lineDisc {
+            /*padding-top: 38px;*/
+            border-bottom: 1px dashed #e6e6e6;
+            width: 93%;
+            margin-left: 28px;
+        }
+
+        .scheduleBtnWrap { padding: 30px 15px 40px 0; }
+        .scheduleBtnWrap .scheduleError { margin:-30px 0 0 30px; color:#c4172c; }
+        .scheduleBtnWrap .btnCancel { cursor:pointer; margin-right: 10px !important; padding:5px 20px; border:1px solid #e6e6e6; }
+        .scheduleBtnWrap .btnCancel.disabled { background-color: #CCC }
+        .scheduleBtnWrap .btnSchedule { cursor:pointer; padding: 5px 30px; color: #FFF; border:1px solid #7CB60A; background-color: #7CB60A; }
+        .scheduleBtnWrap .btnSchedule.disabled { cursor:default; border:1px solid #CCC; background-color: #CCC; }
+
+        .toggle-up .calendar { margin: 33px 0 80px 28px; padding-bottom:30px; }
+        .toggle-up .calendar .hour { font-size: 22px !important; color: #2f2f2f; }
+        .toggle-up .calendar .hour .hour-wrap.selected { border: 1px solid #c4172c; }
+        .toggle-up .calendar .hour .minute-wrap.selected { border: 1px solid #c4172c; }
+        .toggle-up .calendar .hour .am-pm-wrap.selected { border: 1px solid #c4172c; }
+        .toggle-up .calendar .weekDays .date-box {
+            background-image: url("../images/schedule/week-box1.jpg");
+            background-repeat: no-repeat;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            float: left;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: -1;
+            font-size: 100%;
+            zoom: 0;
+            padding: 10px 0;
+            margin-left:5px;
+        }
+        .toggle-up .calendar .weekDays .date-box.selected {
+            color: #c4172c;
+            background-image: url("../images/schedule/week-box-red1.jpg");
+        }
+        .radioBtn_section li { display:inline-block; width:120px; }
+        .radioBtn_eighty {
+            float: left;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            margin: 0 10px 0 0;
+            background: url("../images/climate/radio-btn.png") no-repeat 0px 0px;
+        }
+        .radioBtn_eighty.selected {
+            background: url("../images/climate/radio-btn-active.png") no-repeat 0px 0px;
+        }
+        .radioBtn_hundred {
+            float: left;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            margin: 0 5px 0 0px;
+            background: url("../images/climate/radio-btn.png") no-repeat 0px 0px;
+        }
+        .radioBtn_hundred.selected {
+            background: url("../images/climate/radio-btn-active.png") no-repeat 0px 0px;
+        }
+    }
+}
+
+/*Mobile*/      
+@media (max-width:$screen-xs-max){
+    #climate{
+        #red{ width: 215px; }
+        .panel-1{ height: 260px; }
+        .panel-1 .left .section{
+            margin: 20px 10px;
+            text-align: center;
+        }
+        .panel-1 .left .section img{
+            float:left;
+        }
+        .panel-1 .left .section h4{
+            height:40px; padding-top:20px; text-align: center;
+        }
+        .panel-1 .left .section .status{
+            margin:10px 0 0 10px;
+        }
+        .ui-slider-handle {
+            width:1.2em;
+            height:1.2em;
+            cursor:default;
+            z-index:2;
+        }
+       .ui-state-default {
+          /* background: #e6e6e6 url('http://angular-ui.github.io/ui-slider/bower_components/jquery-ui/themes/smoothness/images/ui-bg_glass_75_dadada_1x400.png');*/
+          background-size:30px 30px;
+          height: 31px;
+          width:32px;
+        
+        }
+        .ui-slider-horizontal .ui-slider-handle {
+            top: 0.4em;
+            margin-left: -0.6em;
+        }
+    
+        .panel-1 .left .section .on{
+            cursor: pointer;
+            width: 75px;
+            height: 30px;
+            background: url("../images/schedule/btn-green.jpg") 0px -2px;
+            background-repeat: no-repeat;
+            display: inline-block;
+        }
+        .panel-1 .left .section .on.off{
+            background: url("../images/schedule/btn-gray.jpg") 0px -2px;
+        }
+        .panel-1 .left .section .on.off.on_gray{
+            background: url("../images/schedule/btn-on-gray.jpg") 0px -2px;
+        }
+        .panel-1 .left .section .on.off_red{
+            background: url("../images/schedule/btn-red.jpg") 0px -2px;
+        }
+
+        .panel-1 .right {
+            display: block;
+            color: #444444;
+            padding: 40px;
+            margin: 20px 0 0 0;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            background: url(../images/climate/knob-btn.png) no-repeat 0px 0px;
+        }
+        .panel-1 .right h1 {font-size: 6em; width:135px;}
+        .panel-1 .right h1 sup {top: -0.2em;}
+        .panel-1 .right h1 span {font-size: 0.4em; margin-left:-30px;}
+        .panel-1 .right h1 label {font-size: 1em; color:#444; margin-right:7px;}
+        .panel-1 .right .temp {
+            width: 77px;
+            height: 77px;
+            margin: auto;
+            cursor: pointer;
+            background: url(../images/climate/temp-btn.png) no-repeat -3px 0px;
+        }
+        .panel-1 .right .temp.up {
+            margin-top:-65px;
+        }
+        .panel-1 .right .temp.down {
+            margin-top:0px;
+        }
+        .panel-1 .right .temp .up-arrow {
+            width: 0;
+            height: 0;
+            border-right: 10.5px solid transparent;
+            border-bottom: 11px solid #c4172c;
+            border-left: 10.5px solid transparent;
+            padding: 15px 0px;
+            margin: auto;
+        }
+        .panel-1 .right .temp .down-arrow {
+            margin: 37px auto 0 28px;
+            width: 0;
+            height: 0;
+            position: absolute;
+            border-top: 11px solid #448ccb;
+            border-right: 10.5px solid transparent;
+            border-left: 10.5px solid transparent;
+        }
+
+        .group-btn {margin:20px auto; text-align: center;}
+        .group-btn .cancel-btn {color:#FFF; background-color: #000; padding:15px;}
+        .group-btn .cancel-btn.disabled {background-color: #BBB;}
+        .group-btn .submit-btn {color:#FFF; background-color: #c4172c; padding:15px;}
+        .group-btn .submit-btn.disabled {background-color: #ccc;}
+
+        .schedule-tap {
+            margin: 20px 0 0 0px;
+            font-weight: bold;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+        .schedule-tap .req-schedule { margin: 10px 0px 20px; }
+        .schedule-tap .req-schedule p { margin-bottom: 10px; }
+        .schedule-tap .req-schedule .myBtn { padding: 15px 0px; width: 100%; }
+        .schedule-tap .req-schedule button { float: none; }
+
+        /*.schedule-tap { margin: 0px; }
+        .schedule-tap .req-schedule { margin: 10px 0px; }
+        .schedule-tap .req-schedule button { float:initial; }
+        .schedule-tap .req-schedule .myBtn { padding: 15px; margin:10px 0; width:100%; }*/
+
+        .schedule-tap .toggle-up { margin-top: 10px; }
+        .schedule-tap .toggle-up .line-vert01 { margin: 5px -7px 0 -6px; }
+        .schedule-tap .toggle-up .line-vert01.one { height: 40px; }
+        .schedule-tap .toggle-up .line-vert01.two { height: 18px; }
+        .schedule-tap .toggle-up .txt01 { margin: 8px 0 0 8px; width: 210px; }
+        .schedule-tap .toggle-up .txt02 { margin: 8px 14px 0 10px; }
+        .schedule-tap .toggle-up .txt03 { margin: 12px 0px 0 0px; font-size: 10px; }
+        .schedule-tap .toggle-up .txt-set { margin: 20px 0 0 10px; }
+        .schedule-tap .toggle-up .txt-set.defrost { margin:0 0 0px 10px }
+        .schedule-tap .toggle-up .control-battery { margin: 15px 0 0 40px; padding-bottom: 0px; }
+        .schedule-tap .toggle-up .lineDisc { padding-top: 15px; width:270px; margin-left:10px; }
+        .schedule-tap .toggle-up .arrow-down.pos06 { top:1%; left:88%; }
+        .schedule-tap .toggle-up .calendar { margin: 20px 0 0 0; padding-bottom:110px; }
+        .schedule-tap .toggle-up .calendar .hour { width:100%; padding: 2% 25%; }
+        .schedule-tap .toggle-up .show-schedule .control-battery .txtControl { margin:-50px 0 0 135px; }
+        .schedule-tap .toggle-up .show-schedule .control-battery .blue-bar { margin: -23px 0 0 265px; }
+        .schedule-tap .toggle-up .show-schedule .calendar .hour .time-pick {
+            .hour-list { top:-109px; }
+            .minute-list { top: -193px; }
+            .am-pm-list { top: -65px; }
+        }
+        .schedule-tap .scheduleBtnWrap { 
+            padding:10px 20px 60px 0;
+            .btnSchedule, .btnCancel { padding:15px 30px; }
+            .scheduleError { margin:0 0 10px 10px; color:#c4172c; }
+        }
+        .schedule-tap .toggle-up .control-battery {
+            margin: 60px 0 0 0px;
+            padding-bottom: 20px;
+        }
+
+        .panel-2 .section ul li { margin: 0 0 0 80px; }
+    }
+}

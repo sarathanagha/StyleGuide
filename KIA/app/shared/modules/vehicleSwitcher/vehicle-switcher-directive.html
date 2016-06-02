@@ -1,0 +1,27 @@
+<div class="nav-vehicle-selector">
+  <span class="arrow Switchwrap"></span>
+    <img width="110" class="Switchwrap" ng-src="{{selectedVehicle.originImgFileNm}}">
+    <p class="title Switchwrap">{{selectedVehicle.vehNick}}</p>
+    <p class="trim Switchwrap">{{selectedVehicle.mdlYr}} {{selectedVehicle.mdlNm}}</p>
+    <div class="nav-vehicle-switcher hide" id="vehicle-switcher">
+        <div id="scroller">
+            <ul>
+              <li ng-if="vehicleenablecar[$index]" ng-repeat="vehicle in vehicles | limitTo: 3">
+                <div class="marker">
+                    <div class="check" ng-click="switchVehicle(vehicle.type, vehicle.vin)" ng-class="vehicle.selected && 'selected'"></div>
+                </div>
+                <div class="image">
+                    <img width="100" alt="K900" ng-src="{{vehicle.originImgFileNm}}">
+                </div>
+                <div class="info">
+                    <p class="title">{{vehicle.vehNick}}</p>
+                    <p class="trim">{{vehicle.mdlYr}} {{vehicle.mdlNm}}</p>
+                </div>
+                <div class="clear"></div>
+            </li></ul>
+            <div class="load-more-container text-center" ng-show="vehicles.length > 3" ng-click="goToVehiclesPage()">
+                <span>VIEW ALL VEHICLES</span>
+            </div>
+        </div>
+    </div>
+</div>

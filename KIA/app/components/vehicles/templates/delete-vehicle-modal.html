@@ -1,0 +1,12 @@
+<div class="modal vehicle-delete dark-bg enabled" ng-show="vm.confirmDelete">
+    <div class="content">
+        <div class="message">
+            Your vehicle will be removed from your MyUVO account.
+            You can add your vehicle again anytime.
+        </div>
+        <div class="actions">
+	         <button class="highlighted" ng-click="vm.deleteVehicle(vm.deleteIndex, vm.deleteVin);"><span>Delete Vehicle</span></button>
+	         <button ng-click="vm.toggleDeleteVehicle()"><span>Cancel</span></button>
+        </div>
+    </div>
+</div>

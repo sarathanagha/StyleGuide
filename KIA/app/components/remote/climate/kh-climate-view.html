@@ -1,0 +1,398 @@
+<div class="vehicleStatus" ng-class="{'success':vm.successCall&&vm.mobile,'error':vm.unsuccessCall&&vm.mobile}">
+    <div class="vehicleStatus-date" ng-hide="vm.hasMessege || vm.hideTimeStamp">Last updated as of {{vm.vStatus*1000 | date:'MMMM d, y h:mm a'}}</div>
+    <div class="vehicleStatus-date" ng-show="vm.hasMessege" ng-bind="pageStatusMessage"></div>
+    <div class="messegeStatus" ng-show="vm.hasMessege">{{vm.messegeStatus}}</div>
+    <div class="vehicleStatus-reloader" ng-hide="vm.proccessing">
+        <a class="clickable" ng-click="vm.latestVehicleStatus()">
+            <img src="images/kh/img/icons/icons-ffffff/refresh.png">
+        </a>
+    </div>
+</div>
+
+<div id="climate-view" class="content-area container-fluid">
+    <div class="page-header col-xs-12 col-sm-12" ng-class='{disabled:disableAll == true}'>
+        <ul class="col-sm-8">
+            <li class="col-xs-4 col-sm-4"><a ui-sref='kh.remote'  href="/kh/climate" class="active">Engine &amp; Climate</a></li>
+            <li class="col-xs-4 col-sm-4"><a ui-sref='kh.lock' href="/kh/lock">Lock / Unlock</a></li>
+            <li class="col-xs-4 col-sm-4"><a ui-sref='kh.findMyCar' href="/kh/findMyCar">Find My Car</a></li>
+        </ul>
+    </div>
+    <div class="remote-content" ng-class='{disabled:disableAll == true}'>
+        <div class="climate-wrap"> 
+            <div class="climate-box box-engine">
+                <h4>ENGINE</h4>
+                <div class="engine-img" ng-class="{'active':!vm.enginestatus && !(disableAll == true), 'active disabled':!vm.enginestatus && (disableAll == true)}"></div>
+                <div class="switch mL40" ng-class="{'off disabled':vm.enginestatus && (disableAll == true),'on disabled':!vm.enginestatus && (disableAll == true), 'off':vm.enginestatus && !(disableAll == true),'on':!vm.enginestatus && !(disableAll == true)}" ng-click="vm.EngineToggle()">{{vm.onOffE}}
+                </div>
+            </div>
+            <div class="climate-box box-climate">
+                <h4>CLIMATE</h4>
+                <div class="climate-img" ng-class="{'active':!vm.enginestatus && vm.climate && !(disableAll == true), 'active disabled':!vm.enginestatus && vm.climate && (disableAll == true)}"></div>
+                <div class="switch mL40 mT10" ng-class="{'disabled off':vm.enginestatus,'off':!vm.enginestatus && !vm.climate && !(disableAll == true),'on':!vm.enginestatus && vm.climate && !(disableAll == true), 'off disabled':!vm.enginestatus && !vm.climate && (disableAll == true),'on disabled':!vm.enginestatus && vm.climate && (disableAll == true)}" ng-click="vm.climateBox()">{{vm.onOffC}}
+                </div>
+            </div>
+            <div class="box-defrost">
+                <h4>DEFROSTER</h4>
+                <div class="defrost-img" ng-class="{'active':!vm.enginestatus && vm.defroster && !(disableAll == true),'active disabled':!vm.enginestatus && vm.defroster && (disableAll == true)}"></div>
+                <div class="switch mL40 mT10" ng-class="{'disabled off':vm.enginestatus,'off':!vm.enginestatus && !vm.defroster && !(disableAll == true),'on':!vm.enginestatus && vm.defroster && !(disableAll == true),'off disabled':!vm.enginestatus && !vm.defroster && (disableAll == true),'on disabled':!vm.enginestatus && vm.defroster && (disableAll == true)}" ng-click="vm.defrosterBox()">{{vm.onOffD}}
+                </div>
+            </div>
+        </div>
+        <div class="engine" style="margin-right:0px">
+            <div class="temperature">
+                <div class="temp inside">--<label>VEHICLE</label></div>
+                <div class="temp outside">{{vm.data.temp | number:0}}<sup>°</sup><label>OUTSIDE</label></div>
+            </div>
+            <div class="kh-button vehicle-refresh" ng-show="vm.hasErrors&&!vm.mobile&&!vm.proccessing" ng-click="vm.latestVehicleStatus()">REFRESH<br>VEHICLE STATUS</div>
+            <div class="upper-right">
+                <div class="kh-button kh-button-submit" style="z-index:99999;" ng-class="{'disabled': vm.disableRequest}" ng-click="vm.submitEngine()" ng-hide="vm.submitted&&!vm.mobile&&vm.hasErrors">SUBMIT REQUEST
+                </div>   
+                <div class="kh-button kh-button-pending" ng-show="vm.submitted&&vm.proccessing&&!vm.mobile"><div>REQUEST IN PROGRESS</div></div>    
+                <div class="kh-button kh-button-error" ng-show="vm.hasErrors&&!vm.mobile&&!vm.proccessing" ng-click="vm.submitEngine()">TRY AGAIN</div> 
+                <div class="kh-button kh-button-success hide">REQUEST COMPLETED</div>
+                <div class="pending-msg" ng-show="vm.submitted&&vm.proccessing&&!vm.mobile">Please wait 30 seconds before sending additional requests.</div>
+                <!-- <pending-list ng-if="!vm.mobile" class="visible-xs"></pending-list> -->
+                <pending-list ng-if="!vm.mobile" class="pendingitem"></pending-list>
+                <div class="retry-list" ng-show="vm.hasErrors&&!vm.mobile&&!vm.proccessing">
+                    <h5>PREVIOUS SETTINGS</h5>
+                    <ul>
+                        <li class="cart-engine">Turn engine <span class="val on">{{vm.onOffE}}</span></li>
+                        <!-- <li class="cart-defrost hide">Turn defroster <span class="val on">{{vm.onOffD}}</span><span class="val off">OFF</span></li>
+                        <li class="cart-climate hide">Turn climate <span class="val on">{{vm.onOffC}}</span><span class="val off">OFF</span></li>
+                        <li class="cart-dial hide">Change climate <span class="val"></span> </li> -->  
+                    </ul>
+                </div> 
+            </div>
+            <div class="climate">
+              
+                <div ng-show="!vm.mobile" class="wrapper" ng-class="{'active':(vm.onOffC == 'on'), 'disabled':(vm.onOffC == 'off')}">
+                <div id="wrapdrag"></div>
+                    <label>SET<br>TEMPERATURE</label>
+                   <!--  <div class="hidden-xs" ng-if="!(vm.climate==true&&vm.enginestatus==false)" class="dial" style="position: relative;"><svg height="360" version="1.1" width="360" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#777777" d="M285.98689761269446,286.2570286100412C367.6365556839264,204.6073705388092,330.27924435344636,65.18798661928923,218.74373721783041,35.30213755490519C107.20823008221447,5.41628849052114,5.146157493174542,107.47836107956107,35.0320065575585,219.01386821517704C41.84684129794698,244.44717771149226,55.23638855676771,267.63855385411443,73.85486331269448,286.2570286100412" stroke-width="16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="none" d="M73.14829225421195,285.54572025685974C73.3829713533565,285.7835568805374,73.61849595739463,286.0206612547413,73.85486331269448,286.2570286100412" stroke-width="16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><image x="0" y="0" width="68" height="68" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="images/kh/img/remote/odo-button-grey.png" transform="matrix(0.295,-0.9555,0.9555,0.295,-0.8285,260.8866)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></image></svg><div style="opacity: 0; position: absolute; width: 68px; height: 68px; left: 7.68730612321073px; top: 204.427549038124px; background: white;" class="ui-draggable"></div>
+                    </div> 
+                    <knob ng-if="vm.climate==true && vm.enginestatus==false && vm.mobile" knob-data="vm.knobdata.value"  knob-status="vm.batteryStatus" knob-options="vm.knobdata.options" data-linecap=round ></knob>
+                    <knob ng-if="vm.climate==true && vm.enginestatus==false && !vm.mobile" knob-data="vm.knobdata.value"  knob-status="vm.batteryStatus" knob-options="vm.knobdata.options" data-linecap=round></knob>
+                    <div ng-if="vm.climate==true && vm.enginestatus==false" id="draggable"  style="z-index:9999999999;" class="ui-dragable" ng-draggable='vm.dragOptions'>
+                    </div>
+                    
+                    <div class="value-container">
+                        <div class="value disabled"ng-hide="vm.climate==true && vm.enginestatus==false">--</div>
+                        <div class="value visible-xs" ng-show="vm.climate==true && vm.enginestatus==false" id="value-mob">{{vm.knobdata.value}}
+                            <sup style="position:absolute;top:25px;color:#999999" ng-hide="vm.knobdata.value == 'Low' || vm.knobdata.value =='High' ">°</sup>
+                        </div> 
+                    </div>
+                    <div class="button minus disabled hidden-xs" ng-class="{'disabled' : vm.enginestatus==true||vm.climate==false}" ng-click="vm.knobchange('dec')">
+                    </div>
+                    <div class="button plus disabled hidden-xs" ng-class="{'disabled' : vm.enginestatus==true||vm.climate==false}" ng-click="vm.knobchange('inc')">
+                    </div>
+                    <div class="temp-mob up-mob" ng-click="vm.knobchange('inc')" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}">
+                        <div class="up-arrow" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}"></div>
+                    </div>
+                    <div class="temp-mob down-mob" ng-click="vm.knobchange('dec')" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}">
+                        <div class="down-arrow" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}"></div>
+                    </div> -->
+
+                    <div class="value-container hidden-xs" ng-class="{'disabled' : vm.enginestatus==true||vm.climate==false}">
+                        <div class="value" ng-hide="vm.submitted&&vm.proccessing">{{vm.knobdata.value}}<sup ng-hide="vm.knobdata.value=='Low'|| vm.knobdata.value=='High'|| vm.knobdata.value=='--'">°</sup></div>
+                        <div class="value" ng-show="vm.submitted&&vm.proccessing">--</div>
+                    </div> 
+                </div>
+                
+                    <div class="button minus disabled hidden-xs" ng-class="{'disabled' : vm.enginestatus==true||vm.climate==false}" ng-click="vm.knobchange('dec')">
+                    </div>
+                    <div class="button plus disabled hidden-xs" ng-class="{'disabled' : vm.enginestatus==true||vm.climate==false}" ng-click="vm.knobchange('inc')">
+                    </div>
+                    <svg height="350" width="220" style="margin: 0 auto;" class="visible-xs" id="svg_remote">
+                        <circle cx="110" cy="150" r="100" stroke="#999999" stroke-width="9" fill="none" ng-class="{disabled : vm.enginestatus==true|| vm.climate==false}" id="sm-screen"></circle>
+                        <circle cx="93" cy="150" r="80" stroke="#999999" stroke-width="9" fill="none" ng-class="{disabled : vm.enginestatus==true|| vm.climate==false}" class="disabled" id="xs-screen" style="display:none"></circle> 
+                    </svg> 
+                    <div class="value-container">
+                        <div class="value disabled"ng-hide="vm.climate==true && vm.enginestatus==false">--</div>
+                        <div class="value visible-xs" ng-show="vm.climate==true && vm.enginestatus==false" id="value-mob">{{vm.knobdata.value}}
+                            <sup style="position:absolute;top:25px;color:#999999" ng-hide="vm.knobdata.value == 'Low' || vm.knobdata.value =='High' ">°</sup>
+                        </div> 
+                    </div>
+                    <div class="temp-mob up-mob" ng-click="vm.knobchange('inc')" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}">
+                        <div class="up-arrow" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}"></div>
+                    </div>
+                    <div class="temp-mob down-mob" ng-click="vm.knobchange('dec')" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}">
+                        <div class="down-arrow" ng-class="{'disabled' : vm.enginestatus==true|| vm.climate==false}"></div>
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="viewPending-submit col-xs-12 visible-xs" ng-show="!vm.disableRequest&&!vm.hasErrors" resize-it>
+        <div class="viewPending-mob col-xs-6 visible-xs" ng-show="!vm.disableRequest&&!vm.hasErrors" ng-click="vm.viewPendingRequests()">view pending ({{vm.pendingtotal}})</div>
+        <div class="submit-mob col-xs-6 visible-xs" ng-class="{'disabled': vm.disableRequest}" 
+        ng-click="vm.submitEngine()" ng-hide="vm.submitted&&vm.mobile&&vm.hasErrors">submit request</div>
+    </div>
+    <div class="cancel-retry col-xs-12 visible-xs"  ng-show="vm.hasErrors&&vm.submitted&&!vm.proccessing">
+        <div class="cancel-mob col-xs-6 visible-xs" ng-click="">cancel</div>
+        <div class="retry-mob col-xs-5 visible-xs" ng-click="vm.submitEngine()" ng-show="vm.hasErrors&&vm.mobile&&!vm.proccessing">retry</div>
+        <div class="retry-mob-arrow col-xs-1 visible-xs"></div>
+    </div>
+    <div  class="request-progress col-xs-12 visible-xs" ng-show="vm.submitted&&vm.proccessing&&vm.mobile">request in progress...</div>
+    <div class="blade one-column"></div> 
+
+            <!--/Engine & Climate template -->
+
+    <div class="container" style="margin-top:40px;">
+
+            <!-- SCHEDULE - CLIMATE DETAIL -->
+
+        <div class="schedule-tap" style="margin:0px;">
+            <div class="titles">
+                <span class="title-left">ENGINE &amp; CLIMATE SCHEDULES</span>
+            </div>
+            <div class="line"></div>
+                        
+            <!-- SCHEDULE I -->
+
+            <div class="schedule-one toggle-up open" style="margin-top:15px">
+                <div class="toggle-section">
+                    <div class="btn">
+                        <div class="hvac-set" ng-class="{'on':vm.climatestatus[1] ,'off':!vm.climatestatus[1],'disabled':!vm.scheduleone}" ng-click="vm.climateChangeStatus('1')"></div>
+                    </div>
+                    <div class="line-vert01"></div>
+                    <div class="txt01 schedule-temp">{{vm.tempvalue[1]}}<sup>&deg;</sup></div>
+                    <div class="line-vert01"></div>
+                    <div class="txt02 time-hvac"><span>{{vm.climateTime[1]}}</span> {{vm.timesection[1]}}</div>
+                    <div class="line-vert01"></div>
+                    <div class="txt03 date-hvac">
+                        <span ng-repeat="day in vm.daysData[1]" class="days-mobile">{{day | limitTo : 2}}&nbsp;</span>
+                        <span ng-repeat="day in vm.daysData[1]" class="hidden-xs">{{day}}</span>
+                    </div>
+                    <div class="arrow-down pos06">
+                        <div class="arrow-btn" ng-class="{'down':!vm.scheduleone,'up':vm.scheduleone}" ng-init="vm.scheduleone=false;" ng-click="vm.scheduleone=!vm.scheduleone;"></div>
+                    </div>
+                </div>
+                <div class="climate-schedule show-schedule" ng-show="vm.scheduleone">
+                    <div class="txt-set">
+                        SET TEMPERATURE
+                    </div>
+                    <div class="control-battery climate slider-f">
+                        <div class="txtControl" >
+                            <div class="slidergrade" ng-show="!vm.mintemp[1]"><span class="txtygraydark temp-value">{{vm.colorpicker[1].red}}</span><sup>°</sup><span class="grade">&nbsp;&nbsp;</span></div>
+                            <div class="gradeLowHigh" ng-show="vm.mintemp[1]"><span class="txtygraydark temp-value">{{vm.mintemplist[1]}}</span></div> 
+                        </div>
+                        <div class="red-bar">
+                            <button class="myBtn" ng-click="vm.decrease('1')" ng-disabled="vm.lowtemp[1]">
+                                <img src="images/schedule/control-red.jpg" alt="red-bar" style="z-index:999">
+                            </button>
+                        </div>
+                        <div id="red" ui-slider="vm.colorpicker[1].options" ng-model="vm.colorpicker[1].red"></div>
+                        <div class="blue-bar">
+                            <button class="myBtn" ng-click="vm.increase('1')" ng-disabled="vm.hightemp[1]">
+                                <img src="images/schedule/control-blue.jpg" alt="red-bar">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="txt-set" style="margin-top:20px">
+                                DEFROSTER
+                        <div class="btn" style="float:right; margin-top:-18px; margin-right:500px">
+                            <div class="defrost-set" ng-class="{'off':!vm.defrosterstatus[1],'on':vm.defrosterstatus[1] }" ng-click="vm.defrosterStatus('1')"></div>
+                        </div>
+                    </div>
+                    <div class="lineDisc climate"></div>
+                    <div class="calendar">
+                        <div class="hour">                                  
+                            <div class="time-hvac-hour hour-wrap" ng-click="vm.hourClick('0')" ng-class="{'timepickerdiv':vm.hourborder[0]}">{{vm.Timedisplay[1]}}</div>
+                            <div class="time-pick" ng-show="vm.hour[0]">                                         
+                                <img src="images/schedule/small-arrow-down.png" class="hour-arrow">
+                                <ul class="hour-list">
+                                    <li ng-repeat="hour in vm.hoursData"  ng-click="vm.hourlist('0',hour)">{{hour}}</li>
+                                </ul>                                              
+                            </div>
+                            <div class="time-hvac-minute minute-wrap" ng-click="vm.minuteClick('0')" ng-class="{'timepickerdiv':vm.minuteborder[0]}" >{{vm.Timedisplay1[1]}}</div>
+                            <div class="time-pick" ng-show="vm.minute[0]">
+                                <img src="images/schedule/small-arrow-down.png" class="minute-arrow">
+                                <ul class="minute-list">
+                                    <li ng-repeat="minute in vm.minutesData" ng-click="vm.minutelist('0',minute)">{{minute }}</li> 
+                                </ul>
+                            </div>
+                            <div class="time-hvac-section am-pm-wrap" ng-click="vm.amClick('0')"  ng-class="{'timepickerdiv':vm.gradientborder[0]}">{{vm.timesection[1]}}</div>
+                            <div class="time-pick" ng-show="vm.gradient[0]">
+                                <img src="images/schedule/small-arrow-down.png" class="am-arrow">
+                                <ul class="am-pm-list">
+                                    <li ng-repeat="gradient in vm.gradientData" ng-click="vm.gradientlist('0',gradient)">{{gradient }}</li> 
+                                </ul>
+                            </div>                               
+                        </div>   
+                        <div class="radioButtons"></div>
+                        <div class="weekDays">
+                            <div class="mon date-box" ng-class="{'selected':item.active}" ng-repeat="item in vm.days[1]" ng-click="vm.daySelect(item,'1')">{{item.day}}</div>
+                        </div>
+                    </div>
+                    <div class="lineDisc2"></div>
+                    <div class="scheduleBtnWrap">
+                        <div class="btnSchedule">
+                            <button type="submit" class="myBtn" ng-show="vm.shedule[1] || !vm.validSchedule || vm.invalidScheduleDays" ng-click="vm.scheduled('1')">
+                                <img src="images/schedule/btnSchedule.jpg" alt="btn Schedule">
+                            </button>
+                            <div class="btnPending" ng-show="vm.sending[1] && vm.validSchedule && !vm.invalidScheduleDays">SENDING...</div>
+                            <div class="btnSuccess" ng-show="vm.success[1] && vm.validSchedule && !vm.invalidScheduleDays">SUCCESS</div>
+                        </div>
+                        <div class="btnCancel">
+                            <button type="submit" class="myBtn" ng-click="vm.scheduleone=false">
+                                <img src="images/schedule/btnCancel.jpg" alt="btn Cancel">
+                            </button>
+                        </div>
+                        <div class="conflictError error" ng-show="vm.conflictDay.length">
+                            <span ng-repeat="day in vm.conflictDay" >{{day}} </span><span> currently not available at the selected time. </span>
+                        </div>
+                        <div class="validSchedule error" ng-show="!vm.validSchedule">
+                            <span>Please allow at least 20 minutes between scheduled requests.</span>
+                        </div>
+                        <div class="valid-date error" ng-show="vm.invalidScheduleDays">
+                            <span>Please select day(s) to schedule.</span>
+                        </div>
+                        <div class="hide requestError error">
+                            <span>Request Error. Please try again.</span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+                <!-- SCHEDULE I -->
+                        
+                <!-- SCHEDULE II -->
+            <div class="schedule-two toggle-up open">
+                <div class="toggle-section">
+                    <div class="btn">
+                        <div class="hvac-set" ng-class="{'off':!vm.climatestatus[2] ,'on':vm.climatestatus[2],'disabled':!vm.scheduletwo}" ng-click="vm.climateChangeStatus('2')"></div>
+                    </div>
+                    <div class="line-vert01"></div>
+                    <div class="txt01 schedule-temp">{{vm.tempvalue[2]}}<sup>&deg;</sup></div>
+                    <div class="line-vert01"></div>
+                    <div class="txt02 time-hvac"><span>{{vm.climateTime[2]}}</span> {{vm.timesection[2]}}</div>
+                    <div class="line-vert01"></div>
+                    <div class="txt03 date-hvac">
+                        <span ng-repeat="day in vm.daysData[2]" class="days-mobile">{{day | limitTo : 2}}&nbsp;</span>
+                        <span ng-repeat="day in vm.daysData[2]" class="hidden-xs">{{day}}</span>
+                    </div>
+                    <div class="arrow-down pos06">
+                        <div class="arrow-btn" ng-class="{'down':!vm.scheduletwo,'up':vm.scheduletwo}" ng-init="vm.scheduletwo=false;" ng-click="vm.scheduletwo=!vm.scheduletwo;"></div>
+                    </div>
+                </div>
+                <div class="climate-schedule" ng-show="vm.scheduletwo" style="border-top: 1px solid #C4C4C4">
+                    <div class="txt-set">
+                        SET TEMPERATURE
+                    </div>
+                    <div class="control-battery climate slider-f">
+                        <div class="txtControl">
+                            <div class="slidergrade" ng-show="!vm.mintemp[2]"><span class="temp-value txtygraydark">{{vm.colorpicker[2].red}}</span><sup>°</sup><span class="grade">&nbsp;&nbsp;</span></div>
+                            <div class="gradeLowHigh" ng-show="vm.mintemp[2]"><span class="temp-value txtygraydark">{{vm.mintemplist[2]}}</span></div> 
+                        </div>
+                    <div class="red-bar">
+                        <button class="myBtn" ng-click="vm.decrease('2')" ng-disabled="vm.lowtemp[2]">
+                            <img src="images/schedule/control-red.jpg" alt="red-bar" style="z-index:999">
+                        </button>
+                    </div>
+                    <div id="red" ui-slider="vm.colorpicker[2].options" ng-model="vm.colorpicker[2].red"></div>
+                        <div class="blue-bar">
+                            <button class="myBtn" ng-click="vm.increase('2')" ng-disabled="vm.hightemp[2]">
+                                <img src="images/schedule/control-blue.jpg" alt="red-bar">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="slider-c control-battery climate" style="display:none">
+                        <div class="txtControl">
+                            <span class="temp-value-c txtygraydark"></span><sup>°</sup><span class="grade">&nbsp;&nbsp;C</span>
+                        </div>
+                        <div class="red-bar">
+                            <button class="myBtn">
+                                <img src="images/schedule/control-red.jpg" alt="red-bar" style="z-index:999">
+                            </button>
+                        </div>
+                        <div class="slider-c"><div class="ui-sliderC-range"></div></div>
+                        <div class="blue-bar">
+                            <button class="myBtn">
+                                <img src="images/schedule/control-blue.jpg" alt="red-bar">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="txt-set" style="margin-top:20px">
+                        DEFROSTER
+                        <div class="btn" style="float:right; margin-top:-18px; margin-right:500px">
+                            <div class="defrost-set" ng-class="{'off':!vm.defrosterstatus[2],'on':vm.defrosterstatus[2] }" ng-click="vm.defrosterStatus('2')"></div>
+                        </div>
+                    </div>
+                    <div class="lineDisc climate"></div>
+                    <div class="calendar">
+                        <div class="hour"> 
+                            <div class="time-hvac-hour hour-wrap2" ng-click="vm.hourClick('1')" ng-class="{'timepickerdiv':vm.hourborder[1]}">{{vm.Timedisplay[2]}}</div>
+                            <div class="time-pick" ng-show="vm.hour[1]">
+                                <img src="images/schedule/small-arrow-down.png" class="hour-arrow2">
+                                <ul class="hour-list2">
+                                    <li ng-repeat="hour1 in vm.hoursData" ng-click="vm.hourlist('1',hour1)">{{hour1}}</li>
+                                </ul>
+                            </div>   
+                            <div class="time-hvac-minute minute-wrap2" ng-click="vm.minuteClick('1')" ng-class="{'timepickerdiv':vm.minuteborder[1]}">{{vm.Timedisplay1[2]}}</div>
+                            <div class="time-pick" ng-show="vm.minute[1]">
+                                <img src="images/schedule/small-arrow-down.png" class="minute-arrow2">
+                                <ul class="minute-list2">
+                                    <li ng-repeat="minute1 in vm.minutesData" ng-click="vm.minutelist('1',minute1)">{{minute1}}</li>
+                                </ul>
+                            </div>
+                            <div class="time-hvac-section am-pm-wrap2" ng-click="vm.amClick('1')" ng-class="{'timepickerdiv':vm.gradientborder[1]}">{{vm.timesection[2]}}</div>
+                            <div class="time-pick"ng-show="vm.gradient[1]">
+                                <img src="images/schedule/small-arrow-down.png" class="am-arrow2">
+                                <ul class="am-pm-list2">
+                                    <li ng-repeat="gradient1 in vm.gradientData" ng-click="vm.gradientlist('1',gradient1)">{{gradient1}}</li> 
+                                </ul>
+                            </div>                            
+                        </div>  
+                        <div class="radioButtons"></div>
+                        <div class="weekDays">
+                            <div class="mon date-box" ng-class="{'selected':item.active}" ng-repeat="item in vm.days[2]" ng-click="vm.daySelect(item,'2')">{{item.day}}</div>
+                        </div>
+                    </div>
+                    <div class="lineDisc2"></div>
+                    <div class="scheduleBtnWrap">
+                        <div class="btnSchedule">
+                            <button type="submit" class="myBtn" ng-show="vm.shedule[2] || !vm.validSchedule || vm.invalidScheduleDays" ng-click="vm.scheduled('2')">
+                                <img src="images/schedule/btnSchedule.jpg" alt="btn Schedule">
+                            </button>
+                            <div class="btnPending"  ng-show="vm.sending[2] && vm.validSchedule && !vm.invalidScheduleDays" >SENDING...</div>
+                            <div class="btnSuccess"  ng-show="vm.success[2] && vm.validSchedule && !vm.invalidScheduleDays" >SUCCESS</div>
+                        </div>
+                        <div class="btnCancel">
+                        <button type="submit" class="myBtn" ng-click="vm.scheduletwo=false">
+                            <img src="images/schedule/btnCancel.jpg" alt="btn Cancel">
+                        </button>
+                        </div>
+                        <div class="conflictError error" ng-show="vm.conflictDay.length">
+                        <span ng-repeat="day in vm.conflictDay" >{{day}} </span><span> currently not available at the selected time. </span>
+                        </div>
+                        <div class="validSchedule error" ng-show="!vm.validSchedule">
+                            <span>Please allow at least 20 minutes between scheduled requests.</span>
+                        </div>
+                        <div class="valid-date error" ng-show="vm.invalidScheduleDays">
+                            <span>Please select day(s) to schedule.</span>
+                        </div>
+                        <div class="hide requestError error">
+                            <span>Request Error. Please try again.</span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/*!
+ * jQuery UI Touch Punch 0.2.3
+ *
+ * Copyright 2011â€“2014, Dave Furfero
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Depends:
+ *  jquery.ui.widget.js
+ *  jquery.ui.mouse.js
+ */
+!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+</script>

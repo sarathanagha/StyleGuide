@@ -1,0 +1,214 @@
+// override bootstrap css
+.dealer-modal {
+  .modal-content {
+    background:none;
+    border:none;
+    box-shadow:none;
+  }
+}
+
+#dealerSearchList {
+    width: 100%; position : relative; top: 0; left: 1;
+    min-height : 145px;
+    max-height : 406px; overflow : hidden; 
+}
+
+#dealer-modal-content {
+    text-align : left;
+    background : #FFFFFF;
+    width      : 260px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width:$screen-sm-min) {
+      width : 320px;
+    }
+
+    .header {
+      border-bottom  : 4px solid #BC1728;
+      font-size      : 18px; //1.4em;
+      padding        : 22px 15px 20px 30px;
+      text-transform : uppercase;
+
+      .close {
+        display    : block;
+        background : url("../images/kh/img/maintenance/x-1.png") no-repeat;
+        float      : right;
+        height     : 17px;
+        width      : 17px;
+
+        span {
+          display : none;
+        }
+
+      }
+    }
+
+    .detail {
+      .action-bar {
+        background : #2F2F2F;
+        color      : #E6E6E6;
+        height     : 62px;
+        padding    : 0 0 0 30px;
+
+        .box-1 {
+          float       : left;
+          font-family : $designk-medium;
+          font-size   : 13px; //1.05em;
+          margin-top  : 22px;
+          width       : 85px;
+        }
+
+        .box-2 {
+          display     : inline-block;
+          padding-top : 13px;
+          border        : none;
+          border-bottom : 1px solid #FFFFFF;
+
+          input {
+            background    : #2F2F2F;
+            border        : none;
+            color         : #FFFFFF;
+            font-size     : 19px; //1.5em;
+            padding       : 1px 7px;
+            margin        : 0px;
+            width         : 60px;
+            height        : auto;
+            font-family   : $designk-light;
+            outline       : none;
+
+            &:focus {
+              outline:none;
+            }
+          }
+        }
+
+        .box-3 {
+          float : right;
+
+          button {
+            background : #CC273A url("../images/kh/img/maintenance/arrow-5-right.png") no-repeat center center;
+            border     : none;
+            cursor     : pointer;
+            height     : 62px;
+            width      : 34px;
+
+            span {
+              display : none;
+            }
+          }
+        }
+      }
+
+      .filter {
+        margin         : 0 30px;
+        position       : relative;
+        color          : #444444;
+        font-size      : 1em;
+        text-transform : uppercase;
+
+        .current {
+          border   : 1px solid #BDBDBD;
+          cursor   : pointer;
+          padding  : 8px 12px;
+          position : relative;
+          display  : block;
+
+          &:after {
+            background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+            content    : "";
+            float      : right;
+            height     : 9px;
+            margin-top : 6px;
+            width      : 11px;
+          }
+        }
+
+        .current:active { border-color : #BC1728; }
+
+        .selector {
+          background : #FBFBFB;
+          border     : 1px solid #EEEEEE;
+          box-sizing : border-box;
+          display    : none;
+          margin-top : 5px;
+          position   : absolute;
+          width      : 100%;
+
+          span {
+            display     : block;
+            cursor      : pointer;
+            line-height : 20px; //1em;
+            padding     : 8px 12px;
+
+            &:first-child { padding-top : 16px; }
+            &:last-child { padding-bottom : 16px; }
+          }
+
+          span.selected { color : #BC1728; }
+        }
+
+        .selector.expanded { display : block; }
+      }
+
+      .results {
+        margin : 0 30px;
+
+        li {
+          border-bottom : 1px solid #E6E6E6;
+          font-size     : 12px; //0.9em;
+          padding       : 32px 0;
+
+          &:last-child { border : none; }
+
+          .distance {
+            background  : url("../images/kh/img/maintenance/star-1-inactive.png") no-repeat center top;
+            float       : left;
+            font-size   : 12px; //0.9em;
+            height      : 20px;
+            margin-top  : 20px;
+            padding-top : 37px;
+            text-align  : center;
+            width       : 45px;
+            cursor		: pointer;
+          }
+
+          .info { margin-left : 80px;
+            .name { text-transform : uppercase; font-family: $designk-bold; }
+            .vehicle { color : #A2A2A2; }
+          }
+
+        }
+
+        li.active {
+          .distance { background : url("../images/kh/img/maintenance/star-1-active.png") no-repeat center top; }
+        }
+
+        li.processing {
+          .distance { background : url("../images/loading_bar.gif") no-repeat center top; }
+        }
+      }
+
+      .ctas { margin-top : 20px; text-align : center;
+        .cta.secondary {
+          color       : #2F2F2F;
+          font-family : $designk-medium;
+          font-size   : 1.1em;
+          margin      : 0 auto 42px;
+          padding     : 12px 40px;
+
+          &:after { background-image : none;}
+          &:hover { color:$kia-red; }
+        }
+
+        .cta.tertiary {
+          color          : $kia-red;
+          display        : block;
+          font-size      : 12px; //0.9em;
+          padding-bottom : 44px;
+          text-align     : center;
+        }
+
+      }
+    }
+}

@@ -1,0 +1,353 @@
+<div class="status">
+  <div class="statusMsg" ng-bind="vm.statusMsg"></div>
+  <div class="statusLoader" ng-class="{disable:vm.serviceBlock == true}" ng-click="vm.updateVehicleStatus()">
+    <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+  </div>
+</div>
+<div class="mob_box" ng-class="{error:vm.mobile == true && vm.errorState == true}"></div>
+<div class="container-fluid" id="battery">
+  <!-- BATTERY GAUGE -->
+  <div class="row">
+    <div class="panel-1 col-md-8 hidden-xs">
+      <div ng-repeat="data in knobData" class="knob" data-fgcolor="#7bb609">
+        <div class="meter-value val-{{vm.batteryStatus}}"><label ng-bind="vmStatus"></label><span>%</span></div>
+
+        <knob knob-data="data.value" knob-status="vm.batteryStatus" knob-options="data.options"  data-angleOffset=90 data-linecap=round data-thickness=".2" data-anglearc="250" data-width="350" data-height="350" data-thickness=".2" data-fgcolor="#7bb609" data-bgcolor="#aaaaaa" readonly="readonly"></knob>
+        <h3>BATTERY RANGE</h3>
+        <p ng-bind="vm.distanceUnitType"></p>
+          
+      </div>
+    </div> <!-- panel-1 -->
+
+    <div class="panel-1 visible-xs">
+      <div ng-repeat="data in knobData" class="knob" data-fgcolor="#7bb609">
+        <div class="meter-value val-{{vm.batteryStatus}}"><label ng-bind="vmStatus"></label><span>%</span>
+        </div>
+
+        <knob knob-data="data.value" knob-status="vm.batteryStatus" knob-options="data.options"  data-angleOffset=90 data-linecap=round data-thickness=".2" data-anglearc="250" data-width="275" data-height="275" data-thickness=".2" data-fgcolor="#7bb609" data-bgcolor="#aaaaaa" readonly="readonly"></knob>
+        
+        <h3>BATTERY RANGE</h3>
+        <p>{{vm.distanceUnitType}}</p>
+          
+      </div>
+    </div> <!-- panel-1 -->
+
+      <!-- UNPLUGGED -->
+    <div class="panel-2 col-md-4 col-xs-12">
+      <div class="row">
+        <div class="top col-md-12 col-xs-6">
+          <h6 class="hidden-xs">{{batteryChargeStatus}}</h6>
+          <h6 class="visible-xs">BATTERY</h6>
+          <div class="status">
+              <div class="status-container">
+                  <img src="images/battery/{{batteryImage}}" alt="Battery Status" />
+              </div>
+              <h6 class="visible-xs">{{batteryChargeStatus}}</h6>
+              <div class="perc-radio" ng-class="{eighty:vm.percRadio == true}" ng-click="vm.togglePercRadio()" ng-init="vm.percRadio = false" ng-if="vm.genType === 'psev'"></div>
+          </div>
+          <a href="#" class="btn" ng-class="{start:vm.chargeBtn  == 'start' && vm.serviceBlock == false}" ng-show="vm.chargeBtn == 'start' || vm.chargeBtn == 'disable'" ng-disabled="vm.chargeBtn == 'disable' || vm.serviceBlock == true" ng-click="vm.startCharging()">START CHARGING</a>
+          <a href="#" class="btn" ng-class="{stop:vm.chargeBtn == 'stop' && vm.serviceBlock == false}" ng-show="vm.chargeBtn == 'stop'" ng-disabled="vm.serviceBlock == true" ng-click="vm.stopCharging()">STOP CHARGING</a>
+        </div> 
+        <div class="bottom col-md-12 col-xs-6">
+          <h6>CHARGING STATIONS</h6>
+          <div class="status">
+              <div class="status-container">
+                <img src="images/battery/charging-markers.png" alt="Charging Stations">
+              </div>
+          </div>
+          <a href="/psev/chargingStations" ui-sref='psev.chargingStations' class="btn hidden-xs ">FIND CHARGING STATIONS<img src="images/icons/original/gray-btn-arrow.png" alt=">"></a>
+          <a href="/psev/chargingStations" ui-sref='psev.chargingStations' class="btn visible-xs findStations">FIND STATIONS<img src="images/icons/original/gray-btn-arrow.png" alt=">"></a>
+        </div>
+      </div>
+      <div class="bottom">
+        <h6>TIME UNTIL FULL CHARGE</h6>
+        <ul class="alt">
+          <li>
+            <div class="left">
+                <span>LEVEL 1 (120V)</span>
+            </div>
+            <div class="right">
+                <span>{{vm.chargeLevel1}}</span>
+            </div>
+          </li> 
+          <li>
+            <div class="left">
+                <span>LEVEL 2 (240V)</span>
+            </div>
+            <div class="right">
+                <span>{{vm.chargeLevel2}}</span>
+            </div>
+          </li> 
+        </ul>
+      </div>                            
+    </div> <!-- panel-2 -->
+      <!-- /UNPLUGGED -->
+  </div>
+
+  <div class="row lower-panel">
+    <div class="col-xs-12">Estimated range may vary depending on driving habits and situations. </div>
+    <div class="hidden-xs">|</div>
+    <div class="col-xs-12" style="cursor:pointer;" ng-mouseover="vm.showRangeCalHint = true" ng-mouseleave="vm.showRangeCalHint = false" ng-click="vm.showRangeCalHint = true" ng-init="vm.showRangeCalHint = false">How is range calculated?</div>
+  </div> <!-- lower-panel -->
+
+  <!-- Range calculation hint -->
+  <div class="range-cal-box" ng-show="vm.showRangeCalHint">
+    <div class="visible-xs close-hint"><img src="images/maint/icon-close.jpg"></div>
+    <div class="hidden-xs"><img src="images/icons/left-arrow.png" alt="X" ng-click="vm.showRangeCalHint = false"></div>
+    <div class="range-cal-content">
+        RANGE CALCULATION<br>
+        <span>The range is calculated by considering the battery level, past driving habits, the air temperature, the driving mode (comfort, normal, or sport), and the climate control.</span>
+    </div>
+    <div class="visible-xs"><img src="images/kh/img/maintenance/arrow-7-down.png"></div>
+  </div>
+  <!-- End of range calculation hint -->
+
+  <!-- SCHEDULE - CHARGING DETAIL -->
+  <div class="schedule-tap">
+    <div class="titles">CHARGING SCHEDULES</div>
+    <div class="line hidden-xs"></div>
+    <div class="req-schedule">
+        <p>Last updated at: {{timeStamp}}</p>
+        <button type="submit" class="myBtn" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.requestSchedule()">REQUEST SCHEDULE</button>
+    </div>
+
+    <!-- SCHEDULE I of PSEV-->
+    <div class="toggle-up open" ng-if="vm.genType == 'psev'">
+      <div class="toggle-section">
+        <div class="on" ng-class="{off:vm.offI == true}" ng-click="vm.toggleOnOffI()"></div>
+        <div class="line-vert01 one"></div>
+        <div class="txt01">SCHEDULE I</div>
+        <div class="line-vert01 hidden-xs"></div>
+        <div class="txt02"><span>{{preScheHrI}}:{{preScheMinI}}</span> {{timeSectionMiniI}}</div>
+        <div class="line-vert01 two"></div>
+        <div class="txt03"><span ng-repeat="date in datesI" ng-show="!vm.noReservI">{{date}}. </span><span ng-show="vm.noReservI">No Reservation Setting in TMU</span></div>
+        <div class="arrow-down pos06">
+            <div class="down" ng-class="{up:vm.upI == true}" ng-init="vm.upI = false" ng-click="vm.toggleSchedule('scheduleI')"></div>
+        </div>
+      </div> <!-- toggle-section -->
+
+      <div class="show-schedule" ng-show="vm.displayScheduleI">
+        <div class="txt-set">SET CHARGING CAPACITY</div>
+        <div class="control-battery">
+          <div class="radioBtn_section">
+            <ul ng-init="vm.percentChargeI = 80">
+                <li><div class="radioBtn_eighty" ng-class="{selected:vm.percentChargeI == 80}" ng-click="vm.percentChargeI = 80"></div>80%</li>
+                <li><div class="radioBtn_hundred" ng-class="{selected:vm.percentChargeI == 100}" ng-click="vm.percentChargeI = 100"></div>100%</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lineDisc"></div>
+
+        <div class="calendar">
+          <div class="hour">
+            <div class="hour-wrap hour-wrap1" ng-class="{selected:vm.displayHourI == true}" ng-click="vm.toggleShowHourI()">{{hourI}}</div>
+            <div class="time-pick"> 
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayHourI" class="hour-arrow" ng-init="vm.displayHourI = false"/>
+                <ul class="hour-list hour-list1" ng-show="vm.displayHourI" ng-init="vm.displayHourI = false">        
+                    <li ng-repeat="hour in vm.hourList" ng-click="vm.newHourI($index)">{{hour}}</li>
+                </ul>
+            </div>
+
+            <div class="minute-wrap minute-wrap1" ng-class="{selected:vm.displayMinuteI == true}" ng-click="vm.toggleShowMinuteI()">{{minuteI}}</div>                                
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayMinuteI" class="minute-arrow" ng-init="vm.displayMinuteI = false"/>
+                <ul class="minute-list minute-list1" ng-show="vm.displayMinuteI" ng-init="vm.displayMinuteI = false">                                    
+                    <li ng-repeat="minute in vm.minuteList" ng-click="vm.newMinuteI($index)">{{minute}}</li>
+                </ul>                                       
+            </div>
+
+            <div class="am-pm-wrap am-pm-wrap1" ng-class="{selected:vm.displaySectionI == true}" ng-click="vm.toggleShowSectionI()">{{timeSectionI}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displaySectionI" class="am-arrow" ng-init="vm.displaySection = false"/> 
+                <ul class="am-pm-list am-pm-list1" ng-show="vm.displaySectionI" ng-init="vm.displaySectionI = false">  
+                    <li ng-repeat="sec in vm.secList" ng-click="vm.newSecI($index)">{{sec}}</li>
+                </ul>
+            </div>
+          </div>  
+          <!-- <div class="radioButtons"></div> -->
+
+          <div class="weekDays">
+            <div class="date-box" ng-repeat="day in vm.weekDate" ng-class="{selected:vm.dateSelectedI($index)}" ng-click="vm.toggleDateSelectI($index)">{{day}}</div>
+          </div>
+        </div> <!-- calendar -->
+
+        <div class="lineDisc"></div>
+        <div class="scheduleBtnWrap">
+          <div class="scheduleError" ng-if="vm.errorScheduleI" ng-bind="vm.errorSchMsg"></div>
+          <div class="btnSchedule" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.addScheI()">SCHEDULE</div>
+          <div class="btnCancel" ng-click="vm.reload()">CANCEL</div>
+        </div> <!-- scheduleBtnWrap -->
+      </div> <!-- show-schedule -->
+    </div>
+    <!-- SCHEDULE I of PSEV-->
+
+    <!-- SCHEDULE II of PSEV-->
+    <div class="toggle-up open" ng-if="vm.genType == 'psev'">
+      <div class="toggle-section">
+        <div class="on" ng-class="{off:vm.offII == true}" ng-click="vm.toggleOnOffII()"></div>
+        <div class="line-vert01 one"></div>
+        <div class="txt01">SCHEDULE II</div>
+        <div class="line-vert01 hidden-xs"></div>
+        <div class="txt02"><span>{{preScheHrII}}:{{preScheMinII}}</span> {{timeSectionMiniII}}</div>
+        <div class="line-vert01 two"></div>
+        <div class="txt03"><span ng-repeat="date in datesII" ng-show="!vm.noReservII">{{date}}. </span><span ng-show="vm.noReservII">No Reservation Setting in TMU</span></div>
+        <div class="arrow-down pos06">
+            <div class="down" ng-class="{up:vm.upII == true}" ng-init="vm.upII = false" ng-click="vm.toggleSchedule('scheduleII')"></div>
+        </div>
+      </div> <!-- toggle-section -->
+
+      <div class="show-schedule"  ng-show="vm.displayScheduleII">
+        <div class="txt-set">SET CHARGING CAPACITY</div>
+        <div class="control-battery">
+            <div class="radioBtn_section">
+                <ul ng-init="vm.percentChargeII = 80">
+                    <li><div class="radioBtn_eighty" ng-class="{selected:vm.percentChargeII == 80}" ng-click="vm.percentChargeII = 80"></div>80%</li>
+                    <li><div class="radioBtn_hundred" ng-class="{selected:vm.percentChargeII == 100}" ng-click="vm.percentChargeII = 100"></div>100%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lineDisc"></div>
+
+        <div class="calendar">
+          <div class="hour">
+            <div class="hour-wrap hour-wrap2" ng-class="{selected:vm.displayHourII == true}" ng-click="vm.toggleShowHourII()">{{hourII}}</div>
+            <div class="time-pick"> 
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayHourII" class="hour-arrow" ng-init="vm.displayHourII = false"/>
+                <ul class="hour-list hour-list2" ng-show="vm.displayHourII" ng-init="vm.displayHourII = false">
+                    <li ng-repeat="hour in vm.hourList" ng-click="vm.newHourII($index)">{{hour}}</li>
+                </ul>
+            </div>
+            <div class="minute-wrap minute-wrap2" ng-class="{selected:vm.displayMinuteII == true}" ng-click="vm.toggleShowMinuteII()">{{minuteII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayMinuteII" class="minute-arrow" ng-init="vm.displayMinuteII = false"/>
+                <ul class="minute-list minute-list2" ng-show="vm.displayMinuteII" ng-init="vm.displayMinuteII = false">       
+                    <li ng-repeat="minute in vm.minuteList" ng-click="vm.newMinuteII($index)">{{minute}}</li>
+                </ul>                                       
+            </div>
+            <div class="am-pm-wrap am-pm-wrap2" ng-class="{selected:vm.displaySectionII == true}" ng-click="vm.toggleShowSectionII()">{{timeSectionII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displaySectionII" class="am-arrow" ng-init="vm.displaySectionII = false"/> 
+                <ul class="am-pm-list am-pm-list2" ng-show="vm.displaySectionII" ng-init="vm.displaySectionII = false">  
+                    <li ng-repeat="sec in vm.secList" ng-click="vm.newSecII($index)">{{sec}}</li>
+                </ul>
+            </div>
+          </div>  
+          <div class="radioButtons"></div>
+
+          <div class="weekDays">
+              <div class="date-box" ng-repeat="day in vm.weekDate" ng-class="{selected:vm.dateSelectedII($index)}" ng-click="vm.toggleDateSelectII($index)">{{day}}</div>
+          </div>
+        </div>
+
+        <div class="lineDisc"></div>
+        <div class="scheduleBtnWrap">
+          <div class="scheduleError" ng-if="vm.errorScheduleII" ng-bind="vm.errorSchMsg"></div>
+          <div class="btnSchedule" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.addScheII()">SCHEDULE</div>
+          <div class="btnCancel" ng-click="vm.reload()">CANCEL</div>
+        </div> <!-- scheduleBtnWrap -->
+      </div> <!-- show-schedule -->
+    </div>
+    <!-- SCHEDULE II of PSEV-->
+
+    <!-- SCHEDULE of JF-->
+    <div class="toggle-up open" ng-if="vm.genType == 'jf'">
+      <div class="toggle-section">
+        <div class="on" ng-class="{off:vm.offII == true}" ng-click="vm.toggleOnOffII()"></div>
+        <div class="line-vert01 one"></div>
+        <div class="txt01">SCHEDULE</div>
+      </div> <!-- toggle-section -->
+
+      <div class="show-schedule"> <!-- Start Scheduled Charge -->
+        <div class="txt-set jf">Start Scheduled Charge</div>
+
+        <div class="lineDisc"></div>
+
+        <div class="calendar jf">
+          <div class="hour">
+            <div class="hour-wrap hour-wrap2" ng-class="{selected:vm.displayHourII == true}" ng-click="vm.toggleShowHourII()">{{hourII}}</div>
+            <div class="time-pick"> 
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayHourII" class="hour-arrow" ng-init="vm.displayHourII = false"/>
+                <ul class="hour-list hour-list2" ng-show="vm.displayHourII" ng-init="vm.displayHourII = false">
+                    <li ng-repeat="hour in vm.hourList" ng-click="vm.newHourII($index)">{{hour}}</li>
+                </ul>
+            </div>
+            <div class="minute-wrap minute-wrap2" ng-class="{selected:vm.displayMinuteII == true}" ng-click="vm.toggleShowMinuteII()">{{minuteII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayMinuteII" class="minute-arrow" ng-init="vm.displayMinuteII = false"/>
+                <ul class="minute-list minute-list2" ng-show="vm.displayMinuteII" ng-init="vm.displayMinuteII = false">       
+                    <li ng-repeat="minute in vm.minuteList" ng-click="vm.newMinuteII($index)">{{minute}}</li>
+                </ul>                                       
+            </div>
+            <div class="am-pm-wrap am-pm-wrap2" ng-class="{selected:vm.displaySectionII == true}" ng-click="vm.toggleShowSectionII()">{{timeSectionII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displaySectionII" class="am-arrow" ng-init="vm.displaySectionII = false"/> 
+                <ul class="am-pm-list am-pm-list2" ng-show="vm.displaySectionII" ng-init="vm.displaySectionII = false">  
+                    <li ng-repeat="sec in vm.secList" ng-click="vm.newSecII($index)">{{sec}}</li>
+                </ul>
+            </div>
+          </div>  
+          <div class="radioButtons"></div>
+
+          <div class="weekDays">
+              <div class="date-box" ng-repeat="day in vm.weekDate" ng-class="{selected:vm.dateSelectedII($index)}" ng-click="vm.toggleDateSelectII($index)">{{day}}</div>
+          </div>
+        </div>
+
+        <div class="lineDisc"></div>
+
+        <div class="txt-set jf">
+          <label>Charge to full:</label>
+          <div class="full-on off" ng-class="{off:defrosOffI == true}" ng-click="vm.defrostOnOffI()"></div>
+        </div>
+      </div> <!-- show-schedule -->
+
+      <div class="show-schedule"> <!-- Stop Scheduled Charge -->
+        <div class="txt-set jf">Stop Scheduled Charge</div>
+
+        <div class="lineDisc"></div>
+
+        <div class="calendar jf">
+          <div class="hour">
+            <div class="hour-wrap hour-wrap2" ng-class="{selected:vm.displayHourII == true}" ng-click="vm.toggleShowHourII()">{{hourII}}</div>
+            <div class="time-pick"> 
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayHourII" class="hour-arrow" ng-init="vm.displayHourII = false"/>
+                <ul class="hour-list hour-list2" ng-show="vm.displayHourII" ng-init="vm.displayHourII = false">
+                    <li ng-repeat="hour in vm.hourList" ng-click="vm.newHourII($index)">{{hour}}</li>
+                </ul>
+            </div>
+            <div class="minute-wrap minute-wrap2" ng-class="{selected:vm.displayMinuteII == true}" ng-click="vm.toggleShowMinuteII()">{{minuteII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displayMinuteII" class="minute-arrow" ng-init="vm.displayMinuteII = false"/>
+                <ul class="minute-list minute-list2" ng-show="vm.displayMinuteII" ng-init="vm.displayMinuteII = false">       
+                    <li ng-repeat="minute in vm.minuteList" ng-click="vm.newMinuteII($index)">{{minute}}</li>
+                </ul>                                       
+            </div>
+            <div class="am-pm-wrap am-pm-wrap2" ng-class="{selected:vm.displaySectionII == true}" ng-click="vm.toggleShowSectionII()">{{timeSectionII}}</div>
+            <div class="time-pick">
+                <img src="images/schedule/small-arrow-down.png" ng-show="vm.displaySectionII" class="am-arrow" ng-init="vm.displaySectionII = false"/> 
+                <ul class="am-pm-list am-pm-list2" ng-show="vm.displaySectionII" ng-init="vm.displaySectionII = false">  
+                    <li ng-repeat="sec in vm.secList" ng-click="vm.newSecII($index)">{{sec}}</li>
+                </ul>
+            </div>
+          </div>  
+          <div class="radioButtons"></div>
+
+          <div class="weekDays">
+              <div class="date-box" ng-repeat="day in vm.weekDate" ng-class="{selected:vm.dateSelectedII($index)}" ng-click="vm.toggleDateSelectII($index)">{{day}}</div>
+          </div>
+        </div>
+
+        <div class="lineDisc"></div>
+
+        <div class="scheduleBtnWrap">
+          <div class="btnSchedule" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.addScheII()">SCHEDULE</div>
+          <div class="btnCancel" ng-click="vm.reload()">CANCEL</div>
+        </div> <!-- scheduleBtnWrap -->
+      </div> <!-- show-schedule -->
+    </div>
+    <!-- SCHEDULE of JF-->
+  </div> <!-- schedule-tap -->
+
+</div> <!-- container-fluid -->

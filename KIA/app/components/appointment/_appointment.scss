@@ -1,0 +1,548 @@
+#dealerAppointment{
+	.widget-box.request-appointment .title{
+		text-align      : left;
+	}
+
+	a {
+		cursor: pointer;
+	}
+	.popup {
+	    position		: fixed;
+	    left			: 50%;
+	    top				: 50%;
+	    display			: none;
+	    z-index			: 700;
+	}	
+	.popup-bg {
+	    position		: fixed;
+	    left			: 0;
+	    top				: 0;
+	    width			: 100%;
+	    height			: 100%;
+	    background-color: #2f3339;
+	    filter			: alpha(opacity=50);
+	    opacity 		: 0.5;
+	    -moz-opacity	: 0.5;
+	}
+	#popWrap {
+	    position		: relative;
+	    left			: -400px;
+	    top				: -275px;
+	    border-radius	: 5px;
+	    border 			: 1px solid #e5e5e5;
+	    box-shadow		: 0 2px 5px 2px #555;
+	    background 		: #fff;
+	}
+	#popWrap * {
+	    font-weight 	: normal;
+	}
+
+	.widget-box.request-appointment {
+	    padding 		: 14px 20px;
+	    color 			: #999999;
+	}
+	.widget-box.border {
+	    border 			: 1px solid #E1E1E1;
+	}
+	.widget-box.request-appointment .title {
+	    margin-bottom	: 25px;
+	}
+
+	.widget-box.request-appointment .content {
+	    overflow 		: hidden;
+	    color 			: #444444;
+	    font-size		: 0.95em;
+	}
+
+	.widget-box.request-appointment .content .col1 {
+	    box-sizing 		: border-box;
+	    -moz-box-sizing : border-box;
+	    float 			: left;
+	    padding-right	: 40px;
+	    width			: 50%;
+	}
+	.widget-box.request-appointment .content .col1 .info {
+	    margin-bottom: 28px;
+	    text-transform: uppercase;
+	}
+	.widget-box.request-appointment .content .col1 .name {
+	    color: #C4172C;
+	    font-family: designk-bold;
+	    margin-bottom: 5px;
+	    text-transform: uppercase;
+	}
+	.widget-box.request-appointment .content .col1 .contact {
+	    margin-bottom: 28px;
+	}
+
+	a.cta.secondary {
+	    background: #FFFFFF;
+	    border: 1px solid #E1E1E1;
+	    color: #787879;
+	    display: inline-block;
+	    font-family: designk-bold;
+	    position: relative;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    width: auto;
+	    cursor: pointer;
+	}
+	a.cta.secondary span {
+	    display: block;
+	    margin-right: 3.7em;
+	    overflow: hidden;
+	    padding: 0.5em 0 0.5em 0.8em;
+	}
+	a.cta.secondary:after {
+	    background: url("../images/kh/img/maintenance/arrow-3-right.png") no-repeat center center;
+	    content: "";
+	    display: block;
+	    height: 100%;
+	    position: absolute;
+	    right: 0;
+	    text-align: center;
+	    top: 0;
+	    width: 2.7em;
+	}
+	.widget-box.request-appointment .content .col2 {
+	    float: left;
+	    width: 50%;
+	}
+	.widget-box.request-appointment .content .col2 .title {
+	    color: #444444;
+	    font-family: designk-bold;
+	    margin: 0;
+	    text-transform: uppercase;
+	}
+	.widget-box.request-appointment .content .col2 ul {
+	    margin-bottom: 12px;
+	}
+	.widget-box.request-appointment .content .col2 ul li {
+	    overflow: hidden;
+	    border-bottom: 1px solid #CCCCCC;
+	    cursor: pointer;
+	    padding: 6px;
+	    margin-right: 60px;
+	}
+	.widget-box.request-appointment .content .col2 ul li.selected:before {
+	    background-image: url("../images/kh/img/maintenance/bullet-1-active.png");
+	}
+
+	.widget-box.request-appointment .content .col2 ul li:before {
+	    background: url("../images/kh/img/maintenance/bullet-1-inactive.png") no-repeat center center;
+	    content: "";
+	    display: block;
+	    float: left;
+	    height: 15px;
+	    margin: 15px 15px 15px 0;
+	    vertical-align: middle;
+	    width: 16px;
+	}
+	.widget-box.request-appointment .content .col2 ul li .issue {
+	    font-size: 1.15em;
+	}
+
+	.widget-box.request-appointment .content .col2 ul li .detail {
+	    font-family: designk-bold;
+	}
+
+	a.cta.primary {
+	    background: #2F2F2F;
+	    color: #FFFFFF;
+	    display: inline-block;
+	    font-family: designk-bold;
+	    position: relative;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    width: auto;
+	}
+	a.cta.primary span {@media(max-width:350px){margin-right: 4.5em!important;}
+	    border: 1px solid #2F2F2F;
+	    display: block;
+	    margin-right: 6.7em;
+	    overflow: hidden;
+	    padding: 0.5em 0 0.5em 0.8em;
+	}
+
+	a.cta.primary:after {
+	    background: #C4172C url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+	    content: "";
+	    display: block;
+	    height: 100%;
+	    position: absolute;
+	    right: 0;
+	    text-align: center;
+	    top: 0;
+	    width: 2.7em;
+	}
+	.popClose {
+	    position: absolute;
+	    top: 15px;
+	    right: 5px;
+	}
+
+	.popClose a {
+	    display: block;
+	    overflow: hidden;
+	    text-indent: -9999px;
+	    width: 30px;
+	    height: 30px;
+	    background: url('../images/offers_clear_x.png') no-repeat;
+	}
+	
+///// comfirm request
+}
+.popupwindowdiv .content{
+    text-align: left;
+    background: #FFFFFF;
+    width: 420px;
+    margin: 100px auto;	
+}
+.popupwindowdiv .content .header {
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 1.4em;
+    padding: 15px 5px 10px 10px;
+    text-transform: uppercase;
+    margin: 0 15px;
+}
+.popupwindowdiv .content .header .close {
+    display: block;
+    background: url("../images/kh/img/maintenance/x-1.png") no-repeat;
+    float: right;
+    height: 17px;
+    width: 17px;
+}
+.popupwindowdiv .content .reportedIssue {
+    margin: 10px 15px;
+    padding-left: 10px;
+}
+.popupwindowdiv .content .title {
+    color: #444444;
+    margin: 0;
+}
+.popupwindowdiv .content .reportedIssue ul li {
+    overflow: hidden;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 6px;
+}
+.popupwindowdiv .content #conf-dealerSearchList {
+    margin-left: 10px;
+    margin-right: 50px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+.popupwindowdiv .content .reportedIssue ul li.selected:before {
+    background-image: url("../images/kh/img/maintenance/bullet-1-active.png");
+    content: "";
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 15px 15px 15px 0;
+    vertical-align: middle;
+    width: 16px;
+}
+.popupwindowdiv a.cta.secondary.confirm-change-dealer {
+    text-align: center;
+    margin-left: 20%;
+    margin-bottom: 20px;
+}
+.popupwindowdiv a.cta.secondary:hover {
+    color: #C4172C;
+}
+.popupwindowdiv a.cta.secondary {
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    color: #787879;
+    display: inline-block;
+    font-family: designk-bold;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: auto;
+    cursor: pointer;
+}
+.popupwindowdiv a.cta.secondary.confirm-change-dealer span {
+    margin-right: 2.7em;
+}
+a.cta.secondary span {
+    display: block;
+    margin-right: 3.7em;
+    overflow: hidden;
+    padding: 0.5em 0 0.5em 0.8em;
+}
+.popupwindowdiv a#confirm-appt.cta.primary {
+    text-align: center;
+    margin-left: 18%;
+    margin-bottom: 10px;
+}
+
+.popupwindowdiv .content #conf-dealerSearchList li#info.selected .distance {
+    background: url("../images/kh/img/maintenance/star-1-active.png") no-repeat center top;
+    float: left;
+    font-size: 0.9em;
+    height: 20px;
+    margin-top: 20px;
+    padding-top: 37px;
+    text-align: center;
+    width: 45px;
+}
+
+
+
+
+////select dealer pop up 
+
+.dealer-modal-content {
+	text-align: left;
+    background: #FFFFFF;
+    width: 320px;
+    margin: 100px auto;
+
+    /* .iScrollVerticalScrollbar {
+	    position: absolute;
+	    z-index: 9999;
+	    width: 8px;
+	    bottom: 2px;
+	    top: 2px;
+	    right: 0;
+	    overflow: hidden;
+	}
+
+	.iScrollVerticalScrollbar .iScrollIndicator {
+	    width: 100%;
+	}
+
+	.iScrollIndicator {
+	    position: absolute;
+	    background: #C4172C;
+	    border-width: 0;
+	    border-radius: 1px;
+	} */
+
+    .header {
+	    border-bottom: 4px solid #BC1728;
+	    font-size: 1.4em;
+	    padding: 22px 15px 20px 30px;
+	    text-transform: uppercase;
+	}
+
+	.header .close {
+	    display: block;
+	    background: url("../images/kh/img/maintenance/x-1.png") no-repeat;
+	    float: right;
+	    height: 17px;
+	    width: 17px;
+	}
+	.header .close span {
+	    display: none;
+	}
+	.detail .action-bar {
+	    background: #2F2F2F;
+	    color: #E6E6E6;
+	    height: 62px;
+	    padding: 0 0 0 30px;
+	    margin-bottom: 5px;
+	}
+
+	.detail .action-bar .box-1 {
+	    float: left;
+	    font-family: designk-medium;
+	    font-size: 1.05em;
+	    margin-top: 22px;
+	    width: 85px;
+	}
+
+	.detail .action-bar .box-2 {
+	    display: inline-block;
+	    padding-top: 13px;
+	    border: none;
+	    border-bottom: 1px solid #FFFFFF;
+	}
+
+	 .detail .action-bar .box-2 input {
+	    background: #2F2F2F;
+	    border: none;
+	    /* border-bottom: 1px solid #FFFFFF; */
+	    color: #FFFFFF;
+	    font-size: 1.5em;
+	    padding: 1px 7px;
+	    margin: 0px;
+	    width: 60px;
+	    height: auto;
+	    outline: none;
+	}
+
+	.detail .action-bar .box-3 {
+	    float: right;
+	    height: 100%;
+	}
+
+	.detail .action-bar .box-3 button {
+	    background: #CC273A url("../images/kh/img/maintenance/arrow-5-right.png") no-repeat center center;
+	    border: none;
+	    cursor: pointer;
+	    height: 62px;
+	    width: 34px;
+	}
+
+	.detail .action-bar .box-3 button span {
+	    display: none;
+	}
+
+	#selectVehicleType {
+	    padding: 0px;
+	    font-size: 14px;
+	    height: 19px;
+	}
+
+	#dealerSearchList {
+	    
+	    z-index: 10;
+	    height:auto!important;
+	    bottom: 100px;
+	    width: 320px;
+	    height: auto;
+	    background: #fff;
+	    overflow-y: scroll;
+	    min-height: 145px;
+   	    
+	}
+
+	.detail .results {
+	    margin: 0 30px;
+	}
+
+	.detail .results li:last-child {
+	    border: none;
+	}
+
+	.detail .results li {
+	    border-bottom: 1px solid #E6E6E6;
+	    /* cursor: pointer; */
+	    font-size: 0.9em;
+	    padding: 32px 0;
+	}
+
+	.detail .results li .distance {
+	    background: url("../images/kh/img/maintenance/star-1-inactive.png") no-repeat center top;
+	    float: left;
+	    font-size: 0.9em;
+	    height: 20px;
+	    margin-top: 20px;
+	    padding-top: 37px;
+	    text-align: center;
+	    width: 45px;
+	    cursor: pointer;
+	}
+	.detail .results li.active .distance {
+	    background: url("../images/kh/img/maintenance/star-1-active.png") no-repeat center top;
+	}
+
+	.detail .results li .info {
+	    margin-left: 80px;
+	}
+
+	.detail .results li .info .name {
+	    text-transform: uppercase;
+	    font-family: designk-bold;
+	}
+	.detail .ctas{
+		
+	    margin-top: 2em;
+	    text-align: center;
+	    position: absolute;
+	    top: 519px;
+	    margin-left: 0px;
+	    background-color: white;
+	    width: 320px;
+
+	}
+	.detail .ctas .cta.secondary {
+	    color: #2F2F2F;
+	    font-family: designk-medium;
+	    font-size: 1.1em;
+	    margin: 10px auto 18px;
+	    padding: 12px 40px;
+	}
+
+}
+////mobile view for main pop up /////
+///////////////////////////////////////
+//////////////////////////////////////
+@media(max-width:767px){
+	#dealerAppointment{
+		.popClose{
+			right : -10px;
+		}
+		.widget-box.request-appointment {
+    		padding : 20px 20px;
+		}
+		.title {
+			font-size : 16px;
+			text-align : left;
+		}
+		.widget-box.request-appointment .content .col1{
+			width : 100%;
+			padding-right : 10%;
+			padding-bottom : 20px;
+		}
+		a.cta.secondary span{
+			padding: 1em 0 1em 0.8em;
+		}
+		.widget-box.request-appointment .content .col2{
+			width : 100%;
+		}
+		#veh-repair{
+			display: none;
+		}
+		#veh-maint{
+			display: none;
+		}
+		a.cta.primary span{
+			padding: 1.2em 0 1.2em 0.8em;
+			margin-left: 33px;
+		}
+		a.cta.primary{
+			width : 100%;
+		}
+	}
+}
+@media(max-width:767px){
+	.modal-dialog {
+       .modal-content {
+         //background:transparent;
+        border:none;
+    	}
+    }
+	.popupwindowdiv {
+		.content{
+			width : 100%;
+		}
+	}
+
+		/////Appointment confirmation///
+	#appointmentClose{
+		text-align: center;
+	
+		.button{
+			border: 1px solid black;
+    		color: black;
+		}
+
+	}
+
+}
+
+// dealer modal background ///
+body > div.modal.fade.ng-isolate-scope.popupwindowdiv.in > div > div{
+	@media(max-width : 767px){
+		background-color : transparent;
+	}
+}
+
+//select issue title
+#dealerAppointment > div > div > div.content > div.col2 > div{
+	@media(max-width : 767px){
+		font-size : 15px;
+	}
+}

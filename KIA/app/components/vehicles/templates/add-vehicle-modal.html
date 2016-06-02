@@ -1,0 +1,28 @@
+<div id="addVehiclePopup" class="popupHU" ng-show="vm.addVehiclePopup">
+	<div class="popup-bg"></div>
+	<div id="popWrap">
+		<div class="avnUvoSelect">
+		   <h1 class="popH1_add">Select Your UVO eService<span class="choice_span">eService Choice</span></h1>
+		   <div class="popCont">
+		   	<div class="row">
+		       <div id="uvoEservice-col1">
+		           <img src="images/avnUvoPreNav.png" alt="UVO eServices with Premium Navigation"><br>
+		           <input type="radio" name="avnRadio" ng-model="vm.radioCheck" ng-change="vm.radiooselected()" id="avnUvoPreNav" value="0">
+		           <span class>UVO eServices with Premium Navigation</span>       
+		       </div>
+		       <div id="uvoEservice-col2"> 
+		           <img src="images/avnUvo.png" alt="UVO eServices"><br>
+		           <input type="radio" name="avnRadio"  ng-model="vm.radioCheck" ng-change="vm.radiooselected()" id="avnUvo" value="1">
+		           <span>UVO eServices</span> 
+		       </div>
+		       <div id="uvoEservice-col3">
+		           <img src="images/avn40.png" alt="UVO eServices with Premium Navigation"><br>
+		           <input type="radio" name="avnRadio"  ng-model="vm.radioCheck" ng-change="vm.radiooselected()" id="avnUvo40" value="2">
+		           <span>UVO eServices with Premium Navigation</span> 
+		       </div>
+		     </div>
+		   </div>
+		</div>
+		<p class="popClose"><a class="clickable" ng-click="closeModal()">close</a></p>
+	</div>
+</div>

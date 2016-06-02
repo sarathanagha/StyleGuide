@@ -1,0 +1,40 @@
+<div class="settings" ng-show="vm.moduleLoaded" ng-form="settingsForm">
+  <h1 class="hidden-xs hidden-sm">SECURITY QUESTIONS</h1>
+    <section class="security-question">
+        <div ng-class="{error:vm.submitted && settingsForm.answer1.$error.required}">
+          <select name="securityQuestionId" ng-model="vm.settings.question1Id" required ng-options="q.questionId as q.name for q in vm.questions.questions1">
+              <option value="">Please select a question</option>
+          </select>
+          <input type="password" name="answer1" maxlength="100" ng-model="vm.settings.answer1" required>
+        </div>
+        <span id="txtQuestion1" class="error-msg" ng-show="vm.submitted && settingsForm.securityQuestionId.$error.required">Please select a question</span>
+        <span id="txtAnswer1" class="error-msg" ng-show="vm.submitted && settingsForm.answer1.$error.required">Please fill out the answer.</span>
+    </section>
+    <section class="security-question">
+        <div ng-class="{error:vm.submitted && settingsForm.answer2.$error.required}">
+          <select name="securityQuestionId2" ng-model="vm.settings.question2Id" required ng-options="q.questionId as q.name for q in vm.questions.questions2">
+              <option value="">Please select a question</option>
+          </select>
+          <input type="password" name="answer2" maxlength="100" ng-model="vm.settings.answer2" required>
+        </div>
+        <span id="txtQuestion2" class="error-msg" ng-show="vm.submitted && settingsForm.securityQuestionId2.$error.required">Please select a question</span>
+        <span id="txtAnswer2" class="error-msg" ng-show="vm.submitted && settingsForm.answer2.$error.required">Please fill out the answer.</span>
+    </section>
+    <section class="security-question">
+        <div ng-class="{error:vm.submitted && settingsForm.answer3.$error.required}">
+          <select name="securityQuestionId3" ng-model="vm.settings.question3Id" ng-options="q.questionId as q.name for q in vm.questions.questions3" required> 
+              <option value="">Please select a question</option>
+          </select>
+          <input type="password" name="answer3" maxlength="100" ng-model="vm.settings.answer3" required>
+        </div>
+        <span id="txtQuestion3" class="error-msg" ng-show="vm.submitted && settingsForm.securityQuestionId3.$error.required">Please select a question</span>
+        <span id="txtAnswer3" class="error-msg" ng-show="vm.submitted && settingsForm.answer3.$error.required">Please fill out the answer.</span>
+    </section>
+    <div class="button-container">
+			<input type="submit" id="btnUpdate" class="button" value="SAVE" ng-click="vm.submitted = true; vm.save(settingsForm)" ng-hide="vm.loading">
+      <img src="images/loading_bar.gif" ng-show="vm.loading">  
+		</div>    
+</div>
+
+<div alert-modal alert-id="alert" alert-message="Your security settings has successfully updated"></div>
+<div alert-modal alert-id="alertFail" alert-type="fail" alert-message="Your security settings update has failed"></div>

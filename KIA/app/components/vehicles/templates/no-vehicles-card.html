@@ -1,0 +1,34 @@
+<div class="col-xs-12 col-sm-6 col-md-4" ng-if="vm.vehicles.length == 0">
+	<div class="vehicle-card">
+        <!--My Vehicles | Current Vehicle-->
+        <div class="widget-box border hover-on vehicle-current">
+            <div class="overview">
+                <a class="caret hide"></a>
+                <div class="picture">
+                    <img ng-src="{{vm.getImageURL() + 'failSafe.PNG'}}">
+                </div>
+                <div class="nickname">&nbsp;</div>
+                <div class="year-model-trim">&nbsp;</div>
+            </div>
+            <!-- No active Vin -->
+            <div class="messages no-active-vin">
+                <div class="message">
+                    <div class="notActiveApps">
+                        <a target="_blank" href="https://itunes.apple.com/us/app/uvo-eservices/id588729103?ls=1&amp;mt=8">
+                            <img src="images/itunes.png" class="appStoreImg">
+                        </a>
+                        <a target="_blank" href="https://play.google.com/store/search?q=uvo%20eservices%20kia&amp;c=apps&amp;hl=en">
+                            <img src="images/google_play.png">
+                        </a>
+                    </div>
+                    You have no activated vehicles in your account. Please download the app, return to your vehicle, and follow the in-car instructions.
+                </div>
+            </div>
+            <div class="cta no-active-vin">
+                <a class="">&nbsp;</a>
+            </div>
+        				<!-- Just a filler, doesn't actually show -->
+            <a class="showPin">My Car Zone PIN</a>
+        </div>
+    </div>
+</div>

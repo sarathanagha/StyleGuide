@@ -1,0 +1,159 @@
+<section id="trip-info" class="clearfix">
+  <div class="content-area">
+    <!-- trip info template -->
+    <div class="container">
+      <!-- header -->
+      <div class="page-header">
+        <!-- <a href="#" class="help">?</a> -->
+        <div class="tripinfo-alerts">
+          <div class="alert-msj"><strong>{{vm.originalTripInfo.length}}</strong> TOTAL TRIPS / <strong>{{vm.tripDisplayed()}}</strong> TRIPS DISPLAYED</div>
+          <div class="alert-menu-xs visible-xs">
+            <div class="manage-buttons-xs row" ng-show="!vm.displayButtons" ng-if="vm.tripInfo.length > 0">
+              <select ng-model="vm.initialYear" ng-options="year for year in vm.uniqueYear()"></select>
+              <select ng-model="vm.initialMonth" ng-options="month for month in vm.tripMonthNameOfYear()"></select>
+            </div> <!-- manage-buttons-xs row -->
+          </div> <!-- alert-menu-xs visible-xs -->
+        </div> <!-- tripinfo-alerts -->
+      </div> <!-- page-header -->
+      <!-- EO header -->
+
+      <div class="no-match-tag" ng-if="vm.noTagFound">
+          There are no trips that match the search tag.
+      </div>
+
+      <div class="tripinfo-container row" ng-if="!vm.noTagFound">
+        <div class="col-sm-2">
+          <div class="tripinfo-calendar actions hidden-xs" ng-repeat="tripYear in vm.uniqueYear()">
+            <span class="button dropdown" ng-class="{highlighted: vm.displaySelectedYear(tripYear)}" ng-click="vm.yearClick(tripYear)">{{tripYear}}</span>
+            <ul class="dropdown-menu" ng-if="vm.displaySelectedYear(tripYear)">
+              <li ng-repeat="tripMonth in vm.tripMonthOfYear()" ng-class="{selected: vm.displaySelectedMonth(tripMonth)}"><span ng-click="vm.monthClick(tripMonth)">{{vm.monthName(tripMonth) | uppercase}}</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- items wrapper -->
+        <div class="col-sm-10 alerts ulHeight">
+          <div class="alert-msg hide"></div>
+            <div class="item trip-item" 
+              ng-repeat="tripInfoDetail in vm.tripInfo" 
+              ng-init="currentArray=$index;" 
+              ng-if="vm.displaySelectedMonthAndYear(tripInfoDetail.month, tripInfoDetail.year)"
+              ng-class="{merged:tripInfoDetail.journeyId != 0}">
+              <div class="item-wrapper hidden-xs">
+                  
+                <div class="option merge" ng-show="vm.showOptionMerge"> <!-- Merge/Unmerge radio button only for KH -->
+                  <span class="radio" ng-class="{active:vm.isOptionSelected($index)}" ng-click="vm.selectMerge($index)"></span>
+                  <span>SELECT</span>
+                  <input type="hidden" class="tripId" />
+                </div> <!-- option merge -->
+                
+                <div class="content k900"> <!-- This Div content only for Kh vehicle-->
+                  <div class="indicator">        
+                    <div>
+                      <sub class="month">{{tripInfoDetail.startMonthName}}</sub>
+                      <strong class="day">{{tripInfoDetail.startDay}}</strong>
+                    </div>
+                    <div class="hyphen" ng-if="tripInfoDetail.showDateRange"><strong> - </strong></div>
+                    <div ng-if="tripInfoDetail.showDateRange">
+                      <sub class="monthEnd">{{tripInfoDetail.endMonthName}}</sub>
+                      <strong class="dayEnd">{{tripInfoDetail.endDay}}</strong>
+                    </div>                               
+                  </div>
+                  <div class="trip-time active">
+                    {{tripInfoDetail.startDisplayTime}} to {{tripInfoDetail.endDisplayTime}}<br>
+                    <span>{{tripInfoDetail.hrsDriven}} hours, {{tripInfoDetail.minsDriven}} minutes</span>
+                  </div>
+                  <div class="tags">
+                    <img src="images/kh/img/trip-info/magnify.png" ng-click="vm.toggleTripDetail($index)">                    
+                  </div>
+                  <span class="share-item hide">share</span>
+                  <span class="merge-item hide">3</span>
+                </div> <!-- content k900 -->
+              </div> <!-- item-wrapper hidden-xs -->
+
+              <div class="item-wrapper-xs visible-xs">
+                <div class="trip-item row">
+                  <div class="option-merge col-xs-1" ng-show="vm.showOptionMerge"></div>
+                  <div class="trip-date col-xs-1">
+                    <div>
+                      <sub class="month">{{tripInfoDetail.startMonthName}}</sub>
+                      <strong class="day">{{tripInfoDetail.startDay}}</strong>
+                    </div>
+                    <div ng-if="tripInfoDetail.showDateRange">
+                      <strong>-</strong>
+                    </div>
+                    <div ng-if="tripInfoDetail.showDateRange">
+                      <sub class="month">{{tripInfoDetail.endMonthName}}</sub>
+                      <strong class="day">{{tripInfoDetail.endDay}}</strong>
+                    </div>
+                  </div>
+                  <div class="trip-detail col-xs-9">
+                    <img src="images/kh/img/trip-info/magnify.png" class="pull-right button" ng-click="vm.toggleTripDetail($index)">
+                    <div class="trip-detail-time">
+                      {{tripInfoDetail.startDisplayTime}} to {{tripInfoDetail.endDisplayTime}}<br>
+                      <span>{{tripInfoDetail.hrsDriven}} hours, {{tripInfoDetail.minsDriven}} minutes</span>
+                    </div>                    
+                  </div>
+                </div>
+              </div> <!-- item-wrapper-xs visible-xs -->
+
+              <div class="trip-img-container" ng-if="vm.showTripDetail == $index">
+                <div class="poi-interface-container">
+                  <div class="poi-display-option" ng-show="!vm.showAddTag">
+                    <span class="button" ng-class="{active: !vm.showMap}" ng-click="vm.toggleMobilePanel('stats')">STATISTICS</span>
+                    <span class="button" ng-class="{active: vm.showMap}" ng-click="vm.toggleMobilePanel('map',$index)">MAP</span>
+                  </div>
+                  <!-- Poi Details -->
+                  <div class="poi-container actions" ng-class="{'hidden-xs':vm.showMap || vm.showAddTag, hide:vm.showAddTag}">
+                    <div class="widgets-blade">
+                      <div class="col col1">
+                        <div class="widget mileage">
+                          <div class="title">MILES</div>
+                          <div class="value">{{tripInfoDetail.milesDriven | number:0}}<sub> mi</sub></div>
+                        </div>
+                        <div class="widget speed">
+                          <div class="title">AVERAGE SPEED</div>
+                          <div class="value">{{tripInfoDetail.aveSpeed}}<sub> mph</sub></div>
+                        </div>
+                        <div class="widget driving">
+                          <div class="title">TRIP TIME</div>
+                          <div class="range"></div>
+                          <div class="value">
+                          {{tripInfoDetail.startDisplayTime}} to {{tripInfoDetail.endDisplayTime}}<br>
+                          <span>{{tripInfoDetail.hrsDriven}} <span class="hidden-xs">hours</span><span class="visible-xs-inline">hrs</span>, {{tripInfoDetail.minsDriven}} <span class="hidden-xs">minutes</span><span class="visible-xs-inline">mins</span></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col col2">
+                        <div class="widget awards hide">
+                          <div class="title">AWARDS</div>
+                          <div class="value awards-value">2</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Poi Map -->
+                  <ui-gmap-google-map control="vm.maps[$index].control" center='vm.maps[$index].center' zoom='vm.maps[$index].zoom' events='vm.maps[$index].mapEvents' class='alert-map' ng-class="{'hidden-xs':!vm.showMap}">
+                    <ui-gmap-window show="vm.maps[$index].window.show" coords="vm.maps[$index].window.model" options="vm.maps[$index].window.options" control="vm.maps[$index].window.control" closeclick="vm.maps[$index].window.closeClick()">
+                        <div class="uvo-ib">
+                          <div class="uvo-ib-content">  
+                            <div>{{tripInfoDetail.geocode.date}}</div>
+                            <div>{{tripInfoDetail.geocode.street}}</div>
+                            <div>{{tripInfoDetail.geocode.city}}, {{tripInfoDetail.geocode.state}} {{tripInfoDetail.geocode.zip}}</div>
+                          </div>                  
+                        <div class="uvo-ib-point-down">
+                          <img src="images/kh/img/station/point-down.png" alt="X" />
+                        </div>
+                      </div>
+                    </ui-gmap-window>   
+                    <ui-gmap-markers icon="'icon'" control="vm.maps[$index].markerControl" models="vm.maps[$index].markers" coords="'self'" events="vm.maps[$index].markerEvents" fit="true"></ui-gmap-markers>              
+                  </ui-gmap-google-map>
+                </div> <!-- poi-interface-container -->
+              </div> <!-- img-container -->
+            </div> <!-- item trip-item -->
+        </div> <!-- EO items wrapper -->
+      </div> <!-- tripinfo-container -->
+    </div> <!-- container -->
+    <!-- EO trip info template -->
+  </div> <!-- content-area -->
+</section>

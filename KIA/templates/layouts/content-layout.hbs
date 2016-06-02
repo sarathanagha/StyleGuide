@@ -1,0 +1,50 @@
+{{! Hamburger Menu section}}
+{{> hamburger-menu }}
+{{#compare type "!=" "default"}}
+   {{#compare type "!=" "settings"}}
+    {{> hamburger-vehicle-switcher }}
+   {{/compare}}
+{{/compare}}
+
+<div id="overlay" ng-show="showHamburger == 'in'" resize-it=""></div>
+<idle-modal></idle-modal>
+<div class="loader"></div>
+<div class="loader-custom">
+  <div class="main-wrapper" ng-if="FromSettings" style="text-align:right;color:white;" ng-bind="pageStatusMessage"></div> 
+
+</div>
+
+{{! class main-container is used to give min-height of 100%. This is essential to bottom footer position }}
+<div class="main-container" ng-class="showHamburger == 'in' && 'show-hamburger'">
+  {{! Main Wrapper section }}
+  <div class="main-wrapper">
+
+  {{! Header }}
+  {{> header }}
+
+  <div class="main-wrapper-content" ng-class="com.showMobileNotifications && 'hidden-xs hidden-sm'">
+
+    		{{! Left Nav component }}
+        {{#compare type "!=" "default"}}
+    		  {{> left-nav }}
+        {{/compare}}
+
+        {{! Mobile sub menu }}
+        {{#compare type "==" "settings"}}
+          {{> settings-menu}}
+        {{/compare }}
+
+    		{{! Content component }}
+    		<section class="main-content-area" ui-view>
+        
+        </section>
+        
+                {{!-- Clear the left nav menu --}}
+        <div class="clearfix"></div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+{{> footer }}
+</div>

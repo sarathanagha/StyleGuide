@@ -1,0 +1,36 @@
+<div class="content">
+	<div class="header">
+    Confirm Request
+    <a class="close clickable" id="closeConfirmDealer" ng-click="close()"></a>
+  </div>
+  <div class="reportedIssue">
+   <div class="title">Reported Issue:</div>
+   <ul>
+     <li id="confIssue" class="selected">
+       <div class="issue">Other</div>
+       <div class="detail">Dealership will contact you for more details</div>
+     </li>
+   </ul>
+ </div>   
+ <div id="conf-dealerSearchList">
+   <ul>
+     <li id="info" class="selected">
+      <div class="distance"></div>
+      <div class="confDealer">
+        <div class="name">{{com.preferredDealer.data.name}}</div>
+        <div class="contact">
+                       {{com.preferredDealer.data.address}}<br />
+                       {{com.preferredDealer.data.city}}, {{com.preferredDealer.data.state}} {{com.preferredDealer.data.zipCode}}<br />
+                       {{com.preferredDealer.data.phoneNumber | phoneNumber}}</div>
+        <div class="dealerCd hide">CA204</div>
+      </div>                                  
+    </li>
+  </ul>
+</div>
+
+<a class="cta secondary confirm-change-dealer" ng-click="dealerForAppointment()"><span>Select Nearby Dealer</span></a>
+
+
+<a class="cta primary clickable" id="confirm-appt" ng-click="confirmRequest('other',com.preferredDealer.data.dealerCode)"><span>Confirm Request</span></a>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="climateModal">
+    <div class="modal-header" ng-show="vm.mobile"></div>
+    <div class="pending-list" ng-hide="vm.submitted&&vm.proccessing">
+        <h5 ng-show="!vm.disableRequest&&!vm.hasErrors">CHANGES PENDING</h5>
+        <ul>
+            <li class="cart-engine" ng-show="!vm.disableRequest&&!vm.hasErrors">Turn engine
+                <span>{{vm.onOffE}}</span>
+            </li>
+            <li class="cart-defrost" ng-show="!vm.disableRequest&&vm.showDefrostStatus&&!vm.hasErrors">Turn defroster 
+                <span class="val on">{{vm.onOffD}}</span>
+            </li>
+            <li class="cart-climate" ng-show="!vm.disableRequest&&vm.showClimateStatus&&!vm.hasErrors">Turn climate 
+                <span class="val on">{{vm.onOffC}}</span>
+            </li>
+            <li class="cart-dial" ng-show="(!vm.disableRequest&&vm.showDefrostStatus&&!vm.hasErrors)||(!vm.disableRequest&&vm.showClimateStatus&&!vm.hasErrors)">Change climate
+            </li>  
+        </ul>
+    </div>
+    <div class="modal-footer" ng-show="vm.mobile">
+        <button class="cancel-pending col-xs-5 visible-xs" type="button" ng-click="vm.cancelPending()">CANCEL PENDING</button>
+        <button class="close-mob col-xs-5 visible-xs col-xs-push-1" type="button" ng-click="vm.cancel()">CLOSE</button>
+    </div>
+</div>

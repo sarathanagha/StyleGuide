@@ -1,0 +1,50 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+    <!-- Add vehicle -->
+    <div class="col-1" id="reg-1" ng-hide="vm.showAdd">
+        <div class="widget-box border vehicle-add" ng-click="vm.toggleAdd()">
+            <div class="cta">
+                <a id="add-btn">Add Vehicle</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-1" id="reg-2" ng-show="vm.showAdd">
+        <!--My Vehicles | Add Vehicle Form 1-->
+        <div class="widget-box gray-panel vehicle-add" ng-hide="vm.checkboxselected">
+            <div class="content">
+                <div class="row">
+                    <input type="text" ng-model="vm.addNick" name="nickname" id="nickname" class="mid-size" placeholder="Nick Name" maxlength="17">
+                </div>
+                <div class="row" ng-form name="addVehicleForm">
+                    <input type="text" ng-model="vm.addVin" name="vin" id="vin" class="mid-size"placeholder="VIN"  ng-maxlength="17" ng-minlength="3" required/>
+                    <span class="message warning" id="emptyVIN" ng-show="vm.addSubmitted && addVehicleForm.vin.$error.required">Please fill out the VIN number.</span>           
+                   
+                  <!--   <span class="message warning" id="invalidVIN" ng-show="vm.addSubmitted && (vm.existVIN || addVehicleForm.vin.$error.pattern)">VIN is invalid or already associated with this account</span> -->
+                  <!-- <h1>{{vm.errorInvalidvin}}</h1> -->
+                    <span class="message warning" id="invalidVIN" ng-show="vm.errorInvalidvin">VIN is invalid or already associated with this account</span>
+                    <span class="message warning" id="endLife" ng-show="vm.showEndLifeError">UVO eServices has expired for this vehicle.</span>
+                </div>
+                <div class="actions">
+                    <button class="highlighted" ng-click="vm.validateVin(vm.addVin,vm.addNick)" id="regBtn">
+                        <a class="clickable"><span>Add Vehicle</span></a></button>
+                    <button class="back" id="reg-back" ng-click="vm.showEndLifeError = false; vm.addSubmitted = true; vm.toggleAdd()"><span>Back</span></button>
+                </div>
+            </div>
+        </div>
+
+         <!-- <div class="widget-box gray-panel vehicle-add" ng-show="vm.checkboxselected">
+                            <div class="content" style="padding:20px">
+                                <h1 id="headUnit" style="color:#fff; text-align:center;font-size:14px">Your vehicle has an update available<br></h1>
+                                <h1 id="headUnit" style="color:#fff; text-align:center;font-size:9px">To use MyUVO.com, you must install the update</h1>
+                                <img style="margin:10px 45px; width:170px" src="/ccw/images/headUnits/avn40Triage.png">
+                                <a href="http://www.kia-gpsmap.us/map-updates/2014-kia-soul-map-update.html" target="_blank">
+                                    <div class="req-update" style="  width: 240px;height: 25px;background-color: #bd1528;border: 1px solid #bd1528;color: #fff;margin: 10px;text-align: center;padding-top: 5px;">GET THE UPDATE</div>
+                                </a>
+
+                                <div class="cont" id="addSoul14" ng-click="vm.addmyuvo()" style="width: 240px;height: 25px;border: 1px solid;color: #fff;margin: 0 10px;text-align: center;padding-top: 5px;cursor: pointer;">CONTINUE TO MYUVO</div>
+                            </div>
+                        </div>
+    </div> -->
+    
+   
+                     
+</div>

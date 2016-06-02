@@ -1,0 +1,46 @@
+#scroller, #addPoiScroller, #dealerSearchScroller {
+    position                    : absolute;
+    z-index                     : 1;
+    -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+    width                       : 100%;
+    -webkit-transform           : translateZ(0);
+    -moz-transform              : translateZ(0);
+    -ms-transform               : translateZ(0);
+    -o-transform                : translateZ(0);
+    transform                   : translateZ(0);
+    -webkit-touch-callout       : none;
+    -webkit-user-select         : none;
+    -moz-user-select            : none;
+    -ms-user-select             : none;
+    user-select                 : none;
+    -webkit-text-size-adjust    : none;
+    -moz-text-size-adjust       : none;
+    -ms-text-size-adjust        : none;
+    -o-text-size-adjust         : none;
+    text-size-adjust            : none;
+}
+
+// #scroller {
+//     background-color:#444;
+// }
+
+.iScrollVerticalScrollbar {
+    position : absolute;
+    z-index  : 9999;
+    width    : 8px;
+    bottom   : 2px;
+    top      : 2px;
+    right    : 0;
+    overflow : hidden;
+}
+
+.iScrollIndicator {
+    position      : absolute;
+    background    : #C4172C;
+    border-width  : 0;
+    border-radius : 1px;
+}
+
+.iScrollVerticalScrollbar .iScrollIndicator {
+    width : 100%;
+}

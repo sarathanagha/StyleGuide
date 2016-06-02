@@ -1,0 +1,618 @@
+// inputs for firstNm, lastNm, City, etc...
+@mixin settings-input-styles() {
+  display:inline-block;
+  vertical-align: middle;
+  font-family:$designk-medium;
+  font-size:13px;
+  color:black;
+  width:100%;
+  border: none;
+  margin: 0;
+  outline:none;
+  box-shadow:none;
+  background:transparent;
+  line-height:40px; 
+  box-sizing:border-box;
+
+  @media (min-width: $screen-sm-min) {
+    height:35px;
+    line-height:normal;
+    width: 500px;
+    padding: 0 10px;    
+  }
+
+  @media (min-width: $screen-md-min) {
+    width: 380px;
+    border-bottom: 1px solid #999;
+    padding: 0 0 0 10px;
+  }
+
+}
+#stateCode{
+   -webkit-appearance: menulist;
+}
+// left-side menu
+.alerts-settings-nav-secondary {
+    width: 170px;
+    padding: 0px 15px 0 12px;
+}
+
+// root container for settings
+.settings {
+
+  width:100%;
+  padding-left:0;
+  padding-right:0;
+
+  @media (min-width:$screen-sm-min) {
+    position:relative;
+  }
+
+  // container for alerts module
+  .alerts-container {
+
+    .button-container {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding-top:22px;
+      margin-bottom:50px;
+
+      @media (min-width: $screen-sm-min) {
+        width:257px;
+        text-align:center;
+        float:right;
+      }
+    }
+
+    .body {
+      color:$kia-light-gray;
+      font-size:13px;
+
+      .mobile-header {
+        font-size:9px;
+        color:$kia-dark-gray;
+        float: right;
+        text-align: center;
+        width:50%;
+        font-family:$designk-bold;
+
+        span {
+          width: 30%;
+          display: inline-block;
+          left:7%;
+          position:relative;
+        }
+      }
+
+      .description {
+        display:inline-block;
+        width:50%;
+        @media (min-width:$screen-sm-min) {
+          width:52%;
+        }
+        @media (min-width:$screen-md-min) {
+          width:60%;
+        }
+      }
+
+      // each row of descriptions and checkboxes
+      > div {
+        margin-bottom:30px;
+        > div { // row
+          > div {
+            margin:15px 0;
+            min-height:35px;
+            @media (min-width:$screen-sm-min) {
+              height:auto;
+            }
+          }
+        }
+      }
+
+      h1 {
+        margin-top: 10px;
+        margin-bottom:20px;
+        @media (min-width:$screen-sm-min) {
+          width:52%;
+        }
+        @media (min-width:$screen-md-min) {
+          width:64%
+        }
+      }
+
+      .checkboxes {
+        float:right;
+        text-align:right;
+        position:relative;
+        width:50%;
+        @media (min-width:$screen-sm-min) {
+          width:auto;
+        }
+
+        span {
+          width:30%;
+          display:inline-block;
+          text-align:center;
+
+          @media (min-width:$screen-sm-min) {
+            width:50px
+          }
+        }
+        span.large {
+          @media (min-width:$screen-sm-min) {
+            width:150px;
+          }
+        }
+
+        input[type="checkbox"] {
+          margin-top:0;
+          display: none;
+          vertical-align: middle;
+        }
+
+        input[type="checkbox"] + label {
+          display: inline-block;
+          position: relative;
+          height: 15px;
+          cursor: pointer;
+          vertical-align: middle;
+
+          &:before {
+            content: ' ';
+            position: absolute;
+            background: url("../images/station/rb_gray.jpg") no-repeat;
+            width: 21px;
+            height: 21px;
+            left: 0;
+            vertical-align: middle;
+
+            @media (min-width:$screen-sm-min) {
+              left:-11px;
+            }
+          }
+        }
+
+        input[type="checkbox"]:checked + label:before {
+          background: url("../images/station/rb-red-check.jpg") no-repeat;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .header {
+      div {
+        float:right;
+        text-align:center;
+
+        span {
+          width:50px;
+          display:inline-block;
+          font-size:13px;
+          color:black;
+          font-family: $designk-bold;
+          text-shadow:none;
+        }
+
+        span.large {
+            width:150px;
+        }
+      }
+    }
+  }
+  // end of alerts module
+
+  // save and loading elements for personal and security pages
+  .button-container{
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding-top:22px;
+      margin-bottom:50px;
+      height:30px;
+
+      @media (min-width: $screen-sm-min) {
+        text-align: right;
+        width: 650px;
+        margin-right: auto;
+        margin-left: auto; 
+      }
+
+      @media (min-width: $screen-md-min) {
+        width: 530px;
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      // loading gif
+      img {
+        display:inline-block;
+        position:relative;
+        right:0;
+        @media (min-width:$screen-sm-min) {
+          margin-right:30px;
+        }
+      }
+
+      // save button
+      .button {
+        border: 1px solid $kia-mid-gray;
+        cursor: pointer;
+        color: $kia-dark-gray;
+        font-size: 13px; 
+        font-family: $designk-bold;
+        padding: 5px 10px;
+        position: relative;
+        right: 0;
+        display: inline-block;
+        margin:0;
+        width:100%;
+        text-align: center;
+        background: none;
+        box-sizing:border-box;
+
+        @media (min-width: $screen-sm-min) {
+          width:110px;
+          margin: 5px;
+          font-family: $designk-medium;
+        }
+      }
+  }
+
+  // title of module
+  h1 {
+    font-family:$designk-bold;
+    font-size:small;
+    color:$kia-dark-gray;
+    margin-bottom: 40px;
+
+    @media (min-width:$screen-sm-min) {
+      font-size:x-large;
+    }
+  }  
+
+  //container of form
+  section {
+    display: block;
+    margin-bottom: 20px;
+    color:$kia-mid-gray;
+    width:100%;
+    position:relative;
+
+    @media (min-width: $screen-sm-min) {
+      border:none;
+      width:650px;
+      height:auto;    
+      margin-left:auto;
+      margin-right:auto; 
+    }
+
+    @media (min-width: $screen-md-min) {
+      width:auto;
+      margin: 0 0 4px 0;
+    }
+
+    //container of labels and inputs
+    div {
+      display:table;
+      border-bottom:1px solid #DDD;      
+      height:40px;
+      width:100%;
+      @media (min-width:$screen-sm-min) {        
+        width:auto;
+        margin-left:auto;
+        margin-right:auto;
+      }
+      @media (min-width:$screen-md-min) {
+        border-bottom:none;
+        height:35px;
+        margin-left:0;
+        margin-right:0;
+      }
+    }
+
+    div.error {
+      border-color:$kia-red;
+    }
+
+    // error validation
+    .error-msg {
+      margin: 5px 0 7px 0;
+      display:block;
+      font-size: 12px;
+      font-weight: normal;                            
+      line-height: 24px;
+      background: url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left center;
+      color: $kia-red;
+      padding: 0 5px 0 26px;
+      top:0px;
+
+      @media (min-width: $screen-md-min) {
+        position: absolute;
+        margin:0px;
+        // height: 24px;
+        left: 550px;
+        top: 5px;
+        background: red;
+        color: white;
+        padding: 0 10px 0 3px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          height: 0;
+          left: -24px;
+          top: 0;
+          border: 12px solid transparent;
+          border-right-color: red;          
+        }
+      }      
+    }
+
+    //label of input
+    label {
+      display:table-cell;
+      font-family:$designk-light;
+      font-weight:normal;
+      font-size:12px;
+      vertical-align:middle; 
+      width: 90px;
+
+      @media (min-width: $screen-sm-min) {        
+        line-height:20px;
+        width:150px;         
+        margin-right:5px;
+      }    
+
+      @media (min-width: $screen-md-min) {
+        border-bottom:1px solid #DDD;
+      }
+    }
+
+    // dropdown styles
+    select {
+      @include settings-input-styles();
+      border:1px solid #999;
+      height:30px;
+
+      @media (min-width:$screen-md-min) {
+        border:0;
+        border-bottom:1px solid #999;
+      }
+    }
+
+    input[type="text"], input[type="password"] {
+      @include settings-input-styles();
+
+      &:focus {
+        color:$kia-red;
+      }
+    }
+  }
+
+  // security module
+  .security-question {
+
+    @media (min-width:$screen-md-min) {
+     margin-bottom:5px;
+    }
+
+    select {
+      @include settings-input-styles();
+      position:relative;
+      color:$kia-mid-gray;
+      border:1px solid #999;
+      -webkit-appearance: menulist;
+
+      @media (min-width: $screen-sm-min) {
+        border:none;
+        //width:330px;
+
+      }
+      @media (min-width:320px) and (max-width:568px){font-size: 11px}
+      @media (min-width: $screen-md-min) {              
+        border-bottom:1px solid #DDD;
+      }
+    }
+
+    .error-msg {
+      
+      @media (min-width:$screen-md-min) {
+        top:5px;
+        left:646px;
+      }
+    }
+
+    div {
+      @media (min-width:$screen-md-min) {
+        border:none;
+      }
+
+      input[type="password"] {
+        @include settings-input-styles();
+
+        &:focus {
+          color:$kia-red;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          top:23px;
+          width:318px;
+        }
+      }
+    }
+  }
+}
+
+// mobile/tablet side menu
+#settings-menu {
+  padding-left:5px;
+  padding-right:5px;
+  box-sizing:border-box;
+  margin-bottom:20px;
+
+  ul {
+    list-style:none;
+    width:100%;
+    li {
+      text-align:center;
+      padding:0;
+      a, a:visited, a:active {
+        @include designk-bold();
+        display:inline-block;
+        color:black;
+        width:100%;
+        padding:17px 0;
+        background:#EEE;
+        box-sizing:border-box;
+        border:1px solid #DDD;
+        font-size:12px;
+      }
+    }
+
+    li.selected {
+      a, a:visited, a:active {
+        color:white;
+        background:$kia-red;
+        border-color:$kia-red;
+      }
+    }
+  }
+}
+#commandlog{
+  .vehicle {
+  vertical-align: middle;
+  width:25%!important;
+  height: 40px;
+  color: #444444;
+  font-family: designk-bold;
+  text-align: left;
+  float:left;
+}
+.mobile-view{
+  display:none!important;
+}
+.reg-view{
+  display:block!important;
+}
+.alerts .item {
+  display: block;
+  border-bottom: 1px solid #E1E1E1;
+  font-size: 1.2em;
+}
+ .item-wrapper {
+  display: table;
+  width: 100%;
+  min-height: 45px;
+  height: auto;
+  padding: 10px 0;
+  position: relative;
+  vertical-align: middle;
+}
+.item-wrapper .content .indicator.red {
+  background-image: url("../images/kh/img/log/alert.png")!important;
+ background-repeat: no-repeat;
+  background-position: left center;
+}
+.item-wrapper .content .indicator.green {
+  background-image: url("../images/kh/img/log/check.png")!important;
+background-repeat: no-repeat;
+  background-position: left center;
+}
+.item-wrapper .content .indicator.yellow {
+  background-image: url("../images/kh/img/log/alert.png")!important;
+background-repeat: no-repeat;
+  background-position: left center;
+
+}
+.item-wrapper .content {
+width:74%!important;
+float:left;
+}
+.item-wrapper .content .indicator {
+float: left;
+  width: 57%;
+  text-align: left;
+  color: #444444;
+  font-size:0.80em!important;
+  padding-left: 20px;
+  font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3)!important;
+}
+.widget-box .content {
+  margin-top:0px!important;
+
+}
+.item-wrapper .content .date {
+  text-align: left;
+  font-size: 0.70em;
+  color: #ABABAB;
+  width:40%!important;
+  float:left;
+  
+}
+.alert-msj{
+color: #444444;
+  font-family: designk-bold;
+  padding-bottom:10px;
+  }
+  .load-more{
+    display:block;
+    text-align:center;
+        .button{
+        border:1px solid #444444;
+        cursor:pointer;
+        color:#444444;
+        font-size:1em;
+        position:relative;
+        padding:5px 10px;
+        display:inline-block;
+        margin:5px;
+        min-width:110px;
+        text-align:center;
+        }
+        a{
+        text-transform: uppercase;
+        border: 1px solid #888888!important;
+        color: #888888!important;
+        }
+    }
+}
+
+@media (max-width:$screen-xs-max){
+
+#commandlog .item-wrapper {
+padding-top: 30px;
+padding-bottom: 10px;
+}
+#commandlog .vehicle {
+ width:100%!important;
+    height: 30px!important;
+}
+#commandlog .item-wrapper .content .indicator {
+  float: left;
+  width: 100%;
+  text-align: left;
+}
+#commandlog .item-wrapper .content {
+  width: 100%!important;
+  float: left;
+  padding-bottom: 18px;
+}
+
+#commandlog .mobile-view{
+  display:block!important;
+}
+#commandlog .reg-view{
+  display:none!important;
+}
+#commandlog .item-wrapper .date {
+  text-align: left;
+  font-size: 0.70em;
+  color: #ABABAB;
+  width:100%!important;
+  float:left;
+  margin-bottom:12px!important;
+  margin-left: 0px!important;
+}
+}

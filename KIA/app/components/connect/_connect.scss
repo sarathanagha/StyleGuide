@@ -1,0 +1,840 @@
+.mob_box.error{background: #BC1728}
+#connect {
+    .panel-1 {
+        width: 100%;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 0;
+        .section-1 {
+            position: relative;
+            padding: 0px;
+            margin: 0px;
+            float: left;
+            text-align: center;
+            // left:4%;
+            width: 27%;
+            .wrapper {
+                margin: 100px 0 0 0;
+                h4 {
+                    color: #999999;
+                    line-height: 15px;
+                    font-size: 12px;
+                }
+                .status {
+                    padding: 0;
+                    margin: 20px 0 20px 0px;
+                    img {
+                        width: 60px;
+                        height: auto;
+                    }
+                }
+                .battery {
+                    display: none!important;
+                }
+            }
+            .btn {
+                margin-top: 5px!important;
+            }
+        }
+        .section-2 {
+            position: relative;
+            padding-top: 20px;
+            margin: 0;
+            float: left;
+            text-align: center;
+            width: 47.67%;
+            .knob {
+                //position:relative;
+                canvas {
+                    height: 275px!important;
+                    width: 275px!important;
+                }
+                input {
+                    height: auto!important;
+                    font-size: 110px!important;
+                    margin-top: 70px!important;
+                    font-size: 77px!important;
+                }
+                .meter-value {
+                    position: absolute;
+                    font-size: 20px;
+                    color: #888888;
+                    text-align: center;
+                    width: 54px;
+                }
+                h3 {
+                    color: #888888!important;
+                    border-color: #888888!important;
+                    font-size: 13px!important;
+                    margin-top: -220px;
+                }
+                p {
+                    color: #888888!important;
+                    border-color: #888888!important;
+                    font-size: 24px!important;
+                    margin-top: 116px!important;
+                }
+            }
+        }
+        .section-3 {
+            position: relative;
+            float: left;
+            height: 290px;
+            padding-left: 30px!important;
+            .wrapper {
+                margin: 117px 0 0 0;
+                text-align: center;
+            }
+            .btn {
+                margin-top: 22px!important;
+            }
+        }
+    }
+    .panel-2 {
+        position: relative;
+        width: auto;
+        border: 0;
+        min-height: 180px;
+        margin: 29px -10px 20px -10px;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 35px;
+        .section-1 {
+            position: relative;
+            float: left;
+            min-height: 180px;
+            border-right: 1px solid #e6e6e6;
+            .btn {
+                margin-top: 10px!important;
+            }
+            h4 {
+                width: 52%;
+                margin: 0 auto;
+                line-height: 17px;
+                padding: 0 0 12px 0px;
+                font-size: 12px;
+                color: #999999;
+                text-align: center;
+            }
+            .temp-group {
+                position: relative;
+                overflow: hidden;
+                padding: 6px 0 2px 0;
+                min-height: 127px;
+                h1 {
+                    color: #444444!important;
+                    font-size: 48px!important;
+                    font-weight: normal!important;
+                    text-align: center;
+                    font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif!important;
+                }
+                .right {
+                    text-align: center;
+                    float: left;
+                    height: 100%;
+                }
+                .outsideTemp {margin:5px 0 0 40px; color:#999;}
+                .outsideTemp img{float:left;}
+            }
+        }
+        .section-2 {
+            position: relative;
+            float: left;
+            min-height: 180px;
+            border-right: 1px solid #e6e6e6;
+            h4 {
+                font-size: 12px!important;
+                color: #999999!important;
+                text-align: center;
+            }
+            .btn {
+                margin-top: 33px!important;
+            }
+            .status {
+                margin: 23px 0 0 6px;
+                text-align: center;
+            }
+        }
+        .section-3 {
+            position: relative;
+            float: left;
+            min-height: 180px;
+            .status {
+                margin: 40px 0 0 0px;
+                text-align: center;
+            }
+            .btn {
+                margin-top: 20px!important;
+            }
+        }
+    }
+    .right {
+        display: none!important;
+    }
+    .lower-panel {padding-bottom: 83px!important;
+        margin-top: 20px;
+        color: #a4a4a4;
+        div {
+            float: left;
+            width: auto;
+            padding: 0;
+        }
+        div:nth-child(even) {
+            margin: 0px 3px;
+        }
+        .right {
+            display: block!important;
+        }
+    }
+    .range-cal-box {
+        position: absolute;
+        z-index: 2;
+        margin-left: 590px;
+        top: 555px;
+        .range-cal-content {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: left;
+            line-height: normal;
+            float: right;
+            width: 200px;
+            margin-top: -80px;
+            margin-right: -230px;
+        }
+    }
+    .alignbutton {
+        text-align: center;
+    }
+    a.btn {
+        display: inline-block !important;
+        font-size: 12px !important;
+        text-align: center!important;
+        padding: 3px 9px 0 14px!important;
+        line-height: 27px !important;
+        letter-spacing: 0px !important;
+        border: 1px solid #bdbdbd!important;
+        color: #555555!important;
+        img {
+            padding: 0 3px 0 15px;
+            margin: -2px 0 -3px -4px;
+        }
+    }
+}
+/*-------changes-----*/
+/*Mobile*/
+
+@media (max-width: $screen-xs-max) {
+    #connect {margin-top:30px;}
+    #connect .panel-1 {
+        border-bottom: 1px solid #e6e6e6;
+    }
+    #connect .panel-1 .section-1 .wrapper .battery {
+        margin-left: 10px;
+        display: block!important;
+        border: none !important;
+        font-weight: bold;
+    }
+    #connect .section-1 .view {
+        display: none!important;
+    }
+    #connect .panel-1 {
+        width: auto!important;
+    }
+    #connect .panel-1 .section-2 {
+        width: 100%;
+        position: absolute !important;
+        text-align: center;
+        margin: 0 auto 0px auto !important;
+        border-bottom: 1px solid #ccc;
+        height: auto!important;
+        padding-bottom: 60px!important;
+    }
+    #connect .panel-1 .section-1 {
+        width: 50%;
+        margin: 325px 0 30px 0!important;
+        height: auto!important;
+        border-right: 1px solid #ccc;
+        left: 0%!important;
+        padding-right: 8px!important;
+    }
+    #connect .panel-2 .section-1 .temp-group { bottom: -6px}
+    #connect .panel-1 .section-3 {
+        width: 50%;
+        height: auto!important;
+        padding-left: 0px!important;
+    }
+    #connect .panel-1 .section-1 .wrapper {
+        margin: 40px 0 10px 0!important;
+        text-align: center;
+    }
+    #connect .panel-1 .section-1 h4 {
+        position: absolute;
+        left: 0%;
+        bottom: 0px!important;
+        font-size: 12px;
+        font-weight: normal;
+        color: #999;
+        width: 100%;
+    }
+    #connect .panel-2 .section-1 {
+        width: 50%;
+        float: right;
+        border-right: none!important;
+        margin-top: -15px;
+        margin-bottom: 35px;
+        /* padding-right: 0px!important;*/
+    }
+    #connect .panel-2 .section-1 .right-pad {
+        margin-top: -127px;
+    }
+    #connect .panel-2 .section-2 {
+        width: 50%;
+        padding: 10px 0 10px 0;
+        border-right: 1px solid #ccc;
+        margin-top: -24px;
+        margin-bottom: 35px;
+        padding-right: 8px!important
+    }
+    #connect .section-1 .right h4 {
+        bottom: 10px!important;
+    }
+    #connect .panel-1 .section-3 .btn {
+        position: absolute;
+        top: 119px;
+        border: none!important;
+        margin-top: 0px!important;
+        padding: 0 !important;
+        font-weight: bold;
+    }
+    #connect .section-2 .btn {
+        position: absolute;
+        top: 0;
+        border: none!important;
+    }
+    #connect .panel-1 .section-3 .status-container {
+        text-align: center;
+    }
+    #connect .section-1 .btn {
+        position: absolute;
+        top: 0;
+        border: none!important;
+    }
+    #connect .panel-1 .section-3 .wrapper {
+        margin: 150px 0 0 0px!important;
+    }
+    #connect .panel-2 .section-2 .status {
+        text-align: center;
+    }
+    #connect .panel-2 .section-2 .btn,
+    #connect .panel-2 .section-1 .btn,
+    #connect .panel-2 .section-3 .btn {
+        margin-top: 0px !important;
+        font-weight: bold;
+        border: none !important;
+    }
+    #connect .panel-2 .section-3 .btn {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: 13px 0 0 0 !important;
+        padding: 0 !important;
+    }
+    #connect .panel-2 .section-3 .right {
+        margin-top: -125px!important;
+    }
+    #connect .panel-2 .section-3 .status-container {
+        margin-top: 60px;
+    }
+    #connect .panel-2 .section-1 .btn {
+        margin-left: -14px;
+        top:-8px;
+    }
+    #connect .panel-2 .section-3 {
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #connect .panel-2 .section-2,
+    #connect .panel-2 .section-1,
+    #connect .panel-2 .section-3 {
+        min-height: 0px!important;
+    }
+    #connect .alignbutton {
+        text-align: left;
+    }
+
+    #connect .panel-2 .section-1 h4,
+    #connect .panel-2 .section-2 h4 {
+        font-size: 12px;
+        font-weight: normal;
+        color: #999;
+        position: absolute!important;
+        bottom: -6px;
+        text-align: center;
+        margin: 0px!important;
+        width: 100%;
+    }
+    #connect .panel-2 .section-1 .temp-group .outsideTemp{ margin:20px 0 0 40px; }
+    #connect .panel-2 .section-1 .temp-group .outsideTemp .text { font-size: 3em; }
+    #connect .status-container {
+        margin-top: 20px;
+    }
+    #connect .lower-panel {
+        padding-bottom:0px!important;
+        
+        div {
+            text-align: center;
+            padding: 10px;
+        }
+        div:nth-child(3) {
+            float: initial;
+            color: #C4172C;
+        }
+    }
+    #connect .range-cal-box {
+        margin-left: 8%;
+        top: 69%;
+    }
+    #connect .range-cal-box .range-cal-content {
+        margin-left: 20px;
+        margin-top: 89px;
+    }
+    #connect .range-cal-box img {
+        position: absolute;
+        margin-left: 130px;
+        margin-top: 255px!important;
+    }
+    #connect .range-cal-box .close-hint img {
+        cursor: pointer;
+        margin-left: 225px;
+        margin-top: 55px;
+    }
+    #connect .panel-1 .section-1 .wrapper .status {
+        margin: 10px 0 20px 0px;
+    }
+    #connect .panel-2 .section-2 .status {
+        margin: 10px 0 10px 0px;
+    }
+    #connect #header .navbar-header section .navbar-mobile-detail-container .mobile-notifications {
+        background: none!important;
+    }
+    #connect .panel-1 .section-3 .charging {
+        margin-left: 5px;
+        
+    }
+    #connect .panel-2 .section-3 .fndMyCar {
+        margin-left: 12px !important;
+    }
+    #connect .panel-1 .section-1 {
+        margin: 295px 0 30px 0 !important;
+    }
+    #connect .panel-1 .section-3 {
+        margin: 185px 0 0 0px !important;
+    }
+    #connect .status-container img {
+        margin-top: 15px!important;
+    }
+    #connect .right {
+        display: block!important;
+        float: right!important;
+        margin-top: -112px;
+    }
+    #connect .alignbutton a > img {
+        display: none!important;
+    }
+}
+#connect .panel-1 .meter-value.val-1,
+#connect .panel-1 .meter-value.val-2,
+#connect .panel-1 .meter-value.val-3 {
+    top: 210px;
+    left: 15px;
+}
+#connect .panel-1 .meter-value.val-4,
+#connect .panel-1 .meter-value.val-5,
+#connect .panel-1 .meter-value.val-6 {
+    top: 195px;
+    left: 10px;
+}
+#connect .panel-1 .meter-value.val-7,
+#connect .panel-1 .meter-value.val-8,
+#connect .panel-1 .meter-value.val-9 {
+    top: 175px;
+    left: 5px;
+}
+#connect .panel-1 .meter-value.val-10,
+#connect .panel-1 .meter-value.val-11,
+#connect .panel-1 .meter-value.val-12 {
+    top: 160px;
+    left: -27px;
+}
+#connect .panel-1 .meter-value.val-13,
+#connect .panel-1 .meter-value.val-14,
+#connect .panel-1 .meter-value.val-15 {
+    top: 140px;
+    left: -5px;
+}
+#connect .panel-1 .meter-value.val-16,
+#connect .panel-1 .meter-value.val-17,
+#connect .panel-1 .meter-value.val-18 {
+    top: 122px;
+    left: -5px;
+}
+#connect .panel-1 .meter-value.val-19,
+#connect .panel-1 .meter-value.val-20,
+#connect .panel-1 .meter-value.val-21 {
+    top: 105px;
+    left: 0px;
+}
+#connect .panel-1 .meter-value.val-22,
+#connect .panel-1 .meter-value.val-23,
+#connect .panel-1 .meter-value.val-24 {
+    top: 90px;
+    left: 5px;
+}
+#connect .panel-1 .meter-value.val-25,
+#connect .panel-1 .meter-value.val-26,
+#connect .panel-1 .meter-value.val-27 {
+    top: 72px;
+    left: 12px;
+}
+#connect .panel-1 .meter-value.val-28,
+#connect .panel-1 .meter-value.val-29,
+#connect .panel-1 .meter-value.val-30 {
+    top: 58px;
+    left: 22px;
+}
+#connect .panel-1 .meter-value.val-31,
+#connect .panel-1 .meter-value.val-32,
+#connect .panel-1 .meter-value.val-33 {
+    top: 45px;
+    left: 35px;
+}
+#connect .panel-1 .meter-value.val-34,
+#connect .panel-1 .meter-value.val-35,
+#connect .panel-1 .meter-value.val-36 {
+    top: 35px;
+    left: 45px;
+}
+#connect .panel-1 .meter-value.val-37,
+#connect .panel-1 .meter-value.val-38,
+#connect .panel-1 .meter-value.val-39 {
+    top: 15px;
+    left: 75px;
+}
+#connect .panel-1 .meter-value.val-40,
+#connect .panel-1 .meter-value.val-41,
+#connect .panel-1 .meter-value.val-42 {
+    top: 5px;
+    left: 100px;
+}
+#connect .panel-1 .meter-value.val-43,
+#connect .panel-1 .meter-value.val-44,
+#connect .panel-1 .meter-value.val-45 {
+    top: 0px;
+    left: 125px;
+}
+#connect .panel-1 .meter-value.val-46,
+#connect .panel-1 .meter-value.val-47,
+#connect .panel-1 .meter-value.val-48 {
+    top: 0px;
+    left: 145px;
+}
+#connect .panel-1 .meter-value.val-49,
+#connect .panel-1 .meter-value.val-50,
+#connect .panel-1 .meter-value.val-51 {
+    top: 0px;
+    left: 165px;
+}
+#connect .panel-1 .meter-value.val-52,
+#connect .panel-1 .meter-value.val-53,
+#connect .panel-1 .meter-value.val-54 {
+    top: 0px;
+    left: 185px;
+}
+#connect .panel-1 .meter-value.val-55,
+#connect .panel-1 .meter-value.val-56,
+#connect .panel-1 .meter-value.val-57 {
+    top: 5px;
+    left: 205px;
+}
+#connect .panel-1 .meter-value.val-58,
+#connect .panel-1 .meter-value.val-59,
+#connect .panel-1 .meter-value.val-60 {
+    top: 10px;
+    left: 220px;
+}
+#connect .panel-1 .meter-value.val-61,
+#connect .panel-1 .meter-value.val-62,
+#connect .panel-1 .meter-value.val-63 {
+    top: 20px;
+    left: 245px;
+}
+#connect .panel-1 .meter-value.val-64,
+#connect .panel-1 .meter-value.val-65,
+#connect .panel-1 .meter-value.val-66 {
+    top: 35px;
+    left: 265px;
+}
+#connect .panel-1 .meter-value.val-67,
+#connect .panel-1 .meter-value.val-68,
+#connect .panel-1 .meter-value.val-69 {
+    top: 45px;
+    left: 275px;
+}
+#connect .panel-1 .meter-value.val-70,
+#connect .panel-1 .meter-value.val-71,
+#connect .panel-1 .meter-value.val-72 {
+    top: 63px;
+    left: 290px;
+}
+#connect .panel-1 .meter-value.val-73,
+#connect .panel-1 .meter-value.val-74,
+#connect .panel-1 .meter-value.val-75 {
+    top: 83px;
+    left: 300px;
+}
+#connect .panel-1 .meter-value.val-76,
+#connect .panel-1 .meter-value.val-77,
+#connect .panel-1 .meter-value.val-78 {
+    top: 98px;
+    left: 308px;
+}
+#connect .panel-1 .meter-value.val-79,
+#connect .panel-1 .meter-value.val-80,
+#connect .panel-1 .meter-value.val-81 {
+    top: 116px;
+    left: 313px;
+}
+#connect .panel-1 .meter-value.val-82,
+#connect .panel-1 .meter-value.val-83,
+#connect .panel-1 .meter-value.val-84 {
+    top: 135px;
+    left: 315px;
+}
+#connect .panel-1 .meter-value.val-85,
+#connect .panel-1 .meter-value.val-86,
+#connect .panel-1 .meter-value.val-87 {
+    top: 150px;
+    left: 315px;
+}
+#connect .panel-1 .meter-value.val-88,
+#connect .panel-1 .meter-value.val-89,
+#connect .panel-1 .meter-value.val-90 {
+    top: 170px;
+    //left: 315px;
+    right: -15px;
+}
+#connect .panel-1 .meter-value.val-91,
+#connect .panel-1 .meter-value.val-92,
+#connect .panel-1 .meter-value.val-93 {
+    top: 187px;
+    left: 310px;
+}
+#connect .panel-1 .meter-value.val-94,
+#connect .panel-1 .meter-value.val-95,
+#connect .panel-1 .meter-value.val-96 {
+    top: 205px;
+    left: 305px;
+}
+#connect .panel-1 .meter-value.val-97,
+#connect .panel-1 .meter-value.val-98,
+#connect .panel-1 .meter-value.val-99,
+#connect .panel-1 .meter-value.val-100 {
+    top: 225px;
+    left: 300px;
+}
+@media (max-width: $screen-xs-max) {
+    #connect .panel-1 .section-2 {
+        padding: 0px;
+        right: 0px;
+        .knob {
+            width: 320px;
+            margin: auto;
+            position: relative;
+            margin-top: 15px;
+        }
+    }
+    #connect .panel-1 .section-2 .knob .meter-value {
+        font-size: 18px;
+    }
+    #connect .panel-1 .meter-value.val-4,
+    #connect .panel-1 .meter-value.val-5,
+    #connect .panel-1 .meter-value.val-6 {
+        top: 172px;
+        left: -2px;
+    }
+    #connect .panel-1 .meter-value.val-7,
+    #connect .panel-1 .meter-value.val-8,
+    #connect .panel-1 .meter-value.val-9 {
+        top: 152px;
+        left: -4px;
+    }
+    #connect .panel-1 .meter-value.val-10,
+    #connect .panel-1 .meter-value.val-11,
+    #connect .panel-1 .meter-value.val-12 {
+        left: -13px;
+    }
+    #connect .panel-1 .meter-value.val-13,
+    #connect .panel-1 .meter-value.val-14,
+    #connect .panel-1 .meter-value.val-15 {
+        top: 110px;
+        left: -16px;
+    }
+    #connect .panel-1 .meter-value.val-16,
+    #connect .panel-1 .meter-value.val-17,
+    #connect .panel-1 .meter-value.val-18 {
+        top: 92px;
+        left: -11px;
+    }
+    #connect .panel-1 .meter-value.val-19,
+    #connect .panel-1 .meter-value.val-20,
+    #connect .panel-1 .meter-value.val-21 {
+        top: 85px;
+    }
+    #connect .panel-1 .meter-value.val-22,
+    #connect .panel-1 .meter-value.val-23,
+    #connect .panel-1 .meter-value.val-24 {
+        top: 63px;
+        left: 0px;
+    }
+    #connect .panel-1 .meter-value.val-25,
+    #connect .panel-1 .meter-value.val-26,
+    #connect .panel-1 .meter-value.val-27 {
+        top: 40px;
+        left: 10px;
+    }
+    #connect .panel-1 .meter-value.val-28,
+    #connect .panel-1 .meter-value.val-29,
+    #connect .panel-1 .meter-value.val-30 {
+        top: 33px;
+    }
+    #connect .panel-1 .meter-value.val-31,
+    #connect .panel-1 .meter-value.val-32,
+    #connect .panel-1 .meter-value.val-33 {
+        top: 12px;
+        left: 35px;
+    }
+    #connect .panel-1 .meter-value.val-34,
+    #connect .panel-1 .meter-value.val-35,
+    #connect .panel-1 .meter-value.val-36 {
+        top: -3px;
+        left: 50px;
+    }
+    #connect .panel-1 .meter-value.val-37,
+    #connect .panel-1 .meter-value.val-38,
+    #connect .panel-1 .meter-value.val-39 {
+        top: -12px;
+        left: 75px;
+    }
+    #connect .panel-1 .meter-value.val-40,
+    #connect .panel-1 .meter-value.val-41,
+    #connect .panel-1 .meter-value.val-42 {
+        top: -11px;
+    }
+    #connect .panel-1 .meter-value.val-43,
+    #connect .panel-1 .meter-value.val-44,
+    #connect .panel-1 .meter-value.val-45 {
+        top: -20px;
+        left: 125px;
+    }
+    #connect .panel-1 .meter-value.val-46,
+    #connect .panel-1 .meter-value.val-47,
+    #connect .panel-1 .meter-value.val-48 {
+        top: -22px;
+        left: 145px;
+    }
+    #connect .panel-1 .meter-value.val-49,
+    #connect .panel-1 .meter-value.val-50,
+    #connect .panel-1 .meter-value.val-51 {
+        top: -19px;
+    }
+    #connect .panel-1 .meter-value.val-52,
+    #connect .panel-1 .meter-value.val-53,
+    #connect .panel-1 .meter-value.val-54 {
+        top: -19px;
+    }
+    #connect .panel-1 .meter-value.val-55,
+    #connect .panel-1 .meter-value.val-56,
+    #connect .panel-1 .meter-value.val-57 {
+        top: -15px;
+    }
+    #connect .panel-1 .meter-value.val-58,
+    #connect .panel-1 .meter-value.val-59,
+    #connect .panel-1 .meter-value.val-60 {
+        top: 0px;
+        left: 242px;
+    }
+    #connect .panel-1 .meter-value.val-61,
+    #connect .panel-1 .meter-value.val-62,
+    #connect .panel-1 .meter-value.val-63 {
+        top: 5px;
+    }
+    #connect .panel-1 .meter-value.val-64,
+    #connect .panel-1 .meter-value.val-65,
+    #connect .panel-1 .meter-value.val-66 {
+        top: 15px;
+    }
+    #connect .panel-1 .meter-value.val-67,
+    #connect .panel-1 .meter-value.val-68,
+    #connect .panel-1 .meter-value.val-69 {
+        top: 32px;
+    }
+    #connect .panel-1 .meter-value.val-70,
+    #connect .panel-1 .meter-value.val-71,
+    #connect .panel-1 .meter-value.val-72 {
+        top: 42px;
+    }
+    #connect .panel-1 .meter-value.val-73,
+    #connect .panel-1 .meter-value.val-74,
+    #connect .panel-1 .meter-value.val-75 {
+        top: 62px;
+        left: 290px;
+    }
+    #connect .panel-1 .meter-value.val-76,
+    #connect .panel-1 .meter-value.val-77,
+    #connect .panel-1 .meter-value.val-78 {
+        top: 88px;
+        left: 293px;
+    }
+    #connect .panel-1 .meter-value.val-79,
+    #connect .panel-1 .meter-value.val-80,
+    #connect .panel-1 .meter-value.val-81 {
+        top: 97px;
+        left: 295px;
+    }
+    #connect .panel-1 .meter-value.val-82,
+    #connect .panel-1 .meter-value.val-83,
+    #connect .panel-1 .meter-value.val-84 {
+        top: 125px;
+        left: 298px;
+    }
+    #connect .panel-1 .meter-value.val-85,
+    #connect .panel-1 .meter-value.val-86,
+    #connect .panel-1 .meter-value.val-87 {
+        top: 143px;
+        left: 298px;
+    }
+    #connect .panel-1 .meter-value.val-88,
+    #connect .panel-1 .meter-value.val-89,
+    #connect .panel-1 .meter-value.val-90 {
+        top: 162px;
+        right: 2px;
+    }
+    #connect .panel-1 .meter-value.val-91,
+    #connect .panel-1 .meter-value.val-92,
+    #connect .panel-1 .meter-value.val-93 {
+        top: 182px;
+        left: 292px;
+    }
+    #connect .panel-1 .meter-value.val-94,
+    #connect .panel-1 .meter-value.val-95,
+    #connect .panel-1 .meter-value.val-96 {
+        top: 194px;
+        left: 286px;
+    }
+    #connect .panel-1 .meter-value.val-97,
+    #connect .panel-1 .meter-value.val-98,
+    #connect .panel-1 .meter-value.val-99,
+    #connect .panel-1 .meter-value.val-100 {
+        top: 216px;
+        left: 275px;
+    }
+}

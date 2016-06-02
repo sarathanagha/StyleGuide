@@ -1,0 +1,124 @@
+<section id="driving-activity-gen1plus">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <section class="widget-box border driving-score">
+          <header class="title">DRIVING SCORE</header>
+            <article>
+              <div class="doughnut">
+                <div class="chart"></div>
+                <div class="good">{{vm.activity.monthlyStat[vm.drivingScoreIndex].efficientScore||"99"}}</div>
+                <div class="total">/100</div>
+              </div>
+              <div class="legend">
+                  <div class="legend-wrapper">
+                    <div class="color good"><div></div></div>
+                    <label>EFFICIENT DRIVING</label>
+                  </div>
+              </div>
+            </article>
+            <div class="milestone-container">
+              <div class="milestone" ng-class="{active:vm.drivingScoreIndex == $index}" ng-repeat="m in vm.activity.monthlyStat" ng-click="vm.drawDrivingScore($index)">
+                <span class="miles"><!-- {{m.milesDriven}}  -->
+                {{vm.activity.monthlyStat[$index].efficientScore||"99"}}</span>
+                <span class="date">{{m.monthDisplay}}</span>
+              </div>
+          </div>
+            <div class="clearfix"></div>
+        </section>
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        <section class="widget-box border average-speed">
+          <header class="title">AVERAGE SPEED</header>
+          <div class="content">
+            <div class="average-speed-meter">
+               <span  class="amount">{{vm.average || "--"}} </span>
+                <span class="score-footer">MPH</span>
+            </div> 
+            <div class="date-link">
+              
+             <span class="month-year"> LAST <b style="color:#363636;font-family: designk-bold;">6 MONTHS</b></span>
+            
+            </div>    
+          </div>     
+        </section>
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        <section class="widget-box border hours-driven">
+          <header class="title">HOURS DRIVEN</header>
+          <div class="content">
+            <div class="activity-meter">
+              <span class="amount">{{vm.activity.monthlyStat[vm.hoursDrivenIndex].hrsDrivenDisplay|number:0}}</span>
+              <span class="score-footer" ng-show="vm.activity.monthlyStat[vm.hoursDrivenIndex].hrsDrivenDisp == 1">HOUR</span>
+              <span class="score-footer" ng-show="vm.activity.monthlyStat[vm.hoursDrivenIndex].hrsDrivenDisp != 1">HOURS</span>
+            </div>  
+            <div class="date-link">
+              <span class="left-arrow" ng-class="{active:vm.hoursDrivenIndex > 0}" ng-click="vm.incrementIndex('hoursDrivenIndex',-1)"></span>
+              <span class="month-year"><strong>{{vm.activity.monthlyStat[vm.hoursDrivenIndex].monthDisplay}}</strong> {{vm.activity.monthlyStat[vm.hoursDrivenIndex].year}}</span>
+              <span class="right-arrow" ng-class="{active:vm.hoursDrivenIndex < vm.lastIndex}" ng-click="vm.incrementIndex('hoursDrivenIndex',1)"></span>
+            </div>            
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <section class="widget-box border mileage">
+          <header class="title">MILEAGE</header>
+          <div class="content">
+              <div class="mileage-data">
+                  <label class="w-label">Miles</label>
+                  <div class="amount">{{vm.activity.currentMileage | number }}</div>
+              </div>
+              <div class="mileage-chart">
+                <label class="y-label">Miles</label>
+                <ul class="years-list">
+                  <li ng-repeat="year in vm.activity.years" ng-click="vm.drawMileage(year.key)"><span ng-class="{active:vm.mileageIndex == year.key}" >{{year.key | uppercase }}</span></li>
+                </ul>
+                <div class="chart-container"></div>
+              </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-4">
+        <section class="widget-box border idle-time">
+          <header class="title">IDLE TIME</header>
+          <div class="content">
+            <div class="idle-meter">
+           <span class="amount">{{vm.totalidleTIme}}</span>
+           <span class="score-footer" >HOUR</span>
+              <!--   <span class="amount">{{vm.activity.monthlyStat[vm.idleTimeIndex].idleTimeDisplay}}</span> -->
+               <!--  <span class="score-footer" ng-show="vm.activity.monthlyStat[vm.hoursDrivenIndex].idleTime == 1">HOUR</span>
+                <span class="score-footer" ng-show="vm.activity.monthlyStat[vm.hoursDrivenIndex].idleTime != 1">HOURS</span> -->                
+            </div>  
+            <div class="date-link">
+             <!--  <span class="left-arrow" ng-class="{active:vm.idleTimeIndex > 0}" ng-click="vm.incrementIndex('idleTimeIndex',-1)"></span> -->
+              <span class="month-year">as of 
+              <strong>{{vm.latestMonth}}/{{vm.activity.monthlyStat[vm.idleTimeIndex].year}}</strong></span>
+              
+               <!-- <span class="month-year"><strong>{{vm.activity.monthlyStat[vm.idleTimeIndex].monthDisplay}}</strong> {{vm.activity.monthlyStat[vm.idleTimeIndex].year}}</span> -->
+             <!--  <span class="right-arrow" ng-class="{active:vm.idleTimeIndex < vm.lastIndex}" ng-click="vm.incrementIndex('idleTimeIndex',1)"></span> -->
+            </div>   
+          </div>     
+        </section>
+      </div>
+     
+      <div class="col-xs-6 col-sm-4">
+        <section class="widget-box border awards hover-on" ng-click="vm.goToAwards()">
+          <header class="titleArrow">AWARDS</header>
+          <div class="content">
+            <div class="awards-meter">
+              <span class="amount">{{vm.activity.numAwards}}</span>
+            </div> 
+            <span class="score-footer">YOU HAVE EARNED {{vm.activity.numAwards}} NEW <strong ng-show="vm.activity.numAwards != 1">AWARDS</strong><strong ng-show="vm.activity.numAwards == 1">AWARD</strong></span>
+          </div>      
+        </section>
+      </div>
+      <div class="col-xs-12 disclaimer">
+          Driving statistics may vary based on the calculation method used.
+      </div>
+    </div>
+  </div>
+</section>

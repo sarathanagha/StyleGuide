@@ -1,0 +1,2755 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin         : 0;
+    padding        : 0;
+    border         : 0;
+    //font           : inherit;
+    //font-size      : 100%;
+    vertical-align : baseline;
+}
+
+html {
+    line-height : 1;
+}
+
+ol, ul {
+    list-style : none;
+}
+
+table {
+    border-collapse : collapse;
+    border-spacing  : 0;
+}
+
+caption, th, td {
+    text-align     : left;
+    font-weight    : normal;
+    vertical-align : middle;
+}
+
+q, blockquote {
+    quotes : none;
+}
+
+a img {
+    border : none;
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section, summary {
+    display : block;
+}
+
+.alert-primary,
+.alert,
+.alert.updated,
+.alert.updated span,
+.alert.updating,
+.alert.updating span,
+.alert.try-again,
+.alert.try-again span,
+.vehicle-bar,
+.vehicle-bar nav ul li h1,
+.vehicle-bar-notifications ul li {
+    color            : white;
+    border-color     : white;
+    background-color : transparent;
+}
+
+.alert-primary span,
+.alert span,
+.vehicle-bar nav ul li h2,
+.main-wrapper-content .content-area .container .lower-panel {
+    color            : #A4A4A4;
+    border-color     : #A4A4A4;
+    background-color : transparent;
+}
+
+.vehicle-bar nav ul li ul li:hover{
+    color            : #888888;
+    border-color     : #888888;
+    background-color : transparent;
+}
+
+.main-wrapper-content .content-area .container h1,
+.main-wrapper-content .content-area .container h2,
+.main-wrapper-content .content-area .container h3,
+.main-wrapper-content .content-area .container h4,
+.main-wrapper-content .content-area .container h5,
+.main-wrapper-content .content-area .container h6 {
+    color            : #444444;
+    border-color     : #444444;
+    background-color : transparent;
+}
+
+.remote.door-locks .remote-content .info .control .selector .button {
+    color            : #888888;
+    border-color     : #888888;
+    background-color : white;
+}
+
+.remote.door-locks .remote-content .car-doors,
+.remote.door-locks .remote-content .info,
+.remote.engine-climate .remote-content,
+.remote.engine-climate .schedule-content {
+    color            : #999999;
+    border-color     : #999999;
+    background-color : white;
+}
+
+.nav-social,
+.footer {
+    color            : white;
+    border-color     : white;
+    background-color : black;
+}
+
+.vehicle-bar-notifications .container.with-notifications .messages,
+.vehicle-bar-notifications ul li span{
+    color            : white;
+    border-color     : white;
+    background-color : #C4172C;
+}
+
+.vehicle-bar nav.active,
+.vehicle-bar nav ul li ul,
+.vehicle-bar-notifications,
+.vehicle-bar-notifications ul {
+    color            : white;
+    border-color     : white;
+    background-color : #2F2F2F;
+}
+
+body {
+    background: white;
+    font-family: $designk-medium;
+    font-size:14px;
+
+    @media (min-width:$screen-md-min) {
+      margin      : 0;
+      padding     : 0;
+      font-size   : 13px;
+      line-height : 20px;
+      color       : #333333;
+      background  : white url("../images/kh/img/bg-gray.gif") repeat-x 0 0;
+    }
+
+    &.updating, &.error { background : white url("../images/kh/img/bg-red-gray.gif") repeat-x 0 0;
+        .vehicle-bar-notifications { margin-top: -30px; }
+    } 
+    &.success { background : white url("../images/kh/img/bg-green-gray.gif") repeat-x 0 0; 
+        @media (max-width: $screen-sm-max) { background-position:0 -64px; }
+        .vehicle-bar-notifications { margin-top: -30px; }
+    }
+    &.processing {
+        .loader { display:block; }
+    }
+    .loader { 
+        display    : none;
+        background : url("../images/kh/img/kia-loader.gif") repeat-x top left;
+        height     : 9px;
+        width      : 100%;
+        z-index    : 100;
+        position   : absolute;
+        top        : 53px;
+        @media (min-width:$screen-md-min) {
+            top : 117px;
+        } 
+    }
+
+}
+
+html, body {
+    height : 100%;
+    width  : 100%;
+}
+
+.loaderIe8 {
+    display    : none;
+    background : url("../images/kh/img/bg-red-gray.gif") repeat-x top left;
+    height     : 100%;
+    width      : 100%;
+    position   : absolute;
+}
+
+.loaderIe8 div{
+    margin-top:125px;
+    margin-left:230px;
+    color:white;
+}
+
+.loaderIe8 img{
+    margin-left:35px;
+    cursor:pointer;
+}
+
+.summary-table {
+    width : 100%;
+}
+
+.summary-table tr td {
+    padding : 2px;
+    border  : 1px solid #CCCCCC;
+}
+
+.summary-table tr td.title {
+    font-size : 15px;
+    color     : green;
+}
+
+.main-content-area {
+  overflow:hidden;
+  box-sizing:border-box;
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.main-wrapper {
+    margin: 0 auto;
+    padding-bottom:40px; // adjust for footer
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom:50px;
+    }
+    @media (min-width: $screen-md-min) {
+        max-width:990px; // 960 previously
+    }
+    @media (min-width: $screen-lg-min) {}
+
+    .main-wrapper-content {
+      section {
+        > .ng-scope {
+          overflow:hidden;
+        }
+      }
+    }
+}
+
+.main-wrapper.nav-collapsed {
+  padding-bottom:0px;
+}
+
+a {
+    color           : inherit;
+    text-decoration : none;
+    text-shadow     : 0 !important;
+}
+
+.button-round {
+    border-radius : 20px;
+}
+
+.hide {
+    display : none !important;
+}
+
+a.cta.primary {
+    background      : #2F2F2F;
+    color           : #FFFFFF;
+    display         : inline-block;
+    font-family     : designk-bold;
+    position        : relative;
+    text-decoration : none;
+    text-transform  : uppercase;
+    width           : auto;
+}
+
+a.cta.primary span {
+    border       : 1px solid #2F2F2F;
+    display      : block;
+    margin-right : 6.7em;
+    overflow     : hidden;
+    padding      : 0.5em 0 0.5em 0.8em;
+}
+
+a.cta.primary:after {
+    background : #C4172C url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+    content    : "";
+    display    : block;
+    height     : 100%;
+    position   : absolute;
+    right      : 0;
+    text-align : center;
+    top        : 0;
+    width      : 2.7em;
+}
+
+a.cta.secondary {
+    background      : #FFFFFF;
+    border          : 1px solid #E1E1E1;
+    color           : #787879;
+    display         : inline-block;
+    font-family     : designk-bold;
+    position        : relative;
+    text-decoration : none;
+    text-transform  : uppercase;
+    width           : auto;
+    cursor          : pointer;
+}
+
+a.cta.secondary:hover {
+    color : #C4172C;
+}
+
+a.cta.secondary span {
+    display      : block;
+    margin-right : 3.7em;
+    overflow     : hidden;
+    padding      : 0.5em 0 0.5em 0.8em;
+}
+
+a.cta.secondary:after {
+    background : url("../images/kh/img/maintenance/arrow-3-right.png") no-repeat center center;
+    content    : "";
+    display    : block;
+    height     : 100%;
+    position   : absolute;
+    right      : 0;
+    text-align : center;
+    top        : 0;
+    width      : 2.7em;
+}
+
+.link-btn {
+    line-height      : 35px;
+    display          : inline-block;
+    margin-bottom    : 3px;
+    color            : #FFFFFF;
+    background-color : #000000;
+    white-space      : nowrap;
+    overflow         : auto;
+}
+
+.link-btn .text {
+    font-family : "designk-medium";
+    font-size   : 92.3%;
+    padding     : 0 10px;
+    display     : inline-block;
+    float       : left;
+}
+
+.link-btn .arrow {
+    font-family      : "designk-light";
+    display          : inline-block;
+    float            : right;
+    width            : 35px;
+    text-align       : center;
+    background-color : #CC273A;
+}
+
+.link-text .text {
+    font-family    : "designk-medium";
+    text-transform : uppercase;
+    padding-right  : 10px;
+    font-weight    : bold;
+}
+
+.link-text .arrow {
+    font-family : "designk-light";
+}
+
+.link-video {
+    display  : inline-block;
+    position : relative;
+}
+
+.link-video .icon-video-sm {
+    position   : absolute;
+    width      : 100%;
+    height     : 100%;
+    left       : 0;
+    top        : 0;
+    background : url("../images/kh/img/icon-video-sm.png") center center no-repeat transparent;
+}
+
+.price {
+    line-height : 35px;
+}
+
+.price .number {
+    font-size : 269.23%;
+}
+
+.price .sup {
+    position : relative;
+    top      : -15px;
+}
+
+/* PURPOSE: page layout structure for mobile screen to go between different screen;
+ * DEFAULT: default state is for large screen, 480px for moible
+ * JAVASCRIPT:  use js to add off-screen class to .page to hide page
+                remove to show ;
+ * MEDIA QUERY: use media query to show the .page-link and .page-nav in small screen or use js to add "active" class to the .small-page-layout block;
+ * DEFAULT STATE: all page-link, page-nav will be hidden;
+
+    small-page-layout
+
+*/
+.small-page-layout {
+    position : relative;
+    overflow : hidden;
+    width    : 100%;
+}
+
+.small-page-layout .page {
+    position                           : relative;
+    width                              : 100%;
+    -webkit-box-sizing                 : border-box;
+    -moz-box-sizing                    : border-box;
+    box-sizing                         : border-box;
+    -webkit-transition-property        : left;
+    -moz-transition-property           : left;
+    -o-transition-property             : left;
+    transition-property                : left;
+    -webkit-transition-duration        : 0.6s;
+    -moz-transition-duration           : 0.6s;
+    -o-transition-duration             : 0.6s;
+    transition-duration                : 0.6s;
+    -webkit-transition-timing-function : ease-in-out;
+    -moz-transition-timing-function    : ease-in-out;
+    -o-transition-timing-function      : ease-in-out;
+    transition-timing-function         : ease-in-out;
+}
+
+.small-page-layout .page.off-screen {
+    -webkit-transition-duration : 1.1s;
+    -moz-transition-duration    : 1.1s;
+    -o-transition-duration      : 1.1s;
+    transition-duration         : 1.1s;
+    position                    : absolute;
+    top                         : 0;
+}
+
+.small-page-layout .page-prev.off-screen {
+    left : -100%;
+}
+
+.small-page-layout .page-next.off-screen {
+    left : 100%;
+}
+
+.small-page-layout .page-link {
+    display : none;
+}
+
+.small-page-layout .page-link-full-width {
+    display     : none;
+    font-family : "designk-medium";
+    font-size   : 153.85%;
+    padding     : 15px 2%;
+    position    : relative;
+    border-top  : 1px solid #CCCCCC;
+}
+
+.small-page-layout .page-link-full-width .arrow {
+    position : absolute;
+    right    : 2%;
+    display  : inline-block;
+}
+
+.small-page-layout .page-layout-nav {
+    display          : none;
+    height           : 58px;
+    line-height      : 58px;
+    background-color : #000000;
+    color            : #FFFFFF;
+    overflow         : auto;
+}
+
+.small-page-layout .page-layout-nav h3.page-nav-title {
+    padding     : 0 5%;
+    font-size   : 100%;
+    font-family : "designk-bold";
+    float       : left;
+}
+
+.small-page-layout .page-layout-nav .page-link-back {
+    text-transform : uppercase;
+    display        : inline-block;
+    float          : left;
+    font-family    : "designk-light";
+    font-size      : 150%;
+    line-height    : 58px;
+    padding        : 0 5%;
+    border-right   : 1px solid #444444;
+}
+
+.small-page-layout .layout-sm {
+    display : none;
+}
+
+.small-page-layout.active .page-link {
+    display : inline-block;
+}
+
+.small-page-layout.active .page-link-full-width,
+.small-page-layout.active .page-layout-nav,
+.small-page-layout.active .layout-sm {
+    display : block !important;
+}
+
+.small-page-layout.active .layout-lg {
+    display : none !important;
+}
+
+@media (max-width : 480px) {
+        .small-page-layout .page-link {
+        display : inline-block;
+    }
+
+        .small-page-layout .page-link-full-width,
+    .small-page-layout .page-layout-nav,
+    .small-page-layout .layout-sm {
+        display : block !important;
+    }
+
+        .small-page-layout .layout-lg {
+        display : none !important;
+    }
+}
+
+/**
+ * Navigation Dots for mobile
+ */
+/**
+ * Add-Subtract Icon
+ */
+/**
+ * Next Section Button
+ */
+/**
+ * zipcode-form mixin used in dealer locator and build and price section
+ */
+
+
+body.updating .main-header,
+ body.error .main-header {
+    border-bottom : 0;
+}
+
+
+body.updating .alert,
+ body.error .alert {
+    line-height : 30px; /* previously 32px */
+    height      : 30px;
+    padding     : 0;
+    border      : 0;
+}
+
+body.updated .main-header {
+    border-bottom : 0;
+}
+
+body.updated .alert {
+    line-height : 32px;
+    height      : 32px;
+    padding     : 0;
+    border      : 0;
+}
+
+.alert-primary {
+    font-size   : 12px;
+    width       : 960px;
+    height      : 30px;
+    text-align  : right;
+    line-height : 30px;
+}
+
+.alert-primary img {
+    line-height    : 30px;
+    vertical-align : text-top;
+    width          : 14px;
+    height         : 14px;
+    padding        : 0 15px 0 15px;
+}
+
+.alert {
+    font-size   : 12px;
+    width       : 960px;
+    height      : 30px;
+    text-align  : right;
+    line-height : 30px;
+}
+
+.alert img {
+    line-height    : 30px;
+    vertical-align : text-top;
+    padding        : 0 0 0 15px;
+}
+
+.alert .gen {
+    margin-left : 10px;
+}
+
+.alert.updated span.txtgray {
+    color : #A4A4A4;
+}
+
+.alert.try-again {
+    border-bottom : 0;
+}
+
+.alert.try-again span {
+    padding-left : 7px;
+}
+
+.alert.try-again img {
+    padding : 0;
+    margin  : 0 0 0 10px;
+    float   : none;
+    width   : 15px;
+    height  : 15px;
+}
+
+.alert.try-again div.box {
+    position       : relative;
+    display        : inline-block;
+    float          : right;
+    width          : 110px;
+    line-height    : 24px;
+    height         : 24px;
+    padding        : 0;
+    margin         : 4px 0 0 10px;
+    cursor         : pointer;
+    vertical-align : middle;
+    overflow       : hidden;
+}
+
+.alert.try-again div.box img {
+    padding : 0 15px 0 15px;
+}
+
+.alert.try-again div.box span {
+    margin         : 0;
+    padding        : 1px 0 0 7px;
+    float          : left;
+    text-align     : left;
+    line-height    : 24px;
+    vertical-align : middle;
+}
+
+.alert.try-again div.box a {
+    float  : right;
+    margin : 0 8px 0 0;
+}
+
+.alert.try-again div.box a img {
+    padding : 0;
+}
+
+.nav-social a {
+    float       : left;
+    display     : block;
+    padding     : 5px;
+    line-height : 10px;
+}
+
+.nav-social .nav-social-label {
+    float   : left;
+    display : block;
+    padding : 10px 20px;
+}
+
+.vehicle-bar {
+    overflow : hidden;
+    height   : 125px;
+    width    : 960px;
+    padding  : 23px 0 0 0;
+}
+
+.vehicle-bar img {
+    float : left;
+}
+
+.vehicle-bar img.main {
+    margin-left : -40px;
+}
+
+.vehicle-bar.alt img {
+    float : left;
+}
+
+.vehicle-bar.alt img.main {
+    position    : absolute;
+    width       : 290px;
+    margin-left : -14px;
+}
+
+.vehicle-bar.alt nav {
+    margin-left : 275px;
+}
+
+.vehicle-bar nav {
+    overflow    : hidden;
+    position    : absolute;
+    margin-top  : 0;
+    margin-left : 245px;
+    padding     : 0 0 0 0;
+    width       : 335px;
+    z-index     : 500;
+}
+
+.vehicle-bar nav.active h1.multi {
+    border-right : 2px solid #444444;
+}
+
+.vehicle-bar nav hr {
+    border-color     : #444444;
+    border-style     : solid;
+    border-width     : 1px;
+    padding          : 0;
+    margin           : 0;
+    background-color : #444444;
+    color            : #444444;
+}
+
+.vehicle-bar nav ul {
+    margin-top : 22px;
+    padding    : 0;
+    overflow   : hidden;
+}
+
+.vehicle-bar nav ul li {
+    cursor  : pointer;
+    padding : 0;
+    margin  : 0;
+}
+
+.vehicle-bar nav ul li h1 {
+    display        : inline-block;
+    font-size      : 32px;
+    line-height    : 38px;
+    vertical-align : middle;
+    padding        : 0 16px 0 21px;
+}
+
+.vehicle-bar nav ul li h1.multi {
+    border-right : 2px solid #363636;
+}
+
+.vehicle-bar nav ul li .dropdown {
+    display        : inline-block;
+    line-height    : 38px;
+    padding        : 0;
+    margin         : 0 0 0 16px;
+    width          : 0;
+    height         : 0;
+    border-top     : 9px solid white;
+    border-right   : 6px solid transparent;
+    border-left    : 6px solid transparent;
+    content        : "";
+    vertical-align : middle;
+}
+
+.vehicle-bar nav ul li h2 {
+    font-size : 18px;
+    padding   : 5px 0 13px 21px;
+}
+
+.vehicle-bar nav ul li ul {
+    position : relative;
+    padding  : 0;
+    margin   : 0;
+    overflow : hidden;
+}
+
+.vehicle-bar nav ul li ul li {
+    margin         : 0;
+    padding        : 0 0 0 21px;
+    font-size      : 18px;
+    vertical-align : middle;
+    border-bottom  : 1px solid #444444;
+    overflow       : hidden;
+}
+
+.vehicle-bar nav ul li ul li a {
+    vertical-align : middle;
+    font-size      : 18px;
+}
+
+.vehicle-bar nav ul li ul li img {
+    position       : relative;
+    padding        : 25px 0 20px 0;
+    vertical-align : middle;
+    float          : left;
+    width          : 75px;
+    max-width      : 75px;
+}
+
+.vehicle-bar nav ul li ul li img.arrow {
+    float         : right;
+    width         : 13px;
+    height        : 19px;
+    padding-top   : 20px;
+    padding-right : 37px;
+    margin-top    : 10px;
+}
+
+.vehicle-bar nav ul li ul li:last-child {
+    border-bottom : 0;
+}
+
+.vehicle-bar nav ul li ul li h3 {
+    float          : left;
+    font-size      : 18px;
+    font-weight    : normal;
+    margin         : 0 !important;
+    padding        : 30px 0 30px 16px !important;
+    display        : inline-block;
+    vertical-align : middle;
+    line-height    : normal;
+    width          : 160px;
+    max-width      : 160px;
+}
+
+.vehicle-bar nav ul li ul li:last-child {
+    margin-bottom  : 0;
+    padding-bottom : 0;
+    border-bottom  : 0;
+}
+
+.vehicle-bar nav ul li ul li:last-child:hover {
+    padding-bottom : 0;
+    margin-bottom  : 0;
+}
+
+.vehicle-bar nav ul li ul li:hover {
+    background-color : white;
+    border           : 0;
+    margin-bottom    : 1px;
+    border-right     : 8px solid #C4172C;
+}
+
+.vehicle-bar-notifications {
+    position   : relative;
+    width      : 245px;
+    margin-top : -29px;
+    left       : 715px;
+    z-index    : 500;
+    font-size  : 13px;
+}
+
+.vehicle-bar-notifications .container {
+    height         : 30px;
+    line-height    : 30px;
+    text-transform : uppercase;
+}
+
+.vehicle-bar-notifications .container.with-notifications h1 {
+    border : 0;
+}
+
+.vehicle-bar-notifications .container .dropdown {
+    overflow       : hidden;
+    *zoom          : 1;
+    display        : inline-block;
+    line-height    : 43px;
+    padding        : 0;
+    float          : right;
+    margin         : 10px 10px 0 0;
+    width          : 0;
+    height         : 0;
+    border-top     : 9px solid white;
+    border-right   : 6px solid transparent;
+    border-left    : 6px solid transparent;
+    content        : "";
+    vertical-align : middle;
+}
+
+.vehicle-bar-notifications .container .messages {
+    display    : inline-block;
+    text-align : center;
+    padding    : 0 11px 0 13px;
+    width      : 5%;
+    border     : 0;
+}
+
+.vehicle-bar-notifications .container h1 {
+    display      : inline;
+    font-weight  : normal;
+    text-align   : left;
+    margin       : 0;
+    padding      : 3px 0 3px 0;
+    padding-left : 13px;
+    line-height  : 24px;
+    border-left  : 1px solid #444444;
+}
+
+.vehicle-bar-notifications ul {
+    position   : absolute;
+    width      : 245px;
+    border-top : 1px solid #444444;
+}
+
+.vehicle-bar-notifications ul li {
+    padding       : 0;
+    margin        : 0 19px 0 45px;
+    border-bottom : 1px solid #444444;
+    font-size     : 15px;
+    line-height   : 44px;
+}
+
+.vehicle-bar-notifications ul li:last-child {
+    border-bottom : none;
+}
+
+.vehicle-bar-notifications ul li span {
+    position         : absolute;
+    margin           : 5px 0 0 -30px;
+    width            : 23px;
+    height           : 25px;
+    background-color : transparent;
+}
+
+.main-wrapper-content {
+    overflow           : hidden;
+    *zoom              : 1;
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    position           : relative;
+    margin-top           : 10px;
+
+    @media (min-width: $screen-md-min) {
+      margin-top :50px;
+    }
+}
+
+.main-wrapper-content .content-area {
+    /* border-left : 3px solid #E6E6E6;
+    height      : 811px; */
+    max-width   : 757px;
+    overflow    : hidden;
+    *zoom       : 1;
+}
+
+.main-wrapper-content .content-area img.template {
+    position : absolute;
+    z-index  : 1;
+    margin   : -39px 0 0 -5px;
+    padding  : 0;
+}
+
+.main-wrapper-content .content-area .container {
+    position : relative;
+    z-index  : 2;
+    *zoom    : 1;
+}
+
+.main-wrapper-content .content-area .container h1,
+.main-wrapper-content .content-area .container h2,
+.main-wrapper-content .content-area .container h3,
+.main-wrapper-content .content-area .container h4,
+.main-wrapper-content .content-area .container h5,
+.main-wrapper-content .content-area .container h6 {
+    padding     : 0;
+    margin      : 0;
+    font-weight : normal;
+    line-height : normal;
+}
+
+.main-wrapper-content .content-area .container .map-img {
+    max-width : 1122px;
+    display   : block;
+    top       : 314px;
+    left      : 302px;
+}
+
+.main-wrapper-content .content-area .container .map-img img {
+    max-width  : 100% !important;
+    height     : auto;
+    display    : block;
+    min-height : 775px;
+}
+
+.main-wrapper-content .content-area .container .imagen img {
+    position : absolute;
+    top      : 0;
+    left     : 0;
+    width    : 100%;
+}
+
+.main-wrapper-content .content-area .container .red-arrow {
+    position   : absolute;
+    margin     : 24px 0 0 318px;
+    background : transparent;
+    width      : 18px;
+    height     : 18px;
+}
+
+.main-wrapper-content .content-area .container .lower-panel {
+    position   : relative;
+    overflow   : hidden;
+    *zoom      : 1;
+    width      : 100%;
+    font-size  : 12px;
+    padding    : 10px 0 0 30px;
+    margin     : 0;
+    border-top : 1px solid #E6E6E6;
+}
+
+.main-wrapper-content .content-area .container .lower-panel span {
+    display    : inline-block;
+    width      : 18px;
+    text-align : center;
+}
+
+.main-wrapper-content .content-area .container .lower-panel a {
+    color           : #676666 !important;
+    text-decoration : underline;
+}
+
+.main-wrapper-content .content-area .container .lower-panel.noBorder {
+    border-top : none;
+    padding    : 0;
+}
+
+.main-wrapper-content .content-area .container .lower-panel.battery {
+    color   : #555555;
+    margin  : 0 0 0 30px;
+    padding : 10px 0 0 0;
+}
+
+.vehicle-bar-notifications {
+    display : none;
+}
+
+.overview .main-wrapper-content {
+    max-width : 9999px;
+    min-width : 0;
+    overflow  : auto;
+}
+
+.overview .main-wrapper-content .content-area {
+    border      : none;
+    height      : auto;
+    max-width   : 9999px;
+    /* overflow    : auto; */
+    text-shadow : none;
+}
+
+.overview .blade.one-column {
+    overflow : hidden;
+}
+
+.overview .blade.two-columns-asymmetric {
+    overflow : hidden;
+}
+
+.overview .blade.two-columns-asymmetric > div {
+    float           : left;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+}
+
+.overview .blade.two-columns-asymmetric .col-1 {
+    width         : 66.66%;
+    padding-right : 7.33333px;
+}
+
+.overview .blade.two-columns-asymmetric .col-2 {
+    width        : 33.33%;
+    padding-left : 14.66667px;
+}
+
+.overview .blade.two-columns-symmetric {
+    overflow : hidden;
+}
+
+.overview .blade.two-columns-symmetric > div {
+    float           : left;
+    width           : 50%;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+}
+
+.overview .blade.two-columns-symmetric > div:first-child {
+    padding-right : 11px;
+}
+
+.overview .blade.two-columns-symmetric > div:last-child {
+    padding-left : 11px;
+}
+
+.overview .blade.three-columns-symmetric {
+    overflow : hidden;
+}
+
+.overview .blade.three-columns-symmetric > div {
+    float           : left;
+    width           : 33.33%;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+}
+
+.overview .blade.three-columns-symmetric > div:first-child {
+    padding-right : 14.66667px;
+}
+
+.overview .blade.three-columns-symmetric > div:last-child {
+    padding-left : 14.66667px;
+}
+
+.overview .blade.three-columns-symmetric > div:nth-child(2) {
+    padding-left  : 7.33333px;
+    padding-right : 7.33333px;
+}
+
+.overview .blade.four-columns-symmetric {
+    overflow : hidden;
+}
+
+.overview .blade.four-columns-symmetric > div {
+    float           : left;
+    width           : 25%;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+}
+
+.overview .blade.four-columns-symmetric > div:first-child {
+    padding-right : 16.5px;
+}
+
+.overview .blade.four-columns-symmetric > div:last-child {
+    padding-left : 16.5px;
+}
+
+.overview .blade.four-columns-symmetric > div:nth-child(2) {
+    padding-left  : 5.5px;
+    padding-right : 11px;
+}
+
+.overview .blade.four-columns-symmetric > div:nth-child(3) {
+    padding-left  : 11px;
+    padding-right : 5.5px;
+}
+
+.overview .main-wrapper-content .content-area .lower-panel {
+    text-shadow : none;
+    border-top  : none;
+}
+
+.overview .main-wrapper-content .content-area .lower-panel a {
+    color       : #A4A4A4 !important;
+    text-shadow : none;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box {
+    min-height : 200px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .next-service {
+        padding-bottom : 1px;
+    margin-top     : 70px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .next-service label {
+    font-size  : 1em;
+    margin-top : 15px;
+    color      : #888888;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .next-service .amount {
+    font-size   : 3.6em;
+    text-shadow : none;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .diagnostic {
+    text-align  : left;
+    padding-top : 10px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .diagnostic .w-img {
+    display    : inline-block;
+    width      : 35%;
+    text-align : center;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .diagnostic .w-img img {
+    width      : 35px;
+    display    : inline-block;
+    margin-top : 15px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance .diagnostic .message {
+    display        : inline-block;
+    width          : 60%;
+    vertical-align : top;
+    margin-top     : 15px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .mileage {
+    vertical-align : top;
+    padding-left   : 25px;
+    padding-top    : 25px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .mileage .w-label {
+    margin-left : 0;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .mileage .amount {
+    font-size   : 4.5em;
+    color       : black;
+    width       : 80px;
+    text-shadow : none;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .chart {
+    width        : 280px;
+    text-align   : left;
+    padding-top  : 20px;
+    padding-left : 110px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .safety-score {
+    position   : relative;
+    display    : inline-block;
+    float      : left;
+    margin-top : -30px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .safety-score .activity-metter {
+    left : -25%;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.driving-activity.mileage .safety-score .amount {
+    color : #2F2F2F;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.fuel {
+    min-height : 200px;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.awards .w-img {
+    position   : relative;
+    width      : 100%;
+    height     : 110px;
+    text-align : center;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.awards .w-img img {
+    position : relative;
+    display  : inline-block;
+    width    : 100px;
+    top      : 0;
+    left     : 0;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.awards .w-footer {
+    color : #2F2F2F;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.awards .w-footer b {
+    color : #BC1728;
+}
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.my-POIs .POI-icon {
+    margin-top : 45px;
+}
+
+.widget-box {
+    color         : #676666;
+    margin-bottom : 22px;
+    padding       : 10px;
+}
+
+.widget-box.border {
+    border : 1px solid #E1E1E1;
+}
+
+.widget-box.hover-on {
+    padding-top : 15px;
+    position    : relative;
+    border-top  : none;
+}
+
+.widget-box.hover-on:before {
+    display          : block;
+    position         : absolute;
+    background-color : #ABABAB;
+    top              : 0;
+    content          : "";
+    height           : 5px;
+    width            : 100%;
+    left             : -1px;
+    z-index          : 99;
+    border-right     : 1px solid #ABABAB;
+    border-left      : 1px solid #ABABAB;
+}
+
+.widget-box.hover-on:hover:before {
+    background-color   : #C4172C;
+    border-right-color : #C4172C;
+    border-left-color  : #C4172C;
+}
+
+.widget-box .content {
+    margin-top : 30px;
+}
+
+.widget-box.center .content {
+    text-align : center;
+}
+
+.widget-box .title {
+    //font-size   : 1em;
+    font-size:13px;
+    font-family : designk-medium;
+    color       : #888888;
+}
+
+.widget-box .titleArrow {
+    font-size   : 1em;
+    font-family : designk-bold;
+    background-image    : url("../images/kh/img/inventory/link-arrow.png");
+    background-repeat   : no-repeat;
+    background-position : right 0;
+    color       : #888888;
+    text-transform : uppercase;
+}
+
+.widget-box .title a {
+    display             : block;
+    background-image    : url("../images/kh/img/inventory/link-arrow.png");
+    background-repeat   : no-repeat;
+    background-position : right 0;
+    height              : 18px;
+}
+
+.widget-box .title .climateTitle a {
+    background-image    : url("../images/kh/img/inventory/arrow-next-white.png");
+    background-position : right ;
+    padding-right       : 25px;
+}
+
+.widget-box label {
+    font-size : 0.75em;
+    display   : block;
+}
+
+.widget-box img {
+    text-align : center;
+}
+
+.widget-box .amount {
+    font-size  : 5em;
+    display    : block;
+    margin-top : 40px;
+}
+
+.widget-box.driving-activity .upper {
+    padding : 0 25px;
+}
+
+.widget-box.driving-activity .upper > div {
+    width          : 49%;
+    display        : inline-block;
+    vertical-align : top;
+}
+
+.widget-box.driving-activity .safety-score {
+    position : relative;
+}
+
+.widget-box.driving-activity .safety-score .w-label {
+    text-align : center;
+}
+
+.widget-box.driving-activity .safety-score .amount {
+    font-size  : 3.5em;
+    text-align : center;
+}
+
+.widget-box.driving-activity .safety-score .score-footer {
+    display    : block;
+    margin-top : 15px;
+    text-align : center;
+    font-size  : 0.5em;
+}
+
+.widget-box.driving-activity .safety-score img {
+    position : absolute;
+    left     : 23%;
+    top      : 20px;
+}
+
+.widget-box.driving-activity .user-car {
+    text-align : center;
+    margin-top : 82px;
+}
+
+.widget-box.driving-activity.safe-driving-score .content {
+    margin-top : 85px;
+}
+
+.widget-box.driving-activity.safe-driving-score .lower {
+    text-align : center;
+}
+
+.widget-box.driving-activity.safe-driving-score .safety-score img {
+    left : 0;
+    top  : 0;
+}
+
+.widget-box.driving-activity.safe-driving-score .safety-score .amount {
+    font-size   : 8em;
+    color       : black;
+    margin-top  : 95px;
+    margin-left : 10px;
+}
+
+.widget-box.driving-activity.safe-driving-score .safety-score .score-footer {
+    margin-top : 40px;
+    font-size  : 1em;
+    color      : #ABABAB;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container {
+    margin-top : 70px;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container .legend {
+    display     : block;
+    margin-left : 40px;
+    margin-top  : 10px;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container .legend .color {
+    width            : 10px;
+    height           : 10px;
+    background-color : #E1E1E1;
+    display          : inline-block;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container .legend .color.bad {
+    background-color : #E1E1E1;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container .legend .color.good {
+    background-color : #448CCB;
+}
+
+.widget-box.driving-activity.safe-driving-score .legend-container .legend label {
+    display     : inline;
+    font-size   : 1em;
+    margin-left : 10px;
+}
+
+.widget-box.driving-activity .milestone-container .milestone {
+    margin-top : 40px;
+}
+
+.widget-box.driving-activity .milestone-container .milestone .miles {
+    border        : 2px solid #ABABAB;
+    border-radius : 15px;
+    color         : #ABABAB;
+    padding       : 4px;
+    font-size     : 0.8em;
+}
+
+.widget-box.driving-activity .milestone-container .milestone .date {
+    color : #2F2F2F;
+}
+
+.widget-box.driving-activity .milestone-container.grid {
+    display       : inline-table;
+    margin-top    : 65px;
+    margin-bottom : 9px;
+    text-align    : center;
+}
+
+.widget-box.driving-activity .milestone-container.grid .milestone {
+    display : table-cell;
+    padding : 10px;
+}
+
+.widget-box.driving-activity .milestone-container.grid .milestone .miles {
+    border-radius : 50%;
+    padding       : 3px 5px;
+    font-size     : 1em;
+    display       : block;
+    border-color  : #E6E6E6;
+    color         : #E6E6E6;
+}
+
+.widget-box.driving-activity .milestone-container.grid .milestone .date {
+    color : #E6E6E6;
+}
+
+.widget-box.driving-activity .milestone-container.grid .milestone:hover .miles,
+.widget-box.driving-activity .milestone-container.grid .milestone.active .miles {
+    color        : #ABABAB;
+    border-color : #ABABAB;
+}
+
+.widget-box.driving-activity .milestone-container.grid .milestone:hover .date,
+.widget-box.driving-activity .milestone-container.grid .milestone.active .date {
+    color         : #2F2F2F;
+    border-bottom : 3px solid #C4172C;
+}
+
+/*.widget-box.diagnostic {
+    min-height : 165px;
+}*/
+
+.widget-box.diagnostic .message.ok {
+    font-size : 0.9em;
+    color     : #7BB609;
+}
+
+/*.widget-box.maintenance {
+    min-height : 165px;
+}
+
+.widget-box.maintenance .w-label {
+    text-align    : left;
+    margin-bottom : 10px;
+}
+
+.widget-box.maintenance .amount {
+    color      : #C4172C;
+    font-size  : 3.5em;
+    margin-top : 10px;
+}
+
+.widget-box.maintenance .unit {
+    font-size : 1.5em;
+}
+
+.widget-box.maintenance label span {
+    display : inline;
+}*/
+
+.widget-box.last-sync {
+    min-height  : 195px;
+    line-height : 15px;
+}
+
+.widget-box.last-sync .month {
+    font-size : 0.8em;
+}
+
+.widget-box.last-sync .w-img {
+    text-align : center;
+}
+
+.widget-box.last-sync .w-img img {
+    left : 27%;
+}
+
+.widget-box.last-sync .w-img .day {
+    font-size      : 4em;
+    color          : #C4172C;
+    border         : 3px solid #EEEEEE;
+    height         : 50px;
+    margin-top     : 0;
+    display        : inline-block;
+    padding        : 10px 10px 10px 4px;
+    vertical-align : middle;
+    line-height    : 1em;
+    border-radius  : 10px;
+}
+
+.widget-box.last-sync .w-img .day .w-label {
+    line-height : 2.7em;
+}
+
+.widget-box.last-sync .w-footer {
+    color       : #A4A4A4;
+    padding-top : 25px;
+    display     : block;
+}
+
+.widget-box.my-POIs {
+    min-height  : 195px;
+    line-height : 15px;
+}
+
+.widget-box.my-POIs .w-footer {
+    padding-top : 20px;
+    display     : block;
+}
+
+/*.widget-box.awards {
+    min-height : 195px;
+}*/
+
+.widget-box.awards .w-img {
+    position : relative;
+    margin-bottom: 20px;
+}
+
+.widget-box.awards .w-img img {
+    position : absolute;
+    top      : 0;
+    /*left     : 23%;*/
+    z-index  : -1;
+}
+
+.widget-box.awards .w-img .amount {
+    color         : #448CCB;
+    margin-top    : 0;
+    display       : inline-block;
+    z-index       : 1;
+    line-height   : 1.8em;
+    font-size     : 3.5em;
+    /* margin-bottom : 15px; */
+}
+
+.widget-box.awards .w-footer {
+    font-size : 0.9em;
+}
+
+.widget-box.awards .w-footer strong {
+    color : #C4172C;
+}
+
+.widget-box.peak-driving .content {
+    margin-top : 10px;
+}
+
+.widget-box.peak-driving .content .w-img {
+    display : inline-block;
+}
+
+.widget-box.peak-driving {
+    height : 181px;
+}
+
+.widget-box.peak-driving .content .w-img img {
+    margin-left : -10px;
+}
+
+.widget-box.hours-driving {
+    height : 180px;
+}
+
+.widget-box.hours-driving .safety-score img {
+    top  : -40px;
+    left : 24%;
+}
+
+.widget-box.hours-driving .safety-score .amount {
+    margin-top : 60px;
+    color      : #C4172C;
+    font-size  : 3em;
+}
+
+.widget-box.hours-driving .safety-score .score-footer {
+    color     : #888888;
+    font-size : 0.9em;
+}
+
+.widget-box.hours-driving .date-link {
+    margin-top : 25px;
+    display    : inline-table;
+    width      : 100%;
+}
+
+.widget-box.hours-driving .date-link span {
+    color   : #676666;
+    display : table-cell;
+}
+
+.widget-box.hours-driving .date-link span strong {
+    color       : #363636;
+    font-family : designk-bold;
+}
+
+.widget-box.hours-driving .date-link a {
+    color             : #ABABAB;
+    display           : table-cell;
+    font-size         : 0;
+    background-repeat : no-repeat;
+    width             : 20px;
+    height            : 15px;
+}
+
+.widget-box.hours-driving .date-link a.deactivated {
+    color : #CCCCCC;
+}
+
+.widget-box.hours-driving .date-link a.left-arrow {
+    background-image    : url("../images/kh/img/overview/arrows-sprite.png");
+    background-position : 0 0;
+}
+
+.widget-box.hours-driving .date-link a.left-arrow.deactivated {
+    background-position : 0 -18px;
+}
+
+.widget-box.hours-driving .date-link a.right-arrow {
+    background-image    : url("../images/kh/img/overview/arrows-sprite.png");
+    background-position : -30px 0;
+}
+
+.widget-box.hours-driving .date-link a.right-arrow.deactivated {
+    background-position : -30px -18px;
+}
+
+.widget-box.mileage .content {
+    display : table;
+    width   : 100%;
+}
+
+.widget-box.mileage .content .mileage {
+    display : table-cell;
+}
+
+.widget-box.mileage .content .mileage label {
+    color       : #ABABAB;
+    float       : left;
+    margin-left : 25px;
+    font-size   : 1em;
+}
+
+.widget-box.mileage .content .y-label {
+    color: #ABABAB;
+    float: left;
+    font-size: 1em;
+    position: relative;
+    top: 38px;
+    left: 18px;
+    margin-right: -95px;
+    z-index: 1;
+    -ms-transform: rotate(269deg);
+    -webkit-transform: rotate(269deg);
+    transform: rotate(269deg);
+}
+
+.widget-box.mileage .content .chart {
+    display        : table-cell;
+    vertical-align : top;
+    position       : relative;
+    padding-bottom : 15px;
+}
+
+.widget-box.mileage .content .chart .years-container {
+    float        : right;
+    margin-top   : -45px;
+    margin-right : 25px;
+}
+
+.widget-box.mileage.by-year .years-container {
+    display    : inline-table;
+    margin-top : 25px;
+}
+
+.widget-box.mileage.by-year .mileage,
+.widget-box.mileage.by-year .chart {
+    display : block;
+}
+
+.widget-box.mileage.by-year .mileage {
+    margin-top : 50px;
+}
+
+.widget-box.mileage.by-year .mileage .amount,
+.widget-box.mileage.by-year .mileage .w-label {
+    display : inline-block;
+    float   : none;
+}
+
+.widget-box.mileage.by-year .chart {
+    margin-top : 50px;
+}
+
+.widget-box .years-container {
+    display : inline-table;
+}
+
+.widget-box .years-container li {
+    display : table-cell;
+    padding : 0 10px;
+}
+
+.widget-box .years-container li a {
+    color : #ABABAB;
+}
+
+.widget-box .years-container li a:hover,
+.widget-box .years-container li a.active {
+    color         : #363636;
+    border-bottom : 3px solid #C4172C;
+}
+
+/*
+>>>>>>> .r11554
+.widget-box.service-schedule {
+    padding : 14px 20px;
+    color   : #999999;
+}
+
+.widget-box.service-schedule .title .milleage {
+    float      : right;
+    text-align : right;
+}
+
+.widget-box.service-schedule .title .milleage strong {
+    color : #444444;
+}
+
+.widget-box.service-schedule .content .miles-to-service {
+    padding       : 60px 0 30px 70px;
+    border-bottom : 1px solid #E1E1E1;
+    font-size     : 1.5em;
+}
+
+.widget-box.service-schedule .content .miles-to-service strong {
+    color     : #C4172C;
+    font-size : 4em;
+}
+
+.widget-box.service-schedule .content .dashboard {
+    margin : 30px -20px 0;
+    height : 70px;
+}
+
+.widget-box.service-schedule .content .dashboard .nav {
+    width  : 90px;
+    height : 80px;
+    cursor : pointer;
+}
+
+.widget-box.service-schedule .content .dashboard .nav.left {
+    float      : left;
+    background : url("../images/kh/img/maintenance/arrow-1-left.png") no-repeat 20px center;
+}
+
+.widget-box.service-schedule .content .dashboard .nav.left:hover {
+    background-image : url("../images/kh/img/maintenance/arrow-1a-left.png");
+}
+
+.widget-box.service-schedule .content .dashboard .nav.right {
+    float      : right;
+    background : url("../images/kh/img/maintenance/arrow-1-right.png") no-repeat 46px center;
+}
+
+.widget-box.service-schedule .content .dashboard .nav.right:hover {
+    background-image : url("../images/kh/img/maintenance/arrow-1a-right.png");
+}
+
+.widget-box.service-schedule .content .dashboard .title {
+    margin-bottom : 16px;
+}
+
+.widget-box.service-schedule .content .dashboard .content {
+    margin-top : 0;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box {
+    float : left;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.info {
+    width     : 230px;
+    font-size : 1.2em;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.info strong {
+    font-size : 2em;
+    color     : #444444;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a {
+    border         : 1px solid #ABABAB;
+    color          : #444444;
+    display        : block;
+    float          : left;
+    font-family    : designk-bold;
+    font-size      : 0.85em;
+    line-height    : 1em;
+    padding        : 8px 12px;
+    text-transform : uppercase;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:first-child {
+    border-radius : 18px 0 0 18px;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:first-child:hover,
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:first-child.active {
+    background   : #78B53B;
+    border-color : #78B53B;
+    color        : #FFFFFF;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:last-child {
+    border-radius : 0 18px 18px 0;
+    border-left   : none;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:last-child:hover,
+
+.widget-box.service-schedule .content .dashboard .content .box.actions a:last-child.active {
+    background   : #C0122B;
+    border-color : #C0122B;
+    color        : #FFFFFF;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.details-link {
+    font-family    : designk-bold;
+    font-size      : 0.85em;
+    padding        : 5px 10px 0 10px;
+    text-transform : uppercase;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.details-link a {
+    color : #C4172C;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.details-link a:after {
+    content     : "";
+    background  : url("../images/kh/img/maintenance/arrow-6-down.png") no-repeat center center;
+    height      : 7px;
+    float       : right;
+    margin-left : 8px;
+    margin-top  : 7px;
+    width       : 8px;
+}
+
+.widget-box.service-schedule .content .dashboard .content .box.details-link a.active:after {
+    background-image : url("../images/kh/img/maintenance/arrow-6-up.png");
+}
+
+.widget-box.service-schedule .content .details {
+    background : #444444;
+    color      : #FFFFFF;
+    display    : none;
+    font-size  : 0.9em;
+    margin     : 16px -20px -20px;
+    min-height : 140px;
+    padding    : 37px 60px 37px 90px;
+}
+
+.widget-box.service-schedule .content .details.expanded {
+    display : block;
+}
+
+.widget-box.service-schedule .content .details .column {
+    float : left;
+}
+
+.widget-box.service-schedule .content .details .column .title {
+    color : #FFFFFF;
+}
+
+.widget-box.service-schedule .content .details .column ul {
+    list-style   : disc outside none;
+    padding-left : 13px;
+}
+
+.widget-box.service-schedule .content .details .column ul li {
+    list-style-type : disc;
+}
+
+.widget-box.service-schedule .content .details .column:first-child {
+    margin-right : 55px;
+    width        : 260px;
+}*/
+
+.widget-box.diagnostic-issues {
+    color      : #999999;
+    padding    : 14px 15px 14px 20px;
+    min-height : 202px;
+}
+
+.widget-box.diagnostic-issues .title {
+    margin-bottom : 50px;
+}
+
+.widget-box.diagnostic-issues .title .help {
+    border        : 1px solid #999999;
+    border-radius : 11px;
+    cursor        : pointer;
+    float         : right;
+    font-family   : designk-medium;
+    font-size     : 0.9em;
+    line-height   : 1.2em;
+    text-align    : center;
+    width         : 14px;
+}
+
+/*.widget-box.diagnostic-issues .content {
+    background : url("../images/kh/img/maintenance/check_green.png") no-repeat 50px top;
+    min-height : 125px;
+}*/
+
+.widget-box.diagnostic-issues .content .info {
+    margin-left : 230px;
+    font-size   : 1.2em;
+    padding-top : 10px;
+}
+
+.widget-box.diagnostic-issues .content .info strong {
+    color   : #444444;
+    display : block;
+}
+
+.widget-box.diagnostic-issues .content.warning {
+    background : url("../images/kh/img/maintenance/warning-icon.png") no-repeat 50px top;
+}
+
+.widget-box.diagnostic-issues .content.warning .indicator {
+    float     : left;
+    font-size : 1.2em;
+    color     : #444444;
+    margin    : 68px 0 0 26px;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul {
+    width : 200px;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li {
+    background    : url("../images/kh/img/maintenance/arrow-2-right.png") no-repeat right center;
+    border-bottom : 1px solid #EEEEEE;
+    padding       : 8px;
+    position      : relative;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li:last-child {
+    border : none;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li a {
+    color : #C4172C;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li .details {
+    background : #444444;
+    color      : #FFFFFF;
+    display    : block;
+    font-size  : 0.75em;
+    padding    : 13px 20px;
+    position   : absolute;
+    right      : -225px;
+    top        : -65px;
+    width      : 200px;
+    z-index    : 10;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li .details.expanded {
+    display : block;
+}
+.widget-box.diagnostic-issues .content.warning .info ul li .chassisDetails {
+    background : #444444;
+    color      : #FFFFFF;
+    display    : block;
+    font-size  : 0.75em;
+    padding    : 13px 20px;
+    position   : absolute;
+    right      : -225px;
+    top        : -64px;
+    width      : 200px;
+    z-index    : 10;
+}
+
+
+.widget-box.diagnostic-issues .content.warning .info ul li .details .title {
+    font-family    : designk-medium;
+    margin-bottom  : 0;
+    text-transform : uppercase;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li .details .content {
+    background : none;
+    color      : #BDBDBD;
+    margin     : 0;
+    min-height : 0;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li .details:before {
+    background : url("../images/kh/img/maintenance/arrow-8-left.png") no-repeat center center;
+    content    : "";
+    float      : left;
+    height     : 13px;
+    margin     : 65px 0 0 -27px;
+    width      : 7px;
+}
+
+.widget-box.diagnostic-issues .content.warning .info ul li .chassisDetails:before {
+    background : url("../images/kh/img/maintenance/arrow-8-left.png") no-repeat center center;
+    content    : "";
+    float      : left;
+    height     : 74px;
+    margin     : 30px 0 0 -27px;
+    width      : 7px;
+}
+.widget-box.diagnostic-issues .content.warning .sidenote {
+    clear      : both;
+    font-size  : 0.9em;
+    margin-top : 22px;
+}
+
+.widget-box.monthly-diagnostic {
+    padding : 14px 20px;
+    color   : #999999;
+}
+
+.widget-box.monthly-diagnostic .title {
+    margin-bottom : 25px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard {
+    border-bottom  : 1px solid #E1E1E1;
+    padding-bottom : 37px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .switch {
+    border        : 1px solid #999999;
+    border-radius : 14px;
+    cursor        : pointer;
+    float         : left;
+    font-family   : designk-bold;
+    font-size     : 0.9em;
+    margin-top    : 6px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .switch.off {
+    padding : 3px 9px 3px 3px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .switch.off:before {
+    background     : url("../images/kh/img/maintenance/indicator-1-off.png") no-repeat center center;
+    content        : "";
+    display        : inline-block;
+    height         : 19px;
+    margin-right   : 12px;
+    margin-top     : -2px;
+    vertical-align : middle;
+    width          : 19px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .switch.on {
+    padding : 3px 3px 3px 14px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .switch.on:after {
+    background     : url("../images/kh/img/maintenance/indicator-1-on.png") no-repeat center center;
+    content        : "";
+    display        : inline-block;
+    height         : 19px;
+    margin-left    : 12px;
+    margin-top     : -2px;
+    vertical-align : middle;
+    width          : 19px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker {
+    margin-left : 77px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .current {
+    border    : 1px solid #E1E1E1;
+    cursor    : pointer;
+    color     : #444444;
+    font-size : 1.2em;
+    padding   : 8px 12px;
+    position  : relative;
+    display   : block;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .current:after {
+    background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+    content    : "";
+    float      : right;
+    height     : 9px;
+    margin-top : 6px;
+    width      : 11px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .selector {
+    border     : 1px solid #E1E1E1;
+    background : #FFFFFF;
+    display    : none;
+    padding    : 8px 0 0 8px;
+    position   : absolute;
+    right      : 21px;
+    width      : 260px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .selector.expanded {
+    display : block;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .selector span {
+    color       : #444444;
+    display     : inline-block;
+    font-family : designk-bold;
+    font-size   : 0.85em;
+    margin      : 0 14px 6px 0;
+    text-align  : center;
+    width       : 19px;
+}
+
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .selector span:hover,
+.widget-box.monthly-diagnostic .content .dashboard .datepicker .selector span.selected {
+    background : #C4172C;
+    color      : #FFFFFF;
+}
+
+.widget-box.monthly-diagnostic .content .action {
+    padding : 37px 0 5px 0;
+}
+
+.widget-box.monthly-diagnostic .content .action a {
+    border      : 1px solid #E1E1E1;
+    color       : #C4172C;
+    display     : block;
+    font-family : designk-bold;
+    font-size   : 1em;
+    padding     : 6px 0;
+    text-align  : center;
+}
+
+.widget-box.k900-hero {
+
+    color      : white;
+}
+
+/*.widget-box.k900-hero .title {
+    color       : white;
+    display     : block;
+    width       : 95%;
+    padding     : 10px 20px;
+    text-shadow : none;
+}*/
+
+.widget-box.k900-hero .title span {
+    float : left;
+}
+
+/*.widget-box.k900-hero .title .climate {
+    background   : url("../images/kh/img/k900/icon-cloudy.png") no-repeat top left;
+    float        : right;
+    padding-left : 40px;
+    height       : 22px;
+}*/
+
+.widget-box.k900-hero .title .climate.snow {
+    background : url("../images/kh/img/k900/icon-cloudy-off.png") no-repeat top left;
+    height     : 30px;
+}
+
+.widget-box.k900-hero .content {
+    display     : block;
+    position    : relative;
+    text-align  : center;
+    width       : 100%;
+    height      : 430px;
+    text-shadow : none;
+}
+
+.widget-box.k900-hero .content .lock {
+    background : url("../images/kh/img/k900/locked.png") no-repeat center top;
+    position   : absolute;
+    width      : 86px;
+    height     : 73px;
+    font-size  : 0.8em;
+    top        : 50px;
+    left       : 10%;
+    cursor     : pointer;
+}
+
+.widget-box.k900-hero .content .unlock {
+    background : url("../images/kh/img/k900/unlocked-on.png") no-repeat center top;
+    position   : absolute;
+    width      : 86px;
+    height     : 73px;
+    font-size  : 0.8em;
+    top        : 50px;
+    left       : 10%;
+    cursor     : pointer;
+}
+
+.widget-box.k900-hero .content .spantxt {
+    position   : absolute;
+    bottom     : -10px;
+    width      : 100px;
+    left       : -8px;
+}
+
+.widget-box.k900-hero .content .temperature {
+    margin-top : 25px;
+    width      : 100%;
+    height     : 135px;
+    display    : block;
+}
+
+.widget-box.k900-hero .content .temperature .inside {
+    background  : url("../images/kh/img/k900/circle-white.png") no-repeat center top;
+    width       : 125px;
+    height      : 80px;
+    display     : inline-block;
+    color       : #C5D9E6;
+    font-size   : 4.1em;
+    padding-top : 50px;
+    text-shadow : none;
+    position    : relative;
+    cursor      : pointer;
+}
+
+.widget-box.k900-hero .content .temperature .inside-lowhigh {
+    font-size :4.0em;
+}
+
+.widget-box.k900-hero .content .temperature .inside sup {
+    font-size      : 0.4em;
+    vertical-align : top;
+}
+
+.widget-box.k900-hero .content .temperature .inside span {
+    font-size  : 0.21em;
+    display    : block;
+    color      : black;
+    margin-top : 20px;
+}
+
+.widget-box.k900-hero .content .temperature .outside {
+    background     : url("../images/kh/img/k900/circle-border.png") no-repeat center top;
+    width          : 85px;
+    height         : 85px;
+    display        : inline-block;
+    vertical-align : top;
+    padding-top    : 25px;
+    font-size      : 2.4em;
+    text-shadow    : none;
+    margin-top     : 25px;
+    margin-left    : -10px;
+    position       : relative;
+    cursor         : pointer;
+}
+
+.widget-box.k900-hero .content .temperature .outside sup {
+    font-size      : 0.4em;
+    vertical-align : top;
+}
+
+.widget-box.k900-hero .content .temperature .outside span {
+    display    : block;
+    font-size  : 0.3em;
+    margin-top : 7px;
+}
+
+.widget-box.k900-hero .content .find-car {
+    background : url("../images/kh/img/k900/find-car2.png") no-repeat center center;
+    position   : absolute;
+    font-size  : 0.8em;
+    height     : 73px;
+    width      : 86px;
+    right      : 10%;
+    top        : 50px;
+    cursor     : pointer;
+}
+
+.widget-box.k900-hero .content .hero-img {
+    margin-top : 25px;
+    z-index: 9999;
+    position: relative;
+}
+
+.widget-box.k900-hero.snow {
+    background : url("../images/kh/img/k900/snow-and-ice.gif") no-repeat center center;
+}
+
+.widget-box.k900-hero.snow .temperature .inside {
+    color : #BDBDBD !important;
+}
+
+.widget-box.drive-time {
+    min-height : 200px;
+}
+
+.widget-box.drive-time .traffic-indicator li {
+    padding-left : 25px;
+    margin-top   : 10px;
+}
+
+.widget-box.drive-time .traffic-indicator li:before {
+    background-image    : url("../images/kh/img/k900/radio-colors.png");
+    background-position : 0 14px;
+    background-repeat   : no-repeat;
+    content             : "";
+    float               : left;
+    width               : 15px;
+    height              : 15px;
+    margin-left         : -20px;
+}
+
+.widget-box.drive-time .traffic-indicator li.red:before {
+    background-position : 0 4px;
+}
+
+.widget-box.drive-time .traffic-indicator li.yellow:before {
+    background-position : 0 -14px;
+}
+
+.widget-box.drive-time .traffic-indicator li.green:before {
+    background-position : 0 -30px;
+}
+
+.widget-box.drive-time .traffic-indicator li > div {
+    display : inline-block;
+    width   : 70%;
+}
+
+.widget-box.drive-time .traffic-indicator li span {
+    display        : inline-block;
+    float          : right;
+    width          : 26%;
+    vertical-align : top;
+}
+
+.widget-box.drive-time .traffic-indicator li span strong {
+    color : #000000;
+}
+
+/*below class .widget-box.fuel was claimed in file _overview.scss*/
+/*
+.widget-box.fuel {
+    min-height : 200px;
+    background : url("../images/kh/img/k900/fuel.png") no-repeat center center;
+}
+
+.widget-box.fuel .content {
+    margin-top : 5px;
+}
+
+.widget-box.fuel label {
+    margin-top : 10px;
+}
+
+.widget-box.fuel .amount {
+    font-size  : 3.5em;
+    color      : #BC1728;
+    margin-top : 25px;
+}
+
+.widget-box.fuel .amount sub {
+    color     : black;
+    font-size : 0.3em;
+}
+
+.widget-box.fuel .gas-ref {
+    font-size  : 1.3em;
+    display    : inline-block;
+    margin-top : 30px;
+    width      : 80%;
+}
+
+.widget-box.fuel .gas-ref .empty {
+    float : left;
+}
+
+.widget-box.fuel .gas-ref .full {
+    float : right;
+}
+
+.widget-box.fuel.blue {
+    background : url("../images/kh/img/k900/fuel-blue.png") no-repeat center center;
+}
+
+.widget-box.fuel.blue .amount {
+    color     : #448CCB;
+    font-size : 4.5em;
+}*/
+
+.widget-box.fuel.blue .gas-ref {
+    margin-top : 4px;
+}
+
+.widget-box.trip-info {
+    min-height : 200px;
+    background : url("../images/kh/img/k900/trip-info.png") no-repeat 10% center;
+}
+
+.widget-box.trip-info .content {
+    padding-left : 40px;
+}
+
+.widget-box.trip-info .content .start,
+.widget-box.trip-info .content .end {
+    color : #2F2F2F;
+}
+
+.widget-box.trip-info .content .detail {
+    color : #ABABAB;
+}
+
+.no-js .my-car-zone.main-wrapper .container .alerts .item .item-wrapper .content .indicator {
+    height      : 70%;
+    padding-top : 5%;
+}
+
+.no-js .my-car-zone.main-wrapper .container .alerts .item .item-wrapper .content .info {
+    padding-top : 3%;
+}
+
+.no-js .my-car-zone.main-wrapper .container .alerts .item.speed .item-wrapper .content .indicator,
+.no-js .my-car-zone.main-wrapper .container .alerts .item.geo-fence .item-wrapper .content .indicator {
+    padding-top : 3%;
+}
+
+.uvo-log.main-wrapper {
+    min-width : 947px;
+}
+
+.uvo-log.main-wrapper .main-wrapper-content {
+    max-width : 9999px;
+    min-width : 0;
+    overflow  : auto;
+}
+
+.uvo-log.main-wrapper .main-wrapper-content .content-area {
+    border      : none;
+    height      : auto;
+    max-width   : 9999px;
+    overflow    : auto;
+    text-shadow : none;
+}
+
+.uvo-log.main-wrapper .container .widget-box {
+    padding : 0;
+}
+
+.uvo-log.main-wrapper .container .page-header {
+    margin-bottom : 0;
+}
+
+.uvo-log.main-wrapper .container .page-header .title {
+    font-size : 1.1em;
+    color     : #2F2F2F;
+    float     : left;
+    padding   : 15px 0 30px;
+}
+
+.uvo-log.main-wrapper .container .page-header .help {
+    border        : 1px solid #C2C2C2;
+    border-radius : 11px;
+    color         : #C2C2C2;
+    cursor        : pointer;
+    float         : right;
+    font-family   : designk-medium;
+    font-size     : 0.9em;
+    line-height   : 1.2em;
+    text-align    : center;
+    text-shadow   : none;
+    width         : 14px;
+    margin-top    : 15px;
+}
+
+.uvo-log.main-wrapper .container .page-header .log-alerts {
+    display : block;
+    padding : 10px 0;
+    height  : 80px;
+}
+
+.uvo-log.main-wrapper .container .page-header .log-alerts .alert-msj {
+    display : block;
+    float   : left;
+    color   : #444444;
+}
+
+.uvo-log.main-wrapper .container .page-header .noAlert-msj {
+    display : block;
+    float   : right;
+    font-weight:bold;
+    color: black;
+    padding-bottom: 15px;
+}
+
+.uvo-log.main-wrapper .container .alerts .noCommands {
+    display : block;
+    float   : left;
+    font-weight:bold;
+    color: black;
+    border-bottom: 1px solid #E1E1E1;
+    border-top: 1px solid #E1E1E1;
+    padding    : 5% 70% 20% 0;
+}
+
+.uvo-log.main-wrapper .container .page-header .log-alerts .alert-msj strong {
+    font-family : designk-medium;
+}
+
+.uvo-log.main-wrapper .container .page-header .log-alerts .alert-menu {
+    display : block;
+    float   : left;
+    padding : 10px 0;
+    clear   : both;
+}
+
+.uvo-log.main-wrapper .container .page-header .log-alerts .alert-menu .button:first-child {
+    margin-left : 0;
+}
+
+.uvo-log.main-wrapper .container .actions .button {
+    border     : 1px solid #444444;
+    cursor     : pointer;
+    color      : #444444;
+    font-size  : 1em;
+    padding    : 5px 10px;
+    position   : relative;
+    display    : inline-block;
+    margin     : 5px;
+    min-width  : 110px;
+    text-align : center;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown {
+    position : relative;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown:after {
+    background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+    content    : "";
+    float      : right;
+    height     : 9px;
+    margin-top : 6px;
+    width      : 11px;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown .dropdown-menu {
+    display          : none;
+    background-color : white;
+    position         : absolute;
+    top              : 104%;
+    left             : -1px;
+    z-index          : 1;
+    width            : 250px;
+    border           : 1px solid #E6E6E6;
+    text-align       : left;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown .dropdown-menu li {
+    padding       : 0.5em 2em;
+    border-bottom : 1px solid #E1E1E1;
+    margin        : 0 10px;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown .dropdown-menu li:last-child {
+    border-bottom : none;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown.highlighted {
+    border-color : #BC1728;
+}
+
+.uvo-log.main-wrapper .container .actions .button.dropdown.highlighted .dropdown-menu {
+    display : block;
+}
+
+.uvo-log.main-wrapper .container .actions .button.active {
+    color            : white;
+    background-color : black;
+}
+
+.uvo-log.main-wrapper .container .actions .button.inactive {
+    border      : 1px solid #CCCCCC;
+    color       : #CCCCCC;
+    text-shadow : none;
+}
+
+.uvo-log.main-wrapper .container .alerts {
+    display    : block;
+    text-align : center;
+}
+
+.uvo-log.main-wrapper .container .alerts .item {
+    display       : block;
+    border-bottom : 1px solid #E1E1E1;
+    font-size     : 1.2em;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper {
+    display        : table;
+    width          : 100%;
+    min-height     : 45px;
+    height         : auto;
+    padding        : 10px 0;
+    position       : relative;
+    vertical-align : middle;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .vehicle {
+    display        : table-cell;
+    vertical-align : middle;
+    width          : 35%;
+    height         : 40px;
+    color          : #444444;
+    font-family    : designk-bold;
+    text-align     : left;
+    padding-left   : 15px;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .content {
+    display        : table-cell;
+    vertical-align : middle;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .content .indicator {
+    float               : left;
+    display             : table-cell;
+    width               : 60%;
+    text-align          : left;
+    background-image    : url("../images/kh/img/log/check.png");
+    background-repeat   : no-repeat;
+    background-position : left center;
+    padding-left        : 20px;
+    color               : #444444;
+    font-size           : 0.80em;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .content .indicator.red {
+    background-image : url("../images/kh/img/log/alert.png");
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .content .indicator.pending {
+    background-image : url("../images/loading_bar.gif");
+    background-size  : 5%;
+}
+
+.uvo-log.main-wrapper .container .alerts .item .item-wrapper .content .date {
+    text-align : left;
+    font-size  : 0.70em;
+    color      : #ABABAB;
+}
+
+.uvo-log.main-wrapper .container .actions.load-more {
+    display    : block;
+    text-align : center;
+}
+
+.uvo-log.main-wrapper .container .actions.load-more a {
+    text-transform : uppercase;
+    border         : 1px solid #ABABAB;
+    color          : #888888;
+}
+
+.alerts.widget-box.ulHeight {
+    min-height: 350px;
+}
+
+a.clickable {
+    cursor : pointer;
+}
+.Autowidth{
+    width: 210px;
+word-wrap: break-word;
+height: 40px;
+float:left;
+background-color:#444444;
+}

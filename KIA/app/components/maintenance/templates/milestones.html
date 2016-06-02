@@ -1,0 +1,174 @@
+<div class="col-1">
+
+    <!--Maintenance | Service Schedule Widget-->
+    <div class="widget-box border service-schedule">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 hidden-xs">
+                    <div class="title fl">SERVICE SCHEDULE</div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="mileage">CURRENT MILEAGE <strong>{{vm.currentMileage | number}}</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- start maintenance content -->
+        <div class="content" id="contentMaintenance" ng-show="vm.hasIntervals">
+            <div class="miles-to-service container-fluid">
+                <div class="row"> 
+                    <div class="col-xs-4 visible-xs">
+                        <div class="the-label">mile(s) until next service</div>
+                    </div>
+                    <div class="col-xs-8 col-sm-12">
+                        <div class="the-value">
+                            <strong>{{vm.milesToNextInterval | number}}</strong><span class="hidden-xs">mile(s) until next service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MaintenanceTrack progress indicator -->
+            <div class="milestoneValues">
+                <div class="prevMilestoneValue hidden-xs" ng-show="vm.prevMilestone > '0' ">{{vm.prevMilestone | number}}</div>
+                <div class="nextMilestoneValue">{{vm.nextMilestone | number}}</div>
+            </div>
+            <div class="maintenaneStatusTrack">
+                <div class="maintenanceStatus hidden-xs" ng-style="{width : vm.milestoneBarWidth + 'px' }">
+
+                    <div class="maintenanceStatusArrow"></div>
+                </div>
+                 <div class="maintenanceStatus visible-xs" ng-style="{width : vm.milestoneBarWidthMob + 'px' }">
+                     <div class="maintenanceStatusArrow"></div>
+                 </div>
+            </div>
+            <!-- End of MaintenanceTrack progress indicator -->
+
+            <hr>
+
+            <!-- dashboard for small devices (tablets) and higher -->
+            <div class="dashboard hidden-xs"> 
+                <div class="nav left noselect" ng-class="{'disabledetails':vm.detailAndNotes,'invisible':vm.currentMilestoneIndex == 0}" ng-click="vm.setMilestoneIndex(false); vm.maintNotes = false"></div>
+                <div class="nav right noselect" ng-class="{'disabledetails':vm.detailAndNotes, 'invisible': vm.currentMilestoneIndex == (vm.milestonesCount - 1)}" ng-click="vm.setMilestoneIndex(true); vm.maintNotes = false"></div>
+                <div class="title">MILESTONE</div>
+                <div class="content">
+                    <div class="box info">
+                        <strong id="displayedInterval">{{vm.currentMilestone.crtnMilg | number }}</strong>
+                        miles
+                    </div>
+                    <div class="box actions" ng-class="{completed:vm.currentMilestone.completed}">
+                        <div class="complete" ng-class="{ active : vm.currentMilestone.completed == true, inactive : !vm.currentMilestone.completed}" ng-click="vm.openConfirmComplete(vm.currentMilestone.completed)">Completed</div>
+                        <div class="ignore" ng-class="{ active : vm.currentMilestone.ignored == true, inactive : !vm.currentMilestone.ignored}" ng-click="vm.completeIgnoreMilestone(true)">Ignored</div>
+                    </div>
+                    <div class="box notePen" ng-class="{green:vm.currentMilestone.hasNotes}" ng-click="vm.openMaintNotes(!vm.maintNotes); vm.maintDetails = false;"></div>
+                    <div class="box details-link" style="cursor:pointer;" ng-click="vm.maintDetails = !vm.maintDetails; vm.maintNotes = false;">
+                        <a ng-class = "{active:vm.maintDetails, inactive:!vm.maintDetails}" id="details">Details</a>
+                    </div>
+                </div>
+            </div> <!-- dashboard -->
+
+            <!-- dashboard for extra small devices (phones) -->
+            <div class="dashboard-xSmall visible-xs"> 
+                <div class="title">MILESTONE</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="box info">
+                                <strong id="displayedInterval">{{vm.currentMilestone.crtnMilg | number }}</strong> mi.
+                            </div>
+                            <div class="box details-link">
+                                <span ng-click="vm.openNotesDetails()" ng-class="{disabledetails:vm.detailAndNotes}">DETAILS & NOTES</span> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box actions" ng-class="{completed:vm.currentMilestone.completed}">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="complete col-xs-6" ng-class="{ active : vm.currentMilestone.completed == true, inactive : !vm.currentMilestone.completed}" ng-click="vm.openConfirmComplete(vm.currentMilestone.completed)">Completed</div>
+                                <div class="ignore col-xs-6" ng-class="{ active : vm.currentMilestone.ignored == true, inactive : !vm.currentMilestone.ignored}" ng-click="vm.completeIgnoreMilestone(true)">Ignored</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="nav-arrows">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="nav left noselect" ng-class="{'disabledetails':vm.detailAndNotes, 'invisible':vm.currentMilestoneIndex == 0}"ng-click="vm.setMilestoneIndex(false); vm.maintNotes = false"></div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="nav right noselect" ng-class="{'disabledetails':vm.detailAndNotes, 'invisible': vm.currentMilestoneIndex == (vm.milestonesCount - 1)}" ng-click="vm.setMilestoneIndex(true); vm.maintNotes = false"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maint Details: Shows Replace and Inspect descriptions -->
+            <div class="details expanded hidden-xs" ng-init="vm.maintDetails = false" ng-show="vm.maintDetails">
+                <div style="float:right; margin-right: -55px; margin-top: -32px; cursor:pointer" ng-click="vm.maintDetails = !vm.maintDetails"><img src="images/maint/icon-close.jpg" alt="X"></div>
+                <div class="column">
+                    <div class="title">REPLACE</div>
+                    <ul data-details="replace">
+                      <li ng-repeat="item in vm.intervalDetail.replace">{{item.name}}</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <div class="title">INSPECT</div>
+                    <ul data-details="inspect">
+                      <li ng-repeat="item in vm.intervalDetail.inspect">{{item.name}}</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- details expanded -->
+
+            <!-- Notes for desktop-->
+            <div class="maintNote hidden-xs" ng-init= "vm.maintNotes = false" ng-show="vm.maintNotes">
+                <div style="margin-top:-15px; margin-left:176px"><img src="images/maint/icon-tip.jpg" alt="X"></div>
+                <div style="float:right; margin-right: -15px; cursor:pointer" ng-click="vm.maintNotes = !vm.maintNotes"><img src="images/maint/icon-close.jpg" alt="X"></div>
+                <form name="maintRecord" method="post">
+                    <fieldset class="maintainForm">
+                        <label>NOTES</label>
+
+                        <span style=""><img src="images/maint/icon-calendar.jpg" alt="X"></span>
+                        <input ng-model="vm.currentMilestone.insDt" ng-disabled="vm.currentMilestone.ignored" type="text" id="insDt" name="insDt" placeholder="Date" class="input" datepicker-popup="{{'MM/dd/yyyy'}}" is-open="vm.showDatepicker" ng-focus="vm.toggleMesssage=false" ng-click="vm.showDatepicker = true" show-weeks="false" show-button-bar="false" input-inside-validation iiv-message="Please select a date" iiv-show="{{vm.notesSubmitted && maintRecord.insDt.$error.required && vm.toggleMesssage}}" required/> 
+                        <hr> 
+
+                        <span style=""><img src="images/maint/icon-bulb.jpg" alt="X"></span>
+                        <input ng-model="vm.currentMilestone.plOfWk" ng-disabled="vm.currentMilestone.ignored" type="text" id="plOfWk" name="plOfWk" placeholder="Service Location" class="input" ng-focus="vm.toggleMesssage1=false" maxlength="50" input-inside-validation iiv-message="Please enter place of work" iiv-show="{{vm.notesSubmitted && maintRecord.plOfWk.$error.required && vm.toggleMesssage1}}" required/>
+                        <hr>
+
+                        <span style=""><img src="images/maint/icon-car.jpg" alt="X"></span>
+                        <input ng-model="vm.currentMilestone.insMilg" ng-disabled="vm.currentMilestone.ignored" ng-pattern="/^[0-9]+$/" type="text" id="insMilg" name="insMilg" placeholder="Mileage" class="input" ng-focus="vm.toggleMesssage2=false" maxlength="6" input-inside-validation iiv-message="{{(vm.invalidMilage)?'Please enter numeric digits':'Please enter mileage'}}" iiv-show="{{vm.notesSubmitted && maintRecord.insMilg.$error.required && vm.toggleMesssage2}}" required/>
+                         <!-- <div class="row" style="text-align:center;color:red;" ng-show="vm.submitted&&vm.error">Please Enter Numbers only</div> -->
+                        <hr>
+
+                        <label><textarea ng-model="vm.currentMilestone.notes" cols="50" rows="30" id="enterNotes" name="notes" placeholder="Add a note..." maxlength="150" style="width:248px;height:120px; background:#444; color:#FFF; resize:none"></textarea></label>
+                        <div id="saveBtn" style="float:right; cursor:pointer">
+                            <span id="deleteNotes" ng-click="vm.deleteNote()" style="padding:15px">DELETE</span>
+                            <span id="saveNotes" ng-click="vm.saveNote(maintRecord)">
+                                <span ng-hide="vm.currentMilestone.completed || vm.currentMilestone.ignored">COMPLETE</span>
+                                <span ng-show="vm.currentMilestone.completed">SAVE</span>
+                                <span ng-show="vm.currentMilestone.ignored">COMPLETE</span>
+                            </span>
+                        </div>
+                    </fieldset>
+                  </form>
+                  <form name="deleteMaintRecordForm"  method="post">
+                  </form>
+            </div> <!-- maintNote -->
+
+        </div>
+        <!-- end maintenance content -->
+        <div class="noInterval" ng-hide="vm.hasIntervals">
+            Maintenance for this vehicle cannot be displayed since it is not listed in the Kia Maintenance database.
+        </div>
+    </div>
+</div>
+
+<div alert-modal  
+    alert-id="maintenance-confirm-complete" 
+    alert-type="confirm" 
+    alert-message="Confirm maintenance completed at this mileage">
+</div>

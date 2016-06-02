@@ -1,0 +1,60 @@
+<style>
+    .modal-content{
+        margin: 190px auto 0;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 320px;
+        padding: 30px 20px 20px;
+        text-align: left;
+        border: 3px solid !important;
+    }
+    .message {
+        font-size: 1.1em;
+        line-height: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 0 1em;
+    }
+    
+    .actions button {
+        border: 1px solid #CCCCCC;
+        background: #FFFFFF;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        color: #444444;
+        cursor: pointer;
+        font-size: 1em;
+        line-height: 1em;
+        margin-bottom: 22px;
+        padding: 9px;
+        text-align: center;
+        text-transform: uppercase;
+        display: inline-block;
+        min-width: 105px;
+        margin-left: 10px;
+    }
+    .highlighted {
+        border: none;
+        background: #C4172C!important;
+        color: #FFFFFF!important;
+    }
+</style>
+
+	  <div class="modal-header">
+            <div class="message">
+                Are you sure you want to delete this Geo Fence?
+            </div>
+          </div>
+	<div class="modal-body">
+            <div class="actions">
+                <button class="highlighted delete" ng-click="vm.confirm()"><span>CONFIRM</span></button>
+                <button class="cancel" ng-click="vm.cancel()"><span>CANCEL</span></button>
+            </div>
+            </div>
+
+
+
+
+        
+       

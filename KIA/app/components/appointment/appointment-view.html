@@ -1,0 +1,113 @@
+
+<div id="dealerAppointment" class="popup" style="display: block;">
+    <p class="popClose" style="text-align:right;padding:5px 15px 5px 0;"><a ng-click="close()" class="clickable"></a></p>
+   <!--  <div class="popup-bg"></div> -->
+    <div  style="width:100%;background-color:white;"><!--  popup size -->
+
+        <div class="widget-box border request-appointment">
+            <div class="title">
+                REQUEST APPOINTMENT
+            </div>
+            <div class="content" style="width:100%;margin:0;">
+                <div class="col1">
+                    <div class="info">
+                        The dealer will contact you within 1 business day after making a request for an appointment.
+                    </div>
+                    <div class="name">
+                        {{com.preferredDealer.data.name}}
+                    </div>
+                    <div class="contact" id="dealerContact" data="CA204">
+                       {{com.preferredDealer.data.address}}<br />
+                       {{com.preferredDealer.data.city}}, {{com.preferredDealer.data.state}} {{com.preferredDealer.data.zipCode}}<br />
+                       {{com.preferredDealer.data.phoneNumber | phoneNumber}} 
+                    </div>
+                    <a class="cta secondary change-dealer-ev" ng-click="changeDealer()"><span>Change Dealer</span></a>
+                </div>
+                <div class="col2">
+                    <div class="title">Select Issue</div>
+                    <ul id="evIssueType">
+                    	<li id="other" class="selected" value="other">
+                            <div class="issue">Other</div>
+                            <div class="detail">Dealership will contact you for more details</div>
+                        </li>
+                         
+                        <li id="veh-repair" class="inactive" style="visibility:hidden" value="Vehicle Repair">
+                            <div class="issue">Vehicle Repair</div>
+                            <div class="detail"> <span id="numOfDiagIssue"></span> diagnostic issue(s)</div>
+                        </li>
+                        <li id="veh-maint" class="inactive" style="visibility:hidden" value="Maintenance">
+                            <div class="issue">Maintenance</div>
+                            <div class="detail">Next schedule maintenance: -- mile(s)</div>
+                        </li>
+                        
+                    </ul>
+                    <a class="cta primary clickable" ng-click="Request()" id="request-appt-ev"><span>Request Appointment</span></a>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<script type="text/ng-template" id="dealer-modal">
+<div id="dealer-modal-content">
+    <div class="header">
+        Select Dealer
+        <a class="close clickable" ng-click="vm.close()"><span>Close window</span></a>
+    </div>
+    <div class="detail">
+        <div class="action-bar">
+            <div class="box-1">
+                <span ng-show="!vm.hideZip">ZIP Code:</span>
+                <span ng-show="vm.hideZip">{{vm.dealers.length}} Near: </span>
+            </div>
+            <div class="box-2">
+                <input ng-model="vm.zip" type="text" class="zipcode" name="zipcode" id="zipcode" maxlength="5" ng-keyup="vm.getDealers($event)" is-number="vm.zip">
+            </div>
+            <div class="box-3">
+                <button class="select" ng-click="vm.getDealers()"><span>Select</span></button>
+            </div>
+        </div>
+        <div class="filter hide">
+            <span class="current inactive">All</span>
+            <div class="selector">
+                <span>All</span>
+                <span>Soul EV</span>
+                <span class="selected">K900</span>
+                <span>Luxury</span>
+                <span>Lorem</span>
+            </div>
+        </div>
+
+        <select id="selectVehicleType" ng-model="vm.selectVehicleType" ng-options="defaultDealer for defaultDealer in vm.defaultDealerList" style="margin:5px 35px; width: 75%" ng-show="vm.showFilter && !vm.hideDropdown" ng-disabled="vm.disableDropdown">
+          // <option value="all">ALL</option>
+          // <option value="ev">SOUL EV</option>
+          // <option value="K900">K900</option>
+        </select>
+
+        <div id="dealerZipError" style="color:red; margin-left:35px;"ng-show="vm.invalidZip">Please enter a valid ZIP Code.</div>
+        <div id="noPrefDealer"style="color:red; margin-left:35px;" ng-show="!vm.noDealer">This vehicle doesn&#39;t have a preferred dealer. Please search & select one.
+        </div>
+        <div id="noDealerMsg" style="color:red; margin-left:35px;" ng-show="vm.dlrInRadius">Sorry, we couldn&#39;t find any Certified dealerships in that area. Here is the next closest location(s).</div>
+
+        <div id="dealerSearchList" style="min-height: 15px;">
+            <div id="dealerSearchScroller">
+
+                <ul class="results">{{dealers}}
+                  <li ng-class="{active:dealer.preferred, processing:dealer.processing}" ng-repeat="dealer in vm.dealers | limitTo:vm.pageLimit">
+                    <div class="distance" ng-click="vm.setDealer(dealer)"></div>
+                    <div class="info">
+                        <div class="name">{{dealer.name}}</div>
+                        <div class="contact">{{dealer.address}}<br>{{dealer.city}}, {{dealer.state}} {{dealer.zipCode}}<br>{{dealer.phoneNumber | phoneNumber}}</div>
+                        <!--<div class="vehicle">SoulEV</div>-->
+                    </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ctas">
+            <a class="cta secondary clickable" ng-show="vm.showLoadMore" ng-click="vm.loadMore()">Load More</a>
+            <!--<a class="cta tertiary" href="#">More Kia dealer info &gt;</a>-->
+        </div>
+    </div>
+</div>
+</script>

@@ -1,0 +1,176 @@
+<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="vehicle in vm.vehicles">
+<!-- Loop through existing vehicles -->
+	<div class="vehicle-card"> <!-- vehicle-card for KH -->
+		<div class="widget-box border hover-on vehicle-current" ng-show="!vm.showManage[$index]">
+
+			<div class="overview" ng-class="{'overview-notEnroll':!vehicle.enrolled}" ng-click="vm.gotoOverview(vehicle)"> 
+				<a class="right-arrow"  href="#/kh/connect" ng-if="!vehicle.expired && vehicle.enrolled"></a>
+				<div class="row">
+					<div class="picture col-sm-12 col-xs-6"><img ng-src="{{vehicle.originImgFileNm}}" alt=""/></div>
+						<div class="row">
+							<div class="nickname col-sm-12 col-xs-6">{{vehicle.vehNick}}</div>
+							<div class="year-model-trim col-sm-12 col-xs-6">{{vehicle.mdlYr}} {{vehicle.mdlNm}}</div>
+						</div>
+				</div>
+			</div> <!-- overview -->
+
+			<!-- UVO eServices expired message -->
+			<div class="messages expired" ng-if="vehicle.expired && vehicle.gen != 'psev'">
+          <div class="message">
+              UVO eServices has expired because this vehicle has reached 100,000
+              miles or is over 10 years old.
+          </div>
+      </div>
+
+			<!-- UVO eServices expiredEV message -->
+			<div class="messages expiredEV" ng-if="vehicle.expired && vehicle.gen == 'psev'">
+          <div class="message">
+              UVO EV Services has expired. Please contact 1-800-333-4542 for subscription renewal.
+          </div>
+      </div>
+
+      <!-- Inactive Vin -->
+      <div class="messages inactive-vin" ng-if="!vehicle.expired && !vehicle.enrolled && vehicle.gen != 'psev' && vehicle.gen != 'kh' && vehicle.gen != 'jf'">
+          <div class="message">
+              <div class="notActiveApps">
+                  <a target="_blank" href="https://itunes.apple.com/us/app/uvo-eservices/id588729103?ls=1&mt=8">
+                      <img src="images/itunes.png" class="appStoreImg" />
+                  </a>
+                  <a target="_blank" href="https://play.google.com/store/apps/details?id=com.ubivelox.hkmc.tm2.ics&hl=en">
+                      <img src="images/google_play.png"/>
+                  </a>
+              </div>
+              This vehicle has not been activated. Please download the app, return to your vehicle, and follow the in-car instructions.
+          </div>
+      </div>
+
+      <!-- End of Inactive Vin -->
+
+      <!-- No active Vin if vehicle count is 0 -->
+      <div class="messages no-active-vin hide">
+          <div class="message">
+              <div class="notActiveApps">
+                  <a target="_blank" href="https://itunes.apple.com/us/app/uvo-eservices/id588729103?ls=1&mt=8">
+                      <img src="images/itunes.png" class="appStoreImg" />
+                  </a>
+                  <a target="_blank" href="https://play.google.com/store/apps/details?id=com.ubivelox.hkmc.tm2.ics&hl=en">
+                      <img src="images/google_play.png"/>
+                  </a>
+              </div>
+              You have no activated vehicles in your account. Please download the app, return to your vehicle, and <br>follow the in-car instructions.
+          </div>
+      </div>
+      <!-- End of No active Vin -->
+
+			<!-- PSEV Not Enrolled -->
+			<div class="messages psev not-enrolled" ng-if="!vehicle.expired && !vehicle.enrolled && vehicle.gen == 'psev'">
+          <div class="message">
+              Your vehicle has not been enrolled in EV Services. Please log in from your vehicle and follow the enrollment process.
+          </div>
+      </div>
+
+      <!-- KH or GEN1 Not Enrolled -->
+      <div class="messages k900 not-enrolled" ng-if="!vehicle.expired && !vehicle.enrolled && (vehicle.gen == 'kh' || vehicle.gen == 'jf')">
+          <div class="message">
+              Your vehicle has not yet been enrolled. To complete the process, please return to your vehicle and follow the instructions on your center console unit.
+          </div>
+      </div>
+      <div class="cta k900 not-enrolled" ng-if="!vehicle.enrolled || vehicle.expired">
+          <a class="clickable" ng-click="vm.toggleDeleteVehicle(); vm.deleteIndex = $index; vm.deleteVin=vehicle.vin;">Delete</a>
+      </div>
+      <!-- End of KH or GEN1 Not Enrolled -->
+
+			<!-- Active Vin PSEV -->
+			<div class="messages psev enrolled" ng-if="vehicle.enrolled && !vehicle.expired && vehicle.gen === 'psev'" ng-click="vm.gotoMaintenance(vehicle)">
+      	<a class="batteryEv-btn" style="cursor:pointer" ui-sref="psev.battery" href="/psev/battery">
+          	<div class="right-arrow"></div>
+          	<div class="message" ng-class="{'unplugged':vehicle.vehicleStatus.eVStatus.batteryPlugin == 0,'plugged':vehicle.vehicleStatus.eVStatus.batteryPlugin !=0}">
+				<div ng-if="vehicle.vehicleStatus.eVStatus.batteryPlugin == 0">
+					{{vehicle.vehicleStatus.eVStatus.batteryPluginText}}
+				</div>
+				<div ng-if="vehicle.vehicleStatus.eVStatus.batteryPlugin !=0">
+					Plugged In
+				</div>
+			</div>
+          	<div class="message battery">
+          		<div ng-if="vehicle.vehicleStatus == 'notexists'">
+					Driving Range: -- miles
+				</div>
+				<div ng-if="vehicle.vehicleStatus != 'notexists'">
+					Driving Range: {{vehicle.vehicleStatus. eVStatus.drvDistance[0].distanceType.value}} miles
+				</div>
+			</div>
+          	<div class="message received">
+          		<div ng-if="vehicle.vehicleStatus == 'notexists'">
+					Date Received on --
+				</div>
+				<div ng-if="vehicle.vehicleStatus != 'notexists'">
+					Date Received on {{vehicle.vehicleStatusTimeStamp | date:'MM/dd hh:mm a'}}
+				</div>
+			</div>
+      	</a>
+      </div>
+
+      <!-- Active Vin JF -->
+      <div class="messages psev enrolled" ng-if="vehicle.enrolled && !vehicle.expired && vehicle.gen === 'jf'">
+        <div class="right-arrow"></div>
+        <!-- anchor tag link to battery page -->
+        <div class="message plugged" ng-if="vehicle.evStatId !== 0 && vehicle.evBatteryPlugin !== '0'">
+          Plugged in
+        </div>
+        <!-- ############################### -->
+        <a ng-click="vm.gotoMaintenance(vehicle)">
+          <div class="message warning" ng-if="vehicle.evStatId !== 0 && vehicle.evBatteryPlugin === '0' && vehicle.dtcKhCnt > 0">{{vehicle.dtcKhCnt}} diagnostic issue(s) found</div>
+          <div class="message ok" ng-if="vehicle.evStatId !== 0 && vehicle.evBatteryPlugin === '0' && vehicle.dtcKhCnt === 0">No diagnostic issues found</div>
+          <div class="message maintenance" ng-if="vehicle.evStatId === 0">{{vehicle.nextServiceMile}} mile(s) until next service</div>
+        </a>
+        <!-- anchor tag link to battery page -->
+        <div class="message battery">Driving Range: <span ng-if="vehicle.evStatId === 0">--</span><span ng-if="vehicle.evStatId !== 0">{{vehicle.evTotalDriveRange || 0}}</span> miles</div>
+        <div class="message received">Date Received at <span ng-if="vehicle.evStatId === 0">--</span><span ng-if="vehicle.evStatId !== 0">{{vm.evLastUpdtTimeStamp | date:'MM/dd hh:mm a'}}</span></div>
+        <!-- ############################### -->
+      </div>
+
+			<!-- Active Vin Non-PSEV and Non-JF -->
+			<a ng-click="vm.gotoMaintenance(vehicle)">
+      <div class="messages active-vin" ng-if="vehicle.enrolled && !vehicle.expired && vehicle.gen !== 'psev' && vehicle.gen !== 'jf'">
+        <div class="right-arrow"></div>
+				<div class="message warning" ng-if="vehicle.dtcKhCnt > 0 && vehicle.gen == 'kh'">{{vehicle.dtcKhCnt}} diagnostic issue(s) found</div>
+				<div class="message warning" ng-if="vehicle.dtcCnt > 0 && vehicle.gen != 'kh'">{{vehicle.dtcCnt}} diagnostic issue(s) found</div>
+				<div class="message ok" ng-if="vehicle.dtcCnt == 0 && vehicle.dtcKhCnt == 0">No diagnostic issues found</div>
+				<div class="message maintenance" ng-show="{{vehicle.nextServiceMile > 0}}">{{vehicle.nextServiceMile| number}} mile(s) until next service</div>
+			</div> <!-- messages active-vin -->
+      </a>
+			<!-- Manage button -->
+			<div class="cta active-vin" ng-click="vm.showManage[$index] = true; vehicle.vehNickInput = vehicle.vehNick" ng-if="vehicle.enrolled && !vehicle.expired">
+    		<a class="manage-btn">Manage</a>
+  		</div>
+
+			<!-- MCZ Pin (Gen 1 Plus only) -->
+			<div class="show-pin-wrapper">
+				<a class="showPin" ng-click="vm.openShowPinModal(vehicle.securityPin)" ng-style="{'visibility': (vehicle.enrolled && !vehicle.expired && vehicle.gen == 'gen1plus') ? 'visible' : 'hidden'}">My Car Zone PIN</a>
+			</div>
+		</div> <!-- widget-box border hover-on vehicle-current -->
+
+		<!-- Manage card -->
+		<div class="manage-card" ng-show="vm.showManage[$index]">
+	        <!--My Vehicles | Manage Vehicle Form-->
+	        <div class="widget-box gray-panel vehicle-manage">
+	            <div class="content">
+	                <div class="row">
+	                    <input type="text" placeholder="Nickname" name="vehNick" maxlength="17" ng-model="vehicle.vehNickInput"/>
+	                </div>
+	                <div class="label">
+	                    VIN: <strong>{{vehicle.vin}}</strong>
+	                </div>
+	                <div class="row links" >
+	                     <!-- <span class="glyphicon glyphicon-trash"></span>&nbsp; -->
+                       <a class="delete clickable" ng-click="vm.toggleDeleteVehicle(); vm.deleteIndex=$index; vm.deleteVin=vehicle.vin;">Delete Vehicle</a>
+	                </div>
+	                <div class="actions" ng-click="vm.showManage[$index] = false">
+	                    <a class="button highlighted manage-done" ng-click="vm.editVehicle(vehicle.vin,vehicle.vehNickInput,$index)"><span>Done</span></a>
+	                </div>
+	            </div> <!-- content -->
+	        </div> <!-- widget-box gray-panel vehicle-manage -->
+	    </div> <!-- manage-card -->
+	</div> <!-- vehicle-card -->
+</div>

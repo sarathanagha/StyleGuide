@@ -1,0 +1,16 @@
+body {font-size:13px; /* this was their base font */ font-family: $designk-medium; }
+
+.hide {display:none !important; }
+.switch{text-transform: uppercase; }
+.button{cursor: pointer; }
+
+h1 {font-family: $designk-bold; color: #2F2F2F; }
+h2 {color: #888; }
+
+.text-box-shadow {
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  box-shadow: inset 2px 2px 2px rgba(0,0,0,.1);
+}
+
+

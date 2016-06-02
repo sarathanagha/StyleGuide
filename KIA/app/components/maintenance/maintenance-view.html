@@ -1,0 +1,57 @@
+<div class="vehicleStatus hidden-xs" ng-show="vm.hasKh">
+    <div class="vehicleStatus-date">Last updated as of {{vm.vStatus*1000 | date:'MMMM d, y h:mm a'}}</div>
+    <div class="vehicleStatus-reloader">
+        <a class="clickable" ng-click="vm.latestVehicleStatus()">
+            <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+        </a>
+    </div>
+</div>
+
+<div class="maintenance row">    
+    <dealer-modal></dealer-modal>
+    <div class="col-lg-11 col-md-11 col-sm-11">
+
+        <!-- Milestones -->
+        <div class='blade one-column' milestones></div>
+
+        <!-- Diagnostics desktop-->
+        <div class='blade hidden-xs' ng-class="{'two-columns-asymmetric':vm.showOilChange, 'one-column':!vm.showOilChange}">
+            <div class="col-1" diagnostics></div>
+            <!-- Oil Change -->
+            <div class="col-2" ng-show="vm.showOilChange" oil-change></div>
+        </div>        
+
+        <hr class="line visible-xs">
+
+        <!-- Diagnostic mobile -->
+        <div class="visible-xs">
+            <div diagnostics mobile=true></div>
+            <hr class="visible-xs" ng-show="vm.showOilChange">
+            <!-- Oil change mobile -->
+            <div class="widget-box border monthly-diagnostic oil-change-schedule" oil-change mobile=true ng-show="vm.showOilChange"> </div>
+        </div>
+        
+        <hr class="visible-xs">
+
+        <!-- Appointments -->
+        <div class='blade one-column'>
+            <div class="col-1">
+                <div current-appointment></div>                
+
+                <hr class="visible-xs" ng-hide="vm.currentAppointments.length == 0">
+
+                <div request-appointment></div>
+                <!--Maintenance | Request Appointment-->
+            </div>
+        </div>
+    </div>    
+</div>
+<div alert-modal alert-id="maint-request-appt" alert-message="Dealer will contact you to discuss appointment time and details." alert-type="success" alert-header="APPOINTMENT REQUESTED"></div>
+
+<div alert-modal alert-id="maint-request-appt-fail" alert-message="This dealership is unable to receive appointment requests at this time. Please select another dealer or try again later." alert-type="fail" alert-header="APPOINTMENT REQUESTED"></div>
+
+<div alert-modal  
+    alert-id="maintenance-confirm-complete" 
+    alert-type="confirm" 
+    alert-message="Confirm maintenance completed at this mileage">
+</div>

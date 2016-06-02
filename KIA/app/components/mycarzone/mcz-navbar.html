@@ -1,0 +1,37 @@
+<div class="vehicleStatus" ng-show="successCall||unsuccessCall||vm.loading||loading" ng-class="{'success':successCall,'error':unsuccessCall}">
+	<!-- <div class="settings-status-message" ng-show="showStatusMessage" style="top:8px;">{{statusMessage}}</div> -->
+</div>
+<div class="mcz-navbar-container" ng-class="{'margin-top':successCall||unsuccessCall||vm.loading||loading }">
+    <nav class="carzone-menu">
+		<ul class="mcz-navbar-alerts-list">
+			<li ng-class="{active: $state.includes('*.mcz')}" class="list-four">
+				<a href="kh/mycarzone/curfewalerts">CURFEW</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.speedalerts')}" class="list-four">
+				<a ui-sref="kh.speedalerts" href="/kh/speedalerts">SPEED</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.geofence')}" class="list-four">
+				<a ui-sref="kh.geofence">GEO FENCE</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.curfew-settings') || $state.includes('*.speed-settings') || $state.includes('*.geofence-settings')}" class="list-four">
+				<a ui-sref="kh.curfew-settings">SETTINGS</a>
+			</li>
+			<!-- <li>
+				<a>&nbsp;</a>
+			</li> -->
+		</ul>  
+		<ul class="mcz-navbar-settings-list"
+			ng-show="$state.includes('*.curfew-settings') || $state.includes('*.speed-settings') || $state.includes('*.geofence-settings')"
+			>
+			<li ng-class="{active: $state.includes('*.curfew-settings')}">
+				<a ui-sref="kh.curfew-settings">Curfew Settings</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.speed-settings')}">
+				<a ui-sref="kh.speed-settings">Speed Settings</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.geofence-settings')}">
+				<a ui-sref="kh.geofence-settings">Geo Fence Settings</a>
+			</li>
+		</ul>
+	</nav>
+</div>

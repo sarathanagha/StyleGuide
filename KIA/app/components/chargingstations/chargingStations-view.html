@@ -1,0 +1,136 @@
+<div class="status">
+  <div class="statusMsg">{{vm.statusMsg}}</div>
+  <div class="statusLoader"></div>
+</div>
+
+<div class="mob_box"></div>
+
+<div class="container-fluid" id="psev-charging">
+  <div class="map-wrapper col-xs-12">
+  	<div class="red-arrow right hidden-xs" ng-click="vm.togglePanel()" ng-show="!vm.showPanel"><img src="images/station/red_arrow_right.jpg" /></div>
+
+  	<div class="panel_results" ng-show="vm.showPanel">
+      <div class="red-arrow left hidden-xs" ng-click="vm.togglePanel()"><img src="images/station/red_arrow_left.jpg" /></div>
+
+      <div class="address_section">
+      	<div class="addr-label">
+	      	<div>Enter ZIP Code or city</div>
+	        <a href="#"><img src="images/station/locate-button-gray.jpg" title="Use current location" ng-click="vm.searchByCurrentLocation()"/></a>
+        </div>
+        <div class="red-btn" ng-click="vm.searchByInputValue()"></div>
+
+        <input type="text" ng-model="vm.searchStr" ng-keypress="vm.searchByKeyPress($event)">
+    		<div class="filter" ng-click="vm.toggleFilter()"><a href="#">Filter<img src="images/station/arrow_down_red.png" /></a></div>
+      </div> <!-- address_section -->
+
+      <div class="row mobile-view visible-xs">
+      	<div class="list col-xs-6" ng-class="{active:vm.showList == true}" ng-click="vm.viewList()">LIST VIEW</div>
+      	<div class="map col-xs-6" ng-class="{active:vm.showList == false}" ng-click="vm.viewMap()">MAP VIEW</div>
+      </div>
+      
+      <div class="list_results">
+        <span class="noresults" ng-show="vm.noResult">No search results found.</span>
+        <div class="title hidden-xs" ng-show="vm.showList && !vm.noResult"><span>SEARCH RESULTS</span></div>
+        
+        <div class="scroll-panel" ng-show="vm.showList">
+          <div ng-repeat="station in vm.stationList" ng-if="!vm.noResult">
+            <div class="marker_distance" ng-click="vm.selectChargeStation($index)">{{vm.stationDistance(station.chargingstation.lat, station.chargingstation.lon)}} MI</div>
+            <div class="addr" ng-click="vm.selectChargeStation($index)">
+              {{station.chargingstation.name}}<br>
+              {{station.chargingstation.address}}<br>
+              {{station.chargingstation.city}}, {{station.chargingstation.state}} {{station.chargingstation.zip}}<br>
+              {{station.chargingstation.phone}}
+            </div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div> <!-- list_results -->
+
+      <div class="panel_filter" ng-show="vm.showFilter">
+      	<div class="img-top hidden-xs"><img src="images/station/filter-img-top.png" /></div>
+        <div class="header-filter visible-xs">
+          <div class="title" ng-click="vm.toggleFilter()">FILTER</div>
+          <div class="bottom"></div>
+        </div>
+      	<div class="row group-radio">
+        <div class="visible-xs-block error" ng-show="vm.errorFilter">Please select at least one brand to filter the search.</div>
+      		<div class="charge-type col-sm-6 col-xs-12">CHARGE TYPE
+      			<ul>
+      				<li class="on" ng-class="{off:vm.type1 == true}" ng-click="vm.chargeType(1)">Level 1 - 120V</li>
+      				<li class="on" ng-class="{off:vm.type2 == true}" ng-click="vm.chargeType(2)">Level 2 - 240V</li>
+      				<li class="on" ng-class="{off:vm.typeAll == true}" ng-click="vm.chargeType(0)">All</li>
+      			</ul>
+      		</div>
+      		<div class="location col-sm-6 col-xs-12">LOCATION
+      			<ul>
+      				<li class="on" ng-class="{off:vm.location5 == true}" ng-click="vm.location(5)">5 miles away</li>
+      				<li class="on" ng-class="{off:vm.location10 == true}" ng-click="vm.location(10)">10 miles away</li>
+      				<li class="on" ng-class="{off:vm.location25 == true}" ng-click="vm.location(25)">25 miles away</li>
+      			</ul>
+      		</div>
+      	</div>
+      	<div class="row group-checks">
+      		<p>BRAND</p>
+          <ul class="col-sm-6 col-xs-12">
+            <li ng-repeat="brand in vm.brandListLeft">
+              <label><input type="checkbox" ng-model="brand.check" ng-click="vm.toggleEachBrand(brand)"/> {{brand.name}}</label>
+            </li>
+          </ul>
+          <ul class="col-sm-6 col-xs-12">
+            <li ng-repeat="brand in vm.brandListRight">
+              <label><input type="checkbox" ng-model="brand.check" ng-click="vm.toggleEachBrand(brand)"/> {{brand.name}}</label> 
+            </li>
+            <li>
+              <label><input type="checkbox" ng-model="vm.allBrands" ng-click="vm.toggleAllBrands()" /> All</label>
+            </li>
+          </ul>
+          
+      	</div>
+      	<div class="line hidden-xs"></div>
+      	<div class="btn-done hidden-xs" ng-click="vm.toggleFilter()"><a href="#"><img src="images/station/btn-done.jpg"></a></div>
+        <div class="btn-clear" ng-click="vm.clearAllCheck()"><a href="#">CLEAR ALL</a></div>
+				<div class="hidden-xs error" ng-show="vm.errorFilter">Please select at least one brand to filter the search.</div>
+      </div>
+  	</div> <!-- panel_results -->
+
+    <div class="map-area">
+      <ui-gmap-google-map  events="vm.map.mapEvents" control="vm.map.control" center="vm.map.center" zoom="vm.map.zoom" options="vm.map.options" resize-it>
+        
+        <ui-gmap-window  show="vm.map.window.show" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.closeClick()">
+
+          <div class="uvo-ib">
+            <div class="uvo-ib-content">  
+              <img src="images/station/{{vm.map.window.model.brandLogo}}" class="hidden-xs"/>
+              <div class="distance hidden-xs">{{vm.map.window.model.distance}} miles away</div>
+              <div id="map-street-view" style="display:none"></div>
+              <div id="pano" class="hidden-xs"></div>
+              <div class="uvo-ib-title">{{vm.map.window.model.name}}</div>
+              <div>{{vm.map.window.model.street}}</div>
+              <div>{{vm.map.window.model.city}}, {{vm.map.window.model.state}} {{vm.map.window.model.zip}}</div>
+              <div>{{vm.map.window.model.phone}}</div>
+              <div class="hidden-xs">{{vm.map.window.model.addrDetail}}</div>
+
+              <a target="_blank" href="https://maps.google.com/maps?f=d&saddr=+{{vm.startAddr}}+&daddr=+{{vm.map.window.model.endAddr}}+&dirflg=h">
+                <div class="boxGetDirection">GET DIRECTIONS</div>          
+              </a>
+
+              <div class="row">
+                <p>CHARGES AVAILABLE</p>
+                <div class="col-xs-4">Level1: 120V<br>{{vm.map.window.model.level1}}</div>
+                <div class="col-xs-4">Level2: 240V<br>{{vm.map.window.model.level2}}</div>
+                <div class="col-xs-4">DC Fast Charge:<br>{{vm.map.window.model.level3}}</div>
+              </div>
+            </div>                  
+            <div class="uvo-ib-point-down">
+              <img src="images/kh/img/station/point-down.png" alt="X" />
+            </div>
+          </div>
+
+        </ui-gmap-window>
+
+        <ui-gmap-markers control="vm.map.markerControl"  models="vm.map.markers" coords="'self'" icon="{url: 'images/station/mark.png'}" events="vm.map.markerEvents" fit="true">              
+        </ui-gmap-markers>
+
+      </ui-gmap-google-map>      
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<section id="overview" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class='blade one-column'>
+                        <div class="widget-box border k900-hero" style="background-image: url(images/kh/img/k900/{{vm.data.weatherImage}}); background-size: 100%; background-position: 50% 0%;">
+                            <div class="title">
+                                <div class="climateTitle">
+                                <div class="climate" id='climateDescription'>{{vm.data.weather}}</div>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <a href='/ccw/kh/lock.do' class="hidden-xs hidden-sm">
+                                    <div id="lock" class="lock on" ng-if="vm.vehicleStatus.latestVehicleStatus.doorLock"><span class="spantxt">LOCKED</span></div>
+                                    <div id="unlock" class="unlock on" ng-if="!vm.vehicleStatus.latestVehicleStatus.doorLock"><span class="spantxt">UNLOCKED</span></div>
+                                </a>
+                                <div class="temperature">
+                                    <a href='/ccw/kh/climate.do' ui-sref="psev.findMyCar">
+                                        <div class="inside" id='insideTemp'>{{vm.vehicleStatus.latestVehicleStatus.airTemp.displayValue}}<sup>º</sup><span>VEHICLE</span></div>
+                                        <div class="outside" id="outsideTemp">{{vm.data.tempF}}<sup>º</sup><span>OUTSIDE</span></div>
+                                    </a>
+                                </div>
+                                <a ui-sref="kh.findMyCar" class="hidden-xs hidden-sm">
+                                    <div class="find-car"><span class="spantxt">FIND MY CAR</span></div>
+                                </a>
+                                <img class="hero-img" alt="KIA Car" src="images/car-hero.png" />
+                                <div class="hero-gradient"></div>
+                            </div>
+                        </div> <!-- widget-box border k900-hero -->
+
+                        <div class="row visible-xs visible-sm topRow">
+                            <div class="col-xs-12 name">{{com.carInfo.selectedVehicle.vehNick}}</div>
+                            <div class="col-xs-12 model">{{com.carInfo.selectedVehicle.mdlYr}} {{com.carInfo.selectedVehicle.mdlNm}}</div>
+                            <div class="col-xs-6 lock button" ng-if="vm.vehicleStatus.latestVehicleStatus.doorLock">LOCKED</div>
+                            <div class="col-xs-6 unlock button" ng-if="!vm.vehicleStatus.latestVehicleStatus.doorLock">UNLOCKED</div>
+                            <div class="col-xs-5 find-car button"><span>FIND MY CAR<span></div>
+                        </div> <!-- row visible-xs topRow -->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-xs-5 maint-box">
+                        <a ui-sref="kh.maintenance">
+                            <div class="widget-box driving-activity maintenance diagnostic hover-on border center">
+                                <div class="title-arrow">MAINTENANCE</div>
+                                <div class="row widget-content">
+                                    <div class="col-xs-12 next-service">
+                                        <span class="amount" id="milesTillNextMaint">{{ vm.data.currentMileage | number }}</span>
+                                        <label>miles until next service</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-md-push-4 col-xs-5">
+                        <a ui-sref="kh.maintenance">
+                            <div class="widget-box fuel border center hover-on">
+                                <div id="issue">
+                                    <div class="title-arrow">DIAGNOSTICS</div>
+                                    <div class="row widget-content">
+                                      <div class="col-xs-12" ng-show="vm.vehicleStatus.latestVehicleStatus.lowFuelLight">
+                                        <img src="images/lowFuel.png" class="img-responsive">
+                                      </div>
+                                        <div class="col-xs-12" ng-show="!vm.vehicleStatus.latestVehicleStatus.lowFuelLight && vm.data.numOfIssues > 0">
+                                          <img src="images/issuesFound.png"  class="img-responsive"/>
+                                          <p id="diagIssuesFound">{{vm.data.numOfIssues}} issues found</p>
+                                        </div>
+                                        <div class="col-xs-12" ng-show="!vm.vehicleStatus.latestVehicleStatus.lowFuelLight && vm.data.numOfIssues == 0">
+                                          <img src="images/noIssues.png" class="img-responsive"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-md-pull-4 col-xs-12">
+                        <a ui-sref="default.awards">
+                            <div class="widget-box awards border center hover-on">
+                                <div class="title-arrow">AWARDS</div>
+                                <div class="widget-content hidden-xs" style="margin-top: 10px;">
+
+                                    Last award won
+                                    <div class="w-img">
+                                        <img alt="Awards-icon" ng-src="{{vm.latestAward.imageURL}}" class="img-responsive"/>
+                                        <div ng-class="vm.latestAward.count == 0 && 'invisible'">{{vm.latestAward.name}}</div>
+                                    </div>
+                                    <span class="w-footer">
+                                        You've earned
+                                        <strong>{{vm.latestAward.count}}</strong>
+                                        of
+                                        <strong>8</strong>
+                                        awards
+                                    </span>
+                                </div>
+                                <div class="widget-content visible-xs">
+                                    <img alt="Awards-icon" ng-src="{{vm.latestAward.imageURL}}" class="award-icon img-responsive"/>
+                                    <div class="award-info">
+                                        Last award won
+                                        <div class="award-name" ng-class="vm.latestAward.count == 0 && 'invisible'">{{vm.latestAward.name}}</div>
+                                        <span class="w-footer">
+                                            You've earned
+                                            <strong>{{vm.latestAward.count}}</strong>
+                                            of
+                                            <strong>8</strong>
+                                            awards
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div> <!-- row -->
+
+                <div class="row">
+                    <a ui-sref="kh.drivingActivity">
+                        <div class="widget-box mileage driving-activity border hover-on center">
+                            <div class="title-arrow">DRIVING ACTIVITY</div>
+                            <div class="driving-activity">
+                                <div class="safety-score col-md-4 col-md-push-8 col-xs-6">
+                                    <label class="w-label">SAFETY SCORE</label>
+                                    <div id="doughnut"></div>
+                                </div> <!-- safety-score -->
+
+                                <div class="mileage col-md-4 col-md-pull-4 col-xs-6">
+                                    <label>MILEAGE</label>
+                                    <span class="amount" id="currMileage">{{ vm.data.currentMileage | number }}</span>
+                                </div>
+                                <div class="chart col-md-4 col-md-pull-4 col-xs-12" id="chart"></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div> <!-- .row-->
+
+            </div>
+        </div>
+    </div>
+</section>

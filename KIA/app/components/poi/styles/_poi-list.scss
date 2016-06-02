@@ -1,0 +1,106 @@
+// POI List for Mobile
+.poi-list-xs {
+    .poi-hr { border-top: 1px solid rgba(0, 0, 0, 0.1); margin: 0 1%; }
+    .poi-row { padding: 10px 10px 10px 10px; font-size: .9em; font-weight: bold; line-height: 1.2em; 
+        .poi-addr { font-size: .7em; font-weight: normal; background:url("../images/kh/img/remote/arrow-up.png") no-repeat right top; 
+            &.open {background:url("../images/kh/img/remote/arrow-down.png") no-repeat right top; }
+        }            
+        &.active { background:url("../images/kh/img/maintenance/bullet-1-inactive.png") no-repeat left center; 
+            .poi-addr { background: none; }
+        }
+        .poi-option { position:absolute;
+            input {display:none;
+                &:checked + label {
+                    background-image: url("../images/kh/img/maintenance/bullet-1-active.png");
+                }
+            }
+            label { 
+                background-image: url("../images/kh/img/maintenance/bullet-1-inactive.png");
+                width: 16px;
+                height: 15px;
+                display: inline-block;
+                margin: 3px;
+                margin-top: 14px;
+            }
+        }
+        .row-detail {
+            padding-left:30px;
+        }
+    } 
+    .poi-map { width:100%; font-size: .8em; padding: 10px 0;
+        .poi-phone { padding: 5% 0; 
+            .poi-delete{ text-align: right; }
+        }
+        .glyphicon { margin-right: 3%; font-size: 1.5em; }
+        .row { color: #C4172C; 
+            .poi-delete { text-align: right; }
+        }
+    }
+}
+
+// scroller
+.poi-list { 
+    
+    // collapsed row
+    .poi-row {
+        .poi-selected-container { display:inline-block; width: 25px; position:absolute;
+            // Select poi for deletion
+            .poi-selected { display: none; }
+            .poi-selected:checked + .poi-selected-label {
+                    background-image: url("../images/kh/img/maintenance/bullet-1-active.png");
+                }
+                .poi-selected-label {
+                    background-image: url("../images/kh/img/maintenance/bullet-1-inactive.png");
+                    width: 16px;
+                    height: 15px;
+                    display: inline-block;
+                    margin: 3px;
+                    margin-top: 14px;
+                }
+        }
+    }
+
+    // expanded row
+    .poi-more-info { background-color:#444; color:white;
+        p { padding-left:10px; padding-right:10px; word-wrap: break-word; }
+    }
+    .poi-name {        
+        padding:12px 10px; cursor:pointer; text-transform:uppercase;
+        word-break:break-word; 
+        &.managed { padding:12px 10px 12px 30px; }
+    }
+
+    .poi-buttons { padding:0 10px; text-align:right;
+        img { padding:5px; cursor:pointer; height:16px;}
+    }
+}
+
+
+table {
+    &.poi-list { text-align:left; min-width: 730px; max-width: 730px; width: 730px; table-layout: fixed; 
+        tr.poi-row {
+            td { color: #444444; height: 3em; padding:1em .5em; box-sizing: border-box; word-wrap: break-word; overflow:hidden; 
+                &.poi-state {word-wrap:normal; padding:0 0 0 .5em; }
+            }
+            &.altrow {
+                td { background-color: #F6F6F6; }
+            }
+        }
+        th { border-left:1px solid #ffffff; padding:1em; cursor: pointer; color: #ffffff; background-color: #444444; text-transform: uppercase; 
+            &:first-child { border:0; }
+        }
+    }
+}
+
+@media (max-width:844px){
+    .mobilemap_list{padding:23px;
+        .mobilemap_phone{padding-bottom:5px; }
+        .mobilemap_comment{padding:5px; }
+        .mobilemap_content{padding-top:5px;
+            .glyphicon.glyphicon-edit{float:left;color:$kia-red; }
+            .glyphicon.glyphicon-trash{float:right;color:$kia-red; }
+            .mobilemapmobilemap_edit{float:left;color:$kia-red;font-weight:bold;padding-top:5px; }
+            .mobilemapmobilemap_delete{float:right;color:$kia-red;font-weight:bold;padding-top:5px; }
+        }
+    }
+}

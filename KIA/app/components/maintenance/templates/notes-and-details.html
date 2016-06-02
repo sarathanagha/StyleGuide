@@ -1,0 +1,72 @@
+<!-- Notes AND Maint Details for Mobile -->
+<div class="notes_details">
+    <div class="header">DETAILS & NOTES <a class="close clickable" ng-click="$dismiss()"></a></div>
+    <div class="notes" ng-form name="noteDetails" ng-show="vm.showNotesDetails">
+        <div>
+            <label>Date Completed</label>
+            <div class="mobile-datepicker">
+                <input ng-if="!vm.currentMilestone.ignored"  name="insDt" placeholder="mm/dd/yyyy" datepicker-popup="{{'MM/dd/yyyy'}}" is-open="vm.showMobileDatepicker" ng-focus="vm.toggleMesssage=false" ng-click="vm.showMobileDatepicker = true" show-weeks="false" show-button-bar="false" ng-model="vm.currentMilestone.insDt" input-inside-validation iiv-message="Please select a date" iiv-show="{{vm.notesMobileSubmitted && noteDetails.insDt.$error.required && vm.toggleMesssage}}" required />
+
+                <input ng-if="vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" name="insDt" placeholder="mm/dd/yyyy" datepicker-popup="{{'MM/dd/yyyy'}}" is-open="vm.showMobileDatepicker" ng-click="vm.showMobileDatepicker = true" show-weeks="false" show-button-bar="false" ng-model="vm.currentMilestone.insDt" input-inside-validation iiv-message="Please select a date" iiv-show="{{vm.notesMobileSubmitted && noteDetails.insDt.$error.required}}"/>
+            </div>
+        </div>
+        <div>
+            <label>Service Location</label>
+            <div>
+                <input type="text" ng-if="!vm.currentMilestone.ignored"  name="plOfWk" ng-focus="vm.toggleMesssage1=false" maxlength="50" placeholder="e.g.City Auto" input-inside-validation iiv-message="Please enter place of work" iiv-show="{{vm.notesMobileSubmitted && noteDetails.plOfWk.$error.required && vm.toggleMesssage1}}" ng-model="vm.currentMilestone.plOfWk" required/>
+
+                <input type="text" ng-if="vm.currentMilestone.ignored"  ng-disabled="vm.currentMilestone.ignored" name="plOfWk" maxlength="50" placeholder="e.g.City Auto" input-inside-validation iiv-message="Please enter place of work" iiv-show="{{vm.notesMobileSubmitted && noteDetails.plOfWk.$error.required}}" ng-model="vm.currentMilestone.plOfWk"/>
+            </div>
+        </div>
+        <div>
+            <label>Mileage</label>
+            <div>
+                <input ng-model="vm.currentMilestone.insMilg" ng-disabled="vm.currentMilestone.ignored" ng-pattern="/^[0-9]+$/" type="text"
+                id="insMilg" name="insMilg" placeholder="e.g. 7,500" ng-focus="vm.toggleMesssage2=false" maxlength="6" input-inside-validation iiv-message="{{(vm.invalidMilage)?'Please enter numeric digits':'Please enter mileage'}}" iiv-show="{{vm.notesMobileSubmitted && noteDetails.insMilg.$error.required && vm.toggleMesssage2}}" required />
+                <!--  <div class="row" style="text-align:center;color:red;" ng-show="vm.submitted&&vm.error">Please Enter Numbers only</div>
+
+                <input ng-model="vm.currentMilestone.insMilg" ng-disabled="vm.currentMilestone.ignored" ng-pattern="/^[0-9]+$/" type="text" id="insMilg" name="insMilg" placeholder="Mileage" class="input" ng-focus="vm.toggleMesssage2=false" maxlength="6" input-inside-validation iiv-message="{{(vm.invalidMilage)?'Please enter numeric digits':'Please enter mileage'}}" iiv-show="{{vm.notesSubmitted && maintRecord.insMilg.$error.required && vm.toggleMesssage2}}" required/> -->
+
+                <!-- <input type="text" id="insMilg" name="insMilg" ng-pattern="/^[0-9]+$/" ng-if="vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" maxlength="6" placeholder="e.g. 7,500" ng-model="vm.currentMilestone.insMilg" input-inside-validation iiv-message="{{(vm.invalidMilage)?'Please enter numeric digits':'Please enter mileage'}}" iiv-show="{{vm.notesSubmitted && noteDetails.insMilg.$error.required && vm.toggleMesssage2}}"/> -->
+
+                 <!-- <input type="text" ng-if="!vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" name="insMilg" maxlength="6" placeholder="e.g. 7,500" ng-model="vm.currentMilestone.insMilg" input-inside-validation iiv-message="Please enter mileage" iiv-show="{{vm.notesMobileSubmitted && noteDetails.insMilg.$error.required}}" required />
+
+                <input type="text" ng-if="vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" ng-disabled="vm.currentMilestone.ignored" name="insMilg" maxlength="6" placeholder="e.g. 7,500" ng-model="vm.currentMilestone.insMilg" input-inside-validation iiv-message="Please enter mileage" iiv-show="{{vm.notesMobileSubmitted && noteDetails.insMilg.$error.required}}"/> -->
+   
+                
+                
+            </div>
+        </div>
+        <div class="notes-input-wrapper">
+            <label>Notes</label><textarea name="notes" maxlength="150" placeholder="e.g. Replace power steering fluid soon." ng-model="vm.currentMilestone.notes" auto-grow/> 
+        </div>
+    </div>
+    <div class="notes-button-container container-fluid" ng-show="vm.showNotesDetails">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="notes-button delete" ng-click="vm.delete()">DELETE</div>                
+            </div>
+            <div class="col-xs-6">
+                <div class="notes-button complete" ng-click="vm.notesMobileSubmitted = true; vm.complete(noteDetails)">
+                    <!-- <span ng-hide="vm.currentMilestone.completed || vm.currentMilestone.ignored">COMPLETE</span>
+                    <span ng-show="vm.currentMilestone.completed || vm.currentMilestone.ignored">SAVE</span> -->
+                    <span ng-hide="vm.currentMilestone.completed || vm.currentMilestone.ignored">COMPLETE</span>
+                                <span ng-show="vm.currentMilestone.completed">SAVE</span>
+                                <span ng-show="vm.currentMilestone.ignored">COMPLETE</span>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="detail">
+        <div class="replace" ng-if="vm.intervalDetail.replace.length >= 1">REPLACE
+            <ul>
+              <li ng-repeat="item in vm.intervalDetail.replace">{{item.name}}</li>
+            </ul>
+        </div>
+        <div class="inspect" ng-if="vm.intervalDetail.inspect.length >= 1">INSPECT
+            <ul>
+              <li ng-repeat="item in vm.intervalDetail.inspect">{{item.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

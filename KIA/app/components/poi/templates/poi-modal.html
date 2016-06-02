@@ -1,0 +1,162 @@
+<div class="poi-modal enabled">
+    <!-- <div id="modal-info-base" class="hide">
+        <div class="poi active selected" style="border-bottom:none">
+            <strong>A16</strong>
+            <div class="more-info">
+                <span>1302 18th Street<br> San Francisco, CA, 94107, United States</span>
+                <div class="info-controls actions">
+                    <span class="button add dark">ADD</span>
+                </div>
+            </div>
+        </div>
+        <img src="images/station/point-down.png" style="margin-top:50px; margin-left:30px" alt="X">
+    </div> -->
+    <div class="poi-modal-content">
+        <header>
+			<a class="close" ng-click="$dismiss()">x</a>
+			<div class="title" ng-show="vm.type == 'add'">ADD POI</div>
+			<div class="title" ng-show="vm.type == 'edit'">EDIT POI</div>
+		</header>
+		<!-- Poi search box -->
+		<div class="control-wrapper" ng-hide="vm.type == 'edit'" ng-class="{'hidden-xs':vm.showEditPanel}">
+			<div class="mypoi-search-img" ng-click="vm.searchPoi($event,true)"></div>
+			<input class=" mypoi-search text-box-shadow" type="text" maxlength="30" ng-model="vm.searchBox" ng-keyup="vm.searchPoi($event,null)" placeholder="Name and Location/City/Zipcode" autofocus>
+		</div>
+        <div class="left-panel" ng-show="vm.showPoiList || vm.type == 'edit'">
+            <div class="poi-interface-container">
+            	<!-- Poi list -->
+            	<!-- desktop iScroll -->
+            	
+                <div class="poi-container hidden-xs" ng-hide="vm.showEditPanel || vm.type == 'edit'">
+                    <div id="addPoiScroller">
+                        <div class="poi poi{{$index}}" ng-class="{selected:vm.currentIndex == $index}" ng-click="vm.setCurrentIndex($index)" ng-repeat="poi in vm.poiList">
+                            <!-- <sub>A</sub> -->
+                            <strong>{{poi.name}}</strong>
+                            <div class="more-info">
+                                <span>{{poi.street}} <br>{{poi.city}}
+                                <a href="" ng-if="poi.state">, </a>{{poi.state}} {{poi.zip}}</span>
+                                <div class="info-controls actions">
+                                    <span class="button add dark" ng-click="vm.openPoiEditor($index)">ADD</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" ng-if="vm.poiList.length === 0 " style="padding:150px 0px; color:#676666">
+                        No results found	
+                        </div>
+
+                    </div>
+				</div>
+				<!-- mobile regular scroll -->
+				<div class="poi-mobile-container visible-xs container-fluid" ng-show="!vm.showEditPanel && vm.type != 'edit'">
+					<div class="row">
+						<div class="col-xs-6 no-side-pad">
+							<div class="poi-view-option" ng-class="{active:!vm.showMapMobile}" ng-click="vm.showMapMobile = false;">LIST VIEW</div>
+						</div>
+						<div class="col-xs-6 no-side-pad">
+							<div class="poi-view-option" ng-class="{active:vm.showMapMobile}" ng-click="vm.openMap()">MAP VIEW</div>
+						</div>
+					</div>
+					<div class="row" ng-show="!vm.showMapMobile">
+						<ul class="col-xs-12">
+							<li ng-repeat="poi in vm.poiList">
+								<div class="row poi-mobile-info-container">
+									<div class="left-icon">
+										<img src="images/kh/img/my-pois/poi-black.png" alt="m" />
+									</div>
+									<div class="add-button">
+										<span ng-click="vm.openPoiEditor($index)">
+											<span>ADD</span>
+										</span>
+									</div>
+									<div class="info">
+										<strong>{{poi.name}}</strong>
+			                            <div class="more-info">
+			                                <span>{{poi.street}}<br>{{poi.city}} <a href="" ng-if="poi.state">,</a> {{poi.state}} {{poi.zip}}</span>
+			                            </div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					 <div class="error-message" ng-if="vm.poiList.length === 0 " style="padding:100px 0px; color:#676666">
+                        No results found	
+                        </div>
+				</div>
+				<!-- Poi form -->
+                <div class="poi-dialog" ng-init="vm.submitted = false" ng-form name="poiForm" ng-show="vm.showEditPanel || vm.type == 'edit'">
+					<!-- name input field -->
+					<input type="text" name="name" class="text-input text-box-shadow poi-name" maxlength="40" ng-model="vm.poiForm.poiNm" required alpha-numeric>
+					
+					<div class="validation" ng-show="vm.submitted && poiForm.name.$error.required">
+						POI name cannot be blank
+					</div>
+
+					 <div class="validation invisible" ng-class="{invisible:!vm.submitted || (!poiForm.name.$error.required && !poiForm.name.$error.alphaNumeric)}" ng-hide="vm.submitted && poiForm.name.$error.required">
+					Special characters not allowed</div> 
+
+					<!-- address -->
+                    <p>{{vm.poiForm.stetNm}}<br>{{vm.poiForm.addressSecondLine}}</p>
+
+					<!-- phone input field -->
+					<input type="text" name="phone" class="text-input text-box-shadow phone" maxlength="14" ng-model="vm.poiForm.tn " required phone ng-if="vm.addValidation">
+					<input type="text" name="phone" class="text-input text-box-shadow phone" maxlength="14" ng-model="vm.poiForm.tn" phone ng-if="!vm.addValidation">
+					<div class="validation invisible" ng-class="{invisible:!vm.submitted || (!poiForm.phone.$error.required && !poiForm.phone.$error.phone)}">Enter a valid 10 digit phone number.</div>
+
+
+					<!-- notes text area -->
+				<!--	<textarea rows="5" ng-model="vm.poiForm.userNote" name="notes" class="poi-description text-area" text-area-maxlength="80" alpha-numeric></textarea>-->
+                  	<span class="notes">NOTES ({{vm.countNotesCharacters(poiForm.notes.$viewValue)}})</span>
+                  <textarea rows="5" ng-model="vm.poiForm.userNote" name="notes" class="poi-description text-area" text-area-maxlength="80"></textarea>
+				
+					<div class="validation invisible" ng-class="{invisible:!vm.submitted || (poiForm.notes.$error.textAreaMaxlength || !poiForm.notes.$error.alphaNumeric)}">Notes contains illegal characters.</div>
+					<!-- action buttons -->
+					<div class="actions dialog-control">
+						<span class="active button" ng-click="vm.savePoi(poiForm)">DONE</span>
+						<span class="cancel button" ng-click="vm.closeModal()">CANCEL</span>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!-- Google Map -->
+        <div class="poi-modal-map test" ng-if="vm.showthis" ng-class="{collapsed:vm.showPoiList || vm.type == 'edit', 'hidden-xs':!vm.showMapMobile || vm.showEditPanel}">
+	        <ui-gmap-google-map   events="vm.map.mapEvents" control="vm.map.control" center="vm.map.center" zoom="vm.map.zoom" options="vm.map.options">
+	        	
+	        	<ui-gmap-markers control="vm.map.markerControl" models="vm.map.markers" coords="'self'" click="vm.setCurrentIndex(id, true)" icon="{url: 'images/poi/marker_red.png' }" events="vm.map.markerEvents" fit="true">
+
+			<ui-gmap-window show="vm.map.window.show && vm.map.window.show1" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.map.window.closeClick()">
+        			<div class="uvo-ib">
+		        		<div class="uvo-ib-content">
+			       			<div class="uvo-ib-title">{{vm.map.window.model.name}}</div>
+					        <div style="color:#cccccc">{{vm.map.window.model.street}}</div>
+		 			        <div style="color:#cccccc">{{vm.map.window.model.city}}
+		 			        {{vm.map.window.model.state}} {{vm.map.window.model.zip}}</div>
+		 			    	<!--<div class="add-button button" ng-click="$parent.vm.openPoiEditor($parent.vm.map.window.model.id)"><span class="plus">+</span> <span>ADD</span></div> -->
+		 			    </div>
+						<div class="uvo-ib-point-down">
+							<img src="images/kh/img/station/point-down.png" alt="X" />
+						</div>
+					</div>
+	        	</ui-gmap-window>
+
+	        	<ui-gmap-window show="vm.map.window.show && vm.map.window.show2" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.map.window.closeClick()">
+        			<div class="uvo-ib">
+		        		<div class="uvo-ib-content">
+			       			<div class="uvo-ib-title">{{vm.map.window.model.name}}</div>
+					        <div style="color:#cccccc">{{vm.map.window.model.street}}</div>
+		 			        <div style="color:#cccccc">{{vm.map.window.model.city}} {{vm.map.window.model.state}} {{vm.map.window.model.zip}}</div>
+		 			    	 <div class="add-button button" ng-click="$parent.vm.openPoiEditor($parent.vm.map.window.model.id)"><span class="plus">+</span> <span>ADD</span></div> 
+		 			    </div>
+						<div class="uvo-ib-point-down">
+							<img src="images/kh/img/station/point-down.png" alt="X" />
+						</div>
+					</div>
+	        	</ui-gmap-window>
+
+
+	        	</ui-gmap-markers>
+			</ui-gmap-google-map>
+		</div>
+		<div class="clearfix"></div>
+    </div>
+</div> <!-- modal my-poi enabled -->

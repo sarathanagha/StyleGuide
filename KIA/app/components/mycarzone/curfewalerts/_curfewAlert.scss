@@ -1,0 +1,445 @@
+&#curfew, &#curfewgen1plus{ padding-left:20px!important;
+
+.arrow{
+float: right;
+    top: 20px;
+    left: -5px;
+    background: url("../images/kh/img/my-car-zone/popover-arrow.png");
+    width: 5px;
+    height: 8px;
+    position: absolute;
+  }  
+        .page-header{
+         margin-bottom:0px; 
+         padding-left: 0px;
+           .mycarzone-title{
+            padding-top: 5px;
+            padding-bottom: 20px;
+            font-family: designk-bold;
+            color: #333333;
+          }        
+
+            .carzone-menu .mcz ul li.active a{
+                        color:#2f2f2f!important;
+                        background-color:#E8E8E8!important;
+                         }
+            
+            .carzone-alerts{
+            display:block;
+            //padding-top:20px!important;
+                .alert-msj{
+                display:block;
+                float:left;
+                color:#444444;
+                padding:5px!important;
+                } 
+                .alert-menu{
+                  padding-left:0px!important;
+                  padding-right:0px!important;
+                display:block !important;
+                float:right;
+                    .manage-buttons {
+                   float:right;
+                    right: 0;
+                    }
+                        
+                    .delete-buttons {
+                      width: 440px;
+                      position: absolute;
+                      left: -460px;
+                      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                      opacity: 0;
+                      display: table;
+                      transition-property:none!important;
+                    } 
+                    .manage-buttons {
+                      left: 0;
+                      display: table;
+                    }
+                    .actions{
+                   // padding-left:0px!important;
+                            padding-right:0px!important;
+                            width:100%!important;
+                            margin-top: 5px;
+                            //margin-right: 83px;
+                           .button{
+                            border:1px solid #444444;
+                            cursor:pointer;
+                            color:#444444;
+                            font-size: 1em;
+                            position:relative;
+                            padding:7px 10px;
+                            display:inline-block;
+                            text-align:center;
+                            height:35px;
+                            margin-left:12px;
+                           }
+                           
+                           .dropdown{
+                              min-width: 135px;
+                           }
+                           .delete-selected{
+                            min-width:137px;
+                            z-index: 999!important;
+                           }
+                           .managebutton{
+                              min-width: 135px;
+                           }
+                           .donebutton{
+                            min-width:113px;
+                           }
+                            .button.active{
+                            color: white;
+                            background-color:black;
+                        }
+                            .button.inactive {
+                            border: 1px solid #CCCCCC;
+                            color: #CCCCCC;
+                            text-shadow: none;
+                            }
+                           
+                    } 
+                    .button:last-child {
+                    margin-right:0;
+                    }
+                }
+                .alert-menu.hide{
+                        .delete-buttons {
+                          transition-property: all;
+                          transition-duration: 1s;
+                          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+                          opacity: 1;
+                          left: 0;
+                          display: table;
+                        }
+                        .manage-buttons {
+                          transition-property:none!important;
+                          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                          opacity: 0;
+                          left: -310px;
+                          display: table;
+                        }
+                }
+                .dropdown-sort-menu{
+                position: absolute;
+                top: 33px;
+                left: 119px;
+                background-color: white;
+                z-index: 999;
+                width:31.7%;
+                border: 1px solid #444;
+                text-align: left;
+                box-sizing: border-box;
+                float: right;
+
+                  li{
+                 cursor: pointer!important;
+                 padding: 5px 5px 5px 0px;
+                  }
+
+                }
+                .dropdown:after{
+                background: url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+                content: "";
+                float: right;
+                height: 9px;
+                margin-top: 6px;
+                width: 11px;
+                }
+            }
+            .no-alerts{
+            margin: 40px 0 0px 0px;
+            text-align: left;
+            padding: 0px;
+            }
+        }
+        .widget-box{
+         color:#676666;  
+         border:none;
+         margin:0px;
+
+            .item.curfew{
+            display: block;
+            border: 1px solid #E1E1E1;
+            margin: 0px 0px 10px 0px;
+            padding: 0px;
+                .item-wrapper{
+                display: table;
+                width: 100%;
+                min-height: 100px;
+                height: auto;
+                padding: 10px 0;
+                position: relative;
+                vertical-align: middle;
+                    .content{
+                    display: table-cell;
+                    vertical-align: middle;
+                        @media(max-width:767px){padding-left: 20px;}
+                        .indicator sup{
+                        display: inline-block;
+                        vertical-align:top;
+                        }
+                       .indicator sub{
+                        top: 18px;
+                        font-size: 12px;
+                        font-family: designk-bold;
+                        color: #2F2F2F;
+                        margin-left: 5px;
+                        position: absolute;
+                       
+                        }
+                    }
+                
+               .info_link{
+                float:left;
+                line-height:20px;  
+                .info{
+                      font-family: designk-bold!important;
+                      color:#444!important;
+                }
+                    .link{
+                    color:#C4C4C4;
+                    text-align:left;
+                    }
+               }
+               .option{
+                border-right: 1px solid #E1E1E1; 
+                // @media (max-width:$screen-xs-max) {border-right:none;}
+                display: table-cell;
+                height:80px;
+                text-align:center;
+                
+                    span{
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    @media (max-width:320px){
+                        font-size: 10px;
+                     }
+                    }
+               }
+               .select{
+                padding-top:30px;
+               }
+              .option.select.selected:before {
+              background: url("../images/kh/img/my-car-zone/checkbox-select.png") no-repeat center 40%;
+              }
+              .option.select:before {
+              background: url("../images/kh/img/my-car-zone/checkbox.png") no-repeat center 40%;
+              content: "";
+              display: inline-block;
+              height: 12px;
+              margin-right: 10px;
+              width: 12px;
+              }
+              .option.map{
+                background: url("../images/kh/img/my-car-zone/poi-icon.png") no-repeat center 35%;
+                cursor: pointer;
+                padding-top: 58px;
+                border-right: 1px solid #E1E1E1;
+                }
+              .option.map.active {
+              background: url("../images/kh/img/my-car-zone/poi-icon-rollover.png") no-repeat center 40% !important;
+              }
+
+              .option.error {
+              background: url("../images/kh/img/icons/icons-888888/alert.png") no-repeat center 40%;
+              padding-top: 45px;
+              padding-left: 0px;
+              padding-right: 0px;
+              }
+             
+
+                .indicator{
+                font-size: 2.1em;
+                font-family: designk-bold;
+                float: left;
+                display: table-cell;
+                text-align:center;
+                    strong{
+                    color:#C4172C;
+                    font-size: 1.2em !important;            
+                    font-family:designk-bold;
+                    }
+                    sub{
+                    font-size: 0.5em;
+                    font-family: designk-bold;
+                    color: #2F2F2F;
+                    margin-left: 5px;
+                    }
+                }
+              
+               
+             }
+         }
+        }
+
+    .load-more{
+    display:block;
+    text-align:center;
+        .button{
+        border:1px solid #444444;
+        cursor:pointer;
+        color:#444444;
+        font-size:1em;
+        position:relative;
+        padding:5px 10px;
+        display:inline-block;
+        margin:5px;
+        min-width:110px;
+        text-align:center;
+        }
+        a{
+        text-transform: uppercase;
+        border: 1px solid #888888!important;
+        color: #888888!important;
+        }
+    }
+   .angular-google-map-container{
+  position: relative;
+  overflow: hidden;
+  /* transform: translateZ(0px); */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .markerlabel {
+    background-color:transparent!important;
+}
+
+}
+
+}
+
+@media (max-width: 767px){
+  #curfew, #curfewgen1plus{padding-left:8px!important;margin-top: -14px; padding-right: 0px;}
+#curfew .actions .dropdown,#curfew .actions .managebutton, #curfewgen1plus .actions .dropdown,#curfew .actions .managebutton {
+padding: 10px 10px;
+height: 35px;
+margin-left:16px;
+width:44%!important;
+}
+#curfew .page-header, #curfewgen1plus .page-header{
+padding-right:5px!important;
+  }
+#curfew .mycarzone-title, #curfewgen1plus .mycarzone-title{display:none!important;}
+#curfew .option.select:before, #curfewgen1plus .option.select:before {
+  position: absolute;
+  top: 16px;
+  left: 47%;
+}
+#curfew .option.select.selected:before, #curfewgen1plus .option.select.selected:before {
+  position: absolute;
+  top: 16px;
+  left: 47%;
+}
+#curfewgen1plus .widget-box .item.curfew .item-wrapper .select{
+  padding-top: 40px;
+}
+#curfew .option.map.active, #curfewgen1plus .option.map.active {
+  background: url("../images/kh/img/my-car-zone/poi-icon-rollover.png") no-repeat center 40% !important;
+  border-right: 1px solid #E1E1E1;
+}
+#curfew .mcz-title, #curfewgen1plus .mcz-title{display:none!important;}
+#curfew .page-header .carzone-alerts .dropdown-sort-menu, #curfewgen1plus .page-header .carzone-alerts .dropdown-sort-menu{
+  position: absolute;
+  top: 33px;
+  left: 12px;
+  background-color: white;
+  z-index: 999;
+  width: 44%;
+  border: 1px solid #444;
+  text-align: left;
+  box-sizing: border-box;
+  float: right;
+}
+#curfew .page-header .carzone-alerts .dropdown-sort-menu li, #curfewgen1plus .page-header .carzone-alerts .dropdown-sort-menu li{
+cursor:pointer!important;
+padding: 5px 5px 5px 0px;
+}
+
+#curfew .widget-box .item.curfew .item-wrapper .indicator, #curfewgen1plus .widget-box .item.curfew .item-wrapper .indicator{
+  text-align:left;
+  margin-top: -22px;
+  margin-bottom:10px;
+}
+#curfew .widget-box .item.curfew .item-wrapper .indicator strong, #curfewgen1plus .widget-box .item.curfew .item-wrapper .indicator strong{
+ font-size:20px!important; margin-left:-10px;
+}  
+#curfew .widget-box .item.curfew .item-wrapper .indicator strong sub, #curfewgen1plus .widget-box .item.curfew .item-wrapper .indicator strong sub{
+top:22px!important;
+}
+
+
+#curfew .widget-box .item.curfew .item-wrapper .info_link, #curfewgen1plus .widget-box .item.curfew .item-wrapper .info_link{
+  margin: 0px 0px 10px 0px;
+  line-height: 22px;
+ }
+#curfew .page-header .carzone-alerts .alert-msj, #curfewgen1plus .page-header .carzone-alerts .alert-msj{
+  padding:8px!important;
+}
+#curfew .page-header .carzone-alerts .alert-menu .actions .delete-selected, #curfewgen1plus .page-header .carzone-alerts .alert-menu .actions .delete-selected{
+  min-width:26%!important;
+   //min-width:auto!important;
+   margin:0px!important;
+   padding: 10px 0px !important;
+   z-index: 999!important;
+} 
+#curfew .page-header .carzone-alerts .alert-menu .actions .delete-all, #curfewgen1plus .page-header .carzone-alerts .alert-menu .actions .delete-all{
+  min-width:26%!important;
+  //min-width:auto!important;
+  margin:0px 5px 0px 5px !important;
+} 
+#curfew .page-header .carzone-alerts .alert-menu .actions .donebutton, #curfewgen1plus .page-header .carzone-alerts .alert-menu .actions .donebutton{
+  min-width:26%!important;
+   //min-width:auto!important;
+   margin:0px!important;
+   padding-left:0px!important;
+   padding-right:0px!important;
+} 
+#curfew .page-header .carzone-alerts .alert-menu .delete-buttons, #curfewgen1plus .page-header .carzone-alerts .alert-menu .delete-buttons{
+  display:inline!important;
+  width: 100%;
+  left:6px!important;
+} 
+#curfew .mcz .carzone-menu  li.active a,#curfewgen1plus .mcz .carzone-menu  li.active a{
+color: #2f2f2f!important;
+background-color:#E8E8E8!important;
+ }
+ 
+}
+
+
+
+  /* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  #curfew .widget-box .item.curfew .item-wrapper .info_link, #curfewgen1plus .widget-box .item.curfew .item-wrapper .info_link{
+    margin: 0px 0px 10px 0px;
+    line-height: 18px;
+    font-size:12px;
+}
+
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+
+  #curfew .widget-box .item.curfew .item-wrapper .info_link, #curfewgen1plus .widget-box .item.curfew .item-wrapper .info_link{
+    margin: 0px 0px 10px 0px;
+    line-height: 18px;
+    font-size:13px;
+}
+
+}

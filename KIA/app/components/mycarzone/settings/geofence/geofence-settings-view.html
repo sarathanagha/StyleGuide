@@ -1,0 +1,14 @@
+<section class="mcz mcz-settings geofence-settings" ng-init="vm.enabled = true" >
+	<div class="settings-status-message hidden-xs" ng-show="vm.hasError&&!vm.loading">{{vm.errorMessage}}</div>
+	<div class="mcz-title hidden-xs">MY CARZONE ALERTS</div>
+	<div class="mcz-menu" ng-include="'views/components/mycarzone/mcz-navbar.html'"></div>
+	<div submit-button-pending-list class="submit-button-pending-list" ng-include="'views/components/mycarzone/settings/geofence/includes/submit-button-pending-list.html'"></div>
+	<div class="top-controls" ng-include="'views/components/mycarzone/settings/geofence/includes/top-controls.html'"></div>
+	<div class="config-list" ng-include="'views/components/mycarzone/settings/geofence/includes/config-list.html'"></div>
+	<div class="add-new-wrapper" ng-show="vm.isOn&&vm.Intervalshow">
+		<div class="add-new noselect"  ng-hide="vm.loading" ng-click="vm.addgeofence()">
+			<span ng-if="vm.showOnEntry && vm.entry<5">Add New Entry Geofence</span>
+			<span ng-if="!vm.showOnEntry && vm.out<1">Add New Exit Geofence</span>
+		</div>
+	</div>
+</section>

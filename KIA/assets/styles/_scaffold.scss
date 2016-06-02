@@ -1,0 +1,1051 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    color:#545454;
+    font:inherit;
+    line-height: 1;
+    font-size:14px;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    background: url("../images/body-background.png");
+    font: 14px/18px Arial, Helvetica, Sans-Serif;
+}
+
+/* Type */
+
+h1, h2, h3, h4, h5, h6, #header ul, #rail ul a, ul#switcher, ul#page-tabs, ul#sub-tabs, table th, submit, legend, #odometer { color:#000;font-family: 'TitilliumText22LRegular'; }
+
+/* Globals */
+
+/*a { text-decoration: none !important; color: #2881c5; font-family: "TitilliumText22LRegular"}*/
+
+form {}
+form legend {font-size: 18px; color: #000; margin:0;padding-bottom: 20px; display: block; font-family:"TitilliumText22LBold"}
+form label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; color: #777; }
+form label.inline { display: inline-block; margin-left: 10px }
+input[type='text'],form input[type='password'],form textarea  { display:inline-block;*display:inline;*zoom:1;border-radius: 3px; background: #FFF; border: 1px solid #c4c4c4; box-shadow: inset 2px 2px 2px rgba(0,0,0,.1); padding: 5px 10px; font-size: 16px; }
+input.butDefault { cursor:pointer;background: #444; border: none; min-width:100px;padding: 10px 20px; color: #FFF; font-size: 18px; border-radius: 4px; border-bottom: 1px solid #111; border-top: 1px solid #666;font-family:TitilliumText22LRegular;-webkit-appearance:none }
+input.butDefault:hover { background: #777; }
+input.butDefault2{padding:10px 32px}
+#popWrap div.popCont .popBtn input.butDefault3{float:left;margin-left:0;padding:10px 32px}
+input.signupLink{background: #428dcd;padding: 10px 35px;*padding: 10px 20px;font-size: 16px;border-bottom: 1px solid #1067c0; border-top: 1px solid #b8def6;}
+input.signupLink:hover { background: #66baef; }
+.curfewTitle input.butDefault {width:120px}
+.curfewTitle input.deletePoiBtn {width:160px;margin-right:130px}
+
+input.butLightgray {
+	background: #868686;
+	border: none;
+	min-width:160px;
+	padding: 10px 20px;
+	color: #FFF;
+	font-size: 18px;
+	border-radius: 3px;
+	border-bottom: 1px solid #111;
+	border-top: 1px solid #d7d7d7;
+	/*font-family:TitilliumText22LRegular;*/
+	font-family: 'Titillium Web', sans-serif;
+}
+
+input.butLightgray:hover {
+	background-color: #777;
+}
+input.btnSmall{padding:2px 20px;}
+input.btnSmall2{
+    padding:7px 12px 7px 35px;
+    font-size:14px;
+    background-color:#868686;
+    background-image:url("../images/icon_key.png");
+    background-repeat:no-repeat;
+    background-position:13px -311px;
+}
+input.btnSmall2:hover{
+    background:#777 url("../images/icon_key.png") no-repeat 13px -311px;
+}
+input.btnSmall2.butLightgray.iconkey{
+    padding:0px 0 0 14px;
+    width:200px;
+    height:32px;
+    background-position:12px -313px;
+}
+input.btnSmall4{padding:7px 22px 7px 25px;font-size:14px;background:#868686}
+input.btnSmall3{min-width:100px;padding:4px 20px;font-size:14px;}
+input.butBack {cursor:pointer;border: none;padding: 12px 16px; color: #0d4dbb; font-size: 16px;font-family:TitilliumText22LRegular;background:none }
+input.butOrange{
+	/*background:#de8c3d url("../images/icon_key.png") no-repeat 13px -311px;*/
+	background-color:#de8c3d;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #a8531b;
+	font-family: 'Titillium Web', sans-serif;
+}
+input.butOrange:hover{
+	/*background:#efc69f url("../images/icon_key.png") no-repeat 13px -311px;*/
+	background-color:#efc69f;
+}
+input.butOrange.iconkey{
+    /*background:#de8c3d url("../images/icon_key.png") no-repeat 13px -311px;*/
+    padding:0px 0 0 22px;
+    width:189px;
+    height:32px;
+    background-position:12px -313px;
+}
+
+input.calendar{width:31px;height:31px;border:none;cursor:pointer;padding:8px;background:url("../images/icon_calendar.png") no-repeat 0 0}
+input.butGreen{border-top:1px solid #e0e8bf;border-bottom:1px solid #7b961f;background:#a2b83d}
+
+//select{padding:5px;font-size:16px;height:33px;color:#4b4b4b;font-family:'TitilliumText22LLight' !important}
+
+h1, h2, h3, h4, h5, h6 { margin-bottom: 20px; }
+
+h1 { font-size: 28px; }
+h2 { font-size: 26px; }
+h3 { font-size: 24px; }
+h4 { font-size: 22px; }
+h5 { font-size: 20px; }
+h6 { font-size: 18px; }
+
+hr { border: none; border-top: 1px dashed #DDD; margin: 40px 0; }
+
+.marT0{margin-top:0 !important}
+.marT10{margin-top:10px}
+.marT20{margin-top:20px}
+.marT30{margin-top:30px}
+.marT50{margin-top:50px !important}
+.marB30{margin-bottom:30px}
+.marB50{margin-bottom:50px}
+.marL190{margin-left:194px}
+
+.t_left{text-align:left !important}
+.f_left{float:left}
+
+/* common */
+.btn{display:inline-block;overflow:hidden;height:45px;padding:0 60px;color:#fff;font-size:18px;font-family:TitilliumText22LBold;text-align:center;line-height:45px;border-radius:3px;border:none;border-top:1px solid #c4c4c4;border-bottom:1px solid #1a1a1a;background:#4b4b4b}
+
+
+/* Structure */
+div#header99 { background: #555; padding: 0; width: 100%; height: 90px; position: relative; }
+div#header99 ul { text-align: right; position: absolute; z-index: 900; top: 60px; right: 0; }
+div#header99 ul li { display: inline; margin-left:35px; text-transform: uppercase; }
+div#header ul li a{font-size: 18px;}
+div#header a { color: #FFF;font-family:"Titillium Web", Verdana, sans-serif; }
+div#header a#logo { position: absolute; }
+div#header a.btnLogin{display:inline-block;*display:inline;position:absolute;top:15px;right:2px;padding:0 8px;line-height:21px;color:#a8a8a8;font-size:14px;font-family:TitilliumText22LMedium;text-transform: uppercase;border-radius: 3px;background:#4b4b4b}
+
+/* div.switcherArea{position:relative;z-index:100} */
+ul#switcher {  margin-top: 40px; padding-bottom: 0px; background: url("../images/switcher-background.png") bottom repeat-x; }
+ul#switcher li { display: inline-block;*display:inline;*zoom:1; margin: 0 20px; text-transform: uppercase; padding-bottom:20px;height:38px }
+ul#switcher li a { color: #757575;font-size: 18px;font-family:TitilliumText22LMedium; }
+ul#switcher li.selected { background: url("../images/switcher-indicator.png") center 23px no-repeat; }
+ul#switcher li.selected a { color: #000; }
+div.switcherArea .notifi{position:absolute;bottom:15px;right:0;display:inline-block; cursor:pointer}
+div.switcherArea .notifi .num{float:left;padding:0 5px 1px 5px;border:2px solid #810201;border-top-left-radius:3px;border-bottom-left-radius:3px;color:#fff;line-height:18px;text-shadow:0 1px 1px #9d0202;font-family:TitilliumText22LMedium;background:#cd0303}
+div.switcherArea .notifi a{display:inline-block;float:left;padding:0 28px 0 10px;border-top-right-radius:3px;border-bottom-right-radius:3px;color:#000;line-height:23px;font-family:TitilliumText22LMedium;background:#ababab url("../images/icon_arrow2.png") no-repeat 110px 4px}
+
+div.switcherArea .notifi .notifyLayer{position:absolute;top:23px;right:-2px;width:306px; z-index:10; display:none;}
+div.switcherArea .notifi .notifyLayer ul.notiList{padding:24px 22px 0 22px;background:url("../images/bg_mycarInfo2.png") no-repeat}
+div.switcherArea .notifi .notifyLayer ul.notiList li{position:relative;min-height:28px;margin-top:7px;padding:12px 0 0 52px;background:url("../images/bg_mycarLine.png") repeat-x}
+div.switcherArea .notifi .notifyLayer ul.notiList li:first-child{margin:0;background:none}
+div.switcherArea .notifi .notifyLayer ul.notiList li a{padding:0;color:#376095;font-size:18px;font-family:'TitilliumText22LBold';background:none}
+div.switcherArea .notifi .notifyLayer ul.notiList li .num2{display:inline-block;*display:inline;*zoom:1;position:absolute;top:10px;left:0;width:31px;height:31px;font:0/0 Arial;background:url("../images/red_circle.png") no-repeat 0 0px}
+div.switcherArea .notifi .notifyLayer .btm{height:16px;background:url("../images/bg_mycarInfo2.png") no-repeat 0 100%}
+
+/*New Add on to move NOTIFICATIONS inside the banner*/
+div#car-header .notifi{position:absolute;top:15px;right:20px;display:inline-block; cursor:pointer}
+div#car-header .notifi .num{float:left;padding:0 5px 1px 5px;border:2px solid #810201;border-top-left-radius:3px;border-bottom-left-radius:3px;color:#fff;line-height:18px;text-shadow:0 1px 1px #9d0202;font-family:TitilliumText22LMedium;background:#cd0303}
+div#car-header .notifi a{display:inline-block;float:left;padding:0 28px 0 10px;border-top-right-radius:3px;border-bottom-right-radius:3px;color:#fff;line-height:23px;font-family:TitilliumText22LMedium;background:#2a2a2a url("../images/icon_arrow3.png") no-repeat 110px 4px}
+
+div#car-header .notifi .notifyLayer{position:absolute;top:23px;right:-2px;width:306px; z-index:10; display:none;}
+div#car-header .notifi .notifyLayer ul.notiList{padding:24px 22px 0 22px;background:url("../images/bg_mycarInfo2.png") no-repeat}
+div#car-header .notifi .notifyLayer ul.notiList li{position:relative;min-height:28px;margin-top:7px;padding:12px 0 0 52px;background:url("../images/bg_mycarLine.png") repeat-x}
+div#car-header .notifi .notifyLayer ul.notiList li:first-child{margin:0;background:none}
+div#car-header .notifi .notifyLayer ul.notiList li a{padding:0;color:#376095;font-size:18px;font-family:'TitilliumText22LBold';background:none}
+div#car-header .notifi .notifyLayer ul.notiList li .num2{display:inline-block;*display:inline;*zoom:1;position:absolute;top:10px;left:0;width:31px;height:31px;color:white;text-align:center;line-height:31px;background:url("../images/red_circle.png") no-repeat 0 0px}
+div#car-header .notifi .notifyLayer ul.notiList li .num2.green{background:url("../images/green_circle.png") no-repeat 0 0px}
+div#car-header .notifi .notifyLayer .btm{height:16px;background:url("../images/bg_mycarInfo2.png") no-repeat 0 100%}
+/*End New Add on*/
+
+div#container {position:relative;background: #EBEBEB; overflow:hidden}
+/* div#footer{margin-top:-38px;border-bottom:15px solid #323333;z-index:100}
+div#footer .copyright{margin:0;padding:0 0 5px 18px;font-size:12px;} */
+
+div#car-header { background: #333 url("../images/car-background.png") top center; height: 160px;  }
+div#car-header img#selected-car { position: absolute;top:0;left:0; }
+div#car-header div#odometer {position: absolute; right: 17px; height: 63px; width:300px; top: 48px;  overflow: hidden;*zoom:1}
+div#car-header div#odometer span { display: inline-block;*display:inline;*zoom:1;float:left;margin-right:3px;width:47px;text-align:center;font-size: 42px; font-weight: bold; color: #FFF; line-height: 64px;text-shadow: 0 3px 2px rgba(0,0,0,.4); position: relative; opacity: 1; -webkit-animation-timing-function: ease-in; }
+
+div#car-header .myVehiInfo{position:absolute;top:0;left:0;padding:53px 0 0 330px}
+div#car-header .myVehiInfo .info{position:relative}
+div#car-header .myVehiInfo .info .myVehiLayer{position:absolute;top:30px;right:-10px;width:306px; display:none; z-index:10}
+div#car-header .myVehiInfo .info .myVehiLayer ul.carList{
+	padding:8px 22px 0 22px;
+	background-image:url("../images/bg_mycarInfo2.png");
+	background-repeat:no-repeat;
+	zoom:1;
+	z-index:100;
+}
+div#car-header .myVehiInfo .info .myVehiLayer ul.carList li{position:relative;min-height:38px;margin-top:12px;padding:32px 0 0 60px;color:#376095;font-size:18px;font-family:'TitilliumText22LBold';background:url("../images/bg_mycarLine.png") repeat-x}
+div#car-header .myVehiInfo .info .myVehiLayer ul.carList li:first-child{margin-top:13px;background:none}
+div#car-header .myVehiInfo .info .myVehiLayer ul.carList li .img{display:inline-block;*display:inline;*zoom:1;position:absolute;top:18px;left:0;font:0/0 Arial;border:2px solid #cecece;box-shadow:0 1px 2px 0 #e2e2e2}
+div#car-header .myVehiInfo .info .myVehiLayer .btm{height:16px;background:url("../images/bg_mycarInfo2.png") no-repeat 0 100%}
+div#car-header .myVehiInfo .info strong{display:inline-block;*display:inline;*zoom:1;height:32px;padding:5px 44px 0 0;color:#fff;font-size:24px;font-family:'TitilliumText22LBold';line-height:1em;cursor:pointer;background:url("../images/bg_carVehi.gif") no-repeat 100% 0}
+div#car-header .myVehiInfo .info .vehiName{color:#a4a5a5;font-size:16px;font-family:TitilliumText22LRegular}
+div#car-header .myVehiInfo .info .vehiName span{display:inline-block;*display:inline;*zoom:1;padding-right:30px;color:#fff;font-size:16px;}
+
+div#car-header div#odometer span#one {
+     -webkit-animation: scroll .8s 0s linear;
+     -moz-animation:    scroll .8s 0s linear;
+     -ms-animation:     scroll .8s 0s linear;
+}
+
+div#car-header div#odometer span#two {
+     -webkit-animation: scroll .5s 0s linear;
+     -moz-animation:    scroll .5s 0s linear;
+     -ms-animation:     scroll .5s 0s linear;
+}
+
+div#car-header div#odometer span#three {
+     -webkit-animation: scroll .4s 0s linear;
+     -moz-animation:    scroll .4s 0s linear;
+     -ms-animation:     scroll .4s 0s linear;
+}
+
+div#car-header div#odometer span#four {
+     -webkit-animation: scroll .9s 0s linear;
+     -moz-animation:    scroll .9s 0s linear;
+     -ms-animation:     scroll .9s 0s linear;
+}
+
+div#car-header div#odometer span#five {
+     -webkit-animation: scroll .6s 0s linear;
+     -moz-animation:    scroll .6s 0s linear;
+     -ms-animation:     scroll .6s 0s linear;
+}
+
+div#car-header div#odometer span#six {
+     -webkit-animation: scroll .4s 0s linear;
+     -moz-animation:    scroll .4s 0s linear;
+     -ms-animation:     scroll .4s 0s linear;
+}
+
+@-webkit-keyframes scroll {
+    0%   { top: -60px; opacity: 1 }
+    50% { top: 5px; }
+    100% { top: 0; opacity: 1 }
+}
+
+div#rail { float: left; width: 200px;padding-bottom:80px }
+div#rail ul li { margin-bottom: 2px;  }
+div#rail ul li a { color: #666; padding: 20px 10px 20px 40px; display: block; font-size: 16px;background: #F5F5F5 url("../images/icons.png") no-repeat; }
+div#rail ul li.selected a { color: #000; background-color: #FFF; }
+
+div#rail a.vehicleInformation { background-position: 0 7px; }
+div#rail a.maintenance { background-position: 0 -45px; }
+div#rail a.uvoNotifications { background-position: 0 -95px; }
+div#rail a.appointments { background-position: 0 -145px; }
+div#rail a.awards { background-position: 0 -196px; }
+
+div#rail a.uvoNotifications.notifExist { background: none; padding: 13px 10px 14px 8px;}
+div#rail a.uvoNotifications.notifExist span {background: url("../images/green_circle.png") no-repeat 0 0px;display: inline-block;width: 31px;height: 31px;color: white;text-align: center;line-height: 31px;margin-right: 2px;}
+
+div#rail li a:hover { color: #000; background-color: #F9F9F9; }
+
+div#rail a.selectedVehiInfo { color: #000; background-color: #F9F9F9; background-position: 0 -253px;}
+div#rail a.selectedMaintenance { color: #000; background-color: #F9F9F9; background-position: 0 -305px;}
+div#rail a.selectedNotifications { color: #000; background-color: #F9F9F9; background-position: 0 -355px;}
+div#rail a.selectedAppointments { color: #000; background-color: #F9F9F9; background-position: 0 -405px;}
+div#rail a.selectedAwards { color: #000; background-color: #F9F9F9; background-position: 0 -456px;}
+
+div#rail a.vehicleInformation:hover { background-position: 0 -253px; }
+div#rail a.maintenance:hover { background-position: 0 -305px; }
+div#rail a.uvoNotifications:hover { background-position: 0 -355px; }
+div#rail a.appointments:hover { background-position: 0 -405px; }
+div#rail a.awards:hover { background-position: 0 -456px; }
+
+
+
+div#rail .dealerNum{height:41px;margin:0;padding:12px 0 0 40px;color:#838383;font-size:12px;font-weight:bold;background:url("../images/icons.png") no-repeat 0 -512px;}
+div#rail .dealerNum strong{display:block;color:#666;font-size:14px;font-family: 'TitilliumText22LBold';}
+div#rail .leftLink a{display:block;height:32px;padding:13px 0 0 40px;font-size:12px;background:url("../images/icons.png") no-repeat 0 -562px;}
+div#rail .leftLink a.map{border-top:2px solid #ddd; background:url("../images/icons.png") no-repeat 0 -600px;}
+
+div#content { margin-left: 200px; padding:20px 20px 15px 20px; background: #FFF; min-height: 489px; }
+div#contentHorizontal { margin-left: 200px; padding:20px 20px 15px 20px; background: #FFF; min-height: 489px; }
+div#contentVertical { margin-left: 200px; padding:20px 20px 15px 20px; background: #FFF; min-height: 489px; display:none}
+
+ul#page-tabs, #sub-tabs {  text-align: center; border-bottom: 2px solid #CCC; }
+ul#page-tabs li, #sub-tabs li { display: inline-block;*display:inline;*zoom:1; margin: 0 15px; padding-bottom: 10px; }
+ul#page-tabs li a, #sub-tabs li a { color: #717171;font-size: 16px; }
+ul#page-tabs li a:hover, #sub-tabs li a:hover { text-decoration: none; color: #000; }
+ul#page-tabs li.selected {  background: url("../images/pageTab-selected.png") bottom center no-repeat; font-family: "Titillium Web", Verdana, sans-serif; font-size: 16px;height:20px}
+ul#page-tabs li.selected a, ul#sub-tabs li.selected a { color: #000; }
+
+ul#sub-tabs { text-align: left; border: none; background: #F1F1F1; text-transform: uppercase; font-size: 14px; margin-bottom: 10px; }
+ul#sub-tabs li { padding: 10px 0; }
+ul#sub-tabs li a { color: #A4A4A4;font-size:14px}
+ul#sub-tabs li.selected { background: url("../images/subTab-selected.png") bottom center no-repeat; font-family: "Titillium Web", Verdana, sans-serif;}
+
+ul#sub-tabs2 { text-align: left; margin:15px 15px 25px 15px;border-bottom:2px solid #cccccd; background: #fff; font-size: 16px;}
+ul#sub-tabs2 li { display: inline-block; padding:0 20px 10px 20px; }
+ul#sub-tabs2 li a { color: #8d8d8d;font-family:'TitilliumText22LMedium' }
+ul#sub-tabs2 li.selected { background: url("../images/subTab-selected2.jpg") bottom center no-repeat; }
+ul#sub-tabs2 li.selected a{color:#000;}
+
+
+table { margin: 0; padding: 0; width: 100%; text-align: left; color: #717171; }
+table th { margin: 0; background: url("../images/tableHeader-background.png") repeat-x !important; color: #FFF; padding: 10px !important; border-left: 1px solid #666; border-right: 1px solid #333; text-transform: uppercase; line-height:1em;vertical-align:top}
+table th.sorting{padding:18px 10px 0 10px}
+table th *{vertical-align:top;}
+table th span{display:inline-block;width:18px;height:15px;margin-top:0;}
+table th span.sortUp{background-position:-23px -211px}
+table td { padding: 10px; border-bottom: 1px solid #DDD; }
+table tr:nth-child(even) { background: #f2f2f2; }
+table tfoot tr td{border-bottom:none;text-transform: uppercase;background:#fff}
+table tfoot tr td strong{color:#363636;font:24px/1em 'TitilliumText22LBold'}
+table td .date{color:#000}
+table td .date *{vertical-align:top}
+table td span.passed, table td span.issues{color:#64a10c;text-transform: uppercase;}
+table td span.issues{color:#9d1919}
+
+.align { width: 960px; margin: auto; position: relative; }
+
+/* LOGIN */
+div#loginWrap{overflow:hidden;*zoom:1;margin:70px auto 80px auto}
+div#loginWrap .loginArea{overflow:hidden;position:relative;float:left;width:380px;height:401px;padding:22px 20px 0 20px;border-radius: 2px;background:#fff}
+.loginArea .loginInput{border-bottom:1px solid #e5e5e5;position:relative;height:238px;padding-bottom:40px;}
+.loginArea .loginInput label{display:block;margin-bottom:25px;color:#4b4b4b;}
+.loginArea .loginInput label .input{width:360px;margin-top:5px}
+.loginArea .loginInput .loginBtn{position:absolute;bottom:40px;right:0;width:160px}
+.loginArea #activationLink {display: none; width: 220px; text-align: center;}
+.loginArea .loginLink{position:absolute;top:226px;left:10px}
+.loginArea .loginLink a{display:inline-block;padding:5px 10px;color:#2983c9;font-weight:bold}
+.loginArea .accountArea{overflow:hidden;*zoom:1;position:relative;margin:20px 0}
+.loginArea .accountArea p{margin:5px 0 0 0;}
+.resetPW label{display:block;margin-bottom:10px;color:#4b4b4b;}
+.resetPW label .input{width:360px;margin-top:5px}
+.accountReg label{margin-bottom:20px}
+
+.receiveSelect{overflow:hidden}
+.receiveSelect p{font-weight:bold}
+.receiveSelect label{font-weight:normal}
+
+div#loginWrap .btnArea{margin-right:-7px;text-align:right}
+
+.emailLink{color:#000;font-weight:bold}
+.txtInfo2{margin-bottom:25px}
+
+.titDep2{color:#4b4b4b;font-weight:bold}
+
+.registerArea{overflow:hidden;position:relative;float:left;width:380px;padding:22px 20px 20px 20px;border-radius: 2px;background:#fff}
+.regCheckForm label{position:relative;}
+.regCheckForm label span{display:block;margin-bottom:5px}
+.regCheckForm label .input{width:240px}
+.regCheckForm input.butDefault{position:absolute;top:84px;right:20px;margin-top:-2px;}
+.linkHelp{font-size:12px}
+.myKiaCar{margin:15px 0 0 0;}
+.myKiaCar .titVIN{margin-bottom:15px;color:#4d4d4d;font-family:'TitilliumText22LMedium'}
+.myKiaCar .mycar{position:relative;min-height:88px;padding-left:165px}
+.myKiaCar .mycar .img{position:absolute;top:0;left:0;font:0/0 Arial;}
+.myKiaCar .mycar em{display:block;margin-bottom:5px;color:#000;font-size:18px;font-style:normal;font-family:'TitilliumText22LMedium'}
+.myKiaCar .txtHelp2{clear:both;display:block;color:#8b8b8b;font-size:12px;font-style:italic}
+.accountReg{margin-top:25px;padding-top:25px;border-top:1px solid #ccc}
+.accountRegShort{margin-top:10px;padding-top:10px}
+.confirmReg{margin-top:15px;padding-top:15px;border-top:1px solid #ccc}
+.confirmReg dt{font-weight:bold}
+.confirmReg dd{margin-bottom:13px;padding-bottom:13px;font-size:16px;border-bottom:1px solid #ccc}
+
+h6 span{display:block;color:#636363;font-family:Arial;font-weight:normal;font-size:14px}
+.txt_success{overflow:hidden;*zoom:1;position:relative;margin:10px 0 30px 0}
+.txt_success .txt_tit{margin-bottom:8px;color:#000;font-size:22px;font-family:'TitilliumText22LMedium';}
+.codeArea{overflow:hidden;*zoom:1;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #e5e5e5}
+.codeArea .info{float:left;width:230px;}
+.codeArea .info .phoneNum{margin:12px 0 10px 0}
+.codeArea .info .phoneNum strong{display:block}
+.codeArea .qrcode{float:right;width:150px;text-align:right;}
+
+
+#adArea{float:right}
+.benefitArea{float:right;width:526px;}
+.benefitArea .benefitTitle{margin:110px 0 25px 0;color:#000;font-size:28px;font-family:'TitilliumText22LBold';text-align:center}
+.benefitArea .benefitList{overflow:hiddenb;*zoom:1;margin-left:18px}
+.benefitArea .benefitList li{float:left;width:226px;margin-left:27px}
+
+/* my vehicles */
+div#container.myVehicles{padding-bottom:62px;background:#fff}
+div#container.myVehicles .myvehiWrap{overflow:auto;overflow-y:hidden;margin:20px 20px 0 20px;}
+.myvehiclesList{overflow:hidden;*zoom:1;width:958px;margin-left:-38px;}
+.myvehiclesList li{position:relative;float:left;width:281px;height:464px;margin:0 0 0 38px;border-radius:2px;background:#f0f0f0}
+.myvehiclesList li .img{margin:6px;padding:3px;font:0/0 Arial;box-shadow:2px 2px 2px #d0d0d0;background:#fff}
+.myvehiclesList li .myVehiName{margin:10px 0 20px 11px;padding:0 0 0 40px;color:#595959;line-height:1.7em;background:url("../images/diagnostic_status.png") no-repeat 0 1px}
+.myvehiclesList li .myVehiName strong{display:block;color:#000;font-size:24px;font-family:TitilliumText22LRegular}
+.myvehiclesList li .myVehiName.num02{background-position:0 -57px}
+.myvehiclesList li .jumpTo{margin:0 10px}
+.myvehiclesList li .jumpTo dt{height:24px;color:#808080;font-size:16px;font-weight:bold}
+.myvehiclesList li .jumpTo dd a{display:block;color:#0976bb;font-size:16px;line-height:30px;border-top:1px solid #e5e5e5}
+.myvehiclesList li .jumpTo dd a:first-child{border:none}
+.myvehiclesList li .link_carPin{display:inline-block;*display:inline;*zoom:1;position:absolute;bottom:11px;right:20px;padding:4px 0 4px 20px;color:#1284d4;font:12px/16px Arial;background:url("../images/icon_key.png") no-repeat 0 -450px}
+.myvehiclesList li.addNewcar .inner{height:456px;margin:3px;text-align:center;border:1px solid #fff;background:#f7f7f7}
+.myvehiclesList li.addNewcar .inner .btnAdd{display:inline-block;margin:206px auto 0 auto;padding:0 10px 0 45px;color:#535353;font:18px/45px 'TitilliumText22LMedium';line-height:45px;border-radius:2px;border-color:#eaeaea #bbbbbb #949494 #c0c0c0;background:#c0c0c0 url("../images/icon_key.png") no-repeat 10px -26px}
+
+
+div#container.myVehicles .settingList{height:294px}
+.settingList li .myVehiName{margin-bottom:10px;padding:0;background:none}
+.settingList li .myVehiName p{color:#838383}
+.settingList li .myVehiName p em{color:#595959;font-style:normal}
+.settingList li{height:294px}
+.settingList li .settingLink{overflow:hidden;*zoom:1;margin:0 15px 20px 15px}
+.settingList li .settingLink a{display:inline-block;*display:inline;*zoom:1;float:right;padding:0 0 0 23px;color:#1284d4;font-size:12px;background:url("../images/icon_key.png") no-repeat 0 -450px}
+.settingList li .settingLink a.link_edit{float:left;background-position:0 -480px}
+.settingList li .vehicleDel{display:block;color:#a2a2a2;line-height:30px;text-align:center;background:#fff}
+.settingList li.addNewcar{height:264px}
+.settingList li.addNewcar .inner{height:240px}
+.settingList li.addNewcar .inner .btnAdd{margin-top:103px}
+
+/* Vehicle Information */
+.diagnosticsTop{overflow:hidden;margin-bottom:20px}
+.updateDate{height:30px;color:#c0c0c0;font-family:'TitilliumText22LMedium';text-align:center}
+.diagnosticsTop .statusList{overflow:hidden;*zoom:1;margin-left:6px}
+.diagnosticsTop .statusList li{position:relative;float:left;width:160px;margin-left:56px;}
+.diagnosticsTop .statusList li .status{overflow:hidden;width:160px;height:160px;border-radius:6px;background:#ebebeb url("../images/icon_diag.png") no-repeat}
+.diagnosticsTop .statusList li .nodata{overflow:hidden;width:160px;height:160px;border-radius:6px;background:#ebebeb url("../images/gray_diag_icons.png") no-repeat}
+.diagnosticsTop .statusList li .status .statusNo{
+	min-height:32px;
+	margin:117px 5px 0 10px;
+	/*padding-left:38px;*/
+	color:#333;font:16px/1em 'TitilliumText22LMedium';
+	background:url("../images/diagnostic_status.png") no-repeat 0 1px;
+}
+.diagnosticsTop .statusList li .nodata .statusNo{
+	min-height:37px;
+	margin:113px 5px 0 10px;
+	padding-left:38px;
+	color:#333;
+	font:16px/1em 'TitilliumText22LMedium';
+	background:url("../images/diagnostic_status.png") no-repeat 0 1px;
+}
+.diagnosticsTop .statusList li .status.grey .statusNo{
+	background-image: url("../images/grey_status.png");
+    background-position: -7px -5px;
+    background-repeat: no-repeat;
+}
+/*.diagnosticsTop .statusList li .chassis .statusNo{
+	padding-top:7px;
+}*/
+.diagnosticsTop .statusList li .powertrain{background-position:0 44px;}
+.diagnosticsTop .statusList li .powertrain.problem{background-position:-159px 44px;}
+
+.diagnosticsTop .statusList li .chassis{background-position:0 -78px;}
+.diagnosticsTop .statusList li .chassis.problem{background-position:-159px -78px;}
+
+.diagnosticsTop .statusList li .safety{background-position:0 -214px;}
+.diagnosticsTop .statusList li .safety.problem{background-position:-159px -214px;}
+
+.diagnosticsTop .statusList li .hybrid{background-position:0 -356px;}
+.diagnosticsTop .statusList li .hybrid.problem{background-position:-159px -356px;}
+.diagnosticsTop .statusList li .hybrid.gray{background-position:-159px -356px;}
+
+.diagnosticsTop .statusList li .status.grey{
+    background-image:url("../images/gray_diag_icons.png");
+}
+
+.diagnosticsTop .statusList li .powertrain.gray{background-position:-159px 44px;}
+.diagnosticsTop .statusList li .chassis.gray{background-position:-159px -78px;}
+.diagnosticsTop .statusList li .safety.gray{background-position:-159px -214px;}
+/*.diagnosticsTop .statusList li .safety.grey{background-position:-159px -214px;}*/
+.diagnosticsTop .statusList li .safety.grey{/*background-position:0 214px;*/}
+
+.diagnosticsTop .statusList li .problem .statusNo{background-position:0 -60px;}
+
+.diagnosticsTop .statusList li .txt_found{padding-top:3px;color:#c0c0c0;font-size:11px;text-align:center}
+.diagnosticsTop .linkDiagno{display:inline-block;*display:inline;*zoom:1;float:right;padding:5px 33px 5px 5px;color:#7b7b7b;font-family:'TitilliumText22LMedium';text-align:right;background:url("../images/icon_key.png") no-repeat 100% -74px}
+.chartArea .linkDetail{display:inline-block;*display:inline;*zoom:1;float:right;margin-right:20px;padding:5px 33px 5px 5px;color:#7b7b7b;font-family:'TitilliumText22LMedium';text-align:right;background:url("../images/icon_key.png") no-repeat 100% -74px}
+
+.mainCont .overviewTit{padding:25px 0 15px 0;font:36px/1em 'TitilliumText22LBold';text-align:center;background:url("../images/bg_line01.gif") repeat-x 0 42px}
+.mainCont .overviewTit span{display:inline-block;padding:0 20px;background:#fff}
+.mainCont .chartArea{position:relative;overflow:hidden;width:760px;margin:0 0 0 -20px}
+.chartArea .mycarTit{padding:15px 0 8px 0;color:#fff;font:36px/1em 'TitilliumText22LBold';text-align:center;background:url("../images/bg_line02.gif") no-repeat 50% 32px}
+.chartArea .mycarTit span{display:inline-block;padding:0 20px;}
+.chartArea .linkDetail{position:absolute;bottom:5px;right:0;float:none;color:#fff;background-position:100% -105px}
+
+.mainCont .tripInfo{width:760px;height:346px;text-align:center;background-color:rgb(50,86,134)}
+.tripInfo .mycarTit{background:url("../images/bg_line03.gif") no-repeat 0 32px}
+.tripInfo .chart{margin:18px 0 0 -15px}
+
+.mainCont .mycarInfo{width:730px;height:345px;padding:0 15px;text-align:center;background:url("../images/bg_mycar.jpg") no-repeat}
+.mycarInfo .mycarList{display:inline-block;*display:inline;*zoom:1;overflow:hidden;margin:0 auto}
+.mycarInfo .mycarList li{position:relative;float:left;width:170px;margin:0 27px;padding-top:160px;color:#fff;text-align:center;background:url("../images/bg_mycarInfo.png") no-repeat}
+.mycarInfo .mycarList li.curfew{background-position:18px 0}
+.mycarInfo .mycarList li.speed{background-position:-206px 0}
+.mycarInfo .mycarList li.geo{background-position:-430px 0}
+.mycarInfo .mycarList li .txt_info{font:22px/1.2em 'TitilliumText22LBold'}
+/* .mycarInfo .mycarList li .icon{display:block;position:absolute;top:0;right:5px;width:46px;height:49px;background:url("../images/icon_key.png") no-repeat 0 -134px} */
+
+.mainCont .interestInfo{width:730px;height:320px;padding:0 15px;text-align:center;background:url("../images/bg_intrest.png") no-repeat}
+.interestInfo .mycarTit{background:url("../images/bg_line04.gif") no-repeat 50% 32px}
+.interestInfo .updateDate{color:#fff}
+.interArea{position:relative}
+.interArea .slideWrap{position:relative;overflow:hidden;width:587px;height:215px;margin-left:71px;}
+.interArea .slideWrap .slider{float:left;width:6000px;height:201px;text-align:left}
+.interArea .arrow{position:absolute;top:70px;left:0;display:block;width:23px;height:40px;background:url("../images/icon_arrow.png") no-repeat -31px 0}
+.interArea .arrow.next{left:auto;right:0;background-position:-63px 0}
+.interArea .pageMove{display:inline-block;margin:17px auto 0 auto}
+.interArea .pageMove a{display:inline-block;*display:inline;*zoom:1;overflow:hidden;text-indent:-9999px;width:17px;height:17px;margin:0 2px;padding:2px;background:url("../images/icon_key.png") no-repeat 2px -181px}
+.interArea .pageMove a.current{background-position:-23px -181px}
+
+.chartWrap{overflow:hidden;*zoom:1;width:760px;margin-left:-20px;}
+.chartWrap .chartArea{float:left;width:350px;margin-left:0}
+.chartWrap .mycarInfo{float:right;}
+.chartWrap .interArea .slideWrap{width:167px;margin-left:89px}
+.chartWrap .mycarInfo .mycarList li {margin:0}
+
+/* trip information */
+.tripView{position:relative;margin:20px 0;}
+.tripView .select01{width:180px}
+.tripView .select02{width:70px}
+.tripView .select021{width:70px}
+.tripView label{display:inline-block;*display:inline;*zoom:1;padding:0 0 0 10px}
+input.butTrip{position:absolute;top:0;right:0;padding:3px 20px}
+.mainCont .tripInfo2{height:345px}
+
+.scoreWrap{width:760px;height:336px;margin-left:-20px;background:url("../images/bg_score.jpg") no-repeat}
+.scoreWrap .scoreTab{overflow:hidden;*zoom:1;height:60px;background:url("../images/bg_scoreTab.png") repeat-x}
+.scoreWrap .scoreTab li{float:left;width:50%;height:60px;text-align:center;}
+.scoreWrap .scoreTab li.selected{background:url("../images/bg_scoreTab_select.png") no-repeat 50% 0}
+.scoreWrap .scoreTab li a{display:block;line-height:48px;color:#bdbdbd;font-size:24px;font-family:'TitilliumText22LBold';text-decoration:none}
+.scoreWrap .scoreTab li.selected a{color:#fff}
+.scoreWrap .scoreCont{overflow:hidden;*zoom:1;padding-top:36px}
+.scoreWrap .scoreCont .scorenumList{float:left;width:340px;margin:0 0 0 46px}
+.scoreWrap .scoreCont .scorenumList li{float:left;width:50%;}
+.scoreWrap .scoreCont .scorenumList li .score{display:block;margin:0 19px;width:132px;height:132px;color:#353535;font:60px/132px 'TitilliumText22LBold';text-align:center;background:url("../images/bg_circle01.png") no-repeat}
+.scoreWrap .scoreCont .scorenumList li .Safescore{display:block;margin:0 19px;width:132px;height:132px;color:#456280;font:60px/132px 'TitilliumText22LBold';text-align:center;background:url("../images/bg_circle01.png") no-repeat}
+.scoreWrap .scoreCont .scorenumList li .txtEco{display:inline-block;*display:inline;*zoom:1;margin:20px 0 0 12px;padding:0 20px 0 43px;color:#fff;font:16px/1em 'TitilliumText22LRegular';background:url("../images/icon_face.png") no-repeat}
+.scoreWrap .scoreCont .scorenumList li .txtEco.average{margin-left:6px;padding-left:54px;background-position:0 -54px;}
+.scoreWrap .scoreCont .txt_score{float:left;width:300px;padding:0 0 0 30px;color:#fff;font:18px/1.4em 'TitilliumText22LRegular';line-height:1.3em}
+
+.mainCont .statisticsInfo{overflow:hidden;width:730px;height:341px;padding:0 15px 0 15px;text-align:center;background:url("../images/bg_statistics.jpg") no-repeat}
+.statisticsInfo .scorenumList{overflow:hidden;*zoom:1;margin:25px 0 0 26px}
+.statisticsInfo .scorenumList li{float:left;width:168px;}
+.statisticsInfo .scorenumList li .score{display:block;margin:0 19px;width:132px;height:132px;color:#353535;font:40px/122px 'TitilliumText22LBold';text-align:center;background:url("../images/bg_circle01.png") no-repeat}
+.statisticsInfo .scorenumList li .score span{display:block;margin-top:-40px;font:18px/1em 'TitilliumText22LBold';}
+.statisticsInfo .scorenumList li .score.miles{font:32px/122px 'TitilliumText22LBold';}
+.statisticsInfo .scorenumList li .txtStatis{display:inline-block;*display:inline;*zoom:1;margin:20px 0 0 17px;padding:0 20px 0 43px;color:#fff;font:16px/1em 'TitilliumText22LRegular';text-align:left;background:url("../images/icon_face.png") no-repeat 0 -103px}
+.statisticsInfo .scorenumList li .txtStatis.miles{padding-left:54px;background-position:0 -159px;}
+.statisticsInfo .scorenumList li .txtStatis.miles2{margin-left:23px;padding-left:54px;background-position:0 -217px;}
+.statisticsInfo .scorenumList li .txtStatis.mph{margin-left:6px;padding-left:54px;background-position:0 -268px;}
+.linkStatis{display:inline-block;*display:inline;*zoom:1;margin-top:22px;color:#fff;font-family:'TitilliumText22LMedium';text-decoration:none}
+.linkStatis:hover{text-decoration:none}
+.linkStatis em{color:#ffcd86}
+
+/* points of interest */
+.mapArea{margin-top:20px}
+.btnArea{position:relative;margin-top:20px;text-align:center}
+.btnArea input{margin:0 7px}
+.btnArea .btnLeft{text-align:left}
+.btnArea .btnLeft input{margin:0 7px 0 0}
+.btnArea .btnRight{position:absolute;top:0;right:0}
+.btnArea .btnRight input{margin:0 0 0 7px}
+.btnAreaL{position:relative;margin-top:20px;}
+.btnAreaL input{margin-right:15px}
+.stateView{width:111px;display:inline-block;*display:inline;*zoom:1;position:absolute;top:-2px;right:-5px;}
+.stateView span{display:inline-block;*display:inline;*zoom:1;float:left;width:27px;height:27px;margin:0 5px;background:url("../images/icon_state.png") no-repeat}
+.violation{width:111px;display:inline-block;*display:inline;*zoom:1;position:absolute;top:-2px;right:-5px;}
+.violation span{display:inline-block;*display:inline;*zoom:1;float:left;width:27px;height:27px;margin:0 85px;background:url("../images/icon_state.png") no-repeat}
+.violation span.search{background-position:0 -37px}
+.stateView span.favoSelected{background-position:-37px 0}
+.stateView span.search{background-position:0 -37px}
+.stateView span.edit{background-position:0 -74px}
+table td .state{position:relative;}
+table td .state em{display:inline-block;*display:inline;*zoom:1;padding-top:3px;font-style:normal}
+
+.popSearch_interest{margin-bottom:15px}
+.popSearch_interest *{vertical-align:top}
+.point_searchResult{overflow:hidden;*zoom:1;height:412px;margin:0 -15px -15px -15px;background:#fff}
+.point_searchResult .resultList{position:relative;float:left;width:290px;height:372px;margin-top:9px;padding-bottom:40px}
+.point_searchResult .resultList li{position:relative;padding:0 0 20px 42px;color:#000;font-size:14px}
+.point_searchResult .resultList li .icon{display:block;overflow:hidden;text-indent:-9999px;position:absolute;top:0;left:11px;width:20px;height:34px;background:url("../images/icon_point.gif") no-repeat}
+.point_searchResult .resultList li .iconGray{display:block;overflow:hidden;text-indent:-9999px;position:absolute;top:0;left:0;width:40px;height:40px;background:url("../images/poi/marker_gray.png") no-repeat}
+.point_searchResult .resultList li .iconB{background-position:0 -82px}
+.point_searchResult .resultList li .iconC{background-position:0 -164px}
+.point_searchResult .resultList li .iconD{background-position:0 -246px}
+.point_searchResult .resultList li .pointTit a{display:inline-block;padding-right:19px;color:#0650cf;font-size:18px;}
+.point_searchResult .resultList li .dealerName{display:inline-block;color:#000;font-size:18px;}
+.point_searchResult .resultList li .pointTit a strong{font-size:18px !important;}
+.point_searchResult .resultList li .pointInfo a{display:inline-block;*display:inline;*zoom:1;padding-left:6px;color:#0650d0;background:url("../images/icon_key.png") no-repeat 0 -285px}
+.point_searchResult .resultList li .butBack{padding-left:0}
+
+.point_searchResult .mapArea2{float:left;width:506px;}
+
+.popPaging{/*position:absolute;*/bottom:11px;left:0;text-align:center}
+.popPaging a{display:inline-block;*display:inline;*zoom:1;padding:5px 15px;color:#0650d0;font-size:20px;}
+.popPaging a.prev{padding-right:20px;color:#797979}
+.popPaging a.next{padding-left:20px;}
+.popPaging a.recentPage{color:#797979}
+
+.pointEdit{margin-left:15px}
+.pointEdit label{padding-bottom:7px;color:#4b4b4b}
+.pointEdit .input{width:236px}
+.pointEdit textarea{width:236px;height:70px; display: block;}
+.pointEdit .btnArea{margin:30px}
+.pointEdit2{margin:0 15px}
+.pointEdit2 p{padding-bottom:25px;font-size:16px}
+.pointEdit2 p strong{display:block}
+.boxAddr{margin:15px 15px 0 15px;padding:15px 0;color:#5e6c3d;font-size:12px;text-align:center;border:1px solid #c8d6a4;background:#e6fbb3}
+
+/* appointment */
+.reserveBlank{position:relative;padding:0 150px 0 210px}
+.reserveBlank input{position:absolute;top:0;left:0}
+
+.dealerNumber{margin:0 15px;padding:20px 0 17px 0;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
+.dealerNumber p{height:33px;margin-bottom:15px;padding:5px 0 0 48px;font-size:14px;line-height:16px;background:url("../images/icon_key.png") no-repeat 0 -350px}
+.dealerNumber a.driving-direction{display:block;padding-left:48px;font-size:14px;line-height:38px;background:url("../images/icon_key.png") no-repeat 0 -399px}
+
+.dealerInfo{margin:0 15px;padding:20px 0 17px 0;border-top:1px solid #e5e5e5;color:#000;font-family: 'TitilliumText22LMedium';}
+.dealerInfo span{display:inline-block;*display:inline;*zoom:1;text-align:left;width:75px;margin-bottom:5px}
+.dealerInfo div{margin-bottom:5px}
+
+.resultList .reserveBlank{padding:10px 15px;font-size:13px;line-height:16px}
+.resultList .reserveBlank p{padding:0 20px 15px 0}
+.resultList .reserveBlank input{position:static}
+
+.confirmLink{background:url("../images/bg_line05.gif") no-repeat 62px 6px}
+.confirmLink a{display:inline-block;*display:inline;*zoom:1;padding:3px 5px;color:#0650cf;font-size:14px}
+
+/* personal settings */
+.personalWrap{position:relative;margin:0 15px;}
+.personalForm label{margin-bottom:18px}
+.personalForm label span{display:inline-block;*display:inline;*zoom:1;width:170px;padding:0 10px;text-align:right}
+.personalForm label .txtExp, .resetPW label .txtExp{margin:3px 0 0 190px;font-size:12px;font-weight:normal}
+.resetPW label .txtExp{margin-left:0}
+.personalForm .btnArea{padding-left:187px;text-align:left}
+.personalWrap .linkRed{position:absolute;top:0;right:0;color:#f53333;text-decoration:underline}
+
+.txtInfo{font-size:16px;line-height:20px}
+.list_type1{margin-top:30px}
+.list_type1 li{padding:0 0 5px 15px;font-size:16px;background:url("../images/bult_list1.png") no-repeat 0 5px}
+
+.nonAgree{margin-bottom:30px}
+.nonAgree *{vertical-align:top}
+.nonAgree p{display:inline-block;*display:inline;*zoom:1;width:350px;}
+.labelList{margin-bottom:20px}
+.labelList *{vertical-align:top}
+.labelList label{margin-bottom:15px}
+.surveyForm label{margin-bottom:30px}
+.surveyForm label span{display:block;margin-bottom:5px}
+
+/* myAwards */
+.award {width:100%;}
+.award:after {content:''; display:block; clear:both;}
+.award .aw_list {width:450px; float:left; overflow:hidden; margin-right:35px;}
+.award .aw_list ul {width:480px;}
+.award .aw_list ul:after {content:''; display:block; clear:both;}
+.award .aw_list li {width:130px; margin-right:30px; min-height:190px; float:left; font-size:13px;text-align:center;}
+.award .aw_list li span {display:block; color:#000;text-align:center; font-weight:bold;}
+.award .aw_list li.sel span {color:#4488bc;}
+.award .aw_list li.gray span {color:#b8b8b8; font-weight:normal;}
+
+.award .aw_list li a > img {border:1px solid #e6e6e6;}
+
+.award .aw_detail {width:227px; float:left;}
+.award .aw_detail .subj {display:block; margin-bottom:5px; font-size:18px; font-family:TitilliumText22LRegular;}
+.award .aw_detail div {margin-bottom:17px;}
+.award .aw_detail div.sepeline {border-top:1px solid #e3e3e3; padding-top:18px; margin-top:17px;}
+.award .aw_detail em {font-size:16px; color:#4488bc; font-style:normal; display:block; font-weight:bold;}
+
+.aw_list_type {width:100%; padding-bottom:40px;}
+.aw_list_type:after {content:""; display:block; clear:both;}
+.aw_list_type li {border-top:1px solid #eaeef2; padding-top:34px; margin-top:34px; float:left;}
+.aw_list_type li:first-child {border-top:0; padding-top:0; margin-top:0;}
+.aw_list_type li > a {float:left; margin-right:30px;}
+.aw_list_type li > a img {border:1px solid #e6e6e6;}
+.aw_list_type .aw_detail {float:left; width:250px; margin-right:70px;}
+.aw_list_type .aw_detail > strong {font-family:TitilliumText22LBold; font-size:18px; display:block; color:#000; font-weight:normal;}
+.aw_list_type .aw_detail > p {padding:13px 0;}
+.aw_list_type .aw_detail > div {margin-top:7px;}
+.aw_list_type .aw_detail em {font-size:16px; color:#4488bc; font-style:normal; display:block; font-weight:bold;}
+.aw_list_type .by_award {float:left; width:240px; margin-top:30px; color:#8d8d8d;}
+.aw_list_type .by_award strong {display:block; font-family:arial;}
+
+/* Vehicle Diagnostics */
+.diagSumm{position:relative}
+.diagSumm .foundDate{
+    display: block;
+    height: 32px;
+    margin-bottom:8px;
+    padding:2px 0 1px 45px;
+    color:#a3a3a3;
+    font-size:12px;
+    line-height:14px;
+    font-family:'TitilliumText22LRegular';
+    text-transform: uppercase;
+    background:url("../images/icon_arrow.png") no-repeat 5px 2px;
+}
+.diagSumm .foundDate.has-issues{margin-bottom:8px;padding:2px 0 1px 45px;color:#a3a3a3;font-size:12px;line-height:14px;font-family:'TitilliumText22LRegular';text-transform: uppercase;background:url("../images/red_circle.png") no-repeat 5px 2px}
+.diagSumm .foundDate.has-issues .dtcCnt {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-family: TitilliumText22LBold;
+    color: white; text-align: center;
+}
+.diagSumm .foundDate strong{
+    display:block;
+}
+.diagSumm .foundDate.has-issues .dtcCnt span {
+    line-height:101%;
+    position: relative;
+    left: -40px;
+    top: 5px;
+    vertical-align: middle;
+}
+.diagSumm .tit{font-size:16px;}
+.diagSumm  strong{
+    color:#000;
+    font-weight:normal;
+    font-family:'TitilliumText22LBold';
+}
+
+.diagSumm .butDefault{position:absolute;top:0;right:0}
+.diagSumm .uvoKnows{width:480px;color:#777;font-size:16px}
+.diagSumm .uvoKnows .tit{display:block;margin-bottom:8px;font-size:22px}
+
+.carSummary{overflow:hidden;*zoom:1;margin-bottom:25px}
+.carSummary .summList{float:left;width:200px;}
+.carSummary .summList li{border-bottom:3px solid #fff;}
+.carSummary .summList li a{display:block;padding:18px 0 16px 69px;color:#666;font-size:16px;background:#f5f5f5 url("../images/icon_summary_color.png") no-repeat}
+.carSummary .summList li a.chassis{background-position:0 -62px}
+.carSummary .summList li a.safety{background-position:0 -124px}
+.carSummary .summList li a.energy{background-position:0 -186px}
+.carSummary .summList li.selected a{display:block;padding:18px 0 16px 69px;color:#000;font-size:16px;background:#ebebeb url("../images/icon_summary_color.png") no-repeat}
+.carSummary .summList li.selected a.powertrain{background-position:-207px 0}
+.carSummary .summList li.selected a.chassis{background-position:-207px -62px}
+.carSummary .summList li.selected a.safety{background-position:-207px -124px}
+.carSummary .summList li.selected a.energy{background-position:-207px -186px}
+
+.carSummary .summCont{float:right;width:480px;padding:27px 20px 20px 20px;background:#ebebeb}
+.carSummary .summCont .txt_summ{font-size:16px}
+.carSummary .summCont .txt_summ p{margin:8px 0 10px 0;font-size:18px;font-family:'TitilliumText22LBold';}
+
+.reportTitle{position:relative}
+/* Remove background image of below line by setting Bg to a non-existed image - AT */
+.reportTitle .title{height:27px;margin-bottom:17px;padding:0 0 0 40px;color:#000;font-size:18px;font-family:'TitilliumText22LBold';background:url("../images/icon_summary123.png") no-repeat 0 -261px}
+.reportTitle .title span{display:block;color:#565656;font-size:12px}
+.reportTitle .title2{padding-top:9px}
+.reportTitle .reportIcon{display:inline-block;*display:inline;*zoom:1;position:absolute;top:0;left:426px}
+.reportTitle .reportIcon a{display:inline-block;*display:inline;*zoom:1;overflow:hidden;float:left;text-indent:-9999px;height:38px;background:url("../images/icon_summary.png") no-repeat 0 -307px}
+.reportTitle .reportIcon a.delete{width:37px}
+.reportTitle .reportIcon a.print{width:44px;background-position:-37px -307px;}
+.reportTitle input.butDefault{position:absolute;top:0;right:0}
+.reportTitle .jumpTo{display:inline-block;*display:inline;*zoom:1;position:absolute;top:0;left:300px}
+.reportTitle .jumpTo strong{margin-right:8px;vertical-align:baseline}
+.reportTitle .jumpTo a{display:inline-block;margin-left:-4px;padding:0 10px;color:#5c5c5c;line-height:35px;font-family:'TitilliumText22LMedium';border-top:1px solid #ededed;border-bottom:1px solid #a0a0a0;background:#c8c8c8}
+.reportTitle .jumpTo .link_20k{border-top-left-radius:3px;border-bottom-left-radius:3px;border-right:1px solid #a0a0a0;background-position:-75px -307px}
+.reportTitle .jumpTo .link_60k{border-top-right-radius:3px;border-bottom-right-radius:3px;border-left:1px solid #d9d9d9;background-position:-120px -307px}
+
+.reportList{margin-bottom:50px}
+.reportList li{position:relative;margin-bottom:10px;padding-left:50px;background:#e4e4e4}
+.reportList li .icon{position:absolute;top:0;left:0;display:inline-block;*display:inline;*zoom:1;width:50px;height:50px;background:url("../images/icon_summary.png") no-repeat -12px -1px}
+.reportList li .chassis{background-position:-12px -60px}
+.reportList li .safty{background-position:-12px -122px}
+.reportList li .hybrid{background-position:-12px -185px}
+.reportList li .miles{background-position:0 -344px}
+.reportList li .completed{background:url("../images/diagnostic_status.png") no-repeat 10px 10px}
+.reportList li .incompleted{background-position:-220px -344px}
+.reportList li .ignored{background-position:-109px -344px}
+.reportList li .reportTit{padding:11px 0 10px 50px;color:#000;font-size:18px;font-family:'TitilliumText22LBold';text-transform: uppercase;background:#f1f1f1 url("../images/diagnostic_status.png") no-repeat 10px 10px}
+.reportList li .reportTit span{display:block;color:#727272;font-size:12px;line-height:1em}
+.reportList li .reportTit span em{font-style:normal}
+.reportList li .reportTit span em.txt_red{color:#b02b2b}
+.reportList li .reportTit span em.txt_green{color:#6cb905}
+.reportList li .upcomingAppt{padding:11px 0 10px 5px;color:#000;font-size:18px;font-family:'TitilliumText22LBold';text-transform: uppercase;background:#f1f1f1}
+.reportList li .upcomingAppt span{display:block;color:#727272;font-size:12px;line-height:1em}
+.reportList li .checkAlert{position:absolute;top:15px;left:400px;}
+.reportList li .checkAlert *{vertical-align:top}
+.reportList li .checkAlert label{display:inline-block;*display:inline;*zoom:1;padding:1px 10px 0 0;color:#000;font-weight:normal}
+.reportList li .checkAlert a{text-decoration:underline}
+.reportList li.reportIssues{background:#ffe3e3}
+.reportList li.reportIssues .icon{background-color:#ffe3e3}
+.reportList li.reportIssues .reportTit{background-color:#ffbaba;background-position:10px -50px}
+.reportList li.reportIssues .reportTit span{color:#9d2b2a}
+.reportCont{margin:0 20px 0 -30px;padding:0}
+.reportCont li{padding:30px 60px 30px 75px;background:url("../images/bg_line06.gif") repeat-x 0 0}
+.reportCont li:first-child{padding-top:30px;background:none}
+.reportCont li .num{position:absolute;top:30px;left:22px;color:#000;font-size:16px;font-family:'TitilliumText22LBold';}
+.maintainList li .icon{background-color:#e4e4e4}
+.maintainList li .reportTit{padding-left:10px;background:#f1f1f1}
+.reportList li .iconLink{position:absolute;top:11px;right:11px;text-align:right}
+.reportList li .iconLink .icon2{float:left;margin-left:13px;width:27px;height:27px;background: url("../images/icon_state.png") no-repeat 0 -37px}
+.reportList li .iconLink .icon2.edit{background-position:0 -74px}
+
+.maintainList li .maintainWrap{overflow:hidden;*zoom:1;margin-left:-50px;background:#dedede}
+.maintainList li .maintainWrap .maintainCont{float:left;width:338px;padding:20px 20px 0 60px;background:#e4e4e4}
+.maintainList li .maintainWrap .maintainCont .title{color:#000;font-size:16px;font-weight:bold}
+.maintainList li .maintainWrap .maintainCont .list{margin-top:15px}
+.maintainList li .maintainWrap .maintainCont .list li{padding:0 0 10px 12px;background:url("../images/bult_list1.png") no-repeat 0 7px}
+.maintainList li .maintainWrap .maintainCont .list li strong{color:#000}
+.maintainList li .maintainWrap .maintainCont .list li em{display:block;padding:5px 0 0 20px}
+.maintainList li .maintainWrap .maintainForm{position:relative;float:left;width:257px;padding:20px}
+.maintainList li .maintainWrap .maintainForm label{padding-bottom:15px;color:#000}
+.maintainList li .maintainWrap .maintainForm label input{margin-top:4px}
+.maintainList li .maintainWrap .maintainForm .btnArea{margin:0;text-align:left}
+.maintainList li .maintainWrap .maintainForm .btnArea input{min-width:110px;margin:0 7px 0 0}
+.maintainList li .maintainWrap .maintainForm .maintenceMark{position:absolute;top:0;left:0;width:301px;height:502px;text-align:center;background:url("../images/bg_maintainWrap.png") no-repeat 50% 0}
+.maintainList li .maintainWrap .maintainForm .maintenceMark input{margin-top:170px}
+
+.knowList{overflow:hidden;*zoom:1;margin-top:35px;padding-top:40px;background:url("../images/bg_line06.gif") repeat-x 0 0}
+.knowList li{float:left;width:202px;margin-left:56px;}
+.knowList li:first-child{margin:0}
+.knowList li .step{display:block;text-transform: uppercase;}
+.knowList li .img img{border:1px solid #ebebeb}
+.knowList li .txt_knows{display:block;margin-top:10px}
+
+/* My car zone */
+.curfewTitle{position:relative;margin-top:30px}
+.curfewTitle .title{display:block;padding:2px 0 0 50px;color:#000;font-size:12px;font-family:'TitilliumText22LBold';line-height:1.3em;text-transform:uppercase;background:url("../images/red_circle.png") no-repeat 10px 0px}
+.curfewTitle .title strong{display:block;font-size:18px;font-weight:normal;}
+.curfewTitle input{position:absolute;top:0;right:0}
+
+.paging{margin:15px 0;text-align:center}
+.paging a, .paging strong{display:inline-block;*display:inline;*zoom:1;padding:0 15px;color:#fff;font-family:'TitilliumText22LMedium';line-height:36px;border-radius:2px;background:#a5a5a5}
+.paging a.recentPage,.paging a.prev, .paging strong{color:#a5a5a5;background:#e5e5e5}
+.paging a.prev,.paging a.next{min-width:46px}
+.paging a.inactive{cursor:default}
+
+/*Maintenance */
+.trackingMileage{margin-bottom:40px}
+.trackingMileage .title{margin-bottom:15px;color:#000;font-family:'TitilliumText22LMedium';text-transform:uppercase;}
+.trackingMileage .trackingArea{overflow:hidden;position:relative;width:712px;height:86px;background:url("../images/bg_tracking.gif") no-repeat}
+.trackingMileage .trackingArea .bar{position:absolute;top:2px;left:0;width:684px;height:24px;padding:1px 13px 0 13px;color:#fff;font-weight:bold;text-shadow:0 2px 2px #acacac;line-height:22px;text-align:right;background:url("../images/img_bar.png") no-repeat}
+.maintenanceResult{float:left;width:257px;margin:20px}
+.maintenanceResult li{margin:0;padding:10px 0 12px 60px;color:#4b4b4b;font-size:16px;border-top:2px solid #c8c8c8;background:url("../images/icon_maintain.png") no-repeat 0 9px}
+.maintenanceResult li strong{display:block;margin-bottom:3px;font-size:14px}
+.maintenanceResult li:first-child{border:none}
+.maintenanceResult li.milieage{background-position:0 -52px}
+.maintenanceResult li.work{background-position:0 -112px}
+.maintenanceResult li.notes{background-position:0 -171px}
+
+/*Appointment */
+.reportApptList{margin-bottom:50px}
+.reportApptList li{position:relative;margin-bottom:10px;padding-left:0px;background:#e4e4e4}
+.reportApptList li .upcomingAppt{padding:11px 0 10px 20px;color:#000;font-size:18px;font-family:'TitilliumText22LBold';text-transform: uppercase;background:#f1f1f1}
+.reportApptList li .upcomingAppt span{display:block;color:#727272;font-size:12px;line-height:1em}
+.reportApptList li .iconLink{position:absolute;top:11px;right:11px;text-align:right}
+.reportApptList li .iconLink .icon2{float:left;margin-left:13px;width:27px;height:27px;background: url("../images/icon_state.png") no-repeat 0 -37px}
+.reportApptList li .iconLink .icon2.edit{background-position:0 -74px}
+
+.appointmentResult{float:left;width:257px;margin:20px}
+.appointmentResult li{margin:0;padding:10px 0 12px 60px;color:#4b4b4b;font-size:16px;border-top:2px solid #c8c8c8;background:url("../images/icon_appoint_gray.png") no-repeat 0 9px}
+.appointmentResult li strong{display:block;margin-bottom:3px;font-size:14px}
+.appointmentResult li:first-child{border:none}
+.appointmentResult li.location{background-position:0 -82px}
+.appointmentResult li.phone{background-position:0 -184px}
+.appointmentResult li.website{background-position:0 -244px}
+
+.appointmentList li .appointmentWrap{overflow:hidden;*zoom:1;margin-left:0px;background:#dedede}
+.appointmentList li .appointmentWrap .appointmentCont{float:left;width:378px;padding:20px 20px 0 20px;background:#e4e4e4}
+.appointmentList li .appointmentWrap .appointmentCont .title{color:#000;font-size:16px;font-weight:bold}
+.appointmentList li .appointmentWrap .appointmentCont .list{margin-top:15px}
+.appointmentList li .appointmentWrap .appointmentCont .list li{padding:0 0 10px 0px;font-size:14px}
+.appointmentList li .appointmentWrap .appointmentCont .list li strong{color:#000}
+.appointmentList li .appointmentWrap .appointmentCont .list li em{display:block;padding:5px 0 0 0px}
+
+.uvonoti_mov{overflow:hidden;*zoom:1}
+.uvonoti_mov .diagSumm{float:left;width:380px;}
+.uvonoti_mov .diagSumm .uvoKnows {width:350px}
+.uvonoti_mov .videoArea{float:left;width:335px;height:192px}
+.uvonoti_mov .uvoVer{overflow:hidden;*zoom:1;margin-top:40px}
+.uvonoti_mov .uvoVer li{float:left;width:82px;height:48px;margin-right:20px;padding:15px 0 0 56px;color:#b3cce1;font-size:12px;border-top:1px solid #c0d5e6;border-bottom:1px solid #304c4f;border-radius:2px;background:#407fb4 url("../images/icon_os.png") no-repeat }
+.uvonoti_mov .uvoVer li strong{display:block;color:#fff;font-size:16px;font-family:'TitilliumText22LBold'}
+.uvonoti_mov .uvoVer li.windows{background-position:0 -74px}
+.uvonoti_mov .txtVer{color:#9a9a9a;margin:15px 0 0 45px;font-size:13px;}
+.uvonoti_mov .txtVer strong{display:inline-block;padding:0 0 0 10px;color:#9a9a9a;}
+
+.updateStep{overflow:hidden;*zoom:1;margin:45px 0 50px 0;padding-top:20px;background: url("../images/bg_line06.gif") repeat-x;}
+.updateStep .knowList{float:left;width:352px;margin:0;padding:0;background:none}
+.updateStep .knowList li{float:none;width:352px;margin:30px 0 0 0;}
+.updateStep .helpLink{float:right;width:307px;margin-top:33px}
+.updateStep .helpLink .title{margin-bottom:20px;color:#000;font-size:18px;font-family:'TitilliumText22LBold'}
+.updateStep .helpLink a{display:block;margin-bottom:18px;padding:0 0 0 30px;font-size:13px;background:url("../images/icon_help.gif") no-repeat 0 2px}
+.updateStep .helpLink a span{color:#888}
+.updateStep .helpLink a.check{background-position:0 -34px}
+.updateStep .helpLink a.connect{background-position:0 -70px}
+.updateStep .helpLink a.end{background-position:0 -107px}
+
+/* Appointments */
+.appointTitle{position:relative;margin-bottom:20px;padding:17px;background:#f1f1f1}
+.appointTitle .title{color:#000;font-size:19px;font-family:'TitilliumText22LBold';text-transform: uppercase;}
+.appointTitle .search{position:absolute;top:13px;right:13px;width:27px;height:27px;background: url("../images/icon_state.png") no-repeat scroll 0 -74px}
+.appointWrap{overflow:hidden;margin-left:-24px;}
+.appointWrap .appointContact li{float:left;width:280px;min-height:32px;margin:0 0 20px 24px;padding:15px 0 15px 68px;font-size:16px;border-radius:5px;background:#f1f1f1 url("../images/icon_appoint.png") no-repeat 15px 12px}
+.appointWrap .appointContact li.viewMap{background-position:15px -70px}
+.appointWrap .appointContact li.callNum{background-position:15px -148px}
+.appointWrap .appointContact li.siteLink{background-position:15px -232px}
+.appointWrap .appointContact li strong{display:block}
+.appointWrap .appointContact li strong.num{font-size:26px;line-height:1.2em}
+.appointWrap .appointContact li a{display:block;margin-top:3px;font-size:14px;text-decoration:underline}
+.appointWrap .appointContact li a.website{color:#545454;font-size:17px;line-height:1.4em;text-decoration:none}
+.titReserve{margin:20px 0 15px;color:#000;font-size:15px;font-family:'TitilliumText22LBold';}
+
+.emailCheck{margin-bottom:35px}
+.emailCheck label{margin-bottom:10px;color:#4b4b4b;font-size:16px;font-weight:normal}
+.emailCheck label *{vertical-align:top}
+.emailCheck label input{margin-top:2px}
+.emailCheck a, .emailCheck span{margin-left:25px;font-style:italic}
+.emailCheck span{color:#888}
+.emailCheck legend{padding-bottom:10px;font-size:15px;font-family:Arial;font-weight:bold}
+
+/* modal Popup */
+/*
+#popWrap{position:relative;border-radius:5px;border:1px solid #e5e5e5;box-shadow:0 2px 5px 2px #555;background:#fff}
+#popWrap h1{position:relative;margin:3px 3px 0 3px;padding:0 0 0 15px;color:#424242;text-shadow:1px 1px 0 #c8c8c8;font-size:24px;font-family:'TitilliumText22LBold';line-height:67px;border:1px solid #cdcdcd;box-shadow:inset 1px 1px 0 0 #a6a6a6;background:#b1b1b1}
+#popWrap h1.popH1_add{padding:13px 15px 11px 15px;line-height:1em}
+#popWrap h1 span{display:block;color:#5f5f5f;font-size:14px;font-weight:normal;font-family:'TitilliumText22LRegular'}
+#popWrap h2{position:relative;margin:3px 3px 0 3px;padding:0 0 0 15px;color:#424242;text-shadow:1px 1px 0 #c8c8c8;font-size:24px;font-family:'TitilliumText22LBold';line-height:35px;box-shadow:inset 1px 1px 0 0 #b1b1b1;background:#b1b1b1}
+#popWrap h3{position:relative;margin:0 3px 3px 3px;padding:0 0 10px 15px;color:#424242;text-shadow:1px 1px 0 #c8c8c8;font-size:20px;font-family:'TitilliumText22LBold';line-height:25px;box-shadow:inset 1px 1px 0 0 #b1b1b1;background:#b1b1b1}
+#popWrap div.popCont{margin:1px 3px 3px 3px;padding:15px;color:#424242;font-size:16px;border:1px solid #cdcdcd;border-top:none;line-height:1.3em;background:#ededed}
+#popWrap div.popCont p.txtPop01{margin:0 0 20px 0;color:#424242;line-height:1em}
+#popWrap div.popCont .txtPop01 strong{display:block}
+#popWrap div.popCont .txtPop01 .pinNum{padding-bottom:12px;font:42px/45px Arial}
+#popWrap div.popCont .popBtn{text-align:right}
+#popWrap div.popCont .popBtn input{margin-left:10px}
+#popWrap div.popCont .txtPop02{margin-bottom:15px;padding-right:10px}
+#popWrap div.popCont .txtPop03{margin-bottom:30px}
+#popWrap div.popCont .popScroll01{overflow:auto;overflow-x:hidden;height:270px;margin-bottom:15px;border-bottom:1px solid #ddd}
+#popWrap .popClose{position:absolute;top:23px;right:24px}
+#popWrap .popClose a{display:block;overflow:hidden;text-indent:-9999px;width:30px;height:30px;background:url("../images/icon_key.png") no-repeat 0 -232px;}
+*/
+.addNew p{position:relative;padding:7px 0 15px 0;color:#4b4b4b}
+.addNew p em.txtEx{padding:5px 0 0 170px;color:#888;font-size:12px}
+form .addNew p label{display:inline-block;width:170px}
+
+/* Loading Bar...*/
+#showtime { position:relative; }
+.bgr { width:100%; height:100%; display:none; z-Index:1; opacity:0; filter: alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  background:#000000; position:fixed; }
+.ani { width:100%; height:100%; position:fixed;  background:url("../images/loading.gif") no-repeat 50% 50%; display:none; z-Index:1;  }
+.wait .bgr {filter: alpha(opacity=30); opacity:0.3; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; display:block; }
+.wait .ani { display:block; }
+
+/* popup */
+
+.popup-bg-absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2f3339;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+}
+.popup-absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    z-index: 100;
+}
+
+/*fixes*/
+/*clears floats, add class=clearfix to container elements*/
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.clearfix:after {
+    clear: both;
+}
+/*triggers has layout in IE6-7*/
+.clearfix {
+    *zoom: 1;
+}
+#popWrap .popCont .mapArea2 div div div div div div div div{
+    font-size: 14px;
+    line-height:auto;
+}
+.addPoiForm .btnArea{
+    margin:14px 0 0 0;
+}
+.addPoiForm #textLimit{
+    display:none;
+}
+
+/*Maps Override */
+.mapArea .popinner{
+    border:1px solid #333;
+}
+.mapArea .editlink{
+    display:block;
+}
+.mapArea .poptitle{
+    font-weight:bold;
+}
+
+.mapArea .popaddress{
+    font-weight:normal;
+}
+fieldset.pointEdit{
+    margin:0;
+}
+fieldset.pointEdit .btnArea{
+    margin:6px 0 0 0;
+    padding:0px;
+}
+fieldset.pointEdit label{
+    margin:0 0 0 15px;
+}
+fieldset.pointEdit #textLimit{
+    display:none;
+}
+
+.address.name{
+    display:block;
+    font-weight:bold;
+    padding:0;
+}
+.address.street{
+    display:block;
+    padding:0;
+}
+.address.location{
+    display:block;
+    padding:0;
+}
+.address.edit{
+    display:block;
+    font-weight:bold;
+    padding:0;
+}
+
+/* Two lines of css below are to overwrite the css from common.css for header */
+
+.search-form-small .search-btn { height: 18px !important; }
+.register-btn, .login-btn { color: #a8a8a8 !important;}
+
+.deletePoiBtn {margin-right:130px}

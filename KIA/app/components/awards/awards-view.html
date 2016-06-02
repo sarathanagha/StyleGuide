@@ -1,0 +1,50 @@
+<!-- Awards template -->
+<script type="text/ng-template" id="myModalContent.html">
+  <section id="awards-modal" class="container-fluid clearfix">
+    <header class="row">
+      <div class="visible-xs">
+        <div class="col-xs-8 text-left">
+          <h3>ALL AWARDS</h3>
+        </div>
+        <div class="col-xs-4 text-right">
+          <span class="button" ng-click="vm.close()">x</span>
+        </div>
+      </div>
+      <div class="col-xs-12 text-right hidden-xs">
+        <span class="button" ng-click="vm.close()">close</span>
+      </div>
+    </header>
+    <section>
+      <div class="col-sm-3" ng-repeat="award in vm.awardsHelp">
+        <div class="award-image"><img ng-src="{{award.imageURL}}" alt="" /></div>
+        <div class="award-description">
+          <h3>{{award.name}}</h3>
+          <p ng-if="award.help" ng-bind-html="award.help"></p>
+          <p ng-if="!award.help" ng-bind-html="award.description"></p>
+        </div>
+      </div>
+    </section>
+  </section>
+</script>
+<div id="awards-floating-help" class="visible-xs"><span class="button" ng-click="vm.open()">?</span></div>
+<section id="awards" class="clearfix">
+  <header class="container-fluid hidden-xs">
+    <div class="row main-title">
+      <div class="text-left col-xs-6"><h2>AWARDS</h2></div>
+      <div class="text-right col-xs-6 hidden-xs"><a class="button" ng-click="vm.open()">?</a></div>
+    </div>
+  </header>
+  <section>
+    <div class="col-sm-3" ng-repeat="award in vm.awards" ng-show = "award.display">
+      <div class="award-image" >
+        <img ng-src="{{ award.message && award.imageURL || 'images/kh/img/awards/a-widget-empty.png'}}" alt="" />
+      </div>
+      <div class="award-description">
+        <h3 ng-if="award.message"><span>{{award.name}} </span></h3>
+        <h3 ng-if="!award.message">{{award.name}}</h3>
+        <p ng-if="award.message" ng-bind-html="award.message"></p>
+        <p ng-if="!award.message" ng-bind-html="award.description"></p>
+      </div>
+    </div>
+  </section>
+</section>

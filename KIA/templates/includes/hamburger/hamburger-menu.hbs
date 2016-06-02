@@ -1,0 +1,98 @@
+<div id="hamburger-menu" class="hamburger hidden-md hidden-lg" ng-class="showHamburger">
+
+ <section class="hamburger-top-section">
+  {{! Header }}
+  <div class="header">
+    <div class="close-nav col-xs-12 text-right">
+      <span class="button" ng-click="showHamburger = 'out'">x</span>
+    </div>
+  </div>
+
+  {{! Content }}
+
+  {{! Current Vehicle & Left Nav Items }}
+  {{#compare type "!=" "default"}}
+     {{#compare type "!=" "settings"}}
+
+     {{! Current Vehicle }}
+     <hr class="w100" />
+     <div class="current-vehicle container-fluid">
+       <div class="row">
+         <div class="col-xs-4" ng-class="com.carInfo.count < 2 && 'col-xs-6'" >
+           <img alt="" ng-src="\{{com.carInfo.selectedVehicle.originImgFileNm}}">
+         </div>
+         <div class="col-xs-4 carInfo" ng-class="com.carInfo.count < 2 && 'col-xs-6'" >
+           <p class="title">\{{com.carInfo.selectedVehicle.vehNick}}</p>
+           <p class="trim">\{{com.carInfo.selectedVehicle.mdlYr}} \{{com.carInfo.selectedVehicle.mdlNm}}</p>
+         </div>
+       
+         <div class="col-xs-4 change"   ><!-- ng-show="com.carInfo.count > 1" -->
+           <span ng-click="showHSwitcher = 'in'" >CHANGE</span>
+         </div>
+       </div>
+     </div>
+     <hr class="w100" />
+
+     {{! Left Nav Items }}
+      <ul>
+     
+        {{# left-nav-data }}
+          {{#inArray types ../type}}
+            <li><a ui-sref="{{../type}}.{{sref}}" ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == '{{../../type }}.{{sref }}' && 'selected'">{{label}}</a></li>
+          {{/inArray}}
+        {{/ left-nav-data }}
+      </ul>
+      <hr />
+    {{/compare}}
+  {{/compare}}
+
+  {{! Top Nav Items }}
+  <ul>
+      <li>
+        <a ui-sref='default.vehicles' ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'default.vehicles' && 'selected'">MY VEHICLES</a>
+      </li>
+      <li>
+        <a href='/support/index.shtml' ng-click="showHamburger = 'out'; com.showMobileNotifications = false">SUPPORT</a>
+      </li>
+      <li>
+        <span>SETTINGS</span>
+      </li>
+      <li>
+        <a class="sub-item" ui-sref="settings.personalSettings" ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'settings.personalSettings' && 'selected'">Personal</a>
+      </li>
+      <li>
+        <a class="sub-item" ui-sref="settings.alertsSettings" ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'settings.alertsSettings' && 'selected'">Alerts</a>
+      </li>
+      <li>
+        <a class="sub-item" ui-sref="settings.securitySettings" ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'settings.securitySettings' && 'selected'">Security</a>
+      </li>
+      <!-- {{#compare type "==" "kh"}} -->
+      
+        <li ng-show="com.vehicleType === 'kh'">
+          <a class="sub-item" href="/kh/commandLog" ui-sref="commandlog.history" ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'commandlog.history' && 'selected'">Command Log</a>
+        </li>
+       
+      <!-- {{/compare}} 
+      {{#compare type "==" "commandlog"}}
+      <li>
+        <a class="sub-item" href="/kh/commandLog" ui-sref="commandlog.history"  ng-click="showHamburger = 'out'; com.showMobileNotifications = false">Command Log5</a>
+      <li>
+      {{/compare}}
+       {{#compare type "==" "settings"}}
+      <li>
+        <a class="sub-item" href="/kh/commandLog" ui-sref="commandlog.history"  ng-click="showHamburger = 'out'; com.showMobileNotifications = false">Command Log6</a>
+      <li> 
+      {{/compare}} -->
+      <li>
+        <a ui-sref='default.awards' ng-click="showHamburger = 'out'; com.showMobileNotifications = false" ng-class="$state.current.name == 'default.awards' && 'selected'">AWARDS</a>
+      </li>
+  </ul>
+  <hr />
+
+  {{! Log out button }}
+  <ul class="logout" ng-controller="LogoutController"><li><a href ng-click="logout()"><i class="glyphicon glyphicon-off"></i>LOG OUT</a></li></ul>
+
+</section>
+  {{! Footer }}
+  {{> hamburger-footer }}
+</div>

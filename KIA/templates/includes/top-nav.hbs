@@ -1,0 +1,73 @@
+<ul class="top-nav">
+    <li style="margin-left:0">
+        <a ui-sref='default.vehicles' ng-click="navCollapsed = true">MY VEHICLES</a>
+    </li>
+    <li>
+        <a href='/support/index.shtml'>SUPPORT</a>
+    </li>
+    <li class="dropdown hidden-xs hidden-sm settings-top-nav">
+      <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" onclick="return false;">
+        SETTINGS
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="settings.personalSettings">Personal</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="settings.alertsSettings">Alerts</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="settings.securitySettings">Security</a></li>       
+        <span ng-if="com.vehicleType === 'kh'">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="/kh/commandLog" ui-sref="commandlog.history">Command Log</a></li>
+        </span>
+         
+       <!-- {{#compare type "==" "commandlog"}}
+       <span>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="/kh/commandLog" ui-sref="commandlog.history">Command Log22 {{type}}</a></li>
+        </span>
+         {{/compare}}
+       {{#compare type "==" "settings"}}
+       <span>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="/kh/commandLog" ui-sref="commandlog.history">Command Log33 {{type}}</a></li>
+        </span>
+       {{/compare}}  -->
+      </ul>
+    </li>
+    <li class="hidden-md hidden-lg">
+      <a ui-sref="settings.personalSettings">SETTINGS</a>
+    </li>
+    <li> 
+        <a ui-sref='default.awards'>AWARDS</a>
+    </li>
+    {{#compare type "==" "kh"}}
+    <li class="dropdown notifications-top-nav">
+        <div class="notifications hidden-xs hidden-sm" ng-if="com.notifications.total > 0 && com.notifications.total < 100">
+          <span>\{{com.notifications.total}}</span>
+        </div>
+        <div class="notifications hidden-xs hidden-sm" ng-if="com.notifications.total >= 100">
+          <span>99+</span>
+        </div>
+        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" onclick="return false;" ng-click="com.notiRemoteSession(false);">
+          NOTIFICATIONS
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+          <li>
+            <div class="info-notifications" ng-if="com.notifications.total == 0">
+              You have no new notifications
+            </div>
+            <div class="item"  ng-click="com.notificationsGo(noti.href)" ng-if="com.notifications.total > 0" ng-repeat="noti in com.notifications.data">
+              <section  ng-click="com.notificationsGo(noti.href)">
+               <div ng-if="noti.count != 'remoteCommands'">
+                    <div class="title">\{{noti.name}}</div>
+                    <div class="info" ng-if="noti.count != 1">You have \{{noti.count}} \{{noti.name}} notifications</div>
+                    <div class="info" ng-if="noti.count == 1">You have \{{noti.count}} \{{noti.name}} notification</div>
+                </div>
+                <div ng-if="noti.count == 'remoteCommands'">
+                    <div class="info" ng-if="noti.count != 1">\{{noti.name}}</div>
+                    <div class="info" ng-if="noti.count == 1">\{{noti.name}}</div>
+                </div>
+              </section>   
+            </div>
+          </li>
+        </ul>
+    </li>
+    {{/compare}}
+</ul>

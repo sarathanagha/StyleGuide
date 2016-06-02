@@ -1,0 +1,34 @@
+<ul class="config-list-ul" ng-class="{'disableCustom':vm.loading||!vm.isOn||!vm.Intervalshow||rootsubmit}">
+	<li class="config-list-item" 
+		ng-repeat="geo in vm.geofenceList track by $index" 
+		ng-if="vm.geofenceFilter(geo)"
+		ng-class="{selected: vm.currentIndex == $index && vm.isOn}"
+		>		
+		<div class="config-list-container">							
+			<div class="head">	
+				<div class="column-left pull-left">
+					<div class="edit" ng-click="vm.selectIndex($index)"></div>
+				</div>
+				<div class="column-middle pull-left">
+					<div class="title-input"><input type="text" ng-blur="vm.updatechange(geo)" maxlength="24" ng-disabled="!vm.isOn||!vm.deleteswitch[$index]" ng-model="geo.geoFenceName"/></div>
+	        		<br />
+	        		<p class="validation name-validation hide">The Curfew Limit name can only contain letters, numbers and cannot be blank</p>	     
+	        		<div>   			        		
+						<span class="formatted-address">{{geo.formattedAddress}}</span>
+						<span class="distance" ng-hide="geo.hidenadius">{{geo.distanceDisplay}}</span>
+					</div>
+				</div> 
+				<div class="column-right pull-right text-right" ng-if="vm.deleteIt">
+	    			<div class="delete" ng-click="vm.openDeleteModal($index)" ></div>
+		    		<switch-button is-on="vm.deleteswitch[$index]" disabled="!vm.isOn||!vm.Intervalshow||vm.loading" class="noselect"></switch-button>		    		
+				</div>	
+				<div class="clearfix"></div>	    		
+			</div>
+			<hr class="hidden-xs"/>
+			<div class="body" ng-if="vm.currentIndex == $index">	
+				<div geofence-map edit="vm.deleteswitch[$index]" circle-data="geo.circle" rectangle-data="geo.rectangle" shape-type="geo.shapeType" show="{{vm.currentIndex == $index}}"></div> 		
+			</div>													
+		</div>
+	</li>
+</ul>
+

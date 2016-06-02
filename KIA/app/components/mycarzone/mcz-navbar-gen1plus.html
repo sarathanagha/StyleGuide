@@ -1,0 +1,17 @@
+
+<div class="mcz-navbar-container">
+    <nav class="carzone-menu">
+		<ul class="mcz-navbar-alerts-list">
+			<li ng-class="{active: $state.includes('*.mcz')}" class="list-three">
+				<a href="gen1plus/mycarzone/curfewalerts">CURFEW</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.speedalerts')}" class="list-three">
+				<a ui-sref="gen1plus.speedalerts" href="gen1plus/speedalerts">SPEED</a>
+			</li>
+			<li ng-class="{active: $state.includes('*.geofence')}" ng-show="isAVN" class="list-three">
+				<a ui-sref="gen1plus.geofence" href="gen1plus/geofence">GEO FENCE</a>
+			</li>
+		</ul>  
+		
+	</nav>
+</div>

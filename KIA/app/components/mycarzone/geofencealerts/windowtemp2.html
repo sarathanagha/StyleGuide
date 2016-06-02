@@ -1,0 +1,19 @@
+<div class="uvo-ib">
+<div class="uvo-ib-content" ng-controller="geofenceAlertCont">
+  <div ng-if="!isGen1Plus"> <!-- not gen1plus -->
+                                  <!--    <span style="font-weight:bold;">Alert occurred at {{item.time}} {{item.shift}}</sub></span>
+                                  <span>Curfew:{{item.first}}--{{item.end}}</span><br/> -->
+                                  <span>{{item.address|removeUsa}}</span>
+<!--                                        CurfewSettings:
+--> </div>
+<div ng-if="isGen1Plus"><span>Center</span><br>
+                                  <span>{{item.address|removeUsa}}</span>
+ </div>
+
+<!-- <div>{{vm.map.window.model.address}}</div> -->
+</div>
+<div class="arrow"></div>                               
+<!-- <div class="uvo-ib-point-down">
+  <img src="images/kh/img/station/point-down.png" alt="X" />
+</div> -->
+</div>

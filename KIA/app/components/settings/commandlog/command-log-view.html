@@ -1,0 +1,48 @@
+<div class="container-fluid" id="commandlog">
+    <div class="">
+       <div class="noAlert-msj "></div>
+        <div class="log-alerts">
+            <div class="alert-msj">{{vm.commandLogData.length}} TOTAL LOG ITEMS / {{vm.limit}} LOG ITEMS DISPLAYED</div>
+        </div>   
+    </div>
+
+    <div class="alerts" id="commandsContain">
+        <div class="noCommands hide">YOU CURRENTLY HAVE NO ITEMS</div>
+        <div  ng-repeat="item in vm.commandLogData | limitTo:vm.limit" class="item reg-view">
+              <div class="item-wrapper">
+                  <div class="vehicle">                                
+                       <span>{{vm.mappedVehicles[item.vin]}}</span> 
+                  </div>
+                  <div class="content" ng-switch on="item.status">                                 
+                    <div class="indicator red" ng-switch-when="E">{{item.scenarioName}}</div>
+                    <div class="indicator green" ng-switch-when="Z">{{item.scenarioName}}</div>
+                    <div class="indicator yellow" ng-switch-when="P">{{item.scenarioName}}</div>
+                    <div class="row date">
+                      {{item.date | date2:'MMMM ddoo yyyy, h:mm a'}}
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div  ng-repeat="item in vm.commandLogData | limitTo:vm.limit" class="item mobile-view">
+            <div class="item-wrapper">
+                <div class="row date">
+                  {{item.date | date2:'MMMM ddoo yyyy, h:mm a'}}
+                </div>
+            
+                <div class="vehicle">
+                    <!-- <span>{{mappedVehicles[item.vin]}}</span> -->
+                  <span>Test vehicle K900</span>
+                </div>
+                <div class="content" ng-switch on="item.status">                                 
+                  <div class="indicator red" ng-switch-when="E">{{item.scenarioName}}</div>
+                  <div class="indicator green" ng-switch-when="Z">{{item.scenarioName}}</div>
+                  <div class="indicator yellow" ng-switch-when="P">{{item.scenarioName}}</div>  
+                </div>                           
+            </div>
+        </div>
+
+        <div class="actions load-more">
+          <a class="button clickable" ng-hide="vm.hide_loadmore" ng-click="vm.loadmore()">Load More</a>
+        </div>
+    </div>               
+</div>

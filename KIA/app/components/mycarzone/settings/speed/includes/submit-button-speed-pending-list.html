@@ -1,0 +1,29 @@
+<div>
+	<div class="hidden-xs">
+		<div class="submit-button">SUBMIT</div>
+		<div class="pending-list">Changes pending</div>
+	</div>
+	<div class="visible-xs container-fluid" >
+	    <div ng-if="hideit" class="row text-center" ng-show="!submitDisable || changeSpeed || changeInterval&&!loading">
+	    
+			<div class="col-xs-6 no-side-pad view-pending-column">
+				<div class="button view-pending-button"  ng-click="viewPending()">
+					VIEW PENDING<span ng-show="countViewPending">( {{count}} )</span>
+				</div>
+			</div>
+			<div class="col-xs-6 no-side-pad">
+				<div class="button submit-button" ng-disabled="submitDisable && (!changeSpeed || !changeInterval) " ng-click="vm.submit(submitDisable,changeSpeed,changeInterval)" ng-hide="loading">
+					SUBMIT
+				</div>
+			</div>
+		</div>
+		<div class="row text-center" ng-show="loading" style="position: absolute;bottom: 0px; width: 100%;border: 1px solid;background-color: white;">
+			<div class="col-xs-12 no-side-pad" >
+				<div class="button ">
+					REQUEST INPROGRESS
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

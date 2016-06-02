@@ -1,0 +1,17 @@
+<div class="modal notification-delete enabled  visible-xs pendingDialog" style="height:500px!important;margin: 10% 0%;">
+        <div class="content pending-list" style="text-align:left; padding:20px 10px; line-height:25px; box-sizing: initial; border:none; width:auto; margin: 10px 10px;">
+            <h5 class="message" style="font-size: 22px;padding-bottom: 10px">CHANGES PENDING</h5>
+            <ul style="list-style: initial;padding-left: 20px;">
+              <li ng-show="!vm.Intervalshow&&vm.isOn">Turn Curfew Limit Alerts ON</li>
+              <li ng-show="vm.Intervalshow&&!vm.isOn">Turn Curfew Limit Alerts OFF</li>
+		          <li ng-show="vm.curfewChange && vm.alertsChange !== true">Modifying Curfew</li>
+              <li ng-show="vm.intervalChange && vm.alertsChange !== true">Interval Changes</li>
+              <li ng-show="vm.addedcurfew && vm.alertsChange !== true">Adding Curfew</li>
+              <li ng-show="vm.deletecurfew && vm.alertsChange !== true">Deleting Curfew</li>
+            </ul>
+            <div class="actions modal-footer" style="padding: 20px 0px;">
+                <button  class="cancel" ng-click="cancelPending()" style="color:black;background-color: white; border: 1px solid black; font-weight: bold; margin-left:auto;width:50%;font-size: 12px;padding:10px 0"><span>CANCEL PENDING</span></button>
+                <button class="highlighted delete all"  ng-click="closePending()" style="color: white;background-color: #BC1728;border: 1px solid #BC1728;font-weight: bold;margin-left:auto;width:48%"><span>CLOSE</span></button>
+            </div>
+        </div>
+    </div>

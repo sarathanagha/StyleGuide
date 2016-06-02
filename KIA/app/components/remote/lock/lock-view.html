@@ -1,0 +1,83 @@
+<div class="vehicleStatus" ng-class="{'success':vm.successCall,'error':vm.unsuccessCall}">
+    <div class="vehicleStatus-date" ng-hide="vm.hasMessege || vm.hideTimeStamp">Last updated as of {{vm.vStatus*1000 | date:'MMMM d, y h:mm a'}}</div>
+    <div class="vehicleStatus-date" ng-show="vm.hasMessege" ng-bind="pageStatusMessage"></div>
+    <div class="messegeStatus" ng-show="vm.hasMessege">{{vm.messegeStatus}}</div>
+    <div class="vehicleStatus-reloader" ng-hide="pendinglock || pendingunlock || refreshingstatus">
+        <a class="clickable" ng-click="vm.latestVehicleStatus()">
+            <img src="images/kh/img/icons/icons-ffffff/refresh.png">
+        </a>
+    </div>
+</div>
+
+<div id="lockUnlock-view" class="container-fluid lock-view remote">
+
+<!-- <div class="contentLoader" ng-show="lockunlock" style="z-index : 0">
+    <span id="statusMsg" ng-bind="pageStatusMessage"></span>
+    <div class="loader loaderContent"   ng-bind="progressstatus" progress-status="progress" ng-show="loadercontent"></div>
+    <a id="tmsRefresh"  class="clickable clickControl" ng-click="refreshvehicle($event)" ng-show="hasRefresh">
+        <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+    </a>
+</div> -->
+    <div class="page-header col-xs-12 col-sm-12" ng-class='{disabled:disableAll == true}'>
+           <ul class="col-sm-8">
+                <li class="col-xs-4 col-sm-4"><a ui-sref='kh.remote'  href="/kh/climate">Engine &amp; Climate</a></li>
+            <li class="col-xs-4 col-sm-4"><a ui-sref='kh.lock' href="/kh/lock" class="active">Lock / Unlock</a></li>
+                <li class="col-xs-4 col-sm-4"><a ui-sref='kh.findMyCar' href="/kh/findMyCar">Find My Car</a></li>
+            </ul>
+        </div>
+
+    <div class="remote-content">
+
+
+                    <div class="car-doors">
+                    <div class="marks mobile-view">
+                            <ul>
+                                <li class="unlocked">Unlocked</li>
+                                <li class="locked">Locked</li>
+                                <li class="open">Door Open</li>
+                            </ul>
+                            </div>
+                        <!-- KH view -->
+            <div class="base" ng-if="vm.genType === 'kh'">
+                <div class="door p1" ng-class="{unlocked:!doorLock, open:frontLeftDoorOpen}"></div>
+                <div class="door p2" ng-class="{unlocked:!doorLock, open:frontRightDoorOpen}"></div>
+                <div class="door p3" ng-class="{unlocked:!doorLock, open:backLeftDoorOpen}"></div>
+                <div class="door p4" ng-class="{unlocked:!doorLock, open:backRightDoorOpen}"></div>
+                <div class="door p5" ng-class="{unlocked:!doorLock, open:trunkOpen}"></div>
+            </div> <!-- base -->
+                    </div>
+                    <div class="info">
+                        <div class="control"  ng-class="{unlocked:!doorLock, locked:doorLock}">
+                            <div class="title locked" ng-show="vehicleStatus.doorLock"  >Your Vehicle is Locked</div>
+                             <div class="title unlocked"  ng-show="!vehicleStatus.doorLock">Your Vehicle is unLocked</div>
+
+                            <div class="selector">
+                                <a class="unlock button" ng-class="{'inactive':vehicleStatus.doorLock,'active disabled':!vehicleStatus.doorLock}" ng-click="unlockVehicle($event)" ng-show="isLockSection || isUnLockSection"> {{vehicleStatus.doorLock ? 'Unlock' : 'Unlocked'}}</a>
+                                <a class="lock button" ng-class="{'inactive':!vehicleStatus.doorLock,'active disabled':vehicleStatus.doorLock}" ng-click="lockVehicle($event)" ng-show="isLockSection || isUnLockSection">{{vehicleStatus.doorLock ? 'locked' : 'lock'}}</a>
+                                <div class="button pending" ng-show="pendingunlock">Unlocking vehicle...</div>
+                                <div class="button pending " ng-show="pendinglock">locking vehicle...</div>
+                                 <div class="button pending " ng-show="refreshingstatus">Refreshing vehicle status...</div>
+
+                                <div class="button error hide">Error! Try Again</div>                                
+                                <div class="button pending hide" >Request in progress</div>
+                                <div  class="button error  "  ng-show="postError && vehicleStatus.doorLock" ng-click="unlockVehicle($event)">Retry unlock</div>
+                           
+                            <div  class="button error " ng-show="postError && !vehicleStatus.doorLock" ng-click="lockVehicle($event)">Retry lock</div>
+                            </div>  
+                             <div class="button vehicle-refresh " ng-show="postError" ng-click="refreshVehicle($event)">Refresh Vehicle Status</div>
+                            
+                                                      
+                            <div class="pending-msg" ng-show="pendingmsg">Please wait 30 seconds before sending additional requests.</div>
+                            <div class="error-msg" ng-if="alertMsg">Your vehicle doors must be closed to send a lock/unlock command</div>
+                       </div>
+                        <div class="marks reg-view">
+                            <div class="title">Vehicle Door Status</div>
+                            <ul>
+                                <li class="unlocked">Unlocked</li>
+                                <li class="locked">Locked</li>
+                                <li class="open">Open</li>
+                            </ul>
+                        </div>
+                    </div>
+                     </div>       
+</div>

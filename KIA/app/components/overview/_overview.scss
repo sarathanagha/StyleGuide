@@ -1,0 +1,755 @@
+#overview-v3 {
+		@media(max-width:$screen-xs-max){margin-top: 35px;}
+	.row-1 .uvo-box { min-height:200px; }
+	.row-2 .uvo-box { height:200px; @media (max-width:$screen-xs-max) { height:166px; } }
+	.row-3 .uvo-box { min-height:200px; }
+	#overview-diagram { text-align:center; background-size:100%;
+		@media (max-width:$screen-xs-max) {
+			background-size: auto 100%;
+			background-position: 50% 0;
+		}
+		
+		#weather { @media (min-width:$screen-sm-min) { position:absolute; right:25px; }
+			span { 
+				color:white;   
+				background: url("../images/kh/img/k900/icon-cloudy.png") no-repeat top left;
+				padding-left: 40px;
+				height: 22px;
+				display:inline-block;
+				font-size:13px;
+				padding-top:8px;
+			}
+		}
+		#temperature { padding-top:10%; position:relative;
+			@media (min-width:$screen-sm-min) { padding-top:42px; }
+			#inside-temp {
+				background: url("../images/kh/img/k900/circle-white.png") no-repeat center top;
+				width: 125px;
+				height: 130px;
+				display: inline-block;
+				color: #C5D9E6;
+				font-size: 44px;
+				padding-top: 50px;
+				text-shadow: none;
+				position: relative;
+				cursor: pointer;
+				padding: 36px 0 0 14px;
+				line-height:1;
+
+				div { font-size:13px; }
+			}
+			#outside-temp {
+				background: url("../images/kh/img/k900/circle-border.png") no-repeat center top;
+				width: 85px;
+				height: 85px;
+				display: inline-block;
+				vertical-align: top;
+				padding-top: 25px;
+				font-size: 31px;
+				text-shadow: none;
+				margin-top: 25px;
+				margin-left: -10px;
+				position: relative;
+				cursor: pointer;
+				color:white;
+
+				div { font-size:10px; }
+			}
+		}
+		#door-lock {
+			color:white;
+			position: absolute;			
+			font-size: 10px;
+			top: 108px;
+			left: 10%;
+			cursor: pointer; 
+			.lock, .unlock {width: 86px; height: 73px; position:relative;}
+			.lock {background: url("../images/kh/img/k900/locked.png") no-repeat center top; }
+			.unlock {background: url("../images/kh/img/k900/unlocked-on.png") no-repeat center top; }
+			span { position:absolute; left:0; bottom:-8px; width:100%; display:inline-block;}
+		}
+		#fmc {
+			color:white;
+			position:absolute;
+			background: url("../images/kh/img/k900/find-car2.png") no-repeat center center;
+			position: absolute;
+			font-size: 10px;
+			height: 73px;
+			width: 86px;
+			right: 10%;
+			top: 108px;
+			cursor: pointer;
+
+			span { position:absolute; left:0; bottom:-8px; width:100%; display:inline-block; }
+		}
+		#car-image { margin: 30px -10px -10px;
+			@media (min-width:$screen-sm-min) { margin: 75px -10px -10px; }
+			.hero-gradient {
+			
+				background: url('../images/kh/img/k900/overview-gradient-floor-white-flooronly.png') no-repeat bottom;
+				background-size: 100%;
+			}
+			.hero-img {margin-left: auto; margin-right: auto; }
+		}
+	}
+	.mobile-details { text-align:center; border:1px solid #CCC; border-top:none; margin-bottom:20px;
+		color:#444; font-size:12px;
+		.name {font-size:26px;}
+		.model {color:#999; padding:8px 0 10px 0; }
+		.gray-border-right { border-right:1px solid #CCC; }
+		.lock, .unlock, .find-car { padding:15px 0 15px 33px; display:inline-block; }
+		.lock {background: url("../images/lock-blue.png") no-repeat left center; }
+		.unlock {background: url("../images/unlock-green.png") no-repeat left center;}
+		.find-car{background: url("../images/find-car.png") no-repeat left center;}
+	}
+	.maintenance {
+		.content { display:table; width:100%;}
+		.miles { color:$kia-red; font-size:32px; vertical-align:middle; display:table-cell; padding-bottom:30px; font-family:$designk-light;
+			@media (min-width:$screen-sm-min) { font-size:47px;  }
+		}
+	}
+	.diagnostic {
+		.has-issues { background:url('../images/issuesFound.png') no-repeat center; height:100%;}
+		.no-issues, .low-fuel { height:100%; 
+			img { margin-left:auto; margin-right:auto;
+				@media (min-width: 320px) and (max-width:480px) {margin-top: 2em;}
+				@media (min-width: 360px) and (max-width:640px) {margin-top: 0.8em;}
+				@media only screen and (min-device-width : 375px) and (max-device-width : 667px)  { margin-top:0em;  height:100%; }
+			}
+		}
+	}
+	.awards { line-height:1;
+		.content.hidden-xs .award-icon img { width:100px; height:100px; }
+		.content.visible-xs > div { display:table; width:100%; height:100%;
+			> span { display:table-cell; vertical-align:middle;}
+			.award-icon { text-align:right; padding-right:10px;
+				img { width:80px; height:80px; }
+			}
+			.award-details { text-align:left; }
+			.award-name, .award-num { color:#444; }
+			.award-name { font-size:15px; padding:8px 0 5px 0; display:inline-block;}
+			.award-num strong { color:$kia-red; }
+		}
+	}
+	.driving-activity { 
+		.content { padding-top:20px;
+			.driving-score { position:relative;
+				.doughnut-score { position:absolute; width:100%; line-height:1; top:25px;height:106px;
+					@media (max-width:767px) { top: 9px; }
+					.value {font-size : 35px; color : #444;position:absolute;top:28px;width:100%;
+					 @media (max-width:767px) { font-size:32px;top:36px;left:8px; }
+					 }
+					.total {color : #CCCCCC; font-size : 13px;
+					    position: absolute;
+					    width: 100%;
+					    bottom: 28px;
+					        margin-top: 100px;
+
+							 @media (max-width:$screen-xs-max) { 
+							 
+							    left: 9px;
+							    bottom: 20px;
+
+							 }
+					      
+					 }
+				}
+			}
+			.mileage { line-height:1;
+				.amount { font-size:56px; color:#000;
+					@media (max-width:767px) { font-size:32px; line-height: 90px; font-family: $designk-light;}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width:768px) {
+			.mob_box {
+			  display: block;
+			  width: 100%;
+			  height: 35px;
+			  background-color: #444444;
+			  margin-top: -10px;
+			  position: absolute;
+			  margin-left: -5px;
+		}
+		.mob_box img {
+			  float:right;
+			  margin-right: 26px;
+			  margin-top: 10px;
+			 
+		}
+
+		img.mob_logo{
+		    display: block;
+		    margin: 6px auto 0 auto;			
+			text-align: center;
+		} 
+	}
+	
+ @media (min-width : $screen-md-min){
+	.mob_box img{display:none;}
+	img.mob_logo{display: none;}
+	.mob_box {display: none;}
+}
+ 
+
+#overview {   
+
+
+
+
+	.container, .col-md-8, .col-xs-5, .col-xs-6, .col-xs-12 { padding: 0px; }
+	.row { margin: 0px; }
+	.col-xs-5 { width: 49%; }
+	.col-xs-12 { padding: 3% 0; }
+	.maint-box { padding-right: 2%; }
+
+
+	.widget-box.maintenance .amount {
+		font-size  : 2em;
+		display: block;
+		margin: 27% 0;
+	}
+
+	.widget-box .amount { font-size: 2em; }
+	.widget-box .title-arrow { font-size: 0.7em; }
+
+	.widget-box label, p { font-size: 65%; margin-bottom:0px; }
+
+	.hero-gradient {
+		position: absolute;
+		left: -11px;
+		bottom: -11px;
+		z-index: 1;
+		width:730px;
+		height:60px;
+		background:url("../images/kh/img/k900/overview-gradient-floor-white-flooronly.png") no-repeat;
+		background-size:100%;
+	}
+
+	.widget-box.k900-hero .title {
+	    color       : white;
+	    display     : block;
+	    width       : 95%;
+	    padding     : 0px;
+	    text-shadow : none;
+	}
+	.widget-box.k900-hero .title .climate {
+		margin-right: 40%;
+		background   : url("../images/kh/img/k900/icon-cloudy.png") no-repeat top left;
+	    float        : right;
+	    padding-left : 40px;
+	    height       : 22px;
+	}
+	.widget-box.k900-hero .content { height: 200px; }
+	.widget-box.k900-hero .content .temperature { height: 90px; }
+	.widget-box.k900-hero .content .hero-img {
+	  	margin-top: 30px;
+	 	 margin-left: 40px;
+	  	z-index: 3;
+	  	position: relative;
+	  	width: 70%;
+	}
+
+	.widget-box .driving-activity { margin-top:5%; }
+	.widget-box .driving-activity .mileage { text-align: center; }
+	.widget-box .driving-activity .mileage label { color: #ababab; }
+
+	.widget-content .award-icon {
+		width: 25%;
+		float: left;
+	}
+
+	.widget-content .award-info {
+		font-size: .8em;
+		padding: 5%;
+	}
+
+	.widget-content .award-name {
+		font-size: 1em;
+		color: #000;
+	}
+
+	.topRow {
+		padding-top: 30px;
+		padding-bottom: 15px;
+		margin-top: -20px;
+		margin-bottom: 10px;
+		border: 1px solid #E1E1E1;
+		text-align: center;
+	}
+
+	.topRow .name, .topRow .model { padding-left: 0px; }
+	.topRow .model { font-size: .7em; line-height: 2em; color: #ABABAB;}
+	.topRow {
+		.lock, .unlock {
+			background: url("../images/lock-blue.png") no-repeat 20% center;
+			border-right: 1px solid #ABABAB;
+			height: 30px;
+			font-size: .7em;
+			line-height: 3em;
+		}
+
+		.unlock {
+			background: url("../images/unlock-green.png") no-repeat 20% center;
+		}
+	}
+
+	.topRow .find-car {
+		background: url("../images/find-car.png") no-repeat 5% center;
+		height: 30px;
+		font-size: .7em;
+		line-height: 3em;
+	}
+
+}/* closing #overview  */
+#highcharts-0{
+	margin          :0 auto;
+}
+
+.widget-box.last-sync .w-img .day{
+	padding :10px;
+}
+	 
+	#ok_message{font-size: 0.9em;
+			  color: #7BB609;
+			  position: absolute;
+			  bottom: 44px;
+			}
+	@media (min-width:$screen-md-min) {
+		.overview-gen1{
+			#diagIssuesFound{
+				width          : 100%;
+				bottom         : -97px;
+				position       : relative;
+			}
+			.widget-box.diagnostic .content{margin-top:0;}
+			.row {
+	  			margin-left: 0px; 
+	  			margin-right: 0px; 
+			}
+			.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+			  padding-left: 0px;
+			  padding-right: 0px;
+			}
+			.img-responsive{display:inline-block !important; height:170px}
+			.next-service .amount{font-size: 47px; color: #C4172C;}
+			.container{width:98% !important;}
+			.col-md-8 { width: 62.4%; }
+			.col-md-4 { width: 32%; padding: 0px; }
+			.col-md-push-4 { left: 36%; }
+			.col-md-pull-4 { right: 30%; }
+
+			.hero-gradient { height:110px; }
+
+			/* .widget-box { min-height: 200px; } */
+			.widget-box .amount { font-size: 4.5em; }
+
+			.widget-box.k900-hero .content { height: 430px; }
+			.widget-box.k900-hero .title { padding: 10px 20px; }
+			.widget-box.k900-hero .title .climate { margin-right: 0px; }
+			.widget-box.k900-hero .content .hero-img { margin-top: 70px; }
+
+			.widget-box.awards .w-img img { display: inline-block; }
+			.widget-box .title-arrow { font-size: 1em; }
+			.widget-box.maintenance .amount { font-size  : 3.6em; margin: 30% 0; }
+			.widget-box label, p { font-size: 1em; margin-bottom:0px; }
+			
+			.widget-box.driving-activity { margin-top:0; height:385px !important; }
+			.widget-box .driving-activity .mileage { text-align: left; }
+			.widget-box .driving-activity .w-label{padding-top:25px;}
+			.widget-box .driving-activity .safety-score { width: 150px; }
+			.widget-box .driving-activity .col-md-pull-4 { right: 20%; }
+			.widget-box .driving-activity .col-md-push-8 { left: 70%; }
+			
+			.overview-gen1 .blade.three-columns-symmetric{max-width: 488px !important;}
+			.blade.two-columns-asymmetric {
+				  overflow: hidden;
+				  max-width: 730px;
+				  width:	100%;
+				  height: 426px;
+				  padding-right: 20px;}
+			.widget-box.my-POIs {
+			  margin-right: 18px;
+			  min-height: 195px;
+			  line-height: 15px;
+			  height: 195px;}
+			.blade.three-columns-symmetric{width:100%;overflow:hidden;}
+			/* .blade.three-columns-symmetric > div:first-child {width: 50%;}
+			.blade.three-columns-symmetric > div:nth-child(2) {width: 50%;} */
+			.widget-box.last-sync{margin-right:15px;}
+			.col-1{max-height:400px;}
+			.widget-box.border.driving-activity{margin-right:15px;}
+			.widget-box.driving-activity .upper > div{margin-top:25px;}
+
+			.sm_moble{display:none;}
+			.overview-gen1 .widget-box{border-top:1px solid #e1e1e1;}
+			.blade.two-columns-asymmetric .col-1 {max-height: 427px !important; }
+			.blade.two-columns-asymmetric .col-2 {max-height: 427px;}
+			.widget-box.diagnostic{height:170px;}
+			.widget-box.maintenance{height:169px;padding-top:10px;}
+			.widget-box.maintenance .amount{margin:20% 0;}
+			.maintenance .content > div > span{
+				font-size                 : 1.5em;
+			    padding-top               : 25px;
+			    display                   : inline-block;
+			}
+
+
+
+		}
+}
+/* gen1 mobile view */
+@media(max-width:768px){
+	.overview-gen1{margin-top: 35px;
+		.green-checkMark{
+			height: 85px!important;
+		}
+		#ok_message {bottom:27px}
+		.widget-box .amount{font-size:4em}
+		.main-content-area{padding:0;}
+		.main-wrapper.content{margin-top:0px !important;}
+		.img-responsive{display:inline-block !important;}
+		.overview-gen1 .widget-box{margin-bottom: 0px;}
+		.row {
+	  		margin-left: 0px; 
+	  		margin-right: 0px; 
+		}
+		.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+			padding-left: 0px;
+			padding-right: 0px;
+		}	
+		#diagIssuesFound{ 
+			width                 :100%;
+			bottom                :-95px; 
+			position              : relative;}
+		.next-service .amount{font-size: 33px; color: #C4172C;}
+		.widget-box .content{margin-top:10px;}
+		.widget-box.driving-activity .user-car .img-responsive{max-width:100%;}
+		.widget-box.driving-activity .user-car{margin-top:25px;}
+		.widget-box.last-sync{height:160px; margin-right:5px;min-height:0;}
+		.widget-box.last-sync .w-img .day {height:35px;font-size:40px;}
+		.widget-box.last-sync .w-footer{padding-top:15px;line-height:12px;font-size:12px;}
+		.widget-box.diagnostic{height:150px;overflow:hidden;margin-right:5px;margin-bottom:10px;}
+		.widget-box.diagnostic .w-img .img-responsive{margin-top:-10px; min-width:135px;}
+		.widget-box.maintenance{height:150px;margin-left:10px;margin-left:5px;margin-bottom:10px;}
+		.content-area{height: 100%;overflow: visible !important;}
+		.blade.two-columns-asymmetric{
+		.col-1{width:100% !important;padding-right:0 !important;}
+		}.sm_moble{display:block;}
+		.widget-box .title.fst{display: none;}
+		.widget-box.driving-activity .upper{display: none;}
+		.widget-box .title.positn{display: block;padding-bottom: 22px;}
+		.mileage.mob {padding: 25px 0px;border-top: 2px dashed #ccc;}
+		.col-1{max-height: inherit;}
+		.widget-box.border.driving-activity{max-height: inherit;}
+		.blade.two-columns-asymmetric{height: inherit;}
+	    /* .widget-box.maintenance.hover-on.border.center{float:right !important;margin-left: -22px !important;width:42%;} */
+		.blade.two-columns-asymmetric .col-2 {width: 100% !important;padding-left: 0 !important;}
+		//.widget-box.hover-on{width: 42%;float: left;min-height: 172px;margin-top:10px;}
+		.pul_rt{float:right !important;margin-right: 6px !important;}
+		.pul_rt1{float:right !important;padding: 0 !important;}
+		.blade.three-columns-symmetric {max-width: 100%;overflow:hidden;}
+		.blade.three-columns-symmetric > div:nth-child(2) {width: 50%;padding: 0 !important;}
+		.blade.three-columns-symmetric > div:first-child{padding:0;}
+		.widget-box.my-POIs{
+			height: 160px;padding-top: 10px;margin-top: 0;margin-left:5px;min-height:0;
+	 		}
+	 	.widget-box.my-POIs .w-footer{padding-top:10px;}
+		.pul_rt1 {float:right !important;padding: 0px 10px !important;}
+		/* .blade.three-columns-symmetric > div:first-child {padding-right:3%;max-height:210px !important;} */
+		#footer{position:relative;}
+		.widget-box.driving-activity{height:inherit;margin-bottom:10px;}
+		.widget-box{border-top:2px solid #e1e1e1;border:2px solid #e1e1e1;}
+		.mileage.mob label.w-label {
+	       display: inline;
+		   margin-top: 33px;
+		   float: left;
+		   width: 35%;
+		   text-align: center;
+	     }
+		.mileage.mob .amount{display: inline !important;}
+		.blade.two-columns-asymmetric .col-1{max-height:100% !important ;}
+		.overview-gen1.blade.two-columns-asymmetric .col-2{padding-top:88px !important;}
+		.maintenance .content > div > span{
+				font-size              : 1em!important;
+			    padding-top            : 25px;
+			    display                : inline-block;
+		}	
+		
+
+
+		/* pl */
+ 
+
+		}
+}
+
+
+
+
+/* Gen1+ mobile view */
+@media(max-width:768px){
+	.main-wrapper .main-wrapper-content{overflow: visible !important;}
+	.overview-gen1plus{margin-top: 35px;
+			.row {
+	  			margin-left: 0px; 
+	  			margin-right: 0px; 
+			}
+			.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+			  padding-left: 0px;
+			  padding-right: 0px;
+			}
+			.green-checkMark{
+				height: 107px!important;
+			}
+			#diagIssuesFound{bottom:30px!important;}
+			#ok_message{bottom:-11px}
+			.widget-box{margin-bottom:10px;}
+			.widget-box.border.driving-activity{width:100%;height:385px;padding-left:0;padding-right:0;
+				overflow:hidden;padding-left:0;padding-right:0;}
+			.widget-box.driving-activity .safety-score .w-label{margin-bottom:15px;padding-left:0px;}
+			.widget-box.diagnostic{height:160px;margin-right:5px;}
+			.widget-box.diagnostic .img-responsive{display:inline;max-height:150px;}
+			.widget-box.driving-activity .content{height:350px; position:relative;}
+			.widget-box.driving-activity .upper {
+				display: inherit; 
+				position:absolute; 
+				padding: 195px 0 0 0;
+				width:100%;
+				margin-top:35px;
+			}
+			.widget-box.driving-activity .upper .mileage{border-right:2px dashed #E1E1E1;}
+			.widget-box.driving-activity .amount{font-size:2.5em;}
+			label.w-label{font-size: 1em;text-align: center;}
+			.widget-box.driving-activity .lower{margin-top:-25px;}
+			.widget-box.driving-activity .user-car {margin-top: 0px;}
+			.widget-box img {max-width:100%;}
+			.widget-box.driving-activity .title{display:none;}
+			.blade.two-columns-asymmetric .col-1 {padding-right:22px !important;margin-bottom:5px;}
+			.blade.three-columns-symmetric{margin-top:0px;}  
+			.blade.three-columns-symmetric .col-1{padding-right: 3%; width:50% !important;}
+			.widget-box.my-POIs {height:156px; min-height:0px; margin-left:5px;}
+			.widget-box.my-POIs .content{margin-top: 10px;font-size: 13px;}
+			.widget-box.my-POIs .w-footer{padding-top:10px;}
+			.blade.three-columns-symmetric .col-3{width:100%;padding-right:21px;padding-left:0;}
+			.widget-box.last-sync{height:160px;margin-right:5px;font-size:12px;line-height:12px;min-height:0px;}
+			.widget-box.last-sync .content{margin-top:15px;}
+			.widget-box.last-sync .w-footer{padding-top:5px;}
+			.widget-box .amount{ font-size: 3em; display:block;text-align:center;}
+			.widget-box.maintenance .amount{color:#C4172C;}
+			.widget-box.maintenance{height:160px;margin-left:5px;}
+			.widget-box.diagnostic .content{margin-top:0px;}
+			#plus-tittle{text-align:center;}
+			.maintenance .content > div > span{
+				font-size                 : 1em!important;
+			    padding-top               : 0px;
+			    display                   : inline-block;
+			}
+			.awards .content{
+				height: 100px;
+			}
+			.widget-box.awards .w-img{
+				float : left;
+				width: 73px;
+
+			}
+			.lastAward{
+				width: 68%;
+				text-align : left;
+				padding : 10px 0px;
+				float : right;
+			}
+			.awards-earned{
+				width: 68%;
+			    float: right;
+			    text-align: left;
+			    margin-top: 5px;
+			}
+			.lastAwardReceived{
+				width: 68%;
+    			float: right;
+    			text-align: left;
+			}
+			.widget-box.driving-activity.border.hover-on:before{
+                background-color   : #ABABAB;
+                border-right-color : #ABABAB;
+                border-left-color  : #ABABAB;
+            }
+
+	}
+}
+
+@media (max-width : 340px) {
+	.overview-gen1plus {
+		.driving-activity .upper > div{
+			width :48%;
+			margin-top: -25px;
+		}
+		 .widget-box.driving-activity .content {
+			position:relative;
+		}
+		 .widget-box.driving-activity .upper {
+			position:absolute;
+			left: 10px;
+			padding: 215px 0 0 0;
+		}
+		 
+	}
+}
+
+@media (min-width : $screen-md-min) {
+	
+	.overview-gen1plus{
+			.widget-box.maintenance .amount{color:#C4172C;font-size: 3.5em;}
+			#ok_message{bottom: 5px;}
+			#diagIssuesFound{bottom:35px!important;}
+			.widget-box{padding: 10px;}
+			.row {
+	  			margin-left: 0px; 
+	  			margin-right: 0px; 
+			}
+			.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+			  padding-left: 0px;
+			  padding-right: 0px;
+			}
+			.img-responsive{display:inline-block !important; height:170px;}
+			.container {max-width: 730px;height: 670px; width:100%;}
+			.blade.two-columns-asymmetric{height: 426px;}
+			.blade.two-columns-asymmetric .col-1{height: 426px;}
+			.widget-box.driving-activity{height:378px;margin-right:15px;}
+			.widget-box.driving-activity .user-car {margin-top: -12px;}
+			#safety-chart{margin-top:8px; margin-left:12px;}
+			.blade.two-columns-asymmetric .col-1{height: 426px;}
+			.blade.two-columns-asymmetric .col-2 {height: 426px;}
+			.widget-box.maintenance.hover-on.border.center{height:162px !important;margin-left:5px;}
+			.widget-box.diagnostic.center.border.hover-on {height: 168px;padding-top: 15px;margin-left:5px;}
+			.widget-box.diagnostic .content{margin-top:0px;}
+			.widget-box .diagnostic{height:170 !important;}
+			.widget-box .diagnostic.content{height:156px !important;margin-top:0px !important;}
+			.blade.three-columns-symmetric > div  {width:33.3333% !important;}
+			.widget-box.last-sync{height:200px !important; padding-bottom: 1px;min-height:0;margin-right:20px;}
+			.widget-box.driving-activity .safety-score .w-label{margin-left: -19px;}
+			.widget-box.awards{margin-left:5px;height:0;min-height:192px}
+			#plus-tittle{display:none;}
+			.widget-box.my-POIs{min-height:192px;margin-right:15px;} 
+			.maintenance .content > div > span{
+				font-size                 : 1.5em!important;
+			    padding-top               : 0;
+			    display                   : inline-block;
+			}
+			.lastAwardReceived{position: relative;
+    					top: -10px;}
+	}
+}
+
+
+@media(max-width : 767px){
+#overview-v3 > div > div.row.row-2 > div:nth-child(1){
+	float:right;
+	}
+}
+
+
+
+///// vehicle status for mobile/// 
+		@media(max-width:$screen-xs-max){
+			.vehicleStatus.success{
+    			background-color :#7CB60A;
+    		}
+    	}
+
+
+    	@media(max-width:$screen-xs-max){
+			.vehicleStatus.error{
+    			background-color :#C4172C;
+    		}
+    	}
+
+	.vehicleStatus{
+		@media(max-width:$screen-xs-max){
+			background-color : #454545;
+			height: 33px;
+			position: absolute;
+    		top: -10px;
+    		width: 100%;
+    		z-index: 1;
+    		margin-left: -5px;
+    		
+		}
+		.vehicleStatus-date{
+			@media(max-width:$screen-xs-max){
+				top: 5px;left: 10px;font-size:12px;}
+			
+					///desktop////
+			position: absolute;
+		    top: -56px;
+		    right: 49px;
+		    color: #A4A4A4;
+		}
+
+		.messegeStatus{
+		position: absolute;
+	    top: 9px;
+	    right: 49px;
+	    color:#C5D9E6;
+	    font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    	text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+
+		}
+		.vehicleStatus-reloader{
+			@media(max-width:$screen-xs-max){ top : 8px;}
+			position: absolute;
+		    top: -53px;
+		    right: 10px;
+	   		}
+	}
+body.success .vehicleStatus .vehicleStatus-date,
+body.error .vehicleStatus .vehicleStatus-date{
+ color:white;
+}
+
+@media(max-width:767px){
+.chart{
+	margin-top: 12px;
+	margin-left: 16px;
+
+}
+#chart{ margin-top: 46px}
+	.vehicleStatus-reloader{
+	//float : right;
+	}
+	body.success{
+		//background-color: transparent;
+	}
+}
+.safety-score{
+	.chart1{
+	position:relative;
+	top:-71px; 
+		 	@media(max-width:$screen-xs-max){
+	 		top:-80px;
+	 		left: 6px;
+	 	}
+	.good1{font-size:3em;}
+	.total1{
+	margin-top:9px;
+	color:#C1BFBF;
+	margin-left:8px;
+	 	@media(max-width:$screen-xs-max){
+		margin-top:4px;
+	 	margin-left:9px;
+	 	}
+	 }
+
+	}
+}
+@media(min-width: 667px){
+	.widget-box.driving-activity .upper {
+				margin-top: 3px;
+			}
+}	
+
+

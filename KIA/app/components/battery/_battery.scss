@@ -1,0 +1,628 @@
+.statusMsg {top:-56px; right:50px; color:#a4a4a4; position:absolute;}
+.statusLoader {top:-56px; right:10px; color:#a4a4a4; position:absolute; cursor:pointer;}
+.statusLoader.disable {cursor: default}
+
+#battery{
+	padding-top: 45px;
+	.panel-1 {
+		padding-top:21px;
+		position: relative;
+		float:left;
+		color:#888;
+		text-align: center;
+		height:100%;
+		padding:0 0 45px 0;
+		h3 { font-size: 1.5em; margin-top:-280px; }
+		p { font-size: 2.5em; margin-top:140px; }
+		input {
+			width:260px !important;
+			height:150px !important;
+			margin-top:70px !important;
+			margin-left: -304px !important;
+			font-size: 11em !important;
+		}
+		.meter-value { position: absolute; font-size: 2em; }
+		.meter-value.val-1, .meter-value.val-2, .meter-value.val-3 {
+		    top: 245px;
+		    left: 55px;
+		}
+		.meter-value.val-4, .meter-value.val-5, .meter-value.val-6 {
+		    top: 230px;
+		    left: 45px;
+		}
+		.meter-value.val-7, .meter-value.val-8, .meter-value.val-9 {
+		    top: 200px;
+		    left: 40px;
+		}
+		.meter-value.val-10, .meter-value.val-11, .meter-value.val-12 {
+		    top: 175px;
+		    left: 20px;
+		}
+		.meter-value.val-13, .meter-value.val-14, .meter-value.val-15 {
+		    top: 155px;
+		    left: 20px;
+		}
+		.meter-value.val-16, .meter-value.val-17, .meter-value.val-18 {
+		    top: 135px;
+		    left: 20px;
+		}
+		.meter-value.val-19, .meter-value.val-20, .meter-value.val-21 {
+		    top: 110px;
+		    left: 25px;
+		}
+		.meter-value.val-22, .meter-value.val-23, .meter-value.val-24 {
+		    top: 90px;
+		    left: 30px;
+		}
+		.meter-value.val-25, .meter-value.val-26, .meter-value.val-27 {
+		    top: 60px;
+		    left: 50px;
+		}
+		.meter-value.val-28, .meter-value.val-29, .meter-value.val-30 {
+		    top: 35px;
+		    left: 70px;
+		}
+		.meter-value.val-31, .meter-value.val-32, .meter-value.val-33 {
+		    top: 12px;
+		    left: 95px;
+		}
+		.meter-value.val-34, .meter-value.val-35, .meter-value.val-36 {
+		    top: 0px;
+		    left: 115px;
+		}
+		.meter-value.val-37, .meter-value.val-38, .meter-value.val-39 {
+		    top: -10px;
+		    left: 140px;
+		}
+		.meter-value.val-40, .meter-value.val-41, .meter-value.val-42 {
+		    top: -18px;
+		    left: 160px;
+		}
+		.meter-value.val-43, .meter-value.val-44, .meter-value.val-45 {
+		    top: -21px;
+		    left: 190px;
+		}
+		.meter-value.val-46, .meter-value.val-47, .meter-value.val-48 {
+		    top: -23px;
+		    left: 210px;
+		}
+		.meter-value.val-49, .meter-value.val-50, .meter-value.val-51 {
+		    top: -25px;
+		    left: 240px;
+		}
+		.meter-value.val-52, .meter-value.val-53, .meter-value.val-54 {
+		    top: -20px;
+		    left: 265px;
+		}
+		.meter-value.val-55, .meter-value.val-56, .meter-value.val-57 {
+		    top: -15px;
+		    left: 295px;
+		}
+		.meter-value.val-58, .meter-value.val-59, .meter-value.val-60 {
+		    top: -10px;
+		    left: 315px;
+		}
+		.meter-value.val-61, .meter-value.val-62, .meter-value.val-63 {
+		    top: 0px;
+		    left: 330px;
+		}
+		.meter-value.val-64, .meter-value.val-65, .meter-value.val-66 {
+		    top: 20px;
+		    left: 365px;
+		}
+		.meter-value.val-67, .meter-value.val-68, .meter-value.val-69 {
+		    top: 40px;
+		    left: 385px;
+		}
+		.meter-value.val-70, .meter-value.val-71, .meter-value.val-72 {
+		    top: 63px;
+		    left: 400px;
+		}
+		.meter-value.val-73, .meter-value.val-74, .meter-value.val-75 {
+		    top: 83px;
+		    left: 410px;
+		}
+		.meter-value.val-76, .meter-value.val-77, .meter-value.val-78 {
+		    top: 98px;
+		    left: 418px;
+		}
+		.meter-value.val-79, .meter-value.val-80, .meter-value.val-81 {
+		    top: 120px;
+		    left: 425px;
+		}
+		.meter-value.val-82, .meter-value.val-83, .meter-value.val-84 {
+		    top: 150px;
+		    left: 430px;
+		}
+		.meter-value.val-85, .meter-value.val-86, .meter-value.val-87 {
+		    top: 170px;
+		    left: 430px;
+		}
+		.meter-value.val-88, .meter-value.val-89, .meter-value.val-90 {
+		    top: 195px;
+		    left: 430px;
+		}
+		.meter-value.val-91, .meter-value.val-92, .meter-value.val-93 {
+		    top: 210px;
+		    left: 425px;
+		}
+		.meter-value.val-94, .meter-value.val-95, .meter-value.val-96 {
+		    top: 235px;
+		    left: 415px;
+		}
+		.meter-value.val-97, .meter-value.val-98, .meter-value.val-99, .meter-value.val-100 {
+		    top: 260px;
+		    left: 405px;
+		}
+	}
+	.panel-2 {
+		position: relative;
+		text-align: center;
+		float:left;
+		border:1px solid #e6e6e6;
+		margin:-300px 0 10px 500px;
+		padding:0 17px 0 17px;
+		.top {
+			position:relative;
+			padding: 15px 0;
+			border-bottom: 1px solid #e6e6e6;
+			a.btn {
+				padding:6px 13px;
+				color:#fff;
+				background: #ccc;
+				cursor: default;
+			}
+			a.btn.start { background: #7CB60A; cursor: pointer;}
+			a.btn.stop { background: #C4172C; cursor: pointer; }
+			.status .status-container img { margin: 10px 0 0; }
+			.status .perc-radio {
+				display:block;
+				cursor:pointer;
+				margin:5% 27.5%;
+				width:104px;
+				height:29px;
+				background-image: url("../images/battery/perc-100.png");
+				background-repeat:no-repeat;
+			}
+			.status .perc-radio.eighty { background-image: url("../images/battery/perc-80.png"); }
+		}
+		.bottom {
+			position: relative;
+			padding: 15px 0;
+		a.btn { border: 1px solid #ccc; margin:0px 0 0 0;
+			}
+			ul li { padding: 15px 0;}
+			ul li .left { float: left; }
+			ul li .right { float: right; }
+			img { margin:0 0 -2px 6px; }
+			.right span { color: #1284d4; }
+		}
+	}
+	.lower-panel {
+		margin-top:20px;
+		padding:10px 0;
+		color: #a4a4a4;
+		border-top: 1px solid #e6e6e6;
+		div { float:left; width:auto; padding:0; }
+		div:nth-child(even) { margin: 0px 3px; }
+	}
+	.range-cal-box {
+		position:absolute; z-index:2; margin-left: 580px; top: 542px;
+		.range-cal-content {background-color:#333; color:#fff; padding:15px; text-align:left; line-height:normal; float:right; width:200px; margin-top:-80px; margin-right:-230px}
+		.range-cal-content span { color: #888; }
+	}
+	.schedule-tap {
+		margin: 30px 0 0 30px;
+		font-weight: bold;
+		.line { border-bottom: 2px solid #444; }
+		.req-schedule {
+			margin: 10px 10px 50px;
+			p { float: left; }
+			button { float: right; }
+			.myBtn { background: #7CB60A; border: #7CB60A; color: #fff; cursor:pointer; padding: 5px 20px; }
+			.myBtn.disabled { background: #CCC; border: #CCC; cursor:default; }
+		}
+		.toggle-up { margin-bottom: 20px; border: 1px solid #e6e6e6; position: relative; }
+		.toggle-up.open .toggle-section {
+			position: relative;
+			overflow: hidden;
+		}
+		.toggle-up.open .on {
+			cursor: pointer;
+			background: url("../images/schedule/btn-green.jpg") no-repeat 5px 10px;
+			width:80px;
+			height:40px;
+			float:left;
+			padding:5px;
+		}
+		.toggle-up.open .on.off {
+			background-image: url("../images/schedule/btn-gray.jpg");
+		}
+		.toggle-up.open .full-on {
+			cursor: pointer;
+			background: url("../images/schedule/btn-green.jpg") no-repeat 5px 10px;
+			width:80px;
+			height:40px;
+			padding:5px;
+			margin: -35px 0 0 80px;
+		}
+		.toggle-up.open .full-on.off {
+			background: url("../images/schedule/btn-red.jpg") no-repeat 5px 10px;
+		}
+		.toggle-up.open .show-schedule {
+			display:block;
+			border-top:1px solid #c4c4c4;
+		}
+		.toggle-up .line-vert01 {
+			float: left;
+			border-right: 2px solid #e6e6e6;
+			height: 26px;
+			margin: 15px -7px 0 -6px;
+		}
+		.toggle-up .txt01 { float: left; margin: 17px 20px 0 14px; color: #888;}
+		.toggle-up .txt02 {
+			font-size: 15px;
+			color: #888;
+			float: left;
+			margin: 18px 27px 0 14px;
+		}
+		.toggle-up .txt03 {
+  			font-size: 15px;
+  			color: #888;
+  			float: left;
+  			margin: 18px 75px 0 16px;
+		}
+		.toggle-up .arrow-down.pos06 {
+			position:absolute;
+			left: 658px;
+			top:15px;
+			cursor:pointer;
+		}
+		.toggle-up .arrow-down.pos06 .down {
+			background-image: url("../images/schedule/arrow-down.jpg");
+			background-repeat: no-repeat;
+			width:26px;
+			height:20px;
+		}
+		.toggle-up .arrow-down.pos06 .down.up {
+			background-image: url("../images/schedule/arrow-up.jpg");
+		}
+		.toggle-up .txt-set {
+			font-size: 12px;
+			color: #444;
+			margin: 60px 0 0 30px;
+		}
+		.toggle-up .txt-set.jf {
+			margin: 10px 0 0 30px;
+		}
+		.toggle-up .control-battery {
+  			margin: -25px 0 0 200px;
+  			font-size: 21px;
+  			color: #888888;
+  			padding-bottom:30px;
+		}
+		.toggle-up .lineDisc {
+  			/*padding-top: 38px;*/
+  			border-bottom: 1px dashed #e6e6e6;
+  			width: 93%;
+  			margin-left: 28px;
+		}
+
+		.scheduleBtnWrap { padding: 30px 15px 40px 0; }
+		.scheduleBtnWrap .scheduleError { margin:-30px 0 0 30px; color:#c4172c; }
+		.scheduleBtnWrap .btnCancel { cursor:pointer; margin-right: 10px !important; padding:5px 20px; border:1px solid #e6e6e6; }
+		.scheduleBtnWrap .btnSchedule { cursor:pointer; padding: 5px 30px; color: #FFF; border:1px solid #7CB60A; background-color: #7CB60A; }
+		.scheduleBtnWrap .btnSchedule.disabled { cursor:default; border:1px solid #CCC; background-color: #CCC; }
+
+		.toggle-up .calendar { margin: 33px 0 80px 28px; padding-bottom:30px; }
+		.toggle-up .calendar.jf { margin: 10px 0 30px 28px; }
+		.toggle-up .calendar .hour { font-size: 22px !important; color: #2f2f2f; }
+		.toggle-up .calendar .hour .hour-wrap.selected { border: 1px solid #c4172c; }
+		.toggle-up .calendar .hour .minute-wrap.selected { border: 1px solid #c4172c; }
+        .toggle-up .calendar .hour .am-pm-wrap.selected { border: 1px solid #c4172c; }
+		.toggle-up .calendar .weekDays .date-box {
+  			background-image: url("../images/schedule/week-box1.jpg");
+  			background-repeat: no-repeat;
+  			cursor: pointer;
+  			width: 35px;
+  			height: 35px;
+  			float: left;
+  			text-align: center;
+  			font-weight: bold;
+  			letter-spacing: -1;
+  			font-size: 100%;
+  			zoom: 0;
+  			padding: 10px 0;
+  			margin-left:5px;
+		}
+		.toggle-up .calendar .weekDays .date-box.selected {
+			color: #c4172c;
+  			background-image: url("../images/schedule/week-box-red1.jpg");
+  		}
+		.radioBtn_section li { display:inline-block; width:120px; }
+		.radioBtn_eighty {
+  			float: left;
+  			cursor: pointer;
+  			width: 18px;
+  			height: 18px;
+  			margin: 0 10px 0 0;
+  			background: url("../images/climate/radio-btn.png") no-repeat 0px 0px;
+		}
+		.radioBtn_eighty.selected {
+  			background: url("../images/climate/radio-btn-active.png") no-repeat 0px 0px;
+		}
+		.radioBtn_hundred {
+  			float: left;
+  			cursor: pointer;
+  			width: 18px;
+  			height: 18px;
+  			margin: 0 5px 0 0px;
+  			background: url("../images/climate/radio-btn.png") no-repeat 0px 0px;
+		}
+		.radioBtn_hundred.selected {
+  			background: url("../images/climate/radio-btn-active.png") no-repeat 0px 0px;
+		}
+	}
+
+}
+@media (min-width:320px) and (max-width:480px){
+	.statusMsg {top:0px; font-size: 8px; z-index: 1}
+}
+@media (min-width:375px) and (max-width:627px){
+	.statusMsg {top:0px; font-size: 9px; z-index: 1}
+}
+
+	/*Mobile*/		
+@media (max-width:$screen-xs-max){
+	
+	.statusLoader {top:0px; z-index: 1;}
+	#battery{
+		.panel-1 {
+			float:initial;
+			h3 { font-size: 1.2em; margin-top: -220px; }
+			p { font-size: 2em; margin-top: 120px; }
+			input {
+				width:210px !important;
+				height:120px !important;
+				margin-top:70px !important;
+				margin-left: -244px !important;
+				font-size: 8em !important;
+			}
+			.meter-value { font-size: 1em; }
+			.meter-value.val-1, .meter-value.val-2, .meter-value.val-3 {
+			    top: 70%;
+			    left: 2%;
+			}
+			.meter-value.val-4, .meter-value.val-5, .meter-value.val-6 {
+			    top: 65%;
+			    left: 1%;
+			}
+			.meter-value.val-7, .meter-value.val-8, .meter-value.val-9 {
+			    top: 58%;
+			    left: 0%;
+			}
+			.meter-value.val-10, .meter-value.val-11, .meter-value.val-12 {
+			    top: 50%;
+			    left: 0%;
+			}
+			.meter-value.val-13, .meter-value.val-14, .meter-value.val-15 {
+			    top: 44%;
+			    left: 0%;
+			}
+			.meter-value.val-16, .meter-value.val-17, .meter-value.val-18 {
+			    top: 38%;
+			    left: 0%;
+			}
+			.meter-value.val-19, .meter-value.val-20, .meter-value.val-21 {
+			    top: 32%;
+			    left: 0%;
+			}
+			.meter-value.val-22, .meter-value.val-23, .meter-value.val-24 {
+			    top: 26%;
+			    left: 1%;
+			}
+			.meter-value.val-25, .meter-value.val-26, .meter-value.val-27 {
+			    top: 20%;
+			    left: 2%;
+			}
+			.meter-value.val-28, .meter-value.val-29, .meter-value.val-30 {
+			    top: 12%;
+			    left: 8%;
+			}
+			.meter-value.val-31, .meter-value.val-32, .meter-value.val-33 {
+			    top: 8%;
+			    left: 12%;
+			}
+			.meter-value.val-34, .meter-value.val-35, .meter-value.val-36 {
+			    top: 2%;
+			    left: 20%;
+			}
+			.meter-value.val-37, .meter-value.val-38, .meter-value.val-39 {
+			    top: -1%;
+			    left: 25%;
+			}
+			.meter-value.val-40, .meter-value.val-41, .meter-value.val-42 {
+			    top: -3%;
+			    left: 30%;
+			}
+			.meter-value.val-43, .meter-value.val-44, .meter-value.val-45 {
+			    top: -4%;
+			    left: 38%;
+			}
+			.meter-value.val-46, .meter-value.val-47, .meter-value.val-48 {
+			    top: -5%;
+			    left: 42%;
+			}
+			.meter-value.val-49, .meter-value.val-50, .meter-value.val-51 {
+			    top: -6%;
+			    left: 50%;
+			}
+			.meter-value.val-52, .meter-value.val-53, .meter-value.val-54 {
+			    top: -5%;
+			    left: 54%;
+			}
+			.meter-value.val-55, .meter-value.val-56, .meter-value.val-57 {
+			    top: -3%;
+			    left: 60%;
+			}
+			.meter-value.val-58, .meter-value.val-59, .meter-value.val-60 {
+			    top: 0;
+			    left: 68%;
+			}
+			.meter-value.val-61, .meter-value.val-62, .meter-value.val-63 {
+			    top: 2%;
+			    left: 72%;
+			}
+			.meter-value.val-64, .meter-value.val-65, .meter-value.val-66 {
+			    top: 8%;
+			    left: 78%;
+			}
+			.meter-value.val-67, .meter-value.val-68, .meter-value.val-69 {
+			    top: 12%;
+			    left: 82%;
+			}
+			.meter-value.val-70, .meter-value.val-71, .meter-value.val-72 {
+			    top: 18%;
+			    left: 86%;
+			}
+			.meter-value.val-73, .meter-value.val-74, .meter-value.val-75 {
+			    top: 24%;
+			    left: 90%;
+			}
+			.meter-value.val-76, .meter-value.val-77, .meter-value.val-78 {
+		    	top: 32%;
+		    	left: 90%;
+			}
+			.meter-value.val-79, .meter-value.val-80, .meter-value.val-81 {
+			    top: 40%;
+			    left: 90%;
+			}
+			.meter-value.val-82, .meter-value.val-83, .meter-value.val-84 {
+			    top: 46%;
+			    left: 90%;
+			}
+			.meter-value.val-85, .meter-value.val-86, .meter-value.val-87 {
+			    top: 52%;
+			    left: 90%;
+			}
+			.meter-value.val-88, .meter-value.val-89, .meter-value.val-90 {
+			    top: 58%;
+			    left: 90%;
+			}
+			.meter-value.val-91, .meter-value.val-92, .meter-value.val-93 {
+			    top: 64%;
+			    left: 90%;
+			}
+			.meter-value.val-94, .meter-value.val-95, .meter-value.val-96 {
+			    top: 70%;
+			    left: 90%;
+			}
+			.meter-value.val-97, .meter-value.val-98, .meter-value.val-99, .meter-value.val-100 {
+			    top: 75%;
+			    left: 88.1%;
+			}
+		}
+
+		.panel-2 { margin: 0px; border: 0px; }
+		.panel-2 .row { padding: 10px 0; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; }
+		.panel-2 .top { border-bottom: 0px; border-right: 2px solid #e6e6e6; }
+		.panel-2 .top .status .status-container img { width:30%; }
+		.panel-2 .top .status h6 { margin:5px; }
+		.panel-2 .top .status .perc-radio { margin:5% 15%; }
+
+		.panel-2 .bottom { padding: 15px 5px; }
+		.panel-2 .bottom .status .status-container{ margin:14px 13px 21px; }
+		.lower-panel {
+			div { text-align: center; padding:10px; }
+			div:nth-child(3) { float:initial; color:#C4172C; }
+		}
+
+		.range-cal-box { margin-left: 8%; top:46%; }
+		.range-cal-box .range-cal-content { margin-left: 20px; margin-top:75px; }
+		.range-cal-box img { position: absolute; margin-left:130px; margin-top:240px; }
+		.range-cal-box .close-hint img { cursor:pointer; margin-left:225px; margin-top:80px; }
+
+		.schedule-tap { margin: 0px -10px; }
+		.schedule-tap .req-schedule { margin: 10px 0px; }
+		.schedule-tap .req-schedule button { float:initial; }
+		.schedule-tap .req-schedule .myBtn { padding: 15px; margin:10px 0; width:100%; }
+		.schedule-tap .toggle-up { margin-top: 10px; }
+		.schedule-tap .toggle-up .line-vert01 { margin: 5px -7px 0 -6px; }
+		.schedule-tap .toggle-up .line-vert01.one { height: 40px; }
+		.schedule-tap .toggle-up .line-vert01.two { height: 18px; }
+		.schedule-tap .toggle-up .txt01 { margin: 8px 0 0 8px; width: 190px; }
+		.schedule-tap .toggle-up .txt02 { margin: 8px 14px 0 10px; }
+		.schedule-tap .toggle-up .txt03 { margin: 12px 0px 0 0px; font-size: 10px; }
+		.schedule-tap .toggle-up .txt-set { margin: 20px 0 0 10px; }
+		.schedule-tap .toggle-up .control-battery { margin: 15px 0 0 40px; padding-bottom: 0px; }
+		.schedule-tap .toggle-up .lineDisc { padding-top: 15px; width:270px; margin-left:10px; }
+		.schedule-tap .toggle-up .arrow-down.pos06 { top:1%; left:88%; }
+		.schedule-tap .toggle-up .calendar { margin: 20px 0 0 0; padding-bottom:110px; }
+		.schedule-tap .toggle-up .calendar .hour { width:100%; padding: 2% 25%; }
+		.schedule-tap .toggle-up .show-schedule .calendar .hour .time-pick {
+			.hour-list { top:-109px; }
+			.minute-list { top: -193px; }
+			.am-pm-list { top: -65px; }
+		}
+		.schedule-tap .scheduleBtnWrap { 
+			padding:10px 20px 60px 0;
+			.btnSchedule, .btnCancel { padding:15px 30px; }
+			.scheduleError { margin:0 0 10px 10px; color:#c4172c; }
+		}
+	}
+}
+
+@media (max-width:375px)and(min-width:321px) {
+	#battery .panel-2 .top a.btn{padding: 6px 26px;}
+	#battery .panel-2 .bottom .status .status-container{margin:14px 13px 29px;}
+}
+@media (max-width:414px)and(min-width:376px){
+	#battery .panel-2 .top a.btn{padding: 6px 35px;}
+	#battery .panel-2 .bottom .status .status-container{margin:14px 13px 35px;}
+}
+/*
+@media (max-width:320px) {
+	.findStations{
+		margin-top:21px!important;
+	}
+}
+@media (max-width:375px)and(min-width:321px) {
+	.findStations{
+		margin-top:31px!important;
+	}
+}
+@media (max-width:479px)and(min-width:376px){
+	.findStations{
+		margin-top:38px!important;
+	}
+
+}
+@media(max-width:768px)and(min-width:480px){
+.findStations{
+		margin-top:30px!important;
+	}
+}
+
+@media(max-width:567px)and(min-width:384px){
+.findStations{
+		margin-top:32px!important;
+	}
+}
+@media(max-width:659px)and(min-width:412px){
+.findStations{
+		margin-top:39px!important;
+	}
+}
+@media(max-width:736px)and(min-width:414px){
+.findStations{
+		margin-top:37px!important;
+	}
+}
+
+@media(max-width:640px)and(min-width:360px){
+.findStations{
+		margin-top:28px;
+	}
+}
+*/
+

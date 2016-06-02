@@ -1,0 +1,147 @@
+<div class="status">
+  <div class="statusMsg" ng-bind="vm.statusMsg"></div>
+  <div class="statusLoader" ng-class="{disable:vm.serviceBlock == true}" ng-click="vm.updateVehicleStatus()">
+    <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+  </div>
+</div>
+
+<div class="mob_box" ng-class="{error:vm.mobile == true && vm.errorState == true}"></div>
+<div class="container-fluid psevLockUnlock">
+    <!-- LOCKED - PANEL1 -->
+    <div class="panel-1">
+        <div class="doors" ng-if="vm.defaultLockStatus">
+            <div class="door-1">
+                <div><img src="images/lock/doors/01-Green.png" alt=""></div>
+            </div>
+            <div class="door-2">
+                <div><img src="images/lock/doors/02-Green.png" alt=""></div>
+            </div>
+            <div class="door-3">
+                <div><img src="images/lock/doors/03-Green.png" alt=""></div>
+            </div>
+            <div class="door-4">
+                <div ><img src="images/lock/doors/04-Green.png" alt=""></div>
+            </div>
+            <div class="door-5">
+                <div><img src="images/lock/doors/05-Green.png" alt=""></div>
+            </div>
+        </div>
+       
+        <div class="doors" ng-if="vm.doorLockStatus && !vm.defaultLockStatus">
+            <div class="door-1"><img src="images/lock/doors/01-Blue.png" alt=""></div>
+            <div class="door-2"><img src="images/lock/doors/02-Blue.png" alt=""></div>
+            <div class="door-3"><img src="images/lock/doors/03-Blue.png" alt=""></div>
+            <div class="door-4"><img src="images/lock/doors/04-Blue.png" alt=""></div>
+            <div class="door-5"><img src="images/lock/doors/05-Blue.png" alt=""></div>
+        </div>
+
+        <div class="doors" ng-if="!vm.doorLockStatus && !vm.defaultLockStatus">
+            <div class="door-1">
+                <div ng-show="vm.doorFrontLeft == '0'"><img src="images/lock/doors/01-Green.png" alt=""></div>
+                <div ng-show="vm.doorFrontLeft == '1'"><img src="images/lock/doors/01-Red.png" alt=""></div>
+            </div>
+            <div class="door-2">
+                <div ng-show="vm.doorFrontRight == '0'"><img src="images/lock/doors/02-Green.png" alt=""></div>
+                <div ng-show="vm.doorFrontRight == '1'"><img src="images/lock/doors/02-Red.png" alt=""></div>
+            </div>
+            <div class="door-3">
+                <div ng-show="vm.doorBackLeft == '0'"><img src="images/lock/doors/03-Green.png" alt=""></div>
+                <div ng-show="vm.doorBackLeft == '1'"><img src="images/lock/doors/03-Red.png" alt=""></div>
+            </div>
+            <div class="door-4">
+                <div ng-show="vm.doorBackRight == '0'"><img src="images/lock/doors/04-Green.png" alt=""></div>
+                <div ng-show="vm.doorBackRight == '1'"><img src="images/lock/doors/04-Red.png" alt=""></div>
+            </div>
+            <div class="door-5">
+                <div ng-show="vm.trunk == 'false'"><img src="images/lock/doors/05-Green.png" alt=""></div>
+                <div ng-show="vm.trunk != 'false'"><img src="images/lock/doors/05-Red.png" alt=""></div>
+            </div>
+        </div>
+       
+        <img src="images/lock/VEHICLE-BASE.png" alt="Car" class="car">
+        
+    </div>
+    <!-- LOCKED - PANEL2 -->
+    <div class="panel-2">
+        <div class="top hidden-xs">
+            <h4 ng-show="vm.doorLockStatus">YOUR VEHICLE IS LOCKED</h4>
+            <h4 ng-show="!vm.doorLockStatus">YOUR VEHICLE IS UNLOCKED</h4>
+            <div class="status">
+                <div class="status-container" ng-show="vm.doorLockStatus">
+                    <img src="images/icons/original/locked.png" alt="Locked">
+                </div>
+                <div class="status-container" ng-show="!vm.doorLockStatus">
+                    <img src="images/icons/original/unlocked-on.png" alt="unLocked">
+                </div>
+            </div>
+            <div class="pill-button">
+                <a class="btn active" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.pending == false" ng-click="vm.unlockVehicle()">UNLOCK</a>
+
+                <a class="btn unlocked" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.pending == false" ng-click="vm.lockVehicle()">LOCK</a>
+
+                <div class="button pending" ng-if="vm.pending && vm.postError == false">{{vm.pendingStatus}}</div>
+
+                <!-- <div class="button error hide">Error! Try Again</div>
+                <div class="button pending hide">Request in progress</div> -->
+
+                <div class="button error" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError &&  vm.doorLockStatus" ng-click="vm.unlockVehicle()">Retry Unlock</div>
+
+                <div class="button error" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError &&  !vm.doorLockStatus" ng-click="vm.lockVehicle()">Retry Lock</div>
+
+                <div class="button vehicle-refresh" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError" ng-click="vm.updateVehicleStatus()">Refresh Vehicle Status</div>
+
+                <div class="pending-msg" ng-if="vm.pending && vm.postError == false">Please wait 30 seconds before sending additional requests.</div>
+                <div class="error-msg" ng-if="vm.alertMsg">Your vehicle doors must be closed to send a lock/unlock command</div>
+            </div>
+        </div>
+
+
+               <!--for start mobile view!-->
+        <div class="top visible-xs">
+           <h4 class="locked" ng-show="vm.doorLockStatus">YOUR VEHICLE IS LOCKED</h4>
+           <h4 ng-show="!vm.doorLockStatus">YOUR VEHICLE IS UNLOCKED</h4>
+           <!--for end mobile view!--> <!--commented out as per business requirement -->
+           <!-- <div class="bottom">
+              <h4 class="hidden-xs">VEHICLE DOORS</h4>
+              <div class="status">
+                 <div class="status-container"  ng-if="vm.doorFrontLeft == '0' && vm.doorFrontRight == '0' && vm.doorBackLeft == '0' && vm.doorBackRight == '0'">
+                    <h2>ALL DOORS ARE <span>CLOSED</span></h2>
+                 </div>
+                 <div class="status-container" ng-if="vm.doorFrontLeft == '1' || vm.doorFrontRight == '1' || vm.doorBackLeft == '1' || vm.doorBackRight == '1'">
+                    <h2>ALL DOORS ARE <span>NOT CLOSED</span></h2>
+                 </div>
+              </div>
+           </div> -->
+           <div class="status">
+              <div class="status-container" ng-show="vm.doorLockStatus">
+                 <img src="images/icons/original/locked.png" alt="Locked">
+              </div>
+              <div class="status-container" ng-show="!vm.doorLockStatus">
+                 <img src="images/icons/original/unlocked-on.png" alt="unLocked">
+              </div>
+           </div>
+           <div class="pill-button">
+              <div class="row">
+                 <a class="btn active" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.pending == false" ng-click="vm.unlockVehicle()">UNLOCK</a>
+                 <a class="btn unlocked" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.pending == false" ng-click="vm.lockVehicle()">&nbsp;&nbsp;LOCK&nbsp;&nbsp;</a> 
+              </div>
+              <div class="row button pending" ng-if="vm.pending  && vm.postError == false">{{vm.pendingStatus}}</div>
+              <!-- <div class="button error hide">Error! Try Again</div>
+                 <div class="button pending hide">Request in progress</div> -->
+              <div>
+                 <div class="button error" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError &&  vm.doorLockStatus" ng-click="vm.unlockVehicle()">Retry unlock</div>
+                 <div class="button error" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError &&  !vm.doorLockStatus" ng-click="vm.lockVehicle()">Retry lock</div>
+                 <div class="button vehicle-refresh" ng-class="{disable:vm.serviceBlock == true}" ng-show="vm.postError" ng-click="vm.updateVehicleStatus()">Refresh Vehicle Status</div>
+              </div>
+           </div>
+
+            <div class="row">
+                <div class="pending-msg" ng-if="vm.pending && vm.postError == false">Please wait 30 seconds before sending additional requests.</div>
+                <div class="error-msg" ng-if="vm.alertMsg">Your vehicle doors must be closed to send a lock/unlock command </div>
+            </div>
+        </div>
+
+
+        
+    </div>
+</div>

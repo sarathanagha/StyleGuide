@@ -1,0 +1,53 @@
+// Google Maps Infobox styles
+.infobox-dark {
+    width:230px;
+    text-align:left;
+    > img { margin:10px !important; } // close box
+    .uvo-ib-point-down { display:block;
+        /*img { margin-left:auto; margin-right:auto; display:block; width:34px; height:13px; }*/
+        img { margin-left:95px; display:block; width:34px; height:13px; }
+    }
+    .uvo-ib-content { background:#444; width:100%; color:white; font-family: $designk-medium; font-size:100%; font: inherit; line-height:1.5; padding:1em; padding-right:50px; box-sizing:border-box;
+        .uvo-ib-close { position:absolute; right:10px; top:10px; cursor:pointer; }
+        .uvo-ib-title { font-family: $designk-bold; font-size:15px; margin-bottom:5px; }
+        .add-button { font-size:13px; border:1px solid #888; height:35px; width:65px; display:inline-block; text-align:center; margin-top:10px;
+            span { line-height:35px; vertical-align:top; } 
+            span.plus { font-size:26px; }                    
+        }
+        .lineBreak{word-wrap:break-word;}
+    }    
+}
+.infobox-dark-big {
+    text-align:left;
+    > img { margin:10px !important; } // close box
+    .uvo-ib-point-down { display:block;
+        img { margin-left:auto; margin-right:auto; display:block; width:34px; height:13px; }
+    }
+    .uvo-ib-content { background:#444; width:100%; color:white; font-family: $designk-medium; font-size:100%; font: inherit; line-height:1.5; padding:1em; padding-right:50px; box-sizing:border-box;
+        .uvo-ib-close { position:absolute; right:10px; top:10px; cursor:pointer; }
+        .uvo-ib-title { font-family: $designk-bold; font-size:15px; margin-bottom:5px; }
+        .add-button { font-size:13px; border:1px solid #888; height:35px; width:65px; display:inline-block; text-align:center; margin-top:10px;
+            span { line-height:35px; vertical-align:top; } 
+            span.plus { font-size:26px; }                    
+        }
+    }   
+}
+
+.infoBox {
+    > img {} 
+    .uvo-ib { position:relative; margin: 10px 10px 0; left: -10px; width:230px;
+        > img { position:absolute; text-align:center; }
+        .uvo-ib-point-down { display:block;
+            img { margin-left:auto; margin-right:auto; display:block; width:34px; height:13px; } 
+
+        }
+        .uvo-ib-content { background:#444; width:100%; color:white; font-family: $designk-medium; font-size:12px; line-height:1.5; padding:14px; box-sizing:border-box;
+            .uvo-ib-close { position:absolute; right:10px; top:10px; cursor:pointer; }
+            .uvo-ib-title { font-family: $designk-bold; font-size:15px; margin-bottom:5px; }
+            .add-button { font-size:13px; border:1px solid #888; height:35px; width:65px; display:inline-block; text-align:center; margin-top:10px;
+                span { line-height:35px; vertical-align:top; } 
+                span.plus { font-size:26px; }                    
+            }
+        }
+    }
+}

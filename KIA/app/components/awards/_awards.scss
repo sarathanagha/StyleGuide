@@ -1,0 +1,176 @@
+//styles for both awards and awards modal
+#awards,#awards-modal {
+
+  @media (min-width:$screen-sm-min) {
+    border:1px solid #E1E1E1;
+  }
+
+  margin-bottom:30px;
+
+  header {
+    padding:20px 25px;
+    margin-bottom:20px;
+
+    h2 { // awards header title
+      @include designk-light;
+      font-size:16px;
+    }
+    a { // help button
+      border: 1px solid #C2C2C2;
+      border-radius: 11px;
+      color: #C2C2C2;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 14px;
+      text-align: center;
+      text-shadow: none;
+      width: 16px;
+      display:inline-block;
+    }
+  }
+
+  section {
+    > div {
+      box-sizing:border-box;
+      height:auto;
+      color:#888;
+      padding:20px 0;
+      border-bottom:1px solid #E1E1E1;
+      display:table;
+      width:100%;
+
+      @media (min-width: $screen-sm-min) {
+        border-bottom:none;
+        height:300px;
+        padding:0 30px;
+        text-align:center;
+        display:block;
+        width:25%;
+      }
+
+      .award-image {
+        width:80px;
+        box-sizing:border-box;
+        text-align:center;
+        display:table-cell;
+        vertical-align:middle;
+
+        @media (min-width:$screen-sm-min) {
+          display:block;
+          height:123px;
+          margin-bottom:10px;
+          width:auto;
+          padding:0px;
+        }
+        img {
+          width:60px;
+          @media (min-width:$screen-sm-min) {
+            width:auto;
+            max-width:auto;
+          }
+        }
+
+      }
+
+      .award-description {
+        float:none;
+        display:table-cell;
+        vertical-align:middle;
+
+        @media (min-width:$screen-sm-min) {
+          display:inline-block
+        }
+
+        h3 {
+          text-transform:uppercase;
+          font-size:13px;
+          font-weight:bold;
+          margin-bottom:3px;
+          @media (min-width:$screen-sm-min) {
+            font-weight:normal;
+            margin-bottom:0;
+          }
+          span {
+            @include designk-bold;
+            color:black;
+          }
+        }
+
+        p {
+          font-size:13px;
+          line-height:1.4;
+          font-family:$designk-light;
+          @media (min-width:$screen-sm-min) {
+            line-height:15px;
+          }
+          span {
+            font-family:$designk-medium;
+          }
+        }
+      }
+    }
+  }
+}
+
+// awards modal specific
+.awards-modal {
+  .modal-content {
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+  }
+}
+#awards-modal {
+  border:none;
+
+  header {
+    margin:0;
+    padding:20px 0;
+
+    h3 {
+      padding-top:5px;
+    }
+
+    span {
+      display:inline-block;
+      color:black;
+    }
+  }
+
+  section {
+    margin-top:20px;
+    @media (min-width:$screen-sm-min) {
+      margin-top:50px;
+    }
+
+    > div {
+      text-align:left;
+      @media (min-width:$screen-sm-min) {
+        text-align:center;
+        height:280px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+#awards-floating-help {
+  position:fixed;
+  bottom:0;
+  right:0;
+  z-index:1050;
+  text-align:center;
+  span {
+    font-family:$designk-bold;
+    display:inline-block;
+    background-color:$kia-red;
+    color:white;
+    border-radius:20px;
+    width:40px;
+    height:40px;
+    margin:0 14px 55px 0;
+    line-height:3;
+    box-shadow: 0px 3px 5px #888;
+  }
+}

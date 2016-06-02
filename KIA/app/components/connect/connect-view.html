@@ -1,0 +1,143 @@
+<div class="status">
+  <div class="statusMsg" ng-bind="vm.statusMsg"></div>
+  <div class="statusLoader" ng-class="{disable:vm.serviceBlock == true}" ng-click="vm.updateVehicleStatus()">
+    <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+  </div>
+</div>
+<div class="mob_box" ng-class="{error:vm.mobile == true && vm.errorState == true}"></div>
+<div class="container-fluid" id="connect">
+    <!-- UNPLUGGED -->
+    <div class="panel-1 row">
+        <div class="section-1 col-xs-6">
+            <div class="wrapper">
+              <h4 ng-show="!vm.batteryCharge && vm.batteryPlugStatus == 0">NOT PLUGGED IN</h4>
+              <h4 ng-show="!vm.batteryCharge && vm.batteryPlugStatus !== 0">PLUGGED IN </h4>
+              <h4 ng-show="vm.batteryCharge">CURRENTLY CHARGING</h4>
+                <div class="status">
+                    <div class="status-container" ng-show="vm.batteryCharge">
+                        <img src="images/battery/battery-charging.png" alt="Battery Unplugged">
+                    </div>
+                    <div class="status-container" ng-show="!vm.batteryCharge && vm.batteryPlugStatus !== 0">
+                        <img src="images/battery/battery-plugged.png" alt="Battery plugged">
+                    </div>
+                    <div class="status-container" ng-show="!vm.batteryCharge && vm.batteryPlugStatus == 0">
+                        <img src="images/battery/battery-unplugged.png" alt="Battery Unplugged">
+                    </div>
+                </div>
+                <a href="/psev/battery" ui-sref='psev.battery' class="btn view">VIEW BATTERY<img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+                <div class="alignbutton">
+
+                    <a href="/psev/battery" ui-sref='psev.battery' class="btn battery">BATTERY<img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+                </div>
+                <div class="right">
+
+                    <a href="/psev/battery" ui-sref='psev.battery' ><img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+                </div>
+            </div>
+        </div>
+        <div class="section-2 col-xs-12">
+            <div ng-repeat="data in knobData" class="knob" data-fgcolor="#7bb609">
+                <div class="meter-value val-{{vm.batteryStatus}}"><label ng-bind="vmStatus"></label><span>%</span>
+                </div>
+                <knob knob-data="data.value" knob-status="vm.batteryStatus" knob-options="data.options" data-angleOffset=90 data-linecap=round data-thickness=".2" data-anglearc="250" data-width="275" data-height="275" data-thickness=".2" data-fgcolor="#7bb609" data-bgcolor="#aaaaaa" readonly="readonly"></knob>
+                <h3>BATTERY RANGE</h3>
+                <p ng-bind="vm.distanceUnitType"></p>
+            </div>
+        </div>
+        <div class="section-3 col-xs-6 col-sm-3 ">
+            <div class="wrapper">
+                <div class="status-container">
+                    <img src="images/battery/charging-markers.png" alt="Charging Stations">
+                </div>
+                <div class="alignbutton">
+                    <a href="/psev/chargingStations" ui-sref='psev.chargingStations' class="btn charging ">CHARGING STATIONS<img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+                </div>
+                <div class="right right-pad">
+                    <a href="/psev/chargingStations" ui-sref='psev.chargingStations'><img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-2 row">
+        <div class="section-1 col-xs-6 col-sm-4">
+            <div class="temp-group ">
+                <h4 class="hidden-xs">OUTSIDE<br/> TEMP (<span ng-show="vm.tempPref == 1">F</span><span ng-show="vm.tempPref == 0">C</span>)</h4>
+                <h4 class="visible-xs">OUTSIDE TEMP (<span ng-show="vm.tempPref == 1">F</span><span ng-show="vm.tempPref == 0">C</span>)</h4>
+                <div class="status" ng-show="vm.temperature != null">
+                    <div class="status-container">
+                        <h1><span ng-bind="vm.temperature"></span><sup>&deg;</sup></h1>
+                    </div>
+                </div>
+                <div class="outsideTemp" ng-show="vm.temperature == null">
+                    <img src="images/climate/temp-icon.png" alt="Outside Temperature">
+                    <div class="hidden-xs">Unable to determine outside temperature</div>
+                    <div class="text visible-xs">--<sup>&deg;</sup></div>
+                </div>
+            </div>
+
+            <div class="alignbutton">
+                <a href="/psev/climate" ui-sref='psev.climate' class="btn">CLIMATE CONTROL
+                <img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+            <div class="right right-pad">
+                <a href="/psev/climate" ui-sref='psev.climate'><img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+        </div>
+        <div class="section-2 col-xs-6 col-sm-4">
+            <h4 ng-bind="vm.doorLockStatus?'YOUR VEHICLE IS LOCKED':'YOUR VEHICLE IS UNLOCKED'"></h4>
+
+            <div class="status">
+                <div class="status-container" ng-show="vm.doorLockStatus">
+                    <img src="images/icons/original/locked.png" alt="Locked">
+                </div>
+                <div class="status-container" ng-show="!vm.doorLockStatus">
+                    <img src="images/icons/original/unlocked-on.png" alt="Unlocked">
+                </div>
+            </div>
+            <div class="alignbutton">
+                <a href="/psev/doorStatus" ui-sref='psev.doorStatus' class="btn">LOCK/UNLOCK<img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+            <div class="right">
+                <a href="/psev/doorStatus" ui-sref='psev.doorStatus'><img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+        </div>
+
+        <div class="section-3 col-xs-12 col-sm-4">
+            <div class="status">
+                <div class="status-container">
+                    <img src="images/icons/original/find-my-car-pin.png" alt="Find My Car">
+                </div>
+            </div>
+            <div class="alignbutton">
+
+                <a href="/psev/findMyCar" ui-sref='psev.findMyCar' class="btn fndMyCar">FIND MY CAR<img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+            <div class="right">
+
+                <a href="/psev/findMyCar" ui-sref='psev.findMyCar'><img src="images/icons/original/blue-btn-arrow.png" alt=">"></a>
+            </div>
+        </div>
+    </div>
+
+<div class="lower-panel">
+    <div class="col-xs-12">Estimated range may vary depending on driving habits and situations. </div>
+    <div class="hidden-xs">|</div>
+    <div class="col-xs-12" style="cursor:pointer;" ng-mouseover="vm.showRangeCalHint = true" ng-mouseleave="vm.showRangeCalHint = false" ng-click="vm.showRangeCalHint = true" ng-init="vm.showRangeCalHint = false">How is range calculated?</div>
+  </div> <!-- lower-panel -->
+
+  <!-- Range calculation hint -->
+  <div class="range-cal-box" ng-show="vm.showRangeCalHint">
+    <div class="visible-xs close-hint"><img src="images/maint/icon-close.jpg" style="margin-top:95px !important"></div>
+    <div class="hidden-xs"><img src="images/icons/left-arrow.png" alt="X" ng-click="vm.showRangeCalHint = false"></div>
+    <div class="range-cal-content">
+        RANGE CALCULATION<br>
+        <span style="color:#888;">The range is calculated by considering the battery level, past driving habits, the air temperature, the driving mode (comfort, normal, or sport), and the climate control.</span>
+    </div>
+    <div class="visible-xs"><img src="images/kh/img/maintenance/arrow-7-down.png"></div>
+  </div>
+
+
+
+
+</div>

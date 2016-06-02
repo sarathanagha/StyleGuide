@@ -1,0 +1,61 @@
+<ul class="config-list-ul"  ng-class="{'disableCustom':loading||!vm.isOn||!vm.Intervalshow||rootsubmit}">
+	
+	<li class="config-list-item" 
+		ng-repeat="curfew in vm.curfewGroups track by $index" 
+		ng-if="vm.curfewFilter(curfew)"
+		ng-class="{selected: vm.currentIndex == $index}"
+		>		
+
+		<div class="config-list-container">							
+			<div class="head">	
+				<div class="column-left pull-left">
+					<div class="edit" ng-click="vm.selectIndex($index)"></div>
+				</div>
+				<div class="column-middle pull-left">
+					<div class="title-input"><input type="text" maxlength="24" ng-disabled="vm.currentIndex != $index" ng-model="curfew.header.curfewName"/></div>
+	        		<p class="validation name-validation hide">The Curfew Limit name can only contain letters, numbers and cannot be blank</p>	        			        		
+	        		<div class="days-mobile visible-xs">{{vm.showMobileDayList($index)}}</div>
+	        		<div class="day-time-container">
+		        		<day-picker class="hidden-xs" list="curfew.curfews" read-only="true" ng-hide="vm.currentIndex == $index"></day-picker>
+		        		<div class="time"><span class="start">{{curfew.header.startHour}}:{{curfew.header.startMinute}}{{curfew.header.startAmpm}}</span> - <span class="end">{{curfew.header.endHour}}:{{curfew.header.endMinute}}{{curfew.header.endAmpm}}</span></div>
+	        		</div>
+				</div> 
+				<div class="column-right pull-right text-right" ng-if="Backup.length>1">
+
+	    			<div class="delete" ng-click="vm.openDeleteModal($index)"></div>
+		    		<switch-button disabled="!vm.isOn||!vm.Intervalshow" is-on="curfew.header.switchFlag" class="noselect"></switch-button>		    		
+				</div>	
+				<div class="clearfix"></div>	    		
+			</div>
+			<hr class="hidden-xs"/>
+			<div class="body">				
+	    		<div class="time-selector-wrapper">
+
+	    			<time-selector time-value="curfew.header.startHour" type="hour"></time-selector>
+	    			<span class="colon hidden-xs">:</span>
+	    			<time-selector time-value="curfew.header.startMinute" type="minute"></time-selector>
+	    			<time-selector class="visible-xs-inline-block" time-value="curfew.header.startAmpm" type="ampm"></time-selector>	    			 
+	    			<div class="ampm-selector hidden-xs">
+	    				<div class="pm" ng-class="{selected:curfew.header.startAmpm == 'pm'}" ng-click="curfew.header.startAmpm = 'pm'">PM</div>
+	    				<div class="am" ng-class="{selected:curfew.header.startAmpm == 'am'}" ng-click="curfew.header.startAmpm = 'am'">AM</div>	    				
+	    			</div>
+	    			<span class="from-to">to</span>
+	    			<time-selector class="time-selector-hour-end" time-value="curfew.header.endHour" type="hour"></time-selector>
+	    			<span class="colon hidden-xs">:</span>
+	    			<time-selector time-value="curfew.header.endMinute" type="minute"></time-selector>
+	    			<time-selector class="visible-xs-inline-block" time-value="curfew.header.endAmpm" type="ampm"></time-selector>
+	    			<div class="ampm-selector hidden-xs">
+	    				<div class="pm" ng-class="{selected:curfew.header.endAmpm == 'pm'}" ng-click="curfew.header.endAmpm = 'pm'">PM</div>
+	    				<div class="am" ng-class="{selected:curfew.header.endAmpm == 'am'}" ng-click="curfew.header.endAmpm = 'am'">AM</div>	    				
+	    			</div>
+	    			<div class="clear"></div>
+	    		</div>
+	    		<p class="validation time-validation hide">Please enter a valid time.</p>
+	    		<p class="validation time-range-validation hide">Please enter a valid time range.</p>
+	    		<day-picker list="curfew.curfews"></day-picker>
+	    		<p class="validation days-validation" ng-show="vm.showvalidation">Please select day(s).</p>
+			</div>													
+		</div>
+	</li>
+</ul>
+

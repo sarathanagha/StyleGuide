@@ -1,0 +1,115 @@
+
+<div class="mob_box"></div>
+<div class="overview-gen1">
+		<div class="container">
+			<div class="row">
+				<div class="blade two-columns-asymmetric ">
+					<div class="row">
+						<div class="col-sm-8 col-xs-12">
+							<div class="widget-box driving-activity border">
+								<div class="title fst">DRIVING ACTIVITY</div> 
+								<div class="upper">
+									<div class="mileage">
+										<label class="w-label">MILEAGE</label>
+										<span class="amount" ng-if="vm.moduleLoaded">{{ vm.data.currentMileage | number }}</span>
+									</div>			
+								</div>
+								<div class="content">									
+									<div class="lower">
+										<div class="user-car">
+											<img class="img-responsive" src="{{com.carInfo.selectedVehicle.originImgFileNm}}">
+										</div>
+										<div class="sm_moble">
+										<div class="title positn" align="center">
+											<h1>{{com.carInfo.selectedVehicle.vehNick}}</h1>
+                            				<h4>{{com.carInfo.selectedVehicle.mdlYr}} {{com.carInfo.selectedVehicle.mdlNm}}</h4>
+										</div>
+										<div class="mileage mob">
+											<label class="w-label">MILEAGE</label>
+											<span class="amount" ng-if="vm.moduleLoaded">{{ vm.data.currentMileage | number }}</span>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							<div class="row">
+								<div class="col-xs-6 col-sm-12">
+										<div class="widget-box diagnostic border hover-on center">
+											<div class="title"><a ui-sref="gen1.maintenance">DIAGNOSTIC</a></div>
+											<div class="content">
+											<div ng-show="!vm.vehicleStatus.latestVehicleStatus.lowFuelLight && vm.data.dtcDetails != '0'" ng-if="vm.moduleLoaded" style="background: url('images/kh/img/overview/warning-icon.png') no-repeat center;height: 125px;">
+                                         		<p id="diagIssuesFound">{{vm.data.dtcDetails}} issue(s) found</p>
+                                         		<p style="position:relative; top:97px; font-size: 10px;" ng-show="vm.data.vihiDiagList[0].rqRcpmDtm != null">Last update as of {{vm.data.vihiDiagList[0].rqRcpmDtm}}</p> 
+                                    		</div>
+											<div class="green-checkMark"ng-show="!vm.vehicleStatus.latestVehicleStatus.lowFuelLight && vm.data.dtcDetails == '0'" ng-if="vm.moduleLoaded"  style="background: url('images/kh/img/overview/check_green.png') no-repeat center;height: 115px;">
+		                                    	<label id="ok_message" class="col-xs-11">No issues found. You're all good!</label>
+		                                    	<p style="position:relative; top:112px; font-size: 10px;" ng-show="vm.data.vihiDiagList[0].rqRcpmDtm != null">Last update as of {{vm.data.vihiDiagList[0].rqRcpmDtm}}</p>
+		                                	</div>
+										</div>
+										</div>
+								</div>
+								<div class=" col-xs-6 col-sm-12">
+									<div class="widget-box maintenance hover-on border center">
+											<div class="title"><a ui-sref="gen1.maintenance">Maintenance</a></div>
+											<div class="content" style="margin-top: 5px;">
+												<div class="next-service" ng-if="vm.hasIntervals&&vm.moduleLoaded">
+													<label>
+														<span class="amount">{{vm.milesToNextInterval| number}}</span>
+														<br>
+		                                            	<span class="unit">miles until next service</span>
+													</label>
+												</div>
+												<div class="no-display" ng-if="!vm.hasIntervals&&vm.moduleLoaded">
+													<span style="padding-top: 15px;">Maintenance for this vehicle cannot be displayed since it is not listed in the Kia Maintenance database.</span>
+												</div>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row col-sm-8">
+				<div class="blade three-columns-symmetric">
+                    <div class="col-xs-6 col-sm-6">
+						<div class="widget-box last-sync border center">
+							<div class="title">LAST SYNC</div>
+							<div class="content">
+								<div class="available-data" ng-if="vm.moduleLoaded" ng-show="vm.data.monthlyStat[0].day != null && vm.data.monthlyStat[0].month != null">
+									<!-- <label class="month" id="gen1Month">{{vm.data.monthlyStat[0].month}}</label> -->
+									<label class="month" id="gen1Month">{{vm.month}}</label>
+									<div class="w-img">
+										<div class="amount day" id="gen1Day">{{vm.data.monthlyStat[0].day}}</div>
+									</div>
+									<span class="w-footer">Sync your phone and vehicle to assure accurate data</span>
+								</div>
+								<div class="no-data-available" ng-show="vm.data.monthlyStat[0].day == null || vm.data.monthlyStat[0].month == null">
+									<label class="month">No data sent</label>
+									<div class="w-img">
+										<div class="amount day" style="display: none;"></div>
+										<img alt="last sync" id="lastSync" style="height:75px" src="images/kh/img/overview/sync.jpg">
+										<span class="w-footer">Sync your phone and vehicle to assure accurate data</span>
+									</div>
+								</div>
+							</div>		
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6">
+							<div class="widget-box my-POIs border center hover-on" >
+								<div class="title"><a ui-sref="gen1.poi">MY POIs</a></div> 
+								<div class="content">
+									<div class="POI-icon w-img">
+										<img alt="POI-icon" src="images/kh/img/overview/POI.png">
+									</div>
+									<span class="w-footer">Save / edit <br> your favorite places</span>
+								</div>
+							</div>							
+					</div>                       
+				</div>
+			</div>
+		</div>
+</div>
+	

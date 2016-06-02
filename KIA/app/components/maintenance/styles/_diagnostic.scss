@@ -1,0 +1,40 @@
+&.diagnostic-issues .content.good {
+    background : url("../images/kh/img/maintenance/check_green.png") no-repeat 50px top;
+    min-height : 125px;
+}
+
+@media (max-width: $screen-xs-max) {
+	&.diagnostic-issues { padding: 10px 20px 0px; min-height: 0px;
+        .noIssue {
+            .content {
+                text-align:center;
+                .info {font-size:13px; margin-bottom:24px;}
+                img { width:60px; height:60px; margin-bottom:24px;}
+            }
+            
+        }
+        .hasIssue { line-height:normal; color:#444;
+            .content {
+                li{
+                  background: url("../images/kh/img/maintenance/warning_xs.png") no-repeat 0px top;
+                  min-height: 0px;
+                  margin: 20px 0;
+
+                  .title_issue { 
+                    background: url("../images/kh/img/maintenance/arrow-bottom.png") no-repeat 90% 7px; 
+                    font-size:15px;
+                    height:26px;
+                    line-height:26px;
+                    cursor:pointer;
+                    font-weight:bold;
+                  }
+                }
+            }
+        }
+        .title {margin-bottom: 20px; }
+        .title_issue {margin-bottom: 0px; margin-left: 40px;}
+        .content { font-size: 12px;
+            .info {margin-left: 0px; padding-top: 0px; }
+        }
+    }
+}

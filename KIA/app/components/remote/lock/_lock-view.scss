@@ -1,0 +1,489 @@
+&#lockUnlock-view{
+    #statusMsg {
+    position: absolute!important;
+   //color: #A4A4A4;
+   color:white;
+    //left: 28%!important;
+    top: -175px!important;
+    //width: 100%!important;
+    font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif!important;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+    font-size: 12px!important;
+    text-align:right;
+    }
+    .clickControl {
+    position: absolute !important;
+    top: -174px;
+    right: 108px;
+}
+.loader{
+   top: -176px!important; 
+}
+.alert{
+    position: absolute;
+    top: -80px;
+    left: -7px;
+
+    .refresh-icon{
+        background:url("../images/kh/img/icons/icons-ffffff/refresh.png") no-repeat;
+        min-height: 15px;
+        min-width: 2px;
+
+    }
+
+}
+.page-header {
+        border-bottom : 1px solid #E1E1E1!important;
+        padding-bottom: 0px!important;
+        margin-top: 0px!important;
+
+    }
+    .page-header ul {
+        height        : 43px;
+    }
+    .page-header ul li {
+        float          : left;
+        text-transform : uppercase;
+    }
+    .page-header ul li a {
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
+        background         : #F6F6F6;
+        border             : 1px solid #E1E1E1;
+        border-left        : none;
+        display            : block;
+        color              : #2F2F2F;
+        height             : 44px;
+        line-height        : 1em;
+        padding            : 15px 10px 5px 10px;
+        text-align         : center;
+    }
+
+    .page-header ul li a.status-error {
+        background         : #F6F6F6 url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left center;
+        background-position: 5px;
+        background-size    : 12px;
+    }
+
+    .page-header ul li a.active,
+    .page-header ul li a:hover {
+        background   : #BC1728;
+        border-color : #BC1728;
+        color        : white;
+        font-family  : designk-bold;
+    }
+
+    .page-header ul li:first-child a {
+        border-left : 1px solid #E1E1E1;
+    }
+
+    .page-header ul li a.disabled,
+    .page-header ul li a.disabled:hover {
+        color        :#C2C2C2;
+        background   :#F6F6F6;
+        border-color :#E1E1E1;
+        font-family  :designk-medium;
+        cursor       :default;
+    }
+    
+    .page-header.disabled ul li a.active{
+          background		: #777777;
+          border-color      : #777777;
+    }
+
+    .page-header ul li a.disabled.active,
+    .page-header ul li a.disabled.active:hover {
+        background : #777777;
+    }
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left: 0; 
+        padding-right: 0;
+    }
+     .remote-content .car-doors {
+    margin-right: 19px;
+    width:67%;
+}
+.remote-content .car-doors,.remote-content .info {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #E1E1E1;
+    float: left;
+    height: 500px;
+    color: #999999;
+    border-color: #999999;
+    background-color: white;
+}
+.remote-content .info {
+    width:30%
+}
+ .remote-content .info .title {
+    font-size: 0.846em;
+    line-height: 1em;
+    padding: 31px 0 39px;
+    text-align: center;
+    text-shadow: none;
+    text-transform: uppercase;
+    font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.remote-content .info .control.locked {
+    background: url("../images/kh/img/remote/icon-locked-01.png") no-repeat center 77px;
+    border-bottom: 1px solid #E1E1E1;
+    text-align: center;
+}
+.remote-content .marks li.locked {
+    background-image: url("../images/kh/img/remote/icon-marks-02.png");
+}
+.remote-content .info .control.unlocked {
+    background-image: url("../images/kh/img/remote/icon-unlocked-01.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+.remote-content .marks li {
+    background: url("../images/kh/img/remote/icon-marks-01.png") no-repeat left center;
+    color: #444444;
+    font-size: 1.154em;
+    line-height: 1em;
+    margin: 0 0 18px 25px;
+    padding-left: 25px;
+    text-transform: uppercase;
+}
+.remote-content .info .control .selector.processing {
+    margin-bottom: 20px;
+}
+.remote-content .info .control .selector {
+    height: 27px;
+    display: inline-block;
+}
+.remote-content .info .control  a.unlock {
+    border-radius: 14px 0 0 14px;
+    width: 56px;
+}
+ .remote-content .info .control .button,.remote-content .info .control .vehicle-refresh {
+    border: 1px solid #BDBDBD;
+    display: block;
+    font-size: 0.846em;
+    line-height: 1em;
+    padding: 7px 12px;
+    text-transform: uppercase;
+}
+.remote-content .info .control  .button {
+    color: #888888;
+    border-color: #888888;
+    background-color: white;
+}
+.remote-content .info .control  a {
+    float: left;
+}
+.remote-content .info .control  a.lock {
+    border-radius: 0 14px 14px 0;
+    border-left: none;
+    width: 56px;
+}
+.remote-content .info .control  a.active {
+    border-color: #888888;
+    cursor: default;
+    color: white;
+    background-color: #888888;
+}
+.remote-content .info .control .title {
+    padding-bottom: 127px;
+}
+.remote-content .info .control .error-msg {padding: 0px 30px; color:#BC1728; background: url('../images/kh/img/my-vehicles/warning-2.png') no-repeat 15px 0px; }
+.marks li.open {
+    background-image: url("../images/kh/img/remote/icon-marks-03.png")!important;
+}
+.remote-content .marks li {
+    background: url("../images/kh/img/remote/icon-marks-01.png") no-repeat left center;
+    color: #444444;
+    font-size: 1.154em;
+    line-height: 1em;
+    margin: 0 0 18px 25px;
+    padding-left: 25px;
+    text-transform: uppercase;
+}
+.remote-content .car-doors .base {
+   /*  background: url("../images/kh/img/remote/car-base.png") no-repeat;
+    margin: 80px 0 0 0px;
+    height: 341px;
+    position: relative;
+    width:100%!important;
+    background-position: center!important; */
+
+        background: url("../images/kh/img/remote/car-base.png") no-repeat;
+    /* margin: 80px 0 0 0px; */
+    height: 341px;
+    position: relative;
+    width: 159px !important;
+    margin: auto;
+    background-position: center !important;
+    margin-top: 79px;
+}
+.mobile-view{
+    display:none!important;
+}
+
+.reg-view{
+    display:block!important;
+}
+.remote-content .info .control.disabled {
+    background: url("../images/kh/img/icons/icons-cccccc/locked.png") no-repeat center 77px;
+}
+.remote-content .car-doors .base .door {
+    background: url("../images/kh/img/remote/car-locked.png") no-repeat;
+    position: absolute;
+    height: 71px;
+    width: 33px;
+}
+.remote-content .car-doors .base .door.unlocked {
+    background-image: url("../images/kh/img/remote/car-unlocked.png");
+}
+.remote-content .car-doors .base .door.open {
+    background-image: url("../images/kh/img/remote/car-open.png");
+}
+.remote-content .info .control .selector.processing {
+    margin-bottom: 20px;
+}
+.remote-content .pending-msg {
+    margin: 0;
+    margin-bottom: 31px;
+    line-height: 1.4;
+    font-size: 0.9em;
+        margin-top: 20px!important;
+}
+.remote-content .info .control .selector .pending {
+    border: 1px solid #888888;
+    border-radius: 14px;
+    background-size: 13%;
+    color: #888888;
+    cursor: default;
+    padding: 7px;
+}
+ .remote-content .car-doors .base .door.p1 {
+   /*  left:33%;
+    top: 99px;
+    background-position: 0 -99px;
+ */
+     left: 0;
+    top: 99px;
+    background-position: 0 -99px;
+}
+.remote-content .car-doors .base .door.p2 {
+   /*  right:33%;
+    top: 99px;
+    background-position: -126px -99px; */
+
+    right: 0;
+    top: 99px;
+    background-position: -126px -99px;
+}
+.remote-content .car-doors .base .door.p3 {
+   /*  height: 79px;
+    left:33%;
+    top: 168px;
+    background-position: 0 -170px; */
+
+    height: 79px;
+    left: 0;
+    top: 168px;
+    background-position: 0 -170px;
+}
+.remote-content .car-doors .base .door.p4 {
+    /* height: 79px;
+    right:33%;
+    top: 168px;
+    background-position: -126px -170px; */
+
+        height: 79px;
+    right: 0;
+    top: 168px;
+    background-position: -126px -170px;
+
+}
+.remote-content .car-doors .base .door.p5 {
+    /* height: 39px;
+    left: 39%;
+    top: 299px;
+    width: 101px;
+    background-position: -29px -299px; */
+    height: 39px;
+    left: 30px;
+    top: 299px;
+    width: 101px;
+    background-position: -29px -299px;
+} 
+.remote-content .info .control .selector .error {
+    border-color: #FF6600;
+    border-radius: 14px;
+    background: #FF6600;
+    text-align: center;
+    color: white;
+    width: 160px;
+    padding: 7px 0;
+}
+.remote-content .info .control .selector.error {
+    height: 27px;
+    margin: 0 0 10px 0;
+    display: inline-block;
+}
+.remote-content .info .control .vehicle-refresh {
+    border-color: #66CC00;
+    border-radius: 14px;
+    background: white;
+    text-align: center;
+    color: #66CC00;
+    margin-bottom: 20px;
+    padding: 7px 0px;
+    width: 160px;
+    display: inline-block;
+}
+.disabled{
+    pointer-events:none;
+    opacity: 0.5;
+}
+}
+
+
+
+@media(max-width:768px){
+    #lockUnlock-view{
+
+        .contentLoader{
+            display:none!important;
+        }
+        .page-header{
+            margin-bottom   : 0px;
+            margin-top      : 33px!important;  
+        }
+        .page-header ul li a {height:50px}
+        .mob_box {
+            display         : block;
+            width           : 100%;
+            height          : 30px;
+            background-color: #444444;
+            margin-top      : -10px;
+            position        : absolute;
+            margin-left     : -2px;
+        }
+       .remote-content .car-doors{
+        width: 100%;
+        border: none;
+       }
+      .remote-content .car-doors .base {
+    
+   /* margin: 80px 0 0 0px!important;*/
+    height: 341px;
+    width: 100%;
+   background-position: center;
+    }  
+.mobile-view{
+    display:block!important;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reg-view{
+    display:none!important;
+}
+
+.mobile-view ul{
+    display:inline!important;
+}
+    .remote-content .marks li {
+    margin: 0 0 18px 0px;
+    padding-left: 19px;
+    text-transform: uppercase;
+    width: 26%;
+    float: left;
+    font-size:13px;
+   }
+   .remote-content .info {
+    width: 100%;
+    border: none;
+}
+.remote-content .car-doors,.remote-content .info {
+height:auto!important; 
+margin-bottom:15px;
+}
+.remote-content .info .control.locked, .remote-content .info .control.unlocked{
+    border-bottom:none!important;
+}
+.remote-content .info .control .error-msg {padding: 20px 30px; color:#BC1728; background: url('../images/kh/img/my-vehicles/warning-2.png') no-repeat 15px 20px; }
+/* .remote-content .car-doors .base .door.unlocked {
+    background-image:none!important;
+}
+ .remote-content .car-doors .base .door {
+    background:none!important;
+   
+} */
+
+}
+.remote-content .pending-msg {
+    margin-top: 20px!important;
+}
+.remote-content .info .control.unlocked {
+       background-position: 61px 0 !important;
+       background-image:none !important;
+}
+.remote-content .info .control.locked {
+       background-position: 61px 0 !important;
+       background-image:none !important;
+}
+.remote-content .info .control .title.unlocked {
+       //background: url("../images/kh/img/remote/icon-unlocked-01.png") no-repeat center 77px;
+       position:relative;
+       width: 246px;
+         margin: auto;
+        padding-bottom: 35px!important;
+   }
+
+ .remote-content .info .control .title.unlocked:before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    background: url("../images/kh/img/remote/icon-unlocked-01.png") no-repeat;
+    background-size: contain;
+    left: -2px;
+    top: 14px;
+}
+
+
+   .remote-content .info .control .title.locked {
+       //background: url("../images/kh/img/remote/icon-locked-01.png") no-repeat center 77px;
+        position:relative;
+       width: 246px;
+         margin: auto;
+        padding-bottom: 10px!important;
+
+
+
+   }
+
+    .remote-content .info .control .title.locked:before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    background: url("../images/kh/img/remote/icon-locked-01.png") no-repeat;
+    background-size: contain;
+    left: -2px;
+    top: 14px;
+}
+
+#lockUnlock-view .remote-content .info .control .button{
+   
+    line-height: 2em!important;
+   
+    
+}
+
+#lockUnlock-view .remote-content .info .control .vehicle-refresh {
+
+    line-height: 2em!important;
+    margin-top: 25px;
+}
+}

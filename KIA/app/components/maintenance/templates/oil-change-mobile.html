@@ -1,0 +1,14 @@
+ <div>
+ 	<div class="title">OIL CHANGE SCHEDULE</div>
+    <div class="content">
+        <div class="small-text">MILE(S) UNTIL NEXT OIL CHANGE</div>
+        <div class="miles">{{vm.oilChangeDetail.mileageTillNextOilChange | number}}</div>
+        <div class="my-button" ng-click="vm.updateOilChange()">RESTART</div>
+        <div class="small-text">MILE(S) BETWEEN OIL CHANGES</div>
+        <select class="oil-change-intervals" ng-model="vm.oilChangeOption" ng-options="option for option in vm.oilChangeDetail.oilChangeIntervalOptions">
+        </select>
+        <!-- <select class="oil-change-intervals">
+          <option class='option-template' ng-repeat="option in vm.oilChangeIntervalOptions">{{option}}</option>
+        </select> -->
+    </div>
+ </div>

@@ -1,0 +1,34 @@
+.sessionTimerModal {position:fixed; z-index:9998; top:0px; left:0px; width:100%; height:100%; background-color:gray; opacity:0.5}
+.sessionTimerWrap {border:1px gray solid; width:500px; height:100px; padding:20px;  background-color:white; margin: auto; position: fixed ;z-index:9999; top: 0; left: 0; bottom: 0; right: 0;}
+.sessionTimerWrap img {float:left; margin-right:20px;}
+.sessionTimerWrap #errorMessage {position:relative; top:20px;}
+.sessionBtnWrap {text-align:right;padding-top:30px}
+.sessionBtnWrap div {float:right;padding-left:20px}
+
+
+@media(max-width:767px){
+	.sessionTimerWrap{
+		width : 93%;
+		height : 175px;
+    	padding : 10px;
+    	top : 100px;
+    	margin : 0;
+    	margin-right: auto;
+    	margin-left : auto;
+
+    	.logoutBtn {
+    		padding : 20px 0;
+    		z-index : 99;
+    	}
+	}
+	.sessionBtnWrap{
+		position : relative;
+		top : 43px;
+		padding-top : 0;
+	}
+	.sessionBtnWrap div {
+		padding-left : 0;
+		width : 50%;
+		text-align : center;
+	}
+}

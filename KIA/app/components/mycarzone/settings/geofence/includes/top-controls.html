@@ -1,0 +1,47 @@
+<div class="container-fluid" style="min-height: 110px" ng-class="{'disableCustom':vm.loading||rootsubmit||vm.disableButton}">		
+	<div class="row on-off-row">
+		<div class="col-xs-6 label-column">
+			<label>GEO FENCE ALERT</label>
+		</div>
+		<div class="col-xs-6 col-sm-pull-6" ng-class="{'disableCustom':vm.loading}">
+			<switch-button is-on="vm.isOn" disabled="vm.loading" class="noselect"></switch-button>
+		</div>
+	</div>
+	<div class="row hidden-xs" style="position:absolute;">
+		<div class="col-xs-12" style="bottom:15px;">
+			<p class="pending-msg error" ng-show="vm.error&&!vm.loading">Your previous request did not complete. Your settings have been restored.</p>
+			<p class="mcz-off-warning-msg clear" ng-show="!vm.Intervalshow&&!vm.loading">Geo Fence Alerts are currently <span>OFF</span> for your vehicle.</p> 
+			<p class="pending-msg pending clear" ng-show="vm.loading">Please wait. Changes are being sent to the vehicle.</p>
+			<p class="pending-msg require-one col-sm-12 col-xs-12 hidden-xs " style="color:#BC1728;" ng-if="vm.ActiveOn">At least one active alert is required</p>
+		</div>
+	</div>
+	<div class="row alert-interval-row" ng-class="{'disableCustom':!vm.isOn}" ng-show="vm.Intervalshow">
+		<div class="col-xs-6 hidden-xs">
+			<label>ALERT INTERVAL</label>
+		</div>
+		<div class="col-xs-6 hidden-xs"> 
+			<uvo-dropdown items="vm.intervals" second-text-key="mobileText" selected-index="vm.currentInterval" enabled="vm.Intervalshow" class="pull-right noselect"></uvo-dropdown>
+		</div>	
+		<div class="col-xs-12 col-md-12 fencestext" ng-if="vm.showOnEntry" >ON ENTRY FENCES</div>
+		<div class="col-xs-12 col-md-12 fencestext" ng-if="!vm.showOnEntry">ON EXIT FENCES</div>		
+	</div>
+	<div class="row alert-interval-row visible-xs" ng-class="{hideContent:!vm.isOn}">
+			<div class="col-xs-6">
+				<label>ALERT INTERVAL</label>
+			</div>
+			<div class="col-xs-6 "> 
+				<uvo-dropdown items="vm.intervals" second-text-key="mobileText" selected-index="vm.currentInterval" enabled="vm.Intervalshow" class="pull-right noselect"></uvo-dropdown>
+			</div>			
+	</div>
+	<div class="row fence-type-row">
+		<div class="col-xs-6 visible-xs">
+			<label>ALERT TYPE</label>
+		</div>
+		<div class="col-xs-6 col-sm-12 text-right">
+			<div id="fence-toggle" ng-style="vm.getStyle()">
+				<span class="toggle-entry" ng-class="{on:vm.showOnEntry}" ng-click="vm.toggleFenceType('entry')" >ON-ENTRY</span>
+				<span class="toggle-exit" ng-class="{on:!vm.showOnEntry}" ng-click="vm.toggleFenceType('exit')">ON-EXIT</span>
+			</div>
+		</div>
+	</div>
+</div>

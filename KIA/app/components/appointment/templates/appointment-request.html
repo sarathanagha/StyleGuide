@@ -1,0 +1,12 @@
+<div class="modal appointment" id="appointmentModal" style="height:500px;display:block;">
+    <div class="content">
+        <div class="title">Appointment Request</div>
+        <div class="detail" ng-hide="showError">
+            Dealer will contact you to discuss appointment time and details.
+        </div>
+        <div class="detail" ng-show="showError">This dealership is unable to receive appointment requests at this time. Please select another dealer or try again later.</div>
+        <div class="action" id="appointmentClose">
+            <a class="button clickable" ng-click="close()">OK</a>
+        </div>
+    </div>
+</div>

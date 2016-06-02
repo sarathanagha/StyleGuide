@@ -1,0 +1,116 @@
+<div class="settings" ng-show="vm.moduleLoaded">
+  <div class="alerts-container">
+    <div class="header hidden-xs">
+      <div>
+        <span>SMS</span>
+        <span class="large" ng-if="!vm.carTypes.hasEV && vm.carTypes.hasGenOne">Push Notification</span>
+        <span class="large" ng-if="vm.carTypes.hasEV"></span>
+        <span>Email</span>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="body">
+      <div ng-if="vm.carTypes.hasGenOne || vm.carTypes.hasKH">
+        <h1>MAINTENANCE &amp; DIAGNOSTICS ALERTS</h1>
+        <div class="mobile-header visible-xs">
+          <span></span>
+          <span></span>
+          <span>EMAIL</span>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <div ng-repeat="alert in vm.maintenance">
+            <span class="description">{{alert.description}}</span>
+            <div class="checkboxes">
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-email" ng-model="alert.email">
+                <label for="{{alert.name}}-email"></label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1>UVO ALERTS</h1>
+        <div class="mobile-header visible-xs">
+          <span></span>
+          <span></span>
+          <span>EMAIL</span>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <div ng-repeat="alert in vm.uvo">
+            <span class="description">{{alert.description}}</span>
+            <div class="checkboxes">
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-email" ng-model="alert.email">
+                <label for="{{alert.name}}-email"></label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.carTypes.hasEV">
+        <h1>REMOTE ALERTS FOR SOUL EV</h1>
+        <div class="mobile-header visible-xs">
+          <span>SMS</span>
+          <span>PUSH</span>
+          <span>EMAIL</span>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <div ng-repeat="alert in vm.ev">
+            <span class="description">{{alert.description}}</span>
+            <div class="checkboxes">
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-sms" ng-model="alert.sms">
+                <label for="{{alert.name}}-sms"></label>
+              </span>
+              <span class="large"></span>
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-email" ng-model="alert.email">
+                <label for="{{alert.name}}-email"></label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.carTypes.hasKH">
+        <h1>REMOTE ALERTS FOR K900</h1>
+        <div class="mobile-header visible-xs">
+          <span>SMS</span>
+          <span>PUSH NOTIFICATION</span>
+          <span>EMAIL</span>
+        </div>
+        <div class="clear"></div>
+        <div>
+          <div ng-repeat="alert in vm.kh | orderBy: -'alert.name'">
+            <span class="description">{{alert.description}}</span>
+            <div class="checkboxes">
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-sms" ng-model="alert.sms">
+                <label for="{{alert.name}}-sms"></label>
+              </span>
+              <span class="large">
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-push" ng-model="alert.push">
+                <label class="large" for="{{alert.name}}-push"></label>
+              </span>
+              <span>
+                <input class="checkbox" type="checkbox" id="{{alert.name}}-email" ng-model="alert.email">
+                <label for="{{alert.name}}-email"></label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+         <input type="submit" id="btnUpdate" class="button" value="SAVE" ng-hide="vm.loading" ng-click="vm.submitted = true; vm.save();"/>
+         <img src="images/loading_bar.gif" ng-show="vm.loading">        
+    </div>
+  </div>
+</div>
+
+<div alert-modal alert-id="alert" alert-message="Your alert settings has successfully updated"></div>
+<div alert-modal alert-id="alertFail" alert-type="fail" alert-message="Your alert settings update has failed"></div>
+

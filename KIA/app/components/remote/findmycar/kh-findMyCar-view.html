@@ -1,0 +1,86 @@
+<div class="vehicleStatus">
+    <div class="vehicleStatus-date" ng-show="vm.hasMessege">{{vm.messegeStatus}}</div>
+</div>
+<div id="findMyCar-view" class="container-fluid">
+    <div class="page-header col-xs-12 col-sm-12" ng-class='{disabled:disableAll == true}'>
+        <ul class="col-sm-8">
+            <li class="col-xs-4 col-sm-4">
+                <a ui-sref='kh.remote' href="/kh/climate">Engine &amp; Climate</a>
+            </li>
+            <li class="col-xs-4 col-sm-4">
+                <a ui-sref='kh.lock' href="/kh/lock">Lock / Unlock</a>
+            </li>
+            <li class="col-xs-4 col-sm-4">
+                <a ui-sref='kh.findMyCar' href="/kh/findMyCar" class="active">Find My Car</a>
+            </li>
+        </ul>
+    </div>
+        <div class="map-wrapper col-xs-12">
+            <div class="map-area" id="map-canvas"><!--Place no elements here-->
+                <ui-gmap-google-map events="vm.map.mapEvents" control="vm.map.control" center="vm.map.center" zoom="vm.map.zoom" options="vm.map.options" resize-it>
+                    <ui-gmap-marker ng-if="vm.getcar==false&&vm.showcar;" ng-repeat="item1 in vm.map.markers"
+                            control="vm.map.markerControl"
+                            coords="item1" idKey="$index"
+                            icon="{url:'images/kh/img/find/car-pin.png'}">
+                        <ui-gmap-window show="vm.map.window.show" coords="vm.map.window.model"   closeclick="vm.map.window.closeClick()" options="vm.map.window.options">
+                            <div class="info-window">
+                                <div class="fmc-modal-widget fmc-modal-widget-success">
+                                    <div class="close"></div>
+                                    <div class="fmc-table">
+                                        <span class="col2">
+                                            <h2>Vehicle Location</h2>
+                                            <p>
+                                                <span class="address">{{vm.map.window.model.location}}</span>
+                                            </p>
+                                        </span>
+                                        <span class="col2 col2-button">
+                                            <a href="https://maps.google.com/maps?f=d&daddr={{vm.map.window.model.lat}},{{vm.map.window.model.lon}}&dirflg=h" class="kh-direction kh-button kh-button-submit" target="_blank">Get Directions</a>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <img src="images/poi/down-arrow.png" alt="X">
+                            </div>
+                        </ui-gmap-window> 
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+                     
+        </div>
+        <div  class="fmc-modal-background" ng-class="{'fmc-modal-background':vm.getcar||vm.pending||vm.error}">
+            <div id="proceeddiv" class="fmc-modal-widget fmc-modal-widget-prompt" ng-if="vm.getcar">
+                <div class="fmc-table">
+                    <span class="col2">
+                        <h2>You are about<br class="hidden-xs"/> to<br class="visible-xs"/> locate your car</h2>
+                        <p>Location services may take up to two minutes to process</p>
+                    </span>
+                    <span class="col2">
+                        <div class="kh-button kh-button-submit" ng-click="vm.ShowcarLocation()">Proceed</div>
+                   </span>
+               </div>
+            </div>
+            <div class="fmc-modal-widget fmc-modal-widget-pending" ng-if="vm.pending">
+                <div class="fmc-table">
+                    <span class="col2">
+                        <h2>Your request<br/>is in progress</h2>
+                        <p>This may take up to two minutes</p>
+                   </span>
+                   <span class="col2"><img class="hidden-xs" style="padding-left: 73%;" src="images/loading_bar.gif"></span>
+                </div>
+                <p class="fmc-table-row">During this time, you will not be able <br class="visible-xs"/> to send additional requests</p>
+                <div class="locating-btn visible-xs">LOCATING...</div>
+            </div>
+            <div class="fmc-modal-widget fmc-modal-widget-error" ng-if="vm.error">
+                <div class="fmc-table">
+                    <span class="col2">
+                        <h2>unable to locate<br/>your vehicle</h2>
+                        <p>Your vehicle could not be located at this time. Would you like to try again?</p>
+                    </span>
+                <span class="col2">
+                    <div class="kh-button kh-button-retry" ng-click="vm.ShowcarLocation();vm.error=false;">Resend</div>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

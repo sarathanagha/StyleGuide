@@ -1,0 +1,42 @@
+<!--Maintenance | Current Appointment-->
+<div class="widget-box border current-appointment" ng-repeat="appt in vm.currentAppointments">
+    <div class="title">
+        CURRENT APPOINTMENT
+    </div>
+    <div class="row content">
+        <ul>
+            <li>
+                <div class="col-sm-2 col-xs-12 tools">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-6 map-link-col">
+                                <a class="map-link-wrapper" target="_blank" href="https://google.com/maps/place/+{{appt.dlrAdr1}}+{{appt.dlrAdrCity}}+{{appt.dlrAdrSt}}+{{appt.zip}}">
+                                    <div class="mapLink"></div>
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="calendar">
+                                    <a href ng-click="vm.downloadICS(appt.dlrNm,appt.appnBegin, appt.appnEnd, appt.rqType)">{{appt.appnDay}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-xs-12 appointment">
+                    <div class="event">
+
+                    <br />
+
+                        <strong>{{appt.appnDisplay}}</strong>
+                        at {{appt.dlrNm}}
+                    </div>
+                    <div class="info">
+                        {{appt.dlrAdr1}}<br/>
+                        {{appt.dlrAdrCity}}, {{appt.dlrAdrSt}} {{appt.zip}}
+                    </div>
+                    <div class="info repair-type">{{appt.rqType}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div> <!-- widget-box border current-appointment -->

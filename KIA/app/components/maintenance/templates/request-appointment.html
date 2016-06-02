@@ -1,0 +1,48 @@
+<div class="widget-box border request-appointment">
+    <div class="title">
+        REQUEST APPOINTMENT
+    </div>
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col1">
+                    <div class="info">
+                        The dealer will contact you within 1 business day after making a
+                        request for an appointment.
+                    </div>
+                    <div class="name">
+                        {{com.preferredDealer.data.name}}
+                    </div> 
+                    <div class="contact" id="dealerContact" data="${prefDealInfo.dealerCode}">
+                       {{com.preferredDealer.data.address}}<br />
+                       {{com.preferredDealer.data.city}}, {{com.preferredDealer.data.state}} {{com.preferredDealer.data.zipCode}}<br />
+                       {{com.preferredDealer.data.phoneNumber | phoneNumber}} <!--1(949)777-2300-->
+                    </div>
+                    <div class="change-dealer-xs visible-xs" ng-click="vm.openDealerModal()">CHANGE</div>
+                    <a class="cta secondary change-dealer hidden-xs" ng-click="vm.openDealerModal()"><span>Change Dealer</span></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col2">
+                    <div class="title">Select Issue</div>
+                    <ul ng-init="vm.issueType = 'Vehicle Repair'">  
+                        <li id="veh-repair" ng-class="{selected:vm.issueType == 'Vehicle Repair', inactive:vm.issueType != 'Vehicle Repair'}" ng-click="vm.issueType = 'Vehicle Repair'">
+                            <div class="issue">Vehicle Repair</div>
+                            <div class="detail"><span id="numOfDiagIssue"></span>{{vm.dtc}} diagnostic issue(s)</div>
+                        </li>
+                        <li id="veh-maint" ng-class="{selected:vm.issueType == 'Maintenance', inactive:vm.issueType != 'Maintenance'}" ng-click="vm.issueType = 'Maintenance'">
+                            <div class="issue">Maintenance</div>
+                            <div class="detail">Next schedule maintenance: {{vm.milesToNextInterval | number}} miles</div>
+                        </li>
+                        <li id="other" ng-class="{selected:vm.issueType == 'other', inactive:vm.issueType != 'other'}" ng-click="vm.issueType = 'other'">
+                            <div class="issue">Other</div>
+                            <div class="detail">Dealership will contact you for more details</div>
+                        </li>
+                    </ul>
+                    <!-- <a class="cta primary clickable" id="request-appt" ng-click="vm.makeAppointment(vm.issueType, com.preferredDealer.data.dealerCode)"><span>Request Appointment</span></a> -->
+                    <a class="cta primary clickable" id="request-appt" ng-click="vm.makeNewAppointment(vm.issueType, com.preferredDealer.data.dealerCode)"><span>Request Appointment</span></a>
+                </div>
+            </div>
+        </div> <!-- row -->
+    </div>
+</div>

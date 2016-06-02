@@ -1,0 +1,49 @@
+<div class="widget-box border diagnostic-issues">
+    <div class="noIssue" ng-hide="vm.dtc != 0">
+        <div class="title">
+            DIAGNOSTIC ISSUES
+        </div>
+        <div class="content">
+            <img src="images/kh/img/maintenance/check_green.png" alt="No Issues"/>
+            <div class="info">                
+                NO ISSUES FOUND. YOU'RE ALL GOOD!
+            </div>
+        </div>
+    </div>
+    <div class="hasIssue" ng-show="vm.dtc != 0">
+        <div class="title">
+            ({{vm.dtc}}) DIAGNOSTIC ISSUES FOUND
+        </div>
+        <div class="content">
+            <div class="info">
+                <!-- <img src="/images/kh/img/maintenance/arrow-bottom.png" alt="X"> -->
+                <ul>
+                    <li id="powertrainDetail" ng-show="vm.showPowerTrain">
+                        <div class="title_issue" ng-click="vm.showPowerTrainDetail = !vm.showPowerTrainDetail">Powertrain Issue</div>
+                        <div class="details" ng-show="vm.showPowerTrainDetail">
+                            <div class="content">
+                                The powertrain system is responsible for providing power to your vehicle's tires. Actively monitoring this system and fixing any issues with it will help ensure your vehicle drives properly.
+                            </div>
+                        </div>
+                    </li>
+                    <li id="safetyDetail" ng-show="vm.showSafety">
+                        <div class="title_issue" ng-click="vm.showSafetyDetail = !vm.showSafetyDetail">Safety Issue</div>
+                        <div class="details" ng-show="vm.showSafetyDetail">
+                            <div class="content">
+                                This system consists of the airbags. Actively monitoring this system and fixing any issues with it will help ensure your vehicle’s airbags will deploy properly.
+                            </div>
+                        </div>
+                    </li>
+                    <li id="chassisDetail" ng-show="vm.showChassis">
+                        <div class="title_issue" ng-click="vm.showChassisDetail = !vm.showChassisDetail">Chassis Issue</div>
+                        <div class="details" ng-show="vm.showChassisDetail">
+                            <div class="content">
+                                The Chassis system is responsible for stopping your vehicle, providing stability, and monitoring tire pressure. Actively monitoring this system and fixing any issues with it will help ensure your vehicle drives properly.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> <!-- widget-box border diagnostic-issues -->

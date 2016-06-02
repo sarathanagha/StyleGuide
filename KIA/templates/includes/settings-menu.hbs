@@ -1,0 +1,14 @@
+<div id="settings-menu" class="visible-xs visible-sm">
+  <ul>
+    <li class="col-xs-4" ng-class="$state.current.name == 'settings.personalSettings' && 'selected'">
+      <a ui-sref="settings.personalSettings">PERSONAL</a>
+      </li>
+    <li class="col-xs-4" ng-class="$state.current.name == 'settings.alertsSettings' && 'selected'">
+      <a ui-sref="settings.alertsSettings">ALERTS</a>
+      </li>
+    <li class="col-xs-4" ng-class="$state.current.name == 'settings.securitySettings' && 'selected'">
+      <a ui-sref="settings.securitySettings">SECURITY</a>
+      </li>
+  </ul>
+  <div class="clear"></div>
+</div>

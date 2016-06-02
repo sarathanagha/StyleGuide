@@ -1,0 +1,16 @@
+<!-- overview template -->
+<div class="vehicle-container my-vehicles">
+	<div dealer-modal></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div vehicle-card type="no-vehicles"></div>
+			<div vehicle-card type="default"></div>
+			<div ng-hide="vm.checkboxselected" vehicle-card type="add"></div>
+		    <div ng-show="vm.checkboxselected" vehicle-card type="update"></div>
+
+			<div add-vehicle-modal></div>
+			<div delete-vehicle-modal></div>
+		</div> <!-- row -->
+	</div> <!-- container -->
+
+</div>

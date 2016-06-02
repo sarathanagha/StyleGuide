@@ -1,0 +1,99 @@
+[
+  {
+    "label":"History",
+    "sref":"history",
+    "types":["commandlog"]
+  },
+  { "label":"PERSONAL",
+    "sref":"personalSettings",
+    "types":["settings"]
+  },
+  { "label":"ALERTS",
+    "sref":"alertsSettings",
+    "types":["settings"]
+  },
+  { "label":"SECURITY",
+    "sref":"securitySettings",
+    "types":["settings"]
+  },
+  {
+    "label":"Connect",
+    "sref":"connect",
+    "types":["psev"]
+  },
+  {
+    "label":"Battery",
+    "sref":"battery",
+    "types":["psev"]
+  },
+  {
+    "label":"Charging Stations",
+    "sref":"chargingStations",
+    "types":["psev"]
+  },
+  {
+    "label":"Lock / Unlock",
+    "sref":"doorStatus",
+    "types":["psev"]
+  },
+  {
+    "label":"Climate Control",
+    "sref":"climate",
+    "types":["psev"]
+  },
+  {
+    "label":"Find My Car",
+    "sref":"findMyCar",
+    "types":["psev"]
+  },
+  {
+    "label":"Appointments",
+    "sref":"appointments",
+    "types":["psev"]
+  },
+  {
+    "label":"OVERVIEW",
+    "sref":"overview",
+    "types":["jf","kh","gen1","gen1plus"]
+  },
+  {
+    "label":"BATTERY",
+    "sref":"battery",
+    "types":["jf"]
+  },
+  {
+    "label":"CHARGING STATIONS",
+    "sref":"chargingStations",
+    "types":["jf"]
+  },
+  {
+    "label":"REMOTE",
+    "sref":"remote",
+    "types":["jf","kh"]
+  },
+  {
+    "label":"MAINTENANCE",
+    "sref":"maintenance",
+    "types":["jf","kh","gen1","gen1plus"]
+  },
+  {
+    "label":"MY POIs",
+    "sref":"poi",
+    "types":["jf","kh","gen1","gen1plus"]
+  },
+  {
+    "label":"DRIVING ACTIVITY",
+    "sref":"drivingActivity",
+    "types":["jf","kh","gen1plus"]
+  },
+  {
+    "label":"TRIP INFO",
+    "sref":"trips",
+    "types":["jf","kh","gen1plus"]
+  },
+  {
+    "label":"MY CAR ZONE",
+    "sref":["mcz"],
+    "types":["jf","kh","gen1plus"]
+  }
+]

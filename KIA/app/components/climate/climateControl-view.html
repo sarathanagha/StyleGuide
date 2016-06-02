@@ -1,0 +1,319 @@
+<div class="status">
+  <div class="statusMsg" ng-bind="vm.statusMsg"></div>
+  <div class="statusLoader" ng-class="{disable:vm.serviceBlock == true}" ng-click="vm.updateVehicleStatus()">
+    <img src="images/kh/img/icons/icons-ffffff/refresh.png" alt="refresh">
+  </div>
+</div>
+<div class="mob_box" ng-class="{error:vm.mobile == true && vm.errorState == true}"></div>
+<div class="container-fluid" id="climate">
+    <div class="row">
+        <div class="panel-1 climate col-md-8 hidden-xs">
+            <div class="dial"></div>
+            <!-- <div class="meter-properties"> -->
+            <div class="value-group">
+                <h3>SET TEMPERATURE</h3>
+                <h1 ng-show="!vm.decimalC"><label ng-bind="vm.setTemp"></label><sup>&#x2da;</sup></h1>
+                <h1 ng-show="vm.decimalC"><label ng-bind="vm.setTempDecimal"></label><sup>&#x2da;</sup><span>.5</span></h1>
+            </div> <!-- value-group -->
+
+            <div class="btn-group">
+                <div class="temp-group lower">
+                    <div class="temp-hud" ng-click="vm.minTemp()">
+                        <div class="value"><label ng-bind="vm.minVal"></label><sup>&#x2da;</sup></div>
+                        <div class="down-arrow">&nbsp;</div>
+                    </div>
+                    <div class="control" ng-click="vm.decreTemp()">
+                        <span class="inner"><a class="subtract-temp">-</a></span>
+                    </div>
+                </div>
+                <div class="action-area" ng-class="{disable:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock == true" ng-click="vm.sendClimate()">SEND</div>
+                <div class="temp-group raise">
+                    <div class="control" ng-click="vm.increTemp()">
+                        <span class="inner"><a class="add-temp">+</a></span>
+                    </div>
+                    <div class="temp-hud" ng-click="vm.maxTemp()">
+                        <div class="up-arrow">&nbsp;</div>
+                        <div class="value"><label ng-bind="vm.maxVal"></label><sup>&#x2da;</sup></div>
+                    </div>
+                </div>
+            </div> <!-- btn-group -->
+
+            <div class="notification" ng-show="vm.airCtrlOn">
+                <a href="#" class="btn off" ng-click="vm.offClimate()">TURN CLIMATE OFF</a>
+                <p ng-mouseover="vm.showClimateHint = true" ng-mouseleave="vm.showClimateHint = false" ng-init="vm.showClimateHint = false">HOW LONG WILL THE CLIMATE RUN?</p>
+                <div class="hintBox" ng-show="vm.showClimateHint">
+                    <div class="leftArrow"><img src="images/icons/left-arrow.png" alt="X"></div>
+                    <div>
+                        CLIMATE REQUEST<br>
+                        <span>15 minutes<br><br></span>
+                        SCHEDULED CLIMATE REQUESTS<br>
+                        <span>30 minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- panel-1 climate col-md-8 -->
+
+        <div class="panel-1 visible-xs">
+            <div class="left col-xs-4">
+                <div class="section">
+                    <div ng-show="vm.outTemp != null"><h1><span ng-bind="vm.outTemp"></span><sup>&#x2da;</sup></h1></div>
+                    <div ng-show="vm.outTemp == null">
+                        <img src="images/climate/temp-icon.png" alt="Outside Temperature" />
+                        <h1><span>--</span><sup>&#x2da;</sup></h1>
+                    </div>
+                    <h4>OUTSIDE</h4>
+                </div>
+
+                <div class="section">
+                    <!-- <a href="#">DEFROSTER</a> -->
+                    <h5>DEFROSTER</h5>
+                    <div class="status">
+                        <div class="status-container">
+                            <div ng-show="vm.defrostStatus=='started'"><img src="images/icons/original/defroster-on.png" alt="Defroster On" /></div> 
+                            <div ng-show="vm.defrostStatus=='stopped' || vm.defrostStatus=='disabled'"><img src="images/icons/original/defroster-off.png" alt="Defroster Off" /></div>
+                        </div>
+                    </div>
+                    <div class="on off" ng-class="{on_gray:vm.defrostStatusMobile=='started'}" ng-show="vm.defrostStatus=='disabled' || vm.serviceBlock == true"></div>
+
+                    <div class="on" ng-show="vm.defrostStatusMobile=='started' && vm.serviceBlock == false" ng-click="vm.stopDefrost()"></div>
+
+                    <div class="on" ng-class="{off_red:vm.defrostStatusMobile=='stopped'}" ng-show="vm.defrostStatusMobile=='stopped' && vm.serviceBlock == false" ng-click="vm.sendDefrost()"></div>
+                </div>
+            </div>
+            <div class="right col-xs-8">
+                <div class="temp up" ng-click="vm.increTemp()">
+                    <div class="up-arrow"></div>
+                </div>
+
+                <!-- <span ng-bind="vm.setTemp"></span> -->
+                <h1 ng-show="!vm.decimalC"><label ng-bind="vm.setTemp"></label><sup>&#x2da;</sup></h1>
+                <h1 ng-show="vm.decimalC"><label ng-bind="vm.setTempDecimal"></label><sup>&#x2da;</sup><span>.5</span></h1>
+
+                <div class="temp down" ng-click="vm.decreTemp()">
+                    <div class="down-arrow"></div>
+                </div>
+            </div>   
+        </div>
+
+        <div class="panel-2 climate col-md-4">
+            <div class="section">
+                <ul>
+                    <li><div class="radio-btn" ng-class="{active:vm.tempPref == 1}" ng-click="vm.toggleTemp('F')">&nbsp;</div><sup>&#x2da;</sup>F</li>
+                    <li><div class="radio-btn" ng-class="{active:vm.tempPref == 0}" ng-click="vm.toggleTemp('C')">&nbsp;</div><sup>&#x2da;</sup>C</li>
+                </ul>
+            </div>
+
+            <div class="section hidden-xs">
+                <div ng-show="vm.outTemp != null"><h1><span ng-bind="vm.outTemp"></span><sup>&#x2da;</sup></h1></div>
+                <div class="outsiteTemp" ng-show="vm.outTemp == null">
+                    <img src="images/climate/temp-icon.png" alt="Outside Temperature" />
+                    <div>Unable to determine outside temperature</div>
+                </div>
+                <h4>OUTSIDE TEMP</h4>
+            </div>
+            
+            <div class="section hidden-xs">
+                <div class="status">
+                    <div class="status-container">
+                        <div ng-show="vm.defrostStatus=='started'"><img src="images/icons/original/defroster-on.png" alt="Defroster" /></div>
+                        <div ng-show="vm.defrostStatus=='stopped' || vm.defrostStatus=='disabled'"><img src="images/icons/original/defroster-off.png" alt="Defroster" /></div>
+                    </div>
+                </div>
+                <a href="#" class="btn" ng-class="{start:vm.defrostStatus=='stopped' && vm.serviceBlock == false}" ng-show="vm.defrostStatus=='stopped' || vm.defrostStatus=='disabled'" ng-click="vm.sendDefrost()">START DEFROSTER</a>
+
+                <a href="#" class="btn" ng-class="{stop:vm.defrostStatus=='started' && vm.serviceBlock == false}" ng-show="vm.defrostStatus=='started'" ng-click="vm.stopDefrost()">STOP DEFROSTER</a>
+            </div>  
+        </div> <!-- panel-2 climate col-md-4-->
+
+        <div class="group-btn visible-xs">
+            <div class="cancel-btn col-xs-6" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.reload()">CANCEL</div>
+            <div class="submit-btn col-xs-6" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.sendClimate()">SUBMIT REQUEST</div> 
+        </div>
+    </div> <!-- row -->
+
+    <!-- SCHEDULE SECTION -->
+
+    <!-- SCHEDULE - CLIMATE DETAIL -->
+    <div class="schedule-tap">
+        <div class="titles"><span class="title-left">CLIMATE SCHEDULES</span></div>
+        <div class="line"></div>
+        <div class="req-schedule">
+            <p>Last updated at: <label ng-bind="timeStamp"></label></p>
+            <button type="submit" class="myBtn" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.requestSchedule()">REQUEST SCHEDULE</button>
+        </div>
+
+        <!-- SCHEDULE I -->
+        <div class="toggle-up">
+            <div class="toggle-section">
+                <div class="on" ng-class="{off:vm.offI == true}" ng-click="vm.toggleOnOffI()"></div>
+                <div class="line-vert01 one"></div>
+                <div class="txt01">SCHEDULE I</div>
+                <div class="line-vert01 hidden-xs"></div>
+                <div class="txt02"><span><label ng-bind="preScheHrI"></label>:<label ng-bind="preScheMinI"></label></span> <label ng-bind="sectionMiniI"></label></div>
+                <div class="line-vert01 two"></div>
+                <div class="txt03"><span ng-repeat="date in datesI"><label ng-bind="date"></label>. </span><span ng-show="vm.noReservI">No Reservation Setting in TMU</span></div>
+                <div class="arrow-down pos06">
+                    <div class="down" ng-class="{up:vm.upI == true}" ng-init="vm.upI = false" ng-click="vm.toggleSchedule('scheduleI')"></div>
+                </div>
+            </div> <!-- toggle-section -->
+            <div class="show-schedule" ng-show="vm.displayScheduleI">
+                <div class="txt-set">SET TEMPERATURE</div>
+                <div class="control-battery climate">
+                    <div class="txtControl">
+                        <span>{{vm.colorpicker[1].red}}</span><sup>&deg;</sup><span ng-show="vm.tempPref == 1">F</span><span ng-show="vm.tempPref == 0">C</span>
+                    </div>
+                    <div class="red-bar" ng-click="vm.decreTempI()">
+                        <img src="images/schedule/control-red.jpg" alt="red-bar">
+                    </div>
+
+                    <div id="red" ui-slider="vm.colorpicker[1].options" ng-model="vm.colorpicker[1].red"></div>
+
+                    <div class="blue-bar" ng-click="vm.increTempI()">
+                        <img src="images/schedule/control-blue.jpg" alt="red-bar">
+                    </div>
+                </div> <!-- control-battery climate -->
+                
+                <div class="txt-set defrost">
+                    <label>DEFROSTER</label>
+                    <div class="on" ng-class="{off:defrosOffI == true}" ng-click="vm.defrostOnOffI()"></div>
+                </div>
+
+                <div class="lineDisc climate"></div>
+
+                <div class="calendar">
+                    <div class="hour">                                  
+                        <div class="hour-wrap hour-wrap1" ng-class="{selected:vm.hrPickerI == true}" ng-click="vm.toggleHrPickerI()">{{hourI}}</div>
+                        <div class="time-pick">                                         
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.hrPickerI" class="hour-arrow" ng-init="vm.hrPickerI = false"/>
+                            <ul class="hour-list hour-list1" ng-show="vm.hrPickerI" ng-init="vm.hrPickerI = false">
+                                <li ng-repeat="hr in vm.hrList" ng-click="vm.newHrI($index)">{{hr}}</li>
+                            </ul>                                              
+                        </div>
+                            
+                        <div class="minute-wrap minute-wrap1" ng-class="{selected:vm.minPickerI == true}" ng-click="vm.toggleMinPickerI()">{{minuteI}}</div>
+                        <div class="time-pick">
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.minPickerI" class="minute-arrow" ng-init="vm.minPickerI = false"/>
+                            <ul class="minute-list minute-list1" ng-show="vm.minPickerI" ng-init="vm.minPickerI = false">                                               
+                                <li ng-repeat="min in vm.minList" ng-click="vm.newMinI($index)">{{min}}</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="am-pm-wrap am-pm-wrap1" ng-class="{selected:vm.sectPickerI == true}" ng-click="vm.toggleSectPickerI()">{{sectionI}}</div>
+                        <div class="time-pick">
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.sectPickerI" class="am-arrow" ng-init="vm.sectPickerI = false"/>
+                            <ul class="am-pm-list am-pm-list1" ng-show="vm.sectPickerI" ng-init="vm.sectPickerI = false">
+                                <li ng-repeat="sec in vm.secList" ng-click="vm.newSecI($index)">{{sec}}</li>
+                            </ul>
+                        </div>                               
+                    </div>
+
+                    <div class="weekDays">
+                        <div class="date-box" ng-repeat="day in vm.wkDate" ng-class="{selected:vm.dateSelectedI($index)}" ng-click="vm.toggleDateSelectI($index)">{{day}}</div>
+                    </div>
+                </div> <!-- calendar -->
+
+                <div class="lineDisc"></div>
+                <div class="scheduleBtnWrap">
+                    <div class="scheduleError" ng-if="vm.errorScheduleI" ng-bind="vm.errorSchMsg"></div>
+                    <div class="btnSchedule" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.addHvacI()">SCHEDULE</div>
+                    <div class="btnCancel" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.reload()">CANCEL</div>
+                </div>
+            </div> <!-- show-schedule -->
+        </div> <!-- toggle-up -->
+        <!-- SCHEDULE I -->
+        
+        <!-- SCHEDULE II -->
+        <div class="toggle-up">
+            <div class="toggle-section">
+                <div class="on" ng-class="{off:vm.offII == true}" ng-click="vm.toggleOnOffII()"></div>
+                <div class="line-vert01 one"></div>
+                <div class="txt01">SCHEDULE II</div>
+                <div class="line-vert01 hidden-xs"></div>
+                <div class="txt02"><span><label ng-bind="preScheHrII"></label>:<label ng-bind="preScheMinII"></label></span> <label ng-bind="sectionMiniII"></label></div>
+                <div class="line-vert01 two"></div>
+                <div class="txt03"><span ng-repeat="date in datesII"><label ng-bind="date"></label>. </span><span ng-show="vm.noReservII">No Reservation Setting in TMU</span></div>
+                <div class="arrow-down pos06">
+                    <div class="down" ng-class="{up:vm.upII == true}" ng-init="vm.upII = false" ng-click="vm.toggleSchedule('scheduleII')"></div>
+                </div>
+            </div> <!-- toggle-section -->
+            <div class="show-schedule" ng-show="vm.displayScheduleII">
+                <div class="txt-set">SET TEMPERATURE</div>
+                <div class="control-battery climate">
+                    <div class="txtControl">
+                        <span>{{vm.colorpicker[2].red}}</span><sup>&deg;</sup><span ng-show="vm.tempPref == 1">F</span><span ng-show="vm.tempPref == 0">C</span>
+                    </div>
+                    <div class="red-bar" ng-click="vm.decreTempII()">
+                        <img src="images/schedule/control-red.jpg" alt="red-bar">
+                    </div>
+
+                    <!-- <div class="ui-sliderTwo-range"></div> -->
+                    <div id="red" ui-slider="vm.colorpicker[2].options" ng-model="vm.colorpicker[2].red"></div>
+
+                    <div class="blue-bar" ng-click="vm.increTempII()">
+                        <img src="images/schedule/control-blue.jpg" alt="red-bar">
+                    </div>
+                </div>
+            
+                <div class="txt-set defrost">
+                    <label>DEFROSTER</label>
+                    <div class="on" ng-class="{off:defrosOffII == true}" ng-click="vm.defrostOnOffII()"></div>
+                </div>
+                
+                <div class="lineDisc climate"></div>
+
+                <div class="calendar">
+                    <div class="hour"> 
+                        <div class="hour-wrap hour-wrap2" ng-class="{selected:vm.hrPickerII == true}" ng-click="vm.toggleHrPickerII()">{{hourII}}</div>
+                        <div class="time-pick">
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.hrPickerII" class="hour-arrow" ng-init="vm.hrPickerII = false"/>
+                            <ul class="hour-list hour-list2" ng-show="vm.hrPickerII" ng-init="vm.hrPickerII = false">
+                                <li ng-repeat="hr in vm.hrList" ng-click="vm.newHrII($index)">{{hr}}</li>
+                            </ul> 
+                        </div>   
+                                                           
+                        <div class="minute-wrap minute-wrap2" ng-class="{selected:vm.minPickerII == true}" ng-click="vm.toggleMinPickerII()">{{minuteII}}</div>
+                        <div class="time-pick">
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.minPickerII" class="minute-arrow" ng-init="vm.minPickerII = false"/>
+                            <ul class="minute-list minute-list2" ng-show="vm.minPickerII" ng-init="vm.minPickerII = false">                                               
+                                <li ng-repeat="min in vm.minList" ng-click="vm.newMinII($index)">{{min}}</li>
+                            </ul>
+                        </div>
+                                                       
+                        <div class="am-pm-wrap am-pm-wrap2" ng-class="{selected:vm.sectPickerII == true}" ng-click="vm.toggleSectPickerII()">{{sectionII}}</div>
+                        <div class="time-pick">
+                            <img src="images/schedule/small-arrow-down.png" ng-show="vm.sectPickerII" class="am-arrow" ng-init="vm.sectPickerII = false"/>
+                            <ul class="am-pm-list am-pm-list2" ng-show="vm.sectPickerII" ng-init="vm.sectPickerII = false">
+                                <li ng-repeat="sec in vm.secList" ng-click="vm.newSecII($index)">{{sec}}</li>
+                            </ul>
+                        </div>                            
+                    </div>  
+
+                    <div class="weekDays">
+                        <div class="date-box" ng-repeat="day in vm.wkDate" ng-class="{selected:vm.dateSelectedII($index)}" ng-click="vm.toggleDateSelectII($index)">{{day}}</div>
+                    </div>
+                </div>
+                <div class="lineDisc"></div>
+                <div class="scheduleBtnWrap">
+                    <div class="scheduleError" ng-if="vm.errorScheduleII" ng-bind="vm.errorSchMsg"></div>
+                    <div class="btnSchedule" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.addHvacII()">SCHEDULE</div>
+                    <div class="btnCancel" ng-class="{disabled:vm.serviceBlock == true}" ng-disabled="vm.serviceBlock" ng-click="vm.reload()">CANCEL</div>
+                </div>
+            </div> <!-- show-schedule -->
+        </div> <!-- toggle-up-->
+        <!-- SCHEDULE II -->
+
+    </div> <!-- schedule-tap -->
+</div> <!-- container-fluid -->
+<script>
+/*!
+ * jQuery UI Touch Punch 0.2.3
+ *
+ * Copyright 2011â€“2014, Dave Furfero
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Depends:
+ *  jquery.ui.widget.js
+ *  jquery.ui.mouse.js
+ */
+!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+</script>

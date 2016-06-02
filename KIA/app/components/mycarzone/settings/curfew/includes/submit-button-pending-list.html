@@ -1,0 +1,46 @@
+<div>
+	<div class="hidden-xs">
+		<div class="kh-button kh-button-submit"  ng-click="vm.submit(submitDisable)"  ng-disabled="submitDisable" ng-hide="loading||vm.hasError" ng-class="{'disabled':submitDisable||stop||vm.disableButton}">Submit Request</div>
+         <div class="kh-button kh-button-pending loading" ng-show="loading">Request in Progress</div>
+         <div class="kh-button kh-button-error" ng-show="vm.hasError&&!loading" ng-click="vm.submit(submitDisable)">Retry</div>
+		<div ng-hide="loading||submitDisable" class="pending-list" style="right:5px;">
+			<h5 ng-if="loadinginit" ng-show="(!submitDisable|| vm.curfewChange || vm.intervalChange|| vm.deletecurfew) && !vm.disableButton">CHANGES PENDING</h5>
+			<ul ng-if="loadinginit">
+				<li ng-show="!vm.Intervalshow&&vm.isOn" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Turn Curfew Limit Alerts ON</li>
+				<li ng-show="vm.Intervalshow&&!vm.isOn" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Turn Curfew Limit Alerts OFF</li>
+		   		<li ng-show="vm.curfewChange && vm.alertsChange !== true" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Modifying Curfew</li>
+		    	<li ng-show="vm.deletecurfew && vm.alertsChange !== true" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Deleting Curfew</li>
+		    	<li ng-show="vm.addedcurfew && vm.alertsChange !== true" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Adding Curfew</li>
+		    	<li ng-show="vm.intervalChange && vm.alertsChange !== true" style="line-height: 1.3em;
+		    color: #5B8430;text-align: right;font-size:11px;">Interval Changes</li>
+			</ul>
+		</div>
+	</div>
+	<div class="visible-xs container-fluid">
+		<div class="row text-center" ng-if="loadinginit" ng-show="!submitDisable|| vm.curfewChange || vm.intervalChange|| vm.deletecurfew || vm.addedcurfew &&!loading">
+			<div class="col-xs-6 no-side-pad view-pending-column">
+				<div class="button view-pending-button" ng-click="vm.pendingModal()">
+					VIEW PENDING <span ng-show="count > 0">({{count}})</span>
+				</div>
+			</div>
+			<div class="col-xs-6 no-side-pad">
+				<div class="button submit-button" ng-click="vm.submit(submitDisable)" ng-class="{'disabled':submitDisable||stop||vm.disableButton}" ng-disabled="submitDisable">
+					SUBMIT
+				</div>
+			</div>
+		</div>
+		<div class="row text-center" ng-show="loading">
+			<div class="col-xs-12 no-side-pad">
+				<div class="button request-pending">
+					REQUEST IN PROGRESS
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

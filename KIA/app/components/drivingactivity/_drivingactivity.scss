@@ -1,0 +1,490 @@
+#driving-activity,#driving-activity-gen1plus {
+
+  .disclaimer {
+    color: #A4A4A4;
+    margin-bottom:60px;
+    font-size:13px;
+  }
+  @mixin datelink() {
+    .date-link {
+      display:block;
+      width:100%;
+      margin-top:20px;
+      @media (min-width:$screen-sm-min) {
+          display:table;
+      }
+
+      span {
+        display:block;
+        color:#444;
+
+        @media (min-width:$screen-sm-min) {
+          display:table-cell;
+        }
+      }
+
+      .month-year {
+        position:absolute;
+        width:100%;
+        margin-left:-8px;
+        @media (min-width:$screen-sm-min) {
+          position:relative;
+        }
+      }
+
+      .left-arrow, .right-arrow {
+        width:20px;
+        height:15px;
+        z-index:3;
+      }
+
+      .left-arrow {
+        background: url(../images/kh/img/overview/arrows-sprite.png) no-repeat;
+        background-position: 0 -18px;
+        position:absolute;
+        left:10px;
+        bottom:11px;
+      }
+
+      .left-arrow.active { 
+        background-position: 0 0;
+        cursor:pointer;
+      }
+
+      .right-arrow {
+        background: url(../images/kh/img/overview/arrows-sprite.png) no-repeat;
+        background-position: -30px -18px;
+        position:absolute;
+        right:10px;
+        bottom:11px;
+      }
+
+      .right-arrow.active {
+        background-position: -30px 0;
+        cursor:pointer;
+      }
+    }
+  }
+
+  @mixin amount() {
+    .amount {
+        color: #C4172C;
+        font-size: 32px;
+        margin-top:0;
+        padding: 30px 0 9px 0;
+        font-family:$designk-light;
+        line-height:20px;
+      }
+  }
+
+  @include datelink();
+
+  // WIDGET BOX
+  .widget-box {
+    margin-bottom:22px;
+    @media (min-width:$screen-sm-min) {
+      margin-bottom:22px;
+    }
+    .content {
+      text-align:center;
+      margin-top:0;      
+    }
+  }
+
+  // WIDGET HEADER
+  header {
+    width:100%;
+    span {
+      font-size:13px;
+
+      font-family:$designk-bold;
+      color:#888;
+    }
+  }
+
+  // DRIVING SCORE
+  .driving-score {
+    height:275px;
+    @media (min-width:$screen-sm-min) {
+      height:397px;
+    }
+    .milestone-container {
+      height:70px;
+      position: relative;
+      margin-top:-42px;
+      text-align:center;
+      @media (min-width:$screen-sm-min) {
+        margin-top: -14px;
+      }
+      .milestone {
+        padding:10px;
+        cursor: pointer;
+        width: 48px;
+        line-height:20px;
+        display:inline-block;
+        span {
+          display:inline-block;
+        }
+        .miles {
+          border-radius:50%;
+          padding:3px 5px;
+          font-size:13px;
+          color:#E6E6E6;
+          border:2px solid #E6E6E6;
+          text-align:center;
+          height:30px;
+          width:30px;
+        }
+        .date {
+          color:#E6E6E6;
+        }
+      }
+
+      .milestone.active {
+        cursor:default;
+        .miles {
+          color:#ABABAB;
+          border-color:#ABABAB;
+        }
+        .date {
+          color: #2F2F2F;
+          border-bottom: 3px solid $kia-red;
+        }
+      }
+    }
+
+    // DRIVING SCORE - DONUTTTT
+    article { 
+      position:relative;
+      margin-top: 11px;
+
+      @media (max-width:767px) {
+        margin-top: -65px;
+      }
+
+      .doughnut {
+        width:160px; 
+        height:250px;       
+        position:relative;
+        display:inline-block;
+        text-align:center;
+
+        @media (min-width:$screen-sm-min) {
+          width:230px;
+        }
+
+        .good {
+          font-family:$designk-medium;
+          color:#444;
+          position:absolute;
+          left:0; right:0;
+          top: 45px;          
+          font-size: 103px;
+          line-height:normal;
+
+          @media (max-width:767px) {
+            font-family:$designk-light;
+            font-size: 50px;
+            top: 105px;
+            left:15px;    
+            color:black;       
+          }
+        }
+        .total {
+          color:#CCC;
+          font-size:17px;
+          position:absolute;
+          left:0; right:0;
+          top:160px;
+
+          @media (max-width:767px) {
+            top:162px;
+            left: 15px;
+          }
+        }
+      }
+    }
+    .legend {
+      display:inline-block;
+      position:absolute;
+      top:115px;
+      left:170px;
+
+      @media (min-width:$screen-sm-min) {
+        left:266px;
+      }
+
+      .legend-wrapper {
+        margin:0 auto;
+        display:inline-block;
+        div { display:table-cell; }
+        div.good div{ background-color:$kia-blue; width:10px; height:10px; display:inline-block;}
+
+        label { 
+          padding-left:8px; display:table-cell; overflow:hidden; text-align:left; font-size:12px; font-family:$designk-light; 
+
+          @media (min-width:$screen-sm-min) {
+            font-size:14px;
+            padding-left:10px;
+          }
+        }
+      }
+    }
+  }
+
+  // IDLE-TIME
+  .idle-time {
+    height : 200px;
+
+    .left-arrow, .right-arrow {
+      bottom:11px;
+      @media (min-width:$screen-sm-min) {
+        bottom:27px;
+      }
+    }
+
+    .idle-meter {
+      width:94px;
+      height:94px;
+      background:url('../images/kh/img/overview/octagon-gray.png') no-repeat;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:13px;
+      @include amount();
+      .score-footer {
+        color: #888888;
+      }
+    }    
+  }
+
+  // AVERAGE SPEED
+  .average-speed {
+    height : 200px;
+
+    .left-arrow, .right-arrow {
+      bottom:11px;
+      @media (min-width:$screen-sm-min) {
+        bottom:27px;
+      }
+    }
+
+    .date-link {
+      margin-top:27px;
+    }
+
+    .average-speed-meter {
+      width:130px;
+      height:86px;
+      background:url('../images/kh/img/overview/meter-avg.png') no-repeat;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:13px;
+      @include amount();
+      .score-footer {
+        color: #888888;
+      }
+    }
+  }
+
+  // AWARDS
+  .awards {
+    height:200px;
+
+    &:hover {
+      cursor:pointer;
+    }
+    .awards-meter {
+      width:130px;
+      height:90px;
+      background:url('../images/kh/img/overview/awards.png') no-repeat;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:13px;
+      .amount {
+        color: #448CCB;
+        margin-top:0;
+        padding: 30px 0 9px 0;
+        font-size: 45px;
+        font-family:$designk-light;
+        line-height: 20px;
+      }
+    }
+    .score-footer {
+      font-size:12px;
+      display: inline-block;
+      line-height: 1.4;
+      margin: 21px -4px 0;
+    }
+  }
+
+  // PEAK DRIVING HOURS
+  .peak-driving-hours, .hours-driven {
+    height:200px; 
+    overflow : hidden; 
+  }
+
+  .peak-driving-hours {
+    @media (min-width:$screen-sm-min) {
+      height:185px;
+    }    
+    .peak-chart {
+      margin-left:auto;
+      margin-right:auto;
+      width: 155px;
+      height: 151px;
+      @media (min-width: $screen-md-min) {
+        width: 205px;
+        margin-left:-7px;
+        margin-right:0;
+      }
+    }
+  }
+
+  // HOURS DRIVEN
+  .hours-driven {
+    @media (min-width:$screen-sm-min) {
+      height:190px;
+    }    
+
+    .activity-meter {      
+      width:105px;
+      height:106px;
+      background:url('../images/kh/img/overview/meter_driving.png') no-repeat;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:13px;
+      @include amount();
+      .score-footer {
+        color: #888888;
+      }
+    }  
+
+    .date-link {
+      margin-top: 12px;
+    }  
+  }
+
+  // MILEAGE
+  .mileage {
+    .content {
+      display:block;
+      @media (min-width:$screen-sm-min) {
+        display:table;
+      }
+      .mileage-data {
+        display:block;
+        vertical-align:top;
+        text-align:left;
+        padding-top:11px;
+        @media (min-width:$screen-sm-min) {
+          display:table-cell;
+        }
+        .w-label {
+          color: #ABABAB;
+          font-size: 13px;
+          margin-bottom: 3px;
+          @media (min-width:$screen-sm-min) {
+            margin-bottom:21px;
+            margin-left: 16px
+          }
+        }
+        .amount {
+          font-size: 40px; 
+          margin-left:-7px; 
+          margin-top: 0;
+          font-family: $designk-light;
+          display:inline-block;
+          @media (min-width:$screen-sm-min) {
+            font-size:65px;
+            margin-left:0;
+          }
+        }
+      }
+
+      .mileage-chart {
+        display:table-cell;
+        width:300px;
+
+        @media (min-width:$screen-sm-min) {
+          width:510px;
+        }
+
+        .years-list {
+          display:inline-table;
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 11px 20px 0 0;
+
+          li {
+            display:table-cell;
+            padding:0 10px;
+
+            span {
+              cursor:pointer;
+            }
+
+            span:hover, span.active {
+              color: #363636;
+              border-bottom: 3px solid #C4172C;
+            } 
+          }
+        }
+
+        .y-label {
+          color: #ABABAB;
+          float: left;
+          font-size: 13px;
+          position: relative;
+          top: 38px;
+          left: 7px;
+          margin-right: -95px;
+          z-index: 1;
+          -ms-transform: rotate(269deg);
+          -webkit-transform: rotate(269deg);
+          transform: rotate(269deg);
+        }
+        .chart-container {
+          width:300px;
+
+          @media (min-width:$screen-sm-min) {
+            width:510px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#driving-activity-gen1plus {
+  .average-speed {
+    height:auto!important; @media (max-width:$screen-xs-max) 
+    { height:200px!important;}
+                 }
+  .hours-driven{
+   height:187px!important; @media (max-width:$screen-xs-max) 
+   {height:200px!important;}
+    }
+}
+
+@media (max-width:1024px){
+  #driving-activity-gen1plus {
+      .hours-driven
+      {height:200px!important;}
+  }
+}
+@media (max-width:420px){
+  #driving-activity .peak-driving-hours .content{
+  margin-left:-13px;
+  }
+  #driving-activity .peak-driving-hours .peak-chart{
+    display: inline-block;
+    position: relative;
+    width:100%;
+   
+    vertical-align: middle;
+
+  }
+ 
+
+}

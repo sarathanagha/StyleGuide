@@ -1,0 +1,68 @@
+<div>
+    <!--Maintenance | Diagnostic without issues::-->
+    <div class="widget-box border diagnostic-issues" id="diagNoIssue" ng-show="vm.dtc == 0">
+        <div class="title">
+            DIAGNOSTIC ISSUES
+            <!-- <div class="help">?</div> -->
+        </div>
+        <div class="content good">
+            <div class="info">
+                <strong>NO ISSUES FOUND</strong>
+                you're all good
+            </div>
+        </div>
+    </div>
+
+    <!--Maintenance | Diagnostic with issues-->
+    <div class="widget-box border diagnostic-issues" id="diagWithIssue" ng-hide="vm.dtc == 0">
+        <div class="title">
+            DIAGNOSTIC ISSUES
+            <!-- <div class="help">?</div> -->
+        </div>
+        <div class="content warning">
+            <div class="indicator">
+                <span id="numOfIssue">{{vm.dtc}}</span> ISSUE(S) FOUND
+            </div>
+            <div class="info">
+                <ul>
+                    <li id="powertrainDetail" style="cursor:pointer;" ng-show="vm.showPowerTrain" ng-mouseover="vm.powerTrainDetail = true" ng-mouseleave="vm.powerTrainDetail = false" ng-init="vm.powerTrainDetail = false">
+                        <a ng-mouseover="vm.powerTrainDetail = true" ng-mouseleave="vm.powerTrainDetail = false" ng-init="vm.powerTrainDetail = false">Powertrain Issue</a>
+                        <div class="details" ng-show="vm.powerTrainDetail">
+                            <div class="title">
+                                Powertrain Issue
+                            </div>
+                            <div class="content">
+                                The Powertrain system is responsible for providing power to your vehicle's tires. Actively monitoring this system and fixing any issues with it will help ensure your vehicle drives properly.
+                            </div>
+                        </div>
+                    </li>
+                    <li id="safetyDetail" style="cursor:pointer;" ng-show="vm.showSafety">
+                        <a ng-mouseover="vm.safetyDetail = true" ng-mouseleave="vm.safetyDetail = false" ng-init="vm.safetyDetail = false">Safety Issue</a>
+                        <div class="details" ng-show="vm.safetyDetail">
+                            <div class="title">
+                                Safety Issue
+                            </div>
+                            <div class="content">
+                                This system consists of the airbags. Actively monitoring this system and fixing any issues with it will help ensure your vehicle’s airbags will deploy properly.
+                            </div>
+                        </div>
+                    </li>
+                    <li id="chassisDetail" ng-show="vm.showChassis">
+                        <a ng-mouseover="vm.chassisDetail = true" ng-mouseleave="vm.chassisDetail = false" ng-init="vm.chassisDetail = false">Chassis Issue</a>
+                        <div class="details chassisDetails" ng-show="vm.chassisDetail">
+                            <div class="title">
+                                Chassis Issue
+                            </div>
+                            <div class="content">
+                                The Chassis system is responsible for stopping your vehicle, providing stability, and monitoring tire pressure. Actively monitoring this system and fixing any issues with it will help ensure your vehicle drives properly.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidenote">
+                Request an appointment below.
+            </div>
+        </div>
+    </div>    
+</div>

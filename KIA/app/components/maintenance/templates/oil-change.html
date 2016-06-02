@@ -1,0 +1,23 @@
+<div class="widget-box border monthly-diagnostic oil-change-schedule">
+    <div class="title">
+        OIL CHANGE SCHEDULE
+    </div>
+
+    <div class="content">
+        <div class="miles">
+            {{vm.oilChangeDetail.mileageTillNextOilChange | number}}
+        </div>
+        <div class="red-suffix">
+            mile(s) until next oil change
+        </div>
+
+        <div class="restart-btn" ng-click="vm.updateOilChange()">
+            RESTART
+        </div>
+        <select class="oil-change-intervals" ng-model="vm.oilChangeOption" ng-options="option for option in vm.oilChangeDetail.oilChangeIntervalOptions">
+        </select>
+        <div class="small-text">
+          mile(s) between oil changes
+        </div>
+    </div>
+</div>

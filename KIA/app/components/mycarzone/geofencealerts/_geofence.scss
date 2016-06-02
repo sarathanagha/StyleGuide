@@ -1,0 +1,136 @@
+
+.arrow{
+float: right;
+    top: 20px;
+    left: -5px;
+    background: url("../images/kh/img/my-car-zone/popover-arrow.png");
+    width: 5px;
+    height: 8px;
+    position: absolute;
+  } 
+
+/* @media(min-width:768px){
+    .speed_alert{overflow:visible;min-height:300px;
+         sub {font-size: 100%;}
+        .container{max-width:740px;}
+        .page-header{padding-bottom:0;margin:0;}
+        .mycarzone-title{padding-top: 15px;padding-bottom: 20px;font-family: designk-bold}
+        .carzone-menu ul{display: table;
+            li{display: table-cell;
+                a {color: #2f2f2f;font-size: 1.2em;display: block;padding: 10px 10px;font-size: 0.99em;text-align:center!important;
+                }
+                .active{background-color: #FF0000!important;
+                    a {color: #fff!important;border-left: none;border-right: none;padding: 15px 22px;font-size: 0.99em;
+                    }
+                }
+            }
+        }
+        .main-wrapper .container .page-header .carzone-menu{margin-top: 10px!important}
+        .carzone-alerts {margin-top: 10px;  display: block;padding: 5px 0 0;height: 50px;}
+        .alert-msj {display: block;float: left;color: #444444;}
+        .alert-menu{float:right;}
+        .alert-menu.show .manage-buttons{transition-property:all; transition-duration: 1s; opacity: 1;right: 0;}
+        .dropdown.button{  border: 1px solid #444444;cursor: pointer;color: #444444;font-size: 1em;position: relative;padding: 5px 10px;display: inline-block;margin: 5px;min-width: 110px;text-align: center;}
+        .actions .button.dropdown:after{background: url("/images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;content: "";float: right;height: 9px;margin-top: 3px;width: 11px;}
+        .actions .button {border: 1px solid #444444;cursor: pointer;color: #444444;font-size: 1em;position: relative;padding: 5px 10px;display: inline-block;margin: 5px;min-width: 110px;text-align: center;}
+        .alert-menu.show .delete-buttons {transition-property: all;transition-duration: 1s;opacity: 0;right: -460px;}
+        .button.inactive {border: 1px solid #CCCCCC;color: #CCCCCC;text-shadow: none;}
+        .alerts {display: block;margin-top: 10px;text-align: center;}
+        .alerts .item {display: block;border: 1px solid #E1E1E1;margin-bottom: 20px;}
+        .alerts .item .item-wrapper {display: table;width: 100%;min-height: 100px;height: auto;padding: 10px 0;position: relative;vertical-align: middle;}
+        .alerts .item .item-wrapper .option.error {background: url("/images/kh/img/icons/icons-888888/alert.png") no-repeat center 40%;padding-top: 45px;}
+        .alerts .item .item-wrapper .option span {font-size: 1.1em;text-transform: uppercase;}
+        .alerts .item .item-wrapper .option.map {background: url("/images/kh/img/my-car-zone/poi-icon.png") no-repeat center 40%;cursor: pointer;padding-top: 45px;}
+        .container .alerts .item .item-wrapper .option span {font-size: 1.1em;text-transform: uppercase;}
+        .alerts .item .item-wrapper .option {border-right: 1px solid #E1E1E1;display: table-cell;vertical-align: middle;width: 19%;height: 55px;}    
+        .alerts .item .item-wrapper .option span {font-size: 1.1em;text-transform: uppercase;}
+        .alerts .item .item-wrapper .content {display: table-cell;vertical-align: middle;}
+        .alerts .item .item-wrapper .content .indicator {float: left;display: table-cell;width: 45%;min-height: 40px;color: #2F2F2F;}
+        .alerts .item .item-wrapper .content .indicator strong {color: #C4172C;font-size: 2.4em;font-family: designk-bold;}
+        .alerts .item.speed .indicator sub {font-family: designk-bold;}
+        .alerts .item .item-wrapper .content .info {text-align: left;font-size: 1.1em;}
+        .alerts .item.speed .info strong {font-family: designk-bold;}
+        .alerts .item .item-wrapper .content .link {color: #C4C4C4;text-align: left}
+        .alerts .row:before, .row:after {content: " ";display: inline !important; }
+        .alerts .item .img-container {display: none;width: 100%;height: 400px;overflow: hidden;}
+        .alerts .item .item-wrapper .option.select:before {background: url("https://stg.myuvo.com/ccw/img/kh/img/my-car-zone/checkbox.png") no-repeat center 40%;content: "";display: inline-block;height: 12px;margin-right: 10px;width: 12px;}
+        .dropdown-sort-menu{ background-color: white;
+          position: absolute;
+          top: 36px;
+          left: 180px;
+          z-index: 999;
+          width: 145px;
+          border: 1px solid #444;
+          text-align: left;
+          box-sizing: border-box;}
+        .container .page-header .carzone-alerts .alert-menu{overflow:visible}
+
+     
+
+
+
+    }
+}
+       
+
+
+@media(max-width:767px){
+    .speed_alert{overflow:visible;min-height:200px;
+        sub{display: inline-block;vertical-align: text-top;font-size:100%}
+        .container .alerts .item .item-wrapper .content .indicator strong{font-size: 2em;}
+        .container .page-header .carzone-alerts .alert-menu{overflow:visible}
+        .speed-page-header{margin-bottom: 15px;}
+        .alert-menu{float:left!important}
+        .alert-menu .manage-buttons {width: 100%;padding:0;}
+        .dropdown.button{margin-right: 10px;}
+        .actions .button {margin:0} 
+        .dropdown.button {margin:0}
+        .main-wrapper .container .page-header .carzone-menu{margin-top:0 !important;}  
+        .page-header{padding-bottom:0;margin:0;} 
+        .container .actions .button{padding:10px 10px;height:15px; min-width: 105px;margin-left: 0;}
+        .container .alerts .item .item-wrapper .content{margin-top:10px}   
+        .container .alerts .item .item-wrapper .content .indicator{width:100%;min-height:0;text-align:left;}
+        .container .page-header .carzone-alerts{height:60px}
+        .container .alerts .item .item-wrapper .option{width:25%}
+        .dropdown-sort-menu{ background-color: white;
+          position: absolute;
+          top: 41px;
+          left: 0px;
+          z-index: 999;
+          width: 46%;
+          border: 1px solid #444;
+          text-align: left;
+          box-sizing: border-box;}
+          .carzone-menu ul{display: table;
+            li{display: table-cell;
+                a {color: #2f2f2f;font-size: 1.2em;display: block;padding: 15px 10px;font-size: 0.99em;text-align:center!important;
+                }
+                .active{background-color: #FF0000!important;
+                    a {color: #fff!important;border-left: none;border-right: none;padding: 15px 22px;font-size: 0.99em;
+                    }
+                }
+            }
+        }
+
+    } 
+
+}
+
+.speed_alert{ 
+
+    .angular-google-map-container {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0px;
+        }
+
+        .md-map {
+          width: 500px;
+          float: left;
+        }
+
+    }
+
+ */

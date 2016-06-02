@@ -1,0 +1,54 @@
+{{!
+  Nav-Secondary
+
+  Description: Left navigation. Content changes according to type, which is defined in the YMF of
+  base layout (eg kh-layout)
+}}
+  {{! This div use to contain class col-sm-3. Removed it because it caused the left menu to be huge. }}
+<nav class="nav-secondary {{#compare type "==" "settings"}}alerts-settings-nav-secondary{{/compare}} hidden-xs hidden-sm">
+    {{!
+      Vehicle Switcher
+
+      Description: Shows current vehicle image and name. Will not show if type in YFM is
+      'settings'.
+    }}
+    {{#compare type "!=" "settings"}}
+    {{#compare type "!=" "commandlog"}}
+    <vehicle-switcher vehicles="com.carInfo.vehicles" selected-vehicle="com.carInfo.selectedVehicle"></vehicle-switcher>
+    {{/compare}}
+    {{/compare}}
+    {{!
+      Left Navbar
+
+      Description: Loops through left-nav-data.json and filters by type, which is declared in
+      the YMF of the base layout.
+
+      Current page selector: Uses ngClass to determine if the current state matches the provided ui-sref.
+      If true, the 'selected' class will be added.
+    }}
+    {{#compare type "!=" "psev"}}
+    {{# left-nav-data }}
+      {{#inArray types ../type }}
+      
+        <h1 ng-if="!(clicked&&'{{sref}}'=='mcz')&&!('{{sref}}'=='remote'&&parentstat)" ng-class="$state.current.name == '{{../../type }}.{{sref }}' && 'selected'" >
+        <a ui-sref="{{../../type }}.{{sref }}">{{label }}</a></h1>
+        <h1 ng-if="parentstat&&'{{sref}}'=='remote'" class="selected">
+        <a ui-sref="{{../../type }}.{{sref }}">{{label }}</a></h1>
+       <h1 ng-if="clicked&&'{{sref}}'=='mcz'" class="selected">
+        <a ui-sref="{{../../type }}.{{sref }}">{{label }}</a></h1>
+      {{/inArray}}
+    {{/ left-nav-data}}
+ {{/compare}}
+
+        {{#compare type "==" "psev"}}
+        {{# left-nav-data }}
+      {{#inArray types ../type }}
+        <h1 class="bg-color" ng-class="$state.current.name == '{{../../type }}.{{sref }}' && 'selected'" 
+        style="padding:0px;line-height:34px;width:142px;border-bottom: 1px solid #E6E6Ef;font-size:14px;" >
+
+        <a style="outline:0" ui-sref="{{../../type }}.{{sref }}">{{label }}</a></h1>
+      {{/inArray}}
+    {{/ left-nav-data}}
+    {{/compare}}
+
+</nav>

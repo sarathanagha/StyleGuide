@@ -1,0 +1,28 @@
+<div id="hamburger-vehicle-switcher" class="hamburger hidden-md hidden-lg" ng-class="$parent.showHSwitcher" ng-controller="VehicleSwitcherController as vm">
+
+  {{! Header}}
+  <div class="header">
+    <div class="back col-xs-6 text-left"><span ng-click="$parent.showHSwitcher = 'out'">BACK</span></div>
+    <div class="close-nav col-xs-6 text-right"><span ng-click="$parent.showHamburger = 'out'; $parent.showHSwitcher='out';">x</span></div>
+  </div>
+
+  {{! Content }}
+  <div>
+  <hr class="w100" />
+    <div class="container-fluid">
+       <div class="vehicle-switcher-row row"  ng-repeat="vehicle in com.carInfo.vehicles | vehicleSwitcherFilter | filter : { selected: false } "> <!-- | filter : { selected: false }     ng-if="vehicle.actVin == 'N'"-->    
+    {{!--   <div class="vehicle-switcher-row row"  ng-repeat="vehicle in com.carInfo.vehicles">  --}}
+        <div class="col-xs-4"><img alt="" ng-src="\{{vehicle.originImgFileNm}}"></div>
+        <div class="col-xs-4 carInfo">
+          <p class="title">\{{vehicle.vehNick}}</p>
+          <p class="trim">\{{vehicle.mdlYr}} \{{vehicle.mdlNm}}</p>
+        </div>
+        <div class="col-xs-4">
+          <div class="button">
+            <span ng-click="$parent.$parent.showHamburger='out'; $parent.$parent.showHSwitcher='out'; vm.switchVehicle(vehicle.type, vehicle.vin ,vehicle)">SELECT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

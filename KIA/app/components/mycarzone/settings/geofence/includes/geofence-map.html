@@ -1,0 +1,171 @@
+<div class="map-container"  ng-if="showMap" ng-class="{'disableInput':!edit}">
+<script type="text/ng-template" id="searchbox.tpl.html">
+	<div class="geofence-search">
+	<h1>{{edit}}</h1>
+        <input type="text"  placeholder="Search">
+     </div>
+    </script>
+	<div class="hidden-xs desktop-map-container global">
+		<div class="shape-toggle-container noselect">
+			<div class="rectangle-select" ng-class="{selected:shapeType == 1}" ng-click="toggleShape(1)"></div>
+			<hr>
+			<div class="circle-select" ng-class="{selected:shapeType == 2}" ng-click="toggleShape(2)"></div>
+		</div>
+		<ui-gmap-google-map 
+			events="map.events" 
+			control="map.control" 
+			center="map.center" 
+			zoom="map.zoom" 
+			options="map.options"
+			bounds="map.bounds"		
+			>
+			<div class="geofence-search"><ui-gmap-search-box  template="searchbox.template" events="searchbox.events"></ui-gmap-search-box></div>
+			<ui-gmap-circle"
+				center="circle.center"
+				radius="circle.radius"
+				stroke="circle.stroke"
+				fill="circle.fill"
+				draggable="edit"
+				editable="edit"	
+				visible="circle.visible"
+				control="circle.control"
+				events="circle.events"		
+			></ui-gmap-circle>
+			<ui-gmap-rectangle"
+				bounds="rectangle.bounds"
+				stroke="rectangle.stroke"
+				fill="rectangle.fill"
+				draggable="edit"
+				editable="edit"
+				visible="rectangle.visible"
+				control="rectangle.control"
+				events="rectangle.events"
+			></ui-gmap-rectangle>
+		</ui-gmap-google-map>	
+	</div>
+	<div class="visible-xs mobile-map-container global">
+		<div class="shape-toggle-container noselect">
+			<div class="rectangle-select" ng-class="{selected:shapeType == 1}" ng-click="toggleShape(1)"></div>
+			<hr>
+			<div class="circle-select" ng-class="{selected:shapeType == 2}" ng-click="toggleShape(2)"></div>
+		</div>
+		<ui-gmap-google-map 
+			events="mobileMap.events" 
+			control="mobileMap.control" 
+			center="mobileMap.center" 
+			zoom="mobileMap.zoom" 
+			options="mobileMap.options"	
+			bounds="mobileMap.bounds"
+			pan="true"	
+			>
+			<div class="geofence-search"><ui-gmap-search-box  template="searchbox.template" events="searchbox.events"></ui-gmap-search-box></div>
+			<ui-gmap-circle"
+				center="circle.center"
+				radius="circle.radius"
+				stroke="circle.stroke"
+				fill="circle.fill"
+				visible="circle.visible"
+				control="circle.control"
+				draggable="edit"
+				events="circle.events"
+				editable="edit"		
+			></ui-gmap-circle>
+			<ui-gmap-rectangle"
+				bounds="rectangle.bounds"
+				stroke="rectangle.stroke"
+				fill="rectangle.fill"
+				visible="rectangle.visible"
+				control="rectangle.control"
+				events="rectangle.events"
+				editable="edit"
+				draggable="edit"
+			></ui-gmap-rectangle>
+		</ui-gmap-google-map>		
+	</div>
+	<div class="mobile-controls visible-xs">
+		<div class="map-control-button-container" style="width: 85%;">
+			<div class="rectangle" ng-if="shapeType == 1">
+			<div style="float:left">
+				<div>width</div>
+					<div class="map-control-button minus square" ng-click="changeDimention('w','+')"></div>
+					<div class="map-control-button plus square" ng-click="changeDimention('w','-')"></div>
+			</div>
+			<div style="float:right">
+				<div>height</div>
+					<div class="map-control-button minus" ng-click="changeDimention('h','-')"></div>
+					<div class="map-control-button plus" ng-click="changeDimention('h','+')"></div>
+			</div>
+			</div>
+			<div class="circle" ng-if="shapeType == 2">
+				<div>Radius</div>
+				<div class="map-control-button minus" ng-click="changeRadius('-')"></div>
+				<div class="map-control-button plus" ng-click="changeRadius('+')"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+	/*google map search box*/
+	.angular-google-map-container{
+		overflow: visible!important
+	}
+	body > div.ng-scope > div.main-container.ng-scope > div > div > section > section > div.config-list.ng-scope > ul > li > div > div.body.ng-scope > div > div > div.visible-xs > ui-gmap-google-map > div > div.angular-google-map-container > div > input{
+		top:-16px!important;
+	}
+	body > div.ng-scope > div.main-container.ng-scope > div > div > section > section > div.config-list.ng-scope > ul > li > div > div.body.ng-scope > div > div > div.global > ui-gmap-google-map > div > div.angular-google-map-container > div > input[type="text"]{
+
+			z-index: 9999;
+		    position: absolute;
+		    left: 0!important;
+    		top: -22px !important;
+		    width: 175px;
+		    border: 0!important;
+		    font-size: 1.1em;
+		    background: white url(images/kh/img/my-pois/search-red.png) left 50% no-repeat;
+		    background-color: rgb(235, 235, 228);
+		    padding-left: 40px;
+		    margin: -10px 0 10px 0;
+		    height: 24px;
+	}
+
+	.map-container,.gm-style{
+		overflow: visible!important;
+	}
+	.mcz-settings .config-list ul.config-list-ul li.config-list-item .body{
+		padding-top: 30px;
+	}
+
+	body > div.ng-scope > div.main-container.ng-scope > div > div > section > section > div.config-list.ng-scope > ul > li > div > div.body.ng-scope > div > div > div.hidden-xs.desktop-map-container > ui-gmap-google-map > div > div.angular-google-map-container{
+		overflow: visible!important;
+	}
+
+
+
+	@media(max-width:767px){.mcz-settings .config-list ul.config-list-ul li.config-list-item .body {
+  
+    padding-left: 0px;
+	}
+}
+</style>
+<!--
+<ui-gmap-google-map events='poi.map.events' control='poi.map.control' center='poi.map.center' zoom='poi.map.zoom' options="poi.map.options">
+	<ui-gmap-marker options="{clickable:false}" icon="{url: 'images/poi/marker_red.png' }" coords="{'latitude':poi.lae,'longitude':poi.loc}" idKey="poi.mobileMapId">
+		<ui-gmap-window 
+			options="poi.mobileInfoBoxOptions" 
+			control='poi.mobileInfoBoxOptions.control'>
+			<div> 
+        		<div class="uvo-ib-content" ng-init="isMobile = true">				        	       
+	       				<div class="uvo-ib-title">{{poi.poiNm}}</div>
+			        <div>{{poi.stetNm}}</div>
+ 			        <div>{{poi.formattedAddress}}</div>
+				</div>										
+				<div class="uvo-ib-point-down">
+					<img src="images/kh/img/station/point-down.png" alt="X" />
+				</div>
+			</div>
+		</ui-gmap-window>
+	</ui-gmap-marker>					
+</ui-gmap-google-map>
+-->						

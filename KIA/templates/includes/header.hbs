@@ -1,0 +1,75 @@
+<header id="header">
+  <nav class='navbar navbar-fixed-top' role='navigation'>
+
+    {{! Hamburger button }}
+    <div class='navbar-header'>
+        <button type='button' class="navbar-toggle" ng-click="showHamburger = 'in'">
+            <span class='sr-only'>Toggle navigation</span><!-- only for screen readers -->
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+        </button>
+        <section class="navbar-mobile-detail visible-xs visible-sm">
+          <div class="navbar-mobile-detail-container">
+            <img src="images/uvo_logo_mobile.png" alt="Kia MyUVO Logo" class="mob_logo" ng-show="!$state.current.data.mobileTitle && !com.showMobileNotifications">
+            <div class="mobile-title" ng-bind="$state.current.data.mobileTitle" ng-show="!com.showMobileNotifications"></div>
+            <div class="mobile-title" ng-show="com.showMobileNotifications">NOTIFICATIONS</div>
+            {{#compare type "==" "kh"}}
+            <div class="mobile-notifications" ng-init="allowShowNotif = true" ng-click="com.notiRemoteSession(true)">
+              <div>
+                <span ng-if="com.notifications.total > 0 && com.notifications.total < 100">\{{com.notifications.total}}</span>
+                <span ng-if="com.notifications.total >= 100">99+</span>
+              </div>
+            </div>
+            {{/compare}}
+            <div class="mobile-notifications" style="visibility:hidden" ng-if="!allowShowNotif"></div>
+          </div>
+        </section>
+    </div>
+    {{! Nav utility, site-logo, top-navigation }}
+    <div class="hidden-xs hidden-sm">
+      <nav class="nav-utility" ng-controller="LogoutController">
+        <ul>
+          <li><a href ng-click="logout()">LOG OUT</a></li>
+        </ul>
+      </nav>
+      <div class="site-logo">
+        <a ui-sref='default.vehicles' title="MyUVO">
+            <img src="images/kh/img/kia-uvo-logo.png" alt="Kia MyUVO Logo">
+        </a>
+      </div>
+      {{> top-nav }}
+    </div>
+
+  </nav>
+</header>
+{{!-- <div class="mob_box">
+
+<img alt="" src="images/kh/img/overview/refresh.png">
+
+
+</div> --}}
+{{! Notifications for MOBILE }}
+{{#compare type "!=" "default"}}
+{{#compare type "!=" "gen1"}}
+{{#compare type "!=" "settings"}}
+<section ng-show="com.showMobileNotifications" ng-class="com.showMobileNotifications && 'hidden-md hidden-lg'" id="mobile-notifications">
+  <div class="info-notifications" ng-if="com.notifications.total == 0">You have no new notifications</div>
+  <div class="item" ng-repeat="noti in com.notifications.data">
+    <section  ng-click="com.notificationsGo(noti.href)">
+      <span class="right-arrow"></span>
+      <div ng-if="noti.count != 'remoteCommands'">
+                    <div class="title">\{{noti.name}}</div>
+                    <div class="info" ng-if="noti.count != 1">You have \{{noti.count}} \{{noti.name}} notifications</div>
+                    <div class="info" ng-if="noti.count == 1">You have \{{noti.count}} \{{noti.name}} notification</div>
+                  </div>
+                  <div ng-if="noti.count == 'remoteCommands'">
+                    <div class="title" ng-if="noti.count != 1">\{{noti.name}}</div>
+                    <div class="title" ng-if="noti.count == 1">\{{noti.name}}</div>
+                  </div>
+    </section>
+  </div>
+</section>
+{{/compare}}
+{{/compare}}
+{{/compare}}

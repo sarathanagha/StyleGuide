@@ -1,0 +1,422 @@
+//angular directives puts modals out of the main container
+@import "poi-modals";
+
+#my-pois {
+    .poi-more-info {
+        p{
+            padding-left:23px!important;
+        }
+        .poi-selected-container { display:inline-block; width: 25px; position:absolute;
+            // Select poi for deletion
+            .poi-selected { display: none; }
+            .poi-selected:checked + .poi-selected-label {
+                    background-image: url("../images/kh/img/maintenance/bullet-1-active.png");
+                }
+                .poi-selected-label {
+                    background-image: url("../images/kh/img/maintenance/bullet-1-inactive.png");
+                    width: 16px;
+                    height: 15px;
+                    display: inline-block;
+                    margin: 3px;
+                    margin-top: 14px;
+                }
+        }
+    }
+
+    // add space to bottom of page
+    margin-bottom:50px;
+
+    // mobile, add top margin for tms bar
+    margin-top:33px;
+    overflow:visible;
+
+    @import "poi-maps";
+    @import "poi-list";
+
+    // POI Alerts for Mobile
+    .poi-alerts-xs {
+        .add.button { color: #FFF; background-color: #C4172C; border: #C4172C; padding: 10px; line-height: 2em; }
+        .add.setOpacity { opacity: 0.5 }
+        .button { border: 1px solid #888; text-align: center; padding: 8px; font-size: .8em; margin: 15px 0; }
+        .manage-buttons {
+            .button.btnManage { margin-left: 5%; }
+            .button.setOpacity { opacity: 0.5 }
+            .button.btnNewest:after { background: url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center; content: ""; float: right; height: 12px; width: 11px; } 
+        }
+        .delete.inactive { cursor:default; border: 1px solid #CCC; color: #CCC; }
+
+        .dropdown-sort-menu {
+            background-color : white;
+            position         : absolute;
+            top              : 69px;
+            left             : 0px;
+            z-index          : 999;
+            width            : 50%;
+            border           : 1px solid #444;
+            text-align       : left;
+            box-sizing       : border-box;
+
+            li {
+                padding: 5px 5px 5px 5px;
+                cursor: pointer;
+                font-size: 0.8em!important;
+            }                
+        }
+
+        .delete-buttons {
+            .delete { margin-left: 1.5%; margin-right: 1.5%; }
+            .active { color: #FFF; background-color: #545454; }
+        }
+    }
+
+// random classes
+    .col-xs-6, .col-xs-5 { padding: 0px; }
+    .col-xs-3 { width: 23%; }
+    .row { margin: 0px; }
+    .widget-box { border: none; }
+    .poi-note {color:#808080;}
+    
+    table { background-color: #444; }
+
+    .numPoi { padding-top: 15px; font-size: .8em; }
+    .btnAddPoi { text-align: right; } 
+// end random classes
+
+    // main container
+    .container { padding: 0; width:100%;
+        .poi-interface-container {            
+            .poi-container { // iscroll uses this
+                @include box-sizing(border-box);
+                width            : 250px;
+                position         : relative;
+                border           : 1px solid #E1E1E1;                
+                height           : 650px;
+                color            : #676666;
+                background-color : #F6F6F6;
+                vertical-align   : top;
+                overflow         : hidden;                
+                float:left;
+                z-index : 1;
+                .poi-hr {
+                    border: 0;
+                    height: 0;
+                    border-top: 1px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    margin: 0 10px;
+                }                
+            } // end .poi-container
+        } // end .poi-interface-container
+        
+        .page-header { 
+            margin: 0 0 20px; 
+            height: 80px; 
+            display : block;
+            width   : 100%;
+            float   : left;
+            padding : 0;
+            .mypois-alerts {
+                strong { font-family: $designk-medium; }
+                .alert-msj {float:right; 
+                    .button {margin: 0 0 0 20px; }
+                }
+                .alert-menu { float:left ;
+                    .manage-buttons { width:310px;
+                        .button, button { min-width:100px; margin:1px; }
+                        .dropdown-sort-menu { left:158px; width:48.5%; }
+                    }
+                }
+            }
+            .poi-alerts { display: block; padding: 5px 0 0; height: 50px; 
+                .message { float: right; overflow: hidden; display: table;
+                    .alert-msj { text-align: left; display:table-cell; }
+                    .button-container { color: #444444; display:table-cell; padding: 0em; }
+                }  
+                .alert-menu { display: block !important; float: left; overflow: hidden; display: table;                    
+                    .manage-buttons { width: 285px; position: absolute; left: 0; display: table; }
+                    &.hide .manage-buttons {
+                        @include transition-property(all);
+                        @include transition-duration(1s);
+                        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                        opacity: 0;
+                        left: -310px;
+                        display: table;
+                    }
+                    .delete-buttons {
+                        width: 440px;
+                        position: absolute;
+                        left: -460px;
+                        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                        opacity: 0;
+                        display: table;
+                    }
+                    &.hide .delete-buttons {
+                        @include transition-property(all);
+                        @include transition-duration(1s);
+                        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+                        opacity: 1;
+                        left: 0;
+                        display: table;
+                    }
+                    &.show .delete-buttons {
+                        @include transition-property(all);
+                        @include transition-duration(1s);
+                        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                        opacity: 0;
+                        left: -460px;
+                        display: table;
+                    }
+                }               
+            }
+        } // end .page-header
+    } // end .container
+
+    @media (min-width:$screen-sm-min) {
+        .container {
+            .poi-interface-container { 
+                height: 650px;
+                position : relative;
+                float    : left;
+                width    : 100%;
+                display: inline-block;
+                .map {
+                    display : block;
+                    height : 650px;
+                    width: 930px;
+                    position:absolute;
+                    z-index:0;
+                    overflow:hidden;
+                }
+
+            } // end .poi-interface-container
+            .page-header { height: 40px; }
+        } // end .container
+    }
+
+    .actions {
+        .button {
+            border     : 1px solid #888888;
+            cursor     : pointer;
+            color      : #676666;
+            font-size  : 1em;
+            padding    : 5px 10px;
+            position   : relative;
+            display    : inline-block;
+            margin     : 5px;
+            //min-width  : 110px;
+            text-align : center;
+            display    : table-cell;
+
+            &.hide { display:none; }
+            &.active, &.add {color : white; background-color : #545454; }
+            &.setOpacity{ opacity:0.5;}
+            &.inactive { border : 1px solid #CCCCCC; color  : #CCCCCC; }
+            &.dark {
+                color               : white;
+                background-color    : #444444;
+                background-image    : url("../images/kh/img/my-pois/add-white.png");
+                background-repeat   : no-repeat;
+                background-position : 10% center;
+            }
+            &.dropdown { position : relative; 
+                &.highlighted { border-color: $kia-red; 
+                    .dropdown-sort-menu { display:block; }
+                }
+                &:after {
+                    background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+                    content    : "";
+                    float      : right;
+                    height     : 32px;
+                    width      : 11px;
+                    margin-top:-8px!important;
+                }                
+            } // end &.dropdown
+        } // end .button
+        .setOpacity{ opacity:0.5;}
+        .dropdown-sort-menu {
+            background-color : white;
+            position         : absolute;
+            top              : 100%;
+            left             : 140px;
+            z-index          : 999;
+            width            : 51%;
+            border           : 1px solid #444;
+            text-align       : left;
+            box-sizing       : border-box;
+
+            li {
+                padding: 5px 5px 5px 0px;
+                cursor: pointer; 
+                margin-left : 15px;                       
+            }                
+        }
+    } // end .actions
+
+    #poi-overview #pending-msg-container { float:right; color:#676666;}
+    #poi-overview #error-msg-container { float:right; margin-right:30px; }
+    #poi-overview #error-msg-container span { margin-right:10px; }
+    #poi-overview #error-msg-container .kh-button { width:83px; }
+    #poi-overview div.button-container{ text-align:right; padding:1em; }
+
+    .poi-spacer { height:26px; width:100%; }
+    .manage-buttons.pending .manage-button { border-color:#EEE; color:#CCC; cursor:default; }
+    .button-container.pending .add.button { border-color:#EEE; background-color:#CCC; cursor:default;}
+
+    .button { 
+        &.nav-hide {
+            display : block;
+            height  : 25px;
+            float   : left;
+            margin-left: 200px;
+            padding : 0;
+            border: 1px solid #E1E1E1;
+            color: #676666;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            background-color: #F6F6F6;
+            vertical-align: top;
+            display: table-cell;
+            &.show {
+                display : block;
+                height  : 25px;
+                float   : left;
+                margin-left: 0px;
+                padding : 0;
+                border: 1px solid #E1E1E1;
+                color: #676666;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                background-color: #F6F6F6;
+                vertical-align: top;
+                display: table-cell;
+            }
+        }
+    } // end .button
+
+    .poi-control {
+        display : block;
+        width   : 100%;
+
+        .button {
+            margin              : 0;
+            background-color    : #F6F6F6;
+            background-image    : url("../images/kh/img/my-pois/arrow-left.png");
+            background-repeat   : no-repeat;
+            background-position : 90% center;
+            border              : 1px solid #E1E1E1;
+            border-bottom       : none;
+            min-width           : 87px;
+            &.nav-hide { margin-right: 73%; float:right; }
+            &.nav-show {background-image: url("../images/kh/img/my-pois/arrow-right.png"); }
+        }
+    } // end .poi-control
+
+    .poi {
+        position      : relative;
+        cursor        : pointer;
+        font-size     : 1.1em;
+        padding       : 1em 2em;
+        margin        : 0 10px;
+        &:last-child { border:none; }
+        &:hover { color: #CC273A; }
+        &:active { margin:0; padding:1em 2.8em; background-color:#444; color:white; }
+        &:selected { margin:0; padding:1em; background-color:#444; color:white; 
+            .more-info {display:block; font-size: 0.9em; margin-top:10px; 
+                p {color:#999;}
+                .info-controls {margin-top:1em; 
+                    .button { display:inline-block;}
+                    .direction {
+                        background-image    : url("../images/kh/img/my-pois/arrow-right-small.png");
+                        background-position : 90% center;
+                        text-align          : left;
+                        min-width           : 80px;                        
+                    }
+                    .poi-manage { float:right; margin-top:5px; }
+                    .icon {
+                        font-size         : 0;
+                        min-width         : 15px;
+                        border            : none;
+                        background-repeat : no-repeat;
+                        padding           : 0;                        
+                    }
+                    .edit { background-image : url("../images/kh/img/my-pois/icon-edit-white.png"); }
+                    .delete { background-image : url("../images/kh/img/my-pois/icon-delete-white.png"); }
+                }
+            }
+        }
+        .more-info { display:none; }
+    } // end poi   
+
+    .manage-mode .poi {
+        &:before {
+            background   : url("../images/kh/img/my-car-zone/checkbox.png") no-repeat center 40%;
+            content      : "";
+            display      : inline-block;
+            height       : 12px;
+            margin-right : 10px;
+            width        : 12px;
+            position     : absolute;
+            top          : 35%;
+            left         : 2%;
+        }
+        &.selected {
+            color            : #676666;
+            background-color : #F6F6F6;
+            padding          : 1em 2em;
+            margin           : 0 10px;            
+            &:before {background: url("../images/kh/img/my-car-zone/checkbox-select.png") no-repeat center 40%; }
+            .more-info { display:none; }
+        }
+    }    
+
+    #add-info-base,
+    .poi-info-window
+     {
+        overflow   : visible;
+        position   : relative;
+        width      : 190px;
+        height     : 70px;
+        box-sizing : border-box;
+    }
+
+
+
+
+    .button.nav-hide {
+        padding-left : 6px;
+    }
+
+    .button.nav-hide.show {
+        padding-left : 6px;
+    }
+
+    .main-wrapper-content .content-area {
+        border    : none;
+        height    : auto;
+        overflow  : hidden;
+    }
+
+    td.poi-buttons {
+        text-align:right;
+        padding:0 .5em 0 0;
+    }
+
+    td.poi-buttons img{
+        cursor:pointer;
+        padding:5px;
+        /*background-color:#444444;*/
+        vertical-align:middle;
+    }
+
+    td.poi-name {
+        /*width:197px;*/
+    }
+
+    td.poi-city {
+        /*width:197px;*/
+    }    
+
+    .poi-info-window .poi strong {
+        font-weight: bold;
+    }
+
+}

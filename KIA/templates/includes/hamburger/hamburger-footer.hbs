@@ -1,0 +1,25 @@
+<div id="hamburger-footer">
+  {{!
+     Phone Numbers
+  }}
+  <div class="phone-numbers">
+    {{#compare type "!=" "default"}}
+      <h1>PREFERRED DEALER</h1>
+      <div><a href="tel:\{{com.preferredDealer.data.phoneNumber}}">\{{com.preferredDealer.data.phoneNumber | phoneNumber}}</a></div>
+    {{/compare}}
+
+    <h1>ROADSIDE ASSISTANCE</h1>
+    <div><a href="tel:1-800-333-4542">1 (800) 333 - 4KIA (4542)</a></div>
+  </div>
+  <hr />
+  {{!
+    Footer Links
+  }}
+  <ul>
+    {{# footer-data }}
+      {{#if mobile}}
+        <li><a href="{{href}}" target="_blank" ng-click="navCollapsed = true">{{label}}</a></li>
+      {{/if}}
+    {{/ footer-data }}
+  </ul>
+</div>

@@ -1,0 +1,229 @@
+.hamburger.in {
+    left:0;
+    @media (max-width:640px) and (min-width:360px){
+      width:375px;
+    }
+    @media (max-width:736px) and (min-width:410px){
+      width:415px;
+    }
+}
+#overlay {
+  width:100%;
+  height:100%;
+  position:fixed;
+  background-color:rgba(0, 0, 0, 0.1);
+  z-index:1999;
+
+  @media (min-width:$screen-md-min) {
+    display:none;
+  }
+}
+.main-container {
+  -webkit-transition:left 0.3s;
+  transition:left 0.3s;
+  position:relative;
+  width:100%;
+  left:0;
+  @media (min-width:$screen-md-min) {
+    -webkit-transition:left 0s;
+    transition:left 0s;
+  }
+}
+.main-container.show-hamburger {
+  left:320px;
+  position:fixed;
+  @media (min-width:$screen-md-min) {
+    left:0;
+    position:relative;
+  }
+}
+
+// Common Hamburger Styles
+.hamburger {
+  position:absolute;
+  top:0;
+  width:320px;
+  height:100%;
+  background-color:black;
+	z-index:2000;
+  left:-320px;
+	-webkit-transition:left 0.3s;
+	transition:left 0.3s;
+
+  .header {
+		width:100%;
+    height: 50px;
+    display:table;
+    table-layout:fixed;
+
+    .back {
+      display:table-cell; vertical-align:middle; float:none;
+      span {
+        display: inline-block;
+        color: white;
+        font-size: 13px;
+        position: relative;
+        left: 40px;
+				cursor: pointer;
+
+        &:before {
+          display: inline-block;
+          content:'<';
+          font-size: 32px;
+          font-family:$designk-light;
+          color:$kia-mid-gray;
+          position: absolute;
+          top: -11px;
+          left: -25px;
+        }
+      }
+    }
+
+    .close-nav {
+      display:table-cell; vertical-align:middle; float:none;
+      span { cursor:pointer; display: inline-block; color:white; font-size: 24px; padding:5px 20px; }
+    }
+  }
+
+  hr {
+   height: 1px;
+   border: 0;
+   border-top: 1px solid #555;
+   margin: 0 auto;
+   padding: 0;
+   width:90%;
+  }
+
+  hr.w100 {
+    width:100%;
+  }
+
+	// vehicle-info for current vehicle and vehicle switcher
+	.container-fluid {
+    .vehicle-switcher-row { background:#2F2F2F; }
+		.row {
+			font-family:$designk-bold;
+			display:table;
+			table-layout:fixed;
+			padding:14px 0;
+
+
+			> div { display:table-cell; vertical-align:middle; float:none;}
+			img { width:100%; }
+			.carInfo { padding:0; line-height:1.3;}
+			.title { color:white; }
+			.trim { color:$kia-light-gray; font-size:13px; }
+			.change { text-align:center; color:$kia-red; cursor:pointer; font-size:16px;}
+			.button {
+				text-align:center;
+				span{
+					background-color:$kia-red;
+					color:white;
+					padding:10px 16px;
+					font-size:14px;
+					font-family:$designk-medium;
+				}
+			}
+		}
+	}
+}
+
+
+// Hamburger - Main Content
+#hamburger-menu {
+
+  .hamburger-top-section {
+    background-color:#2F2F2F;
+  }
+
+  ul {
+    > li {
+      > a , > a:visited, > a:active, span {
+				display: block;
+        font-weight:normal;
+        color:#fff;
+        font-size: 14px;
+        font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin:0;
+        box-sizing:border-box;
+        padding:14px 20px;
+      }
+    /* > a:hover { color: black; background-color:white; border-right:5px solid $kia-red; } */
+        a.selected {color: black; background-color:white; border-right:5px solid $kia-red;}
+      > a.sub-item {
+        color:$kia-light-gray;
+        padding-left:40px;
+
+        //&:hover { color:black; }
+      }
+    }
+  }
+
+  .logout {
+    .glyphicon {
+        margin-right:10px;
+    }
+
+    li {
+      a, a:visited, a:active {
+        padding:24px 20px;
+      }
+    }
+  }
+}
+
+
+// Hamburger - Footer
+#hamburger-footer {
+  background:black; padding-bottom:20px;
+
+  .phone-numbers {
+    padding:0 20px;
+    div {
+      margin: 5px 0 15px 0;
+      box-sizing:border-box;
+      text-align:left;
+      width:100%;
+      height:36px;
+      padding:10px 0px;
+      padding-left:40px;
+      font-size:14px;
+      @include kia-black-button-white-border();
+      border-color:$kia-mid-gray;
+      background: url("../images/icon_appoint_gray.png") no-repeat 0px -195px;
+    }
+  }
+
+  hr { margin:20px auto; }
+  h1 { color:$kia-mid-gray; font-size:14px; padding:14px 0px 8px 0px; @include designk-bold(); }
+  p { color:white; @include designk-bold(); }
+
+  // Footer links
+	ul {
+	  li {
+	    a , a:active, a:visited {
+
+	      @include designk-bold;
+	      display:block;
+	      font-weight:normal;
+	      color:$kia-mid-gray;
+	      font-size: 14px;
+	      margin:0;
+	      box-sizing:border-box;
+	      padding:14px 20px;
+
+	      /* &:hover {
+	        color: black;
+	        background-color:white;
+	        border-right:5px solid $kia-red;
+	      } */
+	    }
+	  }
+  }
+
+}
+
+// Hamburger - Vehicle Switcher
+#hamburger-vehicle-switcher {
+  background-color:#2F2F2F;
+}

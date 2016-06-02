@@ -1,0 +1,292 @@
+&.service-schedule { padding : 14px 20px; color   : #999999; 
+    /* Milestone status bar
+    */ 
+    .milestoneValues{
+        margin-left:20px;
+        font-family:$designk-bold;
+        position:relative;
+    }
+    .prevMilestoneValue {
+        float: left;
+        width: 50px;
+        text-align: left;
+    }
+    .nextMilestoneValue {
+        margin: 0 0 0 593px;
+        width: 50px;
+        text-align: right;
+
+        @media (max-width:$screen-xs-max) {
+            color:white;
+            margin:0;
+            position: absolute;
+            right: 18px;
+            top: 10px;
+        }
+    }
+    .maintenaneStatusTrack {
+        margin-left:auto;
+        margin-right:auto;
+        width:95%;
+        height:45px;
+        border-radius:8px;
+        background-color:#454544;
+        overflow:hidden;
+    }
+    .maintenanceStatus {
+        height: 45px;
+        min-width: 10px !important;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background-color: #4089cd;
+        display:inline-block;
+    }
+    .maintenanceStatusArrow {
+        display:inline-block;
+        width          : 0;
+        height         : 0;
+        border-left  : 23px solid #4089cd;
+        border-top   : 22.5px solid transparent;
+        border-bottom    : 22.5px solid transparent;
+        content        : '';
+        float: right;
+        margin: 0 -23px 0 0;
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+            margin: 0 -21px 0 0;  
+}
+        
+    }
+    .title .milleage { float: right; text-align : right; 
+        strong { color : #444444; }            
+    }
+    .mileage { float:right; font-family:$designk-bold;}
+    .mileage strong {font-weight:bold;color:#000; }
+    .content {
+        .details {
+            background : #444444;
+            color      : #FFFFFF;
+            display    : none;
+            font-size  : 0.9em;
+            margin     : 16px -20px -20px;
+            min-height : 140px;
+            padding    : 37px 60px 37px 90px;
+        }
+        .details { 
+            &.expanded {display:block;}
+            .column {width:50%; float:left;
+                .title {color:#FFF;}
+                ul { list-style:disc outside none; padding-left:13px;
+                    li {list-style-type: disc; }
+                }
+                &:first-child { margin-right:55px; width:260px; }
+            }
+        }
+        .miles-to-service {padding : 60px 0 30px 70px; font-size : 1.5em; 
+            .row div { box-sizing:border-box; }
+            
+            .the-value { line-height:20px; 
+                strong {color : #C4172C; font-size : 4em;}
+                span {margin-left:20px;}
+            }
+        }
+        .dashboard { margin : 30px -20px 0; height : 70px; 
+            .disabledetails{
+                                    pointer-events:none;
+                                } 
+            .nav {width  : 90px; height : 80px; cursor : pointer;
+                &.left {
+                    float      : left;
+                    background : url("../images/kh/img/maintenance/arrow-1-left.png") no-repeat 20px center;
+                    &:hover {
+                        background-image : url("../images/kh/img/maintenance/arrow-1a-left.png");
+                    }
+
+                }
+                &.right {
+                    float      : right;
+                    background : url("../images/kh/img/maintenance/arrow-1-right.png") no-repeat 46px center;
+                    &.hover {
+                        background-image : url("../images/kh/img/maintenance/arrow-1a-right.png");
+                    }
+                }
+            }
+            .title { margin-bottom : 16px; }            
+            .content { margin-top : 0;                 
+                .box { float : left; 
+                    &.info {width : 230px; font-size : 1.2em; 
+                        strong {
+                            font-size : 31px;
+                            font-family: $designk-light;
+                            color     : #444444;
+                        }
+                    }
+                    &.details-link  {
+                        font-family    : $designk-bold;
+                        font-size      : 0.85em;
+                        padding        : 5px 10px 0 10px;
+                        text-transform : uppercase;
+                        a { color : #C4172C; 
+                            &.active:after { background-image : url("../images/kh/img/maintenance/arrow-6-up.png"); }
+                            &:after {
+                                content     : "";
+                                background  : url("../images/kh/img/maintenance/arrow-6-down.png") no-repeat center center;
+                                height      : 7px;
+                                float       : right;
+                                margin-left : 8px;
+                                margin-top  : 7px;
+                                width       : 8px;
+                            }
+                        }
+                    }
+                    &.actions {
+                        > div {
+                            border         : 1px solid #ABABAB;
+                            color          : #444444;
+                            display        : block;
+                            float          : left;
+                            font-family    : $designk-bold;
+                            font-size      : 0.85em;
+                            line-height    : 1em;
+                            padding        : 8px 12px;
+                            text-transform : uppercase;
+                            cursor         : pointer;
+
+                            &:first-child { border-radius : 18px 0 0 18px; 
+                                &.active {
+                                    background   : #78B53B;
+                                    border-color : #78B53B;
+                                    color        : #FFFFFF;
+                                }
+                            }
+                            &:last-child { border-radius : 0 18px 18px 0; border-left   : none; 
+                                &.active {
+                                    background   : #C0122B;
+                                    border-color : #C0122B;
+                                    color        : #FFFFFF;
+                                    cursor       : default;
+                                }
+                            }
+                        }
+                        &.completed div { cursor: default; }
+                    }
+                }
+            }
+        } /* end dashboard */
+        .dashboard-xSmall { color:#444; margin-top:35px;               
+            .nav-arrows { text-align:center;
+                         .disabledetails{
+                                pointer-events:none;
+                            }
+                .nav { 
+                    display:inline-block; width  : 80px; height : 80px; cursor : pointer;
+                    &.left {
+                        background : url("../images/kh/img/maintenance/arrow-1-left.png") no-repeat center;
+                    }
+                    &.right {
+                        background : url("../images/kh/img/maintenance/arrow-1-right.png") no-repeat center;
+                    }
+
+                }
+
+            }
+            .content {
+                .box { 
+                    float : left; 
+                    width     : 230px;
+                    font-size : 15px;
+                    width: 43%;
+                    &.info {display:inline-block; float:left; width:50%; 
+                        strong {font-family: $designk-medium;
+                          font-size: 26px;
+                          font-weight: normal;
+                        }
+                    }
+                    &.details-link { 
+                        display: inline-block;
+                        text-align: right;
+                        font-family: $designk-medium;
+                        font-size: 15px;
+                        font-weight: bold;
+                        padding: 5px 10px 0 10px;
+                        text-transform: uppercase;
+                        color: #C4172C;
+                        width: 200px;
+                        position: absolute;
+                        right: 0;
+                        span { color : #C4172C; cursor:pointer;}
+                        .disabledetails{
+                            pointer-events:none;
+                            //float: left;
+                        }
+                    }                
+                    &.actions {margin-top: 20px; width:100%; text-align:center;
+                        > div {width:85%;}
+                        .complete, .ignore {
+                            border         : 1px solid #ABABAB;
+                            color          : #444444;
+                            font-family    : $designk-bold;
+                            font-size      : 12px;
+                            line-height    : 12px;
+                            padding        : 17px 0px;
+                            text-transform : uppercase; 
+                            cursor         : pointer;
+
+                            &.complete{ border-radius : 24px 0 0 24px;
+                                &.active { 
+                                    background   : #78B53B;
+                                    border-color : #78B53B;
+                                    color        : #FFFFFF;
+                                    cursor       : default;
+                                }
+                            }
+                            &.ignore{border-radius : 0 24px 24px 0; border-left : none; 
+                                &.active {
+                                    background   : #C0122B;
+                                    border-color : #C0122B;
+                                    color        : #FFFFFF;
+                                    cursor       : default;
+                                }
+                            }
+                        }
+                        &.completed div { cursor: default; }
+                        
+                    }
+                }
+            }
+        } /*end dashboard small*/
+    }/*end content*/
+}/*end service-schedule*/
+
+@media (max-width:$screen-xs-max) {
+    &.service-schedule { padding:14px 20px 0 20px;
+        .maintenaneStatusTrack, .maintenanceStatus {height:35px; }
+        .maintenaneStatusTrack {border-radius:4px;}
+        .maintenanceStatus {border-bottom-left-radius:4px; border-top-left-radius:4px;}
+        .maintenanceStatusArrow { border-top: 19px solid transparent; border-bottom: 19px solid transparent}
+        .content .miles-to-service { padding:0 15px; margin:20px 0 30px 0; 
+            .row { 
+                //margin:0 -21px;
+                div {box-sizing:border-box; padding:0;}
+                .the-label {
+                    vertical-align:middle; 
+                    display:inline-block; 
+                    font-size:12px; 
+                    font-family:$designk-medium;
+                    margin-top:0;
+                    text-transform: uppercase;
+                }
+                .the-value {
+                    strong { float:right; font-size:46px; font-weight:normal; color:#444; font-family:$designk-light;}
+                } 
+            }                    
+        }
+        .mileage {
+            margin:0 -15px 10px -15px;
+            font-size: 12px; 
+            font-family: $designk-medium; 
+            float:none; line-height:24px;
+            strong {font-family:$designk-medium; font-size:24px; float:right; font-weight:normal; color:#444;}
+        }
+    }
+}
+

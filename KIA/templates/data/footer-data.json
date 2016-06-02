@@ -1,0 +1,26 @@
+[
+  {
+    "label":"Kia Homepage",
+    "href":"https://www.kia.com"
+  },
+  {
+    "label":"Privacy Policy",
+    "href":"/legal/privacy-policy.shtml",
+    "mobile":true
+  },
+  {
+    "label":"Terms of Service",
+    "href":"/legal/terms-of-service.shtml",
+    "mobile":true
+  },
+  {
+    "label":"Disclaimer",
+    "href":"/legal/disclaimer.shtml",
+    "mobile":true
+  },
+  {
+    "label":"Contact Us",
+    "href":"http://ksupport.kiausa.com/ConsumerAffairs/PortalJSP/Portal.jsp?t=10%3A14%3A12+11%2F2013+",
+    "mobile":true
+  }
+]

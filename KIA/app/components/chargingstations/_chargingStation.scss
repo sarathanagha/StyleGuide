@@ -1,0 +1,183 @@
+#psev-charging{
+	margin-top:35px;
+	.angular-google-map-container { height: 720px; }
+	.map-wrapper .red-arrow { position: absolute; z-index: 1; cursor: pointer; }
+	.map-wrapper .red-arrow.right { margin-top: 50px; }
+	.map-wrapper .red-arrow.left { margin-left: 320px; }
+	
+	.map-wrapper .panel_results { 
+		position: absolute;
+		width: 320px;
+		height: auto;
+		margin-top: 50px;
+		z-index: 1;
+	}
+	.map-wrapper .panel_results .address_section {
+		height: 110px;
+		background: #e6e6e6;
+	}
+	.map-wrapper .panel_results .address_section .addr-label {
+		padding: 20px 20px 0;
+	}
+	.map-wrapper .panel_results .address_section .red-btn {
+		width: 80px;
+		height: 65px;
+		cursor: pointer;
+		float: right;
+		margin-top: -74px;
+		background: #C4172C url("../images/station/arrow-edit.jpg") no-repeat center;
+	}
+	.map-wrapper .panel_results .address_section input {
+		background: 0 0;
+		border: 0;
+		border-bottom: 2px solid #585858;
+		font-size: 16px;
+		text-transform: uppercase;
+		width: 130px;
+		opacity: .5;
+		margin-left: 20px;
+		outline: 0;
+	}
+	.map-wrapper .panel_results .address_section .filter {
+		float: right;
+		cursor: pointer;
+		margin-top: 5px;
+		margin-right: 35px;
+	}
+	.map-wrapper .panel_results .list_results {
+		background: #2f2f2f;
+    	color: #FFF;
+	}
+	.map-wrapper .panel_results .list_results .noresults{
+		font-size: 16px;
+		margin: 20px 60px;
+		position: absolute  ;
+	}
+	.map-wrapper .panel_results .list_results .line {
+		width:270px; margin:20px 0 10px 15px; border-bottom: 1px solid #e6e6e6;
+	}
+	.map-wrapper .panel_results .list_results .title {
+		padding: 30px;
+		text-align: center;
+	}
+	.map-wrapper .panel_results .list_results .title span {
+		padding: 10px 40px;
+		border: 1px solid #FFF;
+	}
+	.map-wrapper .panel_results .list_results .scroll-panel { overflow: auto; height: 480px; }
+	.map-wrapper .panel_results .list_results .scroll-panel .marker_distance {
+		float: left;
+		font-size: .8em;
+		width: 50px;
+		text-align: center;
+		color: #ababab;
+		padding: 45px 15px 0;
+		cursor: pointer;
+		background: #2f2f2f url("../images/station/mark.png") no-repeat center 0;
+	}
+	.map-wrapper .panel_results .list_results .scroll-panel .addr {
+		background: #2f2f2f url("../images/station/arrow_right.png") no-repeat 185px center;
+		cursor:pointer;
+		margin-left: 80px;
+	}
+
+	.map-wrapper .panel_results .panel_filter {
+		width: 390px;
+	    height: 460px;
+	    background: #fff;
+	    position: absolute;
+	    top: 110px;
+	    left: 100px;
+	}
+	.map-wrapper .panel_results .panel_filter .img-top { margin: -15px 0 0 160px; }
+	.map-wrapper .panel_results .panel_filter .group-radio { padding: 20px 0 0; }
+	.map-wrapper .panel_results .panel_filter .group-radio .charge-type { float:left; padding:0 40px 20px 20px; }
+	.map-wrapper .panel_results .panel_filter .group-radio .charge-type .on {
+		padding: 10px 0 7px 30px;
+		background: url("../images/station/rb-red-check.jpg") no-repeat left center;
+	}
+	.map-wrapper .panel_results .panel_filter .group-radio .charge-type .on.off {
+		background: url("../images/station/rb_gray.jpg") no-repeat left center;
+	}
+	.map-wrapper .panel_results .panel_filter .group-radio .location .on {
+		padding: 10px 0 7px 30px;
+		background: url("../images/station/rb-red-check.jpg") no-repeat left center;
+	}
+	.map-wrapper .panel_results .panel_filter .group-radio .location .on.off {
+		background: url("../images/station/rb_gray.jpg") no-repeat left center;
+	}
+	.map-wrapper .panel_results .panel_filter .group-radio .location { float:right; padding:0 60px 20px 15px; }
+	.map-wrapper .panel_results .panel_filter .group-checks { padding: 0 0 0 20px; }
+	.map-wrapper .panel_results .panel_filter .group-checks ul li { margin: 5px 0; }
+	.map-wrapper .panel_results .panel_filter .group-checks ul li label { font-weight: normal; }
+	.map-wrapper .panel_results .panel_filter .group-checks .left { float:left; padding-left: 0px; }
+	.map-wrapper .panel_results .panel_filter .line { width:350px; margin:20px 0 0 20px; border-bottom: 1px solid #e6e6e6; }
+	.map-wrapper .panel_results .panel_filter .btn-done { float:left; padding:20px 10px 0 20px; }
+	.map-wrapper .panel_results .panel_filter .btn-clear { padding: 30px 0 0 305px; color:#c4172c; }
+	.map-wrapper .panel_results .panel_filter .error { padding: 20px 0 0 20px; color:#c4172c; } 
+
+	.map-wrapper .map-area #pano {
+	    width: 325px;
+	    height: 80px;
+	}
+	.map-wrapper .map-area .boxGetDirection {
+		width: 190px;
+	    background: #262626 url("../images/station/red_arrow-big.jpg") no-repeat right center;
+	    margin: 15px 0;
+	    padding: 10px;
+	    cursor: pointer;
+	}
+	.map-wrapper .map-area .row p { padding-left:10px; }
+}
+
+@media (max-width:$screen-xs-max){
+#psev-charging{
+		.row { margin:0; }
+		.angular-google-map-container { height: 480px; }
+		.map-wrapper .panel_results { margin-top: 0px; }
+		.map-wrapper .panel_results .mobile-view { text-align: center; }
+		.map-wrapper .panel_results .mobile-view { 
+			.list, .map {padding: 15px; color:#000; background-color: #e6e6e6; border: 1px solid #ababab;}
+			.list.active, .map.active { color:#fff; background-color: #c4172c; border: 1px solid #c4172c;}
+		}
+		.map-wrapper .panel_results .list_results { background: #fff; color: #000; padding-top:10px; }
+		.map-wrapper .panel_results .list_results .noresults { margin:20px 40px; }
+		.map-wrapper .panel_results .list_results .scroll-panel { height: 325px; }
+		.map-wrapper .panel_results .panel_filter .error {padding: 0px 0px 15px 10px; color:#c4172c; } 
+		.map-wrapper .panel_results .list_results .scroll-panel .marker_distance {
+			color: #ababab;
+			background: #fff url("../images/station/mark.png") no-repeat center 0;
+		}
+		.map-wrapper .panel_results .list_results .scroll-panel .addr {
+			color: #000;
+			background: #fff url("../images/station/arrow_right.png") no-repeat right center;
+		}
+		.map-wrapper .panel_results .panel_filter {
+			width: 320px;
+			height: 480px;
+		    top: 0px;
+		    left: 0px;
+		    overflow: auto;
+		}
+		.map-wrapper .panel_results .panel_filter .header-filter .title {
+			text-align: center;
+			height: 25px;
+			padding-top: 10px;
+			margin-left: 20px;
+			background: url("../images/station/arrow-left.png") no-repeat left center;
+		}
+		.map-wrapper .panel_results .panel_filter .header-filter .bottom {
+			width: auto;
+		    height: 30px;
+		    background: #000;
+		    border-top: 5px solid #c4172c;
+		    margin-top: 10px;
+		}
+		.map-wrapper .panel_results .panel_filter .btn-clear { padding: 20px 0 20px 105px; }
+		.map-wrapper .panel_results .panel_filter .group-radio .charge-type { padding: 0 40px 20px 15px; }
+		.map-wrapper .panel_results .panel_filter .group-checks .right { padding-left: 0px; }
+		.map-wrapper .panel_results .panel_filter .group-checks ul li label { color:#000; font-size:14px;}
+		.uvo-ib-content{margin-top:175px;}
+		.infobox-dark-big > img{margin-top:180px !important;}
+	}
+}

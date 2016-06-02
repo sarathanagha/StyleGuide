@@ -1,0 +1,90 @@
+<div class="settings" ng-form name="personalForm" ng-show="vm.moduleLoaded">
+    <h1 class="hidden-xs hidden-sm">PERSONAL SETTINGS</h1>
+    <article>
+        <section>
+            <div ng-class="{error:vm.submitted && personalForm.csmrFnm.$error.required}">
+                <label>First Name</label>
+                <input type="text" name="csmrFnm" ng-model="vm.data.firstName" maxlength="50" required>
+            </div>
+            <span id="txtFirstName" class="error-msg" ng-show="vm.submitted && personalForm.csmrFnm.$error.required">Please fill out the first name.</span>
+        </section>
+        <section>
+            <div ng-class="{error:vm.submitted && personalForm.csmrLnm.$error.required}">
+                <label>Last Name</label>
+                <input type="text" name="csmrLnm" ng-model="vm.data.lastName" maxlength="50" required>
+            </div>
+            <span id="txtLastName" class="error-msg" ng-show="vm.submitted && personalForm.csmrLnm.$error.required">Please fill out the last name.</span>
+        </section>
+        <section>
+            <div>
+                <label>Address 1</label>
+                <input type="text" name="csmrAdr" ng-model="vm.data.address1" maxlength="100"/>
+            </div>            
+        </section>
+        <section>
+            <div>
+                <label>Address 2</label>
+                <input type="text" name="csmrAdr2" ng-model="vm.data.address2" maxlength="100">
+            </div>
+        </section>
+        <section>
+            <div>
+                <label>City</label>
+                <input type="text" name="csmrAdrCity" ng-model="vm.data.city" maxlength="50"/>
+            </div>            
+        </section>
+        <section>
+            <div>
+                <label>State</label>
+                <select name="stateCode" id="stateCode" ng-model="vm.data.state" ng-options="s for s in vm.states">
+                    <option value="">Select</option>
+                </select>
+            </div>
+        </section>
+        <section>
+            <div ng-class="{error:vm.submitted && (personalForm.zip.$error.required || personalForm.zip.$error.zipCode)}">
+                <label>ZIP Code</label>        
+                <input type="text" id="txtZip" name="zip" ng-model="vm.data.zipCode" maxlength="5" required zip-code>
+            </div>  
+            <span id="txtZipCode" class="error-msg" ng-show="vm.submitted && personalForm.zip.$error.required">Please fill out the ZIP Code.</span>
+            <span id="txtInvalidZip" class="error-msg" ng-show="vm.submitted && personalForm.zip.$error.zipCode">ZIP Code is invalid.</span>
+        </section>    
+        <section>
+            <div ng-class="{error:vm.submitted && (personalForm.cntcTn.$error.required || personalForm.cntcTn.$error.phone) }">
+                <label>Mobile Phone Number</label>
+                <input type="text" id="txtPhoneNum" name="cntcTn" ng-model="vm.data.phone" maxlength="17" required phone>  
+            </div>   
+            <span id="txtPhone" class="error-msg" ng-show="vm.submitted && personalForm.cntcTn.$error.required">Please fill out the phone number.</span>
+            <span id="txtInvalidPhone" class="error-msg" ng-show="vm.submitted && personalForm.cntcTn.$error.phone">This phone number is invalid.</span>   
+        </section>    
+        <section>
+            <div ng-class="{error:vm.submitted && (personalForm.csmrPw.$error.required || personalForm.csmrPw.$error.minlength || personalForm.csmrPw.$error.maxlength || personalForm.csmrPw.$error.pattern) }">
+                <label>Password</label>
+                  
+                <input type="password" name="csmrPw" ng-model="vm.data.password" id="newPW" maxlength="20" ng-maxlength="20" ng-pattern="passwordRegex" required >
+            </div>
+            <span id="txtPassword" class="error-msg" ng-show="vm.submitted && personalForm.csmrPw.$error.required">Please fill out the password.</span>
+            <span id="passwordLong" class="error-msg" ng-show="vm.submitted && personalForm.csmrPw.$error.maxlength">Password length cannot be more than 20.<br></span>
+            <span id="passwordInvalid" class="error-msg" ng-show="vm.submitted && personalForm.csmrPw.$error.pattern">Must be at least 8 characters long and contain an uppercase letter, lowercase letter, a number and cannot contain [^, &, *,(].<br></span>
+        </section>
+
+        <section>
+            <div ng-class="{error:vm.submitted && (personalForm.csmrConfirmPw.$error.required || personalForm.csmrConfirmPw.$error.inputMatch)}">
+                <label>Confirm Password</label>
+               
+                <input type="password" name="csmrConfirmPw" ng-model="vm.data.confirmPassword" id="confirmNewPW" maxlength="20" required input-match="vm.data.password">
+            </div>
+            <span id="txtConfirmPW" class="error-msg" ng-show="vm.submitted && personalForm.csmrConfirmPw.$error.required && !personalForm.csmrPw.$error.pattern">Please fill out the confirm password.</span>
+            <span id="txtComparePW" class="error-msg" ng-show="vm.submitted && personalForm.csmrConfirmPw.$error.inputMatch && !personalForm.csmrConfirmPw.$error.required && !personalForm.csmrPw.$error.pattern">Passwords do not match.</span>
+        </section>
+
+        <div class="button-container">
+             <input type="submit" id="btnUpdate" class="button" value="SAVE" ng-hide="vm.loading" ng-click="vm.submitted = true; vm.save(personalForm);"/>
+             <img src="images/loading_bar.gif" ng-show="vm.loading">        
+        </div>
+    </article>
+</div>
+
+<div alert-modal alert-id="alert" alert-message="Your personal settings has successfully updated"></div>
+<div alert-modal alert-id="alertFail" alert-type="fail" alert-message="Your personal settings update has failed"></div>
+

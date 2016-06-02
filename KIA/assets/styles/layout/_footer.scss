@@ -1,0 +1,97 @@
+/* Footer styles */
+#footer {
+    height:40px;
+    background-color:#000;
+    position:absolute;
+    width:100%;
+    bottom:0;
+    @media (min-width: $screen-sm-min) {
+      left:0;
+      height:45px;
+    }
+
+    .footer-wrapper {
+      margin: 0 auto;
+      height:100%;
+      @media (min-width: $screen-sm-min) {
+
+      }
+      @media (min-width: $screen-md-min) {
+          max-width:960px;
+      }
+      @media (min-width: $screen-lg-min) {}
+    }
+
+    .container-fluid {
+      background-color:#000;
+      height:100%;
+    }
+
+    // @media (min-width:992px) {
+    //   height:45px;
+    // }
+    .footer-span {
+      float:left;
+      height:100%;
+      line-height:3.3;
+
+      .footer-block {
+        display:inline-block;
+        text-align:center;
+        border-right:1px solid $kia-dark-gray;
+        color:white;
+        padding:0 7px;
+        height:100%;
+        font-size:13px;
+
+        &:last-child {
+          border-right:none;
+          padding-right:0;
+        }
+
+        @media (min-width: $screen-md-min) {
+          padding:0 15px;
+        }
+      }
+    }
+
+    .ac-footer {
+        display:table;
+        width:100%;
+        padding:7px 0 0 0;
+
+        @media (min-width: $screen-sm-min) {
+          width:auto;
+          padding-top:10px;
+          float:right;
+        }
+
+        span {
+          color:$kia-mid-gray;
+          font-size:11px;
+          display:table-cell;
+          vertical-align:middle;
+          padding-right:10px;
+
+          @media (min-width: $screen-sm-min) {
+            font-size:9px;
+            padding-right:5px;
+          }
+
+          @media (min-width: $screen-md-min) {
+            font-size:11px
+          }
+        }
+
+        img {
+          display:table-cell;
+          vertical-align:middle;
+          float:right;
+
+          @media (min-width: $screen-sm-min) {
+            float:none;
+          }
+        }
+
+    }
+}

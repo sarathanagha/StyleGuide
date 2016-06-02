@@ -1,0 +1,2059 @@
+/* @media(max-width : 767px){
+     body.error{
+        background: white url("../images/kh/img/bg-red-gray.gif") repeat-x 0 -60px;
+        z-index: 9999;
+     }
+} */
+
+
+.disabled{
+    pointer-events:none;
+    opacity: 0.5;
+}
+.alert{
+    margin-top: -25px;
+    float: right;
+    border: none;
+    } 
+.remote.door-locks .remote-content .info .control .selector a.active {
+    color            : white;
+    border-color     : white;
+    background-color : #888888;
+}
+
+.remote .main-wrapper-content {
+    overflow : auto;
+}
+
+.remote .main-wrapper-content .content-area {
+    border      : none;
+    height      : auto;
+    max-width   : 960px;
+    overflow    : auto;
+    text-shadow : none;
+}
+
+.remote .main-wrapper-content .content-area .page-header {
+    margin-bottom : 30px;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul {
+    height        : 43px;
+    border-bottom : 1px solid #E1E1E1;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li {
+    float          : left;
+    text-transform : uppercase;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li a {
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    background         : #F6F6F6;
+    border             : 1px solid #E1E1E1;
+    border-left        : none;
+    display            : block;
+    color              : #2F2F2F;
+    height             : 44px;
+    line-height        : 1em;
+    padding            : 15px 20px 0 20px;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li a.status-error {
+	background: #F6F6F6 url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left center;
+	background-position: 5px;
+	background-size: 12px;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li a.active,
+.remote .main-wrapper-content .content-area .page-header ul li a:hover {
+    background   : #BC1728;
+    border-color : #BC1728;
+    color        : white;
+    font-family  : designk-bold;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li:first-child a {
+    border-left : 1px solid #E1E1E1;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li a.disabled,
+.remote .main-wrapper-content .content-area .page-header ul li a.disabled:hover {
+	color        :#C2C2C2;
+	background   :#F6F6F6;
+	border-color :#E1E1E1;
+	font-family  :designk-medium;
+	cursor       :default;
+}
+
+.remote .main-wrapper-content .content-area .page-header ul li a.disabled.active,
+.remote .main-wrapper-content .content-area .page-header ul li a.disabled.active:hover {
+	background : #777777;
+}
+
+.remote.find-my-car {
+    max-width : 1172px;
+}
+
+.remote.find-my-car .main-wrapper-content {
+    max-width : 1172px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .map-area {
+    position : relative;
+    height   : 782px;
+    width    : 941px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .fmc-info-window .fmc
+ {
+    position   : absolute;
+    bottom     : -10px;
+    left       : -15px;
+    width      : 250px;
+    z-index    : 10001;
+    padding    : 1em;
+    box-sizing : border-box;
+    background : #444444;
+    color      : #F6F6F6;
+    margin:0;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .infobox
+{
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    background         : #2F2F2F;
+    color              : #F6F6F6;
+    left               : 0; /*old 230px*/
+    padding            : 25px 20px 22px;
+    position           : absolute;
+    top                : 74px; /*old 153px*/
+    width              : 232px;
+    z-index            : 10;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .fmc-info-window .fmc a.close
+{
+    cursor : pointer;
+    position : absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10002;
+    background: url("../images/kh/img/my-pois/close-popup.png") no-repeat;
+    display : inline-block;
+    height:15px;
+    width : 15px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .infobox .label,
+.remote.find-my-car .main-wrapper-content .content-area .fmc-info-window .fmc .label
+{
+    font-size      : 1.077em;
+    text-transform : uppercase;
+    margin-bottom  : 5px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .infobox .address,
+.remote.find-my-car .main-wrapper-content .content-area .fmc-info-window .fmc .address
+{
+    font-size     : 1.077em;
+    margin-bottom : 20px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .infobox a.cta.primary,
+.remote.find-my-car .main-wrapper-content .content-area .fmc-info-window .fmc a.cta.primary
+{
+    background  : #282828;
+    display     : block;
+    line-height : 1em;
+    padding     : 10px 0 10px 14px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .map-area.alert-enabled .overlay {
+    background : transparent url("../images/kh/img/modal-back-black-01.png") repeat top left;
+    content    : "";
+    display    : block;
+    height     : 100%;
+    left       : 0;
+    position   : absolute;
+    top        : 0;
+    width      : 100%;
+    z-index    : 5;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .map-area.alert-enabled .infobox {
+    background : #F6F6F6;
+    color      : #2F2F2F;
+    padding    : 50px 0 33px;
+    text-align : center;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .map-area.alert-enabled .infobox .label {
+    font-size     : 0.93em;
+    margin-bottom : 35px;
+}
+
+.remote.find-my-car .main-wrapper-content .content-area .map-area.alert-enabled .infobox a.cta {
+    background     : #BC1728;
+    color          : #F6F6F6;
+    display        : block;
+    font-size      : 0.93em;
+    line-height    : 1em;
+    margin         : 0 auto;
+    padding        : 10px 0;
+    text-transform : uppercase;
+    width          : 106px;
+}
+
+.remote.door-locks .main-wrapper-content .content-area {
+    max-width : 730px;
+}
+
+.remote.door-locks .remote-content {
+    overflow : hidden;
+}
+
+.remote.door-locks .error-msg {
+	background: url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left top;
+	color: #BC1728;
+    padding-left:26px;
+    font-size:0.9em;
+    text-align:left;
+    line-height:1.4;
+    margin-bottom:31px;
+}
+
+.remote.door-locks .remote-content .car-doors,
+.remote.door-locks .remote-content .info {
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    border             : 1px solid #E1E1E1;
+    float              : left;
+    height             : 500px;
+}
+
+.remote.door-locks .remote-content .car-doors {
+    margin-right : 19px;
+    width        : 480px;
+}
+
+.remote.door-locks .remote-content .car-doors .base {
+    background : url("../images/kh/img/remote/car-base.png") no-repeat;
+    margin     : 80px 0 0 160px;
+    height     : 341px;
+    position   : relative;
+    width      : 159px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door {
+    background : url("../images/kh/img/remote/car-locked.png") no-repeat;
+    position   : absolute;
+    height     : 71px;
+    width      : 33px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.p1 {
+    left                : 0;
+    top                 : 99px;
+    background-position : 0 -99px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.p2 {
+    right               : 2px;
+    top                 : 99px;
+    background-position : -126px -99px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.p3 {
+    height              : 79px;
+    left                : 0;
+    top                 : 168px;
+    background-position : 0 -170px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.p4 {
+    height              : 79px;
+    right               : 2px;
+    top                 : 168px;
+    background-position : -126px -170px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.p5 {
+    height              : 39px;
+    left                : 29px;
+    top                 : 299px;
+    width               : 101px;
+    background-position : -29px -299px;
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.unlocked {
+    background-image : url("../images/kh/img/remote/car-unlocked.png");
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.open {
+    background-image : url("../images/kh/img/remote/car-open.png");
+}
+
+.remote.door-locks .remote-content .car-doors .base .door.disabled {
+	background-image : none;
+}
+
+
+
+.remote.door-locks .remote-content .info {
+    width   : 230px;
+    padding : 0 22px;
+}
+
+.remote.door-locks .remote-content .info .title {
+    font-size      : 0.846em;
+    line-height    : 1em;
+    padding        : 31px 0 39px;
+    text-align     : center;
+    text-shadow    : none;
+    text-transform : uppercase;
+}
+
+.remote.door-locks .remote-content .info .control {
+    background    : url("../images/kh/img/remote/icon-locked-01.png") no-repeat center 77px;
+    border-bottom : 1px solid #E1E1E1;
+    text-align:center;
+}
+
+.remote.door-locks .remote-content .info .control.disabled {
+	background    : url("../images/kh/img/icons/icons-cccccc/locked.png") no-repeat center 77px;
+}
+
+.remote.door-locks .remote-content .info .control.unlocked {
+    background-image : url("../images/kh/img/remote/icon-unlocked-01.png");
+}
+
+.remote.door-locks .remote-content .info .control.unlocked.disabled {
+    background-image : url("../images/kh/img/icons/icons-cccccc/unlocked-on.png");
+}
+
+.remote.door-locks .remote-content .info .control .title {
+    padding-bottom : 127px;
+}
+
+.remote.door-locks .remote-content .info .control .selector {
+    height : 27px;
+    margin : 0 0 52px 0;
+    display: inline-block;
+}
+
+.remote.door-locks .remote-content .info .control .selector.error {
+    height : 27px;
+    margin : 0 0 10px 0;
+    display: inline-block;
+}
+
+.remote.door-locks .remote-content .info .control .selector.processing {
+	margin-bottom:20px;
+}
+
+.remote.door-locks .remote-content .info .control .selector .button,
+.remote.door-locks .remote-content .info .control .vehicle-refresh {
+    border         : 1px solid #BDBDBD;
+    display        : block;
+    font-size      : 0.846em;
+    line-height    : 1em;
+    padding        : 7px 12px;
+    text-transform : uppercase;
+}
+
+
+
+.remote.door-locks .remote-content .info .control .selector a {
+    float : left;
+}
+
+.remote.door-locks .remote-content .info .control .selector a.active {
+    border-color : #888888;
+    cursor : default;
+}
+
+.remote.door-locks .remote-content .info .control .selector a.unlock {
+    border-radius : 14px 0 0 14px;
+    width:56px;
+}
+
+.remote.door-locks .remote-content .info .control .selector a.lock {
+    border-radius : 0 14px 14px 0;
+    border-left   : none;
+    width:56px;
+}
+
+.remote.door-locks .remote-content .info .control .selector .pending {
+    border        : 1px solid #888888;
+    border-radius : 14px;
+    /*background    : url("../images/loading_bar.gif") no-repeat 138px;*/
+    background-size: 13%;
+    /*background    : url("../images/kh/img/remote/loader.gif") no-repeat right;*/
+    /*text-align    : center;*/
+    color	      : #888888;
+    cursor        : default;
+    padding: 7px;
+}
+
+.remote.door-locks .remote-content .info .control .vehicle-refresh {
+	border-color  : #66CC00;
+    border-radius : 14px;
+    background    : white;
+    text-align    : center;
+    color	      : #66CC00;
+    margin-bottom: 20px;
+	padding: 7px 0px;
+	width: 160px;
+	display: inline-block;
+}
+
+.remote.door-locks .remote-content .info .control .selector .error {
+    border-color  : #FF6600;
+    border-radius : 14px;
+    background    : #FF6600;
+    text-align    : center;
+    color	      : white;
+    width: 160px;
+	padding: 7px 0;
+}
+
+.remote.door-locks .remote-content .info .marks li {
+    background     : url("../images/kh/img/remote/icon-marks-01.png") no-repeat left center;
+    color          : #444444;
+    font-size      : 1.154em;
+    line-height    : 1em;
+    margin         : 0 0 18px 25px;
+    padding-left   : 25px;
+    text-transform : uppercase;
+}
+
+.remote.door-locks .remote-content .info .marks li.locked {
+    background-image : url("../images/kh/img/remote/icon-marks-02.png");
+}
+
+.remote.door-locks .remote-content .info .marks li.open {
+    background-image : url("../images/kh/img/remote/icon-marks-03.png");
+}
+
+.remote.engine-climate .main-wrapper-content .content-area {
+    max-width : 730px;
+}
+
+.remote.engine-climate .actions .button {
+    border     : 1px solid #444444;
+    cursor     : pointer;
+    color      : #444444;
+    font-size  : 1em;
+    padding    : 5px 10px;
+    position   : relative;
+    display    : inline-block;
+    margin     : 5px;
+    min-width  : 110px;
+    text-align : center;
+}
+
+.remote.engine-climate .actions .button.dropdown:after {
+    background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+    content    : "";
+    float      : right;
+    height     : 9px;
+    margin-top : 6px;
+    width      : 11px;
+}
+
+.remote.engine-climate .actions .button.dropdown .dropdown-menu {
+    display          : none;
+    background-color : white;
+    position         : absolute;
+    top              : 103%;
+    left             : -1px;
+    width            : 185px;
+    border           : 1px solid #E6E6E6;
+    text-align       : left;
+    z-index          : 999;
+}
+
+.remote.engine-climate .actions .button.dropdown .dropdown-menu li {
+    border-bottom : 1px solid #E1E1E1;
+    padding       : 0.5em 10px;
+    margin        : 0 5px;
+    font-size     : 0.9em;
+}
+
+.remote.engine-climate .actions .button.dropdown .dropdown-menu li:last-child {
+    border-bottom : none;
+}
+
+.remote.engine-climate .actions .button.dropdown.highlighted {
+    border : 1px solid #BC1728 !important;
+}
+
+.remote.engine-climate .actions .button.dropdown.highlighted .dropdown-menu {
+    display : block;
+}
+
+.remote.engine-climate .actions .button.active {
+    color            : white;
+    background-color : #444444;
+}
+
+.remote.engine-climate .actions .button.inactive {
+    border      : 1px solid #CCCCCC;
+    color       : #CCCCCC;
+    text-shadow : none;
+}
+
+.remote.engine-climate .switch {
+    border        : 1px solid #999999;
+    border-radius : 14px;
+    cursor        : pointer;
+    float         : left;
+    font-family   : designk-bold;
+    font-size     : 0.9em;
+    margin-top    : 6px;
+}
+
+.remote.engine-climate .switch.off {
+    padding : 3px 35px 3px 3px;
+}
+
+.remote.engine-climate .switch.off:before {
+    background     : url("../images/kh/img/remote/switch-sprite.png") no-repeat -35px top;
+    content        : "";
+    display        : inline-block;
+    height         : 20px;
+    margin-right   : 17px;
+    margin-top     : -2px;
+    vertical-align : middle;
+    width          : 21px;
+}
+
+.remote.engine-climate .switch.off.disabled:before {
+    background     : url("../images/kh/img/remote/switch-sprite.png") no-repeat -105px top;
+}
+
+.remote.engine-climate .switch.off.progress:before {
+    left                        : .25em;
+    background                  : transparent url("../images/kh/img/remote/loader.gif") no-repeat center;
+    transition                  : left 500ms;
+    -webkit-backface-visibility : hidden;
+    top                         : .1875em;
+    width                       : 20px;
+    height                      : 20px;
+    border-radius               : 50% 50%;
+}
+
+.remote.engine-climate .switch.on {
+    padding : 3px 3px 3px 41px;
+}
+
+.remote.engine-climate .switch.on:after {
+    background     : url("../images/kh/img/remote/switch-sprite.png") no-repeat left top;
+    content        : "";
+    display        : inline-block;
+    height         : 20px;
+    margin-left    : 16px;
+    margin-top     : -2px;
+    vertical-align : middle;
+    width          : 21px;
+}
+
+.remote.engine-climate .switch.on.disabled:after {
+    background     : url("../images/kh/img/remote/switch-sprite.png") no-repeat -105px top;
+}
+
+.remote.engine-climate .switch.on.progress:after {
+    left                        : 2.6875em;
+    background                  : transparent url("../images/kh/img/remote/loader.gif") no-repeat center;
+        transition                  : left 500ms;
+    -webkit-backface-visibility : hidden;
+    top                         : .1875em;
+    width                       : 20px;
+    height                      : 20px;
+    border-radius               : 50% 50%;
+}
+
+.remote.engine-climate .switch.disabled {
+	cursor         : default;
+}
+
+.remote.engine-climate .remote-content {
+    overflow : hidden;
+    *zoom    : 1;
+    border   : 1px solid #E1E1E1;
+    /* JJH height: 470px; */
+    height:467px;
+}
+
+.remote.engine-climate .remote-content .engine,
+.remote.engine-climate .remote-content .temperature {
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    float              : left;
+}
+
+.remote.engine-climate .remote-content .engine {
+    margin-right : 19px;
+    width        : 490px;
+    position     : relative;
+}
+
+.remote.engine-climate .remote-content .engine .power {
+    float      : left;
+    width      : 100%;
+    /*margin-top : 5px;*/
+}
+
+.remote.engine-climate .remote-content .engine .power > span {
+    float   : left;
+    padding : 10px 15px;
+}
+
+.remote.engine-climate .remote-content .engine .climate {
+    float                 : left;
+    /*width                 : 100%;*/
+    /*text-align            : center;*/
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
+    padding               : 0 0 0 0;
+    position			  : absolute;
+    top					  : 103px;
+    left				  : 65px;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper {
+    position   : relative;
+    width      : 340px;
+    height     : 405px;
+    display    : inline-block;
+    text-align : center;
+    /*background : url("../images/kh/img/remote/odo-low.png") no-repeat center 25px;*/
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper.disabled {
+    position   : relative;
+    width      : 340px;
+    height     : 405px;
+    display    : inline-block;
+    /*background : url("../images/kh/img/remote/odo-low-grey.png") no-repeat center 25px;*/
+    opacity    : 1;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper label {
+    /*margin-top : 75px;*/
+    position   : absolute;
+    top:70px;
+    left:110px;
+    display    : block;
+    font-size  : 1.4em;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .value-container {
+	position   : absolute;
+    top:170px;
+    left:60px;
+    width:240px;
+    height:100px;
+}
+.remote.engine-climate .remote-content .engine .climate .wrapper .value {
+	margin-left : auto;
+	margin-right: auto;
+    font-size   : 9em;
+    text-shadow : none;
+    color       : #444444;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .value.disabled {
+    /*font-size   : 10em;
+    text-shadow : none;
+    margin-top  : 60px;*/
+    color       : #777777;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .value sup {
+    font-size      : 0.35em;
+    vertical-align : top;
+    display        : inline-block;
+    margin-top     : -35px;
+    color          : #A4A4A4;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button {
+    position   : absolute;
+    display    : block;
+    min-width  : 70px;
+    /* min-height : 70px; */
+    cursor     : pointer;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.switcher {
+    background : url("../images/kh/img/remote/odo-button.png") no-repeat center center;
+    width      : 70px;
+    height     : 70px;
+    left       : 50px;
+    top        : 30px;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.switcher.disabled {
+    background : url("../images/kh/img/remote/odo-button-grey.png") no-repeat center center;
+    width      : 70px;
+    height     : 70px;
+    left       : 50px;
+    top        : 30px;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.minus {
+    background : url("../images/kh/img/remote/odo-minus.png") no-repeat center center;
+    width      : 85px;
+    height     : 85px;
+    bottom     : 60px;
+    left       : 20px;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.minus.disabled {
+    background : url("../images/kh/img/remote/odo-minus-grey.png") no-repeat center center;
+    width      : 85px;
+    height     : 85px;
+    bottom     : 60px;
+    left       : 20px;
+    cursor     : default;
+   
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.plus {
+    background : url("../images/kh/img/remote/odo-plus.png") no-repeat center center;
+    width      : 85px;
+    height     : 85px;
+    bottom     : 60px;
+    right      : 10px;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.plus.disabled {
+    background : url("../images/kh/img/remote/odo-plus-grey.png") no-repeat center center;
+    width      : 85px;
+    height     : 85px;
+    bottom     : 60px;
+    right      : 10px;
+    cursor     : default;
+  
+}
+
+/*
+.remote.engine-climate .remote-content .engine .climate .button.send {*/
+    /* background : url("../images/kh/img/remote/odo-send.png") no-repeat center center; */
+/*    border:1px solid #C2C2C2;
+    display    : inline-block;
+    position   : absolute;
+   	padding	:10px;
+   	text-shadow:none;
+   	color:#676666;
+   	top:350px;
+   	left:85px;
+}
+*/
+
+remote.engine-climate .remote-content .upper-right {
+	position:absolute;
+	right:0;
+	top:0;
+}
+
+.remote.engine-climate .remote-content .pending-list,
+.remote.engine-climate .remote-content .retry-list
+{
+	position:absolute;
+	width:113px;
+	text-align:left;
+	color:#5B8430;
+	font-size:0.9em;
+	top:80px;
+	right:2px;
+}
+
+.remote.engine-climate .remote-content .retry-list
+{
+	width:126px;
+	color:#2f2f2f;
+}
+
+.remote.engine-climate .remote-content .pending-list ul,
+.remote.engine-climate .remote-content .retry-list ul {
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+.remote.engine-climate .remote-content .pending-list li,
+.remote.engine-climate .remote-content .retry-list li {
+	line-height: 1.3em;
+}
+
+.remote.engine-climate .remote-content .pending-list h5,
+.remote.engine-climate .remote-content .retry-list h5 {
+	font-weight:bold;
+}
+
+.remote.engine-climate .remote-content .engine .upper-right {
+	position: relative;
+	top: 0;
+	right:0;
+}
+
+.remote.engine-climate .remote-content .engine .button.send,
+.remote.engine-climate .remote-content .engine .button.pending,
+.remote.engine-climate .remote-content .engine .button.retry,
+.remote.engine-climate .remote-content .engine .button.success
+{
+    /* background : url("../images/kh/img/remote/odo-send.png") no-repeat center center; */
+    /*border       :1px solid #C2C2C2;*/
+    display      :inline-block;
+   	margin	     :25px 5px 0 0;
+   	padding      :10px 0px 10px 10px;
+   	text-shadow  :none;
+   	color        :#ffffff;
+	float        :right;
+   	background   :#7BB609;
+   	position     :relative;
+   	width        :200px;
+}
+
+.remote.engine-climate .remote-content .engine .button.success {
+	background-color: white;
+	padding         : 9px;
+	border          :1px solid #7BB609;
+	color           :#7BB609;
+	cursor          : default;
+}
+
+.remote.engine-climate .remote-content .engine .button.retry {
+	background-color: #FF6600;
+}
+
+.remote.engine-climate .remote-content .engine .button.retry:after {
+	content : ">";
+	position: absolute;
+	right   : 0;
+	top     :0;
+	width   :40px;
+	height  :40px;
+	background: #FF4200;
+	font-size: 1.5em;
+	text-align: center;
+	line-height:2.0em;
+}
+
+.remote.engine-climate .remote-content .engine .button.pending {
+	background-color: white;
+	color           :#888888;
+	border          :1px solid #888888;
+	padding         :3px 6px 3px 3px;
+	cursor          : default;
+}
+
+.remote.engine-climate .remote-content .engine .button.pending div{
+	padding:6px 40px 6px 6px;
+	background: url("../images/loading_bar.gif") no-repeat right;
+}
+
+.remote.engine-climate .remote-content .engine .button.send:after {
+	content : ">";
+	position: absolute;
+	right   : 0;
+	top     :0;
+	width   :40px;
+	height  :40px;
+	background: #5B8430;
+	font-size: 1.5em;
+	text-align: center;
+	line-height:2.0em;
+}
+
+.remote.engine-climate .remote-content .engine .button.send.disabled:after {
+	background: #C2C2C2;
+}
+
+.remote.engine-climate .remote-content .engine .button.send.disabled {
+	background:#C2C2C2;
+	cursor    :default;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.send.on {
+    background : url("../images/kh/img/remote/odo-send-active.png") no-repeat center center;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .button.send.progress {
+    background : url("../images/kh/img/remote/odo-send-progress.png") no-repeat center center;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .turn-climate {
+    width         : 130px;
+    display       : block;
+    border        : 1px solid #C2C2C2;
+    margin        : 0 auto;
+    padding       : 4px 15px;
+    border-radius : 15px;
+    font-size     : 0.9em;
+    margin-top    : 5px;
+    cursor        : pointer;
+}
+
+.remote.engine-climate .remote-content .engine .climate .wrapper .turn-climate:before {
+    background     : url("../images/kh/img/remote/x-red.png") no-repeat center center;
+    content        : "";
+    display        : inline-block;
+    height         : 11px;
+    margin-right   : 5px;
+    vertical-align : middle;
+    width          : 12px;
+    margin-top     : -2px;
+}
+
+.remote.engine-climate .remote-content .temperature {
+    width   : 185px;
+    padding : 0 5px;
+    position:absolute;
+    margin-top:25px;
+    /*float:right;*/
+}
+
+.remote.engine-climate .remote-content .temperature .units {
+    float         : left;
+    width         : 95%;
+    padding       : 30px 0 20px 15px;
+    border-bottom : 1px solid #E1E1E1;
+    font-size     : 1.2em;
+    color         : #676666;
+}
+
+.remote.engine-climate .remote-content .temperature .units .unit {
+    display : inline-block;
+    width   : 40%;
+    cursor  : pointer;
+}
+
+.remote.engine-climate .remote-content .temperature .units .unit:before {
+    background     : url("../images/kh/img/maintenance/indicator-1-off.png") no-repeat center top;
+    content        : "";
+    display        : inline-block;
+    height         : 20px;
+    margin-right   : 10px;
+    margin-top     : -2px;
+    vertical-align : middle;
+    width          : 21px;
+}
+
+.remote.engine-climate .remote-content .temperature .units .unit.on:before {
+    background : url("../images/kh/img/red_not_circle.png") no-repeat center top;
+}
+
+.remote.engine-climate .remote-content .temperature .temp {
+    display       : block;
+    width         : 50%;
+    float         : right;
+    text-align    : center;
+    font-size     : 2em;
+    text-shadow   : none;
+    color         : #676666;
+    padding       : 3px 0 5px;
+}
+
+.remote.engine-climate .remote-content .temperature .temp sup {
+    font-size      : 25px;
+    vertical-align : top;
+    display        : inline-block;
+    color          : #999999;
+}
+
+.remote.engine-climate .remote-content .temperature .temp label {
+    display    : block;
+    font-size  : 13px;
+    margin-top : 2px;
+    color      : #999999;
+}
+
+/* JJH here is the defroster and they already have the second image coded */
+.remote.engine-climate .remote-content .temperature .defrost {
+    background : url("../images/kh/img/remote/defrost.png") no-repeat center 25%;
+    float      : left;
+    width      : 100%;
+    padding    : 30px 0;
+    text-align : center;
+}
+
+.remote.engine-climate .remote-content .temperature .defrost.on {
+    background : url("../images/kh/img/remote/defrost-active.png") no-repeat center 25%;
+}
+
+.remote.engine-climate .remote-content .temperature .defrost .switch {
+    display    : inline-block;
+    float      : none;
+    margin-top : 60px;
+    width      : 55px;
+}
+
+.remote.engine-climate .remote-content .temperature .defrost .switch.on {
+    width : 50px;
+}
+
+.remote.engine-climate .lower-panel {
+    text-shadow : none;
+    border-top  : none;
+    color       : #A4A4A4 !important;
+    text-align  : right;
+    margin-top  : 10px;
+    font-size   : 0.85em;
+}
+
+.remote.engine-climate .lower-panel > span {
+    margin : 0 5px;
+}
+
+.remote.engine-climate .lower-panel a {
+    color       : #A4A4A4 !important;
+    text-shadow : none;
+}
+
+.remote.engine-climate .schedule-content {
+    overflow       : hidden;
+    *zoom          : 1;
+    padding-bottom : 105px;
+}
+
+.remote.engine-climate .schedule-content .title {
+    width         : 100%;
+    float         : left;
+    color         : #676666;
+    text-align    : left;
+    margin-top    : 30px;
+    margin-bottom : 10px;
+}
+
+.remote.engine-climate .schedule-content .title .help {
+    border        : 1px solid #C2C2C2;
+    border-radius : 11px;
+    color         : #C2C2C2;
+    cursor        : pointer;
+    float         : right;
+    font-family   : designk-medium;
+    font-size     : 0.9em;
+    line-height   : 1.2em;
+    text-align    : center;
+    text-shadow   : none;
+    width         : 14px;
+}
+
+.remote.engine-climate .schedule-content .switch {
+    color : #888888;
+}
+
+.remote.engine-climate .schedule-content .item {
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing    : border-box;
+    box-sizing         : border-box;
+    border             : 1px solid #E1E1E1;
+    color              : #282828;
+    float              : left;
+    width              : 100%;
+    margin             : 10px 0;
+    min-width          : 20px;
+    padding            : 20px;
+    text-align         : center;
+    font-size          : 1.2em;
+}
+
+.remote.engine-climate .schedule-content .item.add-new {
+    cursor : pointer;
+}
+
+.remote.engine-climate .schedule-content .item.add-new:before {
+    background     : url("../images/kh/img/remote/plus-black.png") no-repeat center center;
+    content        : "";
+    display        : inline-block;
+    height         : 13px;
+    margin-right   : 12px;
+    vertical-align : middle;
+    width          : 13px;
+}
+
+.remote.engine-climate .schedule-content .item .switch {
+    margin-top : 0;
+    font-size  : 0.8em;
+}
+
+.remote.engine-climate .schedule-content .item .item-info {
+    float : left;
+    width : 100%;
+}
+
+.remote.engine-climate .schedule-content .item .item-info:after {
+    background     : url("../images/kh/img/remote/arrow-down.png") no-repeat center center;
+    content        : "";
+    display        : inline-block;
+    height         : 11px;
+    margin-right   : -5px;
+    vertical-align : middle;
+    width          : 18px;
+    float          : right;
+    margin-top     : 5px;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .section {
+    display        : inline-block;
+    width          : 22%;
+    vertical-align : middle;
+    border-left    : 1px solid #E1E1E1;
+    min-height     : 25px;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .section:first-child {
+    border-left : none;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .state {
+    width : 12%;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .name {
+    width : 30%;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .time {
+    width : 15%;
+}
+
+.remote.engine-climate .schedule-content .item .item-info .time sub {
+    color : #999999;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail {
+    display    : none;
+    width      : 100%;
+    float      : left;
+    border-top : 1px solid #E1E1E1;
+    margin-top : 20px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .name {
+    padding-top   : 20px;
+    float         : left;
+    width         : 100%;
+    font-size     : 0.9em;
+    text-align    : left;
+    text-shadow   : none;
+    border-bottom : 1px dashed #E1E1E1;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .name span {
+    color : #C2C2C2;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .name label {
+    color       : #888888;
+    font-size   : 0.85em;
+    font-family : designk-medium;
+    margin-left : 100px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .name input {
+    display             : inline-block;
+    background-color    : transparent;
+    border              : none;
+    border-bottom       : 1px solid black;
+    box-sizing          : border-box;
+    background-repeat   : no-repeat;
+    background-position : left center;
+    margin-bottom       : 20px;
+    font-size           : 1.2em;
+    color               : #282828;
+    text-shadow         : none;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .name input:focus {
+    border-bottom : 1px solid black;
+    outline       : none;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up {
+    width         : 100%;
+    float         : left;
+    padding       : 35px 0;
+    border-bottom : 1px dashed #E1E1E1;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .section {
+    width          : 80px;
+    display        : inline-block;
+    text-align     : left;
+    vertical-align : top;
+    margin-top     : 10px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .section label {
+    font-size     : 0.8em;
+    color         : #999999;
+    margin-bottom : 10px;
+    display       : block;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature {
+    display : inline-block;
+    margin  : 0 60px 0 40px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .value {
+    width     : 100%;
+    float     : left;
+    font-size : 2em;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .value sub {
+    font-size : 0.5em;
+    color     : #999999;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider {
+    background-color : #448CCB;
+    width            : 370px;
+    height           : 10px;
+    position         : relative;
+    display          : inline-block;
+    margin-top       : 20px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider .red {
+    background-color : #BC1728;
+    width            : 50%;
+    height           : 100%;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider .button {
+    position            : absolute;
+    display             : block;
+    min-width           : 40px;
+    min-height          : 40px;
+    cursor              : pointer;
+    background-image    : url("../images/kh/img/remote/sld-sprite.png");
+    background-repeat   : no-repeat;
+    background-position : 0 0;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider .button.switcher {
+    background-position : -20px -50px;
+    left                : 40%;
+    top                 : -25px;
+    width               : 60px;
+    height              : 61px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider .button.minus {
+    background-position : 0 0;
+    left                : -5px;
+    top                 : -15px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .set-up .temperature .slider .button.plus {
+    background-position : -60px 0;
+    right               : -2px;
+    top                 : -15px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar {
+    display        : block;
+    width          : 100%;
+    float          : left;
+    padding-top    : 15px;
+    padding-bottom : 35px;
+    border-bottom  : 1px solid #E1E1E1;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar span,
+.remote.engine-climate .schedule-content .item .item-detail .calendar .item {
+    width       : 40px;
+    height      : 30px;
+    display     : inline-block;
+    border      : 1px solid #CCCCCC;
+    color       : #888888;
+    padding-top : 9px;
+    text-align  : center;
+    font-size   : 0.8em;
+    cursor      : pointer;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .time {
+    display        : inline-block;
+    margin-right   : 15px;
+    vertical-align : middle;
+    margin-top     : 1px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .time span,
+.remote.engine-climate .schedule-content .item .item-detail .calendar .time .item {
+    font-size : 1.2em;
+    color     : #282828;
+    padding   : 0;
+    margin    : 0 2px 0;
+    height    : 42px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .time .period {
+    width        : 55px;
+    text-align   : left;
+    padding-left : 5px;
+    padding-top  : 10px;
+    color        : #888888;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .time .period:after {
+    margin-right : 3px;
+    width        : 11px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .week {
+    display      : inline-block;
+    margin-right : 15px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .week span.on {
+    position : relative;
+    color    : #C4172C;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .week span.on:before {
+    display          : block;
+    position         : absolute;
+    background-color : #C4172C;
+    top              : 0;
+    content          : "";
+    height           : 5px;
+    width            : 100%;
+    left             : -1px;
+    z-index          : 99;
+    border-right     : 1px solid #C4172C;
+    border-left      : 1px solid #C4172C;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .repeat {
+    display    : inline-block;
+    text-align : left;
+    width      : 26%;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .repeat label {
+    font-size : 0.75em;
+    display   : block;
+    color     : gray;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .repeat .dropdown {
+    width       : 175px;
+    font-size   : 0.75em;
+    padding     : 5px 5px 0 3px;
+    margin      : 0;
+    color       : #282828;
+    line-height : 23px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .calendar .repeat .dropdown:after {
+    margin-top : 7px;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .item-buttons {
+    width      : 100%;
+    float      : left;
+    margin-top : 40px;
+    text-align : right;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .item-buttons span {
+    min-width : 60px;
+    font-size : 0.8em;
+}
+
+.remote.engine-climate .schedule-content .item .item-detail .item-buttons span.delete {
+    color : #C4172C;
+    float : left;
+}
+
+.remote.engine-climate .schedule-content .item.expanded .item-info:after {
+    background : url("../images/kh/img/remote/arrow-up.png") no-repeat center center;
+}
+
+.remote.engine-climate .schedule-content .item.expanded .item-detail {
+    display : block;
+}
+
+.climate-wrap {
+	border-right:1px solid #E1E1E1;
+	height:100%;
+	width:230px;
+	float:left;
+}
+
+.climate-box {
+	position: relative;
+	background: #fff;
+	border: 1px solid #E1E1E1;
+}
+
+/*
+.climate-box:after, .climate-box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.climate-box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-top-color: #fff;
+	border-width: 15px;
+	margin-left: -15px;
+}
+.climate-box:before {
+	border-color: rgba(225, 225, 225, 0);
+	border-top-color: #E1E1E1;
+	border-width: 16px;
+	margin-left: -16px;
+}*/
+
+.climate-box.box-engine {
+	/*height:177px;*/
+	/*margin:0 25px 20px;*/
+	height:155px;
+	margin:0 25px 0px;
+	border-bottom:1px solid #E1E1E1;
+	border-width:0px 0px 1px 0px;
+	text-align:center;
+}
+
+.climate-box.box-climate {
+	/*height:162px;*/
+	/*margin:0 25px 20px;*/
+	height:155px;
+	margin:0 25px 0px;
+	border-bottom:1px solid #E1E1E1;
+	border-width:0px 0px 1px 0px;
+	text-align:center;
+}
+
+.box-defrost {
+	/*height:177px;*/
+	/*margin:0 25px 20px;*/
+	height:155px;
+	margin:0 25px 0px;
+	text-align:center;
+	border:none;
+}
+
+.climate-box h4, .box-defrost h4 {
+	/*padding-top:20px;*/
+	color:#2F2F2F;
+	font-weight:bold;
+	font-size:14px;
+	/*padding-bottom:10px;*/
+	padding: 8px 0 0 0;
+}
+
+.climate-box.box-climate h4, .box-defrost h4 {
+	padding-top:8px;
+}
+
+.engine-img {
+	background:url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px 0px;
+	width:104px;
+	height:69px;
+	margin:7px auto;
+	/*padding-bottom:5px*/
+}
+
+.climate-img {
+	background:url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px -98px;
+	width:104px;
+	height:69px;
+	margin:7px auto;
+	/*padding-bottom:10px;*/
+}
+.climate-img.active.disabled {
+	background:url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px -98px;
+}
+
+.defrost-img {
+	background:url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px -202px;
+	width:104px;
+	height:69px;
+	margin:7px auto;
+	/*padding-bottom:10px;*/
+}
+.defrost-img.active.disabled {
+	background:url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px -202px;
+}
+.engine-img.active {
+	background-position:0px 0px;
+}
+.climate-img.active {
+	background-position:0px -98px;
+}
+.defrost-img.active {
+	background-position:0px -202px;
+}
+
+.mL40 {margin-left:40px}
+.mT10 {margin-top:10px}
+
+.modal.engine-climate .close-modal {
+    background   : url("../images/kh/img/trip-info/x-2.png") no-repeat center center;
+    width        : 20px;
+    height       : 20px;
+    display      : block;
+    font-size    : 0;
+    float        : right;
+    margin-right : -30px;
+    margin-top   : -30px;
+    cursor       : pointer;
+}
+
+.modal.engine-climate .content {
+    margin          : 190px auto 0;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    width           : 320px;
+    padding         : 40px 40px 20px;
+    text-align      : left;
+}
+
+.modal.engine-climate .content .message {
+    background    : url("../images/kh/img/my-vehicles/warning-3.png") no-repeat center 15px;
+    color         : #676666;
+    font-size     : 1.3em;
+    line-height   : 1.5em;
+    margin-bottom : 60px;
+    padding-top   : 125px;
+}
+
+.modal.engine-climate .actions button,
+.modal.engine-climate .actions .button {
+    border          : 1px solid #888888;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    color           : #444444;
+    cursor          : pointer;
+    display         : block;
+    font-size       : 0.9em;
+    line-height     : 1em;
+    margin-bottom   : 22px;
+    padding         : 12px;
+    text-align      : center;
+    text-transform  : uppercase;
+    width           : 240px;
+    text-shadow     : none;
+}
+
+.modal.engine-climate .actions button.highlighted,
+.modal.engine-climate .actions .button.highlighted {
+    border     : none;
+    background : #444444;
+    color      : #FFFFFF;
+}
+
+.modal.engine-climate .actions button.previous:before,
+.modal.engine-climate .actions .button.previous:before {
+    background     : url("../images/kh/img/mobile_back_arrow.png") no-repeat 1px -4px;
+    content        : "";
+    display        : inline-block;
+    height         : 12px;
+    margin-right   : 12px;
+    vertical-align : middle;
+    width          : 16px;
+    margin-top     : -4px;
+}
+
+.modal.engine-climate .actions button.next:after,
+.modal.engine-climate .actions .button.next:after {
+    background : url("../images/kh/img/maintenance/arrow-5-right.png") no-repeat center center;
+    content    : "";
+    display    : inline-block;
+    height     : 10px;
+    width      : 17px;
+}
+
+.modal.engine-climate .actions button.disabled,
+.modal.engine-climate .actions .button.disabled {
+    filter  : progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity : 0.5;
+    cursor  : default;
+}
+
+
+
+
+
+
+
+#findMyCar-view{
+        border         : none;
+        height         : auto;
+        max-width      : 960px;
+        overflow       : auto;
+        text-shadow    : none;
+        position       : relative;
+    .kh-button.kh-button-retry{
+        background-color: #444444;
+    }
+    .kh-button-retry:after {
+        background-color: #FF6600!important;
+    }
+    .fmc-table-row{
+        color : red;
+    }
+
+    div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div > img {
+        top           : -36px;
+        left          : 34px;
+        z-index       : 99999;
+    }
+        
+    .page-header {
+        border-bottom : 0;
+        margin        : 0;
+        margin-bottom : 30px;
+    }
+    .page-header ul {
+        height        : 43px;
+        border-bottom : 1px solid #E1E1E1;
+    }
+    .page-header ul li {
+        float          : left;
+        text-transform : uppercase;
+    }
+    .page-header ul li a {
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
+        background         : #F6F6F6;
+        border             : 1px solid #E1E1E1;
+        border-left        : none;
+        display            : block;
+        color              : #2F2F2F;
+        height             : 44px;
+        line-height        : 1em;
+        padding            : 15px 10px 5px 10px;
+        text-align         : center;
+    }
+
+    .page-header ul li a.status-error {
+        background         : #F6F6F6 url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left center;
+        background-position: 5px;
+        background-size    : 12px;
+    }
+
+    .page-header ul li a.active,
+    .page-header ul li a:hover {
+        background   : #BC1728;
+        border-color : #BC1728;
+        color        : white;
+        font-family  : designk-bold;
+    }
+
+    .page-header ul li:first-child a {
+        border-left : 1px solid #E1E1E1;
+    }
+
+    .page-header ul li a.disabled,
+    .page-header ul li a.disabled:hover {
+        color        :#C2C2C2;
+        background   :#F6F6F6;
+        border-color :#E1E1E1;
+        font-family  :designk-medium;
+        cursor       :default;
+    }
+
+    .page-header ul li a.disabled.active,
+    .page-header ul li a.disabled.active:hover {
+        background : #777777;
+    }
+	.page-header.disabled ul li a.active{
+          background		: #777777;
+          border-color      : #777777;
+    }
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left: 0; 
+        padding-right: 0;
+    }
+ 
+    .map-wrapper {
+        position: relative;
+    }
+ 
+    .angular-google-map-container{
+        width: 100%;
+        height: 600px;
+     }
+     .fmc-modal-background {
+      background: url("../images/kh/img/modal-back-white-01.png") repeat top left;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    .fmc-modal-widget-prompt, .fmc-modal-widget-pending, .fmc-modal-widget-error {
+      width: 360px;
+      margin: 120px auto;
+     /* z-index: 900;*/
+    }
+    .fmc-modal-widget {
+      background: #2F2F2F;
+      padding: 12px 0 8px 18px;
+      position: relative;
+      color: white !important;
+    }
+    .fmc-modal-widget-prompt, .fmc-modal-widget-pending {
+      border-top: 6px solid #C2C2C2;
+    }
+    .fmc-modal-widget-error {
+      border-top: 6px solid #FF6600;
+    }
+    .fmc-table {
+      display: table;
+      width: 100%;
+    }
+    #kh-remote-find .kh-button {
+      padding-right: 35px;
+      bottom: 0;
+      position: absolute;
+      left: 40px;
+    }
+    .kh-button-submit {
+      background-color: #444444;
+      color: white;
+    }
+    .kh-button {
+      font-family: designk-bold;
+      padding: 6px 10px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+        padding-right: 35px;
+      bottom: 0;
+      position: absolute;
+      left: 40px;
+    }
+    .kh-button-submit:after {
+      background-color: #BC1728!important;
+    }
+    .fmc-modal-widget h2 {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      font-family: designk-bold;
+      margin-bottom: 6px;
+    }
+    .fmc-modal-widget p {
+      font-size: 0.8em;
+      line-height: 1.2;
+    }
+
+    .kh-button:after {
+      background: url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+      content: ' ';
+      text-align: center;
+      padding: 10px 15px;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      bottom: 0;
+      font-size: 1.5em;
+    }
+
+    .fmc-modal-widget {
+      background: #2F2F2F;
+      padding: 12px 0 8px 18px;
+      position: relative;
+      color: white;
+    }
+    .fmc-modal-widget-success {
+      background: #444;
+      width: 320px;
+      height: 100px;
+      position: relative;
+      top: -45px;
+      left: -130px;
+    }
+    .fmc-modal-widget-success {
+      border-top: 6px solid #7BB609;
+    }
+
+    .fmc-modal-widget .close {
+      float: right;
+      background: url("/images/kh/img/my-pois/close-popup.png") no-repeat;
+      font-size: 0;
+      height: 15px;
+      width: 15px;
+      padding-right: 10px;
+      cursor: pointer;
+        position: absolute;
+      right: 12px;
+    }
+
+    .fmc-modal-widget-success .col2 {
+      height: 90px;
+    }
+    .fmc-modal-widget-success .col2.col2-button {
+      vertical-align: bottom;
+      width :60%;
+    }
+    .fmc-modal-widget-success .col2 {
+      height: 90px;
+    }
+    .fmc-modal-widget .col2 {
+      width: 40%;
+      display: table-cell;
+      position: relative;
+    }
+    
+    #kh-remote-find .kh-button {
+      padding-right: 35px;
+      bottom: 0;
+      position: absolute;
+      left: 40px;
+    }
+    #kh-remote-find .kh-direction {
+      left: -35px !important;
+    }
+    .fmc-modal-widget-success .kh-button {
+      background: #2F2F2F;
+      width: 140px;
+      padding-right: 5px;
+      left: 0;
+    }
+
+    .infobox-dark.ib0 .info-window{
+        position: relative;
+        top: 2px;
+        left: 69px;
+        @media only screen and(min-height:376px) and (max-width:767px){top: 62px;left:-14.5%;}
+        @media only screen and(min-height:321px) and (max-width:375px){top: 62px;left: -11%;}
+        @media(max-width:320px){top: 62px;left: -13px;}
+        
+    }
+
+    .info-window img {
+      position: absolute;
+      top: 80px;
+      left: 30px;
+    }
+
+    .kh-button-submit:after {
+      background-color: #BC1728;
+    }
+    .kh-button:after {
+      background: url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+      content: ' ';
+      text-align: center;
+      padding: 10px 15px;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      bottom: 0;
+      font-size: 1.5em;
+    }
+
+    #findMyCar-view .fmc-table {
+      display: table;
+      width: 58%;
+    }
+
+    #proceeddiv .fmc-table{
+        width:100%;
+    }
+
+    .fmc-table .col2 h2{color:white;}
+    /// .infobox-dark.ib0 parents div
+    #map-canvas > ui-gmap-google-map > div > div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4){
+        //left : 69px!important;
+    }
+
+}
+
+
+
+@media(max-width:768px){
+    #findMyCar-view{
+            overflow        :visible;
+            //closing modal
+            .fmc-table-row{
+               color : #2F2F30;
+            }
+
+            .angular-google-map-container{
+                height: 450px;
+             }
+
+        div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div > img {
+            top             : 4px;
+            left            : 6px;
+        }
+        .page-header{
+            margin-bottom   : 0px;
+            margin-top      : 33px   
+        }
+        .page-header ul li a {height:50px}
+        .fmc-modal-widget{
+            width           : 80%;
+            max-width       : 500px;
+            border-top      : none;
+            background      : white;
+            font-color      : #2F2F30;
+            padding         : 15px 0 15px 18px;
+
+        }
+        .fmc-modal-widget .col2{
+            display         : block;
+        }
+        #proceeddiv > div > span:nth-child(1) > h2{
+            color           : #2F2F30;
+            line-height     : 20px;
+        }
+        #proceeddiv > div > span:nth-child(1){
+            width           : 75%;
+        }
+
+        #proceeddiv > div > span:nth-child(1) > p{
+            color           : #2F2F30;
+            line-height     : 20px;
+            font-size       : 1em; 
+        }
+        .kh-button{
+            position        : relative;
+            bottom          : 0;
+            left            : 0;
+            width           : 94%;
+            text-align      : center;
+            background-color: #BC1728;
+            padding-right   : 0px;
+           
+        }
+
+
+        #proceeddiv > div > span:nth-child(2) > div:after{
+            display         : none;
+            
+        }
+        #proceeddiv > div > span:nth-child(2){
+            width           :98%;
+            margin-top      :40px;
+        }
+
+        span, p{
+            color           : #2F2F30;
+            line-height     : 20px !important;
+        }
+        h2{
+            color           : #2F2F30!important;
+            line-height     : 20px;
+        }
+        div.map-wrapper.col-xs-12 > div.fmc-modal-background.ng-scope > div.fmc-modal-widget.fmc-modal-widget-pending > div > span:nth-child(1){
+            width           : 100%;
+        }
+        .locating-btn{
+            border          : 1px solid #2F2F30;
+            padding         : 15px 0px;
+            width           : 95%;
+            color           : #2F2F30;
+            text-align      : center;
+            margin-top      : 20px;
+        }
+        .fmc-modal-widget.fmc-modal-widget-success{
+            background      : #444;
+            width           : 100%;
+            height          : auto;
+            position        : relative;
+            top             : 0px;
+            left            : 0px;
+            min-height      : 140px;
+        }
+
+        div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div > div > div > div.fmc-table > span{
+            width           : 75%;
+            height          : auto;
+        }
+        
+        div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div > div > div > div.fmc-table > span.col2.col2-button > a{
+            width           : 100%;
+            margin-top      : 20px; 
+        }
+
+        div.fmc-modal-widget.fmc-modal-widget-error > div > span:nth-child(2){
+            width           : 100%;
+            margin-top      : 20px;
+        
+            > div{
+                color           : white;
+                background-color: #FF6600;
+            }
+        }
+        div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div > div > div > div.fmc-table > span:nth-child(1) > h2, p> span{
+            color           : white !important;
+        }
+        
+        .info-window img{
+            top             : 163px;
+            left            : 45%;
+        }
+        span.col2.col2-button > a :after {
+            background      : url("/images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+            content         : ' ';
+            text-align      : center;
+            padding         : 10px 15px;
+            position        : absolute;
+            left            : 100%;
+            top             : 0;
+            bottom          : 0;
+            font-size       : 1.5em;
+        }
+        .mob_box {
+            display         : block;
+            width           : 100%;
+            height          : 30px;
+            background-color: #444444;
+            margin-top      : -10px;
+            position        : absolute;
+            margin-left     : -2px;
+        }
+
+        .infobox-dark.ib0{
+            width: 100% !important;
+            }
+
+         #map-canvas > ui-gmap-google-map > div > div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4){
+            width           : 85%!important;}
+
+        #map-canvas > ui-gmap-google-map > div > div.angular-google-map-container > div > div:nth-child(1) > div:nth-child(1){
+            top             : 100px!important;
+        }
+        
+        div.fmc-modal-widget.fmc-modal-widget-error > div > span:nth-child(2) > div{
+            width           : 82%;
+        }
+
+    }
+}
+
+    @import "lock/lock-view";

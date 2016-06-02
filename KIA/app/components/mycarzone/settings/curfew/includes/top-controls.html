@@ -1,0 +1,29 @@
+<div class="container-fluid" ng-class="{'disableCustom':rootsubmit||vm.disableButton}">		
+	<div class="row on-off-row">
+		<div class="col-xs-6 label-column">
+			<label>CURFEW LIMIT ALERT</label>
+		</div>
+		<div class="col-xs-6 col-sm-pull-6">
+			<switch-button is-on="vm.isOn" class="noselect" ng-class="{'disableCustom':loading}"></switch-button>
+		</div>			
+	</div>
+	 <p class="pending-msg error col-sm-12 col-xs-12 hidden-xs" ng-show="requestError&&!loading">Your previous request did not complete. Your settings have been restored.</p>
+     <p class="pending-msg pending col-sm-12 col-xs-12 hidden-xs" ng-show="loading">Please wait. Changes are being sent to the vehicle.</p>		
+     <div class="row alert-interval-row hidden-xs" ng-class="{'disableCustom':loading||!vm.isOn||!vm.Intervalshow}">
+		<div class="col-xs-6">
+			<label>ALERT INTERVAL</label>
+		</div>
+		<div class="col-xs-6 "> 
+			<uvo-dropdown items="vm.intervals" second-text-key="mobileText" selected-index="vm.currentInterval" class="pull-right noselect" enabled="vm.Intervalshow"></uvo-dropdown>
+		</div>			
+	</div>
+	<p class="pending-msg require-one col-sm-12 col-xs-12 hidden-xs" ng-if="ActiveOn">At least one active alert is required</p>
+	<div class="row alert-interval-row visible-xs" ng-class="{hideContent:!vm.isOn}">
+		<div class="col-xs-6">
+			<label>ALERT INTERVAL</label>
+		</div>
+		<div class="col-xs-6 "> 
+			<uvo-dropdown items="vm.intervals" enabled="vm.Intervalshow" second-text-key="mobileText" selected-index="vm.currentInterval" class="pull-right noselect"></uvo-dropdown>
+		</div>			
+	</div>
+</div>

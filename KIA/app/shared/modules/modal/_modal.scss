@@ -1,0 +1,678 @@
+// bootstrap modal overrides
+.modal {
+
+    // Put modal in middle of view
+    &.vertical-middle {
+        &:before {display: inline-block; vertical-align: middle; content:''; height: 100%; }
+        .modal-dialog { display: inline-block; vertical-align: middle; 
+            @media (max-width:$screen-xs-max) { width:90%; }
+        }
+    }    
+    
+    .modal-content { box-shadow:none; border:none; border-radius:0;
+      .header-close{
+        padding:7px 7px 0 0;
+     }
+
+        .modal-header {border-bottom:0; padding:15px 0 0 0; }
+
+        .modal-body {
+            .success-body {padding:20px 0; }
+            .warning-body {padding-top:23px;
+             @media (max-width:$screen-xs-max) {
+             padding-top:10px;
+             padding-bottom:10px;
+             } 
+        @media (max-width:$screen-xs-max) {
+             padding-top: 10px; padding-bottom: 10px;
+             }
+            } /*background:url('../images/issuesFound.png') no-repeat center; */
+        }
+
+        .modal-footer {border-top:0; }
+
+        .modal-title { font-family:$designk-bold; }
+
+        .button-center {
+            border:0;  margin-top:20px; background:$kia-red;
+            color: white; width: 100%; padding: 10px 0;
+            display: inline-block; font-family: $designk-bold;
+            font-size:12px;                            
+        }
+
+        .confirm-buttons { 
+            div { display:inline-block; width:49%; box-sizing:border-box; font-size:15px; font-family: $designk-bold;
+                padding: 0 8px;
+                span { display:inline-block; padding: 12px 0; width:100%;}
+                &.confirm {  
+                    span { background:$kia-red; color:white; border:1px solid $kia-red;}
+                }
+                &.cancel { 
+                    span { background:white; color:black; border:1px solid black;}
+                }
+            }
+        }
+    }
+}
+
+.show-pin-modal {
+    .modal-dialog { 
+        margin-left:auto; 
+        margin-right:auto; 
+        @media (max-width:$screen-xs-max) {
+            margin-top:30px;
+        }
+    }
+}
+
+/* modal general */
+.modal-enabled {overflow : hidden; }
+
+.modal {
+    //background  : url("../images/kh/img/modal-back-white-01.png") repeat top left;
+    display     : none;
+    position    : fixed;
+    height      : 100%;
+    left        : 0;
+    overflow    : auto;
+    text-align  : center;
+    text-shadow : none;
+    top         : 0;
+    width       : 100%;
+    z-index     : 1035;
+}
+
+.modal.enabled {
+    display : block;
+}
+
+// use when creating modal using non-angular/bootstrap methods
+.modal.dark-bg {
+    background:rgba(0,0,0,0.5);
+    //background : url("../images/kh/img/modal-back-black-01.png") repeat top left;
+}
+/* End of modal general */
+
+/* modal appointment */
+.modal.appointment .content {
+    background     : #2F2F2F;
+    width          : 600px;
+    margin         : 100px auto;
+    vertical-align : middle;
+    padding        : 50px 0;
+    text-align     : center;
+}
+
+.modal.appointment .content .title {
+    color          : #FFFFFF;
+    font-family    : designk-medium;
+    font-size      : 1.8em;
+    margin         : 0 00px 13px;
+    text-transform : uppercase;
+}
+
+.modal.appointment .content .detail {
+    color     : #ABABAB;
+    font-size : 1.3em;
+    margin    : 0 10px 50px;
+}
+
+.modal.appointment .content .action a {
+    border  : 1px solid #FFFFFF;
+    color   : #FFFFFF;
+    display : inline-block;
+    padding : 7px 35px;
+}
+/* End of modal appointment */
+
+/* modal notes_details */
+.modal .content {
+    text-align : left;
+    background : #FFFFFF;
+    width      : 300px;
+    margin     : 100px auto;
+}
+
+.modal.notes_details .content .header {
+    border-bottom  : 4px solid #BC1728;
+    font-size      : 1.2em;
+    padding        : 20px;
+    color          : #000;
+    text-transform : uppercase;
+}
+
+.modal.notes_details .content .header .close{
+    display: block;
+    background: url("../images/kh/img/maintenance/x-1.png") no-repeat;
+    float: right;
+    height: 17px;
+    width: 17px;
+}
+
+.modal.notes_details .content .notes {
+    padding        : 20px;
+}
+
+.modal.notes_details .content .detail {
+    color: #000;
+    padding        : 20px;
+}
+
+.modal.notes_details .content .notes .line {
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+
+.modal.notes_details .content .detail ul { list-style: disc; padding-left: 20px; }
+.modal.notes_details .content .detail ul li { padding: 10px 0; }
+
+.modal.notes_details .content .detail button{
+    margin-top        : 10px;
+    width             : 100%;
+}
+/* End of modal notes_details */
+
+/* modal show-pin */
+.modal.show-pin .content {
+    text-align : left;
+    background : #FFFFFF;
+    width      : 300px;
+    margin     : 100px auto;
+}
+
+.modal.show-pin .content .header {
+    border-bottom  : 4px solid #BC1728;
+    font-size      : 1.2em;
+    padding        : 20px;
+    text-transform : uppercase;
+}
+
+.modal.show-pin .content .detail {
+    padding        : 20px;
+}
+
+.modal.show-pin .content .detail button{
+    margin-top        : 10px;
+    width             : 100%;
+}
+/* End of modal show-pin */
+
+/* modal change-dealer */
+.modal.change-dealer .content {
+    text-align : left;
+    background : #FFFFFF;
+    width      : 320px;
+    margin     : 100px auto;
+}
+
+.modal.change-dealer .content .header {
+    border-bottom  : 4px solid #BC1728;
+    font-size      : 1.4em;
+    padding        : 22px 15px 20px 30px;
+    text-transform : uppercase;
+}
+
+.modal.change-dealer .content .header .close {
+    display    : block;
+    background : url("../images/kh/img/maintenance/x-1.png") no-repeat;
+    float      : right;
+    height     : 17px;
+    width      : 17px;
+}
+
+.modal.change-dealer .content .header .close span {
+    display : none;
+}
+
+.modal.change-dealer .content .detail .action-bar {
+    background : #2F2F2F;
+    color      : #E6E6E6;
+    height     : 62px;
+    padding    : 0 0 0 30px;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-1 {
+    float       : left;
+    font-family : designk-medium;
+    font-size   : 1.05em;
+    margin-top  : 22px;
+    width       : 85px;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-2 {
+    display     : inline-block;
+    padding-top : 13px;
+    border        : none;
+    border-bottom : 1px solid #FFFFFF;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-2 input {
+    background    : #2F2F2F;
+    border        : none;
+    /*border-bottom : 1px solid #FFFFFF;*/
+    color         : #FFFFFF;
+    font-size     : 1.5em;
+    padding       : 1px 7px;
+    margin        : 0px;
+    width         : 60px;
+    height        : auto;
+    outline       : none;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-2 input:focus {
+    outline:none;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-3 {
+    float : right;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-3 button {
+    background : #CC273A url("../images/kh/img/maintenance/arrow-5-right.png") no-repeat center center;
+    border     : none;
+    cursor     : pointer;
+    height     : 62px;
+    width      : 34px;
+}
+
+.modal.change-dealer .content .detail .action-bar .box-3 button span {
+    display : none;
+}
+
+.modal.change-dealer .content .detail .filter {
+    margin         : 0 30px;
+    position       : relative;
+    color          : #444444;
+    font-size      : 1em;
+    text-transform : uppercase;
+}
+
+.modal.change-dealer .content .detail .filter .current {
+    border   : 1px solid #BDBDBD;
+    cursor   : pointer;
+    padding  : 8px 12px;
+    position : relative;
+    display  : block;
+}
+
+.modal.change-dealer .content .detail .filter .current:after {
+    background : url("../images/kh/img/maintenance/arrow-7-down.png") no-repeat center center;
+    content    : "";
+    float      : right;
+    height     : 9px;
+    margin-top : 6px;
+    width      : 11px;
+}
+
+.modal.change-dealer .content .detail .filter .current.active {
+    border-color : #BC1728;
+}
+
+.modal.change-dealer .content .detail .filter .selector {
+    background : #FBFBFB;
+    border     : 1px solid #EEEEEE;
+    box-sizing : border-box;
+    display    : none;
+    margin-top : 5px;
+    position   : absolute;
+    width      : 100%;
+}
+
+.modal.change-dealer .content .detail .filter .selector.expanded {
+    display : block;
+}
+
+.modal.change-dealer .content .detail .filter .selector span {
+    display     : block;
+    cursor      : pointer;
+    line-height : 1em;
+    padding     : 8px 12px;
+}
+
+.modal.change-dealer .content .detail .filter .selector span.selected {
+    color : #BC1728;
+}
+
+.modal.change-dealer .content .detail .filter .selector span:first-child {
+    padding-top : 16px;
+}
+
+.modal.change-dealer .content .detail .filter .selector span:last-child {
+    padding-bottom : 16px;
+}
+
+.modal.change-dealer .content .detail .results {
+    margin : 0 30px;
+}
+
+.modal.change-dealer .content .detail .results li {
+    border-bottom : 1px solid #E6E6E6;
+    /* cursor        : pointer; */
+    font-size     : 0.9em;
+    padding       : 32px 0;
+}
+
+.modal.change-dealer .content .detail .results li:last-child {
+    border : none;
+}
+
+.modal.change-dealer .content .detail .results li .distance {
+    background  : url("../images/kh/img/maintenance/star-1-inactive.png") no-repeat center top;
+    float       : left;
+    font-size   : 0.9em;
+    height      : 20px;
+    margin-top  : 20px;
+    padding-top : 37px;
+    text-align  : center;
+    width       : 45px;
+    cursor      : pointer;
+}
+
+.modal.change-dealer .content .detail .results li.active .distance {
+    background : url("../images/kh/img/maintenance/star-1-active.png") no-repeat center top;
+}
+
+.modal.change-dealer .content .detail .results li.process .distance {
+    background : url("../images/loading_bar.gif") no-repeat center top;
+}
+
+.modal.change-dealer .content .detail .results li .info {
+    margin-left : 80px;
+}
+
+.modal.change-dealer .content .detail .results li .info .name {
+    text-transform : uppercase;
+    font-family    : designk-bold;
+}
+
+.modal.change-dealer .content .detail .results li .info .vehicle {
+    color : #A2A2A2;
+}
+
+.modal.change-dealer .content .detail .ctas {
+    margin-top : 2em;
+    text-align : center;
+}
+
+.modal.change-dealer .content .detail .ctas .cta.secondary {
+    color       : #2F2F2F;
+    font-family : designk-medium;
+    font-size   : 1.1em;
+    margin      : 0 auto 42px;
+    padding     : 12px 40px;
+}
+
+.modal.change-dealer .content .detail .ctas .cta.secondary:after {
+    background-image : none;
+}
+
+.modal.change-dealer .content .detail .ctas .cta.secondary:hover {
+    color : #BC1728;
+}
+
+.modal.change-dealer .content .detail .ctas .cta.tertiary {
+    color          : #BC1728;
+    display        : block;
+    font-size      : 0.9em;
+    padding-bottom : 44px;
+    text-align     : center;
+}
+/* End of modal change-dealer */
+
+/* modal vehicle-delete */
+.modal.vehicle-delete .content {
+    margin          : 190px auto 0;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    width           : 320px;
+    padding         : 40px 40px 20px;
+    text-align      : left;
+}
+
+.modal.vehicle-delete .content .message {
+    background    : url("../images/kh/img/my-vehicles/warning-3.png") no-repeat center 15px;
+    color         : #676666;
+    font-size     : 1.3em;
+    line-height   : 1.5em;
+    margin-bottom : 50px;
+    padding-top   : 95px;
+}
+
+.modal.vehicle-delete .actions button,
+.modal.vehicle-delete .actions .button {
+    border          : 1px solid #CCCCCC;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    color           : #444444;
+    cursor          : pointer;
+    display         : block;
+    font-size       : 1.2em;
+    line-height     : 1em;
+    margin-bottom   : 22px;
+    padding         : 12px;
+    text-align      : center;
+    text-transform  : uppercase;
+    width           : 240px;
+}
+
+.modal.vehicle-delete .actions button.highlighted,
+.modal.vehicle-delete .actions .button.highlighted {
+    border      : none;
+    background  : #C4172C;
+    color       : #FFFFFF;
+    font-family : designk-medium;
+}
+/* End of modal vehicle-delete */
+
+/* modal notification-delete */
+/*.modal.notification-delete .content {
+    margin          : 190px auto 0;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    width           : 320px;
+    padding         : 40px 40px 20px;
+    text-align      : left;
+    border          : 3px solid;
+}
+
+.modal.notification-delete .content .message {
+    font-size     : 1.1em;
+    line-height   : 1.5em;
+    margin-bottom : 20px;
+    text-align    : center;
+    padding       : 0 1em;
+}*/
+
+.modal.notification-delete .actions button,
+.modal.notification-delete .actions .button {
+    border          : 1px solid #CCCCCC;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    color           : #444444;
+    cursor          : pointer;
+    font-size       : 1em;
+    line-height     : 1em;
+    margin-bottom   : 22px;
+    padding         : 9px;
+    text-align      : center;
+    text-transform  : uppercase;
+    display         : inline-block;
+    min-width       : 105px;
+    margin-left     : 10px;
+}
+
+.modal.notification-delete .actions button:first-child,
+.modal.notification-delete .actions .button:first-child {
+    margin-left : 0;
+}
+
+.modal.notification-delete .actions button.highlighted,
+.modal.notification-delete .actions .button.highlighted {
+    border     : none;
+    background : #C4172C;
+    color      : #FFFFFF;
+}
+/* End of modal notification-delete */
+
+/* modal notification-poi-error */
+.modal.notification-poi-error .content {
+    margin          : 190px auto 0;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    width           : 320px;
+    padding         : 40px 40px 20px;
+    text-align      : left;
+}
+
+.modal.notification-poi-error .content .message {
+font-size: 1.1em;
+line-height: 1.5em;
+margin-bottom: 20px;
+text-align: center;
+padding: 0 1em;
+}
+
+.modal.notification-poi-error .actions button,
+.modal.notification-poi-error .actions .button {
+    border          : 1px solid #CCCCCC;
+    background      : #FFFFFF;
+    box-sizing      : border-box;
+    -moz-box-sizing : border-box;
+    color           : #444444;
+    cursor          : pointer;
+    font-size       : 1em;
+    line-height     : 1em;
+    margin-bottom   : 22px;
+    padding         : 9px;
+    text-align      : center;
+    text-transform  : uppercase;
+    display         : inline-block;
+    min-width       : 105px;
+    margin-left     : 10px;
+}
+/* End of modal notification-poi-error */
+
+
+@media (max-width:767px) {
+    /* modal vehicle-delete for xs grid*/
+    .modal.vehicle-delete .content .message {
+        background    : url("../images/kh/img/my-vehicles/warning-3.png") no-repeat center 15px;
+        font-size     : .8em;
+        line-height   : 1em;
+        margin-bottom : 50px;
+        padding       : 85px 0 0 0px;
+    }
+
+    .modal.vehicle-delete .actions button { font-size: .7em; width: 48%;}
+    .modal.vehicle-delete .actions button.highlighted {
+        border: 1px solid #C4172C;
+        width: 48%;
+        float: right;
+    }
+    /* End of modal vehicle-delete for xs grid*/
+
+    /* modal change-dealer for xs grid*/
+    .modal.change-dealer .content {
+        width: 300px;
+    }
+    .modal.change-dealer .content .header {
+        border-bottom: none;
+        font-size: 1em;
+    }
+    .modal.change-dealer .content .detail .action-bar {
+        background: #FFF;
+        color: #A2A2A2;
+        height: 0px;
+        padding: 0 0 0 30px;
+    }
+    .modal.change-dealer .content .detail .action-bar .box-1 {
+        font-size: .8em;
+        margin-top: 8px;
+    }
+    .modal.change-dealer .content .detail .action-bar .box-2 { padding-top: 0px; }
+    .modal.change-dealer .content .detail .action-bar .box-2 input {
+        background: #FFF;
+        color: #444;
+        font-size: 1em;
+    }
+    .modal.change-dealer .content .detail .action-bar .line {
+        border-bottom: 1px solid #A2A2A2;
+        display: inline-block;
+        width: 90%;
+        margin: 20px 0;
+    }
+    /* End of modal change-dealer for xs grid*/
+
+    /* modal appointment for xs grid*/
+    .modal.appointment .content {
+        text-align: left;
+        background: #FFF;
+        width: 300px;
+        margin: 100px auto;
+        border: 1px solid;
+        padding: 20px 0;         
+    }
+
+    .modal.appointment .content .title {
+        color: #000;
+        font-size: 1.1em;
+        padding: 20px;
+        border-bottom: 4px solid #BC1728;
+    }
+
+    .modal.appointment .content .detail {
+        color: #000;
+        font-size: .8em;
+        margin: auto;
+        padding: 20px;
+     }
+
+    .modal.appointment .content .detail button{
+        margin-top: 25px;
+     }
+	//.modal-dialog.modal-sm{margin-top:50%;}
+
+    /* End of modal appointment for xs grid*/
+    
+}
+
+
+@media(min-width:768px){
+    .modal-dialog{
+        margin-top : 200px!important;
+    }
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 627px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+  .modal.vehicle-delete .content {
+       margin-top     : 76px;
+        width         : 90%;
+        padding       : 20px;
+    }
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .modal.vehicle-delete .content {
+       margin-top     : 71px;
+        width         : 90%;
+        padding       : 20px;
+    }
+}

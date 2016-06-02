@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'asterisk';
+    src: url('asterisk-webfont.eot');
+    src: url('asterisk-webfont.eot?#iefix') format('embedded-opentype'),
+         url('asterisk-webfont.woff2') format('woff2'),
+         url('asterisk-webfont.woff') format('woff'),
+         url('asterisk-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

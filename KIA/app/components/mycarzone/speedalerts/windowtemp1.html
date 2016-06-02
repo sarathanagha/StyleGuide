@@ -1,0 +1,19 @@
+<div class="uvo-ib">
+	<div class="uvo-ib-content" ng-controller="speedAlertCont"> 
+		 <div ng-if="!isGen1Plus"> <!-- not gen1plus -->
+			<span style="font-weight:bold;"><!-- ALERT END  -->{{item.endDtTime | utcDate: 'MMM DD, YYYY h:mm:ss a'}}</span>
+			<br/>
+			<span>{{item.endLocation|removeUsa}}</span>
+		</div>
+		<div ng-if="isGen1Plus"> <!-- gen1plus -->
+			<span style="font-weight:bold;">ALERT END {{item.driveEndTime|date:"h:mm a"}}</span>
+			<br/>
+			<span>{{item.endLocation|removeUsa}}</span>
+		</div>
+		<!-- <div>{{vm.map.window.model.address}}</div> -->
+	</div>   
+	<div class="arrow"></div>                                
+	<!-- <div class="uvo-ib-point-down">
+		<img src="images/kh/img/station/point-down.png" alt="X" />
+	</div> -->
+</div>

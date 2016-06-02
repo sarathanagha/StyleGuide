@@ -1,0 +1,62 @@
+@mixin designk-light() {
+	font-family : 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-shadow : 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+@mixin designk-bold() {
+	font-family : 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow : 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+@mixin designk-medium() {
+	font-family : 'designk-medium', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow : 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+@mixin nav-normal() {
+	color            : black;
+	border-color     : black;
+	background-color : transparent;
+}
+
+@mixin nav-selected() {
+	color            : #C4172C;
+	border-color     : #C4172C;
+	background-color : transparent;
+}
+
+@mixin kia-font-red() {
+	color : #C4172C;
+}
+
+@mixin kia-black-button-white-border() {
+	color:white;
+	border:1px solid white;
+	background-color:black;
+	@include designk-medium();
+}
+
+// use this on bootstrap columns that need vertical align middle
+@mixin vmiddle() {
+	display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.vmiddle {
+  @include vmiddle();
+}
+
+@mixin transition-property($val) {
+	-webkit-transition-property: $val;
+    -moz-transition-property: $val;
+    -o-transition-property: $val;
+    transition-property: $val;
+}
+
+@mixin transition-duration($val) {
+	-webkit-transition-duration: $val;
+    -moz-transition-duration: $val;
+    -o-transition-duration: $val;
+    transition-duration: $val;
+}

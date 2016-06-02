@@ -1,0 +1,15 @@
+<script type="text/ng-template" id="idle-modal">
+  <div class="sessionTimerModal"></div>
+  <div class="sessionTimerWrap">
+      <div id="errorMessage">
+          For security reasons, sessions end after 20 minutes of inactivity.
+          Your session will time out in 5 minutes, after which you will have to log in again.
+          <div class="sessionBtnWrap">
+              <div><a class="clickable" id="logMeOut" ng-click="vm.logout()">Log out</a></div>
+              <div><a class="clickable" id="keepAlive" ng-click="vm.keepAlive()" style="font-size:16px">
+                      Keep me signed in!
+              </a></div>
+          </div>
+      </div>
+  </div>
+</script>

@@ -1,0 +1,204 @@
+@import "notesanddetails";
+.inside-validation input{
+    outline:none;
+}
+.maintenance {
+    .noInterval {height: 130px; margin-top: 100px; text-align:center;color:#444; }
+
+    .main-wrapper-content {max-width : 960px; min-width : 0; overflow  : visible; 
+        .content-area {
+            border      : none;
+            height      : auto;
+            max-width   : 9999px;
+            text-shadow : none;
+        }
+    }
+
+    .blade {
+        &.one-column { overflow : visible;}
+        &.two-columns-asymmetric { overflow : hidden;
+            > div {
+                float           : left; 
+                box-sizing      : border-box;
+                -moz-box-sizing : border-box;
+            }
+
+            .col-1 {width: 66.66%; padding-right : 7.33333px; }
+            .col-2 {width : 33.33%; padding-left : 14.66667px; }
+        }
+        &.two-columns-symmetric { overflow:hidden;
+            > div {
+                float           : left;
+                width           : 50%;
+                box-sizing      : border-box;
+                -moz-box-sizing : border-box;
+
+                &:first-child { padding-right:11px; }
+                &:last-child { padding-left:11px;}
+            }
+        }
+        &.three-columns-symmetic { overflow:hidden; 
+            > div {
+                float           : left;
+                width           : 33.33%;
+                box-sizing      : border-box;
+                -moz-box-sizing : border-box;
+                &:first-child { padding-right:14.66667px; }
+                &:last-child { padding-left: 14.66667px; }
+                &:nth-child(2) {
+                    padding-left  : 7.33333px;
+                    padding-right : 7.33333px;
+                }
+            }
+        }
+        &.four-columns-symmetric { overflow:hidden; 
+            > div {
+                float           : left;
+                width           : 25%;
+                box-sizing      : border-box;
+                -moz-box-sizing : border-box;
+
+                &:first-child { padding-right:16.5px; }
+                &:last-child {padding-left:16.5px;}
+                &:nth-child(2) {padding-left  : 5.5px; padding-right : 11px; }
+                &:nth-child(3) {padding-left  : 11px; padding-right : 5.5px; }
+            }
+        }
+    }
+
+    .widget-box {
+
+        @import "diagnostic";
+        @import "currentappointment"; 
+        @import "requestappointment";
+        @import "serviceschedule";
+
+        .notePen{margin:5px; width:20px; height:20px; background: url("../images/maint/icon-black-pen.jpg") no-repeat 0 0; cursor:pointer}
+        .notePen.green{margin:5px; width:20px; height:20px; background: url("../images/maint/icon-green-pen.jpg") no-repeat 0 0; cursor:pointer}
+        label{margin-bottom:15px}
+        input[type="text"]
+        {border:none; background:#444; height: 20px; line-height:25px; color:#FFF; width: 210px;
+         font-size:16px; font-family:'Arial'; box-shadow: inset 2px 2px 2px rgba(0,0,0,.1);
+          padding: 5px 10px; border-radius:3px;
+        }
+        .redNote{color:#FF0000}
+        #confirmMaintCompleted #popWrap {
+            position: relative;
+            left: -300px;
+            top: -150px;
+        }
+        #ui-datepicker-div { width: auto;}
+        .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus,
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            height:19px;
+            width:28.875px;
+            margin:0;
+        }
+        .ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+            width:16px;
+            height:16px;
+        }
+
+        /* Style for MaintenanceTrack progress indicator */
+        hr {
+            height: 0;
+            margin-top: 30px;
+            border: none;
+            border-top: 1px dashed #DDD;
+        }
+
+        .miles-to-service .col-lg-5 {
+            margin-top: 23px;
+        }
+    }
+
+    .maintNote {
+        background: #444; width: 270px; padding-left:20px; padding-right:20px; padding-bottom:10px; left:295px; position:absolute; z-index:99; display:block;
+        .maintainForm {
+            .input-inside-validation {
+                input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+                    -webkit-box-shadow:0 0 0 50px #444 inset; 
+                    -webkit-text-fill-color: #FFF;
+                }
+            }
+            
+            #saveBtn > span{color:white; }
+            > span { width:30px; display:inline-block; text-align:center;}
+            textarea { font-family:monospace; font-weight:normal; font-size:16px; }
+        }
+        hr { margin-top: 0px; margin-bottom:20px;} 
+    } /* end .maintenance */
+}
+
+/* End of Style for MaintenanceTrack progress indicator */
+
+.overview.K900 .main-wrapper-content .content-area .widget-box.maintenance { 
+    .next-service { padding-bottom : 1px; margin-top     : 70px;
+        label {font-size  : 1em; margin-top : 15px; color      : #888888; }
+        .amount {font-size   : 3.6em; text-shadow : none; }
+    }
+    .diagnostic {text-align  : left; padding-top : 10px; 
+        .w-img {display  : inline-block; width : 35%; text-align : center;
+            img {width  : 35px; display : inline-block; margin-top : 15px; }
+        }
+        .message {
+            display        : inline-block;
+            width          : 60%;
+            vertical-align : top;
+            margin-top     : 15px;
+        }
+    }
+}
+
+@media (max-width:$screen-xs-max) {
+    .maintenance {
+
+        .widget-box { margin-bottom: 0px;   
+            .title {font-size:15px; color:#444;}      
+            .content { margin-top: 10px; }
+            &.border { border: none; }
+        }
+
+        .oil-change-schedule {
+            .small-text {
+                text-align: left;
+                font-size: 12px;
+                margin: 20px 0;
+                width: 47%;
+                float: left;
+            }
+            .miles {
+                font-size: 26px;
+                text-align: right;
+                color: black;
+                margin: 10px 0;
+                width: 50%;
+                float: right;
+            } 
+            .my-button{
+                  width: 100%;
+                  text-align: center;
+                  clear: both;
+                  background: $kia-red;
+                  padding: 13px 0px;
+                  color: white;
+                  font-family: $designk-bold;
+                  font-size: 15px;
+                  cursor:pointer;
+                  margin-bottom:13px;
+            }           
+        }
+
+        .oil-change-intervals {
+            margin-left: 0px;
+            margin-top: 15px;
+            width: 53%;
+        }
+
+        .btn-default { width: 100%; }
+        .change-dealer-xs { color: #C4172C; text-align: right; margin: 12px 0; cursor:pointer;float:right }
+
+        a.cta.primary {width: 100%; }
+        a.cta.primary span {margin-right: 3em; }
+    }
+}

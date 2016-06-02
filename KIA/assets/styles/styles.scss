@@ -1,0 +1,246 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+//$fa-font-path:   "../bower_components/fontawesome/fonts";
+// original bower:scss
+//@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+//@import "fontawesome/scss/font-awesome.scss";
+// end original endbower
+@import "bootstrap/bootstrap-custom";
+@import "css3-mixins";
+@import "uvo-variables";
+@import "uvo-mixins";
+@import "fonts";
+@import "global";
+//@import "_scaffold.scss";
+
+@import "base-rf"; // Please trim into proper modules
+@import "kh-app-styles";
+@import "layout/layout";
+@import "gmap";
+@import "iscroll";
+@import "buttons";
+@import "dropdowns";
+@import "daypickerlist";
+@import "timeselector";
+@import "../../app/components/mycarzone/settings/mcz-settings";
+@import "../../app/components/settings/settings";
+@import "../../app/components/vehicles/vehicles";
+@import "../../app/components/overview/overview";
+@import "../../app/components/awards/awards";
+@import "../../app/components/drivingactivity/drivingactivity";
+@import "../../app/components/mycarzone/mycarzone";
+@import "../../app/components/mycarzone/geofencealerts/geofence";
+@import "../../app/components/maintenance/styles/maintenance";
+@import "../../app/components/poi/styles/poi";
+@import "../../app/components/remote/remote";
+@import "../../app/components/remote/climate/climate";
+@import "../../app/components/tripinfo/tripinfo";
+@import "../../app/shared/modules/dealer/dealer-modal";
+@import "../../app/shared/modules/idle/idle-modal";
+@import "../../app/shared/modules/modal/modal";
+@import "../../app/components/connect/connect";
+@import "../../app/components/battery/battery";
+@import "../../app/components/chargingstations/chargingStation";
+@import "../../app/components/climate/climate";
+@import "../../app/components/doorstatus/psev-doorstatus";
+@import "../../app/components/findMyCar/findMyCar";
+@import "../../app/components/appointment/appointment";
+
+
+
+// set default font styles from UI-Kit
+// body { font-size:14px; font-family: $designk-medium; color:#444; }
+
+// .secondary-text { font-size:14px; color:#A2A2A2; }
+// .tertiary-text { font-size:12px; color:#A2A2A2; }
+// a, a:visited, a:active { font-size:14px; color:$kia-red; }
+// .label-text { font-size:12px; color:#A2A2A2; }
+//
+// h1 { font-size:26px; font-family: $designk-light; }
+// h2 { font-size:18px; font-family: $designk-medium; }
+// h3 { font-size:16px; font-family: $designk-bold; }
+// h4 { font-size:14px; font-family: $designk-bold; }
+// h5 { font-size:12px; font-family: $designk-bold; }
+
+/////////////////////////////
+
+.main-container {
+  min-height:100%;
+  position:relative;
+
+  @media (min-width: $screen-sm-min) {
+    overflow:hidden;
+  }
+}
+
+// html, body {height:100%;} /* needed for sticky footer */
+//
+//
+// /*a {color:#333;cursor:pointer;}*/
+// /*a:hover, a:focus {color:#333; text-decoration:none;}*/
+// section {z-index: 2;}
+//
+// h2 {
+//     font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//     font-weight:normal; letter-spacing:-1px;
+//     font-size:1.85714286em; /* [26px] */
+//     /* font-size:2.28571429em; /* [32px] */
+// }
+//
+// @media (min-width:992px) { h2 {font-size:3.4285em;} } /* [48px] */
+//
+// h2 strong {
+//     font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// }
+
+// p {font-size:0.92857143em;}  /* [13px] */
+// @media (min-width: 768px) { p {font-size:1em;} }
+//
+// /* Helper classes */
+// .rel { position:relative; }
+// .clear { clear:both; }
+// .fl { float:left; }
+// .fr { float:right; }
+// .z-top { z-index:999; }
+// .top-spacer-20 { margin-top:20px; }
+// .mT15 { margin-top:15px; }
+// .mT25 { margin-top:25px; }
+// .mT30 { margin-top:30px; }
+// .mB15 { margin-bottom:15px; }
+// .mB30 { margin-bottom:30px; }
+// .mL15 { margin-left:15px; }
+// .pR20 { padding-right:20px; }
+// .text-white { color:#fff; }
+// .text-16 { font-size:1.14285714em; } /* [16px] */
+// .text-20 { font-size:1.42857143em; } /* [20px] */
+// .border-wrap { border-color:#fff; border-width:1px 0; border-style:solid; padding:10px 0; }
+// /* [end] helper classes */
+//
+// /* This element needed for sticky footer */
+// #wrap {
+//   min-height:100%;
+//   height:auto !important;
+//   height:100%;
+//   margin: 0 auto -70px; /* Negative indent footer by its height */
+//   padding: 0 0 70px; /* Pad bottom by footer height */
+// }
+//
+// @media (min-width:992px) {
+//     #wrap {
+//         margin:0 auto -45px;
+//         padding:0 0 45px;
+//     }
+// }
+//
+//
+//
+// /* my custom breakpoint */
+// @media (max-width:767px) {
+//
+// }
+//
+// /* start actual KH styles for navigation testing */
+// @media (min-width: 768px) {
+//     .dk-neg15 {
+//         margin-top:-15px;
+//     }
+//     .col-sm-4 {
+//       padding: 0px;
+//     }
+// }
+//
+// @media (min-width: 768px) and (max-width: 991px) {
+//     .dk-neg15 {
+//         margin-top:0px;
+//         margin-bottom:-10px;
+//     }
+// }
+//
+// @media (min-width: 992px) {
+//     .dk-neg15 {
+//         clear:both;
+//     }
+// }
+//
+// .mobile-left-nav li a {
+//     color:#fff;
+//     padding:10px 0 10px 20px;
+// }
+//
+// .current-vehicle {
+//     margin-top:25px;
+//     text-align: center;
+//     border-bottom:1px solid gray;
+// }
+//
+// .desktop-left-nav {
+//     list-style-type: none;
+//     margin:15px 0 0;
+//     padding:0;
+//     font-size:1.28571428em;
+// }
+//
+// .desktop-left-nav li {
+//     margin-bottom:15px;
+// }
+
+/* JJH Start KH like styles for test main content */
+
+.widget-box {
+    /*min-height:233px;*/
+    color:#676666;
+    padding:10px;
+    border:1px solid #e1e1e1;
+    border-top:none;
+    position:relative;
+}
+
+/*
+.widget-box:before {
+    display: block;
+    position: absolute;
+    background-color: #ABABAB;
+    top: 0;
+    content: "";
+    height: 5px;
+    width: 100%;
+    left: -1px;
+    z-index: 99;
+    border-right: 1px solid #ABABAB;
+    border-left: 1px solid #ABABAB;
+}
+
+.widget-box:hover:before {
+    background-color:#C4172C;
+    border-color:#C4172C;
+}
+*/
+
+.widget-box .title-arrow {
+    font-size: 1em;
+    font-family: designk-bold;
+    background-image: url("../images/link-arrow.png");
+    background-repeat: no-repeat;
+    background-position: right 0;
+    color: #888888;
+    text-transform: uppercase;
+}
+
+.widget-content {
+    text-align:center;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.bg-color:hover{
+    color:#c4172c;
+}
+/// status bar for mobile///
+@media(max-width:767px){
+        body.success,body.error {
+        background: none;
+    }
+}

@@ -1,0 +1,116 @@
+<div id="speed_alert" class="mcz">
+	<div class="container col-md-12">
+        <div class="page-header col-xs-12" style="border-bottom:0px;">
+            <div class="mycarzone-title hidden-xs">MY CAR ZONE ALERTS</div>
+                    <!-- <a href="#" class="help">?</a> -->
+                    <div class="mcz-menu" ng-include="'views/components/mycarzone/mcz-navbar-gen1plus.html'"></div>
+                <div class="carzone-alerts">
+                    <!-- <div class="alert-msj col-xs-12 col-sm-4"><strong>{{vm.speedlimit.length}} Speed Alerts </strong>({{vm.speedlimit.length-vm.filtered.length}} filtered)</div> -->
+                    <div class="alert-msj col-xs-12 col-sm-4">{{vm.speedlimit.length|| 0}} Speed Alert(s) Total ({{vm.speedlimit.length-vm.filtered.length}} filtered)</div> 
+                    <div class="alert-menu col-xs-12 col-sm-8">
+                        <div class="actions" style="z-index:999;opacity:1;" ng-if="!vm.Manage">
+                            <span class="button delete-selected" ng-class="{inactive:vm.selectsome}"
+                                ng-click="vm.openConfirmDelete('selected')">DELETE </span>
+                            <span class="button delete-all" ng-click="vm.openConfirmDelete('all')">DELETE ALL</span>
+                            <span class="button active" ng-click="vm.toggleManageMenu();vm.mapshow=false;">DONE</span>
+                        </div>
+                    <div class="manage-buttons actions col-xs-12 col-sm-12" ng-show="vm.speedlimit.length > 0 && !vm.mapshow">
+                        <span class="dropdown button col-xs-5 col-sm-3 col-sm-push-4 ng-binding" sort-dropdown>{{vm.sortOptionValue}}</span>
+                        <span class="button col-xs-5 col-sm-3 col-sm-push-4" id="manage_button" ng-click="vm.Manageit()">MANAGE</span>
+                        <ul class="dropdown-sort-menu" ng-show="vm.showSort">
+                            <li ng-click="vm.sortPoi(0)">LAST 30 DAYS</li>
+                            <li ng-click="vm.sortPoi(1)">LAST 7 DAYS</li>
+                            <li ng-click="vm.sortPoi(2)">LAST 5 DAYS</li>
+                            <li ng-click="vm.sortPoi(3)">LAST 3 DAYS</li>
+                            <li ng-click="vm.sortPoi(4)">TODAY</li>
+                        </ul>
+                        
+                    </div>
+                    </div>
+                </div>
+               
+				<div class="no-alerts" ng-show="vm.errorfound || vm.speedlimit.length == 0"> You have no alerts at this time.</div>
+        </div>
+        <div class="alerts col-xs-12 col-sm-12">
+        <div class="item speed" id="item-speed" ng-repeat="item in vm.filtered= (vm.speedlimit | dropdownFilter:vm.sortOptionValue)" style="float:left; width:98%;" ng-if="vm.filtering[$index]">
+                <div class="item-wrapper">
+                    <div class="option error hide">
+                        <span>NOT AVAILABLE</span>
+                    </div>
+                    <!-- <div ng-hide="vm.mapshow" class="option map" ng-class="{'active':item.show}" ng-init="vm.select=true;">
+                        <span ng-hide="item.show" ng-click="vm.showMap($index,true);vm.select=!vm.select;">View Map</span>
+                        <span ng-show="item.show" ng-click="vm.showMap($index,false);vm.select=!vm.select;">Hide Map</span>
+                    </div> -->
+                   
+						<div ng-hide="vm.mapshow" class="option map" ng-class="{'active':item.show}" ng-init="vm.select=true;" ng-click="vm.showMap($index,vm.select,item);vm.select=!vm.select;  ">
+                       <!-- <span ng-hide="item.show">View Map</span>
+                        <span ng-show="item.show">Hide Map</span>-->
+                         <span ng-if=" (vm.toggleObject.item != $index)&&(vm.toggleObject['selected'+$index]==false)" class="col-xs-12 col-sm-12">View Map</span>
+                    <span ng-if=" (vm.toggleObject.item == $index)&&(vm.toggleObject['selected'+$index]==true)" class="col-xs-12 col-sm-12">Hide Map</span>
+                    </div>
+                    <div ng-show="vm.mapshow" ng-model="item.checked" class="option select" ng-click="vm.getSelect($index,item)" ng-class="{'selected':item.checked === true}">
+                        <span>Select</span>
+                    </div>
+                    <div class="content col-xs-10 col-sm-12 col-xs-push-1">
+                        <div class="indicator col-xs-12 col-sm-4 col-sm-pull-2">
+                            <strong>{{item.speed - item.alertSpeed | number}}</strong>
+                                <sub>MPH <br class="hidden-xs"> OVER LIMIT</sub> 
+                        </div>
+                        <div class="row info col-xs-12 col-sm-6 col-sm-pull-2"><strong>{{item.alertDateTime | date :'h:mma on MMM d, y'}}</strong></div>
+                                <!-- {{item.time | date: 'h:mma'}} -->
+                        <div class="row link col-xs-12 col-sm-6 col-sm-pull-2">Set Limit  : {{item.alertSpeed}} mph.<br class="visible-xs">Max Speed : {{item.speed}} mph.</div>
+                    </div>
+                </div>
+
+             <!--map--> 
+            <div style="float:left;width:100%;">
+                <div  ng-if=" (vm.toggleObject.item == $index)&&(vm.toggleObject['selected'+$index]==true)" ng-init="vm.map.window.show=false;" class="md-map" ng-class="{collapsed:vm.showPoiList}" style="width:100%;" ><!--item.show   ng-if="vm.itemIndex == $index"-->
+                    <div style="width:100%;height:400px;position:relative;">
+                      
+                        <ui-gmap-google-map events="vm.map.mapEvents" control="vm.map.control" center="vm.map.center" pan="true" zoom="vm.map.zoom" options="vm.map.options">
+                           <!--  <ui-gmap-window show="vm.map.window.show" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.map.window.closeClick()">
+                                <div class="uvo-ib">                                
+                                    <div class="uvo-ib-content">                                     
+                                        <div class="uvo-ib-title">Set Limit{{vm.map.window.model.alertSpeed}}</div>
+                                        <div>Max Speed{{vm.map.window.model.speed}}</div>
+                                        <div>{{vm.map.window.model.address}}</div>
+                                    </div>                                  
+                                    <div class="uvo-ib-point-down">
+                                        <img src="images/kh/img/station/point-down.png" alt="X" />
+                                    </div>
+                                </div>
+                            </ui-gmap-window> -->
+                           
+                           
+                            <ui-gmap-marker click="vm.selectCurrentPoi($index,true,item,item1,true)" ng-repeat="item1 in vm.map.markers" control="vm.map.markerControl" coords="item1" idKey="$index" icon="{url:vm.getIcon($index,true)}" options="{labelContent:item1.label,labelClass:'markerlabel',labelStyle:vm.getColor($index)}">
+                                    <ui-gmap-window templateUrl="vm.template" templateParameter="vm.map.window.model" show="vm.map.window.showid == $index" coords="vm.map.window.model" options="vm.map.window.options" control="vm.map.window.control" closeclick="vm.map.window.closeClick()">
+                            </ui-gmap-window>
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map> 
+                    </div>
+                </div>  
+            </div>
+            <!--map-->
+            <div class="img-container"></div>       
+            </div>
+        </div>
+        
+        <div class="actions load-more">
+            <a class="button clickable" ng-show="vm.filtered.length>2&&!vm.filtering[vm.filtered.length-1]" ng-click="vm.loadmore()">Load More
+            </a>
+        </div>
+    </div>
+</div>
+    <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal notification-delete enabled" style="height:500px;">
+    <div class="content">
+        <div class="message">Are you sure you want to<br>delete <span ng-show="vm.selectDeleteItems.length>=1">{{vm.selectDeleteItems.length}} </span>alert<span ng-if="vm.selectDeleteItems.length>1">s</span>?</div> 
+        
+        <div class="actions">
+            <button class="highlighted"><span ng-click="vm.confirm()">CONFIRM</span></button>
+            <button class="cancel" ng-click="vm.cancel()"><span>CANCEL</span></button>
+        </div>
+    </div>
+</div>
+</script>
+<!-- <div class="message">Are you sure you want to<br>delete <span ng-show="vm.selectDelete.length>=1">{{vm.selectDelete.length}} </span><span ng-show="vm.selectDelete.length<1">all </span>alert<span ng-if="vm.selectDelete.length>1">s</span>?</div> -->

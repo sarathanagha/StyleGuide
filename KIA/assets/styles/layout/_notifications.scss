@@ -1,0 +1,50 @@
+#mobile-notifications {
+  position:absolute;
+  width:100%;
+  background:white;
+  z-index:1800;
+
+  .info-notifications {
+    color: #999999;
+    font-family: $designk-medium;
+    font-size: 12pt;
+    text-align: left;
+    vertical-align: middle;
+    margin-top: 50px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;  
+  }
+
+  .item {
+    height: 68px;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    margin:0 20px;
+    color:#585858;
+    cursor: pointer;
+    position:relative;
+
+    .right-arrow {
+      background: white url("../images/kh/img/my-vehicles/arrow-1-right.png") no-repeat center center;
+      height: 67px;
+      position: absolute;
+      right: 0px;
+      top: 0;
+      width: 18px;
+      z-index: 1;
+    }
+
+    .title {
+      @include designk-bold;
+      font-size: 14px;
+      padding-top:15px;
+    }
+
+    .info {
+      font-family: $designk-medium;
+      font-size: 11px;
+      padding-top:8px;
+    }
+  }
+}

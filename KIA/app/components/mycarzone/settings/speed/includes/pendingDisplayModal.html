@@ -1,0 +1,15 @@
+<div class="modal notification-delete enabled  visible-xs pendingDialog" style="height:500px!important;margin: 10% 0%;">
+        <div class="content pending-list" style="text-align: left;padding:20px 10px 0 10px;line-height: 25px;box-sizing: initial;border:none;;width:auto;margin: 10px 10px;">
+            <h5 class="message" style="font-size: 22px;padding-bottom: 10px">CHANGES PENDING</h5>
+                <ul style="list-style: initial;padding-left: 20px;">
+                    <li ng-show="mobileSpeed">Speed Value Changed</li>
+                    <li ng-show="mobileInterval">interval Value Changed</li>
+                    <li ng-show="!Activestatus&&isOn">Turn speed alert On </li>
+                    <li ng-show="Activestatus&&!isOn">Turn speed alert Off </li>
+                </ul>
+            <div class="actions modal-footer" style="padding: 20px 0px;">
+                <button  class="cancel" ng-click="cancelPending()" style="color:black; background-color: white ; border: 1px solid black; font-weight: bold; margin-left:auto;width:48%;padding:12px 0px;font-size: 13px;"><span>CANCEL PENDING</span></button>
+                <button class="highlighted delete all"  ng-click="closePending()" style="color: white;background-color: #BC1728;border: 1px solid #BC1728;font-weight: bold;margin-left:auto;width:48%;padding:12px 0px;"><span>CLOSE</span></button>
+            </div>
+        </div>
+    </div>

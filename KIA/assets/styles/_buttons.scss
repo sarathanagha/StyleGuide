@@ -1,0 +1,47 @@
+// Used in My Car Zone/ Remote to toggle ON/OFF
+// supports switchButtonDirective
+.switch-button {
+	border: 1px solid #999;
+	@include border-radius(14px);	  
+	cursor: pointer;	  
+	font-family: $designk-bold;
+	font-size: 12px;	  	  
+	text-align: center;
+	width: 100px;
+	height: 28px;
+	position: relative;	  
+
+	span { line-height:28px; }
+
+	&.off:before, &.on:after { content:"";  display:inline-block; width:21px; height:20px;
+		vertical-align: middle; position: absolute; top: 3px;
+	}
+	&.off:before { left:4px; background: url("../images/kh/img/remote/switch-sprite.png") no-repeat -34px top; }
+	&.on:after { right:4px; background: url("../images/kh/img/remote/switch-sprite.png") no-repeat left top; }
+	&.disabled { color: #767676; cursor: default;
+		&.off:before, &.on:after {
+			background: url("../images/kh/img/remote/switch-sprite.png") no-repeat -104px top; 			
+		}
+	}
+
+	// mobile styles
+	@media (max-width:$screen-xs-max) {
+		width: 63px;
+		&.off { text-align:right; 
+			span { display:inline-block; padding-right:12px; }
+		}
+		&.on { text-align:left; 
+			span { display:inline-block; padding-left:12px; }
+		}
+	}
+}
+
+// used to disable text selection on buttons
+.noselect {
+    -webkit-touch-callout: none;
+    //-webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

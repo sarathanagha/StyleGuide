@@ -1,0 +1,35 @@
+/************************
+* Headings and Text
+*/
+/*
+h1 { font-family: $designk-light; font-size:26px; }
+h2 { font-family: $designk-medium; font-size:18px; }
+h3 { font-family: $designk-bold; font-size:16px; }
+h4 { font-family: $designk-bold; font-size:14px; }
+h5 { font-family: $designk-bold; font-size:12px; }
+
+body { font-family: $designk-medium; font-size:14px; color:$kia-gray-dark; }
+
+@mixin secondary-text() { font-family: $designk-medium; font-size:14px; color: $kia-gray-light; }
+@mixin tertiary-text() { font-family: $designk-medium; font-size:12px; color:$kia-gray-light; }
+@mixin default-link() { font-family: $designk-medium; font-size:14px; color:$kia-red; }
+@mixin label() { font-family: $designk-medium; font-size:12px; color:$kia-gray-light; }
+
+.secondary-text { @include secondary-text(); }
+.tertiary-text { @include tertiary-text(); }
+.default-link { @include default-link(); }
+.label { @include label(); }
+*/
+/*****************************
+* Buttons
+*/
+/*
+.button { cursor:pointer; font-family:$designk-bold; font-size:12px; height:45px; 
+	      line-height:45px; box-sizing:border-box; border:1px solid $kia-gray-dark; 
+	      color:$kia-gray-dark; background-color:white;
+
+	&.red { color:white; background-color:$kia-red; }
+	&.on-click { color:$kia-red; border-color: $kia-gray-dark; }
+	&.disabled { cursor:default; color:$kia-gray-light; border-color:$kia-gray-light;}
+}
+*/

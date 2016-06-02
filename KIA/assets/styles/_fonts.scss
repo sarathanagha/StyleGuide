@@ -1,0 +1,144 @@
+@font-face {
+    font-family : 'designk-bold';
+    src         : url("../fonts/designkb-webfont.eot");
+    src         : url("../fonts/designkb-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/designkb-webfont.woff") format("woff"), url("../fonts/designkb-webfont.ttf") format("truetype");
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'designk-light';
+    src         : url("../fonts/designkl-webfont.eot");
+    src         : url("../fonts/designkl-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/designkl-webfont.woff") format("woff"), url("../fonts/designkl-webfont.ttf") format("truetype");
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'designk-medium';
+    src         : url("../fonts/designkm-webfont.eot");
+    src         : url("../fonts/designkm-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/designkm-webfont.woff") format("woff"), url("../fonts/designkm-webfont.ttf") format("truetype");
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family: 'TitilliumText22LThin';
+    src: url('TitilliumText22L001-webfont.eot');
+    src: url('TitilliumText22L001-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L001-webfont.woff') format('woff'),
+         url('TitilliumText22L001-webfont.ttf') format('truetype'),
+         url('TitilliumText22L001-webfont.svg#TitilliumText22LThin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LLight';
+    src: url('TitilliumText22L002-webfont.eot');
+    src: url('TitilliumText22L002-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L002-webfont.woff') format('woff'),
+         url('TitilliumText22L002-webfont.ttf') format('truetype'),
+         url('TitilliumText22L002-webfont.svg#TitilliumText22LLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LRegular';
+    src: url('TitilliumText22L003-webfont.eot');
+    src: url('TitilliumText22L003-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L003-webfont.woff') format('woff'),
+         url('TitilliumText22L003-webfont.ttf') format('truetype'),
+         url('TitilliumText22L003-webfont.svg#TitilliumText22LRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LMedium';
+    src: url('TitilliumText22L004-webfont.eot');
+    src: url('TitilliumText22L004-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L004-webfont.woff') format('woff'),
+         url('TitilliumText22L004-webfont.ttf') format('truetype'),
+         url('TitilliumText22L004-webfont.svg#TitilliumText22LMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LBold';
+    src: url('TitilliumText22L005-webfont.eot');
+    src: url('TitilliumText22L005-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L005-webfont.woff') format('woff'),
+         url('TitilliumText22L005-webfont.ttf') format('truetype'),
+         url('TitilliumText22L005-webfont.svg#TitilliumText22LBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LXBold';
+    src: url('TitilliumText22L006-webfont.eot');
+    src: url('TitilliumText22L006-webfont.eot?#iefix') format('embedded-opentype'),
+         url('TitilliumText22L006-webfont.woff') format('woff'),
+         url('TitilliumText22L006-webfont.ttf') format('truetype'),
+         url('TitilliumText22L006-webfont.svg#TitilliumText22LXBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.kia-font-bold {
+    font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    //text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.kia-font-light {
+    font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    //text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.kia-font-medium {
+    font-family: 'designk-medium', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    //text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.kia-font-list {
+	font-family: 'designk-list', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    //text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.kia-font-cta {
+    font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+
+@mixin kia-font-bold() {
+    font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+@mixin kia-font-light() {
+    font-family: 'designk-light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+@mixin kia-font-medium(){
+    font-family: 'designk-medium', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+@mixin kia-font-list(){
+    font-family: 'designk-list', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+@mixin kia-font-cta() {
+    font-family: 'designk-bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

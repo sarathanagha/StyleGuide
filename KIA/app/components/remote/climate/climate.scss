@@ -1,0 +1,1514 @@
+a.clickable {
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+}
+.pendingitem{
+    position: absolute;
+    width: 100%;
+    font-size: 10px;
+    
+}
+
+#climate-view{
+
+.disabled{
+    pointer-events:none;
+    opacity: 0.5;
+}
+
+        max-width          : 730px;
+
+    label {
+        font-weight        : normal;}
+     
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left       : 0; 
+        padding-right      : 0;
+    }
+    .page-header {
+       margin              : 0px 0px 30px 0px;
+       border-bottom       : 0px;
+    }
+
+    .page-header ul {
+        height             : 43px;
+        border-bottom      : 1px solid #E1E1E1;
+    }
+
+    .page-header ul li {
+        float              : left;
+        text-transform     : uppercase;
+    }
+    canvas{
+        float              : none;
+        margin-top         : 20px;
+        margin-left        : 15px;
+    }
+    .page-header ul li a {
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
+        background         : #F6F6F6;
+        border             : 1px solid #E1E1E1;
+        border-left        : none;
+        display            : block;
+        color              : #2F2F2F;
+        height             : 44px;
+        line-height        : 1em;
+        padding            : 15px 20px 0 20px;
+        text-align         : center;
+    }
+
+    .page-header ul li a.status-error {
+    	background  : #F6F6F6 url("../images/kh/img/my-vehicles/warning-2.png") no-repeat left center;
+    	background-position: 5px;
+    	background-size    : 12px;
+    }
+
+    .page-header ul li a.active,
+    .page-header ul li a:hover {
+        background         : #BC1728;
+        border-color       : #BC1728;
+        color              : white;
+        font-family        : designk-bold;
+    }
+
+    .page-header ul li:first-child a {
+        border-left       : 1px solid #E1E1E1;
+    }
+
+    .page-header ul li a.disabled,
+    .page-header ul li a.disabled:hover {
+    	color             :#C2C2C2;
+    	background        :#F6F6F6;
+    	border-color      :#E1E1E1;
+    	font-family       :designk-medium;
+    	cursor            :default;
+    }
+
+    .page-header ul li a.disabled.active,
+    .page-header ul li a.disabled.active:hover {
+    	background        : #777777;
+    }
+    .page-header.disabled ul li a.active{
+          background		: #777777;
+          border-color      : #777777;
+    }
+    .remote-content, .schedule-content {
+        color             : #999999;
+        border-color      : #999999;
+        background-color  : white;
+    }
+
+    .remote-content {
+        overflow          : hidden;
+        border            : 1px solid #E1E1E1;
+        height            : 467px;
+    }
+
+    .climate-wrap {
+        border-right      : 1px solid #E1E1E1;
+        height            : 100%;
+        width             : 230px;
+        float             : left;
+    }
+    .remote-content .engine {
+        margin-right      : 19px;
+        width             : 490px;
+        position          : relative;
+        float             : left;
+        box-sizing        : border-box;
+    }
+    .remote-content .disabled {
+    pointer-events:none;
+    opacity: 1;
+	}
+    .container{
+        width             :730px!important;
+        padding-right     : 0px;
+        padding-left      : 0px;
+    }
+
+    .container .schedule-tap .toggle-up {
+        position          : relative;
+        border            : 1px solid #e6e6e6;
+        margin-top        : 16px;
+        height            : 58px;
+    }
+    .container .schedule-tap .toggle-up.open .toggle-section {
+        position          : relative;
+        overflow          : hidden;
+        margin            : 0 16px 5px 16px;
+      /*  border-bottom  : 1px solid #c4c4c4;*/
+    }
+    .container .schedule-tap .toggle-up.open .btn {
+        padding           : 8px 24px 0 0px;
+        float             : left;
+    }
+
+    .container .schedule-tap .toggle-up.open .btn .disabled {
+        cursor            : default;
+    }
+    .container .schedule-tap .toggle-up.open .btn .on {
+        cursor            : pointer;
+        background-image  : url("../images/schedule/btn-green.jpg");
+        background-repeat : no-repeat;
+        width             : 80px;
+        height            : 40px;
+    }
+    .container .schedule-tap .toggle-up.open .btn .off {
+        cursor            : pointer;
+        background-image  :  url("../images/schedule/btn-gray.jpg");
+        background-repeat : no-repeat;
+        width             : 80px;
+        height            : 40px;
+    }
+    .container .schedule-tap .toggle-up .line-vert01 {
+        float             : left;
+        border-right      : 2px solid #e6e6e6;
+        height            : 26px;
+        margin            : 15px -7px 0 -6px;
+    }
+    .container .schedule-tap .toggle-up.open .show-schedule {
+        display: block;
+        border-top: 1px solid #c4c4c4;
+        margin-top: -5px;
+    }
+    .container .schedule-tap .toggle-up .txt-set {
+        font-size: 12px;
+        color: #444444;
+        margin: 60px 0 0 30px;
+    }
+    .ui-dragable{
+    position: absolute;
+    width: 77px;
+    height: 67px;
+   /*  left: 13.92366px;
+    top: 48.759348px; */
+    top:215px;
+    left:0px;
+    background: white;
+    background-image: url(../images/climate/slider-btn.png);
+    background-position: -6px -1px;
+    transform: rotate(45deg);
+    background-repeat: no-repeat;
+    }
+    #red{
+            height: 6px;
+        width: 350px;
+        margin: 24px;
+        left: 38px;
+        border: 1px solid;
+        position:relative;
+            background: #0088cc;
+
+    }
+    .ui-slider-range {
+        position: absolute;
+        z-index: 1;
+        font-size: 0.7em;
+        display: block;
+        border: 0;
+        background-position: 0 0;
+        background-color: #bb0000;
+    }
+     .ui-slider-handle {
+       width:50px;
+       height: 50px;
+       z-index:1;
+       border:none!important;
+       margin-left:-1em;
+    }
+    .container .schedule-tap .toggle-up .txt01 {
+        font-size         : 15px;
+        color             : #888888;
+        float             : left;
+        margin            : 17px 20px 0 14px;
+    }
+    .container .schedule-tap .toggle-up .line-vert01 {
+        float             : left;
+        border-right      : 2px solid #e6e6e6;
+        height            : 26px;
+        margin            : 15px -7px 0 -6px;
+    }
+    .container .schedule-tap .toggle-up .txt02 {
+        font-size         : 15px;
+        color             : #888888;
+        float             : left;
+        margin            : 18px 27px 0 14px;
+    }
+    .container .schedule-tap .toggle-up .txt02 span {
+        color             : #444444;
+    }
+    .container .schedule-tap .toggle-up .txt03 {
+        font-size         : 13px;
+        color             : #888888; 
+        float             : left;
+        margin            : 18px 75px 0 16px;
+    }
+    .container .schedule-tap .toggle-up .arrow-down.pos06 {
+        position          : absolute;
+        left              : 578px;
+        top               : -5px;
+        cursor            : pointer;
+
+    }
+    .container .schedule-tap .toggle-up .arrow-down {
+        float             : left;
+        margin            : 23px 0 0 87px;
+    }
+    .container .schedule-tap .toggle-up .arrow-down.pos06 .down {
+        background-image  : url("../images/kh/img/schedule/arrow-down.jpg");
+        background-repeat : no-repeat;
+        width             : 40px;
+        height            : 40px;
+    }
+    .container .schedule-tap .toggle-up.open .hide-schedule {
+        display           : none;
+    }
+    .remote-content .engine .power {
+        float             : left;
+        width             : 100%;
+    }
+
+.remote-content .pending-list, .remote.engine-climate .remote-content .retry-list {
+    position: absolute;
+    width: 113px;
+    text-align: left;
+    color: #5B8430;
+    font-size: 1.1em!important;
+    top: 80px;
+    right: 2px;
+}
+.remote-content .pending-list h5, .remote.engine-climate .remote-content .retry-list h5 {
+    font-weight: bold;
+}
+.remote-content .pending-list ul, .remote.engine-climate .remote-content .retry-list ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left : 0px;
+}
+    .mL40 {
+        margin-left       : 40px;
+    }
+    .switch {
+        border            : 1px solid #999999;
+        border-radius     : 14px;
+        cursor            : pointer;
+        float             : left;
+        font-family       : designk-bold;
+        font-size         : 0.9em;
+        margin-top        : 6px;
+    }
+
+    .switch.off {
+        padding           : 3px 35px 3px 3px;
+    }
+    .switch.on {
+        padding           : 3px 3px 3px 41px;
+    }
+    .engine-img {
+        background        : url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px 0px;
+        width             : 104px;
+        height            : 69px;
+        margin            : 7px auto;
+        padding-bottom    : 5px; 
+        }
+    .engine-img.active {
+        background-position : 0px 0px;
+    }
+    .engine-img.active.disabled {
+        background        : url("../images/kh/img/remote/remote-sprite.png") no-repeat -140px 0px; 
+     }
+    .switch.off:before {
+        background        : url("../images/kh/img/remote/switch-sprite.png") no-repeat -35px top;
+        content           : "";
+        display           : inline-block;
+        height            : 20px;
+        margin-right      : 17px;
+        margin-top        : -2px;
+        vertical-align    : middle;
+        width             : 21px;
+    }
+    .switch.on:after {
+        background        :  url("../images/kh/img/remote/switch-sprite.png") no-repeat left top;
+        content           : "";
+        display           : inline-block;
+        height            : 20px;
+        margin-left       : 16px;
+        margin-top        : -2px;
+        vertical-align    : middle;
+        width             : 21px;
+    }
+    .switch.disabled {
+        cursor            : default;
+    }
+     .switch.off.disabled:before {
+        background        : url("../images/kh/img/remote/switch-sprite.png") no-repeat -105px top;
+    }
+    .switch.on.disabled:after {
+        background        : url("../images/kh/img/remote/switch-sprite.png") no-repeat -105px top;
+    }
+
+    .remote-content .temperature {
+        width             : 185px;
+        padding           : 0 5px;
+        position          : absolute;
+        margin-top        : 25px;
+        box-sizing        : border-box;
+        float             : left; 
+    }
+
+    .remote-content .temperature .temp {
+        display           : block;
+        width             : 50%;
+        float             : right;
+        text-align        : center;
+        font-size         : 2em;
+        text-shadow       : none;
+        color             : #676666;
+        padding           : 3px 0 5px;
+    }
+    .remote-content .temperature .temp label {
+        display           : block;
+        font-size         : 13px;
+        margin-top        : 2px;
+        color             : #999999;
+    }
+    .remote-content .temperature .temp sup {
+        font-size         : 25px;
+        vertical-align    : bottom;
+        display           : inline;
+        color             : #999999;
+    }
+    .kh-button.vehicle-refresh {
+        cursor            : pointer;
+        position          : absolute;
+        left              : 185px;
+        line-height       : 1.2;
+        padding           : 6px;
+        width             : 110px;
+        height            : 28px;
+    }
+        
+    .kh-button {
+        float             : right;
+        margin            : 25px 35px 0 0;
+        width             : 150px;
+        padding           : 10px 12px;
+        display           : inline-block;
+        position          : relative;
+        cursor            : pointer;
+    }
+
+    .kh-button.vehicle-refresh {
+        background-color  : #7BB609;
+        color             : white;
+        z-index           : 1;
+    }
+    .kh-button {
+        font-family       : designk-bold;
+        text-transform    : uppercase;
+        
+    }
+    
+    .remote-content .engine .upper-right {
+        position          : relative;
+        top               : 0;
+        right             : 0;
+    }
+    .kh-button-submit.disabled:after {
+        background-color  : #C2C2C2;
+    }
+    .kh-button-submit.disabled {
+        background-color  : #C2C2C2;
+        color             : white;
+        cursor            : default;
+    }
+    .kh-button-submit {
+    background-color      : #444444;
+    color                 : white;
+    cursor                : pointer;
+    }
+    .container .schedule-tap .toggle-up .arrow-down.pos06 .up {
+        background-image  : url("../images/kh/img/schedule/arrow-up.jpg");
+        background-repeat : no-repeat;
+        width             : 40px;
+        height            : 40px;
+    }
+    .kh-button.vehicle-refresh:after {
+        background-color  : #557E05;
+    }
+    .kh-button-error:after {
+        background-color  : #FF4200!important;
+    }
+    .kh-button:after {
+        background        : #BC1728 url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+        content           : ' ';
+        text-align        : center;
+        padding           : 20px 15px;
+        position          : absolute;
+        left              : 100%;
+        top               : 0;
+        bottom            : 0;
+        font-size         : 1.5em;
+    }
+    .kh-button-pending:after {
+        background        : white url('../images/loading_bar.gif') no-repeat center;
+        background-size   : 60%;
+        border-top        : 1px solid #888888;
+        border-right      : 1px solid #888888;
+        border-bottom     : 1px solid #888888;
+        top               : -1px;
+        bottom            : -1px;
+        padding-right     : 17px;
+        padding-left      : 17px;
+    }
+
+    .kh-button-submit.disabled {
+        background-color  : #C2C2C2;
+        color             : white;
+        cursor            : default;
+    }
+    .kh-button-pending {
+        background-color: white;
+        color: #888888;
+        border: 1px solid #888888;
+        padding: 11px 9px 9px 9px; 
+        cursor: default;
+    }
+    .kh-button-success{
+        padding           : 9px 6px 9px 11px;
+    }
+    .kh-button-error {
+        width             : 80px;
+        background-color  : #FF6600;
+        color             : white;
+        cursor            : pointer;
+        z-index           : 1;
+    }
+    .kh-button-success {
+        padding           : 9px 6px 9px 11px;
+        color             : #7BB609;
+        border            : 1px solid #7BB609;
+        cursor            : default;
+    }
+
+    .pending-msg {
+        width             : 200px;
+        position          : absolute;
+        right             : 2px;
+        top               : 65px;
+        line-height       : 1.3;
+    }
+    .remote-content .pending-list,.remote-content .retry-list {
+        position          : absolute;
+        width             : 113px;
+        text-align        : left;
+        color             : #5B8430;
+        font-size         : 0.9em;
+        top               : 80px;
+        right             : 2px;
+    }
+    .remote-content .pending-list h5, .remote-content .retry-list h5 {
+        font-weight       : bold;
+        font-size:12px;
+    }
+    .remote-content .pending-list ul, .remote-content .retry-list ul {
+        list-style-type    : disc;
+        list-style-position: inside;
+    }
+    .remote-content .pending-list li, .remote-content .retry-list li {
+        line-height        : 1.3em;
+    }
+    .remote-content .retry-list {
+        width              : 126px;
+        color              : #2f2f2f;
+    }
+    .remote-content .engine .climate {
+        float              : left;
+        padding            : 0 0 0 0;
+        position           : absolute;
+        top                : 103px;
+        left               : 65px;
+
+    }
+
+    .remote-content .engine .climate .wrapper {
+        position           : relative;
+        width              : 340px;
+        height             : 405px;
+        display            : inline-block;
+        text-align         : center;
+       } 
+
+    .remote-content .engine .climate .wrapper.disabled {
+        position           : relative;
+        width              : 340px;
+        height             : 405px;
+        display            : inline-block;
+        opacity            : 1;
+    }
+    .remote-content .engine .climate .wrapper label {
+        /* margin-top: 75px; */
+        position           : absolute;
+        top                : 70px;
+        left               : 110px;
+        display            : block;
+        font-size          : 1.4em;
+    }
+    .remote-content .engine .climate .wrapper .value-container {
+        position           : absolute;
+        top                : 170px;
+        left               : 68px;
+        width              : 240px;
+        height             : 100px;
+        text-align         : center;
+        color              : #444444;
+    }
+    .remote-content .engine .climate .wrapper .value-container.disabled{
+        color              : #999999;
+        left               : 60px;
+    }
+    .remote-content .engine .climate .value {
+        //margin-left        : 95px!important;
+        margin-right       : auto;
+        font-size          : 9em;
+        text-shadow        : none;
+        //color              : black!important;
+
+    }
+     
+     .remote-content .engine .climate .wrapper .value.disabled {
+        color              : #777777;
+    }
+
+    .remote-content .engine .climate .button.minus.disabled {
+        background  : url("../images/kh/img/remote/odo-minus-grey.png") no-repeat center center;
+        width                  : 85px;
+        height                 : 85px;
+        bottom                 : 80px;
+        left                   : 20px;
+        cursor                 : default;
+        opacity                :1;
+    }
+
+    .remote-content .engine .climate .button.minus {
+        background  : url("../images/kh/img/remote/odo-minus.png") no-repeat center center;
+        width                  : 85px;
+        height                 : 85px;
+        bottom                 : 60px;
+        left                   : 20px;
+    }
+
+     .remote-content .engine .climate  .button.plus.disabled {
+        background  : url("../images/kh/img/remote/odo-plus-grey.png") no-repeat center center;
+        width                  : 85px;
+        height                 : 85px;
+        bottom                 : 80px;
+        right                  : 10px;
+        cursor                 : default;
+        opacity                :1;
+    }
+
+    .remote-content .engine .climate  .button.plus {
+        background  : url("../images/kh/img/remote/odo-plus.png") no-repeat center center;
+        width                  : 85px;
+        height                 : 85px;
+        bottom                 : 60px;
+        right                  : 10px;
+    }
+
+    .remote-content .engine .climate  .button {
+        position               : absolute;
+        display                : block;
+        min-width              : 70px;
+        min-height             : 70px;
+        cursor                 : pointer;
+    }
+
+    .container .schedule-tap {
+        position               : relative;
+        min-width              : 728px;
+    }
+
+    .container .schedule-tap .titles .title-left {
+        margin                 : 0 0 0 0;
+        font-size              : 13px;
+        color                  : #444444;
+        float                  : left;
+    }
+
+    .container .schedule-tap .line {
+        border-bottom          : 2px solid #888888;
+        display                : inline-block;
+        width                  : 100%;
+    }
+
+    .container .schedule-tap .toggle-up.open {
+        height                 : auto;
+        border                 : 1px solid #e6e6e6;
+    }
+
+   
+    .container .schedule-tap .toggle-up.open .show-schedule {
+        display                : block;
+        border-top             : 1px solid #c4c4c4;
+        margin-top             : -5px;
+    }
+
+    .container .schedule-tap .toggle-up .txt-set {
+        font-size              : 12px;
+        color                  : #444444;
+        margin                 : 60px 0 0 30px;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery.climate {
+        margin                 : -61px 0 0 199px;
+    }
+    .container .schedule-tap .toggle-up .control-battery.climate .txtControl {
+        height                 : 22px;
+        color                  : #444444;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery.climate .txtControl .txtygraydark {
+        color                  : #444444;
+        font-weight            : bold;
+        font-size              : 24px;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery.climate .txtControl sup {
+        position               : absolute;
+        font-size              : 17px;
+        margin                 : 10px 0 0 0;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery.climate .txtControl .grade {
+        color                  : #888888;
+        font-size              : 16px;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery .red-bar {
+        margin                 : 9px 0 0 0;
+        width                  : 40px;
+        float                  : left;
+        z-index                : 55;
+        position               : relative;
+    }
+
+    .myBtn {
+        border                 : 0;
+        background             : white;
+        cursor                 : pointer;
+        padding-right          : 3px;
+        margin-top             :1px;
+    }
+
+    .slider, .slider-c {
+        height                 : 6px;
+        width                  : 350px;
+        margin                 : 24px;
+        background             : #0088cc;
+        left                   : 46px;
+    }
+
+    .slider .ui-slider-range, .slider-c .ui-sliderC-range {
+        height                 : 6px;
+        width                  : 0px;
+        background             : #bb0000;
+    }
+
+    .ui-slider-horizontal .ui-slider-range {
+        top                    : 0;
+        height                 : 100%;
+    }
+    .ui-slider .ui-slider-range {
+        position               : absolute;
+        z-index                : 1;
+        font-size              : .7em;
+        display                : block;
+        border                 : 0;
+        background-position    : 0 0;
+    }
+    .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+        border-bottom-right-radius: 4px;
+    }
+    .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+        border-bottom-left-radius : 4px;
+    }
+    .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+        border-top-right-radius   : 4px;
+    }
+    .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+        border-top-left-radius    : 4px;
+    }
+
+    .container .schedule-tap .toggle-up .control-battery .blue-bar {
+        margin                 : -48px 0 0 438px;
+    }
+
+     .container .schedule-tap .toggle-up .lineDisc.climate {
+        padding-top            : 24px;
+    }
+
+    .container .schedule-tap .toggle-up .calendar {
+        margin                 : 33px 0 0 28px;
+    }
+
+    .container .schedule-tap .toggle-up .calendar .hour {
+        font-size              : 22px !important;
+        color                  : #2f2f2f;
+    }
+
+    .hour-list li, .hour-list2 li, .freq-list li {
+        float                  : left;
+        width                  : 32px;
+        margin                 : 6px 0;
+        padding                : 3px 0;
+    }
+
+    .container .schedule-tap .toggle-up .calendar .weekDays {
+        font-size              : 12px;
+        color                  : #888888;
+    }
+
+    .container .schedule-tap .toggle-up .calendar .radioButtons {
+        font-size              : 16px;
+        color                  : black;
+        width                  : 150px;
+        float                  : left;
+    }
+
+     .container .schedule-tap .toggle-up .calendar {
+        margin                 : 33px 0 0 28px;
+    }
+
+    .container .schedule-tap .toggle-up .lineDisc2 {
+        padding-top            : 83px;
+        border-bottom          : 1px dashed #cccccc;
+        width                  : 669px;
+        margin-left            : 28px;
+    }
+
+    .btnPending {
+        border                 : 1px solid #999999;
+        color                  : #999999;
+    }
+    .btnPending, .btnSuccess {
+        width                  : 123px;
+        height                 : 23px;
+        line-height            : 2;
+        text-align             : center;
+        margin                 : 1px 0 6px 7px;
+        font-size              : 0.89em;
+    }
+
+    .btnSuccess {
+        border                 : 1px solid #7BB609;
+        color                  : #7BB609;
+    }
+
+    .schedule-tap .error {
+        color                  : #FF0000;
+        margin-left            : 30px;
+    }
+
+    .container .schedule-tap .toggle-up .lineDisc {
+        padding-top            : 38px;
+        border-bottom          : 1px dashed #e6e6e6;
+        width                  : 669px;
+        margin-left            : 28px;
+    }
+
+    .container .schedule-tap .toggle-up .calendar .weekDays .date-box.selected {
+        font-weight            : bold;
+        background-image       : url("../images/schedule/week-box-red.jpg");
+        background-repeat      : no-repeat;
+        cursor                 : pointer;
+        color                  : #c4172c;
+    }
+    .container .schedule-tap .toggle-up .calendar .weekDays .date-box {
+        background-image       : url("../images/schedule/week-box.jpg");
+        background-repeat      : no-repeat;
+        cursor                 : pointer;
+        width                  : 40px;
+        height                 : 40px;
+        float                  : left;
+        text-align             : center;
+        font-weight            : bold;
+        letter-spacing         : -1;
+        font-size              : 100%;
+        zoom                   : 0;
+    }
+
+    .container .schedule-tap .toggle-up .calendar .weekDays .sun, .mon, .tue , .wed , .thu , .fri , .sat ,   {
+        padding                : 10px 0 0 0;
+        margin-left            : 5px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        /* border: 1px solid #cccccc; */
+        background                 : #f6f6f6 url('../images/ui-bg_glass_100_f6f6f6_1x400.png') 50% 50% repeat-x;
+        background                 : #f6f6f6 url('../images/kh/img/schedule/control-climate.jpg') 50% 50% repeat-x;
+        font-weight                : bold;
+        /* color: #1c94c4; */
+        margin-top                 : -20px;
+        position                   : absolute;
+        border-radius              : 50%;
+        display                    : block;
+
+    }
+    #climate-view .ui-corner-all, #climate-view .ui-corner-top, #climate-view .ui-corner-left, #climate-view .ui-corner-tl {
+        position                   : relative;
+    }
+
+.slidergrade{
+    position:relative;
+    text-align: center;
+    margin-right: 10%;
+}
+.gradeLowHigh{
+     text-align: center; 
+}
+.hour-arrow ,.minute-arrow ,.am-arrow, .minute-arrow2,.hour-arrow2,.am-arrow2{
+    display:inline!important;
+}
+
+.hour-list ,.minute-list ,.am-pm-list ,.hour-list2 ,.minute-list2 ,.am-pm-list2{
+    display:block!important;
+}
+.timepickerdiv{
+        border: 1px solid rgb(213, 0, 16);
+}
+
+.ui-slider-handle{
+    z-index : 99;
+}
+.days-mobile{
+    display : none;
+}
+
+.remote-content .engine .climate > div > div:nth-child(1) > input{
+    color : #444444!important;
+}
+
+.temp {
+    display :none;
+}
+.hidden-sm{
+    display:block!important;
+}
+.show-sm{
+    display:none!important;
+}
+
+/* MOBILE VIEW //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////// */
+    @media(max-width:767px){
+
+        //padding-top: 33px;
+
+        .hidden-sm{
+            display:none!important;
+        }
+        .show-sm{
+            display:block!important;
+        }
+                
+
+        .page-header{
+            margin                  : 0; 
+            margin-top: 33px;
+        }
+
+        .page-header ul li a{
+            padding                 : 15px 10px 5px 10px;
+            text-align              : center;
+            height                  : 50px;    
+        }
+        .climate-box,.box-defrost{
+            max-width               : 200px;
+        }
+        .remote-content{
+            width                   : 100%;
+        }
+
+        .remote-content .climate-wrap{
+            width                   : 33%;
+        }
+        .remote-content .engine{
+            width                   : 66% !important;
+        }
+        .kh-button-submit{
+            display                 : none;
+        }
+        .remote-content .temperature{
+            width                   : 100%;
+        }
+        .pending-list{
+            display                 : none;
+        }
+        .climate-box, .box-defrost{
+            margin                  : 0 auto; 
+        }
+        .switch.mL40{
+            margin                  : 0 auto;
+            max-width               : 55px;
+            float                   : none;
+        }
+        .switch.off:before{
+            margin-right            : 5px;
+        }
+        .switch.on:after{
+            margin-left             : 5px;
+        }
+        .switch.on{
+            padding                 : 3px 3px 3px 10px;
+        }
+        .switch.off {
+            padding                 : 3px 10px 3px 3px;
+        }
+        .remote-content .temperature{
+            margin-top              : 5px;
+        }
+
+        .container{
+            margin-top              : 0px!important;
+            max-width               : 730px;
+            width                   : 100%!important;
+        }
+        .container .schedule-tap .titles .title-left{
+            font-size               : 17px;
+            font-weight             : bolder;
+        }
+        .container .schedule-tap{
+            width                   :100%;
+            min-width               :1px;
+        }
+        .container .schedule-tap .toggle-up .txt01,.container .schedule-tap .toggle-up .txt02{
+            width                   : 30%;
+            margin                  : 10px auto;
+        }
+        .container .schedule-tap .toggle-up .txt03{
+            width                   : 66%;
+            margin                  : 10px auto;
+        }
+        .container .schedule-tap .toggle-up.open .toggle-section{
+            margin                  :5px 0 5px 0;
+        }
+        .container .schedule-tap .toggle-up .arrow-down {
+            float                   : right;
+            margin                  : 23px auto 0 auto;
+        }
+        .container .schedule-tap .toggle-up .arrow-down.pos06{
+            position                : absolute;
+            right                   : 0px;
+            top                     : 0px;
+            left                    : initial;
+        }
+        div.container > div > div.schedule-one.toggle-up.open > div.toggle-section > div.btn{
+            padding                 :6px 12px;
+        }
+        .container .schedule-tap .toggle-up .txt-set{
+            margin                  : 30px 36px;
+            float                   : left;
+            width                   : 75%;
+            text-align              : left;
+            font-weight             : bolder;
+        }
+
+        .container .schedule-tap .toggle-up .control-battery.climate{
+            float                   : left;
+            margin                  : 0;
+            width                   : 100%;
+        }
+        .container .schedule-tap .toggle-up .lineDisc.climate{
+            display                 : none;
+        }
+        .container .schedule-tap .toggle-up .lineDisc2 {
+            padding-top             : 205px;
+            width                   : 100%;
+            margin                  : 0;
+        }
+
+        div.container > div > div.schedule-one.toggle-up.open > div.climate-schedule.show-schedule > div:nth-child(3){
+            margin                  : 20px 36px;
+            width                   : 75%;
+            text-align              : left;
+            font-weight             : bolder;
+        }
+        div.container > div > div.schedule-one.toggle-up.open > div.climate-schedule.show-schedule > div:nth-child(3) > div{
+            margin-right            : 0!important;
+            margin-top              : -25px!important;
+        }
+
+        .container .schedule-tap .toggle-up .control-battery.climate .txtControl sup{
+            position                :relative;
+        }
+        .container .schedule-tap .toggle-up .control-battery.climate{
+            font-size               : 20px;
+        }
+        .container .schedule-tap .toggle-up .calendar{
+            float                   : left;
+            width                   : 100% ;
+            margin                  : 15px auto;
+        }
+
+        .container .schedule-tap .toggle-up .calendar .hour{
+            float                   : none; 
+            width                   : 100%;
+            max-width               : 180px;
+            margin                  : 0 auto;
+        }
+        .container .schedule-tap .toggle-up .calendar .weekDays{
+            max-width               : 315px;
+            margin                  : 68px auto;
+        }
+
+        .btnSchedule, .btnCancel{
+            width                   : 50%
+        }
+
+        div.container > div > div.schedule-one.toggle-up.open > div.toggle-section > div:nth-child(6){
+            display                 : none;
+        }
+        div.container > div > div.schedule-one.toggle-up.open > div.toggle-section > div:nth-child(2){
+            height                  : 54px;
+            margin-top              : 6px;
+        }
+        div.container > div > div.schedule-two.toggle-up.open > div.toggle-section > div:nth-child(6){
+            display                 : none;
+        }
+        div.container > div > div.schedule-one.toggle-up.open > div.climate-schedule.show-schedule > div.scheduleBtnWrap > div.btnSchedule > button{
+            width                   : 100%
+        }
+        div.container > div > div.schedule-one.toggle-up.open > div.climate-schedule.show-schedule > div.scheduleBtnWrap > div.btnCancel > button{
+            width                   : 100%
+        }
+
+        .hour-wrap, .minute-wrap, .am-pm-wrap, .hour-wrap2, .minute-wrap2, .am-pm-wrap2, .freq-wrap{
+            width                   : 45px;
+        }
+        div.container > div > div.schedule-two.toggle-up.open > div.climate-schedule > div:nth-child(4) > div{
+            margin-right            : 0 !important;
+            margin-top              : -25px !important;
+        }
+        div.container > div > div.schedule-two.toggle-up.open > div.climate-schedule > div.scheduleBtnWrap > div.btnSchedule > button{
+            width                   : 100%;
+        }
+
+        div.container > div > div.schedule-two.toggle-up.open > div.climate-schedule > div.scheduleBtnWrap > div.btnCancel{
+            width                   : 50%
+        }
+        div.container > div > div.schedule-two.toggle-up.open > div.climate-schedule > div.scheduleBtnWrap > div.btnCancel > button{
+            width                   : 100%;
+        }
+
+        #red{
+            width                   :73%;
+            margin                  : 20px auto;
+            left                    : 0;
+
+        }
+        .container .schedule-tap .toggle-up .control-battery .blue-bar {
+            float                   : right;
+            margin-top              : -47px;
+        }
+        .container .schedule-tap .toggle-up .control-battery .red-bar{
+            margin                  : 2px 0 0 0;
+        }
+        .slidergrade{
+            margin                  : 0;
+        }
+
+        .minute-list, .minute-list2 {
+            top                     : -195px;
+            left                    : 70px;
+        }
+        .minute-arrow, .minute-arrow2{
+            left                    : 79px;
+        }
+        .am-arrow, .am-arrow2{
+            left                    : 140px;
+        }
+
+        .am-pm-list, .am-pm-list2 {
+            left                    : 129px;
+        }
+
+        .days-mobile{
+            display                 :inline;
+        }
+
+        //////////// SLIDER FOR MOBILE //////////////////
+
+        //set temperature
+        div.remote-content > div.engine > div.climate > div > label{
+            display                 : none!important;
+        }
+
+        //draggable 
+        div.remote-content > div.engine > div.climate > div > div.dial > svg > image{
+            display                 : none!important;
+        }
+
+        .remote-content .engine .climate .wrapper.disabled,.remote-content .engine .climate .wrapper{
+            width                   : 100%
+        }
+         .remote-content .engine .climate {
+            float                   : none;
+            position                : relative;
+            top                     : 0 ;
+            left                    : 0 ;
+            margin                  : 85px auto 0px auto;
+         }
+
+         .remote-content .engine .climate .value-container{
+            position                : absolute;
+            width                   : 100%;
+            top                     : 100px;
+            text-align              : center;
+         }
+         .remote-content .engine .climate .wrapper .button.minus.disabled,.remote-content .engine .climate .wrapper .button.minus{
+            width                   : 100%;
+            bottom                  : 50px;
+            left                    : 0;
+         }
+
+         .remote-content .engine .climate .wrapper .button.plus.disabled,.remote-content .engine .climate .wrapper .button.plus{
+            width                   : 100%;
+            right                   : 0;
+            top                     : -10px;
+         }
+
+         .ui-dragable{
+            display                 : none;
+         }
+
+         .remote-content .engine .climate .value.disabled{
+            
+            color                   : #777777!important;
+            margin-left             :0px!important;
+         }
+
+        /*  .remote-content .engine .climate .wrapper .button.plus,.remote-content .engine .climate .wrapper .button.minus{
+            display                 :none;
+         } */
+
+         .temp-mob {
+            width                   : 77px;
+            height                  : 77px;
+            cursor                  : pointer;
+            background              : url(../images/climate/temp-btn.png) no-repeat -3px 0px;
+        }
+        .temp-mob.disabled{
+            cursor : auto;
+        }
+        .temp-mob.up-mob{
+            position                : relative;
+            bottom                  : 346px;
+        }
+        .temp-mob.down-mob{
+            position                : relative;
+            bottom                  : 207px;
+        }
+        .temp-mob .up-arrow {
+            width                   : 0;
+            height                  : 0;
+            border-right            : 10.5px solid transparent;
+            border-bottom           : 11px solid #c4172c;
+            border-left             : 10.5px solid transparent;
+            padding                 : 16.5px 0px;
+            margin                  : auto;
+            
+        }
+
+        .temp-mob .up-arrow.disabled{
+            border-bottom           : 11px solid rgb(119, 119, 119);
+        }
+        .temp-mob .down-arrow.disabled{
+            border-top              : 11px solid rgb(119, 119, 119);
+            
+        }
+        .temp-mob .down-arrow {
+            margin                  : 37px auto 0 28px;
+            width                   : 0;
+            height                  : 0;
+            position                : absolute;
+            border-top              : 11px solid #448ccb;
+            border-right            : 10.5px solid transparent;
+            border-left             : 10.5px solid transparent;
+        }
+        .remote-content .engine .climate .value {
+            font-size               : 50px !important;
+            margin-top              : 10px;
+            margin-right            : 12px;
+        }
+
+        #value-mob {
+            color                   : #444444;
+        }
+
+        canvas{
+            display                 : none;
+        }
+        .container > div > div.schedule-two.toggle-up.open > div.toggle-section > div.btn{
+            padding                 : 8px 8px 0 14px;
+        }
+
+        .viewPending-submit{
+            margin-bottom           : 10px;
+            color                   : white;
+            text-transform          : uppercase;
+            text-align              : center;
+            font-weight             : bold;
+            cursor                  : pointer;
+            z-index                 : 10;
+
+        }
+        .viewPending-submit .viewPending-mob{
+            background-color        : #444444;
+            padding                 : 15px 0px;
+
+        }
+        .viewPending-submit .submit-mob{
+            background-color        : #BC1728;
+            padding                 : 15px 0px;
+
+        }
+
+        .remote-content{
+            border                  : 0px;
+        }
+        .remote-content .climate-wrap{
+            border                  : 0px;
+        }
+        .box-climate,.box-engine,.box-defrost{
+            border                  : 0px;
+        }
+        #wrapdrag > svg > circle.disabled {
+            stroke                  : #777777;
+        }
+        .cancel-retry{
+            margin-bottom           : 10px;
+            color                   : white;
+            text-transform          : uppercase;
+            text-align              : center;
+            font-weight             : bold;
+            cursor                  : pointer;
+        }
+        .cancel-mob{
+            background-color        : #444444;
+            padding                 : 15px 0px;
+        }
+        .retry-mob{ 
+            background-color        : #FF6600;
+            padding                 : 15px 0px;
+            cursor: pointer;
+            z-index: 3;
+        }
+        .retry-mob-arrow{
+            background              : rgba(255, 49, 0, 0.89) url("../images/kh/img/maintenance/cta-primary-arrows-2.png") no-repeat -36px center;
+            padding                 : 21.5px 0px;
+        }
+
+        .request-progress{
+            margin-bottom           : 10px;
+            color                   : #999999;
+            text-transform          : uppercase;
+            text-align              : center;
+            cursor                  : pointer;
+            border                  : 1px solid #999999;
+            padding                 : 15px 0;
+        }
+         
+        
+       
+    }
+
+    @media(max-width:555px){
+        #red{
+            width              : 63%
+        }
+    }
+    @media(max-width:420px){
+        #red{
+            width              : 55%
+        }
+    }
+   
+
+
+
+}
+
+.climateModal{
+    
+        margin                : 65% 0%;
+
+    .pending-list{
+        text-align            : left;
+        padding-left          : 30px;
+        line-height           : 25px;
+    }
+
+    h5{
+        font-size             : 22px;
+        padding-bottom        : 10px;
+    }
+
+    ul{
+        list-style            :initial;
+        padding-left          : 20px;
+    }
+    
+    .modal-footer {
+        padding               : 20px 10px;
+    }
+    button{
+        padding               : 15px 0;
+    }
+
+    .cancel-pending{
+        color                 : black;
+        background-color      : white;
+        border                : 1px solid black;
+        font-weight           : bold;
+        margin-left: 15px;
+    }
+
+    .close-mob{
+        color                 : white;
+        background-color      : #BC1728;
+        border                : 1px solid #BC1728;
+        font-weight           : bold;
+    }
+
+}
+
+@media(max-width:368px){
+    #sm-screen{
+        display: none;
+    }
+    #xs-screen{
+        display: block!important;
+    }
+    #svg_remote{
+        width : 200px!important;
+    }
+
+    .temp-mob.up-mob{
+        bottom: 330px!important;
+    }
+    .temp-mob.down-mob{
+        bottom: 225px!important;
+    }
+    .remote-content .engine .climate .value-container{
+        top: 108px!important;
+    }
+
+    .remote-content .engine .climate .value {
+    font-size: 5em!important;
+    }
+    .container .schedule-tap .toggle-up .txt03 {
+    width: 55%!important;
+    }
+
+
+}
+
+/* @media(min-width:321px){
+    .xs-screen{
+        display: none!important;
+    }
+} */
+#climate .schedule-tap .toggle-up .show-schedule .control-battery .blue-bar{
+    margin: -23px 14px 0 0px!important;
+    cursor: pointer;
+    float: right;
+}
+ #climate #red{
+    width: 320px!important;
+  margin: 17px 0 0 40px!important;
+}
+
+@media(max-width:768px){
+   #climate #red {
+    width: 200px!important;
+    margin: 17px 0 0 35px!important;
+} 
+ #climate .schedule-tap .toggle-up .control-battery {
+         margin: 60px 0 15px 0px!important;
+        }
+        
+
+}
+@media (max-width: 320px){
+#climate #red {
+    width: 140px !important;
+    margin: 17px 0 0 35px !important;
+}
+}
+@media(max-width:768px){
+    #climate .schedule-tap .toggle-up .show-schedule .control-battery .blue-bar{
+    margin: -23px 35px 0 0px!important;
+    cursor: pointer;
+    float: right;
+}
+}
+@media(max-width:768px){
+    #climate .schedule-tap .toggle-up .show-schedule .control-battery .red-bar{
+    width: 40px;
+    float: left;
+    cursor: pointer;
+    margin-left: 15px;
+}
+#climate-view .container .schedule-tap .toggle-up .calendar .weekDays .date-box{
+          width:30px;
+          height:30px;
+          border-right: 1px solid;
+          margin-left: 8px;
+     }
+}
+/// iphone 4,4s//////
+@media(min-width: 320px) and (max-width: 480px) { 
+
+    #climate-view .temp-mob{
+        margin : 0px 58px}
+}
+/// samsung s4 ///
+@media(min-width: 350px) and (max-width: 640px) { 
+
+    #climate-view .temp-mob{
+        margin : 0px 65px}
+}
+
+/// iphone 6 ///
+@media(min-width: 375px) and (max-width: 627px) { 
+
+    #climate-view .temp-mob{
+        margin : 0px 75px}
+    #climate-view .remote-content .engine .climate .value{
+        margin-top: 25px;
+        margin-right: 0px;
+    }
+}
+/// iphone 6+ /// 
+@media(min-device-width: 414px) and (max-device-width: 736px){ 
+
+    #climate-view .temp-mob{
+        margin : 0px 88px}
+     #climate-view .remote-content .engine .climate .value{
+        margin-top: 25px;
+    }
+}
