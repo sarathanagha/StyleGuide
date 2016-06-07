@@ -1,0 +1,178 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#saved-searches {
+
+    .arrow-r {
+        position: relative;
+        top: -2px;
+        cursor: pointer;
+        @include rotate-text();
+        @include transition(transform .15s ease-out);
+
+        &.expanded {
+            @include rotate-text(90deg);
+        }
+    }
+
+    .saved-searches-count {
+        &:before {
+            content: "(";
+        }
+        &:after {
+            content: ")";
+        }
+    }
+
+    #saved-searches-container {
+        &.current-box {
+            margin-bottom: 10px;
+        }
+
+        .saved-search-row {
+            height: 25px;
+            margin: 3px 0;
+            position: relative;
+            cursor: pointer;
+
+            &.active {
+                background-color: fade($default-header-color, 20%);
+            }
+
+            &:hover {
+                background-color: fade($default-header-color, 25%);
+            }
+
+            .saved-search-name {
+                position: absolute;
+                padding: 5px 0 5px 20px;
+                line-height: 15px;
+                left: 0;
+                right: 25px;
+                overflow: hidden;
+                @include text-overflow(ellipsis);
+                white-space: nowrap;
+
+                input {
+                    width: 100%;
+                    position: relative;
+                    top: -4px;
+                    outline: 0;
+
+                    &::-ms-clear { display: none; height: 0; width: 0; }
+                }
+                
+            }
+
+            .rename-spinner {
+                position: absolute;
+                right: 2px;
+                top: 3px;
+            }
+
+            .dropdown {
+                position: absolute;
+                width: 25px;
+                right: 0;
+                height: 25px;
+
+                > a {
+                    @include absolute();
+                    color: inherit;
+                }
+
+                .dropdown-menu {
+                    left: auto;
+                    right: 0;
+                    margin: 0;
+                    padding: 3px 0;
+                    border-radius: 0;
+                    font-size: 12px;
+
+                    li a {
+                        padding: 3px 10px;
+                        text-transform: capitalize;
+                        white-space: normal;
+
+                        &.disabled {
+                            @include opacity(.25);
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+
+            img {
+                position: absolute;
+
+                &.checkmark {
+                    left: 4px;
+                    z-index: 5;
+                    top: calc(50% - 7px);
+                    height: 13px;
+                }
+
+                &.dropdown-arrow {
+                    right: 10px;
+                    top: calc(50% - 6px);
+                }
+            }
+        }
+    }
+
+    .saved-searches-box {
+        padding: 10px;
+        width: 100%;
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+
+    .paging-controls-row {
+        width: 100%;
+        height: 10px;
+
+        .paging-controls {
+            float: right;
+
+            .paging-text {
+                font-size: 10px;
+            }
+
+            .paging {
+                cursor: pointer;
+
+                &.disabled {
+                    cursor: default;
+                    @include opacity(.25);
+                }
+
+            }
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $body-color: $default-body-color;
+        $light-border: $default-light-border;
+        $body-color-light: $default-body-color-light;
+
+        & {
+            #saved-searches-container {
+                .saved-search-row {
+                    background-color: $lighter-gray;
+                    .dropdown {
+                        .dropdown-menu {
+                            border: 1px solid $light-border;
+                            border-top: 1px solid $body-color-light;
+                        }
+                    }
+                }
+            }
+            .saved-searches-box {
+                background-color: $body-color;
+            }
+        }
+    }
+
+    @include theme;
+}

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Error</title>
+    <link href="stylesheets/main.css" rel="stylesheet" />
+    <link href="fonts.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!--TODO:rajdey More styling will be included in this page.-->
+    
+    <div class="shellHeaderTitleText" id="divMsg"></div>
+    <script>
+        window.onload = redirectpage;
+
+        function redirectpage()
+        {
+            var content = getContentByName("message");
+            if (content == "signedout") {
+                //TODO:rajdey From here we will redirect to Atlas static landing page. 
+                divMsg.innerHTML = "Thanks for signing out." + "<br>" +  "<a href='/'>Login Again</a>"
+            }
+            else {
+                divMsg.innerHTML = content;
+            }
+        }
+
+        function getContentByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+</body>
+</html>

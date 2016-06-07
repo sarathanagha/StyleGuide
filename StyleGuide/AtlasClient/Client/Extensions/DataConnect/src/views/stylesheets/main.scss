@@ -1,0 +1,156 @@
+.dataconnect-container {
+  background-color: #f7f7f7;
+  padding: 1em 2em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  a span, a div {
+    color: initial
+  }
+
+  .header {
+    h1 {
+      font-size: 3em;
+      font-weight: 200; /* Light */
+    }
+    padding-bottom: 2em;
+  }
+
+  .content {
+    > .col {
+      margin-right: 2em;
+
+    }
+  }
+  
+  .form {
+    width: 40em;
+    padding: 0.1em;
+    
+    .form-field {
+      input, textarea, select {
+        width: 90%;
+        border-width: 0.1em;
+        margin: 0.1em;
+        padding: 0.1em 0.2em;
+        
+        box-sizing:content-box;
+        
+        background-color: rgba(white, 0.4);
+      }
+      
+      p {
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+      }
+    }
+    
+    .form-buttons {
+      float: right;
+      
+      button {
+        width: 2em;
+        margin: 0.1em 0.2em;
+        border: 0.1em white solid;
+        background-color: #0078d7;
+        color: white;
+        
+        &:hover {
+          background-color: rgba(#0078d7, 0.3);
+        }
+      }
+    }
+  }
+
+  h1 {
+    padding-bottom: 1em;
+  }
+
+  .insightDashBoard {
+    .row {
+      padding: 0.5em;
+    }
+  }
+
+  .content.row > .col {
+    padding-right: 2em;
+  }
+
+  justify-content: flex-start;
+
+  .dataconnect-resource-tile,
+  .dataconnect-datasourcelist li {
+    display: inline-block;
+    height: 160px;
+    width: 160px;
+    background-color: #f0f0f0;
+
+    margin-right: 10px;
+    
+    &:hover {
+      background-color: rgba(#c0c0c0, 0.6);
+    }
+    
+    img {
+      width: 160px;
+      height: 160px;
+    }
+  }
+  
+  .dataconnect-datasourcelist {
+    display: inline-block;
+    -ms-padding-start: 0.1em;
+    -moz-padding-start: 0.1em;
+    -webkit-padding-start: 0.1em;
+  }
+}
+
+.dataconnect-rightpanel-container {
+  h4 {
+    margin-bottom: 30px;
+  }
+  
+  .dataconnect-resource-properties { 
+    label {
+      margin-bottom: 6px;
+    }
+    
+    p {
+      margin-top: 0px;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+    }
+    
+    li {
+      list-style: none;
+    }
+    
+    padding: 0.1em;
+  }
+}
+
+.gatewayRegisterForm {
+  width: 400px;
+  padding: 12px;
+  
+  a {
+    color: #0078d7 !important;
+  }
+  
+  label {
+    margin-top: 12px;
+    display: block;
+  }
+}
+
+  
+  .borderAround {
+    border: 1px solid black;
+  }
+    
+  .borderWithoutLeft {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+  }

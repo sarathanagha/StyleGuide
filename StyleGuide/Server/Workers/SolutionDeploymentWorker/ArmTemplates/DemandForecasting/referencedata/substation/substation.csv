@@ -1,0 +1,8 @@
+SubstationID,Name,TimeZone,Layer,Unit
+10001,substation1,UTC,2,MW
+10002,substation2,UTC,2,MW
+10003,substation3,UTC,2,MW
+10004,substation4,UTC,2,MW
+10005,substation5,UTC,2,MW
+10006,substation6,UTC,2,MW
+10007,substation7,UTC,2,MW

@@ -1,0 +1,33 @@
+<section role="main" class="col grow" data-bind="css: currentExtensionId ">
+    <div class="col no-shrink" data-bind="visible: isCommonHeaderVisible">
+        <div class="row no-shrink" data-bind="component: { name: commonHeader}"></div>
+    </div>
+    <div class="row no-shrink"
+         data-bind="component: { name: 'uxshell-commandBar' }"></div>
+    <div class="row grow">
+        <!-- ko if: isStudioPanelVisible -->
+        <div class="col no-shrink">
+            <div class="row no-shrink" data-bind="component: { name: 'uxshell-studioPanel'}"></div>
+        </div>
+        <!-- /ko -->
+        <!-- TODO: debug data-bind sidepanel for stream analytics -->
+        <!-- ko if: moduleConfig().sidePanel && !isStudioPanelVisible -->
+        <div class="col no-shrink" _data-bind="visible: moduleConfig().sidePanel" style="display:none;">
+            <div data-bind="component: { name: 'uxshell-sidepanel' }"
+                 class="col grow">
+            </div>
+        </div>
+        <!-- /ko -->
+        <div data-bind="component: { name: 'uxshell-drawer' }"
+             class="col grow">
+        </div>
+        <div class="col grow width100Percent"
+             data-bind="component: { name: 'uxshell-mainarea' }">
+        </div>
+    </div>
+    <div data-bind="contextMenu: null">
+        <div class="contextMenuPosition" style="position:fixed"></div>
+        <div class="contextMenuWinJSHostDiv atlas-menu" data-win-control="WinJS.UI.Menu"></div>
+    </div>
+</section>
+

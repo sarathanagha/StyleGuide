@@ -1,0 +1,52 @@
+/* Base SCSS for activity tool components */
+
+@import "../../stylesheets/Authoring/Fonts";
+@import "../../stylesheets/_AdfSpecific";
+
+.dataFactory-activityTool-subheaderText {
+    margin-top: 7px;
+    margin-bottom: 30px;
+    width: 600px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $grayColor;
+}
+
+.dataFactory-activityTool-expandableSection {
+    cursor: pointer;
+    border-top: 1px solid $cloudColor;
+    margin-bottom: 4px;
+    margin-right: 40px;
+
+    .dataFactory-activityTool-header {
+        @include MSBFont;
+        font-family: 'Segoe UI';
+        color: $grayDarkest;
+        padding: 10px 0 10px 12px;
+        background-color: $canvasColor;
+
+        > .dataFactory-activityTool-headerText {
+            margin: 0 8px 0 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    }
+
+    .dataFactory-activityTool-body {
+        margin: 20px 0 20px 0;
+    }
+}
+
+.dataFactory-activityTool-radioOptions {
+    margin-bottom: 25px;
+}
+
+.dataFactory-activityTool-scriptInput {
+    width: 100%;
+}
+
+.adf-pivotTabLoading svg {
+    $spinnerDim: 50px;
+    width: $spinnerDim;
+    height: $spinnerDim;
+}

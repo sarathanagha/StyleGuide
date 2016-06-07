@@ -1,0 +1,45 @@
+<div id="publish">
+    <div class="main">
+        <div class="publish-bg">
+            <div class="notification-pane" data-bind="css: { 'notification-close': !showNotification()}">
+                <div class="notification-pane-top">
+                    <div class="notification-pane-text">
+                        <!-- ko if: isInitial() -->
+                        <span class="notification-header" data-bind="text: resx.congratulations"></span>
+                        <span class="notification-text" data-bind="text: resx.congratulationsMessage"></span>
+                        <!-- /ko -->
+                        <!-- ko if: hasZeroResults() -->
+                        <span class="notification-header" data-bind="text: resx.welcome"></span>
+                        <span class="notification-text" data-bind="text: resx.welcomeMessage"></span>
+                        <!-- /ko -->
+                    </div>
+                    <div class="close-notification" data-bind="click: closeNotification">
+                        <img src="../../../../images/publish/close_x.png" />
+                    </div>
+                </div>
+                <div class="notification-pane-border"></div>
+            </div>
+            <div class="contents" data-bind="css: { 'contents-show-notification': showNotification()}">
+                <img src="../../../../images/publish/publish_bg_2.png" />
+                <div class="publish-contents">
+                    <div class="publish-text-pane">
+                        <span class="publish-text" data-bind="text: resx.publish"></span>
+                        <span class="your-data-now-text" data-bind="text: resx.yourDataNow"></span>
+                    </div>
+                    <div class="publish-message" data-bind="text: resx.publishMessage"></div>
+                    <div class="launch-buttons">
+                        <div class="launch-button" data-bind="click: function() { redirectToUrl(); }">
+                            <span data-bind="text: resx.launch"></span>
+                            <img src="../../../../images/publish/launch_arrow.png" alt="" />
+                        </div>
+                        <div class="launch-button" id="manual-entry-button" data-bind="click: function() { openManualEntry(); }">
+                            <span data-bind="text: resx.manualEntry"></span>
+                            <img src="../../../../images/publish/launch_arrow.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

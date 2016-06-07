@@ -1,0 +1,34 @@
+.errorAndOutputLogDialog {
+    font-family: "Segoe UI";
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.errorAndOutputLogDialog h1 {
+    font-family: "Segoe UI";
+    font-weight: 200; /* Segoe UI Light */
+    font-size: 28px;
+    color: #505050
+}
+
+.logMessage {
+    width: 630px;
+    min-height: 125px;
+    background: #ffffff;
+    overflow: auto;
+    margin-top: 1px;
+    font-size: 14px;
+}
+
+.timeLabel {
+    min-width: 110px;
+    font-size: 14px;
+    color: #434343;
+}
+
+.messageLabel {
+    margin-top: 3px;
+    font-size: 14px;
+    color: #434343;
+
+}

@@ -1,0 +1,37 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.shell-list .list-container .list-label {
+  font-size: 19px;
+  text-transform: capitalize; }
+  .shell-list .list-container .list-label:after {
+    content: ":"; }
+
+.shell-list .list-container .list {
+  padding-top: 20px;
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px; }
+  .shell-list .list-container .list li {
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding-right: 35px; }
+
+.shell-list a {
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: capitalize; }
+
+.shell-list a {
+  color: #FFF; }
+
+/*# sourceMappingURL=list.css.map */

@@ -1,0 +1,45 @@
+﻿<div class="crystalLineChartWrapper">
+    <!--<span class="chartTypeToggle" data-bind="visible: rdxContext.barChartAvailable, click: function(){heatmap.selectedVisualization('bar'); heatmap.triggerRerender()}, style: {left: legendVisible() ? '510px' : '280px'}" title="Show as stacked bars"><span class="fa-barChart"></span></span>-->
+    <div class="crystalLineChartLegendWrapper" data-bind="visible: legendVisible, event:{mouseup: mouseup}">
+        <!--<div class="legendTitle">Legend</div>-->
+        <input class="atlasInput" data-bind="textInput: rdxContext.heatmap.filter, attr: {placeholder: 'Filter ' + dimensionForFilter() + ' series...'}"/>
+        <div style="display: inline-block; position: absolute; margin-top: 7px; margin-left: 2px; z-index: 1000;" data-bind="component: { name: 'rdx-helpBubble', params: {messageType: 'legendFilter'} }"></div>
+        <div class="orderByWrapper">
+            <div>Order by: </div>
+            &nbsp;
+            <span data-bind="css: {selected: !heatmap.orderByName()}, click: function(){heatmap.orderByName(false); heatmap.triggerRerender()}">value</span>
+            &nbsp;
+            <span data-bind="css: {selected: heatmap.orderByName()}, click: function(){heatmap.orderByName(true); heatmap.triggerRerender()}">name</span>
+        </div>
+        <div class="crystalLineChartLegend"></div>
+    </div>
+    <div class="crystalLineChartLegendSlider" data-bind="visible: !legendVisible(), click: function(){legendVisible(!legendVisible()); heatmap.triggerRerender();}"><div><div class="fa chevron-right"></div> Legend</div></div>
+    <div class="rdxContextMenu" id="crystalLineChartMultiselectExploreMenu" style="display: none"> 
+        <div>
+            <div class='contextMenuOptions'>
+                <div data-bind="event: {mouseup: function(){rdxContext.zoomFromChart(); multiselectExploreMenu.style('display', 'none'); event.stopPropagation();}, mousedown: function(){event.stopPropagation();}}">Zoom</div>
+                <div id='lineChartExploreButton' data-bind="event: {mousedown: function(){event.stopPropagation();}, mouseup: function(){rdxContext.streamEventsFromChart(); multiselectExploreMenu.style('display', 'none'); event.stopPropagation();}}">Explore events</div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxContextMenu" id="crystalLineChartZoomExploreMenu" style="display: none;">
+        <div>
+            <div class='contextMenuOptions'>
+                <div class='contextMenuTitle' data-bind="event: {mouseover: function(){showAndGroupByMenu();}, mouseup: function(){event.stopPropagation();}, mousedown: function(){event.stopPropagation();}}">Split this series by... <div class='chevron-right'></div></div>
+                <div data-bind="event: {mouseup: function(){exploreDimension(); filterByDimension(); singleDimensionExploreMenu.style('display', 'none'); justSingleDimensionExplored = false; event.stopPropagation(); }, mousedown: function(){event.stopPropagation();}}">Show only this series</div>
+                <div id='lineChartSingleDimensionExplore' data-bind="event: {mouseup: function(){exploreDimension(); singleDimensionExploreMenu.style('display', 'none'); event.stopPropagation();}, mousedown: function(){event.stopPropagation();}}">Explore events</div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxContextMenu" id="andGroupByMenu" style="display: none">
+        <div data-bind="event: {mouseleave: hideAndGroupByMenu}">
+            <div class='contextMenuOptions' data-bind="event: {mousedown: function(){event.stopPropagation();}, mouseup: function(){event.stopPropagation();}}, foreach: rdxContext.dimensionOptions">
+                <div data-bind="event: {mousedown: function(){event.stopPropagation();}, mouseup: function(){$parent.groupByAndFilter($data); event.stopPropagation()}}, text: $data"></div>
+            </div>
+        </div>
+    </div>
+    <div class="crystalLineChart" id="crystalLineChart" data-bind="event: {mouseleave: mouseout, mouseup: mouseup, mousedown : mousedown}">
+        <div class="rdxTooltip" id="lineChartTooltip"></div>
+        <div class="multiselectGhost" onmouseup="ko.dataFor(this).ghostMousedown();" onmouseup="ko.dataFor(this).ghostMouseup();"></div>
+    </div>
+</div>

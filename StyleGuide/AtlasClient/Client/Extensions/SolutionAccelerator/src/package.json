@@ -1,0 +1,12 @@
+{
+  "name": "@ms-atlas-module/datastudio-solutionaccelerator",
+  "version": "0.1.27",
+  "description": "Solution Accelerator Module.",
+  "main": "startup.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,72 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #505050 !important;
+
+    .fragment {
+        font-family: $font-segoe;
+        font-weight: 400; /* Semilight */
+        overflow: hidden;
+
+        /* TODO (stpryor): This should probably be removed*/
+        a {
+            color: #00526d;
+            text-decoration: none !important;
+        }
+    }
+}
+
+input {
+    font-family: $font-segoe !important;
+}
+
+
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+}
+
+.session-timeout-container {
+    display: block;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 2000;
+
+    .fade-box {
+        background-color: #353535;
+        bottom: 0px;
+        display: block;
+        height: 100%;
+        min-width: inherit;
+        opacity: 0.5;
+        position: fixed;
+        width: 100%;
+    }
+
+    .notification-bar {
+        background-color: #1D1D1D;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+
+        .notification-bar-message {
+            color: #FFF;
+            display: block;
+            font-weight: 200;
+            padding: 20px;
+
+            .btn {
+                display: inline-block;
+                margin-left: 10px;
+                min-width: inherit;
+                padding: 5px 20px;
+                border: none;
+            }
+        }
+    }
+}

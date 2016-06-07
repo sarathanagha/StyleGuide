@@ -1,0 +1,160 @@
+
+
+<div class="browse-filter">
+
+    <div class="table body-scroll-container">
+        <div class="table-row header">
+
+            <div class="type-name current-filter-label">
+                <img class="arrow-r" src="../../../../images/arrow_r.png"
+                     role="button"
+                     data-bind="css: { expanded: isExpanded },
+                                click: function(){ isExpanded(!isExpanded()); },
+                                keyboardtoggle: isExpanded" />
+                <span data-bind="text: filterText"></span>
+            </div>
+            <div data-bind="visible: isExpanded">
+
+                <div class="current-box">
+                    <div class="current-results">
+                        <!-- ko if: appliedSearch -->
+                        <span data-bind="text: resx.name + ':'" class="type-name current-filter-label"></span>
+                        <span data-bind="css: { hasChanges: appliedSearchHasChanges }" class="current-filter-value saved-search-name-container">
+                            <span data-bind="text: appliedSearch().name" class="saved-search-name"></span>
+                            <span data-bind="text: resx.defaultStr, visible: appliedSearch().isDefault" class="search-name-default-text"></span>
+                        </span>
+                        <!-- /ko -->
+
+                        <!--ko if: hasCurrentFilter -->
+
+                        <div>
+                            <div data-bind="text: resx.save,
+                                    click: function(){ appliedSearch() ? saveSearch() : isDefiningSearch(true); },
+                                    keyboardselect: function(){ appliedSearch()? saveSearch() : isDefiningSearch(true); },
+                                    css: { disabled: isDefiningSearch() || (appliedSearch() && !appliedSearchHasChanges()) },
+                                    attr: {tabindex: (isDefiningSearch() || (appliedSearch() && !appliedSearchHasChanges()))? '-1':'0'}"
+                                 class="current-filter-header link save-search"></div>
+
+                            <!-- ko if: appliedSearch -->
+                            <div data-bind="css: { disabled: isDefiningSearch }" class="current-filter-header seperator save-search"></div>
+
+                            <div data-bind="text: resx.saveAs,
+                                    click: function(){ searchDefinition(appliedSearch().name + '-' + resx.copy); isDefiningSearch(true); },
+                                    keyboardselect: function() { searchDefinition(appliedSearch().name + '-' + resx.copy); isDefiningSearch(true); },
+                                    css: { disabled: isDefiningSearch },
+                                    attr: {tabindex: ((!isDefiningSearch() && isExpanded())? '0':'-1')}"
+                                 class="current-filter-header link save-search"></div>
+                            <!-- /ko -->
+
+                            <!-- ko ifnot: onlyFilterIsContainer-->
+                            <div data-bind="css: { disabled: isDefiningSearch }" class="current-filter-header seperator save-search"></div>
+
+                            <div data-bind="text: resx.clearAll,
+                                    keyboardselect: clearAll,
+                                    click: clearAll,
+                                    css: { disabled: isDefiningSearch },
+                                    attr: {tabindex: ((!isDefiningSearch() && isExpanded())? '0' : '-1') }"
+                                 class="current-filter-header link save-search"></div>
+                            <!-- /ko -->
+
+                            <div data-bind="adc-spinner: isSavingSearch" class="small"></div>
+                        </div>
+
+                        <!-- ko if: isDefiningSearch() && !isSavingSearch() -->
+                        <input type="text" data-bind="textInput: searchDefinition,
+                                                      hasFocus: true,
+                                                      attr: { placeholder: resx.addSearchName + '...' },
+                                                      event: { keyup: onSearchDefinitionKeyUp }" id="search-definition"/>
+                        <div data-bind="text: resx.save,
+                                    click: saveSearch,
+                                    css: { disabled: searchDefinition().length === 0 }" class="current-filter-header link save-search" tabindex="0"></div>
+                        <div class="current-filter-header seperator save-search"></div>
+                        <div tabindex="0" data-bind="text: resx.cancel, click: function(){ isDefiningSearch(false); }, keyboardselect: function() { isDefiningSearch(false); }" class="current-filter-header link save-search"></div>
+                        <!-- /ko -->
+
+
+                        <!-- ko if: container() -->
+                        <div data-bind="text: resx.container + ':'" class="current-filter-header"></div>
+                        <div class="current-filter-value">
+                            <span data-bind="text: container().name"></span>
+                        </div>
+                        <!-- /ko -->
+
+                        <!--ko if: searchTerms().length -->
+                        <div data-bind="text: resx.searchTerm + ':'" class="current-filter-header"></div>
+
+                        <!-- ko foreach: searchTerms-->
+                        <div class="current-filter-value">
+                            <span data-bind="text: $data"></span>
+                            <img tabindex="0" src="../../../../images/small_x.png" role="button" data-bind="click: $parent.removeSearchTerm, keyboardselect: $parent.removeSearchTerm" alt="remove" />
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko if: groupedFilterItems().length -->
+                        <!-- ko foreach: { data: groupedFilterItems, as: 'group' } -->
+                        <div data-bind="text: $parent.resx[group.key] + ':'" class="current-filter-header"></div>
+                        <!-- ko foreach: group.value-->
+                        <div class="current-filter-value">
+                            <span data-bind="text: $data"></span>
+                            <img tabindex="0" src="../../../../images/small_x.png" role="button" data-bind="click: function(){ $parents[1].removeFilter(group.key, $data);}, keyboardselect: function() {$parents[1].removeFilter(group.key, $data.term);}" alt=" remove" />
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- /ko -->
+
+
+                        <!-- /ko -->
+                        <!--ko ifnot: hasCurrentFilter -->
+                        <div class="none" data-bind="text: resx.none"></div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div data-bind="component: 'datacatalog-browse-savedsearches'" id="browse-filter-browse-savedsearches"></div>
+
+            <div class="type-name filters-label">
+                <img class="arrow-r" src="../../../../images/arrow_r.png"
+                     tabindex="0"
+                     role="button"
+                     data-bind="css: { expanded: isFilterExpanded },
+                                    click: function(){ isFilterExpanded(!isFilterExpanded()); },
+                                    keyboardtoggle: isFilterExpanded" />
+                <span data-bind="text: resx.filters"></span>
+            </div>
+
+        </div>
+        <div class="table-row body" data-bind="visible: isFilterExpanded">
+            <div class="table-cell body-content-outer-wrapper">
+                <div class="body-content-inner-wrapper">
+                    <div class="body-content">
+                        <div data-bind="if: filterTypes()" class="filter-types">
+                            <div data-bind="foreach: filterTypes().groups">
+                                <div data-bind="text: label" class="type-name"></div>
+                                <div data-bind="component: {
+                                name: 'datacatalog-shell-checkboxlist',
+                                params: {
+                                    data: items,
+                                    selected: $parent.selectedFilters,
+                                    onChange: $parent.onFilterChanged,
+                                    max: groupType === 'tags' || groupType === 'experts' ? 10 : Number.MAX_VALUE
+                                }
+                            }"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</div>

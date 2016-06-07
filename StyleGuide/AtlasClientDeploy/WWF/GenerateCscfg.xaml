@@ -1,0 +1,113 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Microsoft.Streaming.Service.NrtDeploy.GenerateCscfg" this:GenerateCscfg.Environment="[Nothing]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdd="clr-namespace:Microsoft.DPG.Deployment;assembly=Microsoft.DPG.WadiActivities"
+ xmlns:mddc="clr-namespace:Microsoft.DPG.Deployment.Configuration;assembly=Microsoft.DPG.WadiConfiguration"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:this="clr-namespace:Microsoft.Streaming.Service.NrtDeploy"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Environment" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Microsoft.Streaming.Service.NrtDeploy.GenerateCscfg_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.Streaming.Service.DeployActivity</x:String>
+      <x:String>Microsoft.DPG.Deployment</x:String>
+      <x:String>Microsoft.DPG.Deployment.Configuration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.Streaming.Service.NrtDeploy</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Streaming.Service.DeployActivity</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiActivities</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiConfiguration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.Streaming.Service.NrtDeploy</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mddc:ConfigType" Default="[Nothing]" Name="Config" />
+    </Sequence.Variables>
+    <Sequence DisplayName="Prerequisite Steps" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <mdd:InitLog sap2010:WorkflowViewState.IdRef="InitLog_1" />
+      <mdd:LoadConfig ExternalSymbols="{x:Null}" IdentifySecrets="{x:Null}" OfflineLoad="{x:Null}" Config="[Config]" ConfigFolder="Config" EnableEncryption="False" Environment="[Environment]" sap2010:WorkflowViewState.IdRef="LoadConfig_1" />
+      <mdd:ValidateConfig Config="[Config]" sap2010:WorkflowViewState.IdRef="ValidateConfig_1" />
+    </Sequence>
+    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <ForEach x:TypeArguments="mddc:HostedServiceType" DisplayName="ForEach&lt;HostedServiceType&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[config.GetDeployItem(Of HostedServiceType)(&quot;*&quot;, &quot;*&quot;)]">
+        <ActivityAction x:TypeArguments="mddc:HostedServiceType">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="mddc:HostedServiceType" Name="service" />
+          </ActivityAction.Argument>
+          <mdd:GenerateCscfg Output="{x:Null}" Xslt="{x:Null}" HostedService="[service]" sap2010:WorkflowViewState.IdRef="GenerateCscfg_2" />
+        </ActivityAction>
+      </ForEach>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d05FOlxURlNcRGVwbG95TWFpblxQcm9kdWN0XFNvdXJjZVxQbGF0Zm9ybVYyXEF0bGFzRGVwbG95XFdXRlxHZW5lcmF0ZUNzY2ZnLnhhbWwRAYgBAZIBAQI9A1EOAgEBPzs/RgIBAkEFRRACAQlGBU8QAgEDQgdCQgIBFEMHQ/IBAgENRAdEYgIBCkcHThECAQRDgwFDiwECARNDsQFDwAECARFDa0N1AgEPQ50BQ6QBAgEORCJELAIBC0edAUfpAQIBCEwLTI4BAgEFTE5MWQIBBg==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InitLog_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="LoadConfig_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="ValidateConfig_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="308.8,272">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GenerateCscfg_2" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="286.4,208" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="308.8,332.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="331.2,769.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Microsoft.Streaming.Service.NrtDeploy.GenerateCscfg_1" sap:VirtualizedContainerService.HintSize="371.2,849.6" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

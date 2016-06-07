@@ -1,0 +1,129 @@
+@import "../../../../stylesheets/_AdfSpecific.scss";
+
+$smallSvgDim: 16px;
+$largeSvgDim: 20px;
+
+$grayColor: #48525E;
+
+.baseNode {
+    color: $grayColor;
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-overflow: ellipsis;
+
+    &.dataset {
+        color: blue;
+    }
+
+    &.activity {
+        color: green;
+
+        .invalid {
+            color: red;
+        }
+    }
+
+    .typeIcon {
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        left: 9px;
+        top: 41px;
+
+        svg {
+            @include adf-button-dims($largeSvgDim, $largeSvgDim);
+        }
+    }
+
+    .statusIcon {
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        right: 6px;
+        top: 5px;
+
+        svg {
+            @include adf-button-dims($smallSvgDim, $smallSvgDim);
+        }
+    }
+
+    .header {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 29px;
+
+        border-bottom: 1px solid lightgray;
+    }
+
+    .displayType {
+        position: absolute;
+        left: 37px;
+        top: 41px;
+        width: 150px;
+        text-align: left;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: $grayColor;
+    }
+
+    input.displayName {
+        position: absolute;
+        left: 9;
+        width: calc(100% - 47px);
+        padding: 0;
+        font-size: 16px;
+        text-overflow: ellipsis;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+}
+
+.selected .baseNode .displayType {
+    color: white;
+}
+
+.summaryNode {
+    .icon {
+        height: 20px;
+        width: 20px;
+        text-align: center;
+
+        svg {
+            @include adf-button-dims($smallSvgDim, $smallSvgDim);
+        }
+
+        &.summaryIcon {
+            margin-right: 8px;
+        }
+    }
+
+    .icons {
+        position: absolute;
+        top: 40px;
+        left: 9px;
+
+        > .col {
+            margin-right: 8px;
+        }
+
+        .count {
+            text-align: center;
+            font-size: 14px;
+            margin-top: -2px;
+        }
+    }
+
+    .summaryText {
+        position: absolute;
+        left: 9px;
+        top: 4px;
+        width: 100%;
+        padding: 2px;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-transform: uppercase;
+    }
+}

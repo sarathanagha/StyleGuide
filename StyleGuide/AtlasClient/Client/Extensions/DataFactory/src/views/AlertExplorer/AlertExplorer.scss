@@ -1,0 +1,169 @@
+@import "../../stylesheets/_AdfSpecific";
+
+@mixin flex {
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin flex-basis($width) {
+    -webkit-flex-basis: $width;
+    flex-basis: $width;
+}
+
+@mixin flex-end {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+@mixin flex-nowrap {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.viewsSidePanel {
+    width: 100%;
+    .header {
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+    .adf-alerts-header {
+        justify-content: space-between;
+        .header-name {
+            margin-bottom: 20px;
+        }
+    }
+
+    .action-button {
+        button {
+            min-width: 100%;
+        }
+    }
+
+    #adf-alerts-list {
+        .adf-alert {
+            justify-content: space-between;
+
+            .toolbar-container {
+                // should always show all three 16px icons + 10px padding between each
+                min-width: 84px;
+            }
+
+            .adf-alert-toolbar {
+                background-color: transparent;
+
+                text-align: right;
+
+                button {
+                    @include adf-button-dims(26px, 26px);
+                }
+
+                .win-toolbar-actionarea {
+                    height: 26px;
+                    min-height: 26px;
+                    max-height: 26px;
+                }
+
+                svg {
+                    @include adf-button-dims(16px, 16px);
+                }
+            }
+
+            div {
+                white-space: nowrap;
+                color: $darkCharColor;
+                @include flex-nowrap;
+            }
+
+
+            &.disabled {
+                .adf-alert-name {
+                    opacity: .3
+                }
+            }
+
+            .adf-alert-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+   }
+}
+
+// Wizard- and Flyout-related css
+
+$wizardPanelWidth: 252px;
+$wizardContentWidth: 356px;
+
+#adf-alerts-flyout, .adf-alerts-wizard, .adf-alerts-wizard > div,
+.wizardBindingElement, .wizardBindingElement > div {
+    height: 100%;
+}
+
+#adf-alerts-flyout {
+    background-color: rgba(0,0,0,.6);
+    width: 100%;
+    height: calc(100% - 37px);
+    z-index: 1000;
+    position: absolute;
+
+    .adf-alerts-wizard {
+        width: $wizardContentWidth + $wizardPanelWidth;
+    }
+
+    $contentAreaPadding: 40px;
+    .wizardContentArea {
+        position: relative;
+        background-color: white;
+        width: $wizardContentWidth;
+        .wizardHeader {
+            padding: 20px;
+        }
+        .wizardFooter {
+            width: $wizardContentWidth;
+        }
+    }
+
+    // step templates
+    .adf-alert-step {
+        .adf-alerts-header {
+            padding-bottom: 40px;
+            text-transform: uppercase;
+
+            .step-name {
+                color: $atlasTeal;
+            }
+
+            .action-button {
+                position: absolute;
+                right: 20px;
+            }
+        }
+        .adf-alerts-item {
+            padding-bottom: 30px;
+        }
+
+        width: $wizardContentWidth - 2 * $contentAreaPadding;
+
+        .adf-alert-datasets > .win-listview > .win-vertical .win-container {
+            margin: 0px;
+        }
+
+        input[type=text], textarea {
+            width: 100%;
+        }
+
+        select {
+            background-color: #FFFFFF;
+            width: 100%;
+        }
+
+        .infoDiv {
+            width: 16px;
+            height: 16px;
+            margin-left: auto;
+        }
+    }
+}
+

@@ -1,0 +1,79 @@
+<div id="browse-documentation" data-bind="if: selected() && selected().hasDocumentation()">
+    <div id="browse-documentation-container">
+        <div id="browse-documentation-contents">
+            <div data-bind="adc-spinner: { working: isChangingDocumentation(), success: successChangingDocumentation }" class="small"></div>
+            <textarea data-bind="adc-kendoEditor: selected().documentation().content, kendoOptions: {
+                change: function(){
+                    onContentChanged();
+                },
+                onFocus: function(){
+                    isChangingDocumentation(true);
+                },
+                onBlur: function(){
+                    isChangingDocumentation(false);
+                },
+                tools : [
+                    { name: 'formatting',
+                      items: [
+                        { text: resx.kendo_editor_paragraph, value: 'p' },
+                        { text: resx.kendo_editor_quotation, value: 'blockquote' },
+                        { text: resx.kendo_editor_heading1, value: 'h1' },
+                        { text: resx.kendo_editor_heading2, value: 'h2' },
+                        { text: resx.kendo_editor_heading3, value: 'h3' },
+                        { text: resx.kendo_editor_heading4, value: 'h4' },
+                        { text: resx.kendo_editor_heading5, value: 'h5' },
+                        { text: resx.kendo_editor_heading6, value: 'h6' }
+                        ]
+                    },
+                    { name: 'fontName',
+                      items: [
+                        { text: resx.kendo_editor_arial, value: 'Arial,Helvetica,sans-serif'},
+                        { text: resx.kendo_editor_courierNew, value: '\'Courier New\',Courier,monospace'},
+                        { text: resx.kendo_editor_georgia, value: 'Georgia,serif' },
+                        { text: resx.kendo_editor_impact, value: 'Impact,Charcoal,sans-serif' },
+                        { text: resx.kendo_editor_lucida, value: '\'Lucida Console\',Monaco,monospace' },
+                        { text: resx.kendo_editor_tahoma, value: 'Tahoma,Geneva,sans-serif' },
+                        { text: resx.kendo_editor_timesNewRoman, value: '\'Times New Roman\',Times,serif' },
+                        { text: resx.kendo_editor_trebuchetMS, value: '\'Trebuchet MS\',Helvetica,sands-serif' },
+                        { text: resx.kendo_editor_verdana, value: 'Verdana,Geneva,sans-serif' }
+                        ]
+                    },
+                    { name: 'fontSize',
+                      items: [
+                        {text: resx.kendo_editor_fontSize.format('1', '8'), value: 'xx-small'},
+                        {text: resx.kendo_editor_fontSize.format('2', '10'), value: 'x-small'},
+                        {text: resx.kendo_editor_fontSize.format('3', '12'), value: 'small' },
+                        {text: resx.kendo_editor_fontSize.format('4', '14'), value: 'medium' },
+                        {text: resx.kendo_editor_fontSize.format('5', '18'), value: 'large' },
+                        {text: resx.kendo_editor_fontSize.format('6', '24'), value: 'x-large' },
+                        {text: resx.kendo_editor_fontSize.format('7', '36'), value: 'xx-large' }
+                        ]
+                    },
+                    'foreColor',
+                    'backColor',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'justifyLeft',
+                    'justifyCenter',
+                    'justifyRight',
+                    'justifyFull',
+                    'insertUnorderedList',
+                    'insertOrderedList',
+                    'indent',
+                    'outdent',
+                    'createLink',
+                    'unlink',
+                    'createTable',
+                    'addRowAbove',
+                    'addRowBelow',
+                    'addColumnLeft',
+                    'addColumnRight',
+                    'deleteRow',
+                    'deleteColumn'
+                ]
+            }" id="browse-documentation-editor"></textarea>
+        </div>
+    </div>
+</div>

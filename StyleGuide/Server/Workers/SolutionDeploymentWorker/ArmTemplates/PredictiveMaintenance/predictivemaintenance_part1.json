@@ -1,0 +1,241 @@
+﻿{
+    "contentVersion": "1.0.0.0",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    /* parameter section */
+    "parameters": {
+        "dataFactoryName": { "type": "string", "defaultValue": "maintenancesa02adf" },
+        "storageAccountName": { "type": "string", "defaultValue": "maintenancesa02st" },
+        "sqlServerUserName": { "type": "string", "defaultValue": "mylogin" },
+        "sqlServerPassword": { "type": "string", "defaultValue": "pa$$Word" },
+        "sqlServerName": { "type": "string", "defaultValue": "maintenancesa02srv" },
+        "IngestEventHubName": { "type": "string", "defaultValue": "maintenancesa02ingest" },
+        "PublishEventHubName": { "type": "string", "defaultValue": "maintenancesa02pulish" },
+        "streamingJobBlobName": { "type": "string", "defaultValue": "maintenancesa02asablob" },
+        "streamingJobPBIName": { "type": "string", "defaultValue": "maintenancesa02asapbi" },
+        "namespaceName": { "type": "string", "defaultValue": "maintenancesa02ns" },
+        "streamingJobName": { "type": "string", "defaultValue": "maintenancestream" }
+    }, 
+ /* variables section */
+ "variables": {
+  /*************************************/
+  "apiVersion": "2015-09-01",
+  "storageAccountName": "[parameters('storageAccountName')]",
+  "sqlServerUserName": "[parameters('sqlServerUserName')]",
+  "sqlServerPassword": "[parameters('sqlServerPassword')]",
+  "sqlServerName": "[parameters('sqlServerName')]",
+  "location": "centralus",
+  "databasename": "pmaintenancedb",
+  "edition": "Basic",
+  "collation": "SQL_Latin1_General_CP1_CI_AS",
+  "maxSizeBytes": "2147483648",
+  "storageAccountType": "Standard-GRS",
+  "startIpAddress": "0.0.0.0",
+  "endIpAddress": "255.255.255.255",
+  "dataFactoryName": "[parameters('dataFactoryName')]", 
+  "namespaceName": "[parameters('namespaceName')]",
+  "consumerGroupBlobName":  "blobcg",
+  "consumerGroupPBIName":  "pbicg", 
+  "IngestEventHubName": "[parameters('IngestEventHubName')]",
+  "PublishEventHubName": "[parameters('PublishEventHubName')]",
+  "SharedAccessPolicyName": "RootManageSharedAccessKey",
+  "singleQuote": "'",
+
+  "dataContainerName": "maintenancesadata",
+  "scriptContainerName": "maintenancesascript",
+  "scoringExperimentLink": "https://storage.azureml.net/directories/2844cf4c214f4d8aa7371b6482231c77/items",
+  "scoringCommunityUri": "http://gallery.azureml.net/Details/b0685ab111d84a399c3b5d8cd336a6eb",
+  "trainingExperimentLink": "https://storage.azureml.net/directories/1a2f4bdffa1a45b9bb0b2b8e8d5241a4/items",
+  "trainingCommunityUri": "http://gallery.azureml.net/Details/5243057fede64fbcb6ce2162617ca1c6"
+ },
+ /* resource section */
+ "resources": [
+    /* create a sql server, database and configure ip addresses */
+    {
+      "name": "[variables('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[variables('location')]",
+      "apiVersion": "2014-04-01-preview",
+      "properties": {
+        "administratorLogin": "[variables('sqlServerUserName')]",
+        "administratorLoginPassword": "[variables('sqlServerPassword')]"
+      },
+      "resources": [
+        {
+          "name": "[variables('databasename')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+          "properties": {
+            "edition": "[variables('edition')]",
+            "collation": "[variables('collation')]",
+            "maxSizeBytes": "[variables('maxSizeBytes')]"
+          }
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+          "location": "[variables('location')]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "[variables('startIpAddress')]",
+            "endIpAddress": "[variables('endIpAddress')]"
+          },
+          "type": "firewallrules"
+        }
+      ]
+    },
+
+    /* create a storage account */
+    {
+      "apiVersion": "2014-06-01",
+      "name": "[variables('storageAccountName')]",
+      "type": "Microsoft.ClassicStorage/StorageAccounts",
+      "location": "[variables('location')]",
+      "properties": {
+        "accountType": "[variables('storageAccountType')]"
+      }
+    },
+
+    /* create a service bus namespace */
+    /* create the ingest event hub */ 
+ {
+      "apiVersion": "2014-09-01",
+      "name": "[variables('namespaceName')]",
+      "type": "Microsoft.EventHub/namespaces",
+      "location": "[variables('location')]",
+      "properties": {
+        "region": "[variables('location')]"
+      },
+     "resources": [
+        {
+          "apiVersion": "2014-09-01",
+          "name": "[variables('IngestEventHubName')]",
+          "type": "eventHubs",
+          "location": "[variables('location')]",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', variables('namespaceName'))]"
+          ],
+          "properties": {
+            "path": "[variables('IngestEventHubName')]"
+          },
+   "resources": [
+   /* Consumer Group for Blob*/ 
+   {
+    "apiVersion": "2014-09-01",
+    "type": "ConsumerGroups",
+    "name": "[variables('consumerGroupBlobName')]",
+    "dependsOn": [
+     "[variables('IngestEventHubName')]"
+    ],
+    "properties": {
+     "enableCheckpoint": "false"
+    }
+   },
+   /* Consumer Group for PBI*/ 
+   {
+    "apiVersion": "2014-09-01",
+    "type": "ConsumerGroups",
+    "name": "[variables('consumerGroupPBIName')]",
+    "dependsOn": [
+     "[variables('IngestEventHubName')]"
+    ],
+    "properties": {
+     "enableCheckpoint": "false"
+    }
+   },   
+   ],
+   "metadata": {
+    "description": "Create the Ingest Event Hub"
+   }
+        }
+      ]
+    }
+  ],
+  /* output */
+  "outputs": 
+   {
+        "storageAccountName": { //Required 
+            "type": "string", 
+            "value": "[parameters('storageAccountName')]" 
+        }, 
+        "storageAccountConnectionString": { //Required 
+            "type": "string", 
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey)]" 
+            /*"value": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]"*/
+        }, 
+        "eventHubConnectionString": { //Optional only need when updating config in the sample data generator exe 
+            "type": "string", 
+            /* "value": "[listkeys(variables('sbResourceId'), variables('sbVersion')).primaryConnectionString]" */
+            "value": "[concat('Endpoint=sb://',variables('namespaceName'),'.servicebus.windows.net/;SharedAccessKeyName=', variables('SharedAccessPolicyName'), ';SharedAccessKey=', listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',variables('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey)]"
+        }, 
+        "eventHubName": { //Optional only need when updating config in the sample data generator exe 
+            "type": "string", 
+            "value": "[parameters('namespaceName')]" 
+        }, 
+        "ingestEventHubName": { //Optional only need when updating config in the sample data generator exe 
+            "type": "string", 
+            "value": "[parameters('IngestEventHubName')]" 
+        }, 
+        "databaseName": { // Required 
+            "type": "string", 
+            "value": "[variables('databasename')]" 
+        }, 
+        "scriptContainerName": { //Required 
+            "type": "string", 
+            "value": "[variables('scriptContainerName')]" 
+        }, 
+        "dataContainerName": { //Optional 
+            "type": "string", 
+            "value": "[variables('dataContainerName')]" 
+        },
+        "sqlScript": { //Required to create tables in the destination database 
+            "type": "string", 
+            "value": "script/SQL/MaintenanceSAAzureSqlDB.sql"
+        },
+        "dataGenerator": { //Optional only need when updating config in the sample data generator exe
+            "type": "object",
+            "value": {
+                "containerName": "[variables('scriptContainerName')]",
+                "generatorNames": [
+                    {
+                        "name": "PredictiveMaintenanceDataGeneratorv1.0", //Name of the zip file in the blob storage which has the exe
+                        "config": "generator" // Actual name of the exe/config file that needs to be configured.
+                    }
+                ]
+            }
+        },
+        "mlExperiments": { //Required if there is ML provisioning step needed. If left empty the ML step will be ignored 
+            "type": "object", 
+            "value": {
+                "scoringExperiment": "[variables('scoringExperimentLink')]",
+                "scoringCommunityUri": "[variables('scoringCommunityUri')]",
+                "trainingExperiment":  "[variables('trainingExperimentLink')]",
+                "trainingCommunityUri": "[variables('trainingCommunityUri')]"
+            }
+        },
+        /* the following are not in Atlas' requirements.  But I think they are required to go to the part2 */
+        /* ************************************************ */
+        /* since part2 required this one, we should output it */
+        "sqlServerName": {
+                "type": "string", 
+                "value": "[variables('sqlServerName')]"    
+        },
+        /* since part2 required this one, we should output it */  
+        "dataFactoryName": {
+                "type": "string", 
+                "value": "[variables('dataFactoryName')]"     
+        },
+        /* since part2 required this one, we should output it */  
+        "streamingJobBlobName": {
+                "type": "string", 
+                "value": "[parameters('streamingJobBlobName')]"     
+        }, 
+        /* since part2 required this one, we should output it */  
+        "streamingJobPBIName": {
+                "type": "string", 
+                "value": "[parameters('streamingJobPBIName')]"     
+        }
+        /* ************************************************ */  
+    }
+}

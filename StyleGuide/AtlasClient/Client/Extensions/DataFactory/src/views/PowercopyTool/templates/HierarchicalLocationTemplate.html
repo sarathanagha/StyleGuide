@@ -1,0 +1,60 @@
+﻿<div class="blobflex" style="height: 100%;">
+<!-- ko if: isSource -->
+<div class="wizardStepTitle">
+    Choose the input file or folder
+</div>
+<div class="wizardStepSubtitle">Specify a folder with input files (or) an input file that contains data to be copied to the destination data store.</div>
+<!-- /ko -->
+<!-- ko if: !isSource -->
+<div class="wizardStepTitle">
+    Choose the output file or folder
+</div>
+<div class="wizardStepSubtitle">Specify a folder that will contain output files (or) a specific output file in the destination data store.</div>
+<!-- /ko -->
+<div style="margin-bottom: 15px; margin-right:30px">
+    <span class="fileFolderText" data-bind="text:folderText"></span>
+    <button style="float:right;margin-top:-3px;margin-left:8px" data-bind="event:{click:toggleBlobBrowser}">Browse</button>
+    <div style="overflow:hidden;padding: 0 2px 1px 10px">
+        <input style="width:100%" type="text" data-bind="value: folderPath" />
+    </div>
+</div>
+<div data-bind="visible:!isSource" style="overflow:hidden;margin-bottom:10px">
+        <div class="fileFolderText">Filename</div>
+        <div style="overflow:hidden;padding: 0 2px 1px 10px">
+            <input style="width:360px" type="text" data-bind="value: filename, enable:filenameEnabled, style: {color: filenameEnabled ? 'black' : 'lightgray'}" />
+        </div>
+        <div data-bind="visible:fileSuffixEnabled" style="margin-top:20px">
+            <div class="fileFolderText">
+                <div style="float:left">Filename suffix</div>
+                <div class="infoDiv" style="float:left" data-bind="callout: { innerHtml: 'Suffix that will be appended to filenames, can contain dynamic variables e.g. {month}' }"></div>
+            </div>
+    <div style="overflow:hidden;padding: 0 2px 1px 10px">
+                <input style="width:360px" type="text" data-bind="value:fileSuffix" />
+            </div>
+    </div>
+</div>
+
+<div data-bind="visible:showBlobBrowser" class="blobBrowserContainer">
+        <div data-bind="component:{name:'datafactory-blobbrowser',params:{vm:blobBrowser}}" class="blobflex"></div>
+</div>
+
+<div data-bind="visible:!showBlobBrowser()" class="partitionDescription">
+        <div data-bind="htmlWith: {template: hierarchicalPartitionTemplate}"></div>
+
+    <div style="height: 20px">
+    </div>
+    <!-- ko if: isSource -->
+    <div style="overflow:hidden">
+        <input type="checkbox" data-bind="checked: recursiveCopy, enable: blobBrowser.directorySelected" id="idrecursivecopycheckbox" />
+    <label class="toolLabel" data-bind="css: {'disabled' : !blobBrowser.directorySelected()}" for="idrecursivecopycheckbox">&nbsp;Copy files recursively</label>
+    <div class="infoDiv" data-bind="callout: { innerHtml: 'Copy all files in the input folder and its subfolders recursively (or) just the ones in the selected folder. This setting is disabled when a single file is selected.' }"></div>
+    </div>
+    <div style="overflow:hidden">
+        <input type="checkbox" data-bind="checked: binaryCopy" id="idbinarycopycheckbox" />
+        <label class="toolLabel" for="idbinarycopycheckbox">&nbsp;Binary copy</label>
+        <div class="infoDiv" data-bind="callout: { innerHtml: 'Files will be treated as binaries, schema definitions will not be enforced. Destination can not be relational database' }"></div>
+    </div>
+    <!-- /ko -->
+    <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: copyBehavior}}">}"></div>
+</div>
+</div>

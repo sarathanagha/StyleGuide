@@ -1,0 +1,158 @@
+.columnPicker {
+    font-family: "Segoe UI";
+    font-size: 13px;
+    color: #434343;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.columnPicker h1 {
+    font-family: "Segoe UI";
+    font-weight: 200; /* Segoe UI Light */
+    font-size: 28px;
+    color: #505050;
+}
+
+.columnPicker .ruleSection {
+    overflow-y: auto;
+}
+
+.columnPicker .ruleTable {
+    margin-top: 15px;
+}
+
+.columnPicker label[for='RulesStartingChoice'] {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.columnNameList {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 371px; /* width and padding must be kept in sync with columnNameBox max-width */
+    min-height: 22px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: text;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.columnNameList.hasItems {
+    padding-top: 5px;
+}
+
+.columnPickerAutocomplete {
+    overflow-y: auto;
+}
+
+.columnPickerAutocomplete .ui-state-hover,
+.columnPickerAutocomplete .ui-state-focus {
+    background: #C7E1EE;
+    border-color: transparent; /* Don't remove the border, which will cause the item to be positioned differently than non-hovered items. Instead, just make the border that jQuery UI adds transparent. */
+}
+
+.columnPickerRuleDisplayHeader {
+    font-weight: bold;
+    color: #1e83ae;
+}
+
+.columnPickerRuleDisplayRuleName {
+    font-weight: bold;
+}
+
+.ruleCategoryChoice, .startingChoice, .ruleTypeChoice {
+    height: 24px;
+}
+
+.startingChoice, .ruleTypeChoice {
+    min-width: 174px;
+}
+
+.columnIndicesInput {
+    width: 369px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-family: "Segoe UI";
+}
+
+.columnAttributeDropDown {
+    width: 155px;
+    height: 24px;
+}
+
+.columnNameBox {
+    background-color: #C7E1EE;
+}
+
+.columnNameBoxInvalid {
+    background-color: #EDC4E0;
+}
+
+.columnNameBox, .columnNameBoxInvalid {
+    padding: 2px 4px;
+    width: auto;
+    font-size: 13px;
+    margin: 0 4px 5px 0;
+    display: inline-block;
+    align-self: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Truncate column names that are too long */
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-width: 357px; /* columnNameList.width - columnNameList.padding-left - columnNameList.padding-right - columnNameBox.margin-left - columnNameBox.margin-right */
+}
+
+input.itemTextBoxInput[type='text'], input.inputTextBoxInput:focus[type='text'] {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 2px 4px 2px 0;
+    margin: 0 4px 0 0;
+    font-family: "Segoe UI";
+    width: 100%;
+    display: inline;
+}
+
+.ruleRow > * {
+    margin: 5px;
+}
+
+.removeColumnName 
+{
+    width: 10px;
+    height: 10px;
+    background-repeat: no-repeat;
+    background-image: url(../../Content/Images/fx.dialog.close.png);
+    background-position: center;
+    display: inline-block;
+    cursor: default;
+}
+
+.icon.tick {
+    background-image: url("../Images/fx.dialog.ok.png");
+    height: 40px;
+    width: 30px;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.icon.tick:hover {
+    background-image: url("../Images/fx.dialog.ok-hover.png");
+}
+
+.textWidthSpan {
+    height: auto;
+    width: auto;
+    display: none;
+    position: absolute;
+    left: -9999px;
+}

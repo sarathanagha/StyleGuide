@@ -1,0 +1,17 @@
+# Bower
+bower_modules/
+
+/module*
+/startup*
+
+/views/**/*.css
+/views/**/*.d.ts
+/views/**/*.js
+/views/**/*.map
+
+/Startup.d.ts
+/Startup.js
+/Startup.js.map
+
+/libs/mlstudio/MockShell.js
+/libs/mlstudio/MockShell.js.map

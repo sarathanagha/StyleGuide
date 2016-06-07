@@ -1,0 +1,212 @@
+[
+    {
+        "Id": "HiveActivity",
+        "Name": "Hive Activity",
+        "Description": "ADF Hive Activity",
+        "FamilyId": "1",
+        "Category": "ADF",
+        "Items": null,
+        "InputPorts": [
+            {
+                "AllowedTypes": [
+                    {
+                        "Description": "A serialized DataTable supporting partial reads and writes",
+                        "Id": "DataSet",
+                        "Name": "DataSet .net"
+                    },
+                    {
+                        "Description": "A serialized DataTable supporting partial reads and writes",
+                        "Id": "DataSet 2",
+                        "Name": "DataSet .net 2"
+                    }
+                ],
+                "Name": "Dataset",
+                "Description": "Incoming Port 1",
+                "FriendlyName": "Incoming Port1",
+                "IsOptional": false
+                //todo: Allow a max number to represent a port to avoid redundancy
+            }
+        ],
+        "OutputPorts": [
+            {
+                "AllowedTypes": [
+                    {
+                        "Description": "A serialized DataTable supporting partial reads and writes",
+                        "Id": "DataSet",
+                        "Name": "DataSet .net"
+                    },
+                    {
+                        "Description": "A serialized DataTable supporting partial reads and writes",
+                        "Id": "DataSet 2",
+                        "Name": "DataSet .net 2"
+                    }
+                ],
+                "Name": "Dataset",
+                "Description": "Output Port 1",
+                "FriendlyName": "Output Port1",
+                "IsOptional": false
+            }
+        ],
+        "Properties": [
+            {
+                "PropertyName": "Name",
+                "IsOptional": false,
+                "PropertyType": 0,
+                "PropertyRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "Activity name",
+                "FriendlyName": "Activity Name"
+            },
+            {
+                "PropertyName": "Description",
+                "IsOptional": true,
+                "PropertyType": 0,
+                "PropertyRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "Activity Description",
+                "FriendlyName": "Activity Description"
+            },
+            {
+                "PropertyName": "LinkedServiceName",
+                "IsOptional": false,
+                "PropertyType": 0,
+                "PropertyRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "LinkedService name where the Activity Runs.",
+                "FriendlyName": "LinkedService Name"
+            },
+            {
+                "PropertyName": "Policy",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityPolicy",
+                "FriendlyName": "Activity policy.",
+                "PropertyType": 6,
+                "Properties": [
+                    {
+                        "PropertyName": "Timeout",
+                        "IsOptional": false,
+                        "PropertyType": 0,
+                        "PropertyRules": {
+                            "Pattern": "((\\d+)\\.)?(\\d\\d):(60|([0-5][0-9])):(60|([0-5][0-9]))"
+                        },
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "LinkedService name where the Activity Runs.",
+                        "FriendlyName": "LinkedServiceName"
+                    },
+                    {
+                        "PropertyName": "ExecutionPriorityOrder",
+                        "IsOptional": false,
+                        "PropertyType": 3,
+                        "PropertyRules": null,
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "LinkedService name where the Activity Runs.",
+                        "FriendlyName": "LinkedServiceName",
+                        "PropertyValueInfo": [
+                            {
+                                "Key": "OldestFirst",
+                                "Value": {
+                                    "DisplayValue": "OldestFirst",
+                                    "Properties": [ ]
+                                }
+                            },
+                            {
+                                "Key": "NewestFirst",
+                                "Value": {
+                                    "DisplayValue": "NewestFirst",
+                                    "Properties": [ ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "PropertyName": "Inputs",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityInput",
+                "FriendlyName": "An activity input.",
+                "PropertyType": 7,
+                "TableProperties": [
+                    [
+                        {
+                            "PropertyName": "StartTime",
+                            "IsOptional": true,
+                            "PropertyType": 0,
+                            "PropertyRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Start time",
+                            "FriendlyName": "StartTime"
+                        },
+                        {
+                            "PropertyName": "EndTime",
+                            "IsOptional": true,
+                            "PropertyType": 3,
+                            "PropertyRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "EndTime",
+                            "FriendlyName": "EndTime",
+                            "PropertyValueInfo": null
+                        },
+                        {
+                            "PropertyName": "Length",
+                            "IsOptional": true,
+                            "PropertyType": 3,
+                            "PropertyRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Length",
+                            "FriendlyName": "Length",
+                            "PropertyValueInfo": null
+                        },
+                        {
+                            "PropertyName": "Name",
+                            "IsOptional": true,
+                            "PropertyType": 3,
+                            "PropertyRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Name",
+                            "FriendlyName": "Name",
+                            "PropertyValueInfo": null
+                        }
+
+                    ]
+                ]
+            },
+            {
+                "PropertyName": "Outputs",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityOutput",
+                "FriendlyName": "An activity output.",
+                "PropertyType": 11,
+                "Properties": [
+                    {
+                        "PropertyName": "Name",
+                        "IsOptional": true,
+                        "PropertyType": 3,
+                        "PropertyRules": null,
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "Name",
+                        "FriendlyName": "Name",
+                        "PropertyValueInfo": null
+                    }
+                ]
+            }
+        ]
+    }
+]

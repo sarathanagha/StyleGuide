@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<ConfigList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- TODO: The configurations and settigns for PROD and BCDR deployments are likely incomplete and have not been validated with deployments yet! -->
+  <Config Type="Abstract" Name="MonitoringProdCommon" Base="MonitoringCommon">
+    <Settings>
+      <Setting Name="WASubscriptionID">c7351024-5bc1-4991-b26b-2b2bdc2eeec0 </Setting>
+      <Setting Name="WALocation">US We st</Setting>
+      <Setting Name="SecretStore">prod</Setting>
+      <Setting Name="ServiceName">$(RootNamespace)/production/$(DeploymentName)</Setting>
+      <Setting Name="ManagementCertPathInSecretStore">$(RootNamespace)/production/WAAPICertificate</Setting>
+
+      <Setting Name="MSFERoleInstances">2</Setting>
+      <Setting Name="MSWRRoleInstances">3</Setting>
+    </Settings>
+    <HostedService Type="Package" Name="$(DeploymentName)">
+    </HostedService>
+  </Config>
+  <Config Type="Abstract" Name="MonitoringProdCommonBcdr" Base="MonitoringCommon">
+    <Settings>
+      <Setting Name="WASubscriptionID">c7351024-5bc1-4991-b26b-2b2bdc2eeec0 </Setting>
+      <Setting Name="WALocation">US East</Setting>
+      <Setting Name="ServiceName">$(RootNamespace)/production/$(DeploymentName)</Setting>
+      <Setting Name="ManagementCertPathInSecretStore">$(RootNamespace)/production/WAAPICertificate</Setting>
+    </Settings>
+    <HostedService Type="Package" Name="$(DeploymentName)">
+    </HostedService>
+  </Config>
+  <!-- deployment tooling requires one non-abstract target environment; its values will be set from the deployment tool -->
+  <Config Type="Sealed" Name="MonitoringProdCommon-base" Base="MonitoringProdCommon">
+  </Config>
+</ConfigList>

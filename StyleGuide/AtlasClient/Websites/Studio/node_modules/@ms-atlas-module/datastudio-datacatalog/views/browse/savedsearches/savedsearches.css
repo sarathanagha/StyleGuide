@@ -1,0 +1,139 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#saved-searches .arrow-r {
+  position: relative;
+  top: -2px;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-filter: none;
+          filter: none;
+  /*Mandatory for IE9 to show the vertical text correctly*/
+  -webkit-transition: -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out; }
+  #saved-searches .arrow-r.expanded {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-filter: none;
+            filter: none;
+    /*Mandatory for IE9 to show the vertical text correctly*/ }
+
+#saved-searches .saved-searches-count:before {
+  content: "("; }
+
+#saved-searches .saved-searches-count:after {
+  content: ")"; }
+
+#saved-searches #saved-searches-container.current-box {
+  margin-bottom: 10px; }
+
+#saved-searches #saved-searches-container .saved-search-row {
+  height: 25px;
+  margin: 3px 0;
+  position: relative;
+  cursor: pointer; }
+  #saved-searches #saved-searches-container .saved-search-row.active {
+    background-color: fade(#26357F, 20%); }
+  #saved-searches #saved-searches-container .saved-search-row:hover {
+    background-color: fade(#26357F, 25%); }
+  #saved-searches #saved-searches-container .saved-search-row .saved-search-name {
+    position: absolute;
+    padding: 5px 0 5px 20px;
+    line-height: 15px;
+    left: 0;
+    right: 25px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    #saved-searches #saved-searches-container .saved-search-row .saved-search-name input {
+      width: 100%;
+      position: relative;
+      top: -4px;
+      outline: 0; }
+      #saved-searches #saved-searches-container .saved-search-row .saved-search-name input::-ms-clear {
+        display: none;
+        height: 0;
+        width: 0; }
+  #saved-searches #saved-searches-container .saved-search-row .rename-spinner {
+    position: absolute;
+    right: 2px;
+    top: 3px; }
+  #saved-searches #saved-searches-container .saved-search-row .dropdown {
+    position: absolute;
+    width: 25px;
+    right: 0;
+    height: 25px; }
+    #saved-searches #saved-searches-container .saved-search-row .dropdown > a {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      color: inherit; }
+    #saved-searches #saved-searches-container .saved-search-row .dropdown .dropdown-menu {
+      left: auto;
+      right: 0;
+      margin: 0;
+      padding: 3px 0;
+      border-radius: 0;
+      font-size: 12px; }
+      #saved-searches #saved-searches-container .saved-search-row .dropdown .dropdown-menu li a {
+        padding: 3px 10px;
+        text-transform: capitalize;
+        white-space: normal; }
+        #saved-searches #saved-searches-container .saved-search-row .dropdown .dropdown-menu li a.disabled {
+          opacity: 0.25;
+          filter: alpha(opacity=25);
+          cursor: default; }
+  #saved-searches #saved-searches-container .saved-search-row img {
+    position: absolute; }
+    #saved-searches #saved-searches-container .saved-search-row img.checkmark {
+      left: 4px;
+      z-index: 5;
+      top: calc(50% - 7px);
+      height: 13px; }
+    #saved-searches #saved-searches-container .saved-search-row img.dropdown-arrow {
+      right: 10px;
+      top: calc(50% - 6px); }
+
+#saved-searches .saved-searches-box {
+  padding: 10px;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 15px; }
+
+#saved-searches .paging-controls-row {
+  width: 100%;
+  height: 10px; }
+  #saved-searches .paging-controls-row .paging-controls {
+    float: right; }
+    #saved-searches .paging-controls-row .paging-controls .paging-text {
+      font-size: 10px; }
+    #saved-searches .paging-controls-row .paging-controls .paging {
+      cursor: pointer; }
+      #saved-searches .paging-controls-row .paging-controls .paging.disabled {
+        cursor: default;
+        opacity: 0.25;
+        filter: alpha(opacity=25); }
+
+#saved-searches #saved-searches-container .saved-search-row {
+  background-color: #D8DBDE; }
+  #saved-searches #saved-searches-container .saved-search-row .dropdown .dropdown-menu {
+    border: 1px solid #EFF0F0;
+    border-top: 1px solid #FFFFFF; }
+
+#saved-searches .saved-searches-box {
+  background-color: #EFF0F0; }
+
+/*# sourceMappingURL=savedsearches.css.map */

@@ -1,0 +1,80 @@
+﻿ $accentColor: #03b092;
+
+ /* Custom Colors */
+$charcoalColor: #343A41;
+$darkCharColor: #2C3137;
+$darkCloudColor: rgb(189,191,194);
+$darkGreenColor: #498205;
+$darkSlateColor: #48525E;
+$atlasGreenColor: #00B294;
+$lightCanvasColor: #F2F2F2;
+$grayColor: #808387;
+$grayLightColor: #ABADAF;
+$blueColor: #00BCF2;
+$darkBlueColor: #0099BC;
+$cloudColor: #D2D4D8;
+$canvasColor: #E6e6e6;
+$canvasToolbarColor: rgba(230, 230, 230, .3);
+$darkestGray: #2C3137;
+$darkGray: #585A5F;
+$darkBlue: #0099BC;
+$canvas: #E6e6e6;
+$cloud: #D2D4D8;
+$darkCloud: rgb(189,191,194);
+$atlasDarkTeal: #008272;
+$atlasDarkTealHover: #005E50;
+$darkChar: #2C3137;
+$atlasTeal: #00B294;
+$regularFont: 'Segoe UI';
+$boldFont: 'Segoe UI Semibold';
+
+.buildDeploy {
+	.modules {
+		font-weight: 700;
+    	font-size: 25px;
+		width: 300px;
+		
+		> div {
+			margin-top: 20px;
+			cursor: pointer;
+			
+			opacity: .3;
+			
+			&.active, &:hover{
+				opacity: 1;
+			}
+		}
+	}
+	
+	.squiggle {
+		width: 100px;
+	}
+	
+	.create {
+		width: 400px;
+		
+		.instructions {
+			font-size: 50px;
+		}
+		
+		.createButton {
+			margin-top: 50px;
+		
+			button {
+				color: white;
+				background-color: black;
+				width: 150px;
+				height: 50px;
+				font-size: 17px;
+				
+				&:active {
+					background-color: white;
+				}
+				
+				&:hover {
+					color: $grayColor;
+				}
+			}
+		}
+	}
+}

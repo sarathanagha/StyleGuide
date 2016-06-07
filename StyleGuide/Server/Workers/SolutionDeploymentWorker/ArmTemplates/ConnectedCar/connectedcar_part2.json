@@ -1,0 +1,1861 @@
+﻿{
+    "contentVersion": "1.0.0.0",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "parameters": {
+        "storageAccountName": { "type": "string" },
+        "sqlServerUserName": { "type": "string" },
+        "sqlServerPassword": { "type": "string" },
+        "sqlServerName": { "type": "string" },
+        "ingestEventHubName": { "type": "string" },
+        "publishEventHubName": { "type": "string" },
+        "namespaceName": { "type": "string" },
+        "mLEndpointBatchLocation": { "type": "string" },
+        "mLEndpointKey": { "type": "string" },
+
+        "scriptContainer": {"type": "string", "defaultValue": "connectedcar"},
+        "dataFactoryName": { "type": "string", "defaultValue": "[concat('df-', uniquestring(deployment().name))]" },
+        "streamingJobName": { "type": "string", "defaultValue": "[concat('sj-', uniquestring(deployment().name))]" },
+        "startTime": { "type": "string", "defaultValue": "2015-02-01T00:00:00Z" },
+        "endTime": { "type": "string", "defaultValue": "2016-02-01T00:00:00Z" },
+        "nowTime": { "type": "string", "defaultValue": "2015-11-30T00:00:00Z" },
+        "nowPlusTenYearsTime": { "type": "string", "defaultValue": "2025-11-30T00:00:00Z" },
+        "databaseName": { "type": "string", "defaultValue": "connectedcar" }
+    },
+    "variables": {
+
+        "streamingJobName": "[parameters('streamingJobName')]",
+
+        "apiVersion": "2015-09-01",
+        "location": "centralus",
+        "databasename": "[parameters('databaseName')]",
+
+        // Datafactory
+        "dataFactoryName": "[parameters('dataFactoryName')]",
+        "azureSqlLinkedServiceName": "AzureSqlLinkedService",
+        "storageLinkedServiceName": "StorageLinkedService",
+        "hdInsightStorageLinkedServiceName": "HDInsightStorageLinkedService",
+        "hdInsightLinkedServiceName": "HDInsightLinkedService",
+        "AzureMLLinkedServiceName": "AzureMLAnomalydetectionendpoint",
+        "AggresiveDrivingModelReportName": "AggresiveDrivingModelReport",
+        "AggresiveDrivingModelTableName": "AggresiveDrivingModelTable",
+        "CarEventsAnomalyTableName": "CarEventsAnomalyTable",
+        "FuelEfficientDrivingModelReportName": "FuelEfficientDrivingModelReport",
+        "FuelEfficientDrivingModelTableName": "FuelEfficientDrivingModelTable",
+        "PartitionedCarEventsTableName": "PartitionedCarEventsTable",
+        "PartitionedCarEventsTableforMLName": "PartitionedCarEventsTableforML",
+        "PartitionedCarEventsTableforMLCSVName": "PartitionedCarEventsTableforMLCSV",
+        "RawCarEventsTableName": "RawCarEventsTable",
+        "RecallModelReportName": "RecallModelReport",
+        "RecallModelTableName": "RecallModelTable",
+        "AggresiveDrivingPatternPipelineName": "AggresiveDrivingPatternPipeline",
+        "CopyAggDrivingTabletoMartPipelineName": "CopyAggDrivingTabletoMartPipeline",
+        "CopyFuelEfficientTabletoMartPipelineName": "CopyFuelEfficientTabletoMartPipeline",
+        "CopyRecallModeltoMartPipelineName": "CopyRecallModeltoMartPipeline",
+        "DetectAnomalyPipelineName": "DetectAnomalyPipeline",
+        "FuelEfficientDrivingPatternPipelineName": "FuelEfficientDrivingPatternPipeline",
+        "PartitionCarEventsPipelineName": "PartitionCarEventsPipeline",
+        "PrepareSampleDataPipelineName": "PrepareSampleDataPipeline",
+        "RecallModelPipelineName": "RecallModelPipeline",
+        "singleQuote": "'",
+        "SharedAccessPolicyName": "RootManageSharedAccessKey"
+    },
+    "resources": [
+        /* create data factory and its child resources */
+        {
+            "name": "[variables('dataFactoryName')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "type": "Microsoft.DataFactory/datafactories",
+            "location": "westus",
+            "resources": [
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('azureSqlLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureSqlDatabase",
+                        "typeProperties": {
+                            "connectionString": "[concat('Server=tcp:',parameters('sqlServerName'),'.database.windows.net,1433;Database=', variables('databasename'), ';User ID=',parameters('sqlServerUserName'),';Password=',parameters('sqlServerPassword'),';Trusted_Connection=False;Encrypt=True;Connection Timeout=30')]"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('storageLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureStorage",
+                        "typeProperties": {
+                            "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey)]"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"                        
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('hdInsightStorageLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureStorage",
+                        "typeProperties": {
+                            "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey)]"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('hdInsightStorageLinkedServiceName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('hdInsightLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "HDInsightOnDemand",
+                        "typeProperties": {
+                            "clusterSize": "1",
+                            "jobsContainer": "adfjobs",
+                            "timeToLive": "05:00:00",
+                            "version": "3.1",
+                            "linkedServiceName": "[variables('hdInsightStorageLinkedServiceName')]"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('AzureMLLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureML",
+                        "typeProperties": {
+                            "mlEndpoint": "[parameters('mLEndpointBatchLocation')]",
+                            "apiKey": "[parameters('mLEndpointKey')]"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('AggresiveDrivingModelReportName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "position": 0,
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "timestamp",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "Year",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "Month",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureSqlTable",
+                        "linkedServiceName": "AzureSqlLinkedService",
+                        "typeProperties": {
+                            "tableName": "AggresiveDrivingModelReport"
+                        },
+                        "availability": {
+                            "frequency": "Month",
+                            "interval": 1,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('RawCarEventsTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "timestamp",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsideTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "fuel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineoil",
+                                "type": "String"
+                            },
+                            {
+                                "name": "tirepressure",
+                                "type": "String"
+                            },
+                            {
+                                "name": "odometer",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "parking_brake_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "headlamp_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "ignition_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "windshield_wiper_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "abs",
+                                "type": "String"
+                            },
+                            {
+                                "name": "gendate ",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/rawcarevents/"
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 24,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('AggresiveDrivingModelTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "timestamp",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Year",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Month",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/aggresivedriving/yearno={Year}/monthno={Month}/",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 1,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('RecallModelTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsidetemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "enginetemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "year",
+                                "type": "String"
+                            },
+                            {
+                                "name": "month",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/recallmodel/yearno={Year}/monthno={Month}/",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 1,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('RecallModelReportName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "position": 0,
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "outsidetemperature",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "enginetemperature",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "year",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "month",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureSqlTable",
+                        "linkedServiceName": "AzureSqlLinkedService",
+                        "typeProperties": {
+                            "tableName": "RecallModelReport"
+                        },
+                        "availability": {
+                            "frequency": "Month",
+                            "interval": 1,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('CarEventsAnomalyTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "gendate",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsideTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "fuel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineoil",
+                                "type": "String"
+                            },
+                            {
+                                "name": "tirepressure",
+                                "type": "String"
+                            },
+                            {
+                                "name": "odometer",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "parking_brake_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "headlamp_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "ignition_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "windshield_wiper_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "abs",
+                                "type": "String"
+                            },
+                            {
+                                "name": "MaintenanceLabel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "MaintenanceProbability",
+                                "type": "String"
+                            },
+                            {
+                                "name": "RecallLabel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "RecallProbability",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/careventsanomaly/yearno={Year}/monthno={Month}/",
+                            "filename": "careventsanomaly.csv",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 1,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('FuelEfficientDrivingModelReportName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "position": 0,
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "Year",
+                                "type": "String"
+                            },
+                            {
+                                "position": 0,
+                                "name": "Month",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureSqlTable",
+                        "linkedServiceName": "AzureSqlLinkedService",
+                        "typeProperties": {
+                            "tableName": "FuelEfficientDrivingModelReport"
+                        },
+                        "availability": {
+                            "frequency": "Month",
+                            "interval": 1,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('FuelEfficientDrivingModelTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Year",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Month",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/fuelefficientdriving/yearno={Year}/monthno={Month}/",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 1,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('PartitionedCarEventsTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "timestamp",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsideTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "fuel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineoil",
+                                "type": "String"
+                            },
+                            {
+                                "name": "tirepressure",
+                                "type": "String"
+                            },
+                            {
+                                "name": "odometer",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "parking_brake_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "headlamp_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "ignition_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "windshield_wiper_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "abs",
+                                "type": "String"
+                            },
+                            {
+                                "name": "gendate ",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/partitionedcarevents/yearno={Year}/monthno={Month}/",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "month",
+                            "interval": 1,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('PartitionedCarEventsTableforMLName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "gendate",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsideTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "fuel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineoil",
+                                "type": "String"
+                            },
+                            {
+                                "name": "tirepressure",
+                                "type": "String"
+                            },
+                            {
+                                "name": "odometer",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "parking_brake_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "headlamp_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "ignition_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "windshield_wiper_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "abs",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/partitionedcareventsforml/yearno={Year}/monthno={Month}/",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            },
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "Month",
+                            "interval": 1,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('PartitionedCarEventsTableforMLCSVName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Vin",
+                                "type": "String"
+                            },
+                            {
+                                "name": "model",
+                                "type": "String"
+                            },
+                            {
+                                "name": "gendate",
+                                "type": "String"
+                            },
+                            {
+                                "name": "outsideTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineTemperature",
+                                "type": "String"
+                            },
+                            {
+                                "name": "speed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "fuel",
+                                "type": "String"
+                            },
+                            {
+                                "name": "engineoil",
+                                "type": "String"
+                            },
+                            {
+                                "name": "tirepressure",
+                                "type": "String"
+                            },
+                            {
+                                "name": "odometer",
+                                "type": "String"
+                            },
+                            {
+                                "name": "city",
+                                "type": "String"
+                            },
+                            {
+                                "name": "accelerator_pedal_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "parking_brake_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "headlamp_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "brake_pedal_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "transmission_gear_position",
+                                "type": "String"
+                            },
+                            {
+                                "name": "ignition_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "windshield_wiper_status",
+                                "type": "String"
+                            },
+                            {
+                                "name": "abs",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "connectedcar/partitionedcareventsformlcsv/yearno={Year}/monthno={Month}/",
+                            "fileName": "partitionedcarevents.csv",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            },
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "Month",
+                            "interval": 1,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RawCarEventsTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('PartitionCarEventsPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a sample pipeline to prepare the car events data for further processing",
+                        "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",
+                        "activities": [
+                            {
+                                "name": "BlobPartitionHiveActivity",
+                                "inputs": [
+                                    {
+                                        "name": "RawCarEventsTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTable"
+                                    }
+                                ],
+                                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(parameters('scriptContainer'), '\\scripts\\partitioncarevents.hql')]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "RAWINPUT": "[concat('wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/rawcarevents/')]",
+                                        "PARTITIONEDOUTPUT": "[concat('wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/partitionedcarevents/')]",
+                                        "Year": "$$Text.Format('{0:yyyy}',SliceStart)",
+                                        "Month": "$$Text.Format('{0:%M}',SliceStart)",
+                                        "Day": "$$Text.Format('{0:%d}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RawCarEventsTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('PrepareSampleDataPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "Prepare Sample Data for Connected Cars Use Case",
+                        "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",
+                        "activities": [
+                            {
+                                "type": "DotNetActivity",
+                                "typeProperties": {
+                                    "assemblyName": "ConnectedCarsDataGenerator.dll",
+                                    "entryPoint": "ConnectedCarsDataGenerator.DataGenerator",
+                                    "packageLinkedService": "StorageLinkedService",
+                                    "packageFile": "connectedcar/scripts/connectedcar.zip",
+                                    "extendedProperties": {
+                                        "sliceStart": "$$Text.Format('{0:yyyyMMddHHmm}', Time.AddMinutes(SliceStart, 0))"
+                                    }
+                                },
+                                "outputs": [
+                                    {
+                                        "name": "RawCarEventsTable"
+                                    }
+                                ],
+                                "policy": {
+                                    "timeout": "02:00:00",
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 1
+                                },
+                                "name": "PrepareSampleDataActivity",
+                                "description": "Prepare Sample Data for ConnectedCars Use Case",
+                                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('FuelEfficientDrivingModelTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('FuelEfficientDrivingPatternPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a sample pipeline to detect fuel efficient driving behaviour",
+      "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",
+                        "activities": [
+                            {
+                                "name": "FuelEfficientDrivingPatternHiveActivity",
+                                "inputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "FuelEfficientDrivingModelTable"
+                                    }
+                                ],
+                                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(parameters('scriptContainer'), '\\scripts\\fuelefficientdriving.hql')]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "PARTITIONEDINPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/partitionedcarevents/yearno={0:yyyy}/monthno={0:%M}/',variables('singleQuote'), ', SliceStart)')]",
+                                        "FUELEFFICIENTOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/fuelefficientdriving/yearno={0:yyyy}/monthno={0:MM}/',variables('singleQuote'), ',  SliceStart)')]",
+                                        "Year": "$$Text.Format('{0:yyyy}',SliceStart)",
+                                        "Month": "$$Text.Format('{0:%M}',SliceStart)",
+                                        "Day": "$$Text.Format('{0:%d}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableforMLName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableforMLCSVName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('CarEventsAnomalyTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('DetectAnomalyPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a sample pipeline to detect anomaly in the in the car events data with an AML model",
+      "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",
+                        "activities": [
+                            {
+                                "name": "SchemaPrepForAnomalyDetectionActivity",
+                                "inputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTableforML"
+                                    }
+                                ],
+                                "linkedServiceName": "HDInsightLinkedService",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(parameters('scriptContainer'), '\\scripts\\anomalydetectionschemaprep.hql')]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "PARTITIONEDINPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/partitionedcarevents/yearno={0:yyyy}/monthno={0:%M}/',variables('singleQuote'), ', SliceStart)')]",
+                                        "PREPOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/partitionedcareventsforml/yearno={0:yyyy}/monthno={0:MM}/',variables('singleQuote'), ',  SliceStart)')]",
+                                        "Year": "$$Text.Format('{0:yyyy}',SliceStart)",
+                                        "Month": "$$Text.Format('{0:%M}',SliceStart)",
+                                        "Day": "$$Text.Format('{0:%d}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            },
+                            {
+                                "name": "FileExtensionPrepforMLActivity",
+                                "inputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTableforML"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTableforMLCSV"
+                                    }
+                                ],
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource"
+                                    },
+                                    "sink": {
+                                        "type": "BlobSink",
+                                        "writeBatchSize": 10000,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            },
+                            {
+                                "name": "AMLBatchScoringforAnomalyActivity",
+                                "inputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTableforMLCSV"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "CarEventsAnomalyTable"
+                                    }
+                                ],
+                                "type": "AzureMLBatchScoring",
+                                "linkedServiceName": "AzureMLAnomalydetectionendpoint",
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedCarEventsTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggresiveDrivingModelTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('AggresiveDrivingPatternPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a sample pipeline to detect aggressive driving behaviour",
+      "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",
+                        "activities": [
+                            {
+                                "name": "AggresiveDrivingPatternHiveActivity",
+                                "inputs": [
+                                    {
+                                        "name": "PartitionedCarEventsTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "AggresiveDrivingModelTable"
+                                    }
+                                ],
+                                "linkedServiceName": "HDInsightLinkedService",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(parameters('scriptContainer'), '\\scripts\\aggresivedriving.hql')]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "PARTITIONEDINPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/partitionedcarevents/yearno={0:yyyy}/monthno={0:%M}/',variables('singleQuote'), ', SliceStart)')]",
+                                        "AGGRESIVEOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/aggresivedriving/yearno={0:yyyy}/monthno={0:MM}/',variables('singleQuote'), ',  SliceStart)')]",
+                                        "Year": "$$Text.Format('{0:yyyy}',SliceStart)",
+                                        "Month": "$$Text.Format('{0:%M}',SliceStart)",
+                                        "Day": "$$Text.Format('{0:%d}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('FuelEfficientDrivingModelTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('FuelEfficientDrivingModelReportName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('CopyFuelEfficientTabletoMartPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "Copy fuel efficient table to Sql Azure DataMart",
+                        "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",      
+                        "activities": [
+                            {
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource",
+                                        "treatEmptyAsNull": true
+                                    },
+                                    "sink": {
+                                        "type": "SqlSink",
+                                        "writeBatchSize": 0,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "inputs": [
+                                    {
+                                        "name": "FuelEfficientDrivingModelTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "FuelEfficientDrivingModelReport"
+                                    }
+                                ],
+                                "policy": {
+                                    "timeout": "01:00:00",
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 1
+                                },
+                                "name": "CopyfuelefftabletoSqlAzure",
+                                "description": "Copy fuel efficient table to Sql Azure DataMart"
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('CarEventsAnomalyTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RecallModelTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('RecallModelPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a sample pipeline to determine the models that may require recall from the anomalies detected using AML",
+      "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",      
+                        "activities": [
+                            {
+                                "name": "RecallModelHiveActivity",
+                                "inputs": [
+                                    {
+                                        "name": "CarEventsAnomalyTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "RecallModelTable"
+                                    }
+                                ],
+                                "linkedServiceName": "HDInsightLinkedService",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(parameters('scriptContainer'), '\\scripts\\recallmodel.hql')]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "ANOMALYOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/careventsanomaly/yearno={0:yyyy}/monthno={0:MM}/',variables('singleQuote'), ',  SliceStart)')]",
+                                        "RECALLMODELOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),'wasb://connectedcar@',parameters('storageAccountName'),'.blob.core.windows.net/recallmodel/yearno={0:yyyy}/monthno={0:MM}/',variables('singleQuote'), ',   SliceStart)')]",
+                                        "Year": "$$Text.Format('{0:yyyy}',SliceStart)",
+                                        "Month": "$$Text.Format('{0:%M}',SliceStart)",
+                                        "Day": "$$Text.Format('{0:%d}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 2,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggresiveDrivingModelTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggresiveDrivingModelReportName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('CopyAggDrivingTabletoMartPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "Copy aggressive driving table to Sql Azure DataMart",      
+                        "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",      
+                        "activities": [
+                            {
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource",
+                                        "treatEmptyAsNull": true
+                                    },
+                                    "sink": {
+                                        "type": "SqlSink",
+                                        "writeBatchSize": 0,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "inputs": [
+                                    {
+                                        "name": "AggresiveDrivingModelTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "AggresiveDrivingModelReport"
+                                    }
+                                ],
+                                "policy": {
+                                    "timeout": "01:00:00",
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 1
+                                },
+                                "name": "CopyAggDrivingTabletoSqlAzure",
+                                "description": "Copy aggresive driving table to Sql Azure DataMart"
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RecallModelTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RecallModelReportName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('CopyRecallModeltoMartPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "Copy Recall Model to Sql Azure DataMart",
+                        "start": "[parameters('startTime')]",
+                        "end": "[parameters('endTime')]",      
+                        "activities": [
+                            {
+                                "name": "CopyRecalltoSqlAzure",
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource",
+                                        "treatEmptyAsNull": true
+                                    },
+                                    "sink": {
+                                        "type": "SqlSink",
+                                        "writeBatchSize": 0,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "inputs": [
+                                    {
+                                        "name": "RecallModelTable"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "RecallModelReport"
+                                    }
+                                ],
+                                "policy": {
+                                    "timeout": "01:00:00",
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "NewestFirst",
+                                    "retry": 1
+                                }
+                            }
+                        ]
+                    }
+
+                }
+            ]
+        },
+
+        /* create ASA jobs */
+        {
+            "apiVersion": "2015-10-01",
+            "type": "Microsoft.StreamAnalytics/streamingJobs",
+            "name": "[variables('streamingJobName')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "sku": {
+                    "name": "standard"
+                },
+                "EventsOutOfOrderMaxDelayInSeconds": 10,
+                "EventsOutOfOrderPolicy": "Adjust",
+                "inputs": [
+                    {
+                        "name": "EventHubSource",
+                        "properties": {
+                            "type": "stream",
+                            "serialization": {
+                                "type": "JSON",
+                                "properties": {
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "EventHubName": "[parameters('ingestEventHubName')]",
+                                    "ServiceBusNamespace": "[parameters('namespaceName')]",
+                                    "SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                    "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',parameters('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                                    "SourcePartitionCount": 16
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "BlobSource",
+                        "properties": {
+                            "type": "reference",
+                            "serialization": {
+                                "type": "CSV",
+                                "properties": {
+                                    "fieldDelimiter": ",",
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.Storage/Blob",
+                                "properties": {
+                                    "storageAccounts": [
+                                        {
+                                            "accountName": "[parameters('storageAccountName')]",
+                                            "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey]",
+                                        }
+                                    ],
+                                    "container": "[parameters('scriptContainer')]",
+                                    "BlobName": "referencedata/VINRefData.csv"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "transformation": {
+                    "name": "ProcessSampleData",
+                    "properties": {
+                        "streamingUnits": 1,
+                        "query": "Select EventHubSource.vin, BlobSource.Model, EventHubSource.timestamp, EventHubSource.outsideTemperature, EventHubSource.engineTemperature, EventHubSource.speed, EventHubSource.fuel, EventHubSource.engineoil, EventHubSource.tirepressure, EventHubSource.odometer, EventHubSource.city, EventHubSource.accelerator_pedal_position, EventHubSource.parking_brake_status,EventHubSource.headlamp_status, EventHubSource.brake_pedal_status, EventHubSource.transmission_gear_position, EventHubSource.ignition_status, EventHubSource.windshield_wiper_status, EventHubSource.abs into BlobSink from EventHubSource join BlobSource on EventHubSource.vin = BlobSource.VIN\r\nSelect EventHubSource.vin, BlobSource.Model, EventHubSource.timestamp,EventHubSource.outsideTemperature, EventHubSource.engineTemperature, EventHubSource.speed,EventHubSource.fuel, EventHubSource.engineoil, EventHubSource.tirepressure, EventHubSource.odometer,EventHubSource.city, EventHubSource.accelerator_pedal_position, EventHubSource.parking_brake_status,EventHubSource.headlamp_status, EventHubSource.brake_pedal_status,EventHubSource.transmission_gear_position, EventHubSource.ignition_status,EventHubSource.windshield_wiper_status, EventHubSource.abs into EventHubOut from EventHubSource join BlobSource on EventHubSource.vin = BlobSource.VIN\r\nSelect BlobSource.Model, EventHubSource.city,count(vin) as cars, avg(EventHubSource.engineTemperature) as engineTemperature, avg(EventHubSource.speed) as Speed, avg(EventHubSource.fuel) as Fuel, avg(EventHubSource.engineoil) as EngineOil,avg(EventHubSource.tirepressure) as TirePressure, avg(EventHubSource.odometer) as Odometer into SQLSink from EventHubSource join BlobSource on EventHubSource.vin = BlobSource.VIN group by BlobSource.model, EventHubSource.city, TumblingWindow(second,3)\r\n\r\n\r\n\r\n\r\n\r\n"
+                    }
+                },
+                "outputs": [
+                    {
+                        "name": "BlobSink",
+                        "properties": {
+                            "serialization": {
+                                "type": "CSV",
+                                "properties": {
+                                    "fieldDelimiter": ",",
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.Storage/Blob",
+                                "properties": {
+                                    "storageAccounts": [
+                                        {
+                                            "accountName": "[parameters('storageAccountName')]",
+                                            "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey]",
+
+                                        }
+                                    ],
+                                    "container": "[parameters('scriptContainer')]",
+                                    "PathPattern": "rawcareventstream"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "SQlSink",
+                        "properties": {
+                            "datasource": {
+                                "type": "Microsoft.Sql/Server/Database",
+                                "properties": {
+                                    "server": "[parameters('sqlServerName')]",
+                                    "database": "[variables('databasename')]",
+                                    "table": "RealTimeVehicleHealthReport",
+                                    "user": "[parameters('sqlServerUserName')]",
+                                    "password": "[parameters('sqlServerPassword')]"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "EventHubOut",
+                        "properties": {
+                            "type": "stream",
+                            "serialization": {
+                                "type": "JSON",
+                                "properties": {
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "EventHubName": "[parameters('publishEventHubName')]",
+                                    "ServiceBusNamespace": "[parameters('namespaceName')]",
+                                    "SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                    "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',parameters('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                                    "SourcePartitionCount": 16
+                                }
+                            }
+                        }
+                    }
+                ],
+                "OutputStartMode": "CustomTime",
+                "OutputStartTime": "[parameters('endTime')]"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

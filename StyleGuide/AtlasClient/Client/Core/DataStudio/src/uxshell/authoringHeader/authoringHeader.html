@@ -1,0 +1,25 @@
+﻿<div class="applicationHeader">
+    <!-- Logo and Workspaces -->
+    <div class="headerLogo" data-bind="text: resx.cortanaanalyticsstudio" role="banner"></div>
+    
+    <div class="headerTabs" data-bind='foreach: tabs' role="navigation" aria-label="main navigation">
+        <a data-bind="text: name, click: $parent.tabClicked, css: { active: $data === $parent.activeTab() }" href="#" role="button"></a>
+    </div>
+
+    <div class="headerCenter"></div>
+
+    <!-- User -->
+    <div class="headerItem">
+        <a href="#" data-bind="dropdown: 'headerUserMenu'" role="button">
+            <img id="idUserIcon" class="userIcon" src="/content/images/profile_white.svg">
+        </a>
+
+        <ul id="headerUserMenu" class="headerDropDown userSignOut">
+            <li>
+                <a href="/Account/SignOut" id="idSignOutButton" class="click-close">
+                    <span data-bind="text: resx.signOut"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<div id="browse-batchproperties">
+
+    <div class="static-header">
+
+        <ul class="details">
+            <li>
+                <a data-target="#" data-bind="click: onSchema">
+                    <img src="../../../../images/properties/schema.png" />
+                    <div data-bind="text: resx.schema"></div>
+                </a>
+            </li>
+        </ul>
+
+        <span class="hr"></span>
+    </div>
+
+    <div class="save-cancel" data-bind="css: { show: commitEnabled() }">
+        <div data-bind="text: selectedText"></div>
+        <div data-bind="text: resx.pleaseSaveOrCancel"></div>
+        <div data-bind="visible: !isSaving()">
+            <a class="save-btn" data-target="#" data-bind="click: saveChanges">
+                <span data-bind="text: resx.save"></span>
+            </a>
+            <a class="cancel-btn" data-target="#" data-bind="click: cancel">
+                <span data-bind="text: resx.cancel"></span>
+            </a>
+        </div>
+        <div data-bind="adc-spinner: isSaving" class="light"></div>
+    </div>
+
+    <div class="scrollable-content">
+
+        <div class="desc">
+            <span data-bind="text: resx.description" class="property-label"></span>
+            <textarea id="batch-desc" data-bind="textInput: snapshot().description, attr: {placeholder: resx.addYourDesc + '...' }" spellcheck="false"></textarea>
+        </div>
+
+        <div class="expert">
+            <span data-bind="text: resx.experts" class="property-label"></span>
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: snapshot().expertsOnAll,
+                                            attributesOnSome: snapshot().expertsOnSome,
+                                            placeholderText: resx.addAnExpert,
+                                            showTooltip:true,
+                                            onValidate: validateEmail
+                                        }
+                                   }"></div>
+        </div>
+
+        <div class="tags">
+            <span data-bind="text: resx.tags" class="property-label"></span>
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: snapshot().tagsOnAll,
+                                            attributesOnSome: snapshot().tagsOnSome,
+                                            placeholderText: resx.addYourTags,
+                                            showTooltip:true
+                                        }
+                                   }"></div>
+        </div>
+
+
+
+        <div class="connection-info">
+            <div data-bind="text: resx.connectionInfo" class="property-label"></div>
+            <div class="properties">
+                <div style="position: relative">
+                    <span data-bind="text: resx.requestAccess, adc-popover: {}, attr: { 'data-content': getRequestAccessLabelTooltipText() }"
+                          data-placement="auto top"
+                          data-trigger="hover"
+                          data-container="body"
+                          data-html="true"
+                          class="property-label dismiss-popover-on-scroll"></span>
+                    <span data-bind="adc-popover: {},
+                                     attr: { 'data-content': resx.edit }"
+                          data-placement="auto top"
+                          data-trigger="hover"
+                          data-container="body"
+                          data-html="true"
+                          style="position: absolute; right: 0; top: 3px; cursor: pointer"
+                          class="dismiss-popover-on-scroll">
+
+                        <!-- ko if: !showEditForRequestAccess() -->
+                        <i class="glyphicon glyphicon-pencil" data-bind="click: onClickEditRequestAccess"></i>
+                        <!-- /ko -->
+                    </span>
+                </div>
+                <!-- ko if: showEditForRequestAccess -->
+                <textarea data-bind="textInput: snapshot().requestAccess,
+                              hasFocus: requestAccessShowEditMode,
+                              event: {
+                                  keydown: function(){ isChangingRequestAccess(true); return true; },
+                                  blur: function(){ isChangingRequestAccess(false); requestAccessShowEditMode(false); return true; }
+                              },
+                              attr: { placeholder: resx.requestAccessPlaceholder + '...' }"
+                          style="margin-top: 5px"
+                          spellcheck="false"></textarea>
+                <!-- /ko -->
+                <!-- ko ifnot: showEditForRequestAccess -->
+                <div data-bind="html: requestAccessLinkText,
+                                adc-popover: {},
+                                attr: { 'data-content': getRequestAccessValueTooltipText() }"
+                     data-placement="auto top"
+                     data-trigger="hover"
+                     data-container="body"
+                     data-html="true"
+                     class="dismiss-popover-on-scroll"></div>
+                <!-- /ko -->
+
+                <div data-bind="visible: hasRequestAccessChanges() && snapshot().locations().length > 1">
+                    <span data-bind="text: resx.disjointLocationAccessWarningMessage" class="validation-error"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div data-bind="component: 'datacatalog-browse-batchmanagement'"></div>
+
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+.datalab-contextMenuItem > div.document {
+    background-image: url('../images/file_16.png');
+    position: absolute;
+}
+
+.datalab-contextMenuItem > div.folder {
+    background-image: url('../images/folder_16.png');
+    position: absolute;
+}

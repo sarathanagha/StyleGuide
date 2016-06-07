@@ -1,0 +1,27 @@
+<div class="adf-filterFlyoutContent">
+    <div id="adf-sort-asc" class="adf-filterFlyoutSortOption">
+        <div data-bind="click: sortAscendingClicked">
+            <span>{0}</span><span data-bind="text: ClientResources.sortAscending"></span>
+        </div>
+    </div>
+    <div id="adf-sort-desc" class="adf-filterFlyoutSortOption">
+        <div data-bind="click: sortDescendingClicked">
+            <span>{1}</span><span data-bind="text: ClientResources.sortDescending"></span>
+        </div>
+    </div>
+    <div class="adf-filterFlyoutSeparator"></div>
+    <div class="adf-filterSearchBox">
+        <input type="search" data-bind="textInput: searchTerm" />
+    </div>
+    <div class="adf-filterFlyoutSeparator"></div>
+    <div class="adf-filterCheckboxList col adf-scroll" data-bind="foreach: { data: filteredItems, as: 'item' }">
+        <div class="adf-filterCheckboxListItem row no-shrink">
+            <label><input type="checkbox" data-bind="checked: item.checked" /><span data-bind="text: item.name"></span></label>
+        </div>
+    </div>
+    <div class="adf-filterFlyoutSeparator"></div>
+    <div class="adf-filterSubmissionButtons">
+        <button class="adf-okFilterButton" data-bind="text: ClientResources.okFilterLabel, click: okClicked"></button>
+        <button data-bind="text: ClientResources.cancelFilterLabel, click: cancelClicked"></button>
+    </div>
+</div>

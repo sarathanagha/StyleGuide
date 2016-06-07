@@ -1,0 +1,56 @@
+﻿@import "../../stylesheets/Framework/Base/layoutBase";
+
+.sidePanel {
+    color: white;
+    background-color: #03b092;
+    width: 20em;
+    padding: 0.5em;
+    position:relative;
+    @extend %scrollY;
+    overflow-x: hidden;
+
+    > div {
+        flex-shrink: 0;
+    }
+
+    #sidePanelSwitch, .switch {
+        position: absolute;
+        right: 0.5em;
+        top: 50%;
+        cursor: pointer;
+    }
+
+    .sidePanelElements {
+        > div {
+            margin: 0.5em;
+            flex-shrink: inherit;
+        }
+
+        > * {
+            flex-direction: column;
+            display:flex;
+        }
+
+      .sidePanelElement {
+        padding-right: 0.5em;
+      }
+    }
+
+    .sidePanelElements.footer {
+        >.row {
+            align-self: flex-end;
+        }
+    }
+
+    .dropDown {
+        padding-top: 0.5em;
+        padding-right: 0.5em;
+    }
+
+}
+
+.sidePanel.collapsed {
+    width: 2.6em;
+}
+
+

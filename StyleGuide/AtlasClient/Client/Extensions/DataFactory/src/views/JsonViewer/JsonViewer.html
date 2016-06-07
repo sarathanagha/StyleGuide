@@ -1,0 +1,7 @@
+﻿<div class="col grow fontStyleBody adf-jsonViewer">
+    <div data-bind="titleText: displayText"></div>
+    <!-- ko if: scriptText -->
+    <textarea class="adf-jsonViewer-textarea adf-scroll fontStyleBody" data-bind="textInput: scriptText" readonly wrap="off"></textarea>
+    <!-- /ko -->
+    <div data-bind="loader: loading" class="adf-jsonViewer-loader"></div>
+</div>

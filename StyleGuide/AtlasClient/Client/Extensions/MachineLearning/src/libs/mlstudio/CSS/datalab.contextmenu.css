@@ -1,0 +1,145 @@
+.datalab-contextMenu {
+    -webkit-user-select: none;
+}
+
+.datalab-contextMenu>ul {
+	font-family: "Segoe UI";
+	font-size: 12px;
+	min-width: 120px;
+	width: 100%;
+	margin: 0;
+	border: 1px solid #d3d3d3;
+	background: #fafafa;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	-webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.51);
+	-moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.51);
+	box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.51);
+}
+
+.datalab-contextMenuItem {
+    min-height: 25px;
+    background-repeat: no-repeat;
+    list-style-type: none;
+    margin-left: 2px;
+    margin-right: 2px;
+    position: relative;
+}
+
+.datalab-contextMenuItem:hover {
+    background-color: #E0E0E0;
+}
+
+.datalab-contextMenuItem:hover.disabled {
+    background-color: transparent;
+}
+
+.datalab-contextMenuItem > span {
+    position: relative;
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 1px;
+    margin: 2px 1px 1px 24px;
+    cursor: default;
+}
+
+.datalab-contextMenuItem > div.ee-rightarrow {
+    /* sprite set in ee-sprite.less */
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.disabled.datalab-contextMenuItem > span {
+    color: lightgray;
+}
+
+.datalab-contextMenuItem.divider {
+    border-top: 1px solid #e7e3e7;
+    border-bottom: 1px solid #ffffff;
+    min-height: 0px;
+    padding: 0px;
+}
+
+.datalab-contextMenuItem .datalab-contextMenu {
+    width: auto;
+    height: auto;
+}
+
+.datalab-contextMenuItem > div,
+.datalab-contextMenuItem > div.disabled {
+    border: 0px;
+    outline: 0px;
+    margin: 2px;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    overflow: hidden;
+}
+
+.datalab-contextMenuItem > div.disabled {
+    opacity: 0.5;
+}
+
+/* Context menu icons */
+.datalab-contextMenuItem > div.delete:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.view:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.file:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.refresh:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.copy:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.paste:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.setinputport:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.setoutputport:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.property:before {
+    content: url('../images/property_16.png');
+}
+
+.datalab-contextMenuItem > div.check:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.visualize:before {
+    /* sprite set in ee-sprite.less */
+    content: "";
+}
+
+.datalab-contextMenuItem > div.python:before {
+    content: url('../images/python_16.png');
+}

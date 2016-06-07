@@ -1,0 +1,11 @@
+{
+  "name": "@ms-atlas-module/datastudio-rdx",
+  "version": "0.1.16",
+  "description": "Azure Data Studio Crystal Module.",
+  "main": "startup.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {  },
+  "dependencies": {
+  }
+}

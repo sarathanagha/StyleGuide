@@ -1,0 +1,13 @@
+div(class="dataconnect-container col grow")
+  h1(data-bind="text: gateway().name")
+  div(class="row grow content")
+    .col
+      .row
+        img(src="../../Images/Sample1.png")
+      .row
+        h3 Monitoring
+    .col
+      .row
+        div(data-bind="component: { name: 'uxshell-templates-home-actionitemslist', params: { items: topTasks, title: 'Top Tasks' } }")
+      .row
+        div(data-bind="component: { name: 'uxshell-templates-home-actionitemslist', params: { items: certificateTasks, title: 'Certificates' } }")

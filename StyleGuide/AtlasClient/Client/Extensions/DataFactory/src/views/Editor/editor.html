@@ -1,0 +1,33 @@
+﻿<div class="editor">
+    <div class="commandBar row">
+        <div class="pageTitle" data-bind="text: commandBar.pipelineName"></div>
+        <div class="col">
+            <button class="btn btn-primary deployButton" data-bind="click: commandBar.deployClicked, text: commandBar.deployText"></button>
+        </div>
+    </div>
+    <div data-bind="datastudio-ux-modal: overlayModalParams">
+    </div>
+    <div class="graphContainerDiv">
+        <div class="graphContainer" data-bind="initHTML:initHTML, style: style, click: backgroundClicked, css:{connecting: connecting()}, hasFocus: hasFocus, jqueryUI: containerUIConfig" tabindex="0">
+            <div class="canvas" data-bind="style: canvasStyle, jqueryUI: canvasUIConfig, event: {mousemove: graphMouseOver.bind($data)}">
+                <!-- ko mapForEach: puzzle.graph.edges -->
+                <div class="edge" data-bind="css: {selected: selected, dragging: startNode().isDragging() || startNode().isDragging(), active: endNode().active()}">
+                    <div class="line" data-bind="style: line().style, click: $parent.edgeClicked.bind($data, $data)" tabindex="1"></div>
+                    <div data-bind="css: {arrow: isCycle, ball: !isCycle()}, style: line().startAnchor().style, click: $parent.edgeClicked.bind($data, $data)"></div>
+                    <div class="arrow" data-bind="style: line().endAnchor().style, click: $parent.edgeClicked.bind($data, $data)"></div>
+                </div>
+                <!-- /ko -->
+                <!-- ko mapForEach: puzzle.graph.nodes -->
+                <div class="node" data-bind="css: {selected: selected, active: active, connecting: isConnecting, expanded: $data.expanded && expanded()}">
+                    <div class="graphNode" data-bind="style: style, attr: {'data-id': id}, event:{mouseover: $parent.nodeMouseOver.bind($parent, $data)}, click: $parent.nodeClicked.bind($parent, $data), jqueryUI: combinedUIConfig">
+                        <div class="extensionTemplate" data-bind="viewModel: {viewModel:extensionViewModel, template:extensionTemplate}"></div>
+                    </div>
+                    <div class="adornments" data-bind="foreach: adornments">
+                        <div data-bind="viewModel: {viewModel: $data, template: template}"></div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>

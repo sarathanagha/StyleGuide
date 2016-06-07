@@ -1,0 +1,9 @@
+{
+  "name": "@ms-atlas-module/datastudio-dataconnect",
+  "version": "0.1.8",
+  "description": "Azure Data Studio Data Connect Module.",
+  "main": "service/main.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {}
+}

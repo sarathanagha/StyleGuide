@@ -1,0 +1,27 @@
+﻿<div class="heatmapOverviewWrapper">
+    <div class="rdxContextMenu" id="heatmapOverviewExploreMenu" style="display: none" data-bind="event:{mouseover: exitCellHover}">
+        <div>
+            <div class="contextMenuOptions">
+                <div data-bind="event: {mouseup: function(){exploreMenu.style('display', 'none'); $('.selectionGhost').hide(); rdxContext.zoomFromHeatmap(); }}">Zoom</div>
+                <div data-bind="event: {mouseup: function(){exploreMenu.style('display', 'none'); rdxContext.streamEventsFromHeatmap();}}">Explore events</div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxTooltip" id="heatmapOverviewTooltip" style="display: none"></div>
+    <div class="heatmapLegendWrapper">
+        <div class="heatmapLegend" id="heatmapOverviewLegend"></div>
+    </div>
+    <div class="heatmapOverviewCanvasWrapper">
+        <div class="topLeftCornerControlsWrapper">
+            <input id="heatmapEventTableFilter" data-bind="textInput: heatmap.filter, attr: {placeholder: 'Filter ' + dimensionForFilter() + ' series...'}" />
+            <div>Order by: </div>
+            &nbsp;
+            <span data-bind="css: {selected: !heatmap.orderByName()}, click: function(){heatmap.orderByName(false); heatmap.triggerRerender()}">value</span>
+            &nbsp;
+            <span data-bind="css: {selected: heatmap.orderByName()}, click: function(){heatmap.orderByName(true); heatmap.triggerRerender()}">name</span>
+        </div>
+        <div class="overviewYAxisLabel" data-bind="text: rdxContext.dimension()"></div>
+        <div class="overviewXAxisLabel" data-bind="html: 'Timespan (' + rdxContext.timePicker.prettyPrintedValue() + ')'"></div>
+        <canvas id="heatmapOverviewCanvas" data-bind="event:{mouseleave: hideTooltip, mouseup: handleMouseup}"></canvas>
+    </div>
+</div>

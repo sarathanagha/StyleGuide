@@ -1,0 +1,181 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+div#app header#edd-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  font-size: 17px;
+  padding: 0 30px;
+  font-family: 'Segoe UI Light','Segoe UI', sans-serif;
+  z-index: 10; }
+  div#app header#edd-header #title {
+    font-size: 24px;
+    line-height: 60px;
+    text-transform: capitalize;
+    cursor: default; }
+
+div#app div#user-info {
+  position: absolute;
+  right: 15px;
+  top: -165px;
+  height: 205px;
+  width: 175px;
+  z-index: 9;
+  -webkit-transition: top 0.15s ease-out;
+  transition: top 0.15s ease-out;
+  cursor: default;
+  font-size: 11px; }
+  div#app div#user-info > div {
+    padding: 5px 10px 0 10px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    div#app div#user-info > div:first-child {
+      padding-top: 15px; }
+  div#app div#user-info .user-label {
+    text-transform: capitalize; }
+  div#app div#user-info .user-spacer {
+    margin: 12px 10px;
+    padding: 1px 0 0 0; }
+    div#app div#user-info .user-spacer + div {
+      padding-top: 0; }
+  div#app div#user-info .clear-search-history {
+    position: relative;
+    cursor: pointer; }
+    div#app div#user-info .clear-search-history.isWorking {
+      padding-right: 40px; }
+    div#app div#user-info .clear-search-history .tokyo-spinner {
+      position: absolute;
+      top: 0;
+      right: 10px; }
+  div#app div#user-info .sign-out {
+    cursor: pointer; }
+  div#app div#user-info.show {
+    top: 40px; }
+
+div#app nav#main-navigation {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  height: 40px; }
+  div#app nav#main-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+    div#app nav#main-navigation ul li {
+      display: inline-block;
+      font-size: 12px; }
+      div#app nav#main-navigation ul li a {
+        display: inline-block;
+        min-width: 40px;
+        height: 40px;
+        text-align: center;
+        text-decoration: none;
+        padding: 0 15px;
+        outline: 0; }
+        div#app nav#main-navigation ul li a img {
+          margin-top: 15px; }
+        div#app nav#main-navigation ul li a div {
+          margin-top: 8px;
+          text-transform: capitalize;
+          font-size: 10px; }
+      div#app nav#main-navigation ul li.disabled a {
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        cursor: default; }
+      div#app nav#main-navigation ul li.non-navigation a {
+        border-top: 3px solid transparent !important; }
+
+div#app #upgrade-notice {
+  z-index: 8;
+  position: absolute;
+  top: 0px;
+  -webkit-transition: top 0.15s ease-out;
+  transition: top 0.15s ease-out;
+  left: 0;
+  right: 0;
+  height: 40px;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 18px; }
+  div#app #upgrade-notice > span {
+    position: absolute;
+    left: 10px;
+    right: 40px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  div#app #upgrade-notice #upgrade-notice-action {
+    text-transform: capitalize;
+    text-decoration: underline;
+    cursor: pointer; }
+  div#app #upgrade-notice #upgrade-notice-close {
+    float: right;
+    cursor: pointer; }
+
+div#app .app-content {
+  top: 40px;
+  right: 0;
+  bottom: 33px;
+  left: 0;
+  position: absolute;
+  -webkit-transition: top 0.15s ease-out;
+  transition: top 0.15s ease-out; }
+
+div#app.upgrade-available #upgrade-notice {
+  top: 40px; }
+
+div#app.upgrade-available .app-content {
+  top: 80px;
+  right: 0;
+  bottom: 33px;
+  left: 0;
+  position: absolute; }
+
+div#app header#edd-header {
+  color: #FFF;
+  background-color: #26357F; }
+  div#app header#edd-header #title span#brand {
+    color: #FFF; }
+
+div#app nav#main-navigation {
+  color: #FFF; }
+  div#app nav#main-navigation ul li a {
+    color: #FFF; }
+    div#app nav#main-navigation ul li a:hover {
+      background-color: #006F94;
+      border-top: 3px solid #006F94; }
+  div#app nav#main-navigation ul li.selected a {
+    border-top: 3px solid #FFF;
+    background-color: #006F94; }
+  div#app nav#main-navigation ul li.selected a:hover {
+    border-top: 3px solid #FFF; }
+
+div#app #upgrade-notice {
+  background-color: #0E69B2;
+  color: #FFF; }
+
+div#app .app-content.loading {
+  background-color: #2BA9E1; }
+
+div#app div#user-info {
+  color: #FFF;
+  background-color: #006F94; }
+  div#app div#user-info .user-spacer {
+    background-color: #FFF; }
+
+/*# sourceMappingURL=app.css.map */

@@ -1,0 +1,191 @@
+<div id="browse-list" data-bind="if: searchResult">
+    <div data-bind="adc-loading: isSearching" class="loading-indicator"></div>
+    <div id="browse-list-container">
+
+        <div data-bind="component:'datacatalog-browse-container'"></div>
+
+        <div class="heading">
+            <span class="results-data" data-bind="if: searchResult().totalResults > 0">
+                <span data-bind="text: numResults"></span>
+                <span class="spacer"></span>
+
+                <span class="select-all" data-bind="click: toggleSelectAll">
+                    <span class="outline">
+                        <img data-bind="visible: allSelected" src="../../../../images/checkmark.png" />
+                    </span><span data-bind="text: resx.selectAll" class="select-all-text"></span>
+                </span>
+            </span>
+
+            <div class="paging-container top" data-bind="component: { name: 'datacatalog-shell-paging', params: {
+                                                                                        totalResults: searchResult().totalResults,
+                                                                                        currentPage: searchResult().query.startPage,
+                                                                                        itemsPerPage: searchResult().itemsPerPage,
+                                                                                        onPagingChanged: onPagingChanged
+                                                                                } }"></div>
+        </div>
+
+        <!-- ko if: searchResult().results.length > 0 -->
+        <table class="browse-table">
+            <thead>
+                <tr>
+                    <th data-bind="click: toggleSelectAll">
+                        <img src="../../../../images/checkmark.png" />
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.name"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.description"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.experts"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.tags"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.containedIn"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.sourceType"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.objectType"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.lastUpdated"></span>
+                    </th>
+                    <th>
+                        <span data-bind="text: resx.lastRegistered"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: { data: searchResult().batchedResults, as: 'result' } -->
+                <tr data-bind="css: { selected: $parent.isSelected(result), deleted: $parent.isDeleted(result)}">
+                    <td data-bind="event: {mousedown: $parent.multiSelectAsset.bind($parent)}">
+                        <img class="checkmark" src="../../../../images/checkmark.png" />
+                        <span class="glyphicon glyphicon-info-sign delete-info"
+                              data-bind="adc-popover: {}, attr: {'data-content': $parent.resx.scheduledForDelete }"
+                              data-trigger="hover"
+                              data-placement="right"></span>
+                    </td>
+                    <td>
+                        <!-- ko if: result.pinned -->
+                        <img class="list-pin" src="../../../../images/home/pin_on.svg" data-bind="click: function(d,e) { $(e.target).popover('hide'); unpinEntity();}, 
+                                                                                adc-popover: {}, 
+                                                                                attr: { 'data-content': $parent.resx.unpin }" 
+                                                                                data-placement="auto top" 
+                                                                                data-trigger="hover" 
+                                                                                data-container="body" />
+                        <!-- /ko -->
+                        <!-- ko ifnot: result.pinned -->
+                        <img class="list-pin" src="../../../../images/home/pin_off.svg" data-bind="click: function(d,e) { $(e.target).popover('hide'); pinEntity();}, 
+                                                                                adc-popover: {}, 
+                                                                                attr: { 'data-content': $parent.resx.pin }" 
+                                                                                data-placement="auto top" 
+                                                                                data-trigger="hover" 
+                                                                                data-container="body" />
+                        <!-- /ko -->
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+
+                        <!-- ko if: result.DataSourceType == $parent.DataSourceType.Container && !$parent.isDeleted(result) -->
+                        <a data-bind="adc-highlight: { html: displayName(), limit: 27 }, click: $parent.exploreContainer, adc-popover: {}, attr : {'data-content': $parent.getExploreContainerText(result) }"
+                           data-trigger="hover"
+                           data-placement="top"
+                           class="name"></a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: result.DataSourceType == $parent.DataSourceType.Container && !$parent.isDeleted(result) -->
+                        <span data-bind="adc-highlight: { html: displayName(), limit: 27 }" class="name"></span>
+                        <!-- /ko -->
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <span data-bind="adc-highlight: { html: displayDescription(), limit: 75 }"></span>
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <div class="expert">
+                            <span data-bind="adc-highlight: Microsoft.DataStudio.DataCatalog.Core.Utilities.arrayFirst(result.allExperts())"></span>
+                            <!-- ko if: result.allExperts().length > 1 -->
+                            <span data-bind="adc-highlight: '...('+ result.allExperts().length +')'"></span>
+                            <!-- /ko -->
+                        </div>
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <div data-bind="adc-highlight: displayTags().join(', ')" class="tags"></div>
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <!-- ko if: result.containerId && !$parent.container() && !$parent.isDeleted(result) -->
+                        <a data-bind="adc-highlight: { html: $parent.getContainedInName(result), limit: 25 },
+                                  click: $parent.exploreContainer,
+                                  adc-popover: {},
+                                  attr : {'data-content': $parent.getExploreContainerText(result) }"
+                           data-trigger="hover"
+                           data-placement="top"
+                           class="contained-in"></a>
+                        <!-- /ko -->
+                        <!-- ko if: (!result.containerId && result.DataSourceType != $parent.DataSourceType.Container) || (result.containerId && $parent.isDeleted(result)) || (result.containerId && $parent.container()) -->
+                        <div class="contained-in" data-bind="adc-highlight: { html: $parent.getContainedInName(result), limit: 25 }"></div>
+                        <!-- /ko -->
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <div>
+                            <img data-bind="attr: { src: $parent.getSourceTypeImage(result)}" class="data-object-type-image" />
+                            <span data-bind="adc-highlight: $parent.formatSourceTypeText(result)" class="data-source-type"></span>
+                        </div>
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <div>
+                            <!-- ko if: result.DataSourceType == $parent.DataSourceType.Container -->
+                            <img data-bind="attr: { src: $parent.getSourceTypeImage(result)}" class="data-object-type-image" />
+                            <!-- /ko -->
+                            <!-- ko ifnot: result.DataSourceType == $parent.DataSourceType.Container -->
+                            <img data-bind="attr: { src: $parent.formatObjectType(result)}" class="data-source-type-image" />
+                            <!-- /ko -->
+
+                            <span data-bind="adc-highlight: $parent.formatObjectTypeText(result)" class="data-object-type"></span>
+                        </div>
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <!-- ko if: result.metadataLastUpdated() -->
+                        <span data-bind="adc-highlight: result.metadataLastUpdated().toLocaleDateString() + ' ' + result.metadataLastUpdated().toLocaleTimeString()" class="property-value"></span>
+                        <!-- /ko -->
+                    </td>
+                    <td data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+                        <!-- ko if: result.modifiedTime -->
+                        <span data-bind="adc-highlight: new Date(result.modifiedTime).toLocaleDateString() + ' ' + new Date(result.modifiedTime).toLocaleTimeString()" class="property-value"></span>
+                        <!-- /ko -->
+                    </td>
+                </tr>
+                <!-- /ko -->
+                <!-- ko if: searchResult().isBatchLoading -->
+                <tr>
+                    <td></td>
+                    <td colspan="9"><div data-bind="adc-spinner: true" class="xx-large"></div></td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <!-- /ko -->
+    </div>
+
+    <div class="paging-container bottom" data-bind="component: { name: 'datacatalog-shell-paging', params: {
+                                                                                        totalResults: searchResult().totalResults,
+                                                                                        currentPage: searchResult().query.startPage,
+                                                                                        itemsPerPage: searchResult().itemsPerPage,
+                                                                                        onPagingChanged: onPagingChanged
+                                                                                } }"></div>
+
+    <!-- ko if: searchResult().totalResults == 0 -->
+    <div id="browse-list-no-results">
+        <span data-bind="text: resx.noResults"></span>
+        <div>
+            <div data-bind="click: clearSearch, text: resx.resetQuery" class="clear-button"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+</div>

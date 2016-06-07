@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1ED5AB39-40DF-41B2-92DA-9F03E59BE03B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.DataPipeline.Deployment.Workflow.Services</RootNamespace>
+    <AssemblyName>WorkflowRunnerLib.Services</AssemblyName>
+    <EnableWadi>true</EnableWadi>
+  </PropertyGroup>
+  <Import Project="..\Build.props" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="$(NugetPack)\CommandLineParser.1.9.71\lib\net45\CommandLine.dll">
+      <Name>CommandLine</Name>
+    </Reference>
+    <Reference Include="$(SharedWorkflowLibPath)\WorkflowRunnerLib.dll">
+      <Name>WorkflowRunnerLib</Name>
+    </Reference>
+    <Reference Include="$(SharedAdfActivitiesLibPath)\Adf.Activities.dll">
+      <Name>Adf.Activities</Name>
+    </Reference>
+    <Reference Include="$(DPGActivitiesPath)\net45\Microsoft.DPG.AzureHelperUtilities.dll">
+      <Name>Microsoft.DPG.AzureHelperUtilities</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ServiceDeployment.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ServiceCmdLineOptions.cs" />
+    <Compile Include="ServiceMappings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

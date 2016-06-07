@@ -1,0 +1,2912 @@
+{
+  "contentVersion": "1.0.0.0",
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  /* parameter section */
+  "parameters": {
+	  "dataFactoryName": { "type": "string", "defaultValue": "energyforecast02ADF" }, 	  
+        "storageAccountName": { "type": "string", "defaultValue": "energyforecast02st" },
+        "sqlServerUserName": { "type": "string", "defaultValue": "mylogin" },
+        "sqlServerPassword": { "type": "string", "defaultValue": "pa$$Word" },
+	  "sqlServerName": { "type": "string", "defaultValue": "energyforecast02srv" },  
+        "ingestEventHubName": { "type": "string", "defaultValue": "energyforecast02ingest" },
+        "publishEventHubName": { "type": "string", "defaultValue": "energyforecast02publish" },
+	  "streamingJobName": { "type": "string", "defaultValue": "energyforecast02asablob" }, 	 
+        "namespaceName": { "type": "string", "defaultValue": "energyforecast02ns" },
+        "mLEndpointBatchLocation": { "type": "string", "defaultValue": "https://ussouthcentral.services.azureml.net/workspaces/0d80db6da3404c539a52843c72e41d48/services/1cf686afdf75489c8ede25c959893624/jobs" },
+        "mLEndpointKey": { "type": "string", "defaultValue": "3POt6+pTsQTTrkI8n4aXq63rOcugWXANo3/a6lcQJge2J/dWUhKzxdYmffx/93jIHlixRq9/brmL7TMsHWlRrg==" },
+	  /* "sasBlobStartTime": {"type": "string", "defaultValue": "2015-10-27T013:30:00Z"}, */
+        "startTime": { "type": "string", "defaultValue": "" },
+        "endTime": { "type": "string", "defaultValue": "2015-10-27T013:30:00Z" },
+	  "nowTime": { "type": "string", "defaultValue": "2015-11-30T00:00:00Z" },
+	  "nowPlusTenYearsTime": { "type": "string", "defaultValue": "2025-11-30T00:00:00Z" }
+  },
+  
+  /* variables section */
+  "variables": {
+    "apiVersion": "2015-09-01",
+    "dataFactoryName": "[parameters('dataFactoryName')]",
+    "storageAccountName": "[parameters('storageAccountName')]",
+    "sqlServerUserName": "[parameters('sqlServerUserName')]",
+    "sqlServerPassword": "[parameters('sqlServerPassword')]",
+    "sqlServerName": "[parameters('sqlServerName')]",
+	"location": "centralus",
+	"databasename": "[concat(parameters('sqlServerName'),'db')]",
+    "namespaceName": "[parameters('namespaceName')]",
+        "consumerGroupBlobName": "[concat(parameters('sqlServerName'),'blobcg')]",
+        "consumerGroupPBIName": "[concat(parameters('sqlServerName'),'pbicg')]",
+    "ingestEventHubName": "[parameters('ingestEventHubName')]",
+	"publishEventHubName": "[parameters('publishEventHubName')]",
+	
+        "streamingJobBlobName": "[concat(parameters('streamingJobName'),'asablob')]",
+        "streamingJobPBIName": "[concat(parameters('streamingJobName'),'asapbi')]",
+		
+	"SharedAccessPolicyName": "RootManageSharedAccessKey",
+	"singleQuote": "'",	  
+	/*************************************/
+	  
+	/* storage container name, the name here should be good enough but each team may change to whatever you prefer and hardcode here*/
+	"dataContainerName": "energysadata",
+	"scriptContainerName": "demandforecasting",
+	"HiveScriptDir": "\\script\\hive\\",	
+	
+	/*for ADF part that are generic across all projects */	
+    "azureSqlLinkedServiceName": "AzureSqlLinkedService",
+    "storageLinkedServiceName": "StorageLinkedService",
+    "hdInsightStorageLinkedServiceName": "HDInsightStorageLinkedService",
+    "hdInsightLinkedServiceName": "HDInsightLinkedService",
+        "AzureMLLinkedServiceName": "AzureMLEndpoint",
+	"hdInsightLiveTime": "3:00:00",
+	
+	/**********************************/
+	/* for ADF part each project needs to specify differently, you may need to add more ADF tables and pipelines */
+	"RawDemandHistoryDataName": "demandhistory",	
+	"RawDemandHistoryDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/', variables('RawDemandHistoryDataName'), '/')]",
+    "RawDemandHistoryDataADFTableName": "RawDemandHistoryDataTable",
+
+	"PartitionedDemandHistoryDataName": "demandhistory",	
+	"PartitionedDemandHistoryDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/partitioned/', variables('PartitionedDemandHistoryDataName'), '/')]",
+    "PartitionedDemandHistoryDataADFTableName": "PartitionedDemandHistoryDataTable",
+
+	"AggDemandHistoryDataRegionName": "demandhistoryregion",	
+	"AggDemandHistoryDataRegionBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/aggregated/', variables('AggDemandHistoryDataRegionName'), '/')]",
+    "AggDemandHistoryDataRegionADFTableName": "AggDemandHistoryDataRegionTable",
+
+	"AggDemandHistoryDataRegionCSVName": "demandhistoryregioncsv",	
+	"AggDemandHistoryDataRegionCSVBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/aggregated/', variables('AggDemandHistoryDataRegionCSVName'), '/')]",
+    "AggDemandHistoryDataRegionCSVADFTableName": "AggDemandHistoryDataRegionCSVTable",
+	
+	"PartitionedDemandDataName": "demandongoing",	
+	"PartitionedDemandDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/partitioned/', variables('PartitionedDemandDataName'), '/')]",
+    "PartitionedDemandDataADFTableName": "PartitionedDemandDataTable",
+	
+	"AggDemandRegion1HrDataName": "demandregion1hr",	
+	"AggDemandRegion1HrDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/aggregated/', variables('AggDemandRegion1HrDataName'), '/')]",
+    "AggDemandRegion1HrDataADFTableName": "AggDemandRegion1HrDataTable",
+
+	"LoadHistoryDemandDataADFPipelineName": "LoadHistoryDemandDataPipeline",
+	"PartitionDemandDataADFPipelineName": "PartitionDemandDataPipeline",		
+	"AggregateDemandDataTo1HrADFPipelineName": "AggregateDemandDataTo1HrPipeline",
+
+	"PartitionDemandHiveFile": "PartitionDemand.hql",	
+	"PartitionDemandHistoryHiveFile": "PartitionDemandHistory.hql",
+	"AggregateDemandRegion1HrHiveFile": "AggregateDemandRegion1Hr.hql",
+	"AggregateDemandHistoryRegionHiveFile": "AggregateDemandHistoryRegion.hql",	
+	
+	"PrepareMLRegion1InputHiveFile": "PrepareMLInputRegion1.hql",
+	"PrepareMLRegion2InputHiveFile": "PrepareMLInputRegion2.hql",
+	"PrepareMLRegion3InputHiveFile": "PrepareMLInputRegion3.hql",	
+	
+	"SubStationRefDataName": "substation",
+	"SubStationRefDataBlobDir": "[concat('wasb://',variables('scriptContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/referencedata/', variables('SubStationRefDataName'), '/')]",
+	"SubStationRefDataADFTableName": "SubStationRefDataTable",
+
+	"RegionRefDataName": "region",
+	"RegionRefDataBlobDir": "[concat('wasb://',variables('scriptContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/referencedata/', variables('RegionRefDataName'), '/')]",
+	"RegionRefDataADFTableName": "RegonRefDataTable",
+
+	"TopologyRefDataName": "topologygeo",
+	"TopologyRefDataBlobDir": "[concat('wasb://',variables('scriptContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/referencedata/', variables('TopologyRefDataName'), '/')]",
+	"TopologyRefDataADFTableName": "TopologyRefDataTable",
+	
+	/* 5. these are the variable for the forth ADF table in the workflow that is the data produced by a copy activity and stored in blob as one CSV file */
+	"Region1Id": "101",
+	"Region2Id": "102",
+	"Region3Id": "103",	
+	"IntermediateMLInputDataName": "mldata",
+	"IntermediateMLInputDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/intermediate/', variables('IntermediateMLInputDataName'), '/')]",
+	"IntermediateRegion1MLInputDataADFTableName": "IntermediateRegion1MLInputDataTable",
+	"IntermediateRegion2MLInputDataADFTableName": "IntermediateRegion2MLInputDataTable",
+	"IntermediateRegion3MLInputDataADFTableName": "IntermediateRegion3MLInputDataTable",
+	
+	"IntermediateMLInputDataCSVName": "mlcsvdata",
+	"IntermediateMLInputDataCSVBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/intermediate/', variables('IntermediateMLInputDataCSVName'), '/')]",
+	"IntermediateRegion1MLInputDataCSVADFTableName": "IntermediateRegion1MLInputDataCSVTable",
+	"IntermediateRegion2MLInputDataCSVADFTableName": "IntermediateRegion2MLInputDataCSVTable",
+	"IntermediateRegion3MLInputDataCSVADFTableName": "IntermediateRegion3MLInputDataCSVTable",
+	
+	"MLScoringADFPipelineRegion1Name": "MLScoringRegion1Pipeline",
+	"MLScoringADFPipelineRegion2Name": "MLScoringRegion2Pipeline",
+	"MLScoringADFPipelineRegion3Name": "MLScoringRegion3Pipeline",
+	
+	/* 7. these are the variable for the fifth ADF table in the workflow that is the result of ML scoring, it is also partitioned */	
+	"ScoredResultName": "scoredresult",
+	"ScoredResultBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/', variables('ScoredResultName'), '/')]",
+	"ScoredResultRegion1ADFTableName": "ScoredResultRegion1Table",
+	"ScoredResultRegion2ADFTableName": "ScoredResultRegion2Table",
+	"ScoredResultRegion3ADFTableName": "ScoredResultRegion3Table",
+	
+	/* 8. these are the variable for the Third ADF pipeline in the workflow that is copying the scoring result to SQLAzure */
+	"CopyAggDemandADFPipelineName": "CopyAggDemandPipeline",
+	"CopyScoredResultRegion1ADFPipelineName": "CopyScoredResultRegion1Pipeline",
+	"CopyScoredResultRegion2ADFPipelineName": "CopyScoredResultRegion2Pipeline",	
+	"CopyScoredResultRegion3ADFPipelineName": "CopyScoredResultRegion3Pipeline",	
+	"CopyRegionRefDataADFPipelineName": "CopyRegionDataPipeline",	
+	"CopyTopologyRefDataADFPipelineName": "CopyTopologyDataPipeline",
+	"CopySubStationRefDataADFPipelineName": "CopySubStationDataPipeline",
+
+	/* 9. these are the variable for the fifth ADF table in the workflow that is the result of ML scoring, it is also partitioned */	
+	"SQLScoredResultRegion1ADFTableName": "SQLScoredResultRegion1Table",
+	"SQLScoredResultRegion2ADFTableName": "SQLScoredResultRegion2Table",	
+	"SQLScoredResultRegion3ADFTableName": "SQLScoredResultRegion3Table",	
+	"SQLRegionRefDataADFTableName": "SQLRegionRefDataTable",
+	"SQLSubStationRefDataADFTableName": "SQLSubStationRefDataTable",
+        "SQLTopologyRefDataADFTableName": "SQLTopologyRefDataTable",
+	"SQLDemandHistoryDataADFTableName": "SQLDemandHistoryDataTable",
+	"SQLDemandDataADFTableName": "SQLDemandDataTable",	
+        "SQLAggDemandRegion1HrDataADFTableName": "SQLAggDemandRegion1HrDataTable",
+        "SQLDataControlHistADFTableName": "SQLHistoricalDataReadyTable",
+        "SQLDataControlOngoingADFTableName": "SQLOnGoingDataReadyTable"
+    /********************************/
+  },
+  /* resource section */
+  "resources": [
+    /* create data factory and its child resources */
+    {
+      "name": "[variables('dataFactoryName')]",
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.DataFactory/datafactories",
+      "location": "westus",
+      "resources": [
+		/* SQLAzure Linked Service */
+        {
+          "dependsOn": [ 
+		  "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+		  ],
+          "type": "linkedservices",
+          "name": "[variables('azureSqlLinkedServiceName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "type": "AzureSqlDatabase",
+            "typeProperties": {
+				"connectionString": "[concat('Server=tcp:',variables('sqlServerName'),'.database.windows.net,1433;Database=',variables('databasename'),';User ID=',variables('sqlServerUserName'),';Password=',variables('sqlServerPassword'),';Trusted_Connection=False;Encrypt=True;Connection Timeout=30')]" 
+				}
+          }
+        },
+		/* Storage Linked Service */
+        {
+          "dependsOn": [ 
+		  "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+		  ],
+          "type": "linkedservices",
+          "name": "[variables('storageLinkedServiceName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+              "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey)]"
+            }
+          }
+        },
+		/* hdInsightStorage Linked Service */		
+        {
+          "dependsOn": [ 
+		  "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+		  ],
+          "type": "linkedservices",
+          "name": "[variables('hdInsightStorageLinkedServiceName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+              "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey)]"
+            }
+          }
+        },
+		/* hdInsight Linked Service */			
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('hdInsightStorageLinkedServiceName'))]"
+          ],
+          "type": "linkedservices",
+          "name": "[variables('hdInsightLinkedServiceName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "type": "HDInsightOnDemand",
+                        "typeProperties": {
+                            "clusterSize": "3",
+				"jobsContainer": "adfjobs",
+				"timeToLive": "[variables('hdInsightLiveTime')]",				
+				"linkedServiceName": "[variables('hdInsightStorageLinkedServiceName')]"
+			}
+          }
+        },
+		/* ML_link */
+		/* question: how could we get the ML copied?*/
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"            
+          ],
+          "type": "linkedservices",
+		    "name": "[variables('AzureMLLinkedServiceName')]",
+		    "apiVersion": "[variables('apiVersion')]",
+			"properties": {
+				"type": "AzureML",
+				"typeProperties": {
+					"mlEndpoint": "[parameters('mLEndpointBatchLocation')]",
+					"apiKey": "[parameters('mLEndpointKey')]"
+				}
+			}
+		},
+		/* RawDemandHistoryDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('RawDemandHistoryDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+			  "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "SubStationId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+			  ],
+			  "type": "AzureBlob",
+			  "linkedServiceName": "StorageLinkedService",
+			  "typeProperties": {
+				"folderPath": "[concat(variables('dataContainerName'),'/', variables('RawDemandHistoryDataName'),'/')]"
+			  },
+			  "availability": {
+				"frequency": "day",
+				"interval": 1,
+                "style": "startofinterval"
+			  },
+				"external": true,
+				"policy": {
+					"validation": {
+							"minimumSizeMB": "0.01"  
+						}, 
+					"externalData": {
+						"dataDelay": "00:03:00",
+						"retryInterval": "00:09:00",
+						"retryTimeout": "00:10:00",
+						"maximumRetry": 10
+					}
+				}
+			}
+        },
+		/* PartitionedDemandDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('PartitionedDemandDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+			  /* the structure need to change according to each project */ 
+			  "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "SubStationId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+			  ],
+			  "type": "AzureBlob",
+			  "linkedServiceName": "StorageLinkedService",
+			  "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/',variables('PartitionedDemandDataName'),'/date={Year}-{Month}-{Day}/hour={Hour}')]",
+				  "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+					{
+					  "name": "Hour",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "HH"
+					  }
+					}					
+				  ]
+				},
+			  "availability": {
+				"frequency": "hour",
+				"interval": 1,
+				"style": "endofinterval"
+			  },
+			"external": true,
+			"policy": {
+                "validation": {
+                    "minimumSizeMB": "0.01"
+                },
+				"externalData": {
+					"dataDelay": "00:00:30",	
+                                "retryInterval": "00:15:00",
+                                "retryTimeout": "00:10:00",
+                                "maximumRetry": 10
+				}			  
+			}
+		  }
+        },	
+		/* AggDemandHistoryDataRegionADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('AggDemandHistoryDataRegionADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+			  "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },				  
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+			  ],
+			  "type": "AzureBlob",
+			  "linkedServiceName": "StorageLinkedService",
+			  "typeProperties": {
+				 "folderPath": "[concat(variables('dataContainerName'),'/aggregated/', variables('AggDemandHistoryDataRegionName'),'/')]"
+			  },
+			  "availability": {
+				"frequency": "day",
+				"interval": 1,
+				"style": "endofinterval"
+			  }
+			}
+        },		
+		/* AggDemandRegion1HrDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('AggDemandRegion1HrDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+			  /* the structure need to change according to each project */ 
+			  "structure": [
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+			  ],
+			  "type": "AzureBlob",
+			  "linkedServiceName": "StorageLinkedService",
+			  "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/aggregated/', variables('AggDemandRegion1HrDataName'),'/date={Year}-{Month}-{Day}/hour={Hour}')]",
+				  "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+					{
+					  "name": "Hour",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "HH"
+					  } 
+					}
+				  ]
+				},
+			  /* may need to change according to to the project*/
+			  "availability": {
+				"frequency": "hour",
+				"interval": 1,
+				"style": "endofinterval"
+			  }
+			}
+        },				
+		/* This is the ADF table the ETLed by Hive for preparing the data for ML scoring*/
+		/* IntermediateRegion1MLInputDataADFTable*/
+	    {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion1MLInputDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+            "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataName'),'/region=101/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* IntermediateRegion2MLInputDataADFTable*/
+	    {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion2MLInputDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+            "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataName'),'/region=102/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* IntermediateRegion3MLInputDataADFTable*/
+	        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion3MLInputDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+            "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataName'),'/region=103/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },			
+		/* This is the ADF table point to the CSV file prepared as the input for ML scoring */
+                /* */ /* This is the ADF table the ETLed by Hive for preparing the data for ML scoring*/
+		/* IntermediateRegion1MLInputDataCSVADFTableName*/
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion1MLInputDataCSVADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "published": false,
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataCSVName'),'/region=101/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "fileName": "[concat(variables('IntermediateMLInputDataCSVName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },
+		/* IntermediateRegion2MLInputDataCSVADFTableName*/
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion2MLInputDataCSVADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "published": false,
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataCSVName'),'/region=102/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "fileName": "[concat(variables('IntermediateMLInputDataCSVName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* IntermediateRegion3MLInputDataCSVADFTableName*/
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('IntermediateRegion3MLInputDataCSVADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Load",
+					"type": "String"
+				  }
+            ],
+            "published": false,
+            "type": "AzureBlob",
+            "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataCSVName'),'/region=103/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "fileName": "[concat(variables('IntermediateMLInputDataCSVName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              },
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ]
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },			
+		/* this is the ADF table point to the blob produced by ML scoring*/
+		/* ScoredResultRegion1ADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('ScoredResultRegion1ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+			  {
+				"name": "Timestamp",
+				"type": "String"
+			  },
+			  {
+				"name": "RegionId",
+				"type": "String"
+			  },
+			  {
+				"name": "Horizon",
+				"type": "String"
+			  },			  
+              {
+                "name": "Forecast",
+                "type": "String"
+              },
+              {
+                "name": "Lo95",
+                "type": "String"
+              },
+			  {
+                "name": "Hi95",
+                "type": "String"
+              }, 
+			  {
+				"name": "RunTime",
+				"type": "String"
+			  }		  
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('dataContainerName'),'/',variables('ScoredResultName'),'/region=101/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "filename": "[concat(variables('ScoredResultName'),'.csv')]",
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ],
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endofinterval"
+            }
+          }
+        },
+		/* ScoredResultRegion2ADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('ScoredResultRegion2ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+			  {
+				"name": "Timestamp",
+				"type": "String"
+			  },
+			  {
+				"name": "RegionId",
+				"type": "String"
+			  },
+			  {
+				"name": "Horizon",
+				"type": "String"
+			  },			  
+              {
+                "name": "Forecast",
+                "type": "String"
+              },
+              {
+                "name": "Hi95",
+                "type": "String"
+              },
+              {
+                "name": "Lo95",
+                "type": "String"
+              },
+			  {
+				"name": "RunTime",
+				"type": "String"
+			  }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('dataContainerName'),'/',variables('ScoredResultName'),'/region=102/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "filename": "[concat(variables('ScoredResultName'),'.csv')]",
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ],
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endofinterval"
+            }
+          }
+        },
+		/* ScoredResultRegion3ADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('ScoredResultRegion3ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+			  {
+				"name": "Timestamp",
+				"type": "String"
+			  },
+			  {
+				"name": "RegionId",
+				"type": "String"
+			  },
+			  {
+				"name": "Horizon",
+				"type": "String"
+			  },			  
+              {
+                "name": "Forecast",
+                "type": "String"
+              },
+              {
+                "name": "Hi95",
+                "type": "String"
+              },
+              {
+                "name": "Lo95",
+                "type": "String"
+              },
+			  {
+				"name": "RunTime",
+				"type": "String"
+			  }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('dataContainerName'),'/',variables('ScoredResultName'),'/region=103/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+              "filename": "[concat(variables('ScoredResultName'),'.csv')]",
+              "partitionedBy": [
+					{
+					  "name": "Year",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "yyyy"
+					  }
+					},
+					{
+					  "name": "Month",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "MM"
+					  }
+					},
+					{
+					  "name": "Day",
+					  "value": {
+						"type": "DateTime",
+						"date": "SliceStart",
+						"format": "dd"
+					  }
+					},
+                {
+                  "name": "Hour",
+                  "value": {
+                    "type": "DateTime",
+                    "date": "SliceStart",
+                    "format": "HH"
+                  }
+                }
+              ],
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "Hour",
+              "interval": 1,
+              "style": "endofinterval"
+            }
+          }
+        },
+		/* SubstationRefDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SubStationRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "SubStationId",
+                "type": "String"
+              },
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "TimeZone",
+                "type": "String"
+              },
+              {
+                "name": "Layer",
+                "type": "String"
+              },
+              {
+                "name": "Unit",
+                "type": "String"
+              }			  
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('scriptContainerName'),'/referencedata/', variables('SubStationRefDataName'),'/')]",	
+              "filename": "[concat(variables('SubStationRefDataName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "startofinterval"
+            },
+			"external": true,
+			"policy": {
+				/* may need to change according to to the project*/
+				"externalData": {
+					"retryInterval": "00:01:00",
+					"retryTimeout": "00:20:00",
+					"maximumRetry": 3
+				}
+			}
+          }
+        },		
+		/* RegionRefDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('RegionRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "RegionId",
+                "type": "String"
+              },
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "TimeZone",
+                "type": "String"
+              },
+              {
+                                "name": "Latitude",
+                "type": "String"
+              },
+              {
+                                "name": "Longitude",
+                "type": "String"
+              },
+              {
+                "name": "Unit",
+                "type": "String"
+              }		  
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('scriptContainerName'),'/referencedata/', variables('RegionRefDataName'),'/')]",	
+              "filename": "[concat(variables('RegionRefDataName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "startofinterval"
+            },
+			"external": true,
+			"policy": {
+				/* may need to change according to to the project*/
+				"externalData": {
+					"retryInterval": "00:01:00",
+					"retryTimeout": "00:20:00",
+					"maximumRetry": 3
+				}
+			}
+          }
+        },
+		/* TopologyRefDataADFTable */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('TopologyRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "RegionId",
+                "type": "String"
+              },
+              {
+                "name": "SubStationId",
+                "type": "String"
+              }  
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+			  "folderPath": "[concat(variables('scriptContainerName'),'/referencedata/', variables('TopologyRefDataName'),'/')]",	
+              "filename": "[concat(variables('TopologyRefDataName'),'.csv')]",
+              "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+              }
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "startofinterval"
+            },
+			"external": true,
+			"policy": {
+				/* may need to change according to to the project*/
+				"externalData": {
+					"retryInterval": "00:01:00",
+					"retryTimeout": "00:20:00",
+					"maximumRetry": 3
+				}
+			}
+          }
+        },		
+		/* this is the ADF table point to the Azure SQL that store the ML result */
+		/* SQLScoredResultRegion1ADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLScoredResultRegion1ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Horizon",
+					"type": "String"
+				  },			  
+				  {
+					"name": "Forecast",
+					"type": "String"
+				  },
+				  {
+					"name": "Hi95",
+					"type": "String"
+				  },
+				  {
+					"name": "Lo95",
+					"type": "String"
+				  },
+				  {
+					"name": "RunTime",
+					"type": "String"
+				  }
+			  ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "DemandForecastHourly"
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* SQLScoredResultRegion2ADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLScoredResultRegion2ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Horizon",
+					"type": "String"
+				  },			  
+				  {
+					"name": "Forecast",
+					"type": "String"
+				  },
+				  {
+					"name": "Hi95",
+					"type": "String"
+				  },
+				  {
+					"name": "Lo95",
+					"type": "String"
+				  },
+				  {
+					"name": "RunTime",
+					"type": "String"
+				  }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "DemandForecastHourly"
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },		
+		/* SQLScoredResultRegion3ADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLScoredResultRegion3ADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+				  {
+					"name": "Timestamp",
+					"type": "String"
+				  },
+				  {
+					"name": "RegionId",
+					"type": "String"
+				  },
+				  {
+					"name": "Horizon",
+					"type": "String"
+				  },			  
+				  {
+					"name": "Forecast",
+					"type": "String"
+				  },
+				  {
+					"name": "Hi95",
+					"type": "String"
+				  },
+				  {
+					"name": "Lo95",
+					"type": "String"
+				  },
+				  {
+					"name": "RunTime",
+					"type": "String"
+				  }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "DemandForecastHourly"
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* SQLDemandHistoryDataADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLDemandHistoryDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "Timestamp",
+                "type": "String"
+              },
+			  {
+                "name": "RegionId",
+                "type": "String"
+              },
+              {
+                "name": "Load",
+                "type": "String"
+              }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "DemandRealhourly"
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 1,
+              "style": "StartOfInterval"
+            }
+          }
+        },	
+		/* SQLDemandDataADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLDemandDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "Timestamp",
+                "type": "String"
+              },
+			  {
+                "name": "RegionId",
+                "type": "String"
+              },
+              {
+                "name": "Load",
+                "type": "String"
+              }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "DemandRealhourly"
+            },
+            "availability": {
+              "frequency": "hour",
+              "interval": 1,
+              "style": "endOfInterval"
+            }
+          }
+        },	
+		/* SQLRegionRefDataADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLRegionRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "RegionId",
+                "type": "String"
+              },
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "TimeZone",
+                "type": "String"
+              },
+              {
+                                "name": "Latitude",
+                "type": "String"
+              },
+              {
+                                "name": "Longitude",
+                "type": "String"
+              },
+              {
+                "name": "Unit",
+                "type": "String"
+              }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "region"
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "StartOfInterval"
+            }
+          }
+        },		
+		/* SQLSubStationRefDataADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLSubStationRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "SubStationId",
+                "type": "String"
+              },
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "TimeZone",
+                "type": "String"
+              },
+              {
+                "name": "Layer",
+                "type": "String"
+              },
+              {
+                "name": "Unit",
+                "type": "String"
+              }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "substation"
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "StartOfInterval"
+            }
+          }
+        },
+		/* SQLTopologyRefDataADFTable */ 
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+          ],
+          "type": "datasets",
+          "name": "[variables('SQLTopologyRefDataADFTableName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "structure": [
+              {
+                "name": "RegionId",
+                "type": "String"
+              }, 
+			  {
+				"name": "SubStationId",
+                "type": "String"
+              }
+            ],
+            "published": false,
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+              "tableName": "topology"
+            },
+            "availability": {
+              "frequency": "day",
+              "interval": 365,
+              "style": "StartOfInterval"
+            }
+          }
+                },
+        /* SQLDataControlHistADFTableName */
+        {
+            "dependsOn": [
+                "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+            ],
+            "type": "datasets",
+            "name": "[variables('SQLDataControlHistADFTableName')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "properties": {
+                "structure": [
+                    {
+                        "name": "Id",
+                        "type": "String"
+                    },
+                    {
+                        "name": "historicaldata_ready",
+                        "type": "String"
+                    }
+                ],
+                "published": false,
+                "type": "AzureSqlTable",
+                "linkedServiceName": "AzureSqlLinkedService",
+                "typeProperties": {
+                    "tableName": "DataReadyHistorical"
+                },
+                "availability": {
+                    "frequency": "hour",
+                    "interval": 1,
+                    "style": "endofinterval"
+                },
+                "external": true,
+                "policy": {
+                    "validation": {
+                        "minimumRows": 1
+                    },
+                    "externalData": {
+                        "dataDelay": "00:00:30",
+                        "retryInterval": "00:15:00",
+                        "retryTimeout": "00:10:00",
+                        "maximumRetry": 10
+                    }
+                }
+            }
+},			
+        /* SQLDataControlOngoingADFTableName */
+        {
+            "dependsOn": [
+                "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+            ],
+            "type": "datasets",
+            "name": "[variables('SQLDataControlOngoingADFTableName')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "properties": {
+                "structure": [
+                    {
+                        "name": "Id",
+                        "type": "String"
+                    },
+                    {
+                        "name": "PrevHour_ready",
+                        "type": "String"
+                    }
+                ],
+                "published": false,
+                "type": "AzureSqlTable",
+                "linkedServiceName": "AzureSqlLinkedService",
+                "typeProperties": {
+                    "tableName": "DataReady"
+                },
+                "availability": {
+                    "frequency": "hour",
+                    "interval": 1,
+                    "style": "endofinterval"
+                },
+                "external": true,
+                "policy": {
+                    "validation": {
+                        "minimumRows": 1
+                    },
+                    "externalData": {
+                        "dataDelay": "00:00:30",
+                        "retryInterval": "00:15:00",
+                        "retryTimeout": "00:10:00",
+                        "maximumRetry": 10
+                    }
+                }
+            }
+        },
+		/* LoadHistoryDemandDataADFPipeline */ 
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RawDemandHistoryDataADFTableName'))]",
+			"[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandHistoryDataRegionADFTableName'))]"	
+          ],
+          "type": "datapipelines",
+          "name": "[variables('LoadHistoryDemandDataADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+			  /* put a past time to make this pipeline run right away */
+			"start": "[parameters('startTime')]",			
+			"end": "[parameters('startTime')]",	
+            "description": "This is a pipeline to load history hourly data, aggregate to region level and partition is and load to sql",
+            "activities": [
+              {
+                "name": "AggregateHistoryToRegionActivity",
+				"description": "This is a pipeline to load history hourly data",	
+                "inputs": [
+                  {
+                    "name": "[variables('RawDemandHistoryDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('AggDemandHistoryDataRegionADFTableName')]"
+                  }
+                ],
+                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]",
+                "type": "HDInsightHive",
+                "typeProperties": {
+                  "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('AggregateDemandHistoryRegionHiveFile'))]",
+                  "scriptLinkedService": "StorageLinkedService",
+                  "defines": {
+					"TOPOLOGYREFINPUT": "[variables('TopologyRefDataBlobDir')]",
+					"RAWINPUT": "[variables('RawDemandHistoryDataBlobDir')]",
+					"AGGREGATEDOUTPUT": "[variables('AggDemandHistoryDataRegionBlobDir')]"
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "CopyHistoryDemandSqlAzure",
+                                "description": "Copy history region demand data table to Sql Azure",
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+                    "sqlWriterStoredProcedureName": "sp_LoadHistorcialDemand",
+					"sqlWriterTableType": "DemandRealHourlyType",					
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('AggDemandHistoryDataRegionADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLDemandHistoryDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                }
+              }			  
+            ]
+          }
+        },
+		/* AggregateDemandDataTo1HrADFPipeline */ 
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitionedDemandDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandRegion1HrDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLDataControlHistADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLDataControlOnGoingADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('AggregateDemandDataTo1HrADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "This is a pipeline to aggregate the 30 seconds raw data(partitioned by ASA) to 1hr in substation level",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",			
+            "activities": [
+              {
+                "name": "BlobPartitionHiveActivity",
+                "inputs": [
+                  {
+                   "name": "[variables('PartitionedDemandDataADFTableName')]"
+                },
+                {
+                    "name": "[variables('SQLDataControlHistADFTableName')]"
+                },
+                {
+                    "name": "[variables('SQLDataControlOnGoingADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('AggDemandRegion1HrDataADFTableName')]"
+                  }
+                ],
+                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]",
+                "type": "HDInsightHive",
+                "typeProperties": {
+                  "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('AggregateDemandRegion1HrHiveFile'))]",
+                  "scriptLinkedService": "StorageLinkedService",
+                  "defines": {
+					"TOPOLOGYREFINPUT": "[variables('TopologyRefDataBlobDir')]",
+					"PARTITIONEDINPUT": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/', variables('PartitionedDemandDataName'),'/')]",
+					"AGGREGATEDOUTPUT": "[variables('AggDemandRegion1HrDataBlobDir')]",	
+                    "CurrDate": "$$Text.Format('{0:yyyy-MM-dd}',SliceStart)",
+					"CurrHour": "$$Text.Format('{0:HH}',SliceStart)"				
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              }
+            ]
+          }
+        },	
+		/* This is the pipeline call ML scoring to make prediction */
+		/* it includes 3 activities 1. prepare the data into blob by Hive ETL, 2 copy to a CSV file 3. call ML scoring */
+		/* MLScoringRegion1ADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandRegion1HrDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion1MLInputDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion1MLInputDataCSVADFTableName'))]", 
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion1ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('MLScoringADFPipelineRegion1Name')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "This is pipeline call ML scoring to make prediction",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "name": "SchemaPrepForML",
+                "inputs": [
+                  {
+                    "name": "[variables('AggDemandRegion1HrDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion1MLInputDataADFTableName')]"
+                  }
+                ],
+                "linkedServiceName": "HDInsightLinkedService",
+                "type": "HDInsightHive",
+                "typeProperties": {
+			      "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('PrepareMLRegion1InputHiveFile'))]", 
+                  "scriptLinkedService": "StorageLinkedService",
+                  "defines": {
+					"TOPOLOGYREFINPUT": "[variables('TopologyRefDataBlobDir')]", 
+					"AGGDEMANDINPUT": "[variables('AggDemandRegion1HrDataBlobDir')]",
+					"AGGHISTORYDEMANDINPUT": "[variables('AggDemandHistoryDataRegionBlobDir')]",	
+                    "PREPOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),variables('IntermediateMLInputDataBlobDir'), 'region=101/date={0:yyyy-MM-dd}/hour={0:HH}/', variables('singleQuote'), ', SliceStart)')]", 
+                    "CurrDate": "$$Text.Format('{0:yyyy-MM-dd}',SliceStart)",
+					"RegionId": "[variables('Region1Id')]"
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "FileExtensionPrepforMLActivity",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion1MLInputDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion1MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource"
+                  },
+                  "sink": {
+                    "type": "BlobSink",
+                    "writeBatchSize": 10000,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "AMLBatchScoring",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion1MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion1ADFTableName')]"
+                  }
+                ],
+                "type": "AzureMLBatchScoring",
+                "linkedServiceName": "[variables('AzureMLLinkedServiceName')]",
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              }
+            ]
+          }
+        },
+		/* MLScoringRegion2ADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandRegion1HrDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion2MLInputDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion2MLInputDataCSVADFTableName'))]", 
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion2ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('MLScoringADFPipelineRegion2Name')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "This is pipeline call ML scoring to make prediction",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "name": "SchemaPrepForML",
+                "inputs": [
+                  {
+                    "name": "[variables('AggDemandRegion1HrDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion2MLInputDataADFTableName')]"
+                  }
+                ],
+                "linkedServiceName": "HDInsightLinkedService",
+                "type": "HDInsightHive",
+                "typeProperties": {
+			      "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('PrepareMLRegion2InputHiveFile'))]", 
+                  "scriptLinkedService": "StorageLinkedService",
+                  "defines": {
+					"TOPOLOGYREFINPUT": "[variables('TopologyRefDataBlobDir')]", 
+					"AGGDEMANDINPUT": "[variables('AggDemandRegion1HrDataBlobDir')]",
+					"AGGHISTORYDEMANDINPUT": "[variables('AggDemandHistoryDataRegionBlobDir')]",
+                    "PREPOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),variables('IntermediateMLInputDataBlobDir'), 'region=102/date={0:yyyy-MM-dd}/hour={0:HH}/', variables('singleQuote'), ', SliceStart)')]", 
+                    "CurrDate": "$$Text.Format('{0:yyyy-MM-dd}',SliceStart)",
+					"RegionId": "[variables('Region2Id')]"					
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "FileExtensionPrepforMLActivity",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion2MLInputDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion2MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource"
+                  },
+                  "sink": {
+                    "type": "BlobSink",
+                    "writeBatchSize": 10000,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "AMLBatchScoring",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion2MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion2ADFTableName')]"
+                  }
+                ],
+                "type": "AzureMLBatchScoring",
+                "linkedServiceName": "[variables('AzureMLLinkedServiceName')]",
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              }
+            ]
+          }
+        },
+		/* MLScoringRegion3ADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandRegion1HrDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion3MLInputDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateRegion3MLInputDataCSVADFTableName'))]", 
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion3ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('MLScoringADFPipelineRegion3Name')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "This is pipeline call ML scoring to make prediction",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "name": "SchemaPrepForML",
+                "inputs": [
+                  {
+                    "name": "[variables('AggDemandRegion1HrDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion3MLInputDataADFTableName')]"
+                  }
+                ],
+                "linkedServiceName": "HDInsightLinkedService",
+                "type": "HDInsightHive",
+                "typeProperties": {
+			      "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('PrepareMLRegion3InputHiveFile'))]", 
+                  "scriptLinkedService": "StorageLinkedService",
+                  "defines": {
+					"TOPOLOGYREFINPUT": "[variables('TopologyRefDataBlobDir')]", 
+					"AGGDEMANDINPUT": "[variables('AggDemandRegion1HrDataBlobDir')]",
+					"AGGHISTORYDEMANDINPUT": "[variables('AggDemandHistoryDataRegionBlobDir')]",	
+                    "PREPOUTPUT": "[concat('$$Text.Format(', variables('singleQuote'),variables('IntermediateMLInputDataBlobDir'), 'region=103/date={0:yyyy-MM-dd}/hour={0:HH}/', variables('singleQuote'), ', SliceStart)')]", 
+                    "CurrDate": "$$Text.Format('{0:yyyy-MM-dd}',SliceStart)",
+					"RegionId": "[variables('Region3Id')]"					
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "FileExtensionPrepforMLActivity",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion3MLInputDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('IntermediateRegion3MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource"
+                  },
+                  "sink": {
+                    "type": "BlobSink",
+                    "writeBatchSize": 10000,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              },
+              {
+                "name": "AMLBatchScoring",
+                "inputs": [
+                  {
+                    "name": "[variables('IntermediateRegion3MLInputDataCSVADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion3ADFTableName')]"
+                  }
+                ],
+                "type": "AzureMLBatchScoring",
+                "linkedServiceName": "[variables('AzureMLLinkedServiceName')]",
+                "policy": {
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3,
+                  "timeout": "01:00:00"
+                }
+              }
+            ]
+          }
+        },		
+		/* CopyAggDemandADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggDemandRegion1HrDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLDemandDataADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyAggDemandADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy Aggregated Demand to Sql Azure",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",				
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+				    "SqlWriterTableType": "DemandRealHourlyType",
+					"SqlWriterStoredProcedureName": "sp_LoadDemand", 
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('AggDemandRegion1HrDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLDemandDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyAggDemandtoSqlAzure",
+                "description": "Copy Demand table to Sql Azure"
+              }
+            ]
+          }
+        },
+		/* this is the pipeline for copying ml result from blob to AzureSQL*/
+		/* CopyScoredResultRegion1ADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion1ADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLScoredResultRegion1ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyScoredResultRegion1ADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy prediction to Sql Azure",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+				    "SqlWriterTableType": "DemandForecastHourlyType",
+					"SqlWriterStoredProcedureName": "sp_LoadScoreResult", 
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion1ADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLScoredResultRegion1ADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyMLResulttoSqlAzure",
+                "description": "Copy ML result table to Sql Azure"
+              }
+            ]
+          }
+        },
+		/* CopyScoredResultRegion2ADFPipeline */
+		{
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion2ADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLScoredResultRegion2ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyScoredResultRegion2ADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy prediction to Sql Azure",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+				    "SqlWriterTableType": "DemandForecastHourlyType",
+					"SqlWriterStoredProcedureName": "sp_LoadScoreResult", 
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion2ADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLScoredResultRegion2ADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyMLResulttoSqlAzure",
+                "description": "Copy ML result table to Sql Azure"
+              }
+            ]
+          }
+        },
+		/* CopyScoredResultRegion3ADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultRegion3ADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLScoredResultRegion3ADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyScoredResultRegion3ADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy prediction to Sql Azure",
+			"start": "[parameters('NowTime')]",			
+			"end": "[parameters('nowPlusTenYearsTime')]",	
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+				    "SqlWriterTableType": "DemandForecastHourlyType",
+					"SqlWriterStoredProcedureName": "sp_LoadScoreResult", 
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('ScoredResultRegion3ADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLScoredResultRegion3ADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyMLResulttoSqlAzure",
+                "description": "Copy ML result table to Sql Azure"
+              }
+            ]
+          }
+        },
+		/* CopyRegionRefDataADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('RegionRefDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLRegionRefDataADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyRegionRefDataADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy Region reference data to Sql Azure",
+			"start": "[parameters('startTime')]",			
+			"end": "[parameters('startTime')]",
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('RegionRefDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLRegionRefDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyRegionReftoSqlAzure",
+                "description": "Copy Region reference data table to Sql Azure"
+              }
+            ]
+          }
+        },	
+		/* CopySubStationRefDataADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SubStationRefDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLSubStationRefDataADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopySubStationRefDataADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy SubStation reference data to Sql Azure",
+			"start": "[parameters('startTime')]",			
+			"end": "[parameters('startTime')]",
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('SubStationRefDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLSubStationRefDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopySubStationReftoSqlAzure",
+                "description": "Copy SubStation reference data table to Sql Azure"
+              }
+            ]
+          }
+        },
+		/* CopyTopologyRefDataADFPipeline */
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('TopologyRefDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLTopologyRefDataADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyTopologyRefDataADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy Topology reference data to Sql Azure",
+			"start": "[parameters('startTime')]",			
+			"end": "[parameters('startTime')]",
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true,
+					"skipHeaderLineCount": 1
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('TopologyRefDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLTopologyRefDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyTopologyReftoSqlAzure",
+                "description": "Copy topology reference data table to Sql Azure"
+              }
+            ]
+          }
+        }			
+		]
+    },
+
+    /* create ASA jobs for Blob*/
+    {
+        "apiVersion": "2015-10-01",
+        "type": "Microsoft.StreamAnalytics/streamingJobs",
+        "name": "[variables('streamingJobBlobName')]",
+        "location": "[variables('location')]",
+        "properties": {
+          "sku": {
+            "name": "standard"
+          },
+          "EventsOutOfOrderMaxDelayInSeconds": 10,
+          "EventsOutOfOrderPolicy": "Adjust",
+          "inputs": [
+            {
+              "name": "EventHubSource",
+              "properties": {
+                "type": "stream",
+                "serialization": {
+                  "type": "CSV",
+                  "properties": {
+                    "fieldDelimiter": ",",
+                    "encoding": "UTF8"
+                  }
+                },
+                "datasource": {
+                  "type": "Microsoft.ServiceBus/EventHub",
+                  "properties": {
+                    "EventHubName": "[variables('IngestEventHubName')]",
+                    "ServiceBusNamespace": "[variables('namespaceName')]",
+					"SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                    "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',variables('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                    "SourcePartitionCount": 16,
+					"consumerGroupName": "[variables('consumerGroupBlobName')]"
+                  }
+                }
+              }
+            }								
+          ],
+          "transformation": {
+            "name": "PushDatatoBlob",
+            "properties": {
+              "streamingUnits": 1,
+              "query": "select * into RawDataBlobSink from EventHubSource"
+            }
+          },
+          "outputs": [
+            {
+              "name": "RawDataBlobSink",
+			  "OutputStartMode": "CustomTime",
+                        "OutputStartTime": "[parameters('startTime')]",
+              "properties": {
+                "serialization": {
+                  "type": "CSV",
+                  "properties": {
+                    "fieldDelimiter": ",",
+                    "encoding": "UTF8"
+                  }
+                },
+                "datasource": {
+                  "type": "Microsoft.Storage/Blob",
+                  "properties": {
+                    "storageAccounts": [
+                      {
+                        "accountName": "[variables('storageAccountName')]",
+                        "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]",
+                      }
+                    ],
+                    "container": "[variables('dataContainerName')]",
+					"PathPattern": "[concat(variables('PartitionedDemandDataName'), '/date={date}/hour={time}')]", 
+					"DateFormat": "yyyy-MM-dd", 
+					"TimeFormat": "HH" 
+                  }
+                }
+              }
+            }	
+          ],
+        "OutputStartMode": "CustomTime",
+        "OutputStartTime": "[parameters('startTime')]"
+        }
+    },
+    /* create ASA jobs for PBI */
+	{
+        "apiVersion": "2015-10-01",
+        "type": "Microsoft.StreamAnalytics/streamingJobs",
+        "name": "[variables('streamingJobPBIName')]",
+        "location": "[variables('location')]",
+        "properties": {
+          "sku": {
+            "name": "standard"
+          },
+          "EventsOutOfOrderMaxDelayInSeconds": 10,
+          "EventsOutOfOrderPolicy": "Adjust",
+            "inputs": [
+                {
+                    "name": "EventHubSource",
+                    "properties": {
+                        "type": "stream",
+                        "serialization": {
+                            "type": "CSV",
+                            "properties": {
+                                "fieldDelimiter": ",",
+                                "encoding": "UTF8"
+                            }
+                        },
+                        "datasource": {
+                            "type": "Microsoft.ServiceBus/EventHub",
+                            "properties": {
+                                "EventHubName": "[variables('IngestEventHubName')]",
+                                "ServiceBusNamespace": "[variables('namespaceName')]",
+                                "SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',variables('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                                "SourcePartitionCount": 16,
+                                "consumerGroupName": "[variables('consumerGroupPBIName')]"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "RegionBlobSource",
+                    "properties": {
+                        "type": "reference",
+                        "serialization": {
+                            "type": "CSV",
+                            "properties": {
+                                "fieldDelimiter": ",",
+                                "encoding": "UTF8"
+                            }
+                        },
+                        "datasource": {
+                            "type": "Microsoft.Storage/Blob",
+                            "properties": {
+                                "storageAccounts": [
+                                    {
+                                        "accountName": "[variables('storageAccountName')]",
+                                        "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]",
+                                    }
+                                ],
+                                "container": "[variables('scriptContainerName')]",
+                                "BlobName": "[concat('referencedata/', variables('RegionRefDataName'),'/',variables('RegionRefDataName'), '.csv')]"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "SubStationBlobSource",
+                    "properties": {
+                        "type": "reference",
+                        "serialization": {
+                            "type": "CSV",
+                            "properties": {
+                                "fieldDelimiter": ",",
+                                "encoding": "UTF8"
+                            }
+                        },
+                        "datasource": {
+                            "type": "Microsoft.Storage/Blob",
+                            "properties": {
+                                "storageAccounts": [
+                                    {
+                                        "accountName": "[variables('storageAccountName')]",
+                                        "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]",
+                                    }
+                                ],
+                                "container": "[variables('scriptContainerName')]",
+                                "BlobName": "[concat('referencedata/', variables('SubStationRefDataName'),'/',variables('SubStationRefDataName'), '.csv')]"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "TopologyBlobSource",
+                    "properties": {
+                        "type": "reference",
+                        "serialization": {
+                            "type": "CSV",
+                            "properties": {
+                                "fieldDelimiter": ",",
+                                "encoding": "UTF8"
+                            }
+                        },
+                        "datasource": {
+                            "type": "Microsoft.Storage/Blob",
+                            "properties": {
+                                "storageAccounts": [
+                                    {
+                                        "accountName": "[variables('storageAccountName')]",
+                                        "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]",
+                                    }
+                                ],
+                                "container": "[variables('scriptContainerName')]",
+                                "BlobName": "[concat('referencedata/', variables('TopologyRefDataName'),'/',variables('TopologyRefDataName'), '.csv')]"
+                            }
+                        }
+                    }
+                }
+            ],
+          "transformation": {
+            "name": "PushDatatoPBI",
+            "properties": {
+              "streamingUnits": 1,
+              "query": "CREATE TABLE EventHubSource (TimeStamp datetime,SubstationID bigint, Load float); CREATE TABLE SubStationBlobSource (SubstationID bigint,Name nvarchar(max), TimeZone nvarchar(max), Layer bigint, Unit nvarchar(max)); SELECT a.TimeStamp, a.SubstationID, b.Name, a.Load INTO PBIoutput FROM EventHubSource a join SubStationBlobSource b on a.SubstationID=b.SubstationID;"
+            }
+          }	
+        }
+    }
+  ]
+  /* output */
+  /*
+  "outputs": {
+		"DataFactoryName" : {
+			"type" : "string",
+			"value": "[variables('dataFactoryName')]"
+		},
+		"IngestEventHubName" : {
+			"type" : "string",
+			"value": "[parameters('IngestEventHubName')]"
+		},	
+		"IngestEventHubConnectString" : {
+			"type" : "string",
+			"value": "[parameters('IngestEventHubConnectString')]"
+		},	
+		"storageAccountName" : {
+			"type" : "string",
+			"value": "[parameters('storageAccountName')]"
+		},
+		"storageAccountKey" : {
+			"type" : "string",
+			"value": "[parameters('storageAccountKey')]"
+		}		
+	} */  
+}

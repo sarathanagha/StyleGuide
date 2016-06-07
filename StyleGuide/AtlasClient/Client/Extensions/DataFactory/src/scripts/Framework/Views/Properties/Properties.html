@@ -1,0 +1,144 @@
+﻿<div id="propertiesContent" class="col adf-scroll">
+    <!-- BEGIN PropertyType templates -->
+    <script type="text/html" id="default-property-template">
+        <div class="value grow" data-bind="text: displayedValue, attr:{title: alt ? alt : value}"></div>
+    </script>
+    <script type="text/html" id="dateRange-property-template">
+        <div data-bind="datetimeRange: {currentValue: dateRange, isReady: isReady}" class="col width100Percent">
+            <div class="dateRangeField">
+            <div class="name formFieldLabel">
+                <label data-bind="text: ClientResources.startTimeUTCLabel"></label>
+            </div>
+            <div class="dateInput row">
+                    <input class="grow atlas-input datetimeRangeStartDate" type="text"/>
+            </div>
+            </div>
+            <div class="dateRangeField">
+            <div class="name formFieldLabel">
+                <label data-bind="text: ClientResources.endTimeUTCLabel"></label>
+            </div>
+            <div class="dateInput row">
+                    <input class="grow atlas-input datetimeRangeEndDate" type="text"/>
+            </div>
+        </div>
+        </div>
+    </script>
+    <script type="text/html" id="input-property-template">
+        <input class="grow atlas-input" data-bind="jqueryUI:uiConfig, value: value, attr:{title: alt ? alt : value}, readonly: ($data.editable !== true)" />
+        <!-- ko if: copy -->
+        <button class="grow adf-greenButton" data-bind="click: $parents[2]._copyText">Copy</button>
+        <!-- /ko -->
+        <!-- END if copy -->
+    </script>
+    <script type="text/html" id="textArea-property-template">
+        <textarea class="grow atlas-input" data-bind="value: value, attr:{title: alt ? alt : value}, readonly: ($data.editable !== true)"></textarea>
+    </script>
+    <script type="text/html" id="select-property-template">
+        <!-- ko if: optionsText -->
+            <select data-bind="options: options,
+                        value: value,
+                        optionsText: optionsText
+                        optionsCaption: 'Choose...'">
+            </select>
+        <!-- /ko -->
+        <!-- END if optionsText -->
+        <!-- ko if: optionsText === null -->
+            <select data-bind="options: options,
+            value: value,
+            optionsCaption: 'Choose...'">
+            </select>
+        <!-- /ko -->
+    </script>
+    <script type="text/html" id="table-property-template">
+        <div class="col">
+            <table class="atlas-table">
+                <tr>
+                    <!-- ko foreach : table.columns -->
+                        <th data-bind="text: $data"></th>
+                    <!-- /ko -->
+                    <!-- ko if: editable -->
+                        <th><!-- Empty Placeholder --></th>
+                    <!-- /ko -->
+                </tr>
+                <!-- ko foreach : table.rows -->
+                    <tr>
+                        <!-- ko foreach : $data -->
+                            <!-- ko if: $parents[1].editable -->
+                            <td><input class="atlas-input" data-bind="value: $parent[$index()]"></input></td>
+                            <!-- /ko -->
+                            <!-- ko ifnot: $parents[1].editable -->
+                            <td data-bind="text: $data"></td>
+                            <!-- /ko -->
+                        <!-- /ko -->
+
+                        <!-- ko if: $parent.editable -->
+                        <td class="delete" data-bind="winjsbutton:{options: $parent.deleteButton($index()), buttonClass: 'delete'}"></td>
+                        <!-- /ko -->
+                    </tr>
+                <!-- /ko -->
+            </table>
+            <!-- ko if: editable -->
+            <div class="add" data-bind="winjsbutton:{options: addButton, buttonClass: 'adf-greenButton small'}"></div>
+            <!-- /ko -->
+        </div>
+    </script>
+    <script type="text/html" id="radioGroup-property-template">
+        <!-- ko foreach: radioOptions -->
+        <div class="grow atlas-input">
+            <input type="radio" data-bind="name: $data.value, value: $data.value, checked: $parent.value, disabled: ($parent.editable !== true)"/>
+            <label class="value" data-bind="for: $data.value, text: $data.label"></label>
+        </div>
+        <!-- /ko -->
+    </script>
+    <!-- END PropertyType templates -->
+
+    <!-- ko if: loading() -->
+        <div data-bind="loading:{}"></div>
+    <!-- /ko -->
+    <!-- END if loading -->
+
+    <!-- ko ifnot: loading() -->
+    <div class="col no-shrink">
+        <div class="panelTitle col" data-bind="text: panelTitle"></div>
+
+        <!-- ko if : propertyGroups().length === 0 -->
+        <div class="value col grow error" data-bind="text: emptyMessage"></div>
+        <!-- /ko -->
+
+        <!-- ko foreach : propertyGroups -->
+            <!-- ko if : !hideHeader -->
+            <div class="attemptHeader col" data-bind="click: $parent.toggleExpanded, css: expanded() ? 'active' : ''">
+                <div class="row grow">
+                    <div class="groupName col" data-bind="text: name, attr:{title: $data.altName ? altName : name}"></div>
+                    <div class="attemptChevron col" data-bind="html: expanded() ? $parent.collapseUpIcon : $parent.collapseDownIcon"></div>
+                </div>
+                <div class="row panelType" data-bind="text: type"></div>
+            </div>
+            <!-- /ko -->
+            <!-- ko foreach : properties -->
+                <!-- ko if : !hidden() -->
+                <div class="property" data-bind="visible: $parent.expanded, css:{invalid: $data.invalid}">
+                    <!-- ko if : templateName === "checkBox" -->
+                    <div class="grow atlas-input">
+                        <input type="checkbox" data-bind="checked: checked" />
+                        <span class="value" data-bind="text: propertyName"></span>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko ifnot : templateName === "checkBox" -->
+                    <div class="name row grow">
+                        <span data-bind="text: propertyName"></span>
+                        <span class="required" data-bind="text: $data.required ? '&nbsp;' + ClientResources.requiredPropertyLabel: ''"></span>
+                    </div>
+                    <div class="row grow" data-bind="template:{name: templateName + '-property-template', data: $data}, css: customClass"></div>
+                    <!-- /ko -->
+                </div>
+                <!-- /ko -->
+            <!-- /ko -->
+            <!-- END foreach property -->
+            <div class="seperator row grow"></div>
+        <!-- /ko -->
+        <!-- END foreach propertyGroup -->
+    </div>
+    <!-- /ko -->
+    <!-- END ifnot: loading() -->
+</div>

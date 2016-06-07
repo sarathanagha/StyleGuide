@@ -1,0 +1,16 @@
+﻿<div class="documentsSidePanel">
+    <div class="row panelHeaderContainer">
+        <div class="header">Resource Explorer</div>
+    </div>
+
+    <div id="resourceExplorerList" class="col collapsable" data-bind="jsTree: {
+        data: treeData,
+        config: treeConfig,
+        handlers: {
+            changed: onTreeviewChanged,
+            'hover_node': onHoverNode,
+            ready: onTreeViewReady
+            }
+        }">
+    </div>
+</div>

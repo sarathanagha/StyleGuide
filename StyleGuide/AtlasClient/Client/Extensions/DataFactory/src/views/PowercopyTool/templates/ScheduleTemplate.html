@@ -1,0 +1,29 @@
+﻿<table>
+    <tr>
+        <td>Frequency:</td>
+        <td>
+            <select data-bind="value: frequency">
+                <option value="Year">Year</option>
+                <option value="Month">Month</option>
+                <option value="Day">Day</option>
+                <option value="Hour">Hour</option>
+                <option value="Minute">Minute</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Interval:</td>
+        <td><input type="text" data-bind="value:interval" /></td>
+    </tr>
+</table>
+            Pipeline active period:<br />
+<table>
+    <tr>
+        <td>Start</td>
+        <td><input type="text" data-bind="value: pipelineStart" /></td>
+    </tr>
+    <tr>
+        <td>End</td>
+        <td><input type="text" data-bind="value: pipelineEnd" /></td>
+    </tr>
+</table>

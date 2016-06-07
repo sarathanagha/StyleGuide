@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectFile Include="application\shared\DataStudio.Application.Shared.csproj" />
+    <ProjectFile Include="application\mainpage\DataStudio.Application.Mainpage.csproj" />
+    <ProjectFile Include="bootstrapper\DataStudio.Bootstrapper.csproj" />
+  </ItemGroup>
+  <Import Project="$(BuildExtensionsPath)\Traversal.targets" />
+</Project>

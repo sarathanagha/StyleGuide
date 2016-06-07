@@ -1,0 +1,19 @@
+﻿<!-- ko if: type === "text" -->
+<div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: box} }"></div>
+<!-- /ko -->
+<!-- ko if: type === "password" -->
+<div data-bind="component:{ name: 'datafactory-validatedpasswordbox', params: {vm: box} }"></div>
+<!-- /ko -->
+<!-- ko if: type === "dropdown" -->
+<div data-bind="component: {name:'datafactory-validatedselectbox', params: {vm: box}}"></div>
+<!-- /ko -->
+<!-- ko if: name === "gateway" -->
+<div class="linkContainer">
+    <span data-bind="click: $parent.showGatewayPopup" class="link linkSpan" ><a>Create gateway</a></span>
+</div>
+
+<!-- ko with: $parent.gateway -->
+<div data-bind="component: { name: 'datafactory-gateway', params: {vm: $data} }"></div>
+<!-- /ko -->
+
+<!-- /ko -->

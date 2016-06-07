@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F87AEC4F-AC70-4D47-B2D6-692B464DAE51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.DataStudio.AzureResources</RootNamespace>
+    <AssemblyName>Microsoft.DataStudio.AzureResources</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <Reference Include="$(NugetPack)\Hyak.Common.1.0.3\lib\net45\Hyak.Common.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Hyak.Common</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.WindowsAzure.Common.1.4.1\lib\net45\Microsoft.WindowsAzure.Common.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.WindowsAzure.Common</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.WindowsAzure.Management.Sql.5.1.0\lib\net40\Microsoft.WindowsAzure.Management.Sql.dll">
+      <Name>Microsoft.WindowsAzure.Management.Sql</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.WindowsAzure.Management.Storage.5.1.1\lib\net40\Microsoft.WindowsAzure.Management.Storage.dll">
+      <Name>Microsoft.WindowsAzure.Management.Storage</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\WindowsAzure.Storage.5.0.2\lib\net40\Microsoft.WindowsAzure.Storage.dll">
+      <Name>Microsoft.WindowsAzure.Storage</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Hadoop.Client.1.4.0.0\lib\net40\Microsoft.Hadoop.Client.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.Hadoop.Client</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.WindowsAzure.Management.HDInsight.1.4.0.0\lib\net40\Microsoft.WindowsAzure.Management.HDInsight.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.WindowsAzure.Management.HDInsight</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Hadoop.Client.1.4.0.0\lib\net40\Microsoft.WindowsAzure.Management.HDInsight.Framework.Core.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.WindowsAzure.Management.HDInsight.Framework.Core</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Azure.Common.2.1.0\lib\net45\Microsoft.Azure.Common.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.Azure.Common</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Azure.Common.2.1.0\lib\net45\Microsoft.Azure.Common.NetFramework.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.Azure.Common.NetFramework</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.Threading.Tasks</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll">
+      <Private>True</Private>
+      <Name>Newtonsoft.Json</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Azure.Management.DataLake.Store.0.9.1-preview\lib\net40\Microsoft.Azure.Management.DataLake.Store.dll">
+      <Private>True</Private>
+      <Name>Microsoft.Azure.Management.DataLake.Store</Name>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="$(NugetPack)\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll">
+      <Private>True</Private>
+      <Name>System.Net.Http.Extensions</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Primitives.dll">
+      <Private>True</Private>
+      <Name>System.Net.Http.Primitives</Name>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="$(NugetPack)\Microsoft.DataPipeline.AzureTools.Contracts.SQLIS.0.1.0-prerelease\lib\net45\Microsoft.VisualStudio.WindowsAzure.CommonAzureTools.Contracts.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.VisualStudio.WindowsAzure.CommonAzureTools.Contracts</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.WindowsAzure.Common.1.4.1\lib\net45\Microsoft.WindowsAzure.Common.NetFramework.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>Microsoft.WindowsAzure.Common.NetFramework</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.Azure.Management.Resources.2.14.1-preview\lib\net40\Microsoft.Azure.ResourceManager.dll">
+      <Private>True</Private>
+      <Name>Microsoft.Azure.ResourceManager</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AzureConstants.cs" />
+    <Compile Include="AzureDataLake\AzureDataLakeHelper.cs" />
+    <Compile Include="AzureSql\SqlAzureHelper.cs" />
+    <Compile Include="AzureResourcesHelper.cs" />
+    <Compile Include="AzureStorage\AzureStorageHelper.cs" />
+    <Compile Include="HDInsight\HDInsightHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diagnostics\Diagnostics.csproj">
+      <Project>{4f30cd3b-6ba4-4da8-9e73-f3bafc8ec316}</Project>
+      <Name>Diagnostics</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

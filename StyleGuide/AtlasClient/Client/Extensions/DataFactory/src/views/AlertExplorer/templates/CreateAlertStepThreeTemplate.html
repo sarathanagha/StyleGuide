@@ -1,0 +1,24 @@
+﻿<div class="adf-alert-step">
+    <div class="adf-alerts-header">
+        <div>
+            <span class="header-name header" data-bind="text: ClientResources.alertStepHeader"></span>
+            <span class="step-name" data-bind="text: ClientResources.alertStepThreeTitle"></span>
+            <span class="action-button" data-bind="html: closeIcon, click: onCloseClicked"></span>
+        </div>
+    </div>
+    <div>
+        <div class="adf-alerts-item">
+            <label>
+                <input data-bind="checked: shouldSendToServiceOwners" type="checkbox" />
+                <span data-bind="text: ClientResources.sendToServiceOwnersText"></span>
+            </label>
+        </div>
+        <div class="adf-alerts-item">
+            <div class="row">
+                <div data-bind="text: ClientResources.additionalAdminEmailText"></div>
+                <div class="infoDiv" data-bind="html: infoIcon, callout: { innerHtml: ClientResources.additionalAdminEmailTooltip }"></div>
+            </div>
+            <div><input type="text" data-bind="textInput: customEmail" /></div>
+        </div>
+    </div>
+</div>

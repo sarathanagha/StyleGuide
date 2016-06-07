@@ -1,0 +1,119 @@
+﻿@import "../../../stylesheets/_AdfSpecific";
+@import "../../../stylesheets/Authoring/Fonts";
+
+@mixin blobflex {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.blobflex {
+    @include blobflex;
+}
+
+.blobBrowser {
+    @include blobflex;
+
+    .win-listview .win-focusedoutline,
+    .win-itemcontainer .win-focusedoutline {
+        outline: solid lightgray 2px;
+    }
+
+    $shadowRadius: 5px;
+    margin-left:2px;
+    box-shadow: 0px 0px $shadowRadius rgba(181, 183, 185, 0.8);
+    margin-bottom: $shadowRadius;
+    padding: 20px 20px 20px 20px;
+
+    .blobBrowserListContainer {
+        overflow: auto;
+        padding-bottom: 10px;
+        @include blobflex;
+    }
+
+    .blobBrowserNavBar {
+        overflow: hidden;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+
+        .blobBrowserBreadcrumbsContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .blobBrowserArrowButtonContainer {
+            margin-right: 10px;
+            margin-left: 14px;
+
+            .blobBrowserArrowButton {
+                border: none;
+                background: none;
+                padding: 0;
+                background-image: url('../images/UpArrow.svg');
+                background-repeat: no-repeat;
+                background-size: 16px 16px;
+                background-position: center;
+                min-width: 16px;
+                max-width: 16px;
+                max-height: 16px;
+                cursor: pointer;
+
+                &:disabled {
+                    opacity: 0.4;
+                }
+            }
+        }
+    }
+
+    .fileOrFolderIconDiv {
+        background-image: url('../images//FileIcon.svg');
+        background-repeat: no-repeat;
+        margin-left: 4px;
+        height: 16px;
+        width: 16px;
+        float: left;
+
+        &.folderIcon {
+            background-image: url('../images/FolderIcon.svg');
+        }
+    }
+
+    .win-selected .fileOrFolderIconDiv {
+        background-image: url('../images/FileIconSelected.svg');
+
+        &.folderIcon {
+            background-image: url('../images/FolderIconSelected.svg');
+        }
+    }
+
+    .listItemText {
+        float: left;
+        margin-left: 8px;
+        margin-top: -2px;
+        @include MRFont;
+    }
+
+    .blobBrowserFooter {
+        @include blobflex;
+        justify-content: flex-end;
+        flex-shrink: 0;
+
+        .blobBrowserCancelChooseContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+
+
+    .nextButton {
+        margin-left: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+}

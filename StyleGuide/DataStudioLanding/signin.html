@@ -1,0 +1,278 @@
+﻿<html lang="en" class="win-hoverable">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Studio</title>
+    <link href="stylesheets/main.css" rel="stylesheet">
+    <link href="stylesheets/signin.css" rel="stylesheet">
+    <link href="stylesheets/footer.css" rel="stylesheet">
+    <link href="node_modules/winjs/css/ui-light.css" rel="stylesheet">
+</head>
+<body>
+    <div class="fragment">
+        <div class="row grow">
+            <section role="main" class="col grow">
+                <div class="row grow">
+                    <!-- TODO: debug data-bind sidepanel for stream analytics -->
+                    <!-- ko if: moduleConfig().sidePanel --><!-- /ko -->
+                    <div class="col grow width100Percent" >
+                        <div class="row grow mainArea">
+                            <!-- ko if: leftPanelElementsConfig -->
+                            <!-- /ko -->
+                            <div class="col grow">
+                                <!-- ko if: showInputValue|| hasActionButtons --><!-- /ko -->
+                                <div class="row grow editorArea">
+                                    <div  class="col grow editorArea designArea">
+                                        <div class="atlasSignInPage col grow">
+                                            <div class="section1">
+                                                <div class="row signIn">
+                                                    <a href="http://atlas-preview3.cloudapp.net"><button data-bind="click: login"> Sign in </button></a>
+                                                </div>
+                                                <div class="row header">
+                                                    <h1> Atlas is an integrated environment for developing advanced analytics solutions </h1>
+                                                </div>
+                                                <div class="row learnMore">
+                                                    <a href="http://atlas-preview3.cloudapp.net"><button> Learn more </button></a>
+                                                </div>
+                                            </div>
+                                            <div class="col section2">
+                                                <div class="row centerY">
+                                                    <div class="col title"><h1> Atlas is a one stop shop for all your data. </h1></div>
+                                                    <div class="col button"><a href="http://atlas-preview3.cloudapp.net"><button> Get started </button></a></div>
+                                                </div>
+                                            </div>
+                                            <div class="row section3">
+                                                <!-- ko foreach : dataExploreActionItems -->
+                                                <div class="col dataExploreItem">
+                                                    <div class="col"><img width="100" height="100"  src="Images/explore.svg"></div> <!--TODO fix hardcoding in img tag-->
+                                                    <div class="col title" data-bind="text: title">EXPLORE</div>
+                                                    <div class="col description" data-bind="text: description">Browse and connect to millions of data sets in a single click while iterating in notebooks, transforming and visualizing large amounts of data.</div>
+                                                </div>
+
+                                                <div class="col dataExploreItem">
+                                                    <div class="col"><img width="100" height="100" src="Images/analyze.svg"></div> <!--TODO fix hardcoding in img tag-->
+                                                    <div class="col title" data-bind="text: title">ANALYZE</div>
+                                                    <div class="col description" data-bind="text: description">Amazing tools that allow you to create and build experiments, pipelines, notebooks and visualizations contained in a single blueprint.</div>
+                                                </div>
+
+                                                <div class="col dataExploreItem">
+                                                    <div class="col"><img width="100" height="100"  src="Images/golive.svg"></div> <!--TODO fix hardcoding in img tag-->
+                                                    <div class="col title" data-bind="text: title">GO LIVE + MONITOR</div>
+                                                    <div class="col description" data-bind="text: description">Now that you're ready to deploy, Atlas will provide an easy production environment with all the tools you need to manage and monitor your solution.</div>
+                                                </div>
+
+                                                <div class="col dataExploreItem">
+                                                    <div class="col"><img width="100" height="100"  src="Images/share.svg"></div> <!--TODO fix hardcoding in img tag-->
+                                                    <div class="col title" data-bind="text: title">SHARE</div>
+                                                    <div class="col description" data-bind="text: description">Monetize your models and publish your great work for the community. We have a gallery and a marketplace and it is awesome for everyone.</div>
+                                                </div>
+                                                <!-- /ko -->
+                                            </div>
+                                            <div class="section4">
+                                                <h1> Play, collaborate and share with <span class="atlasText">Atlas</span> </h1>
+                                                <p>
+                                                    Browse and connect to lions of data sets in a single click while iterating in notebooks,
+                                                    transforming and visualizing large amounts of data. Browse and connect to lions of data sets in a single click while iterating in notebooks,
+                                                    transforming and visualizing large amounts of data. Browse and connect to lions of data sets in a single click while iterating in notebooks,
+                                                    transforming and visualizing large amounts of data.
+                                                </p>
+                                            </div>
+                                            <div class="section5">
+                                                <div class="row title">
+                                                    <h1> Integrated technologies to build your solution </h1>
+                                                </div>
+                                                <div class="row icons">
+                                                    <!-- ko foreach : dataTechnologies -->
+                                                    <div class="col dataTechnologyItem">
+                                                        <div class="col icon icon-Atlas_ML" data-bind="css: icon"></div>
+                                                        <div class="col title" data-bind="text: title">MACHINE LEARNING STUDIO</div>
+                                                    </div>
+
+                                                    <div class="col dataTechnologyItem">
+                                                        <div class="col icon icon-Atlas_DataFactory" data-bind="css: icon"></div>
+                                                        <div class="col title" data-bind="text: title">AZURE DATA FACTORY</div>
+                                                    </div>
+
+                                                    <div class="col dataTechnologyItem">
+                                                        <div class="col icon icon-Atlas_Stream" data-bind="css: icon"></div>
+                                                        <div class="col title" data-bind="text: title">AZURE STREAM ANALYTICS</div>
+                                                    </div>
+
+                                                    <div class="col dataTechnologyItem">
+                                                        <div class="col icon icon-Atlas_Notebooks" data-bind="css: icon"></div>
+                                                        <div class="col title" data-bind="text: title">REPL NOTEBOOK INTEGRATION</div>
+                                                    </div>
+
+                                                    <div class="col dataTechnologyItem">
+                                                        <div class="col icon icon-Atlas_table" data-bind="css: icon"></div>
+                                                        <div class="col title" data-bind="text: title">CONNECT TO DATA FROM ANYWHERE</div>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                            <div class="sectionFooter" data-bind="component: {name: 'blueprint-signin-footer'}">
+                                                <div class="col footer">
+                                                    <div class="row footerSection1">
+                                                        <!-- ko foreach : footerLists -->
+                                                        <div class="col footerList">
+                                                            <div class="col footerListHeader" data-bind="text: title">What's New</div>
+                                                            <div class="col footerListItems">
+                                                                <!-- ko foreach : items -->
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">How to build a Blueprint</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Getting started with Atlas</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Building an integrated solution</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Highlight of new features</div>
+                                                                </div>
+                                                                <!-- /ko -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col footerList">
+                                                            <div class="col footerListHeader" data-bind="text: title">Documentation</div>
+                                                            <div class="col footerListItems">
+                                                                <!-- ko foreach : items -->
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">How to use Data Connect</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Publishing experiments</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Quick start for iPython Notebooks</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Creating experiments in ML Studio</div>
+                                                                </div>
+                                                                <!-- /ko -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col footerList">
+                                                            <div class="col footerListHeader" data-bind="text: title">Contribute</div>
+                                                            <div class="col footerListItems">
+                                                                <!-- ko foreach : items -->
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Share in the Gallery</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Provide feedback</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Ask a question</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">See all contribution articles</div>
+                                                                </div>
+                                                                <!-- /ko -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col footerList">
+                                                            <div class="col footerListHeader" data-bind="text: title">Resources</div>
+                                                            <div class="col footerListItems">
+                                                                <!-- ko foreach : items -->
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Video tutorials</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Atlas Support</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Azure Management Portal</div>
+                                                                </div>
+
+                                                                <div class="row footerListItem centerY">
+                                                                    <div class="col icon"><img src="Images/collapse-right.svg"></div>
+                                                                    <div class="col footerListItemTitle" data-bind="text: title">Gallery of samples and templates</div>
+                                                                </div>
+                                                                <!-- /ko -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- /ko -->
+                                                    </div>
+                                                    <div class="row footerSection2 centerY">
+                                                        <a href="http://atlas-preview3.cloudapp.net"><button> Get started </button></a>
+                                                        <h1>Play, collaborate and share in Atlas.</h1>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row footerSection3">
+                                                        <div class="row socialIcons">
+                                                            <!-- Note: comment out these icons for now as font awesome ref is being removed, add back the svgs when designers have them ready -->
+                                                            <!-- ko foreach : socialIcons -->
+                                                            <div class="col icon" data-bind="css: icon"></div>
+
+                                                            <div class="col icon" data-bind="css: icon"></div>
+
+                                                            <div class="col icon" data-bind="css: icon"></div>
+
+                                                            <div class="col icon" data-bind="css: icon"></div>
+                                                            <!-- /ko -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ko if: rightPanelElementsConfig -->
+                            <div class="col rightSidePanel collapse collapsed width" data-bind="collapse: {
+            collapsedSwitch: '',
+            expandedSwitch: '', //removed fa-close
+            expandOnClick: true
+        },
+        tabControl: rightPanelElementsConfig()">
+                                <div class="col switch"></div>
+                                <div class="row tabs view-tabs no-shrink"></div>
+                                <div class="row grow collapsable panels"></div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="contextMenu: null">
+                    <div class="contextMenuPosition" style="position:fixed"></div>
+                    <div class="contextMenuWinJSHostDiv win-overlay win-disposable win-flyout win-menu" data-win-control="WinJS.UI.Menu" tabindex="-1" unselectable="on" role="menu" aria-label="Menu" style="visibility: hidden; opacity: 0; display: none;"></div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+
+    <div class="win-visualviewport-space"></div><section class="win-flyoutmenuclickeater" role="menuitem" aria-label="Close" unselectable="on" style="display: none;"></section>
+</body>
+</html>

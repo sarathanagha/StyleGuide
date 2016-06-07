@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ConfigList>
+  <!-- Note: The Secret Store entities use MonitoringBase in their lookup path. If you remove this xml, please update
+  the secret store strings in both test and prod with different base Config name -->
+  <Config Name="MonitoringBase" Type="Abstract">
+    <Settings>
+      <!-- Deployment settings path -->
+      <!-- use -p <path> to set a custom value from command line  -->
+      <Setting Name="BuildDropPath" />
+      <!-- use -hs <deploymentname> to set a value from command line
+           by default this will be <alias>mdp -->
+      <Setting Name="DeploymentName"/>
+      <Setting Name="DeploymentNameValue" />
+      <Setting Name="BackendDeploymentName"/>
+      <Setting Name="WAStorageAccountName"/>
+
+      <!--Use in cscfg, auto upgrade os-->
+      <Setting Name="OSFamily" />
+      <Setting Name="SchemaVersion" />
+      <Setting Name="OSVersion" />
+
+      <!-- Secret store settings -->
+      <Setting Name="SecretStore"/>
+      <Setting Name="ServiceName"/>
+      <Setting Name="RootNamespace"/>
+      <Setting Name="OptOutOfSecretDataBackupValidation" />
+      <Setting Name="ManagementCertPathInSecretStore" />
+
+      <!-- Azure settings -->
+      <Setting Name="WASubscriptionID"/>
+      <Setting Name="WALocation"/>
+      <Setting Name="WAAPICertificateBase64"/>
+      <Setting Name="WAAPICertificatePassword"/>
+      <Setting Name="WAManagementApiUrl" />
+      <Setting Name="WAStorageUrl" />
+      <Setting Name="WAKeepStagingSlot" />
+
+      <!--Storage account settings -->
+      <Setting Name="WAStorage" />
+      <Setting Name="WAAccount" />
+      <Setting Name="WAStorageAccount" />
+
+      <Setting Name="MSFERoleInstances"/>
+      <Setting Name="MSWRRoleInstances"/>
+
+      <!-- Remote desktop -->
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" />
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" />
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" />
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" />
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" />
+
+      <!-- MDS configuration settings -->
+      <Setting Name="MdsWAStorage" />
+      <Setting Name="MdsWAAccount" />
+      <Setting Name="EventsWAStorage" />
+      <Setting Name="EventsWAAccount" />
+      <Setting Name="MdsWAAccountEncryptedAutokey" />
+      <Setting Name="MdsWAAuditEncryptedAutokey" />
+      <Setting Name="MdsWASecurityEncryptedAutokey" />
+
+      <!--MA settings-->
+      <Setting Name="MAConfigFileName" />
+      <Setting Name="MAConfigFileLocation" />
+      <Setting Name="MonitoringXStoreAccounts" />
+
+      <!-- Azure package paths -->
+      <Setting Name="MonitoringServicePath" />
+      <Setting Name="MonitoringServiceXLNoRemoteAccessPath" />
+
+      <!-- DIPR configuration-->
+      <Setting Name="DiprDenyAction" />
+      <Setting Name="DiprEnableProxyMode" />
+      <Setting Name="DiprDenyByConcurrentRequests" />
+      <Setting Name="DiprDenyByConcurrentRequestsMax" />
+      <Setting Name="DiprDenyByRequestsRate" />
+      <Setting Name="DiprDenyByRequestsRateMax" />
+      <Setting Name="DiprDenyByRequestsRateTimePeriodInMilliSec" />
+
+      <!-- Client certificate settings -->
+      <Setting Name="AllowedClientCertDistinguishedNames" />
+      <Setting Name="AllowedClientCertIssuerPublicKeys" />
+      <Setting Name="DisallowedClientCertThumbprints" />
+      
+      <!-- Azure diagnostics -->
+      <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+
+      <!-- Monitoring Service - Azure keys -->
+      <Setting Name="MonSvcAzureSearchName" />
+      <Setting Name="MonSvcAzureSearchKey" />
+      <Setting Name="MonSvcAzureStorageConnectionString" />
+      
+    </Settings>
+
+    <!--Important Note: We now have 2 Hosted Services Sections. 
+    Type: Package
+    Type: WithRemoteAccess
+    
+    As the Name suggest the second type of Pacakge disables the Remote Access to the Azure VMs
+    The rest of the Settings are duplicated between the 2 Hosted Service Sections and any changes should be reflected in both Places
+    -->
+    <HostedService Type="Package" Name="$(DeploymentName)">
+      <Setting Name="PackagePath"/>
+      <Setting Name="UseExternalStorageAssemblies"/>
+      <Setting Name="ResourceProviderClientCertificateThumbprint"/>
+
+      <Setting Name="WASubscriptionID"/>
+      <Setting Name="WAStorage"/>
+      <Setting Name="WAAccount"/>
+      <Setting Name="WALocation"/>
+      <Setting Name="WAAPICertificateBase64"/>
+      <Setting Name="WAAPICertificatePassword"/>
+      <Setting Name="WAKeepStagingSlot"/>
+      <Service>
+        <Role Name="MonitoringService">
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" />
+          <Setting Name="DeploymentName"/>
+          
+          <Setting Name="MonitoringXStoreAccounts" />
+          <Setting Name="MAConfigFileLocation" />
+
+          <!-- DIPR configuration-->
+          <Setting Name="DiprDenyAction" />
+          <Setting Name="DiprEnableProxyMode" />
+          <Setting Name="DiprDenyByConcurrentRequests" />
+          <Setting Name="DiprDenyByConcurrentRequestsMax" />
+          <Setting Name="DiprDenyByRequestsRate" />
+          <Setting Name="DiprDenyByRequestsRateMax" />
+          <Setting Name="DiprDenyByRequestsRateTimePeriodInMilliSec" />
+
+          <!-- Client certificate settings -->
+          <Setting Name="AllowedClientCertDistinguishedNames" />
+          <Setting Name="AllowedClientCertIssuerPublicKeys" />
+          <Setting Name="DisallowedClientCertThumbprints" />
+
+          <!-- Azure diagnostics -->
+          <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+
+          <!-- Monitoring Service - Azure keys -->
+          <Setting Name="MonSvcAzureSearchName" />
+          <Setting Name="MonSvcAzureSearchKey" />
+          <Setting Name="MonSvcAzureStorageConnectionString" />
+
+          <Certificates>
+            <Certificate Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption"  Body="$(@Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption.Certificate)" Password="$(@Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption.CertPassword)"  />
+            <Certificate Name="HttpsMonitoringServiceCert" Body="$(@HttpsMonitoringServiceCert.Certificate)" Password="$(@HttpsMonitoringServiceCert.CertPassword)"   />
+            <Certificate Name="AdfMdsAutokeyEncryption"  Body="$(@AdfMdsAutokeyEncryptionCert.Certificate)" Password="$(@AdfMdsAutokeyEncryptionCert.CertPassword)" />
+          </Certificates>
+        </Role>
+        <Role Name="MonitoringWorker">
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" />
+          <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" />
+          <Setting Name="DeploymentName"/>
+
+          <Setting Name="MonitoringXStoreAccounts" />
+          <Setting Name="MAConfigFileLocation" />
+
+          <!-- Azure diagnostics -->
+          <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+
+          <!-- Monitoring Service - Azure keys -->
+          <Setting Name="MonSvcAzureSearchName" />
+          <Setting Name="MonSvcAzureSearchKey" />
+          <Setting Name="MonSvcAzureStorageConnectionString" />
+
+          <Certificates>
+            <Certificate Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption"  Body="$(@Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption.Certificate)" Password="$(@Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption.CertPassword)"  />
+            <Certificate Name="AdfMdsAutokeyEncryption"  Body="$(@AdfMdsAutokeyEncryptionCert.Certificate)" Password="$(@AdfMdsAutokeyEncryptionCert.CertPassword)" />
+          </Certificates>
+        </Role>
+      </Service>
+    </HostedService>
+
+
+    <!--Important Note: We now have 2 Hosted Services Sections. 
+    Type: Package
+    Type: PackageNoRemoteAccess
+    
+    As the Name suggest the second type of Pacakge disables the Remote Access to the Azure VMs
+    The rest of the Settings are duplicated between the 2 Hosted Service Sections and any changes should be reflected in both Places
+    -->
+    <HostedService Type="PackageNoRemoteAccess" Name="$(DeploymentName)" Enable="false">
+      <Setting Name="PackagePath"/>
+      <Setting Name="UseExternalStorageAssemblies"/>
+      <Setting Name="ResourceProviderClientCertificateThumbprint"/>
+
+      <Setting Name="WASubscriptionID"/>
+      <Setting Name="WAStorage"/>
+      <Setting Name="WAAccount"/>
+      <Setting Name="WALocation"/>
+      <Setting Name="WAAPICertificateBase64"/>
+      <Setting Name="WAAPICertificatePassword"/>
+      <Setting Name="WAKeepStagingSlot"/>
+      <Service>
+        <Role Name="MonitoringService">
+          <Setting Name="DeploymentName"/>
+          
+          <Setting Name="MonitoringXStoreAccounts" />
+          <Setting Name="MAConfigFileLocation" />
+
+          <!-- DIPR configuration-->
+          <Setting Name="DiprDenyAction" />
+          <Setting Name="DiprEnableProxyMode" />
+          <Setting Name="DiprDenyByConcurrentRequests" />
+          <Setting Name="DiprDenyByConcurrentRequestsMax" />
+          <Setting Name="DiprDenyByRequestsRate" />
+          <Setting Name="DiprDenyByRequestsRateMax" />
+          <Setting Name="DiprDenyByRequestsRateTimePeriodInMilliSec" />
+
+          <!-- Client certificate settings -->
+          <Setting Name="AllowedClientCertDistinguishedNames" />
+          <Setting Name="AllowedClientCertIssuerPublicKeys" />
+          <Setting Name="DisallowedClientCertThumbprints" />
+
+          <!-- Azure diagnostics -->
+          <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+
+          <!-- Monitoring Service - Azure keys -->
+          <Setting Name="MonSvcAzureSearchName" />
+          <Setting Name="MonSvcAzureSearchKey" />
+          <Setting Name="MonSvcAzureStorageConnectionString" />
+
+          <Certificates>
+            <Certificate Name="HttpsMonitoringServiceCert" Body="$(@HttpsMonitoringServiceCert.Certificate)" Password="$(@HttpsMonitoringServiceCert.CertPassword)"   />
+            <Certificate Name="AdfMdsAutokeyEncryption"  Body="$(@AdfMdsAutokeyEncryptionCert.Certificate)" Password="$(@AdfMdsAutokeyEncryptionCert.CertPassword)" />
+          </Certificates>
+        </Role>
+        <Role Name="MonitoringWorker">
+          <Setting Name="DeploymentName"/>
+
+          <Setting Name="MonitoringXStoreAccounts" />
+          <Setting Name="MAConfigFileLocation" />
+
+          <!-- Azure diagnostics -->
+          <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+
+          <!-- Monitoring Service - Azure keys -->
+          <Setting Name="MonSvcAzureSearchName" />
+          <Setting Name="MonSvcAzureSearchKey" />
+          <Setting Name="MonSvcAzureStorageConnectionString" />
+
+          <Certificates>
+            <Certificate Name="AdfMdsAutokeyEncryption"  Body="$(@AdfMdsAutokeyEncryptionCert.Certificate)" Password="$(@AdfMdsAutokeyEncryptionCert.CertPassword)" />
+          </Certificates>
+        </Role>
+      </Service>
+    </HostedService>
+    
+    <DeployItem Type="DeploymentRunRecord">
+      <Setting Name="DeploymentRunName" />
+      <Setting Name="DeploymentRunBuildFolder" />
+      <Setting Name="DeploymentRunWASubscriptionID" />
+      <Setting Name="DeploymentRunWALocation" />
+      <Setting Name="DeploymentRunWAFabInstances" />
+      <Setting Name="DeploymentRunMDPRoleInstances" />
+    </DeployItem>
+  </Config>
+</ConfigList>

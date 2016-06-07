@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{F7E1D847-0DA6-4E16-AB7B-1629ADD5AF1C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.DataStudio.Services.MachineLearning</RootNamespace>
+    <AssemblyName>Microsoft.DataStudio.Services.MachineLearning</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="$(NugetPack)\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll">
+      <Private>True</Private>
+      <Name>Newtonsoft.Json</Name>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\AddOrUpdateProjectRequest.cs" />
+    <Compile Include="Contracts\CreateWorkspaceRequest.cs" />
+    <Compile Include="Contracts\Enums\ExperimentRole.cs" />
+    <Compile Include="Contracts\Enums\PackageStatus.cs" />
+    <Compile Include="Contracts\Enums\WebServiceCreationStatus.cs" />
+    <Compile Include="Contracts\Enums\WorkspaceStatus.cs" />
+    <Compile Include="Contracts\ExperimentInfo.cs" />
+    <Compile Include="Contracts\ExperimentSummary.cs" />
+    <Compile Include="Contracts\PackingStatusInfo.cs" />
+    <Compile Include="Contracts\Project.cs" />
+    <Compile Include="Contracts\ProjectExperiment.cs" />
+    <Compile Include="Contracts\ResourceAuthorizationToken.cs" />
+    <Compile Include="Contracts\UnpackingStatusInfo.cs" />
+    <Compile Include="Contracts\WebService.cs" />
+    <Compile Include="Contracts\WebServiceCreationStatusInfo.cs" />
+    <Compile Include="Contracts\WebServiceGroup.cs" />
+    <Compile Include="Contracts\Workspace.cs" />
+    <Compile Include="MLApiClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\DataStudio.Solutions\DataStudio.Solutions.csproj">
+      <Project>{84bcf7c9-9dde-4038-8853-8a39d64da64d}</Project>
+      <Name>DataStudio.Solutions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diagnostics\Diagnostics.csproj">
+      <Project>{4f30cd3b-6ba4-4da8-9e73-f3bafc8ec316}</Project>
+      <Name>Microsoft.DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebExtensions\DataStudio.WebExtensions.csproj">
+      <Project>{39D1CCB8-2739-4A9C-A91E-8875B1949F91}</Project>
+      <Name>DataStudio.WebExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <!-- Setting AutoUnifyAssemblyReferences to false will allow the ResolveAssemblyReferences task to 
+    create warnings when detecting version missmatches among references.
+    -->
+    <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>

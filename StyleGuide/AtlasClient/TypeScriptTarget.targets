@@ -1,0 +1,53 @@
+<!-- This file is just a copy of NoTarget.targets that was used before, but removing the override for Clean task -->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateAssemblyAttribute>false</GenerateAssemblyAttribute>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableStyleCop>false</EnableStyleCop>
+    <CoverType>None</CoverType>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <EnableTargetFrameworkAttributeRedirect>false</EnableTargetFrameworkAttributeRedirect>
+  </PropertyGroup>
+
+  <!-- Importing CSharp targets because .Common requires several definitions from .CSharp -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <PropertyGroup>
+    <!-- Need this setting otherwise code analysis in vs will run against NoTargets projects. -->
+    <!-- This is suboptimal.  Need to understand why setting RunCodeAnalysis to false doesn't work. -->
+    <RunCodeAnalysisInputs></RunCodeAnalysisInputs>
+
+    <!-- allow others to reference this ProjectReference without trying to find a dll -->
+    <TargetPath></TargetPath>
+
+    <!-- prevent the project from trying to drop files -->
+    <CompileDependsOn>
+      $(CompileDependsOn);
+      PreventFileDrop
+    </CompileDependsOn>
+
+  </PropertyGroup>
+
+
+  <!-- Prevent the compile action from trying to drop files -->
+  <Target Name="PreventFileDrop">
+    <ItemGroup>
+      <IntermediateAssembly Remove="@(IntermediateAssembly)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Prevent the actual compile action from running -->
+  <Target Name="CoreCompile" />
+
+  <!-- Also override CA target just to be sure. -->
+  <Target Name="RunCodeAnalysis" />
+
+  <!-- Also override Clean targets just to be sure. -->
+  <Target Name="IncrementalClean" />
+</Project>

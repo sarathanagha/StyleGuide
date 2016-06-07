@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigList>
+  <Config Name="MonitoringCommon" Type="Abstract" Base="MonitoringBase">
+    <Settings>
+      <Setting Name="WAStorageAccountName">$(DeploymentName)</Setting>
+      <Setting Name="OSFamily">4</Setting>
+      <Setting Name="SchemaVersion">2014-06.2.4</Setting>
+      <Setting Name="OSVersion">*</Setting>
+
+      <!-- Deployment settings path -->
+      <!-- use -p <path> to set a custom value from command line  -->
+      <Setting Name="BuildDropPath">..\..\..</Setting>
+      <Setting Name="DeploymentName">$(DeploymentNameValue)</Setting>
+      
+      <Setting Name="MSFERoleInstances">1</Setting>
+      <Setting Name="MSWRRoleInstances">1</Setting>
+      <!-- secret store settings -->
+      <Setting Name="RootNamespace">DPG/IS/DataPipeline</Setting>
+      <Setting Name="OptOutOfSecretDataBackupValidation">true</Setting>
+      <!-- other settings -->
+      <Setting Name="WAStorage">$(@WAStorage.Account)</Setting>
+      <Setting Name="WAAccount">$(@WAStorage.ActiveKey)</Setting>
+      <Setting Name="WAStorageAccount">DefaultEndpointsProtocol=https;AccountName=$(WAStorage);AccountKey=$(WAAccount)</Setting>
+      <Setting Name="WAAPICertificateBase64">$(@WAAPICertificate.Certificate)</Setting>
+      <Setting Name="WAAPICertificatePassword">$(@WAAPICertificate.CertPassword)</Setting>
+      <Setting Name="WAKeepStagingSlot">false</Setting>
+      <Setting Name="WAManagementApiUrl">https://management.$(WAStorageUrl)</Setting>
+      <Setting Name="WAStorageUrl">core.windows.net</Setting>
+
+      <!-- Remote desktop -->
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled">true</Setting>
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername">mdpremote</Setting>
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword">MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMTE1dpbmRvd3MgQXp1cmUgVG9vbHMCEP1SM0+uUFK/TDQoAPsdOB4wDQYJKoZIhvcNAQEBBQAEggEAxh+BAsTcBUgoTfHs424QOBwGwc4htsbZVqiU0TM/YwESnjBVtKtT/kkGXyMJCc3l+iOE1SFF1ssNJSCK3UE+XNXtY5Qahgzve+RrBa9uLjsF057kSRzlkCrZVo7gn+ZFsdS0DvoDwJ6/G9cDSBVRCiw6RnPXYuZBOWXTZyv3jv/XA4dMOFVmDnkh2ciu/+8mexpVdbb5P8iJpa5gwInGtGvT/nU9N6aixT7Wtqet2hcDci9BpGI6s+vI8r6hmllhZ6gqE/qr0rl/3qrmy0vaU+K9iogMeN0An+C1ec8PBUWHTKJOxZXmTKhcJIpc9YG++kZj8AFWTPoCFYSeIHv7mTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECBcF5s9hywiVgBCyFJu5JOR6v/xOwg7LhaUH</Setting>
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration">2015-12-15T23:59:59.0000000-08:00</Setting>
+      <Setting Name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled">true</Setting>
+      <!-- Setting for MDS monitoring -->
+      <Setting Name="MdsWAStorage">$(@WAStorageMDSEastUS.Account)</Setting>
+      <Setting Name="MdsWAAccount">$(@WAStorageMDSEastUS.ActiveKey)</Setting>
+      <Setting Name="MdsWAAccountEncryptedAutokey">$(@TestMdsAdfEUEncryptedAutoKey.Password)</Setting>
+      <Setting Name="MdsWAAuditEncryptedAutokey">$(@TestMdsAdfAuditEUStorageEncryptedAutoKey.Password)</Setting>
+      <Setting Name="MdsWASecurityEncryptedAutokey">$(@TestMdsAdfSecurityEUStorageEncryptedAutoKey.Password)</Setting>
+
+      <!-- Azure diagnostics -->
+      <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString">DefaultEndpointsProtocol=https;AccountName=$(MdsWAStorage);AccountKey=$(MdsWAAccount)</Setting>
+
+      <!-- Monitoring Service - Azure keys -->
+      <Setting Name="MonSvcAzureSearchName">adfmon-test</Setting>
+      <Setting Name="MonSvcAzureSearchKey">$(@MonSvcAzureSearchKey.Password)</Setting>
+      <Setting Name="MonSvcAzureStorageConnectionString">DefaultEndpointsProtocol=https;AccountName=$(@MonSvcAzureStorage.Account);AccountKey=$(@MonSvcAzureStorage.ActiveKey)</Setting>
+
+
+      <!-- Storage account for user events -->
+      <Setting Name="EventsWAStorage">$(WAStorage)</Setting>
+      <Setting Name="EventsWAAccount">$(WAAccount)</Setting>
+
+      <!--MA settings-->
+      <Setting Name="MAConfigFileName">MDSModernDataPipeline_BackendTest.xml</Setting>
+      <Setting Name="MAConfigFileLocation">..\$(MAConfigFileName)</Setting>
+      <Setting Name="MonitoringXStoreAccounts">MdsAdf#$(MdsWAAccountEncryptedAutokey)#My;MdsAdfAuditStore#$(MdsWAAuditEncryptedAutokey)#My;MdsAdfSecurityStore#$(MdsWASecurityEncryptedAutokey)#My;MdsAdfUserEvents#false#$(EventsWAStorage)#$(EventsWAAccount)#http://table.core.windows.net#http://queue.core.windows.net#http://blob.core.windows.net</Setting>
+      
+      <!-- Azure package paths -->
+      <Setting Name="MonitoringServicePath">$(BuildDropPath)\Monitoring\Packages\Package.Monitoring\App.publish\Package.Monitoring.cspkg</Setting>
+      <Setting Name="MonitoringServiceXLNoRemoteAccessPath">$(BuildDropPath)\Monitoring\Packages\Package.XL.Monitoring\App.publish\Package.XL.Monitoring.cspkg</Setting>
+
+      <!-- DIPR configuration-->
+      <!-- DiprDenyAction: Unauthorized, Forbidden, NotFound, or AbortRequest -->
+      <Setting Name="DiprDenyAction">Forbidden</Setting>
+      <Setting Name="DiprEnableProxyMode">true</Setting>
+      <Setting Name="DiprDenyByConcurrentRequests">true</Setting>
+      <Setting Name="DiprDenyByConcurrentRequestsMax">2000</Setting>
+      <Setting Name="DiprDenyByRequestsRate">false</Setting>
+      <Setting Name="DiprDenyByRequestsRateMax">2000</Setting>
+      <Setting Name="DiprDenyByRequestsRateTimePeriodInMilliSec">1000</Setting>
+
+      <!-- Client certificate settings -->
+      <Setting Name="AllowedClientCertDistinguishedNames">CN=$(@HttpsMonitoringClientCert.CommonName)</Setting>
+      <Setting Name="AllowedClientCertIssuerPublicKeys">MIICCgKCAgEA0eg3p3aKcEsZ8CA3CSQ3f+r7eOYFumqtTicN/HJq2WwhxGQRlXMQClwle4hslAT9x9uue9xKCLM+FvHQrdswbdcaHlK1PfBHGQPifaa9VxM/VOo6o7F3/ELwY0lqkYAuMEnAiusrr/466wddBvfp/YQOkb0JICnobl0JzhXT5+/bUOtE7xhXqwQdvDH593sqE8/RPVGvG8W1e+ew/FO7mudj3kEztkckaV24Rqf/ravfT3p4JSchJjTKAm43UfDtWBpglPbEk9jdMCQl1xzrGZQ1XZOyrqopg3PEdFkFUmed2mdROQU6NuryHnYrFK7sPfkUmYsHbrznDFberL6u23UykJ5jvXS/4ArK+DSWZ4TN0UI4eMeZtgzOtg/pG8v0Wb4RDsssMsj6gylkeTyLS/AydGzzk7iWa11XWmjBzAx5ihne9UkCXgiAAYkMMs3S1pbVS6Dz7L+r9H2zobl82k7X5besufIlXwHLjJaoKK7BM1r2PwiQ3Ov/OdgmyBKdHJqqqcAWjobtZ1KWAH8Nkj092XA25epCbx+uleVbXfjQOsfU3neG0PyeTuLiuKloNwnEOeOFuInzH263bR9KLxgJb95KAY8Uybem7qdjnzOkVHxCg2i4pd+/7LkaXRM72a1o/SAKVZEhZPnXEwGgCF1ZiRtEr6SsxwUQ+kFKqPsCAwEAAQ==</Setting>
+      <Setting Name="DisallowedClientCertThumbprints">0000000000000000000000000000000000000000</Setting>
+
+    </Settings>
+
+    <!--Important Note: We now have 2 Hosted Services Sections. 
+    Type: Package
+    Type: PackageNoRemoteAccess
+    
+    As the Name suggest the second type of Pacakge disables the Remote Access to the Azure VMs
+    The rest of the Settings are duplicated between the 2 Hosted Service Sections and any changes should be reflected in both Places
+    -->
+    <HostedService Type="Package" Name="$(DeploymentName)" Enable="true">
+      <Setting Name="PackagePath">$(MonitoringServicePath)</Setting>
+      <Setting Name="UseExternalStorageAssemblies">false</Setting>
+      <Service>
+        <Role Name="MonitoringService" InstancesCount="$(MSFERoleInstances)" VMName="MSFE" />
+        <Role Name="MonitoringWorker" InstancesCount="$(MSWRRoleInstances)" VMName="MSWR" />
+      </Service>
+    </HostedService>
+
+    <!--Important Note: We now have 2 Hosted Services Sections. 
+    Type: Package
+    Type: PackageNoRemoteAccess
+    
+    As the Name suggest the second type of Pacakge disables the Remote Access to the Azure VMs
+    The rest of the Settings are duplicated between the 2 Hosted Service Sections and any changes should be reflected in both Places
+    -->
+
+    <HostedService Type="PackageNoRemoteAccess" Name="$(DeploymentName)" Enable="false">
+      <Setting Name="PackagePath">$(MonitoringServiceXLNoRemoteAccessPath)</Setting>
+      <Setting Name="UseExternalStorageAssemblies">false</Setting>
+      <Service>
+        <Role Name="MonitoringService" InstancesCount="$(MSFERoleInstances)" VMName="MSFE" />
+        <Role Name="MonitoringWorker" InstancesCount="$(MSWRRoleInstances)" VMName="MSWR" />
+      </Service>
+    </HostedService>
+    <DeployItem Type="DeploymentRunRecord" Name="SaveDeploymentDetail">
+      <Setting Name="DeploymentRunName">$(DeploymentName)</Setting>
+      <Setting Name="DeploymentRunBuildFolder">$(BuildDropPath)</Setting>
+      <Setting Name="DeploymentRunWASubscriptionID">$(WASubscriptionID)</Setting>
+      <Setting Name="DeploymentRunWALocation">$(WALocation)</Setting>
+      <Setting Name="DeploymentRunWAFabInstances">$(MSFERoleInstances)</Setting>
+      <Setting Name="DeploymentRunMDPRoleInstances">$(MSWRRoleInstances)</Setting>
+    </DeployItem>
+  </Config>
+</ConfigList>

@@ -1,0 +1,58 @@
+﻿@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+footer#copyright {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: $footer-height;
+    font-size: 12px;
+    text-align: center;
+
+    > span {
+        display: inline-block;
+        padding: 2px;
+        line-height: 29px;
+
+        a {
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    }
+
+    #version-info {
+        position: absolute;
+        right: 16px;
+        top: 2px;
+        font-size: 11px;
+        cursor: default;
+    }
+    
+     @mixin theme {
+        $font-color-light: $default-font-color-light;
+        $header-color: $default-header-color;
+        $brand-color: $default-brand-color;
+        $navigation-text-color: $default-navigation-text-color;
+        $navigation-selected-color: $default-navigation-selected-color;
+        $block-med: $default-block-med;
+        $body-color-med: $default-body-color-med;
+
+        //scope these colors to this theme
+        & {
+            & {
+                background-color: black;
+                color: $font-color-light;
+
+                a {
+                    color: $font-color-light;
+                }
+                #version-info { 
+                    color: black;
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

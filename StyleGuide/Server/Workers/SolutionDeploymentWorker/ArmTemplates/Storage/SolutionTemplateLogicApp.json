@@ -1,0 +1,504 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        // Start -- Parameters by the caller
+        "sqlServerUserName": {
+            "type": "string",
+            "defaultValue": "mylogin"
+        },
+        "sqlServerPassword": {
+            "type": "securestring",
+            "defaultValue": "Password!"
+        },
+        // End -- Parameters by the caller
+
+        // Start -- Parameters by the Data Studio Solution Template service
+        "svcPlanName": {
+            "type": "string",
+            "defaultValue": "ServicePlanName",
+            "metadata": {
+                "description": "The name of the App Service plan to create for hosting the logic app."
+            }
+        },
+        "sku": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Free",
+                "Basic",
+                "Standard",
+                "Premium"
+            ],
+            "metadata": {
+                "description": "The pricing tier for the logic app."
+            }
+        },
+        "svcPlanSize": {
+            "defaultValue": "0",
+            "type": "string",
+            "allowedValues": [
+                "0",
+                "1",
+                "2"
+            ],
+            "metadata": {
+                "description": "The instance size of the app."
+            }
+        },
+        "subscriptionId": {
+            "type": "string",
+            "defaultValue": "c2fa4882-b7db-417d-bfaf-1121b121045e"
+        },
+        "userEmail": {
+            "type": "string",
+            "defaultValue": "parvezp@microsoft.com"
+        },
+        "userPuid": {
+            "type": "string",
+            "defaultValue": "10033FFF801BFAD4"
+        },
+        "token": {
+            "type": "string"
+        },
+        "deploymentName": {
+            "type": "string",
+            "defaultValue": "deploylogic"
+        },
+        "resourceGroupName": {
+            "type": "string",
+            "defaultValue": "logicApp_ResourceGroup"
+        },
+        "solutionId": {
+            "type": "string",
+            "defaultValue": "logicApp"
+        }
+        // End -- Parameters by the Data Studio Solution Template service
+    },
+    "variables": {
+        "logicAppName": "[uniqueString(resourceGroup().id, deployment().name)]",
+        "managementUriPrefix": "https://management.azure.com",
+        "resourceGroupUri": "[resourceId(parameters('resourceGroupName'), 'microsoft.resources/deployments', parameters('deploymentName'))]",
+        "deploymentName": "[deployment().name]",
+        "deploymentNamePrefix": "[concat(resourceGroup().id, '/providers/microsoft.resources/deployments/')]",
+        "deploymentNameUri": "[concat('providers/microsoft.resources/deployments/', parameters('deploymentName'))]",
+        "apiVersionUri": "?api-version=2015-01-01",
+        "managementUri": "[concat(variables('managementUriPrefix'), variables('resourceGroupUri'), variables('apiVersionUri'))]",
+        "atlatApiTestUriPrefix": "https://atlasmainapitest.cloudapp.net/api/",
+        "atlasApiTestUri": "[concat(variables('atlatApiTestUriPrefix'), subscription().subscriptionId, '/')]",
+        "atlasApiCreate": "createcontainer",
+        "atlasApiImport": "import",
+        "deployController": "solutions",
+        "atlasApiML": "machinelearning",
+        "dataconfigController": "dataconfig",
+        "solutionController": "[concat('solutions/', parameters('solutionId'))]",
+        "scriptLink": "http://atlastestp.blob.core.windows.net/connectedcar/scripts/connectedcarsqldb.sql",
+        "armTemplateLink1": "http://atlastestp.blob.core.windows.net/accelerators/connectedcar_part1.json",
+        "armTemplateLink2": "http://atlastestp.blob.core.windows.net/accelerators/connectedcar_part2.json",
+        "trainingPackageLocation": "https://storage.azureml.net/directories/65c556c0a44b445b8353336e39f09aa6/items",
+        "scoringPackageLocation": "https://storage.azureml.net/directories/3a3b81a0ddb84b0fa00a87dc26e3fd83/items",
+
+        // Start - Helpers
+        "doubleEscapedQuotes": "\\\"",
+        "singleQuote": "'",
+        "comma": ",",
+        "colon": ":",
+        "leftBrace": "{",
+        "rightBrace": "}",
+        // End - Helpers
+
+        // Start - Variables that are auto-generated
+        "storageAccountName": "[concat('storage', uniquestring(deployment().name))]",
+        "sqlServerName": "[concat('sqlserver-', uniquestring(deployment().name))]",
+        "ingestEventHubName": "[concat('ingest-', uniquestring(deployment().name))]",
+        "publishEventHubName": "[concat('publish-', uniquestring(deployment().name))]",
+        "dataFactoryName": "[concat('storage', uniquestring(deployment().name))",
+        "streamingJobName": "[concat('sjob-', uniquestring(deployment().name))]",
+        "namespaceName": "[concat('namespace-', uniquestring(deployment().name))]",
+        // End - Variables that are auto-generated
+
+        /*
+        "sqlServerParam":           "[concat(variables('doubleEscapedQuotes'),     'sqlServerPassword',    variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('sqlServerName'),        variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "storageAccountParam":      "[concat(variables('doubleEscapedQuotes'),     'StorageAccountName',   variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('storageAccountName'),   variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "ingestEventHubParam":      "[concat(variables('doubleEscapedQuotes'),     'IngestEventHubName',   variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('ingestEventHubName'),   variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "publishEventHubParam":     "[concat(variables('doubleEscapedQuotes'),     'PublishEventHubName',  variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('publishEventHubName'),  variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "dataFactoryParam":         "[concat(variables('doubleEscapedQuotes'),     'dataFactoryName',      variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('dataFactoryName'),      variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "streamingJobParam":        "[concat(variables('doubleEscapedQuotes'),     'streamingJobName',     variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('streamingJobName'),     variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "namespaceNameParam":       "[concat(variables('doubleEscapedQuotes'),     'namespaceName',        variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), variables('namespaceName'),        variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        */
+
+        "sqlServerUserNameParam": "[concat(variables('doubleEscapedQuotes'),     'sqlServerUserName',    variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), parameters('sqlServerUserName'),   variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        "sqlServerPasswordParam": "[concat(variables('doubleEscapedQuotes'),     'sqlServerPassword',    variables('doubleEscapedQuotes'), variables('colon'), variables('leftBrace'), variables('doubleEscapedQuotes'), 'value', variables('doubleEscapedQuotes'), variables('colon'), variables('doubleEscapedQuotes'), parameters('sqlServerPassword'),   variables('doubleEscapedQuotes'), variables('rightBrace')  )]",
+        //"sqlServerUserNameParam": "[concat('\\\"sqlServerUserName\\\": { \\\"value\\\": \\\"', parameters('sqlServerUserName'), '\\\" }')]",
+        //"sqlServerPasswordParam": "[concat('\\\"sqlServerPassword\\\": { \\\"value\\\": \\\"', parameters('sqlServerPassword'), '\\\" }')]",
+        "paramsActionDeployStorage": "[concat('\"{', variables('sqlServerUserNameParam'), ', ', variables('sqlServerPasswordParam'), '}\"')]",
+        "zipFileUrl": "http://atlastestp.blob.core.windows.net/connectedcar/careventgenerator.zip",
+        "configName": "CarEventGenerator.exe.config",
+        "containerName": "connectedcar",
+        "carEventParams": "{ \"[IngestEventHubName]\": \"connectedcar4ingesteventhub35343\" }",
+        "connectionString": "DefaultEndpointsProtocol=https;AccountName=atlastestp;AccountKey=i0KxUoVLuDkYf4Fu+NSog+KnvG/HY7DRJFHH4cwrCoVo4q5YtenxBMh6LRLIvtDAWjYKfAMwrg6v6ZCkqGtYHA=="
+    },
+
+    "resources": [
+        {
+            "apiVersion": "2014-06-01",
+            "name": "[parameters('svcPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "AppServicePlan"
+            },
+            "properties": {
+                "name": "[parameters('svcPlanName')]",
+                "sku": "[parameters('sku')]",
+                "workerSize": "[parameters('svcPlanSize')]",
+                "numberOfWorkers": 1
+            }
+        },
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2015-02-01-preview",
+            "name": "[variables('logicAppName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "LogicApp"
+            },
+            "properties": {
+                "sku": {
+                    "name": "[parameters('sku')]",
+                    "plan": {
+                        "id": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/',parameters('svcPlanName'))]"
+                    }
+                },
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2014-12-01-preview/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "token": {
+                            "type": "string",
+                            "defaultValue": "[parameters('token')]"
+                        },
+                        "solutionId": {
+                            "type": "string",
+                            "defaultValue": "[parameters('solutionId')]"
+                        },
+                        "resourcegroup": {
+                            "type": "string",
+                            "defaultValue": "[parameters('resourceGroupName')]"
+                        },
+                        "deploymentName": {
+                            "type": "string",
+                            "defaultValue": "[parameters('deploymentName')]"
+                        },
+                        "userEmail": {
+                            "type": "string",
+                            "defaultValue": "[parameters('userEmail')]"
+                        },
+                        "userPuid": {
+                            "type": "string",
+                            "defaultValue": "[parameters('userPuid')]"
+                        },
+                        "sqlServerUserName": {
+                            "type": "string",
+                            "defaultValue": "[parameters('sqlServerUserName')]"
+                        },
+                        "sqlServerPassword": {
+                            "type": "string",
+                            "defaultValue": "[parameters('sqlServerPassword')]"
+                        },
+                        "trainingPackageLocation": {
+                            "type": "string",
+                            "defaultValue": "[variables('trainingPackageLocation')]"
+                        },
+                        "scoringPackageLocation": {
+                            "type": "string",
+                            "defaultValue": "[variables('scoringPackageLocation')]"
+                        },
+                        "deploymentNamePrefix": {
+                            "type": "string",
+                            "defaultValue": "[variables('deploymentNamePrefix')]"
+                        },
+                        "resourceGroupUri": {
+                            "type": "string",
+                            "defaultValue": "[variables('resourceGroupUri')]"
+                        },
+                        "managementUriPrefix": {
+                            "type": "string",
+                            "defaultValue": "[variables('managementUriPrefix')]"
+                        },
+                        "managementUri": {
+                            "type": "string",
+                            "defaultValue": "[concat(variables('managementUriPrefix'), variables('resourceGroupUri'))]"
+                        },
+                        "apiVersionUri": {
+                            "type": "string",
+                            "defaultValue": "[variables('apiVersionUri')]"
+                        },
+                        "scriptLink": {
+                            "type": "string",
+                            "defaultValue": "http://atlastestp.blob.core.windows.net/connectedcar/scripts/connectedcarsqldb.sql"
+                        },
+                        "armTemplateLink2": {
+                            "type": "string",
+                            "defaultValue": "[variables('armTemplateLink2')]"
+                        },
+                        "zipFileUrl": {
+                            "type": "string",
+                            "defaultValue": "[variables('zipFileUrl')]"
+                        },
+                        "configName": {
+                            "type": "string",
+                            "defaultValue": "[variables('configName')]"
+                        },
+                        "containerName": {
+                            "type": "string",
+                            "defaultValue": "[variables('containerName')]"
+                        },
+                        "carEventParams": {
+                            "type": "string",
+                            "defaultValue": "[variables('carEventParams')]"
+                        },
+                        "realtimeGeneratorName": {
+                            "type": "string",
+                            "defaultValue": "RealtimeDashboardApp"
+                        },
+                        "carEventGeneratorName": {
+                            "type": "string",
+                            "defaultValue":  "CarEventGenerator"
+                        },
+                        "connectionString": {
+                            "type": "string",
+                            "defaultValue": "[variables('connectionString')]"
+                        },
+                        "escapedQuotes": {
+                            "type": "string",
+                            "defaultValue": "\""
+                        },
+                        "singleQuote": {
+                            "type": "string",
+                            "defaultValue": "'"
+                        }
+                    },
+                    "triggers": {
+                        "RunNow": {
+                            "type": "recurrence",
+                            "recurrence": {
+                                "frequency": "Year",
+                                "interval": "1"
+                            }
+                        }
+                    },
+                    "actions": {
+                        "deploystorage": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('deployController'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "[concat('{\"SolutionId\": \"', parameters('solutionId'), '\", \"UserEmail\": \"', parameters('userEmail'), '\", \"UserPuid\": \"', parameters('userPuid'), '\", \"properties\": {\"templateLink\": { \"uri\": \"', variables('armTemplateLink1'), '\", \"contentVersion\": \"1.0.0.0\" }, \"mode\": \"Incremental\", \"parameters\":', variables('paramsActionDeployStorage'), '}}')]" //\"DeploymentName\": \"', parameters('deploymentName'), '\",
+                            },
+                            "conditions": [
+                            ]
+                        },
+                        "monitorstorage": {
+                            "until": {
+                                "limit": {
+                                    "timeout": "PT5M"
+                                },
+                                "conditions": [
+                                    {
+                                        "expression": "@or(equals(action()?.outputs?.body?.properties?.provisioningState, 'Succeeded'), equals(action()?.outputs?.body?.properties?.provisioningState, 'Failed'))"
+                                    }
+                                ]
+                            },
+                            "type": "Http",
+                            "inputs": {
+                                "method": "GET",
+                                "uri": "@concat(parameters('managementUriPrefix'), parameters('deploymentNamePrefix'), coalesce(actions('deploystorage')?.outputs?.body?.Provisioning?.DeploymentName, ''), parameters('apiVersionUri'))",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                }
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('deploystorage')?.outputs?.body?.Provisioning?.ProvisioningState, 'InProgress')"
+                                }
+                            ]
+                        },
+                        "createConnectedCarContainer": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('atlasApiCreate'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{\"ContainerName\": \"connectedcar\",\"SourceContainerSasUri\": \"http://atlastestp.blob.core.windows.net/connectedcar?sv=2014-02-14&sr=c&sig=KImaZdtSVOTHTZnYeFYH6g9K7gXMo2UoQhYfDtBddTM%3D&st=2016-03-03T08%3A00%3A00Z&se=2016-04-21T07%3A00%3A00Z&sp=rl\",\"Copy\": \"true\", \"DestinationContainerConnectionString\":\"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountConnectionString?.value, '\"}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                }
+                            ]
+                        },
+                        "import": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('atlasApiImport'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{\"ServerName\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.sqlServerName?.value, '\", \"DatabaseName\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.databaseName?.value, '\", \"UserName\": \"', parameters('sqlServerUserName'), '\", \"Password\": \"', parameters('sqlServerPassword'), '\", \"ScriptLink\": \"', parameters('scriptLink'), '\"}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                }
+                            ]
+                        },
+                        "machinelearning": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('atlasApiML'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{\"SolutionId\": \"', parameters('solutionId'), '\", \"ResourceGroupName\": \"', parameters('resourcegroup'), '\", \"StorageAccountName\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountName?.value, '\", \"StorageAccountKey\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountKey?.value, '\", \"UserEmail\": \"', parameters('userEmail'), '\", \"UserPuid\": \"', parameters('userPuid'), '\", \"TrainingExperimentPackageLocation\": \"', parameters('trainingPackageLocation'), '\", \"ScoringExperimentPackageLocation\": \"', parameters('scoringPackageLocation'), '\"}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                }
+                            ]
+                        },
+                        "monitorMLStatus": {
+                            "until": {
+                                "limit": {
+                                    "timeout": "PT5M"
+                                },
+                                "conditions": [
+                                    {
+                                        "expression": "@or(equals(action()?.outputs?.body?.MLResource?.ProvisioningState, 'Succeeded'), equals(action()?.outputs?.body?.MLResource?.ProvisioningState, 'Failed'))"
+                                    }
+                                ]
+                            },
+                            "type": "Http",
+                            "inputs": {
+                                "method": "GET",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('solutionController'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                }
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('machinelearning')?.outputs?.body?.MLResource?.ProvisioningState, 'InProgress')"
+                                }
+                            ]
+                        },
+                        "armTemplatePart2": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('deployController'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{', parameters('singleQuote'), 'SolutionId', parameters('singleQuote'), ': ', parameters('singleQuote'), parameters('solutionId'), parameters('singleQuote'), ',', parameters('singleQuote'), 'UserEmail', parameters('singleQuote'), ': ', parameters('singleQuote'), parameters('userEmail'), parameters('singleQuote'), ', ', parameters('singleQuote'), 'UserPuid', parameters('singleQuote'), ': ', parameters('singleQuote'), parameters('userPuid'), parameters('singleQuote'), ', ', parameters('singleQuote'), 'properties', parameters('singleQuote'), ': {', parameters('singleQuote'), 'templateLink', parameters('singleQuote'), ': { ', parameters('singleQuote'), 'uri', parameters('singleQuote'), ': ', parameters('singleQuote'), parameters('armTemplateLink2'), parameters('singleQuote'), ', ', parameters('singleQuote'), 'contentVersion', parameters('singleQuote'), ': ', parameters('singleQuote'), '1.0.0.0', parameters('singleQuote'), ' }, ', parameters('singleQuote'), 'mode', parameters('singleQuote'), ': ', parameters('singleQuote'), 'Incremental', parameters('singleQuote'), ', ', parameters('singleQuote'), 'parameters', parameters('singleQuote'), ': ', parameters('singleQuote'), '{', parameters('escapedQuotes'), 'sqlServerName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'), actions('monitorstorage')?.outputs?.body?.properties?.outputs?.sqlServerName?.value, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'sqlServerUserName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  parameters('sqlServerUserName'), parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'sqlServerPassword', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  parameters('sqlServerPassword'), parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'StorageAccountName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountName?.value, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'publishEventHubName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  actions('monitorstorage')?.outputs?.body?.properties?.outputs?.publishEventHubName?.value, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'ingestEventHubName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  actions('monitorstorage')?.outputs?.body?.properties?.outputs?.ingestEventHubName?.value, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'databaseName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'), actions('monitorstorage')?.outputs?.body?.properties?.outputs?.databaseName?.value, parameters('escapedQuotes'), '},',  parameters('escapedQuotes'), 'namespaceName', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'), actions('monitorstorage')?.outputs?.body?.properties?.outputs?.namespaceName?.value, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'mLEndpointBatchLocation', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'),  actions('monitorMLStatus')?.outputs?.body?.MLResource?.MLWebServiceBatchLocation, parameters('escapedQuotes'), '},', parameters('escapedQuotes'), 'mLEndpointKey', parameters('escapedQuotes'), ':{', parameters('escapedQuotes'), 'value', parameters('escapedQuotes'), ':', parameters('escapedQuotes'), actions('monitorMLStatus')?.outputs?.body?.MLResource?.MLWebServicePrimaryKey, parameters('escapedQuotes'), '}}', parameters('singleQuote'), '}}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                },
+                                {
+                                    "expression": "@equals(actions('monitorMLStatus')?.outputs?.body?.MLResource?.ProvisioningState, 'Succeeded')"
+                                }
+                            ]
+                        },
+                        "monitorTemplatePart2": {
+                            "until": {
+                                "limit": {
+                                    "timeout": "PT5M"
+                                },
+                                "conditions": [
+                                    {
+                                        "expression": "@or(equals(action()?.outputs?.body?.properties?.provisioningState, 'Succeeded'), equals(action()?.outputs?.body?.properties?.provisioningState, 'Failed'))"
+                                    }
+                                ]
+                            },
+                            "type": "Http",
+                            "inputs": {
+                                "method": "GET",
+                                "uri": "@concat(parameters('managementUriPrefix'), parameters('deploymentNamePrefix'), coalesce(actions('armTemplatePart2')?.outputs?.body?.Provisioning?.DeploymentName, ''), parameters('apiVersionUri'))",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                }
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('armTemplatePart2')?.outputs?.body?.Provisioning?.ProvisioningState, 'InProgress')"
+                                }
+                            ]
+                        },
+                        "caraventGenData": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('dataconfigController'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{\"SolutionId\": \"', parameters('solutionId'), '\", \"ZipFileUrl\": \"', parameters('zipFileUrl'), '\", \"ConfigName\": \"', parameters('configName'), '\", \"GeneratorName\": \"', parameters('carEventGeneratorName'), '\", \"ContainerName\": \"', parameters('containerName'), '\", \"ConnectionString\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountConnectionString?.value, '\", \"Parameters\": ', '{ \"[IngestEventHubName]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.ingestEventHubName?.value ,'\", \"[EventHubConnectionString]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.eventHubConnectionString?.value ,'\", \"[EventHubName]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.eventHubName?.value, '\"}}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                }
+                            ]
+                        },
+                        "realTimeDashboard": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[concat(variables('atlasApiTestUri'), variables('dataconfigController'))]",
+                                "headers": {
+                                    "Content-Type": "application/json",
+                                    "Authorization": "@concat('Bearer ', parameters('token'))"
+                                },
+                                "body": "@concat('{\"SolutionId\": \"', parameters('solutionId'), '\", \"ZipFileUrl\": \"', parameters('zipFileUrl'), '\", \"ConfigName\": \"', parameters('configName'), '\", \"GeneratorName\": \"', parameters('realtimeGeneratorName'), '\", \"ContainerName\": \"', parameters('containerName'), '\", \"ConnectionString\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountConnectionString?.value, '\", \"Parameters\": ', '{ \"[PublishEventHubName]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.publishEventHubName?.value ,'\", \"[EventHubConnectionString]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.eventHubConnectionString?.value ,'\", \"[StorageAccountConnectionString]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountConnectionString?.value, '\", \"[MLServiceLocaton]\": \"', actions('monitorMLStatus')?.outputs?.body?.MLResource?.MLWebServiceBatchLocation, '\", \"[MLEndpointKey]\": \"', actions('monitorstorage')?.outputs?.body?.properties?.outputs?.storageAccountConnectionString?.value, '\", \"[MLEndpointKey]\": \"', actions('monitorMLStatus')?.outputs?.body?.MLResource?.MLWebServicePrimaryKey, '\"}}')"
+                            },
+                            "conditions": [
+                                {
+                                    "expression": "@equals(actions('monitorstorage')?.outputs?.body?.properties?.provisioningState, 'Succeeded')"
+                                },
+                                {
+                                    "expression": "@equals(actions('monitorMLStatus')?.outputs?.body?.MLResource?.ProvisioningState, 'Succeeded')"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": { }
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "workFlowName": {
+            "type": "string",
+            "value": "[variables('logicAppName')]"
+        }
+    }
+}

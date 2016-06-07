@@ -1,0 +1,55 @@
+@import "../../stylesheets/_AdfSpecific";
+@import "../../../../../Core/DataStudioUX/src/Stylesheets/_colors";
+
+div#adf-callout.win-flyout {
+    $svgSize: 30px;
+    $caretSize: 10px; // Should be 20 when we actually show it
+
+    background-color: $charcoal;
+    color: white;
+    overflow: visible;
+    margin: $caretSize;
+    border: none;
+
+    a {
+        color: blue;
+    }
+
+
+    #adf-callout-svg {
+        &.left > svg {
+            left: -1*$caretSize;
+            top: 0;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        &.right > svg {
+            right: -1*$caretSize;
+            top: 0;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        &.top > svg {
+            top: -1*$caretSize;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &.bottom > svg {
+            bottom: -1*$caretSize;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        svg {
+            position: absolute;
+            width: $svgSize;
+            height: $svgSize;
+        }
+    }
+}

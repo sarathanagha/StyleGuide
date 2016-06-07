@@ -1,0 +1,11 @@
+div(class="dataconnect-container col grow")
+  div(data-bind="visible: currentStep()===0")
+    p Choose a connection type
+    .col
+      ul(class="dataconnect-datasourcelist",data-bind="foreach: allConnectorTypes")
+        li(data-bind="click: $parent.onDataSourceTypeSelected.bind($parent, $data)")
+          span(data-bind="text: name")
+          
+   
+   div(data-bind="visible: currentStep()===1")
+     div(data-bind='component: { name:"dataconnect-newConnectorWidget", params:{ datasourceType: datasourceType, connectionManagerUrl: connectionManagerUrl, adminKey: adminKey, callback: gotoBack } }')

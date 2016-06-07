@@ -1,0 +1,59 @@
+<div id="browse-batchschema">
+    <!-- ko if: snapshot().length > 0 -->
+    <div class="scrollable-table header">
+        <table>
+            <colgroup>
+                <col style="width: 125px" />
+                <col style="width: 100px" />
+                <col style="width: 200px" />
+                <col style="width: 200px" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th data-bind="text: resx.columnName"></th>
+                <th data-bind="text: resx.dataType"></th>
+                <th data-bind="text: resx.tags"></th>
+                <th data-bind="text: resx.description"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollable-table content">
+        <table>
+            <colgroup>
+                <col style="width: 125px" />
+                <col style="width: 100px" />
+                <col style="width: 200px" />
+                <col style="width: 200px" />
+            </colgroup>
+            <tbody>
+            <!-- ko foreach: snapshot -->
+            <tr>
+                <td data-bind="adc-highlight: $data.name"></td>
+                <td data-bind="adc-highlight: $data.type"></td>
+                <td class="tags">
+                    <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: $data.tagsOnAll,
+                                            attributesOnSome: $data.tagsOnSome,
+                                            placeholderText: $parent.resx.addYourTags,
+                                            showTooltip:true
+                                        }
+                                   }" class="tags-control"></div>
+
+                </td>
+                <td>
+                    <textarea class="desc" data-bind="textInput: $data.description, attr: {placeholder: $parent.resx.addYourDesc + '...' }" spellcheck="false"></textarea>
+                </td>
+            </tr>
+            <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- /ko -->
+    <!-- ko if: snapshot().length == 0 -->
+    <span data-bind="text:resx.noCommonColumns" class="no-common-columns"></span>
+    <!-- /ko -->
+</div>

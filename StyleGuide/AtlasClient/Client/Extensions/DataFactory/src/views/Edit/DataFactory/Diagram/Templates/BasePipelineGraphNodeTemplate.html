@@ -1,0 +1,13 @@
+﻿<div data-bind='pcGraphNodeContent:null, css:{"adf-highlighted": highlighted}' style='padding: 0'>
+    <div data-bind='text:pipelineStatus, attr: {title: pipelineStatus}' style='font-weight: bold; position: absolute; top: 13px; left: 3px; white-space: nowrap; height: 16px; overflow: hidden' class='pipelineStatusText msportalfx-text-ellipsis msportalfx-text-subheader'></div>
+    <div data-bind='text:pipelineName, attr: {title: pipelineName}' style='font-weight: bold; width: 100%; position: absolute; top: 40px; left: 6px; white-space: nowrap; height: 16px; overflow: hidden' class='msportalfx-text-small msportalfx-text-ellipsis'></div>
+    <div data-bind='text:subheader, attr: {title: subheader}' style='width: 100%; position: absolute; top: 55px; left: 6px; white-space: nowrap; height: 16px; overflow: hidden' class='msportalfx-text-small msportalfx-text-subheader'></div>
+    <div data-bind='text:activePeriodStatus, attr: {title: activePeriodStatus}' style='position: absolute; top: 80px; left: 10px; white-space: nowrap; height: 16px; overflow: hidden' class='activePeriodStatusText msportalfx-text-ellipsis msportalfx-text-header'></div>
+</div>
+<div class="adf-pipelineToolbar" data-bind='winjstoolbar:{toolbar:toolbar}, css: $parent.entity.selected() ? "adf-lightIconToolbar" : "adf-darkIconToolbar"'></div>
+<div class='msportalfx-text-small' style='position: absolute; left: 6px; bottom: 60px'>
+    <span class='msportalfx-number-medium' data-bind='text:activityCount'></span>
+    <span style='position: relative; left: 4px;' data-bind='text:assetText' class='msportalfx-text-regular'></span>
+</div>
+<div data-bind='image:icon' style='position: absolute; height: 13px; width: 30px; right: 10px; bottom: 20px'></div>
+<div data-bind='css: statusClasses(), html:pipelineStatusImage()' class='dataFactory-diagram-pipelineStatus row'></div>

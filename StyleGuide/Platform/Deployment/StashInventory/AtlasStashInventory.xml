@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SecretsInventory xmlns="http://microsoft.com/schemas/Deployment/SecretsInventory">
+  <ServiceName>AzureDataStudio/ADS-Server</ServiceName>
+  <Owner></Owner>
+  <SubscriptionId>4e3d943e-5a1e-4be7-a4ca-1a87181aff2d</SubscriptionId>
+  <ManagementCert>AzureDataStudio/ADS-Server/WADICertificate</ManagementCert>
+  <Environments>
+    <Environment Name="AtlasInt">
+      <Passwords>
+        <!-- ReadOnly="true" -->
+        <Password Name="AtlasStorageEncryptedAutoKey" />
+      </Passwords>
+      <Certificates>
+        <!-- ReadOnly="true" -->
+        <Cert Name="AtlasOnDemandCertificateInt2" NotBefore="2015-03-17T00:00:00z" NotAfter="2017-03-16T00:00:00z" Subject="CN = AtlasOnDemandCertificateInt2"/>
+        <!-- ReadOnly="true" -->
+        <SSLCert Name="SSLCert" FullyQualifiedDomainName="atlas.preview.cloudapp.net" />
+      </Certificates>
+      <StorageAccounts>
+        <StorageAccount Name="WAStorage" Account="atlasstorage" />
+      </StorageAccounts>
+    </Environment>
+    <Environment Name="AtlasProd">
+      <Passwords>
+        <!-- ReadOnly="true" -->
+      </Passwords>
+      <Certificates>
+        <!-- ReadOnly="true" -->
+        <Cert Name="ProtectedSettingsDecryptionCertificate" NotBefore="2015-03-17T00:00:00z" NotAfter="2017-03-16T00:00:00z" Subject="CN =CN=Settings Encryption for Power Query test environments"/>
+        <Cert Name="ProtectedSettingsDecryptionCertificate" NotBefore="2015-03-17T00:00:00z" NotAfter="2017-03-16T00:00:00z" Subject="CN =CN=Settings Encryption for Power Query test environments"/>
+        <SSLCert Name="SSLCert" FullyQualifiedDomainName="datafactory.azure.com" />
+        <Cert Name="ADCert" Subject="CN=AtlasDeployManagement" />
+        <Cert Name="MdsCert" Subject="CN=AtlasMdsCert" />
+      </Certificates>
+      <StorageAccounts>
+        <StorageAccount Name="Storage" Account="testatlaspreview" />
+      </StorageAccounts>
+    </Environment>
+  </Environments>
+</SecretsInventory>

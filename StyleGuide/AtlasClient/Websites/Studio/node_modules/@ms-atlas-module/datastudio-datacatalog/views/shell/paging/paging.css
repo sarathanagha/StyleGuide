@@ -1,0 +1,47 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+ul.paging {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  font-weight: bold; }
+  ul.paging li {
+    display: inline-block;
+    padding-right: 5px; }
+    ul.paging li a {
+      display: inline-block;
+      font-size: 12px;
+      padding: 5px 10px;
+      cursor: pointer;
+      text-decoration: none; }
+      ul.paging li a.arrow {
+        padding: 5px 0; }
+        ul.paging li a.arrow.left {
+          padding-right: 15px; }
+        ul.paging li a.arrow.right {
+          padding-left: 15px; }
+      ul.paging li a.disabled {
+        cursor: default; }
+    ul.paging li.last {
+      padding-right: 0; }
+  ul.paging li a {
+    color: #474F5A;
+    background-color: #FFFFFF; }
+    ul.paging li a.arrow {
+      background-color: transparent; }
+    ul.paging li a.current {
+      background-color: #006F94;
+      color: #FFFFFF; }
+
+/*# sourceMappingURL=paging.css.map */

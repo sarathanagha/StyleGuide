@@ -1,0 +1,195 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$publish-banner-height: 618px;
+$publish-banner-width: 1023px;
+
+#publish {
+    .main {
+        @include absolute(0, 0, 0, 0);
+        overflow: auto;
+
+        .publish-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 702px;
+        }
+
+        .notification-pane {
+            position: absolute;
+            top: 0px;
+            overflow: hidden;
+            font-family: 'Segoe UI',sans-serif;
+            width: 100%;
+            transition: top 0.5s;
+
+            .notification-pane-top {
+                position: relative;
+                height: 82px;
+                width: 100%;
+
+                .notification-pane-text {
+                    position: relative;
+                    width: $publish-banner-width;
+                    left: 50%;
+                    margin-left: -($publish-banner-width/2);
+                    letter-spacing: 0em;
+                    padding-top: 20px;
+
+                    .notification-header {
+                        font-size: 19px;
+                        font-weight: bold;
+                        line-height: 20px;
+                    }
+
+                    .notification-text {
+                        font-size: 15px;
+                        font-style: normal;
+                        line-height: 20px;
+                    }
+                }
+
+                .close-notification {
+                    position: relative;
+                    cursor: pointer;
+                    width: 20px;
+                    height: 20px;
+                    float: right;
+                    top: -41px;
+                    right: 20px;
+                }
+            }
+
+            .notification-pane-border {
+                position: relative;
+                height: 3px;
+                margin-left: 7px;
+                margin-right: 7px;
+            }
+
+            &.notification-close {
+                top: -85px;
+            }
+        }
+
+        .contents {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            width: $publish-banner-width;
+            left: 50%;
+            margin-left: -($publish-banner-width/2);
+            font-family: 'Segoe UI',sans-serif;
+            transition: top 0.5s;
+
+            .publish-contents {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: $publish-banner-height;
+
+                .publish-text-pane {
+                    width: (40/100)*$publish-banner-width;
+                    font-size: 58px;
+                    line-height: 58px;
+                    font-weight: bold;
+                    margin-top: 40px;
+                }
+
+                .publish-message {
+                    width: (40/100)*$publish-banner-width;
+                    font-size: 19px;
+                    line-height: 25px;
+                    margin-top: 30px;
+                }
+
+                .launch-buttons {
+                    display: table;
+                }
+
+                .launch-button {
+                    height: 50px;
+                    cursor: pointer;
+                    text-align: left;
+                    padding-left: 20px;
+                    margin-top: 30px;
+
+                    span {
+                        position: relative;
+                        font-size: 27px;
+                        line-height: 58px;
+                        text-transform: capitalize;
+                        top: -6px;
+                    }
+
+                    img {
+                        position: relative;
+                        margin-right: 5px;
+                        margin-left: 5px;
+                        top: -11px;
+                    }
+                }
+            }
+
+            &.contents-show-notification {
+                top: 85px;
+            }
+        }
+    }
+
+    @mixin theme {
+        $body-color-med: $default-body-color-med;
+        $body-color-dark: $default-body-color-dark;
+        $notification-color-med: $default-notification-color-med;
+        $notification-border-med: $default-notification-border-med;
+        $font-color-dark: $default-font-color-dark;
+        $font-color-light: $default-font-color-light;
+
+         & {
+            .main {
+                background: $body-color-med;
+                .publish-bg {
+                    background-color: $body-color-med;
+                }
+                .notification-pane {
+                    .notification-pane-top {
+                        background-color: $notification-color-med;
+                        .notification-pane-text {
+                            .notification-header {
+                                color: $font-color-dark;
+                            }
+                            .notification-text {
+                                color: $font-color-light;
+                            }
+                        }
+                    }
+                    .notification-pane-border {
+                        background-color: $notification-border-med;
+                    }
+                }
+                .contents {
+                    .publish-contents {
+                        .publish-text {
+                            color: $font-color-dark;
+                        }
+                        .your-data-now-text {
+                            color: $font-color-light;
+                        }
+                        .publish-message {
+                            color: $font-color-dark;
+                        }
+                        .launch-button {
+                            color: $font-color-light;
+                            background-color: $body-color-dark;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

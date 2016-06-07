@@ -1,0 +1,424 @@
+﻿.fxshell-nav2-item span
+{
+    /* This affects the text displayed in the nav sidebar. We should truncate with ellipsis since 
+       experiment titles can be long (unlike the IDs used in the management portal). */
+    text-overflow: ellipsis;
+}
+
+div.experiment-container
+{
+    /* The position:fixed is the only known solution to work around the issue with using height:100% 
+       that does not penetrate too much into the AzureFx CSS */
+    position: fixed;
+    /* The page margin*/
+    right: 50px;
+    /* The height of the top drawer + title bar */
+    top: 30px;
+    /* The margin-left of the aux-body + a little margin + page margin of 50px*/
+    left: 110px;
+    /* The height of the drawer */
+    bottom: 60px;
+    height: auto;
+}
+
+/*  Styles for customizing Avatar Bar widget for workspaces. Heading styles mimic Azure FX menu headings (e.g. Subscription Picker) */
+.datalab-workspace-manager.fxs-avatarbar
+{
+    margin-right: 30px;
+    /* Lay out right to left with other headerbar controls */
+    float: right;
+}
+
+.datalab-workspace-manager .fxs-avatarbar-image
+{
+    background-image: url("/Content/Images/fxs.headerbar.chevron-down.png");
+    background-position: center;
+}
+
+.datalab-workspace-manager a > span
+{
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 195px;
+    display: inline-block;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu
+{
+    width: 260px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu li.workspaces-menu-header-item
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu li.fxs-contextmenu-languagepicker-selected
+{
+    cursor: text;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu li.fxs-contextmenu-languagepicker-selected > a
+{
+    cursor: text;
+    color: white;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu li.workspaces-menu-header-item > a
+{
+    font-family: "Segoe UI";
+    font-weight: 600; /* Segoe UI Semibold */
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: text;
+    color: white;
+}
+
+.fxs-avatarbar.datalab-workspace-manager .fxs-avatarbar-menu.fxs-contextmenu li.workspaces-menu-item
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Invitations */
+.invitationDialogContent
+{
+    margin-left: 30px;
+    height: 100%;
+}
+
+.invitationDialogContent .invitationDialogConnectInstructions
+{
+    width: 90%;
+    margin-bottom: 1em;
+}
+
+.invitationDialogAddressesBox
+{
+    width: 90%;
+    height: 70%;
+    margin-top: 5px;
+    border: solid black 1px;
+    overflow: auto;
+}
+
+.invitationDialogRoleSelector
+{
+    margin-top: 5px;
+}
+
+    .invitationDialogRoleSelector select
+    {
+        margin-left: 5px;
+        height: 30px;
+        width: 100px;
+    }
+
+.invitationDialogInstructionsError
+{
+    color: red;
+    font-style: italic;
+}
+
+.invitationDialogInvalidAddress
+{
+    background-color: yellow;
+}
+
+#grid.usersGrid tr > td:nth-child(4)
+{
+    width: 70%;
+}
+
+#grid.usersGrid tr > th:nth-child(4)
+{
+    width: 40%;
+}
+
+.fxs-drawertaskbar-help
+{
+    /* The Azure shell no longer supports disabling the help button.
+       For now, we just hide it altogether (no help content to show). */
+    display: none;
+}
+
+/* Workaround to change the drawer icons.
+    http://stackoverflow.com/questions/2182716/how-can-we-specify-src-attribute-of-img-tag-in-css */
+#drawer .Dataset img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -128px;
+}
+
+#drawer .Module img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -64px;
+}
+
+#drawer .NewExperimentMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px 0px;
+}
+
+#drawer .UploadCustomModulePackageMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -64px;
+}
+
+#drawer .UploadDatasetMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -64px;
+}
+
+#drawer .SearchDatasetMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -96px;
+}
+
+.searchTabContent 
+{
+    position: fixed;
+    top: 130px;
+    left: 230px;
+    right: 0px;
+    bottom: 60px;
+}
+.searchTabContent .searchResultsAndPreview {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 100%;
+}
+
+.searchTabContent .searchResult.hoveredItem
+{
+    background-color: #cceeff;
+}
+
+
+.searchTabContent .searchResult.searchResultSelected
+{
+    background-color: #99ddee;
+}
+
+.searchTabContent span.searchTextContainer
+{
+    display: block;
+    overflow: hidden;
+    padding: 0 4px 0 0;
+    margin-bottom: 10px;
+}
+
+.searchTabContent .searchBoxContainer
+{
+    border: solid black 1px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.searchTabContent .searchTextBox
+{
+    width: 100%;
+    border: none;
+    margin-left: 5px;
+    margin-top: 6px;
+    outline: none;
+}
+
+.searchTabContent .searchButton
+{
+    height: 20px;
+    width: 20px;
+    background: transparent url(../../content/Images/search-icon.png);
+    background-size: cover;
+    color: white;
+    border: none;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.searchTabContent .searchResultsAndPreview
+{
+    padding-top: 20px;
+}
+
+.searchResultsAndPreview .searchResultCollection
+{
+    float: left;
+    height: 100%;
+    width: 20%;
+    margin-right: 3%;
+}
+
+.searchResultsAndPreview .searchResultCollection .searchResult
+{
+    width: 100%;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.searchResultsAndPreview .searchResultCollection .searchResult .searchResultTitle, .searchPreview .searchResultTitle
+{
+    font-size: large;
+    color: #2589D2;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.searchResultsAndPreview .searchResultCollection .searchResult .searchResultDescription, .searchPreview .searchResultDescription
+{
+}
+
+.searchSourceIcon
+{
+    float: left;
+    padding-top: 5px;
+    padding-right: 5px;
+    height: 16px;
+    width: 16px;
+}
+
+.singleResultContainer
+{
+    display: block;
+    overflow: hidden;
+}
+
+.searchResultsAndPreview .searchPreview
+{
+    float: left;
+    width: 77%;
+}
+
+.searchResultsAndPreview .iframeContainer
+{
+    width: 100%;    
+    height: 100%;
+}
+
+.searchResultsAndPreview .searchPreview #idsearchpreviewiframe
+{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: absolute;
+}
+
+input[type=text]::-ms-clear
+{
+    display: none;
+}
+
+.searchResultsContainer
+{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.searchResultCollection .searchNoResults
+{
+    font-size: medium;
+    display: none;
+}
+
+.searchResultCollection .searchNoResults.noResultsClass
+{
+    display: inline;
+}
+
+/* Search preview */
+#ssimpreview th
+{
+    background-color: gray;
+    color: white;
+}
+
+table#ssimpreview th
+{
+    padding-left: 10px;
+}
+
+table#ssimpreview td
+{
+    padding-left: 10px;
+}
+
+/* header */
+.searchResultsHeader.noResultsClass
+{
+    display: none;
+}
+
+/* search pager */
+.searchPageContainer
+{
+    margin-top: 20px;
+    margin-bottom: 10px;    
+}
+
+.searchPageContainer .searchResultPage
+{
+    font-size: medium;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.searchPageContainer .searchResultPage.selectedSearchPage
+{
+    color: #99ddee;
+}
+
+.searchPageContainer .searchPagesPrevious, .searchPageContainer .searchPagesNext
+{
+    height: 20px;
+    width: 20px;
+    background-size: cover;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.searchPageContainer .searchPagesPrevious
+{
+    background: transparent url(../../content/Images/icon-prev-20-g-idl.png);
+}
+
+.searchPageContainer .searchPagesPrevious:hover
+{
+    background: transparent url(../../content/Images/icon-prev-20-g-hvr.png);
+}
+
+.searchPageContainer .searchPagesNext
+{
+    background: transparent url(../../content/Images/icon-next-20-g-idl.png);
+}
+
+.searchPageContainer .searchPagesNext:hover
+{
+    background: transparent url(../../content/Images/icon-next-20-g-hvr.png);
+}

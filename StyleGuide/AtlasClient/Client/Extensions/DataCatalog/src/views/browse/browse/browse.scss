@@ -1,0 +1,17 @@
+﻿@import "../../../styles/app";
+@import "../../../styles/mixins";
+@import "../browse-variables";
+
+#browse {
+    @include apptheme;
+
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    #panels {
+        @include absolute(0, 0, 0, 0);
+    }
+}

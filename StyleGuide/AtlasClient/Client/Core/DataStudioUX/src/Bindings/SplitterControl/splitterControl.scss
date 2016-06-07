@@ -1,0 +1,168 @@
+﻿@import "../../../../DataStudio/src/stylesheets/Common/_shellConstants.scss";
+
+.splitter
+{
+    border: 1px solid transparent;
+    width: 100%;
+    position: absolute;
+    height: 2px;
+    cursor: ns-resize;
+    background-color: #99C4CF;
+    z-index: 100;
+}
+
+.splitterContainer 
+{
+    position: relative;
+    overflow: hidden;
+}
+
+.splitterPanel1, .splitterPanel2 {
+    overflow: hidden;
+    border: none;
+    outline: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+}
+
+
+*[class^="ui-resizable-helper-"]{
+    background-color: white;
+    opacity: .7;
+    z-index: 999 !important;
+}
+
+body > .resizeCover {
+    z-index: 998 !important;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+}
+
+$grabber: 1px solid $darkCloudColor;
+$grabberHitboxDim: 15px;
+
+.ui-resizable-s,  .ui-resizable-n {
+    height: $grabberHitboxDim !important;
+}
+
+.ui-resizable-s {
+    bottom: 0px !important;
+}
+
+.ui-resizable-n {
+    top: 0px !important;
+}
+
+.ui-resizable-e, .ui-resizable-w {
+    width: $grabberHitboxDim !important;
+    right: -12px !important;
+}
+
+.ui-resizable-helper- { 
+    
+    &top {
+        border-top: $grabber;
+    }
+    
+    &bottom {
+        border-bottom: $grabber;
+    }
+    
+    &left {
+        border-left: $grabber;
+    }
+    
+    &right {
+        border-right: $grabber;
+    }
+}
+
+
+
+.ui-resizable- {
+    &top:not(.ui-resizable-resizing) {
+        border-top: $grabber;
+    }
+    
+    &bottom:not(.ui-resizable-resizing) {
+        border-bottom: $grabber;
+    }
+    
+    &left:not(.ui-resizable-resizing) {
+        border-left: $grabber;
+    }
+    
+    &right:not(.ui-resizable-resizing) {
+        border-right: $grabber;
+    }
+}
+
+.noAnimation {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+.splitterDiv {
+    background-color: $lightCanvasColor;
+    height: 8px !important;
+}
+
+.splitterDiv:hover {
+    background-color: $cloudColor;
+}
+
+.splitterIcon {
+     background-image : url("../../Images/horizontal-line.svg");
+     height: 2px;
+     width: 16px;
+     background-repeat: no-repeat;
+     background-position: center;
+     position: absolute;
+     top: 3px;
+     left: 50%;
+}
+
+.splitterButton {
+    display: block;
+    width: 24px;
+    min-height: 8px;
+    background-color: $lightCanvasColor;
+    margin: 0 auto;
+    padding: 1px;
+}
+
+.splitterButton:hover {
+    background-color: $canvasColor;
+    cursor: pointer;
+}
+
+.splitterButtonIcon {
+    display: block;
+    height: 8px;
+    width: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.splitterButtonIconUp {
+    background-image : url("../../Images/chevron-up.svg");
+    background-position: -4px -3px;
+}
+
+.splitterButtonIconDown {
+    background-image : url("../../Images/chevron-down.svg");
+    background-position: -4px -7px;
+}
+
+

@@ -1,0 +1,18 @@
+<div class="home-stats-tile">
+    <div class="home-stats-tile-content">
+        <!-- ko foreach: {data: stats, as: 'stat' } -->
+        <div class="home-stat" data-bind="adc-popover:{}, attr: { 'data-content': popup }" data-placement="auto top" data-trigger="hover" data-container="body">
+            <div data-bind="adc-spinner: isNaN(stat.value()) " class="medium progress-indicator"></div>
+            <!-- ko ifnot: isNaN(stat.value()) -->
+            <div class="home-stat-value">
+                <span data-bind="text: stat.value"></span>
+                <!-- ko if: stat.annotate -->
+                <span class="stat-annotation" data-bind="text: stat.annotate"></span>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <div class="home-stat-label" data-bind="text: stat.label"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>

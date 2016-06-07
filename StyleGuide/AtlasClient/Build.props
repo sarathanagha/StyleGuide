@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <EnableTypeScript>true</EnableTypeScript>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)\..\Build.props" />
+
+  <PropertyGroup>
+    <AtlasClientCoreRoot Condition=" '$(AtlasClientCoreRoot)'=='' ">$(AtlasClientRoot)\Client\Core</AtlasClientCoreRoot>
+    <AtlasClientShellRoot Condition=" '$(AtlasClientShellRoot)'=='' ">$(AtlasClientCoreRoot)\DataStudio\src</AtlasClientShellRoot>
+    <AtlasClientExtensionsRoot Condition=" '$(AtlasClientExtensionsRoot)'=='' ">$(AtlasClientRoot)\Client\Extensions</AtlasClientExtensionsRoot>
+    <AtlasClientWebsitesRoot Condition=" '$(AtlasClientWebsitesRoot)'=='' ">$(AtlasClientRoot)\Websites</AtlasClientWebsitesRoot>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <DataCatalogExtensionRoot Condition=" '$(DataCatalogExtensionRoot)'=='' ">$(AtlasClientExtensionsRoot)\DataCatalog</DataCatalogExtensionRoot>
+    <DataFactoryExtensionRoot Condition=" '$(DataFactoryExtensionRoot)'=='' ">$(AtlasClientExtensionsRoot)\DataFactory</DataFactoryExtensionRoot>
+    <SolutionTemplateExtensionRoot Condition=" '$(SolutionTemplateExtensionRoot)'=='' ">$(AtlasClientExtensionsRoot)\SolutionAccelerator</SolutionTemplateExtensionRoot>
+  </PropertyGroup>
+  
+  <!--Property group for node & gulp -->
+  <PropertyGroup>
+    <NodeExe>"$(EnlistmentRoot)\External\OpenSource\nodejs\v4.2.6\node.exe"</NodeExe>
+    <Gulp>"$(EnlistmentRoot)\node_modules\gulp\bin\gulp.js"</Gulp>
+    <GulpCmd>$(NodeExe) $(Gulp)</GulpCmd>
+  </PropertyGroup>
+</Project>

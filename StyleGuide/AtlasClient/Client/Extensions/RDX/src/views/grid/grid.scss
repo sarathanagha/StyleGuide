@@ -1,0 +1,151 @@
+﻿@import "../../stylesheets/main";
+
+.gridWrapper{
+    @extend .card;
+    margin: 20px 30px 40px;
+    background: $lightCanvas;
+
+    .progressBar{
+        float: right; 
+        margin-top: 8px;
+        margin-right: 20px;
+    }
+
+    .gridContentWrapper{
+        background: white;
+    }
+
+    .cardInfoPanel{
+        .showChartButton{
+            @extend .exploreButton;
+            margin-top: 0;
+        }
+    }
+
+    .gridHeader{
+        @extend .cardTitle;
+    }
+
+    .gridValuesWrapper{
+        border-top: $cardBoarder;
+        height: 450px;
+
+        .columns{
+            width: 300px;
+            height: calc(100% - 20px);
+            float:left;
+            overflow-y: auto;
+            padding: $largeMarginAndPadding;
+
+            hr{
+                margin-bottom: 20px;
+            }
+
+            .ib{
+                display: inline-block;
+                margin-right: 8px;
+            }
+
+            .columnValues{
+                list-style: none;
+                margin:0;
+                padding: $largeMarginAndPadding;
+                padding-top: $smallMarginAndPadding;
+
+                .right{
+                    float: right;
+                }
+
+                .fa{
+                    margin: 0 $tinyMarginAndPadding;
+                }
+
+                > li{
+                    padding: 4px;
+                    > .fa{
+                            visibility: hidden;
+                            cursor: pointer;
+                        }
+                    &:hover{
+                        > .fa{
+                            visibility: visible;
+                        }
+                    }
+                }
+
+                ul{
+                    list-style: none;
+                    padding-left: 28px;
+                    padding-top: 4px;
+                    
+                    li{
+                        padding: 4px;
+                        margin-bottom: 2px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        .uniqueValue{
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            float: left;
+                            width: calc(100% - 30px);
+                        }
+
+                        > .fa{
+                            visibility: hidden;
+                            cursor: pointer;
+                        }
+                        &:hover{
+                            > .fa{
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .uniqueColumnValue{
+            }
+        }
+
+        .grid{
+            width: calc(100% - 325px);
+            float: right;
+            height: 100%;
+            overflow-y: auto;
+            -moz-user-select: text;
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            font-family: monospace;
+            border-left: $leftPanelBorder;
+
+            table{
+                border: none;
+                border-collapse: collapse;
+                
+                th{
+                    @extend .textMR;
+                    border-right: $leftPanelBorder;
+                    border-bottom: $leftPanelBorder;
+                    padding: 2px;
+                }
+
+                tr{
+                    border-right: $leftPanelBorder;
+                    border-bottom: $leftPanelBorder;
+                   
+                    td{
+                        border: $leftPanelBorder;
+                        padding: $smallMarginAndPadding;
+                        white-space: nowrap;
+                    }
+                    td:first-child{
+                        white-space: nowrap;
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+}

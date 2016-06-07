@@ -1,0 +1,164 @@
+﻿$fontFamilyRegular:                 "Segoe UI";
+$fontFamilyLight:                   "Segoe UI Light";
+$fontFamilySemilight:               "Segoe UI Semilight";
+$fontFamilySemibold:                "Segoe UI Semibold";
+$fontFamilyBold:                    "Segoe UI bold";
+
+$fontSizeExtraSmall:                11px;
+$fontSizeSmall:                     12px;
+$fontSizeMedium:                    14px;
+$fontSizeLarge:                     18px;
+$fontSizeExtraLarge:                21px;
+$fontSizeExtraExtraLarge:           28px;
+$fontSizeHeader:                    36px;
+$fontSizeHeading1:                  28px;
+$fontSizeHeading2:                  21px;
+$fontSizeHeading3:                  18px;
+$fontSizeBody:                      16px;
+
+
+$fontLineHeightExtraSmall:                normnal;
+$fontLineHeightSmall:                     normnal;
+$fontLineHeightMedium:                    normal;
+$fontLineHeightLarge:                     normal;
+$fontLineHeightExtraLarge:                normal;
+$fontLineHeightExtraExtraLarge:           normal;
+$fontLineHeightHeader:                    50px;
+$fontLineHeightHeading1:                  40px;
+$fontLineHeightHeading2:                  32px;
+$fontLineHeightHeading3:                  28px;
+$fontLineHeightBody:                      24px;
+$fontLineHeightSectionTitle:              16px;
+
+
+// DO NOT USE the below fontWeight() mixin!
+// It is a building block for the approved fontStyleBase*() mixins that you need to use instead.
+@mixin fontWeight($fontWeight: regular)
+{
+    @if $fontWeight == light
+    {
+        font-family: $fontFamilyLight;
+    }
+    @else if $fontWeight == semibold
+    {
+        font-family: $fontFamilySemibold;
+    }
+    @else if $fontWeight == bold
+    {
+        font-family: $fontFamilyBold;
+    }
+    @else if $fontWeight == semilight
+    {
+        font-family: $fontFamilySemilight;
+    }
+    @else
+    {
+        font-family:$fontFamilyRegular;
+    }
+}
+
+// DO NOT USE the below fontSettings() mixin!
+// It is a building block for the approved fontStyleBase*() mixins that you need to use instead.
+@mixin fontSettings($fontSize, $lineHeight: normal, $fontWeight: regular, $textTransform: false)
+{
+    @include fontWeight($fontWeight);
+    font-size: $fontSize;
+    line-height: $lineHeight;
+
+    @if $textTransform != false
+    {
+        text-transform: $textTransform;
+    }
+}
+
+// **** ONLY USE BELOW MIXINS ****
+
+@mixin fontStyleExtraSmallRegular()
+{
+    @include fontSettings($fontSizeExtraSmall);
+}
+
+@mixin fontStyleExtraSmallSemiBold()
+{
+    @include fontSettings($fontSizeExtraSmall, normal, semibold);
+}
+
+@mixin fontStyleSmallRegular()
+{
+    @include fontSettings($fontSizeSmall);
+}
+
+@mixin fontStyleSmallBold()
+{
+    @include fontSettings($fontSizeSmall, normal, semibold);
+}
+
+@mixin fontStyleMediumRegular()
+{
+    @include fontSettings($fontSizeMedium);
+}
+
+@mixin fontStyleMediumSemiBold()
+{
+    @include fontSettings($fontSizeMedium, normal, semibold);
+}
+
+@mixin fontStyleLargeRegular()
+{
+    @include fontSettings($fontSizeLarge);
+}
+
+@mixin fontStyleLargeSemiBold()
+{
+    @include fontSettings($fontSizeLarge, normal, semibold);
+}
+
+@mixin fontStyleExtraLargeLight()
+{
+    @include fontSettings($fontSizeExtraLarge, normal, light);
+}
+
+@mixin fontStyleExtraLargeSemiBold()
+{
+    @include fontSettings($fontSizeExtraLarge, normal, semibold);
+}
+
+@mixin fontStyleExtraExtraLargeLight()
+{
+    @include fontSettings($fontSizeExtraExtraLarge, normal , light);
+}
+
+@mixin fontStyleExtraExtraLargeRegular()
+{
+    @include fontSettings($fontSizeExtraExtraLarge);
+}
+
+@mixin fontStyleBody()
+{
+    @include fontSettings($fontSizeBody, $fontLineHeightBody);
+}
+
+@mixin fontStyleHeader()
+{
+    @include fontSettings($fontSizeHeader, $fontLineHeightHeader, light);
+}
+
+@mixin fontStyleHeader1()
+{
+    @include fontSettings($fontSizeHeading1, $fontLineHeightHeader , light);
+}
+
+@mixin fontStyleHeader2()
+{
+    @include fontSettings($fontSizeHeading2, $fontLineHeightHeading2);
+}
+
+@mixin fontStyleHeader3()
+{
+    @include fontSettings($fontSizeHeading3, $fontLineHeightHeading3);
+}
+
+@mixin fontStyleSectionTitle()
+{
+    @include fontSettings($fontSizeSmall, $fontLineHeightSectionTitle, semibold, true);
+}

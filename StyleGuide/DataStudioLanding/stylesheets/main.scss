@@ -1,0 +1,27 @@
+﻿@import "Common/index";
+@import "External/index";
+@import "Framework/index";
+@import "Shell/header";
+
+
+/****** This is an example of how we should wrap font-awesome themes ******/
+
+@mixin new-btn-theme($size: 1.0em) {
+    font-size: $size;
+    @extend %new-btn;
+}
+
+%new-btn {
+    //@extend .fa;        // TODO: replace font-awesome with DS custom fonts
+    //@extend .fa-plus;   // TODO: replace font-awesome with DS custom fonts
+    @include new-btn-theme(1.5em);
+}
+
+.nav-new-btn {
+    @extend %new-btn;
+}
+
+// Required for the WinJS clickeater.
+section.win-flyoutmenuclickeater {
+    max-height: 110%;
+}

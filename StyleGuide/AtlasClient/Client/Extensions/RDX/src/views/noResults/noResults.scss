@@ -1,0 +1,13 @@
+﻿@import "../../stylesheets/main";
+
+.noResultsWrapper{
+    height: $heatmapHeight;
+    border-top: $cardBoarder;
+    border-left: $cardBoarder;
+    margin-left: 180px;
+    background: white;
+
+    div{
+        padding: 24px;
+    }
+}

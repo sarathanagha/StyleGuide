@@ -1,0 +1,43 @@
+﻿<div class="wizardStepSubtitle">
+    Specify your endpoint configurations.<br/>
+</div>
+
+<!-- ko if: webParameterViewState() === parameterStates.HelpMessage -->
+<div>Please provide a valid Batch Execution URI</div>
+<!-- /ko -->
+
+<!-- ko if: webParameterViewState() === parameterStates.ShowParams -->
+<div class="dataFactory-activityTool-expandableSection" data-bind="visible: endpointProperties.needsWebInput,
+                                                                collapsible:{isExpanded:endpointProperties.inputVisible}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Web Input</div>
+    </div>
+    <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: endpointProperties.webInput()} }"></div>
+</div>
+
+<div class="dataFactory-activityTool-expandableSection" data-bind="visible: endpointProperties.webOutputs().length,
+                                                                collapsible:{isExpanded:endpointProperties.outputsVisible}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Web Outputs</div>
+    </div>
+    <div>
+        <!-- ko foreach: endpointProperties.webOutputs -->
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: $data} }"></div>
+        <!-- /ko -->
+    </div>
+</div>
+
+<div class="dataFactory-activityTool-expandableSection" data-bind="visible: endpointProperties.haveGlobalParams,
+                                                                collapsible:{isExpanded:endpointProperties.globalParamsVisible}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Global Parameters</div>
+    </div>
+    <div class="globalParameters">
+        <div data-bind="parameterGroups: endpointProperties.globalParameterBinding"></div>
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if: webParameterViewState() === parameterStates.Loading -->
+<div data-bind="loader: tabLoading" class="adf-pivotTabLoading shrink"></div>
+<!-- /ko -->

@@ -1,0 +1,34 @@
+﻿<div class="environmentsListWrapper" style="display: none" data-bind="slideVisible: {visible: rdxContext.environmentsVisible(), visibleThen: rdxContext.resultsPanelShrink, hiddenThen: rdxContext.resultsPanelGrow}, event: {mouseup: function(){mouseup();}}">
+    <div class="environmentsList">
+        <ul data-bind="foreach: rdxContext.environments">
+            <li>
+                <input type="radio" data-bind="value: id, checked: $parent.rdxContext.environmentId, click: function(){$parent.rdxContext.environmentName(displayName()); return true;}" />
+                <span data-bind="text: displayName"></span>
+            </li>
+        </ul> 
+    </div>
+    <div class="indexAvailabilityMapWrapper" data-bind="event: {mousemove: function(){$('.ghostBlueLine').hide();}}">
+
+        <!-- TIMEPICKER INPUT BOXES -->
+        <div class="dateTimePickerWrapper" style="display: none" data-bind="slideVisible: rdxContext.environmentsVisible, visible: buttonsVisible">
+            <div class="dateTimePicker">
+                <span class="dateTimePickerLabel">FROM</span>
+                        <span class="calendarIcon"></span><input id="rdxStartDate" class="atlasInput dateInput" data-bind="textInput: timePicker.startDate, event: {keydown: function(){return false;}}" />
+                        <span class="fa fa-clock-o"></span><input class="atlasInput timeInput" data-bind="textInput: timePicker.startTime, event: {keypress: handleTimeEnter}" />
+            </div>
+            <div class="dateTimePicker">
+                <span class="dateTimePickerLabel">TO</span>
+                        <span class="calendarIcon"></span><input id="rdxEndDate" class="atlasInput dateInput" data-bind="textInput: timePicker.endDate, event: {keydown: function(){return false;}}" />
+                        <span class="fa fa-clock-o"></span><input class="atlasInput timeInput" data-bind="textInput: timePicker.endTime, event: {keypress: handleTimeEnter}" />
+            </div>
+            <div style="display: inline-block" data-bind="component: {name : 'rdx-alertIcon', params: {message: timePicker.errorMessage}}"></div>
+            <div style="display: inline-block; margin-left: -4px;" data-bind="component: {name : 'rdx-alertIcon', params: {message: timePicker.clickSearchButtonHelpMessage, isSuccessMessage: true}}"></div>
+        </div>
+
+        <span class="instructions" style="display: none" data-bind="slideVisible: rdxContext.environmentsVisible, visible: buttonsVisible">Click and drag to select a timeframe</span>
+        <div class="indexAvailabilityMapTitle" data-bind="html: title"></div>
+        <div class="indexAvailabilityMap"></div>
+        <div class="environmentMultiselectGhost" style="display: none" data-bind="slideVisible: rdxContext.environmentsVisible"></div>
+        <div class="ghostBlueLine" style="display: none" data-bind="slideVisible: rdxContext.environmentsVisible"></div>
+    </div>
+</div>

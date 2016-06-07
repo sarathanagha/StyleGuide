@@ -1,0 +1,72 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-details{
+    
+    ul.details-tabs {
+        position: absolute;
+        top: 0;
+        left: 30px;
+        height: 25px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 2;
+
+        li {
+            display: inline-block;
+
+            a {
+                cursor: pointer;
+                font-size: 15px;
+                text-transform: capitalize;
+                padding-right: 20px;
+                text-decoration: none;
+                position: relative;
+                top: 2px;
+            }
+        }
+    }
+
+    .details-content {
+        @include absolute(25px, 0, 0, 0);
+    }
+
+
+    @mixin theme {
+            $font-color-med: $default-font-color-med;
+            $body-navigation-selected-color: $default-navigation-selected-color;
+
+        & {
+            ul.details-tabs li a {
+                color: $font-color-med;
+
+                &.active {
+                    color: $body-navigation-selected-color;
+                }
+            }
+        }
+    }
+
+    @include theme;
+}
+
+#browse-details-empty {
+    position: relative;
+    top: 22px;
+
+    span {
+        margin-left: 30px;
+        font-size: 14px;
+        color: #474F5A;
+    }
+
+    img {
+        position: absolute;
+        margin-left: -120px;
+    }
+}
+
+.bottom-panel.expanded #browse-details ul.details-tabs {
+    top: 10px;
+}

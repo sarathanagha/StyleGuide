@@ -1,0 +1,12 @@
+{
+  "name": "@ms-atlas-module/datastudio-designguide",
+  "version": "0.0.1",
+  "description": "Design Guide Module.",
+  "main": "startup.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

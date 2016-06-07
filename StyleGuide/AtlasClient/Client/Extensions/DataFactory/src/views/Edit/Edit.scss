@@ -1,0 +1,729 @@
+@import "../../../../../Core/DataStudio/src/stylesheets/Framework/Base/layoutBase";
+@import "../../stylesheets/_AdfSpecific";
+
+// TODO paverma Confirm with designers if we should use only one of 26/28 px for toolbar.
+$adfEditViewSecondToolbarButtonHeight: 16px;
+$adfDateTimePickerHeight: 17px;
+$adfEditViewSecondToolbarHeight: 28px;
+
+// Dimensions of the pipeline node buttons
+$pipelineButtonDim: 50px;
+$menuButtonDim: 10px;
+
+.editorArea #adfDiagram {
+    .vivaGraphControl:hover .azc-scrollbar-default {
+        @include atlasScrollHover();
+    }
+
+    .azc-scrollbar-default {
+        @extend %adfScroll;
+    }
+}
+
+.dataFactoryDesignPanel.activityRunsListView {
+    @extend %grow;
+    @extend %scrollY;
+
+    height: calc(100% - 99px);
+
+    div[aria-label="Scrolling Container"] {
+        @extend %adfScroll;
+    }
+
+    .activityRunListItem {
+        width: 100%;
+        height: 27px;
+        display: table;
+        table-layout: fixed;
+        border-bottom: 1px solid #F2F2F2;
+
+        > span {
+            display: table-cell;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #585A5F;
+            padding-left: 10px;
+            vertical-align: middle;
+            @include adf-text-ellipsis();
+
+            &.adf-copy {
+                @extend .win-container:hover;
+            }
+
+            .adf-statusImage {
+                margin-right: 8px;
+                padding-top: 1px;
+
+                svg {
+                    height: 13px;
+                    width: 13px;
+                }
+            }
+
+            .adf-statusText {
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .win-listview{
+        height: 100%;
+        @extend %scrollY;
+        @extend %adfScroll;
+    }
+}
+
+@mixin adflistItem($text, $background, $selector) {
+    body .activityRunsListView.dataFactoryDesignPanel #{$selector} .win-selected.win-itembox  {
+        > .activityRunListItem > span, & .adf-statusText {
+            color: $text;
+        }
+
+        .win-selectionbackground {
+            background-color: $background;
+            opacity: 1.0;
+        }
+    }
+}
+
+@include adflistItem($selectedTextColor, $selectedColor, " ");
+@include adflistItem($highlightTextColor, $highlightColor, ".adf-highlighted");
+
+.win-container:hover {
+    background-color: $canvasColor;
+}
+
+.activityRunsListView > .win-listview > .win-vertical .win-container {
+    margin: 0px 0px 0px 0px;
+}
+
+.adf-diagramLoading svg {
+    $spinnerDim: 50px;
+    width: $spinnerDim;
+    height: $spinnerDim;
+}
+
+.adf-diagramToolbar {
+    height: 26px;
+    border-top: 1px solid white;
+    background-color: $lightCanvasColor;
+    justify-content: space-between;
+}
+
+#diagramToolbar {
+    background-color: $lightCanvasColor;
+
+    // left align
+    &.win-toolbar .win-toolbar-actionarea {
+        @include adf-left-aligned-toolbar();
+        height: 26px;
+    }
+
+    & button.win-command {
+        @include adf-button-dims(26px, 26px);
+        & svg {
+            margin-top:0;
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.adfDiagramWidget {
+    position: relative;
+    bottom: 8px;
+}
+
+.adf-statusText {
+    font-size: 11px;
+    font-weight: 400;
+    color: $grayColor;
+    justify-content: flex-end;
+    height: $adfEditViewSecondToolbarHeight;
+    margin-right: 20px;
+    min-width: 0;
+}
+
+.win-selectioncheckmark {
+    @extend %hide;
+}
+
+/* ADF toolbar */
+#adf-actionToolbar {
+    background-color: white;
+    margin-right: 10px;
+}
+
+.adf-secondEditMenubar {
+    border-top: 1px solid $cloudColor;
+    border-bottom: 1px solid $cloudColor;
+}
+
+.adf-canvasToolbar {
+    margin-left: 10px;
+    &.win-toolbar .win-toolbar-actionarea {
+        @include adf-left-aligned-toolbar();
+        height: $adfEditViewSecondToolbarHeight;
+    }
+
+    & button.win-command {
+        @include adf-button-dims($adfEditViewSecondToolbarHeight, $adfEditViewSecondToolbarHeight);
+
+        & svg {
+            height: $adfEditViewSecondToolbarButtonHeight;
+            width: $adfEditViewSecondToolbarButtonHeight;
+        }
+    }
+}
+
+.adf-canvasTextToolbar {
+    margin: 0 10px 0 10px;
+    & button.win-command {
+        @extend .adf-startEndPickerHolder;
+        @include adf-fixedHeight($adfEditViewSecondToolbarButtonHeight);
+    }
+    padding: 0;
+    min-width: 0;
+}
+
+#adf-toolbarMenu button.win-command span.win-label{
+    font-size: 13px;
+}
+
+button.dataFactory-diagram-pipelineCommand{
+    height: $pipelineButtonDim;
+    min-height: $pipelineButtonDim;
+    max-height: $pipelineButtonDim;
+    width: $pipelineButtonDim;
+    min-width: $pipelineButtonDim;
+    max-width: $pipelineButtonDim;
+}
+
+#adfDiagram {
+    flex: 1 0 100%;
+    .vivaGraphControl {
+        position: relative;
+
+        .azc-graph-feedback-container {
+            position: absolute;
+        }
+    }
+}
+
+#adfDiagram button {
+    &.koMainButton{
+    }
+
+    &.koMenuButton{
+        position: absolute;
+        width: $menuButtonDim;
+        min-width: $menuButtonDim;
+        max-width: $menuButtonDim;
+        left: ($pipelineButtonDim - $menuButtonDim);
+    }
+}
+
+#adfDiagram .pipelineStatusText{
+    color: $grayColor;
+    font-size: 10px;
+    text-transform: none;
+}
+
+#adfDiagram .activePeriodStatusText{
+    text-transform: uppercase;
+}
+
+.editorArea .azc-light-theme {
+    .azc-graph-node.selected {
+        color: $whiteColor;
+        .adf-text-subheader {
+            color: $whiteColor;
+        }
+
+        .azc-graph-node-content {
+            background-color: $darkSlateColor;
+        }
+        .azc-br-selected {
+            border-color: $darkSlateColor;
+        }
+        .adf-pipelineToolbar {
+            background-color: $darkSlateColor;
+        }
+    }
+
+    .azc-graph-node {
+        .adf-highlighted {
+            background-color: $highlightColor;
+
+            & .azc-graph-node-content {
+                background-color: $highlightColor;
+            }
+            .azc-br-selected {
+                border-color: $highlightColor;
+            }
+            & ~ .adf-pipelineToolbar {
+                background-color: $highlightColor;
+            }
+        }
+    }
+}
+
+.dataFactory-diagram-statusBoxes {
+    background-color: $whiteColor;
+    border: 1px solid $whiteColor;
+}
+
+.adf-text-subheader {
+    color: $grayColor;
+}
+
+.activityRunsListViewFooterStatus {
+    height: 27px;
+    width: 100%;
+    padding-left: 8px;
+    & span {
+        padding-left: 0px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        color: $darkGray;
+        vertical-align: middle;
+        & svg {
+            max-height: 12px;
+            height: 12px;
+            vertical-align: bottom;
+        }
+    }
+}
+
+.adf-activityRunsListTabs {
+    height: 36px;
+}
+
+.adf-activityRunsToolbarContainer {
+    width: 125px;
+}
+
+.adf-activityRunsToolbarFilterSummary {
+    cursor: pointer;
+
+    &:hover {
+        color: $atlasDarkTeal;
+    }
+}
+
+#filterSummaryContainer {
+    font-family: 'Segoe UI';
+    padding: 0px !important;
+}
+
+.filterSummarySectionTitle {
+    line-height: 40px;
+    justify-content: space-between;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.filterSummaryTitle {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+.filterSummaryClearFilter {
+    background-image: url(../../scripts/Framework/Shared/Resources/Svg/filter_clear_all.svg);
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.filterSummarySectionHeader {
+    line-height: 30px;
+    background-color: #F2F2F2;
+    justify-content: space-between;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.filterSummarySectionContent {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.filterSummarySectionContentText {
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+// TODO ncalagar: we may want to onsider this to be the standard size for the close button..
+.filterSummarySectionClose {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.filterSummaryHeaderText {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#adf-activityRunsListHeaderToolbar {
+    width: 100%;
+    height: 27px;
+    max-height: 27px;
+    min-height: 27px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #F2F2F2;
+    @include adf-text-ellipsis();
+
+    &.win-toolbar .win-toolbar-actionarea {
+        -webkit-justify-content: flex-start;
+        height: 27px;
+        @include adf-text-ellipsis();
+        border-bottom: solid;
+        border-color: $darkCharColor;
+        border-radius: 1px;
+    }
+
+    & button.win-toolbar-overflowbutton {
+        display: none;
+    }
+
+    & button.win-command {
+        $numHeaders : 10;
+        @include adf-button-dims(calc(100%/#{$numHeaders}), 27px);
+        @include adf-text-ellipsis();
+        margin: 0px;
+        padding: 0px;
+        height: 27px;
+        max-height: 27px;
+        min-height: 27px;
+        width: calc(100%/#{$numHeaders});
+        max-width: calc(100%/#{$numHeaders});
+        min-width: calc(100%/#{$numHeaders});
+        color: $darkCharColor;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600;
+        padding-left: 10px;
+        background-color: white;
+        border: 0px;
+        // overrides default hiding behavior
+        display: block !important;
+
+        & svg {
+            max-height: 10px;
+            max-width: 10px;
+        }
+
+        .adf-activeHeader {
+           color: $atlasTeal;
+           fill: $atlasTeal;
+           border-color: transparent;
+        }
+
+        .adf-activeFilterHeader {
+            opacity: 1;
+            color: $atlasTeal;
+            fill: $atlasTeal;
+            border-color: transparent;
+        }
+
+        .adf-inactiveFilterHeader {
+            opacity: 0.25;
+        }
+
+        &:hover {
+            svg {
+                fill: $atlasDarkTeal;
+            }
+            span {
+                color: $atlasDarkTeal;
+            }
+        }
+    }
+}
+
+.adf-activityWindowsListHeaderText {
+  margin-right: 20px;
+  font-size: 11px;
+  font-weight: 400;
+  color: $grayColor;
+  align-self: center;
+}
+
+.adf-pipelineToolbar {
+    position:absolute;
+    bottom: 12px;
+    width: 75%;
+    left:5px;
+    white-space:nowrap;
+    overflow:hidden;
+    height: 25px;
+    background-color: white;
+
+    $pipelineIconSize: 20px;
+    &.win-toolbar .win-toolbar-actionarea {
+        @include adf-left-aligned-toolbar();
+        height: $pipelineIconSize;
+    }
+
+    & button.win-command {
+        @include adf-button-dims($pipelineIconSize, $pipelineIconSize);
+
+        & svg {
+            height: $pipelineIconSize - 4px;
+            width: $pipelineIconSize - 4px;
+        }
+    }
+}
+
+input[type=text].adf-textBox, input[type=text].adf-textBox:focus, input[type=text].adf-textBox:hover {
+    &.dirty {
+        background-color: $lightestGrayColor;
+    }
+
+    &.invalid, &.dirty &.invalid {
+        background-color: $redColor;
+    }
+}
+
+.adf-startEndPickerHolder {
+    font-family: "Segoe UI";
+    font-size: 11px;
+    align-items: center;
+    color: $grayColor;
+
+    input[type=text].adf-textBox {
+        min-height: $adfDateTimePickerHeight;
+        height: $adfDateTimePickerHeight;
+        margin: 1px 0 1px 0;
+        width: 120px;
+        font-family: "Segoe UI";
+        font-size: 11px;
+        color: $grayColor;
+        padding: 0 0 0 5px;
+        border: 1px solid;
+    }
+
+    .adf-rowLabel {
+        margin: 0 5px 0 10px;
+        align-self: unset;
+    }
+
+    & > div {
+        align-self: center;
+    }
+}
+
+.win-flyout:not(.win-menu) input[type="search"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.adf-filterFlyout {
+    background-color: white;
+    box-shadow: 3px 3px 8px rgba(136, 136, 136, 0.50);
+    border-color: #F2F2F2;
+    padding: 0;
+}
+
+.adf-filterFlyout .ui-widget-content {
+    border: none;
+
+    a:focus {
+        outline: none;
+    }
+
+    .ui-slider {
+        border: 1px solid #aaa;
+    }
+}
+
+.adf-filterFlyoutContent {
+    min-width: 250px;
+    max-width: 250px;
+    overflow: hidden;
+}
+
+.adf-filterFlyoutDateTimePicker .adf-filterFlyoutContent {
+    max-width: none;
+
+    .ui-datepicker-buttonpane {
+        display: none;
+    }
+}
+
+.adf-filterFlyoutSortOption {
+    font-family: "Segoe UI";
+    font-size: 12px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+    height: 21px;
+
+    & svg {
+        max-height: 10px;
+        max-width: 10px;
+    }
+}
+
+.adf-filterFlyoutSeparator {
+    width: 100%;
+    height: 0px;
+    border-bottom: 1px solid rgba(210, 210, 210, 0.68);
+}
+
+.adf-activeSortOrder {
+    background-color: $selectedColor !important;
+    opacity: 1.0 !important;
+    color: white;
+
+    span > svg {
+        @include svg-icon-styles(white);
+        fill: white;
+        stroke: white;
+    }
+}
+
+.adf-filterSearchBox {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    input {
+        width: 230px;
+    }
+}
+
+.adf-filterSubmissionButtons {
+    @extend .row;
+    button {
+        float: right;
+        margin: 10px;
+        width: 78px;
+        // override winjs default min-width for buttons.
+        min-width: 0px;
+    }
+}
+
+.adf-okFilterButton {
+    background-color: $atlasDarkTeal;
+    color: white;
+}
+
+.adf-filterCheckboxList {
+    width: 100%;
+    overflow-y: auto;
+    padding-bottom: 6px;
+    height: 100px;
+}
+
+.adf-filterCheckboxListItem {
+    font-family: "Segoe UI";
+    font-size: 12px;
+
+    label {
+        display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 30px;
+        min-height: 0;
+        min-width: 0;
+    }
+
+    label > input[type=checkbox] {
+        height: 12px;
+        width: 12px;
+        margin-left: 10px;
+    }
+}
+
+.activityRunsEmptyMessage {
+    padding: 10px;
+}
+
+.adf-monitoringListViews.win-pivot {
+    .win-pivot-headers {
+        height: auto;
+
+        button.win-pivot-header, button.win-pivot-header:hover {
+            height: 36px;
+            cursor: pointer;
+            background-color: white;
+            border-bottom: 2px solid white;
+            margin: 0px 0px 8px 12px;
+            text-transform: uppercase;
+            padding: 12px 0 6px 0;
+            font-size: 13px;
+            font-weight: 600;
+
+            &.win-pivot-header-selected {
+                border-bottom: 2px solid $atlasTeal;
+            }
+        }
+
+        button.win-pivot-header {
+            color: $grayColor;
+        }
+        button.win-pivot-header:hover, button.win-pivot-header.win-pivot-header-selected  {
+            color: $darkCharColor;
+        }
+    }
+
+    .win-pivot-viewport {
+        flex-grow: 1;
+    }
+
+    .win-pivot-item-content {
+        padding: 0 0 0 0;
+        width: 100%;
+    }
+
+    // paverma Could not find a better way to get rid of the swipe animation.
+    .win-pivot-item {
+        transition: none !important;
+    }
+}
+
+.adf-activityIcon-active {
+    svg {
+        animation: spin 3s linear infinite;
+    }
+
+    .msportalfx-svg-c04 {
+        fill: $atlasGreenColor;
+    }
+
+    .msportalfx-svg-c03 {
+        fill: $darkGreenColor;
+    }
+}
+
+/*Using css animation on SVG in chrome blurs it and its neighboring elements. But this does not happen if the animation is applied internally to
+svg. However, in that case edge and ie are not able to run animation. Hence we need specification.*/
+body.chrome .adf-activityIcon-active {
+    .adf-svgGContainer {
+        animation: spin 3s linear infinite;
+        transform-origin: 50% 50%;
+    }
+
+    svg {
+        animation: none;
+    }
+}

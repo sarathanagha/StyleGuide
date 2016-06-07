@@ -1,0 +1,46 @@
+<div class="searchbox-box">
+    <span class="searchbox-input-wrapper">
+        <input type="text" role="search" data-bind="textInput: text,
+                                      hasFocus: inputFocus,
+                                      attr: { placeholder: placeholderText, tabindex: tabIndex },
+                                      event: {
+                                          mousedown: function(){ showSuggestions(true); return true; },
+                                          keyup: onSearchBoxKeyUp
+                                      }" spellcheck="false">
+    </span>
+    <img src="../../../../images/edd_clear_search.png" data-bind="attr: { alt: resx.clear, title: resx.clear }, click: clear, visible: showClearButton" class="clear" />
+    <img src="../../../../images/edd_search_icon.png" data-bind="attr: { alt: resx.search, title: resx.search }, click: onChange" class="search" />
+
+    <!-- ko if: showSuggestions() && (searchMatches().length || savedSearchMatches().length) -->
+    <div class="suggestions-dropdown open">
+        <ul class="dropdown-menu">
+            <!-- ko foreach: searchMatches -->
+            <li>
+                <a data-bind="text: $data.term,
+                              css: { selected: $data === $parent.selectedItem() },
+                              event: {
+                                  mousedown: $parent.selectSearchTerm.bind($parent),
+                                  mouseover: function(data) { $parent.selectedItem(data); },
+                                  mouseleave: function(data) { $parent.selectedItem() === data && $parent.selectedItem(null); }
+                              }"></a>
+            </li>
+            <!-- /ko -->
+            <!-- ko if: savedSearchMatches().length -->
+            <li data-bind="text: resx.savedSearches" class="dropdown-header"></li>
+            <!-- /ko -->
+            <!-- ko foreach: savedSearchMatches -->
+            <li>
+                <a data-bind="text: $data.name,
+                              css: { selected: $data === $parent.selectedItem() },
+                              event: {
+                                  mousedown: function(data){ $parent.applySavedSearch(data); return true; },
+                                  mouseover: function(data) { $parent.selectedItem(data); },
+                                  mouseleave: function(data) { $parent.selectedItem() === data && $parent.selectedItem(null); }
+                              }"></a>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    <!-- /ko -->
+
+</div>

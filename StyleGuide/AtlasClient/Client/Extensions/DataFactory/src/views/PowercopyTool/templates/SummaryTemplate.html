@@ -1,0 +1,85 @@
+﻿<div class="wizardStepTitle">
+    Summary
+</div>
+<div class="wizardStepSubtitle" data-bind="text:summaryStepSubheader" style="margin-bottom: 10px">
+</div>
+
+%%PICTURE_TEMPLATE%%
+
+<!-- ko ifnot: oAuthButtons().length === 0 -->
+<div class="summarySectionTitle">
+    Data Lake authorization
+</div>
+<!-- ko foreach: oAuthButtons -->
+<div class="summaryLineContainer">
+    <div class="summaryPropertyKey" data-bind="titleText: authorizationMessage"></div>
+    <div style="margin-left:10px">
+        <button data-bind="event:{click:authorize.bind($data)}, enable:buttonEnabled">
+            Authorize
+        </button>
+    </div>
+    <div class="summaryPropertyValue success" data-bind="visible: authorized"></div>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+
+<!-- ko foreach: summary -->
+<div class="summarySectionTitle" data-bind="text:name"></div>
+<div class="summarySectionContainer">
+    <div class="summaryEditSaveLink" data-bind="event:{click: $parent.toggleSummarySectionEdit.bind($parent)}">
+        <!-- ko ifnot: editMode -->
+        Edit
+        <!-- /ko -->
+        <!-- ko if: editMode -->
+        Save
+        <!-- /ko -->
+    </div>
+    <!-- ko foreach: lines -->
+    <!-- ko ifnot: key === 'Task cadence' -->
+    <div class="summaryLineContainer">
+        <div class="summaryPropertyKey" data-bind="text:key"></div>
+        <div class="summaryPropertyValue" data-bind="text:value,visible:!$parent.editMode() || !editable"></div>
+        <div class="summaryPropertyValue" data-bind="visible:editable && $parent.editMode()">
+            <!-- ko if: editable === 1 -->
+            <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: validateableBox}}">}"></div>
+            <!-- /ko -->
+            <!-- ko if: editable === 2 -->
+            <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: validateableBox}}">}"></div>
+            <!-- /ko -->
+            <!-- ko if: editable === 3 -->
+            <input type="text" data-bind="value:observable" />
+            <!-- /ko -->
+        </div>
+        <!-- ko if: expandable-->
+        <div class="summaryTableListExpander" data-bind="event:{click:expander.toggleExpamd.bind(expander)}, callout:{innerHtml:calloutHtml}">
+
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko if: key === 'Task cadence' -->
+    <div class="summaryLineContainer">
+        <div class="summaryPropertyKey" data-bind="text:key"></div>
+        <div class="summaryPropertyValue" data-bind="text:value,visible:!$parent.editMode()"></div>
+        <div class="summaryLineContainer nestedLine" data-bind="visible: $parent.editMode()">
+            <div class="summaryPropertyValue" data-bind="text:customData.recurrence">
+
+            </div>
+            <div class="summaryLineContainer nestedLine" data-bind="datetimeRange: customData.startEnd">
+                <div class="summaryPropertyValue">
+                    <input type="text" class="datetimeRangeStartDate dateInput" />
+                </div>
+                <div class="summaryPropertyValue">
+                    and
+                </div>
+                <div class="summaryPropertyValue">
+                    <input type="text" class="datetimeRangeEndDate dateInput" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+</div>
+
+<!-- /ko -->

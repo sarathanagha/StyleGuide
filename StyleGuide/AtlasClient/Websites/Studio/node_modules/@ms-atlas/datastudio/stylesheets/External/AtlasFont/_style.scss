@@ -1,0 +1,71 @@
+$AtlasFont-path:        "fonts" !default;
+
+@font-face {
+	font-family: 'icomoon';
+	src:url($AtlasFont-path + '/icomoon.eot?-dg84jy');
+	src:url($AtlasFont-path + '/icomoon.eot?#iefix-dg84jy') format('embedded-opentype'),
+		url($AtlasFont-path + '/icomoon.woff?-dg84jy') format('woff'),
+		url($AtlasFont-path + '/icomoon.ttf?-dg84jy') format('truetype'),
+		url($AtlasFont-path + '/icomoon.svg?-dg84jy#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+}
+
+.icon-Atlas_alerts:before {
+	content: "\e600";
+}
+.icon-Atlas_clock:before {
+	content: "\e601";
+}
+.icon-Atlas_collapse:before {
+	content: "\e602";
+}
+.icon-Atlas_DataFactory:before {
+	content: "\e603";
+}
+.icon-Atlas_delete:before {
+	content: "\e604";
+}
+.icon-Atlas_expand:before {
+	content: "\e605";
+}
+.icon-Atlas_folder:before {
+	content: "\e606";
+}
+.icon-Atlas_ML:before {
+	content: "\e607";
+}
+.icon-Atlas_New:before {
+	content: "\e608";
+}
+.icon-Atlas_Notebooks:before {
+	content: "\e609";
+}
+.icon-Atlas_pause:before {
+	content: "\e60a";
+}
+.icon-Atlas_run:before {
+	content: "\e60b";
+}
+.icon-Atlas_save:before {
+	content: "\e60c";
+}
+.icon-Atlas_settings:before {
+	content: "\e60d";
+}
+.icon-Atlas_Stream:before {
+	content: "\e60e";
+}
+.icon-Atlas_table:before {
+	content: "\e60f";
+}

@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{EB747B62-681B-4FC2-BFC6-AD90A79611FE}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ed084-d353-49a6-ac71-05af96ba86b1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56b2e9d9-bd67-41c5-bcce-6ff173e951c0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="scripts\application\shared\DataStudio.Application.Shared.csproj">
+      <Project>{48793D08-0888-49CC-8C05-AB91BC691BE7}</Project>
+      <Name>DataStudio.Application.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="scripts\application\mainpage\DataStudio.Application.Mainpage.csproj">
+      <Project>{C1A1B0C2-AE4B-49BC-9415-1EEAC0B6F5A6}</Project>
+      <Name>DataStudio.Application.Mainpage</Name>
+    </ProjectReference>
+    <ProjectReference Include="scripts\bootstrapper\DataStudio.Bootstrapper.csproj">
+      <Project>{bac310ad-1329-4ef7-9fb3-0f5544ae5cf0}</Project>
+      <Name>DataStudio.Bootstrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExternalLibraries\knockout.mapping.min.js.map" />
+    <None Include="stylesheets\bootstrap\mixins\_alerts.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_background-variant.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_border-radius.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_buttons.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_center-block.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_clearfix.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_forms.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_gradients.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_grid.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_hide-text.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_image.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_labels.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_list-group.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_nav-vertical-align.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_opacity.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_pagination.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_panels.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_progress-bar.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_reset-filter.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_reset-text.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_resize.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_responsive-visibility.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_size.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_tab-focus.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_table-row.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_text-overflow.scss" />
+    <None Include="stylesheets\bootstrap\mixins\_vendor-prefixes.scss" />
+    <None Include="stylesheets\bootstrap\_alerts.scss" />
+    <None Include="stylesheets\bootstrap\_badges.scss" />
+    <None Include="stylesheets\bootstrap\_breadcrumbs.scss" />
+    <None Include="stylesheets\bootstrap\_button-groups.scss" />
+    <None Include="stylesheets\bootstrap\_buttons.scss" />
+    <None Include="stylesheets\bootstrap\_carousel.scss" />
+    <None Include="stylesheets\bootstrap\_close.scss" />
+    <None Include="stylesheets\bootstrap\_code.scss" />
+    <None Include="stylesheets\bootstrap\_component-animations.scss" />
+    <None Include="stylesheets\bootstrap\_dropdowns.scss" />
+    <None Include="stylesheets\bootstrap\_forms.scss" />
+    <None Include="stylesheets\bootstrap\_glyphicons.scss" />
+    <None Include="stylesheets\bootstrap\_grid.scss" />
+    <None Include="stylesheets\bootstrap\_input-groups.scss" />
+    <None Include="stylesheets\bootstrap\_jumbotron.scss" />
+    <None Include="stylesheets\bootstrap\_labels.scss" />
+    <None Include="stylesheets\bootstrap\_list-group.scss" />
+    <None Include="stylesheets\bootstrap\_media.scss" />
+    <None Include="stylesheets\bootstrap\_mixins.scss" />
+    <None Include="stylesheets\bootstrap\_modals.scss" />
+    <None Include="stylesheets\bootstrap\_navbar.scss" />
+    <None Include="stylesheets\bootstrap\_navs.scss" />
+    <None Include="stylesheets\bootstrap\_normalize.scss" />
+    <None Include="stylesheets\bootstrap\_pager.scss" />
+    <None Include="stylesheets\bootstrap\_pagination.scss" />
+    <None Include="stylesheets\bootstrap\_panels.scss" />
+    <None Include="stylesheets\bootstrap\_popovers.scss" />
+    <None Include="stylesheets\bootstrap\_print.scss" />
+    <None Include="stylesheets\bootstrap\_progress-bars.scss" />
+    <None Include="stylesheets\bootstrap\_responsive-embed.scss" />
+    <None Include="stylesheets\bootstrap\_responsive-utilities.scss" />
+    <None Include="stylesheets\bootstrap\_scaffolding.scss" />
+    <None Include="stylesheets\bootstrap\_tables.scss" />
+    <None Include="stylesheets\bootstrap\_theme.scss" />
+    <None Include="stylesheets\bootstrap\_thumbnails.scss" />
+    <None Include="stylesheets\bootstrap\_tooltip.scss" />
+    <None Include="stylesheets\bootstrap\_type.scss" />
+    <None Include="stylesheets\bootstrap\_utilities.scss" />
+    <None Include="stylesheets\bootstrap\_variables.scss" />
+    <None Include="stylesheets\bootstrap\_wells.scss" />
+    <None Include="stylesheets\Common\_fonts.scss" />
+    <None Include="stylesheets\Common\_index.scss" />
+    <None Include="stylesheets\Common\_jquery-ui.scss" />
+    <None Include="stylesheets\Common\_main.scss" />
+    <None Include="stylesheets\Common\_shellConstants.scss" />
+    <None Include="stylesheets\Common\_themes.scss" />
+    <None Include="stylesheets\DataStudio\_buttons.scss" />
+    <None Include="stylesheets\DataStudio\_colors.scss" />
+    <None Include="stylesheets\DataStudio\_index.scss" />
+    <None Include="stylesheets\External\AtlasFont\fonts\icomoon.eot" />
+    <None Include="stylesheets\External\AtlasFont\fonts\icomoon.ttf" />
+    <None Include="stylesheets\External\AtlasFont\fonts\icomoon.woff" />
+    <None Include="stylesheets\External\AtlasFont\_style.scss" />
+    <None Include="stylesheets\External\jstree\_index.scss" />
+    <None Include="stylesheets\External\_index.scss" />
+    <None Include="stylesheets\Framework\Base\_layoutBase.scss" />
+    <None Include="stylesheets\Framework\colors.scss" />
+    <None Include="stylesheets\Framework\constants.scss" />
+    <None Include="stylesheets\Framework\fontmixins.scss" />
+    <None Include="stylesheets\Framework\_animation.scss" />
+    <None Include="stylesheets\Framework\_controls.scss" />
+    <None Include="stylesheets\Framework\_index.scss" />
+    <None Include="stylesheets\Framework\_layout.scss" />
+    <None Include="stylesheets\Framework\_text.scss" />
+    <None Include="stylesheets\main.scss" />
+    <None Include="stylesheets\Shell\_header.scss" />
+    <None Include="stylesheets\Shell\_splash.scss" />
+    <None Include="stylesheets\_bootstrap.scss" />
+    <None Include="uxshell\authoringHeader\authoringHeader.scss" />
+    <None Include="uxshell\commandBar\commandBar.scss" />
+    <None Include="uxshell\drawer\drawer.scss" />
+    <None Include="uxshell\labelButton\labelButton.scss" />
+    <None Include="uxshell\mainArea\mainArea.scss" />
+    <None Include="uxshell\sidePanel\sidePanel.scss" />
+    <None Include="uxshell\studioPanel\studioPanel.scss" />
+    <None Include="uxshell\templates\home\actionitemslist\actionitemslist.scss" />
+    <None Include="uxshell\templates\home\quicklaunch\quicklaunch.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="content\images\burger.svg" />
+    <Content Include="content\images\close.svg" />
+    <Content Include="ExternalLibraries\32px.png" />
+    <Content Include="ExternalLibraries\crossroads.js" />
+    <Content Include="ExternalLibraries\crossroads.min.js" />
+    <Content Include="ExternalLibraries\css-builder.js" />
+    <Content Include="ExternalLibraries\css.js" />
+    <Content Include="ExternalLibraries\css.min.js" />
+    <Content Include="ExternalLibraries\d3.js" />
+    <Content Include="ExternalLibraries\d3.min.js" />
+    <Content Include="ExternalLibraries\es6-promise.js" />
+    <Content Include="ExternalLibraries\es6-promise.min.js" />
+    <Content Include="ExternalLibraries\hammer.js" />
+    <Content Include="ExternalLibraries\hull.js" />
+    <Content Include="ExternalLibraries\i18n.min.js" />
+    <Content Include="ExternalLibraries\Intl.min.js" />
+    <Content Include="ExternalLibraries\jquery-ui-timepicker-addon.css" />
+    <Content Include="ExternalLibraries\jquery-ui-timepicker-addon.js" />
+    <Content Include="ExternalLibraries\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="ExternalLibraries\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="ExternalLibraries\jquery-ui.js" />
+    <Content Include="ExternalLibraries\jquery-ui.min.css" />
+    <Content Include="ExternalLibraries\jquery.history.js" />
+    <Content Include="ExternalLibraries\jquery.js" />
+    <Content Include="ExternalLibraries\jquery.min.js" />
+    <Content Include="ExternalLibraries\jquery.mockjax.js" />
+    <Content Include="ExternalLibraries\jquery.mockjax.min.js" />
+    <Content Include="ExternalLibraries\jquery.modal.js" />
+    <Content Include="ExternalLibraries\jquery.modal.min.js" />
+    <Content Include="ExternalLibraries\jstree.js" />
+    <Content Include="ExternalLibraries\jstree.min.js" />
+    <Content Include="ExternalLibraries\jstree.style.css" />
+    <Content Include="ExternalLibraries\jwt-decode.js" />
+    <Content Include="ExternalLibraries\jwt-decode.min.js" />
+    <Content Include="ExternalLibraries\knockout-latest.debug.js" />
+    <Content Include="ExternalLibraries\knockout-latest.js" />
+    <Content Include="ExternalLibraries\knockout.mapping.js" />
+    <Content Include="ExternalLibraries\knockout.mapping.min.js" />
+    <Content Include="ExternalLibraries\locale-data.complete.js" />
+    <Content Include="ExternalLibraries\moment.js" />
+    <Content Include="ExternalLibraries\normalize.js" />
+    <Content Include="ExternalLibraries\q.js" />
+    <Content Include="ExternalLibraries\require.js" />
+    <Content Include="ExternalLibraries\signals.js" />
+    <Content Include="ExternalLibraries\signals.min.js" />
+    <Content Include="ExternalLibraries\text.js" />
+    <Content Include="ExternalLibraries\throbber.gif" />
+    <Content Include="ExternalLibraries\ui-light.css" />
+    <Content Include="ExternalLibraries\URI.js" />
+    <Content Include="ExternalLibraries\URI.min.js" />
+    <Content Include="ExternalLibraries\uuid.js" />
+    <Content Include="ExternalLibraries\WinJS.js" />
+    <Content Include="ExternalLibraries\WinJS.min.js" />
+    <Content Include="stylesheets\External\AtlasFont\fonts\icomoon.svg" />
+    <Content Include="uxshell\authoringHeader\authoringHeader.html" />
+    <Content Include="uxshell\commandBar\commandBar.html" />
+    <Content Include="uxshell\commonHeader\commonHeader.html" />
+    <Content Include="uxshell\drawer\drawer.html" />
+    <Content Include="uxshell\labelButton\labelButton.html" />
+    <Content Include="uxshell\mainArea\mainArea.html" />
+    <Content Include="uxshell\sidePanel\sidePanel.html" />
+    <Content Include="uxshell\studioPanel\studioPanel.html" />
+    <Content Include="uxshell\templates\home\actionitemslist\actionitemslist.html" />
+    <Content Include="uxshell\templates\home\quicklaunch\quicklaunch.html" />
+    <Content Include="uxshell\uxshell.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="uxshell\authoringHeader\authoringHeader.ts" />
+    <TypeScriptCompile Include="uxshell\commandBar\commandBar.ts" />
+    <TypeScriptCompile Include="uxshell\commonHeader\commonHeader.ts" />
+    <TypeScriptCompile Include="uxshell\drawer\drawer.ts" />
+    <TypeScriptCompile Include="uxshell\labelButton\labelButton.ts" />
+    <TypeScriptCompile Include="uxshell\mainArea\mainArea.ts" />
+    <TypeScriptCompile Include="uxshell\references.d.ts" />
+    <TypeScriptCompile Include="uxshell\sidePanel\sidePanel.ts" />
+    <TypeScriptCompile Include="uxshell\studioPanel\studioPanel.ts" />
+    <TypeScriptCompile Include="uxshell\templates\home\actionitemslist\actionitemslist.ts" />
+    <TypeScriptCompile Include="uxshell\templates\home\quicklaunch\quicklaunch.ts" />
+    <TypeScriptCompile Include="uxshell\uxshell.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="content\images\ExperimentCard\" />
+    <Folder Include="content\images\Homepage\" />
+    <Folder Include="content\images\NavigationBar\" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+  <PropertyGroup>
+    <!-- todo: vija add environment parameters support later-->
+    <GulpBuildCommand>$(GulpCmd) --gulpfile gulpfile-msbuild.js default</GulpBuildCommand>
+    <GulpCleanCommand>$(GulpCmd) --gulpfile gulpfile-msbuild.js clean</GulpCleanCommand>
+  </PropertyGroup>
+  <Target Name="BuildResx" BeforeTargets="PrepareForBuild">
+    <Message Text="Building resx.js" />
+    <Exec Command="$(NodeExe) translate-resx.js ../resources nls/resx.js 1" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="node.exe exit code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Building resx.js failed, please see above output!" />
+  </Target>
+  <Target Name="GulpBuildTasks" AfterTargets="Build">
+    <Message Text="Executing the gulp for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed." />
+  </Target>
+  <Target Name="AfterClean">
+    <!-- Delete task cannot be used because the files are readonly -->
+    <Message Text="Executing gulp clean for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpCleanCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp clean failed." />
+  </Target>
+</Project>

@@ -1,0 +1,26 @@
+<div class="home-saved-searches" data-bind="event: { mouseleave: onMouseLeaveTile, mouseenter: onMouseEnterTile }" tabindex="0">
+    <div class="home-saved-searches-content">
+        <span class="home-saved-searches-title" data-bind="text: title, adc-popover: {}, attr: {'data-content': titlePopover }"
+                                                                                                              data-trigger="hover"
+                                                                                                              data-placement="auto top"
+                                                                                                              data-container="body"
+                                                                                                              ></span>
+        <!-- ko if: searches().length -->
+        <ul class="saved-searches" data-bind="attr: { id: listID }">
+            <!-- ko foreach: {data: searches, as: 'savedSearch' } -->
+            <li>
+                <div>
+                    <span class="saved-search-label" data-bind="text: savedSearch.name, click: $parent.applySearch.bind($parent)"></span>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+        <!-- /ko -->
+        <!-- ko if: (allSearches.length > searches().length) -->
+        <span class="searches-tile-see-more" data-bind="text: seeAll, click: onSeeMore"></span>
+        <!-- /ko -->
+        <!-- ko ifnot: searches().length -->
+        <div class="no-searches-message" data-bind="text: emptyMessage"></div>
+        <!-- /ko -->
+    </div>
+</div>

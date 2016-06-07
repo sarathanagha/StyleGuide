@@ -1,0 +1,38 @@
+<div class="right-panel powerbi-panel">
+    <div class="side-pane-section-header">Properties</div>
+    <div class="resource-container">
+        <div class="resource-header">Name</div>
+        <div class="resource-contents" data-bind="text: name"></div>
+    </div>
+    <div data-bind="if: urlAvailable()">
+        <div class="resource-container">
+            <div class="resource-header bold"><a data-bind="attr: { href: resourceUrl }" target="_blank">Step 1: Download Real-time Dashboard Application</a></div>
+            <div class="resource-contents">
+                <ul>
+                    <li>Extract and save locally</li>
+                    <li>Execute RealtimeDashboardApp and provide credentials for the PowerBI account</li>
+                    <li>Follow the instructions in step 3 to setup the real-time dashboard</li>
+                </ul>
+            </div>
+        </div>
+        <div class="resource-container">
+            <div class="resource-header bold"><a href="http://go.microsoft.com/fwlink/?LinkId=708785" target="_blank">Step 2: Download the PowerBI designer file</a></div>
+            <div class="resource-contents">
+                <ul>
+                    <li>Save locally</li>
+                    <li>Install <a href="https://powerbi.microsoft.com/en-us/desktop" target="_blank">PowerBI Desktop</a></li>
+                    <li>Open the file using PowerBI Desktop</li>
+                    <li>Follow the instructions in step 3 to setup the batch dashboard</li>
+                </ul>
+            </div>
+        </div>
+        <div class="resource-container">
+            <div class="resource-header bold"><a href="http://go.microsoft.com/fwlink/?LinkId=708786" target=" _blank">Step 3: Download PowerBI dashboard setup instructions</a></div>
+            <div class="resource-contents">
+                Follow the instructions for configuring the visualizations
+            </div>
+        </div>
+    </div>
+    <div class="horizontalBar"></div>
+    <div class="detail" data-bind="html: details"></div>
+</div>

@@ -1,0 +1,61 @@
+<div id="app" data-bind="css: { 'upgrade-available': showUpgradeIsAvailable }">
+    <header id="edd-header">
+        <span id="title">
+            <span id="brand" data-bind="text: resx.brand"></span>
+            <span id="name" data-bind="text: resx.productName"></span>
+        </span>
+
+        <nav id="main-navigation">
+            <ul>
+                <!-- ko foreach: { data: navigationLinks, as: 'nav' } -->
+                <li data-bind="css: { selected: $parent.route().name == nav.name, disabled: !nav.enabled() }">
+                    <a data-bind="attr: { href: nav.enabled() ? '#/'+nav.route : 'javascript:void(0);' }">
+                        <img data-bind="attr: { src: '/images/' + nav.image }" />
+                        <div data-bind="text: nav.text"></div>
+                    </a>
+                </li>
+                <!-- /ko -->
+                <li data-bind="css: { selected: showUserInfo }, event: { mouseleave: userInfoMouseLeave, mouseenter: userInfoMouseEnter }" class="non-navigation user-navigation-button">
+                    <a href="javascript:void(0)" data-bind="click: function(){ showUserInfo(!showUserInfo()) }">
+                        <img src="/images/edd_profile_18.png" />
+                        <div data-bind="text: resx.user"></div>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <div id="user-info" data-bind="css: { show: showUserInfo }, event: {  mouseleave: userInfoMouseLeave, mouseenter: userInfoMouseEnter }">
+        <div data-bind="text: resx.user" class="user-label"></div>
+        <div data-bind="text: $tokyo.user.email"></div>
+        <div class="user-spacer"></div>
+        <div data-bind="text: resx.catalog" class="user-label"></div>
+        <div data-bind="text: $tokyo.user.tenantDirectory"></div>
+        <div class="user-spacer"></div>
+        <div data-bind="click: clearSearchHistory, css: { isWorking: isClearingSearchHistory() || successClearingSearchHistory() }" class="clear-search-history">
+            <span data-bind="text: resx.clearSearchHistory" class="user-label"></span>
+            <span data-bind="adc-spinner: { working: isClearingSearchHistory, success: successClearingSearchHistory }" class="light"></span>
+        </div>
+        <div class="user-spacer"></div>
+        <div data-bind="text: resx.signOut, click: signOut" class="user-label sign-out"></div>
+    </div>
+
+    <div id="upgrade-notice">
+        <span>
+            <span data-bind="text: resx.upgradeNotice"></span>
+            <span data-bind="text: resx.upgradeNow, click: function(){ window.location.reload(); }" id="upgrade-notice-action"></span>
+        </span>
+        <img data-bind="click: hideUpgradeNotice" src="/images/publish/close_x.png" id="upgrade-notice-close" alt="close" />
+    </div>
+
+    <!-- ko if: route().component && publishedItems() -->
+    <div class="app-content" data-bind="component: { name: route().component, params: { route: route }}"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: route().component && publishedItems() -->
+    <div class="app-content loading"></div>
+    <!-- /ko -->
+
+    <div data-bind="component: 'shell-footer'"></div>
+
+</div>

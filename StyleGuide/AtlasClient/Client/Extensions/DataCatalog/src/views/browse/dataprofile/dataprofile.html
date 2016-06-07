@@ -1,0 +1,104 @@
+<div id="browse-dataprofile" data-bind="if: selected() && selected().hasDataProfile()">
+    <span data-bind="text: resx.tableProfile" class="table-profile profile"></span>
+    <div class="scrollable-table table-data-header header">
+        <table>
+            <colgroup>
+                <col style="width: 125px" />
+                <col style="width: 125px" />
+                <col style="width: 225px" />
+                <col style="width: 200px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th data-bind="text: resx.numberOfRows"></th>
+                    <th data-bind="text: resx.tableSize"></th>
+                    <th data-bind="text: resx.rowDataLastUpdated"></th>
+                    <th data-bind="text: resx.schemaLastModified"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollable-table table-data-content content">
+        <table>
+            <colgroup>
+                <col style="width: 125px" />
+                <col style="width: 125px" />
+                <col style="width: 225px" />
+                <col style="width: 200px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td data-bind="adc-highlight: numberOfRows"></td>
+                    <td data-bind="adc-highlight: tableSize"></td>
+                    <td data-bind="adc-highlight: lastUpdatedDate"></td>
+                    <td data-bind="adc-highlight: lastModifiedDate"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- ko if: columnProfiles -->
+    <div data-bind="text: resx.columnProfile" class="column-profile profile"></div>
+        <div class="scrollable-table column-data-header header">
+            <table class="full-width">
+                <colgroup>
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 150px" />
+                    <col style="width: 150px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th data-bind="text: resx.columnName"></th>
+                        <th data-bind="text: resx.dataType"></th>
+                        <th data-bind="text: resx.nullCount"></th>
+                        <th data-bind="text: resx.distinctValues"></th>
+                        <th data-bind="text: resx.minimum"></th>
+                        <th data-bind="text: resx.maximum"></th>
+                        <th data-bind="text: resx.average"></th>
+                        <th data-bind="text: resx.stddev"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="scrollable-table column-data-content content">
+            <table class="full-width">
+                <colgroup>
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 150px" />
+                    <col style="width: 150px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                    <col style="width: 125px" />
+                </colgroup>
+                <tbody>
+                    <!-- ko foreach: {data: columnProfiles, as: 'columnProfile' }-->
+                    <tr>
+                        <td data-bind="adc-highlight: columnProfile.name"></td>
+                        <td data-bind="adc-highlight: columnProfile.type"></td>
+                        <td data-bind="adc-highlight: (columnProfile.nullcount || 0).toString()"></td>
+                        <td data-bind="adc-highlight: (columnProfile.distinct || 0).toString()"></td>
+                        <td data-bind="adc-highlight: columnProfile.min"></td>
+                        <td data-bind="adc-highlight: columnProfile.max"></td>
+                        <td data-bind="adc-highlight: (columnProfile.avg).toString()"></td>
+                        <td data-bind="adc-highlight: (columnProfile.stdev || '')"></td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+    <!-- /ko -->
+    <div data-bind="adc-spinner: showSpinner" class="column-profile-loading x-large"></div> 
+    <!-- ko if: errorFetchingColumnData -->
+    <span class="error-fetching-column-data">
+        <span data-bind="text:resx.errorFetchingColumnData"></span>
+        <span data-bind="text:resx.pleaseTryAgain, click: fetchColumnData" class="please-try-again"></span>
+    </span>
+    <!-- /ko -->
+</div>

@@ -1,0 +1,9 @@
+This folder will contain "thin" data service like DataService<BluePrint>
+
+
+The responsibility of data service is to get DTO from webAPI and send it to the caller.
+
+The call chain should be ViewModel -> DataManager -> DataService -> remote service;
+
+
+    

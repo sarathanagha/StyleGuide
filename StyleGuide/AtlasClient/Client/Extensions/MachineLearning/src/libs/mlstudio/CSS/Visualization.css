@@ -1,0 +1,581 @@
+.visualizationTopHeader {
+    padding: 10px 0 10px 10px;
+    background-color: white;
+    height: 50px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 1;
+}
+
+.breadcrumbHeader {
+    font-size: 18px;
+    font-weight: 200;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #444;
+}
+
+.breadcrumbHeaderText {
+    max-width: 30%;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.breadcrumbHeaderSeparator {
+    /* sprite set in ee-sprite.css */
+    margin: 8px 8px 0 8px;
+    background-image: url(../Images/chevron-right.png);
+    width: 9px;
+    height: 12px;
+}
+
+.visualizationContentWrapper {
+    height: calc(100% - 50px); /* 100% - (height of .visualizationTopHeader) */
+    overflow-x: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.visualizationContent {
+    height: 100%;
+}
+
+.visualizationTableWrapper {
+    height: calc(100% - 60px); /* 100% - (height of .numberRowsColumnsContainer) */
+}
+
+.dataTableContainer {
+    width: 100%;
+    margin-right: auto;
+    overflow: auto;
+}
+
+.statsAndGraphs {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    position: relative;
+    height: 100%;
+    border-left: 3px solid rgba(64, 64, 64, .3);
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    overflow: auto;
+    -ms-flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+.statsAndGraphs.minimized, .statsAndGraphs.minimizing {
+    overflow: hidden;
+}
+
+.statsContainer {
+    margin-bottom: 25px;
+}
+
+/* These styles are marked important to override the inline
+    styles added by the collapse manager */
+.statsAndGraphsContent > .maximizing {
+    height: auto !important;
+}
+.statsAndGraphsContent > .maximized {
+    height: auto !important;
+}
+.statsAndGraphsContent > .minimizing {
+    height: 33px !important;
+    overflow: hidden !important;
+}
+.statsAndGraphsContent > .minimized {
+    height: 33px !important;
+    overflow: hidden !important;
+}
+
+.maximized .statsAndGraphsContent {
+    display: block;
+}
+.statsAndGraphsContent {
+    display: none;
+}
+.statsAndGraphsTitle {
+    display: block;
+    font-family: "Segoe UI";
+    font-weight: 300;
+    font-size: 16px;
+    color: #737373;
+    white-space: nowrap;
+    position: relative;
+    top: 180px;
+    width: 35px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+.maximized .statsAndGraphsTitle {
+    display: none;
+}
+
+.statsAndGraphsExpander {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    opacity: 0.5;
+}
+.maximized .statsAndGraphsExpander:before, .maximizing .statsAndGraphsExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+.minimized .statsAndGraphsExpander:before, .minimizing .statsAndGraphsExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.statsAndGraphsSubExpander {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.maximized .statsAndGraphsSubExpander:before, .maximizing .statsAndGraphsSubExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.minimized .statsAndGraphsSubExpander:before, .minimizing .statsAndGraphsSubExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.statsAndGraphsHeader {
+    font-size: 18px;
+    color: #3aa0cc;
+    border-bottom: 1px solid #3da0c3;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    padding-left: 8px;
+    padding-bottom: 8px;
+}
+
+.statsAndGraphs .minimized .resize {
+    height: 100%;
+}
+
+.statsTable td {
+    padding-left: 26px;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 125px;
+}
+
+/* graph view styles */
+.expandedView {
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.expandedView > div {
+    vertical-align: top;
+}
+.expandedView .placeholderGraph {
+    visibility: visible;
+    margin: auto;
+    padding-right: 25px;
+    text-align: center;
+    width: 245px;
+    height: 188px;
+}
+.expandedView .placeholderImage {
+    margin: 29px auto auto auto;
+    width: 110px;
+    height: 90px;
+    overflow: hidden;
+}
+.expandedView .placeholderImage:before {
+    content: url('../Images/graph_placeholder.png');
+}
+.expandedView .placeholderText {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: #B0B0B0;
+}
+
+.headerDiv {
+    overflow: hidden;
+}
+
+.compareToContainer {
+    margin-top: 12px;
+}
+
+#graphs, #snapshots {
+    white-space: nowrap;
+}
+#graphs > div, #snapshots > div {
+    vertical-align: top;
+    display: inline-block;
+}
+.graphDiv {
+    margin: 0px 0px 10px 15px;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+.graphContainer {
+    margin: 0px 0px 10px 15px;
+}
+
+/* text and headers */
+#dataTableName{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0px 0px 15px 20px;
+    color: #3AA0CC;
+}
+
+.mainHeader {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 40px;
+    height: 60px;
+}
+.mainHeader div {
+    display: inline-block;
+}
+.header {
+    color: #3AA0CC;
+}
+
+.numberRowsColumnsContainer {
+    margin-left: 30px;
+    width: 50%;
+    height: 60px;
+}
+.numberRowsColumnsHeader {
+    font-size: 16px;
+    margin-right: 35px;
+}
+.numberRowsColumnsHeader div {
+    display: block;
+}
+.smallHeader {
+    font-size: 14px;
+    color: #3AA0CC;
+}
+.snapshotHeader {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 600;
+    color: #656565;
+    margin-left: 20px;
+}
+.snapshotClose {
+    margin-right: 20px;
+}
+
+.graphText {
+    font-size: 14px;
+    color: #656565;
+    fill: #656565; /* for svg text */
+}
+.graphHeader {
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 10px;
+}
+.graphSubheader {
+    vertical-align: top;
+    font-size: 16px;
+    font-weight: 600;
+    color: #656565;
+}
+
+/* spacing for graph view elements */
+.inlineDiv {
+    display: inline-block;
+}
+.leftDiv {
+    float: left;
+}
+.rightDiv {
+    float: right;
+}
+.compareTo select {
+    min-width: 150px;
+    max-width: 250px;
+}
+.parameters .input {
+    margin: 3px 4px 4px 3px;
+}
+.icons {
+    padding-top: 3px;
+    height: 20px;
+}
+.icons * {
+    margin-left: 3px;
+}
+.closeIcon {
+    margin: 0px 0px 0px 20px;
+}
+.parameters {
+    margin: 0px 15px 15px 25px;
+    width: 120px;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+}
+.parameters div {
+    vertical-align: top;
+}
+.parameters select {
+    width: 100px;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+.logScaleDiv {
+    margin-top: 8px;
+}
+.logScaleText {
+    white-space: normal;
+    width: 120px;
+    padding-top: 2px;
+}
+.binsLabel {
+    margin: 8px 0px 3px 0px;
+}
+.bins {
+    width: 60px;
+}
+.probabilityFunctions {
+    margin-top: 8px;
+}
+.probabilityFunctionDiv {
+    margin-bottom: 10px;
+}
+.probabilityFunctionLabel {
+    margin: 20px 0px 5px 0px;
+}
+.probabilityFunctionText {
+    width: 80px;
+    white-space: normal;
+}
+.activeSvgContainer {
+    margin-top: 25px;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+.snapshotIdle {
+    margin-left: 9px;
+    width: 24px;
+    height: 24px;
+}
+.snapshotIdle:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+.snapshotIdle:hover:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.closeIdle {
+    width: 24px;
+    height: 24px;
+}
+.closeIdle:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+.closeIdle:hover:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+
+/* graph elements styles */
+.domain path, .axis path, .axis line {
+    fill: none;
+    stroke: #C5C5C5;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-size: 12px;
+    fill: gray;
+}
+.histogramBar {
+    fill: #71B1D1;
+}
+.histogramBar:hover {
+    fill: #3AA0CC;
+}
+.dfCurve {
+    stroke: black;
+    stroke-width: 2;
+    opacity: .5;
+}
+.pdf {
+    fill: #E3CEF6;
+}
+.cdf {
+    fill: #E1FFD6;
+}
+.scatterplotPoint {
+    fill: #777777;
+}
+.boxplot {
+    fill: white;
+    stroke: #71B1D1;
+    stroke-width: 2px;
+}
+.minimizedBoxplot {
+    fill: white;
+    stroke: #71B1D1;
+    stroke-width: 1px;
+}
+.crosstabRect {
+    fill: #71B1D1;
+    stroke: darkgray;
+    stroke-width: 1;
+}
+.crosstabLabel {
+    fill: #454545;
+    text-anchor: middle;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* table styles */
+#dataTable {
+    border-collapse: collapse;
+    margin: 0px 15px 10px 20px;
+    empty-cells: show;
+}
+#dataTable td, #dataTable th {
+    padding: 2px 10px 2px 10px;
+    max-width: 180px;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    border-left: 1px solid rgba(0,0,0,0);
+}
+#dataTable th {
+    padding-bottom: 8px;
+    font-style: normal;
+    border-bottom: 1px solid #71B1D1;
+}
+#dataTable td {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    height: 26px;
+}
+#dataTable .tableHeader {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    color: #555555;
+    padding-top: 6px;
+}
+#dataTable .selectedHeader {
+    color: white;
+    background-color: #71B1D1;
+    border-left: 1px solid #71B1D1;
+    border-right: 1px solid #71B1D1;
+}
+#dataTable .emptyCell {
+    border: none;
+    height: 6px;
+}
+#dataTable .toggleCell {
+    background-color: white;
+    border: none;
+    padding: 0px;
+}
+#dataTable .toggleDiv {
+    float: right;
+    width: 72px;
+    height: 52px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #252525;
+}
+#dataTable .toggleLabelDiv {
+    padding: 4px 0px 0px 12px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+#dataTable .toggleIconDiv {
+    margin-right: auto;
+    margin-left: auto;
+    text-align:center;
+}
+#dataTable .graphCell {
+    padding: 20px 16px 6px 10px;
+}
+
+#dataTable .selected {
+    border-right: 1px solid #71B1D1;
+    border-left: 1px solid #71B1D1;
+}
+#dataTable .notSelected {
+    border: 1px solid white;
+    border-top: 2px solid white;
+    -moz-transition: border 0.5s;
+    -o-transition: border 0.5s;
+    -webkit-transition: border 0.5s;
+    transition: border 0.5s;
+}
+
+.svgcopy {
+    display: block;
+}
+
+.toggleIconDiv div {
+    width:24px;
+    height:24px;
+    display: inline-block;
+}
+
+.histogramSelectedImage:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.histogramIdleImage:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.boxchartSelectedImage:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.boxcharIdleImage:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}

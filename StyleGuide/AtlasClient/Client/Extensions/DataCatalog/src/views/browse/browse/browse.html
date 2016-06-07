@@ -1,0 +1,31 @@
+<div id="browse" class="bootstrap">
+
+    <div id="panels">
+
+        <div data-bind="component: { name: 'datacatalog-shell-layout', params: {
+                                                                left: {
+                                                                    title: resx.searches,
+                                                                    component: 'datacatalog-browse-filter',
+                                                                    expanded: true,
+                                                                    width: '285px',
+                                                                    duration: 200
+                                                                },
+                                                                center: {
+                                                                    component: centerComponent
+                                                                },
+                                                                right: {
+                                                                    title: resx.properties,
+                                                                    component: rightComponent,
+                                                                    expanded: false,
+                                                                    width: '347px',
+                                                                    duration: 200
+                                                                },
+                                                                bottom: {
+                                                                    component: 'datacatalog-browse-details',
+                                                                    expanded: false,
+                                                                    height: '410px',
+                                                                    duration: 200
+                                                                }
+                                                            }}"></div>
+    </div>
+</div>

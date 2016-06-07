@@ -1,0 +1,35 @@
+<div id="home-browse-list">
+    <div class="facet-wrapper wrapper">
+        <div class="facet-container">
+            <div class="facet-list-container experts">
+                <div data-bind="component: { name: 'datacatalog-shell-list', params: {
+                                                                title: resx.topExpert,
+                                                                data: experts(),
+                                                                click: selectFacet,
+                                                                numberInitiallyVisible: listLimit,
+                                                                groupType: 'experts'
+                                                            }}"></div>
+            </div>
+
+            <div class="facet-list-container sources">
+                <div data-bind="component: { name: 'datacatalog-shell-list', params: {
+                                                                title: resx.topSource,
+                                                                data: sources(),
+                                                                click: selectFacet,
+                                                                numberInitiallyVisible: listLimit,
+                                                                groupType: 'sourceType'
+                                                            }}"></div>
+            </div>
+
+            <div class="facet-list-container types">
+                <div data-bind="component: { name: 'datacatalog-shell-list', params: {
+                                                                title: resx.topObject,
+                                                                data: types(),
+                                                                numberInitiallyVisible: listLimit,
+                                                                click: selectFacet,
+                                                                groupType: 'objectType'
+                                                            }}"></div>
+            </div>
+        </div>
+    </div> 
+</div>

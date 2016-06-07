@@ -1,0 +1,86 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#start-search {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: visible;
+  left: -15px;
+  right: -15px; }
+  #start-search .loading-indicator {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    margin-top: -35px; }
+  #start-search .wrapper {
+    width: 980px;
+    margin: auto; }
+  #start-search .search-container {
+    width: 100%; }
+    #start-search .search-container .search-title {
+      font-size: 58px;
+      text-transform: capitalize;
+      font-weight: bold;
+      line-height: 60px;
+      margin-top: 35px; }
+    #start-search .search-container .search-subtitle {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px; }
+    #start-search .search-container .search-head {
+      display: block; }
+    #start-search .search-container .start-searchbox {
+      height: 50px;
+      width: 100%;
+      font-size: 21px;
+      padding-right: 20px; }
+      #start-search .search-container .start-searchbox .dropdown-menu {
+        font-size: 18px; }
+  #start-search .facet-container {
+    padding-top: 40px;
+    overflow: hidden; }
+    #start-search .facet-container .facet-list-container {
+      width: 326.66667px;
+      float: left;
+      padding-left: 35px;
+      bottom: 0; }
+      #start-search .facet-container .facet-list-container .facet-label {
+        font-size: 19px;
+        text-transform: capitalize; }
+        #start-search .facet-container .facet-list-container .facet-label:after {
+          content: ":"; }
+      #start-search .facet-container .facet-list-container .facet-list {
+        padding-top: 20px;
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0; }
+        #start-search .facet-container .facet-list-container .facet-list li {
+          font-size: 14px;
+          margin-bottom: 20px; }
+  #start-search {
+    background-color: #26357F; }
+    #start-search .search-container .search-title {
+      color: #006F94; }
+    #start-search .search-container .search-subtitle {
+      color: #0E69B2; }
+    #start-search .facet-container {
+      color: #FFFFFF;
+      background-color: #26357F; }
+      #start-search .facet-container .experts ul {
+        border-right: 1px solid #5E61A3; }
+      #start-search .facet-container .sources ul {
+        border-right: 1px solid #5E61A3; }
+
+/*# sourceMappingURL=start.css.map */

@@ -1,0 +1,11 @@
+<div class="shell-list">
+    <div class="list-container">
+        <span class="list-label" data-bind="text:title"></span>
+        <ul class="list">
+            <!-- ko foreach: {data: computedList, as: 'item'} -->
+                <li data-bind="text: item, click: $parent.onItemSelected, css: {clickable: $parent.clickable}"></li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    <a data-bind="text: expandedText, click: onSeeMore, visible: expandable" data-target="#"></a>
+</div>

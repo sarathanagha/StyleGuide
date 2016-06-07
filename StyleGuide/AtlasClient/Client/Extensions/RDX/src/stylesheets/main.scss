@@ -1,0 +1,657 @@
+﻿$lightCanvas: #F2F2F2;
+$canvas: #E6E6E6;
+$cloud: #D3D3D4;
+$darkCloud: #B5B7B9;
+$slate: #55606E;
+$darkSlate: #48525E;
+$charcoal: #343A41;
+$darkChar: #2C3137;
+
+$cloudRgbLighter: rgba(211, 212, 212, .7);
+
+$grayLightest: #D5D6D7;
+$grayLight: #AbAdAf;
+$gray: #808387;
+$grayDark: #585A5F;
+$grayDarkest: #2C3137;
+
+$textColor: #2C3137;
+
+$atlasTeal: #00B294;
+$atlasDarkTeal: #008272;
+$atlasTealBg: rgba(0,178,148,.2);
+$orange: #f7630C;
+$orangeBg: rgba(247,99,12,.2);
+$primaryRed: #E81123;
+$primaryRedBg: rgba(232,17,35,.2);
+$emerald: #6BB700;
+$emeraldBg: rgba(107,183,0,.2);
+
+$green: #6BB700;
+$blue: #00BCF2;
+$red: #D13438;
+
+$leftPanelBackgroundColor: $lightCanvas; // LIGHT CANVAS
+$leftPanelBorder: 1px solid $darkCloud; // DARK CLOUD
+$hoverBackgroundColor: $canvas; // CANVAS
+
+$cardBoarder: 1px solid $cloud;
+$cardTitleBackgroundColor: $lightCanvas;
+$cardBackground: white;
+
+$tinyMarginAndPadding: 2px;
+$smallMarginAndPadding: 5px;
+$largeMarginAndPadding: 10px;
+$extraLargeMarginAndPadding: 20px;
+$cardMarginSide: 30px;
+$boxShadow: 0px 0px 2px 0px rgba(0,0,0,0.3);
+$smallFontSize: 13px;
+
+$heatmapHeight: 476px;
+
+/*TO OVERRIDE ui-light*/
+li, ul{
+    font-weight: 400;
+}
+
+/*FROM DESIGN SPEC*/
+.navTabWrapper{
+    padding: $largeMarginAndPadding $largeMarginAndPadding 0 0;
+    margin: 3px 5px 9px 12px;
+
+    .navTab{
+        @extend .textMSB;
+        padding: 0 2px 8px;
+        margin-right: 28px;
+        text-transform: uppercase;
+        color: $gray;
+        border-bottom: 2px solid transparent;
+
+        &:hover{
+            cursor: pointer;
+            color: $grayDarkest;
+        }
+    }
+        .selected{
+        color: $grayDarkest;
+        border-bottom: 2px solid $atlasTeal;
+
+        &:hover{
+            cursor: default;
+        }
+    }
+}
+
+/*FROM DESIGN SPEC*/
+.primaryButton{
+    @extend .textMR;
+    background: $atlasDarkTeal;
+    color: white;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    width: 88px;
+    text-align: center;
+
+    &:hover, &:focus{
+        background: #005E50;
+    }
+
+    &:active{
+        background: #004B40;
+    }
+
+    &.disabled{
+        background: $cloud;
+        color: $grayLight;
+
+        &:hover, &:focus{
+            background: $cloud;
+            color: $grayLight;
+        }
+
+        &:active{
+            background: $cloud;
+            color: $grayLight;
+        }
+    }
+}
+
+.standardButton{
+    @extend .textMR;
+    background: $lightCanvas;
+    color: $grayDarkest;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    width: 88px;
+    text-align: center;
+
+    &:hover, &:focus{
+        background: $canvas;
+    }
+
+    &:active{
+        background: $darkCloud;
+    }
+}
+
+.secondaryButton{
+    @extend .textMR;
+    background: $cloud;
+    color: $grayDarkest;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    width: 88px;
+    text-align: center;
+
+    &:hover, &:focus{
+        background: $darkCloud;
+    }
+
+    &:active{
+        background: #9C9DA0;
+    }
+}
+
+/*FROM DESIGN SPEC*/
+.atlasInput{
+    @extend .textMR;
+    color: $grayDark;
+    border: 1px solid $darkCloud;
+    padding: 4px 0;
+    padding-left: 8px;
+    outline: none;
+
+    &:hover, &:active, &:focus{
+        color: $grayDarkest;
+        border: 1px solid $atlasTeal;
+    }
+
+}
+
+/*FROM DESIGN SPEC*/
+.rdxTooltip{
+    @extend .textMR;
+    position: absolute;
+    z-index: 99;
+    color: white;
+    background: $charcoal;
+    padding: 6px 8px;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*FROM DESIGN SPEC*/
+.rdxContextMenu{
+    @extend .textMR;
+    background: white;
+    box-shadow: $boxShadow;
+    position: absolute;
+    z-index: 100;
+    color: $grayDark;
+    border-top: 1px solid $cloud;
+    border-left: 1px solid $cloud; 
+    border-right: 1px solid $cloud;
+    min-width: 180px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    div{
+
+        .contextMenuOptions{
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            cursor: default;
+
+            div{
+                height: 36px;
+                line-height: 36px;
+                text-align: left;
+                vertical-align: middle;
+                padding: 0 12px;
+                border-bottom: 1px solid $cloud;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:hover{
+                    background: $cloud;
+                    cursor: pointer;  
+                }
+                &:active{
+                    background: $slate;
+                    color: white;
+                }
+
+                &.contextMenuTitle{
+                    height: 36px;
+                    line-height: 36px;
+                    text-align: left;
+                    vertical-align: middle;
+                    padding: 0 12px;
+                    border-bottom: 1px solid $cloud;
+                    &:hover{
+                        cursor: default;  
+                    }
+                    &:active{
+                        background: $cloud;
+                        cursor: default;  
+                        color: $grayDark;
+                    }
+                }
+            }
+
+            .chevron-right{
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-position-y: 13px;
+                border-bottom: none;
+                transform: rotate(180deg);
+                
+                &:hover{
+                    background: url(../../icons/collapse-left.svg);
+                    cursor: default;                  
+                    display: inline-block;
+                    background-repeat: no-repeat;
+                    background-position-y: 1px;
+                    border-bottom: none;
+                    width: 12px;
+                    height: 12px;
+                    background-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+select{
+    display: inline-block;
+    min-height: 12px;
+    border-width: 1px;
+    margin: 0 0 4px;
+    background: transparent;
+}
+
+.card{
+    margin: $extraLargeMarginAndPadding $cardMarginSide;
+    background: $cardBackground;
+    box-shadow: $boxShadow;
+
+    .cardTitle{
+        @extend .h3;
+        background: $cardTitleBackgroundColor;
+        padding: $largeMarginAndPadding;
+        border-bottom: $cardBoarder;
+
+        > .fa{
+            margin-right: $smallMarginAndPadding;
+            &:hover{
+                cursor: pointer;
+                color: $slate;
+            }
+        }
+    }
+
+    .cardInfoPanel{
+        padding: $smallMarginAndPadding $largeMarginAndPadding;
+        background: $cardBackground;
+        overflow: auto;
+        min-height: 28px;
+
+        input{ 
+        }
+
+        .take{
+            float: right;
+            border-left: 1px solid $cloud;
+            padding: 3px $smallMarginAndPadding;
+        }
+        .exploreButton{
+            @extend .crystalButton;
+            float: right;
+            margin-left: 0 $smallMarginAndPadding;
+            margin-top: 2px;
+        }
+        .progressMessage{
+            padding: $tinyMarginAndPadding;
+            margin-top: $tinyMarginAndPadding;
+            padding-right: 20px;
+            position: relative;
+            top: 4px; 
+            color: $textColor;
+            &:hover{
+            }
+        }
+    }
+}
+
+.crystalButton{
+    padding: $tinyMarginAndPadding;
+    border: 1px solid $darkCloud;
+    background: $lightCanvas;
+    &:hover{
+        cursor: pointer;
+        background: $cloud;
+    }
+}
+
+.topPanelSlideToggler{
+    padding: 10px;
+    display: inline-block;
+    border-right: 1px solid $cloud;
+    &:hover{
+        cursor: pointer;
+        background-color: $cloud;
+    }
+
+    &.selected{
+        background: $canvas;
+        &:hover{
+            cursor: pointer;
+            background-color: $cloud;
+        }
+    }
+}
+
+.crosshair{
+    cursor: crosshair;
+}
+
+.opacityTransition{
+    transition-property: opacity;
+    transition-duration: .4s;
+}
+
+// ICONS
+.toggleChevronDown{
+    transform: rotate(-90deg);
+    background: url(../../icons/collapse-left.svg);
+    width: 18px;
+    height: 12px;
+    background-size: 12px;
+    background-position-x: 2px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.toggleChevronUp{
+    @extend .toggleChevronDown;
+    transform: rotate(90deg);
+    background-position-x: 3px;
+}
+
+.statusWarning{
+    background: url(../../icons/status-warning.svg);
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    margin-bottom: -16px;
+}
+
+.statusSuccess{
+    background: url(../../icons/status-success.svg);
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    margin-bottom: -16px;
+}
+
+.helpIcon{
+    background: url(../../icons/help.svg);
+    opacity: .3;
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    margin-bottom: -16px;
+    cursor: pointer;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.fa{
+    display: inline-block;
+}
+
+.fa-plus-square-o{
+    background: url(../../icons/plus_box.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-minus-square-o{
+    background: url(../../icons/minus_box.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-plus{
+    background: url(../../icons/plus.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-minus{
+    background: url(../../icons/minus.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-add{
+    background: url(../../icons/plus.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-remove{
+    background: url(../../icons/minus.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.fa-search:before{
+    content: "\1f50d";
+}
+
+.fa-clock-o:before{
+    content: "\1f552";
+    margin-right: 2px;
+}
+
+.fa-area-chart:before{
+    content: "\303d";
+}
+
+.fa-tree:before{
+    content: "\1f332";
+}
+
+.fa-cloud:before{
+    content: "\26c5";
+}
+
+.fa-lineChart:before{
+    content: "\1f4c8";
+}
+
+.fa-barChart:before{
+    content: "\1f4ca";
+}
+
+.cryingEmoji:before{
+    content: "\1f622";
+}
+
+.chevron-down{
+    &:hover{
+        cursor: pointer;
+        background: url(../../icons/collapse-left-teal.svg);
+        width: 12px;
+        height: 12px;
+        background-size: 12px;
+        background-position-x: 2px;
+    }
+    transform: rotate(90deg);
+    background: url(../../icons/collapse-left.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+    background-position-x: 2px;
+}
+
+.chevron-up{
+    &:hover{
+        cursor: pointer;
+        background: url(../../icons/collapse-left-teal.svg);
+        width: 12px;
+        height: 12px;
+        background-size: 12px;
+        background-position-x: -2px;
+    }
+    transform: rotate(-90deg);
+    background: url(../../icons/collapse-left.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+    background-position-x: -2px;
+}
+
+.chevron-left{
+    &:hover{
+        cursor: pointer;
+        background: url(../../icons/collapse-left-teal.svg);
+        width: 12px;
+        height: 12px;
+        background-size: 12px;
+    }
+    background: url(../../icons/collapse-left.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.chevron-right{
+    transform: rotate(90deg);
+    background: url(../../icons/collapse-left.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.ui-icon-circle-triangle-e{
+    background: url(../../icons/collapse-left.svg) !important;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 16px;
+    &:hover{
+        cursor: pointer;
+        background: url(../../icons/collapse-left-teal.svg) !important;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+    }
+    margin-left: 12px;
+}
+
+.ui-icon-circle-triangle-w{
+    @extend .chevron-left;
+    background: url(../../icons/collapse-left.svg) !important;
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    &:hover{
+        cursor: pointer;
+        background: url(../../icons/collapse-left-teal.svg) !important;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+    }
+    margin-left: 12px;
+    line-height: 26px;
+}
+
+.calendarIcon:before{
+    content: "\1f4c5";
+    margin-right: 4px;
+}
+
+/* TYPOGRAPHY */
+.textXSR{
+    font-family: "Segoe UI";
+    font-size: 11px;
+}
+
+.textXSB{
+    font-family: "Segoe UI Semibold";
+    font-size: 11px;
+}
+
+.textSR{
+    font-family: "Segoe UI";
+    font-size: 12px;
+}
+
+.textSB{
+    font-family: "Segoe UI Semibold";
+    font-size: 12px;
+}
+
+.textMR{
+    font-family: "Segoe UI";
+    font-size: 14px;
+}
+
+.textMSB{
+    font-family: "Segoe UI Semibold";
+    font-size: 14px;
+}
+
+.textLR{
+    font-family: "Segoe UI";
+    font-size: 18px;
+}
+
+.h1{
+    font-family: "Segoe UI Light";
+    font-size: 28px;
+    line-height: 40px;
+}
+
+.h2{
+    font-family: "Segoe UI Semilight";
+    font-size: 21px;
+    line-height: 32px;
+}
+
+.h3{
+    font-family: "Segoe UI";
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.h4{
+    font-family: "Segoe UI Semibold";
+    font-size: 16px;
+    line-height: 24px;
+}

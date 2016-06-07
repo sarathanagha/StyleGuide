@@ -1,0 +1,28 @@
+<div id="tree-map">
+    <div class="tiles"></div>
+    <div class="expanded-list-container">
+        <span class="treemap-label" data-bind="text: resx.popular_tags"></span>
+        <a data-bind="text: expandedText, click: onSeeMore, visible: expandable && expanded" data-target="#"></a>
+        <div class="tile-container">
+            <ul class="tiles">
+                <!-- ko foreach: {data: tileItems, as: 'item' } -->
+                <li data-bind="css: {clickable: $parent.clickable}, click: $parent.onTileSelected">
+                    <div data-bind="css: item.css">
+                        <span data-bind="text: item.name"></span>
+                    </div>
+                </li>
+                <!-- /ko -->
+            </ul> 
+        </div>
+        <!-- ko if: expanded -->
+        <div class="expanded-list">
+            <ul>
+                <!-- ko foreach: {data: listItems, as: 'item' } -->
+                <li data-bind="text: item, click: $parent.onItemSelected, css: {clickable: $parent.clickable}"></li>
+                <!-- /ko -->
+            </ul>
+        </div>
+        <!-- /ko -->
+        <a data-bind="text: expandedText, click: onSeeMore, visible: expandable" data-target="#"></a>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+﻿body {
+    cursor: default;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Segoe UI","Helvetica",Garuda,Arial,sans-serif;
+    color: #666;
+}
+
+h1 {
+    line-height: 33px;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: normal;
+    font-family: Segoe UI,Verdana,Arial;
+}
+
+h2 {
+    font-size: 23px;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-family: 'Segoe UI Semibold','Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    color: #000;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+}
+
+p {
+    line-height: 18px;
+}
+
+td, th {
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px 10px 8px 8px;
+}
+
+th {
+    background-color: #ededed;
+    text-align: left;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
+    color: #636363;
+}
+
+#content {
+    min-width: 600px;
+    max-width: 1200px;
+}
+
+ul.parameterRules {
+	list-style-type: none;
+}
+
+.codeSnippet {
+    width: auto;
+    padding: 21px 21px 10px 10px;
+    border: solid 1px;
+}
+
+.codeSnippet pre {
+    padding: 5px;
+    margin: 0px;
+    font-family: Consolas,Courier,monospace!important;
+    word-wrap: normal;
+}
+
+code {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+#selection-button {
+    float: right;
+}
+        
+.tabs {
+    position: relative;
+    height: 600px;
+    clear: both;
+    margin: 35px 0 25px;
+    background: white;
+}
+.tab {
+    float: left; 
+}
+.tab label {
+    background: #eee; 
+    padding: 10px; 
+    border: 1px solid; 
+    margin-left: -1px; 
+    position: relative;
+    left: 1px; 
+    top: -29px;
+}
+.tab [type=radio] {
+    display: none;   
+}
+.tab-content {
+    overflow: auto;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid; 
+    opacity: 0;
+}
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+}
+[type=radio]:checked ~ label ~ .tab-content {
+    z-index: 1;
+    opacity: 1;
+}

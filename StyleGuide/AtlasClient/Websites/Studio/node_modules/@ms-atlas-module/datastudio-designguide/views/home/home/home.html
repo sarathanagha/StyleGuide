@@ -1,0 +1,42 @@
+<div id="home-home" data-bind="datastudio-ux-scrollSpi:shouter">
+    <div class="main">
+        <div data-bind="component: { name: 'designguide-home-navbar',params:{'currentView':currentView,'currentTab':currentTab,'currentSubTab':currentSubTab,'views':views,currentIndex:currentIndex} }"></div>
+
+        <!-- <div data-bind="component: { name: 'designguide-home-about' }"></div>-->
+        <div id="rightDiv" data-bind="css:{'rightDivAbout':currentTab()=='About' || currentTab()=='Resources'}">
+            <h2 class="title-bar maintitlebar fixedDiv">
+                <div data-bind="text:currentTab(),css:{'aboutTitle':currentTab()=='About' || currentTab()=='Resources'}"></div>
+                <div class="subtitle">
+                    <a name="#Animations" data-bind="text:currentSubTab()"></a>
+                </div>
+            </h2>
+
+            <div class="component-wrapper" data-bind="component: {name: currentView()}"></div>
+
+
+            <footer class="footersection">
+                <a class="prev" data-bind="event:{click:navigate}">
+                    <div class="pull-left" data-bind="css:{'not-active':currentTab()=='About'}" id="PrevFooter">
+                        <span class="leftarrow"><img src="../../../../images/Larrow.png"></span>
+                        <div class="leftfootercont">
+                            <div class="sect">Previous section</div>
+                            <div class="secname" data-bind="text:previousLabel"></div>
+                        </div>
+                    </div>
+                </a>
+                <a class="next" data-bind="event:{click:navigate}">
+                    <div class="pull-right" data-bind="css:{'not-active':currentTab()=='Resources'}" id="NextFooter">
+                        <span class="rightarrow"><img src="../../../../images/Rarrow.png"></span>
+                        <div class="rightfootercont">
+                            <div class="sect">Next section</div>
+                            <div class="secname" data-bind="text:nextLabel">Layout</div>
+                        </div>
+                    </div>
+                </a>
+            </footer>
+        </div>
+
+
+    </div>
+
+</div>

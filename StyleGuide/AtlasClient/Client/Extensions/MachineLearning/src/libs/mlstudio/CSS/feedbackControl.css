@@ -1,0 +1,187 @@
+.datalab-feedback
+{
+  background-color: #3C454F; /* Bar's color */
+  width: 200px;
+  height: 30px;
+  position: relative;
+  float: right;
+  margin-right: 10px;
+}
+
+.datalab-feedback.expanded
+{
+  background-color: #3C454F; /* Bar's color */
+  width: 400px;
+  height: 220px;
+  position: relative;
+  float: right;
+}
+
+/* top left */
+
+.datalab-feedback-left
+{
+  height: 26px;
+  width: 200px;
+  position: absolute;
+  top: 0;
+  margin-left: 5px;
+}
+
+.datalab-feedback-left.expanded
+{
+  height: 200px;
+  width: 355px;
+  position: absolute;
+  top: 0;
+  margin-left: 10px;
+}
+
+.datalab-feedback-left-question
+{
+    display: none;
+}
+
+.datalab-feedback-left-question.expanded
+{
+    display: block;
+    margin: 10px 5px 0px 0px;
+}
+
+.datalab-feedback-textarea
+{
+    width: 195px;
+    height: 20px;
+    margin: 5px 5px 5px 0px;
+    margin-top: 3px;
+    border: 0;
+    overflow: hidden; /* Otherwise, we have scrollbars in the box when it's minimize and we have multiple lines*/
+    resize: none;
+    padding: 2px;
+
+    background-size: 20px 20px;    
+    background-repeat: no-repeat;
+    background-image: url("/Libraries/Images/smiley.png");
+    background-position: 175px 3px;
+}
+
+.datalab-feedback-textarea.expanded
+{
+    width: 340px;
+    height: 156px;
+    margin: 5px 5px 5px 0px;
+    border: 0;
+    overflow: auto; /* Without this, in IE, the scrollbar appears even without text */
+    resize: none;
+    padding: 2px;
+
+    background-image: none;
+}
+
+.datalab-feedback-character-counter
+{
+    text-align: right;
+    margin-right: 15px;
+}
+
+.datalab-feedback-minimize
+{
+    display:none;
+}
+
+.datalab-feedback-minimize.expanded
+{
+  height: 17px;
+  width: 100%;
+  background-size: 12px 7px;    
+  background-repeat: no-repeat;
+  background-image: url("/Content/Images/fxs.headerbar.chevron-up.png");
+  background-position: center;
+  position: absolute;
+  bottom: 2px;
+  opacity: 0.5;
+  display: block;
+}
+
+.datalab-feedback-minimize.expanded:hover
+{
+  opacity: 1.0;
+}
+
+/* top right : smiley faces */
+.datalab-feedback-right
+{
+    display:none;
+}
+
+.datalab-feedback-right.expanded
+{
+  display:block;
+  height: 170px;
+  width: 44px;
+  position: absolute;
+  right: 0px;
+  margin-top: 30px;
+}
+
+.datalab-feedback-rightImage
+{
+  height: 20px;
+  width: 20px;
+  float: right;
+  background-size: 20px 20px;    
+  background-repeat: no-repeat;
+  position: absolute;
+  margin-left: 10px;
+}
+
+.datalab-feedback-iconSmileyHappy
+{
+  background-image: url("/Libraries/Images/smiley.png");
+  opacity: 0.4;
+}
+
+.datalab-feedback-iconSmileyHappy.selected
+{
+  opacity: 1.0;
+}
+
+.datalab-feedback-iconSmileySad
+{
+  background-image: url("/Libraries/Images/smiley_sad.png");
+  top: 30px;
+  opacity: 0.4;
+}
+
+.datalab-feedback-iconSmileySad.selected
+{
+  opacity: 1.0;
+}
+
+/* bottom */
+
+.datalab-feedback-bottom
+{
+  height: 50px;
+  width: 400px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.datalab-feedback-bottomValidation
+{
+  height: 34px;
+  width: 34px;
+  background-size: 34px 34px;    
+  background-repeat: no-repeat;
+  background-image: url("/Libraries/Images/fx.dialog.ok.png");
+  position: absolute;
+  bottom: 0px;
+  margin: 0px 0px 5px 5px;
+}
+
+.datalab-feedback-bottomValidation:hover
+{
+  background-image: url("/Libraries/Images/fx.dialog.ok-hover.png");
+}

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</ProjectGuid>
+    <TypeScriptOutFile>lib\datastudio.diagnostics.js</TypeScriptOutFile>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\references.ts" />
+    <TypeScriptCompile Include="src\Http\HttpClient.ts" />
+    <TypeScriptCompile Include="src\Http\HttpClientFactory.ts" />
+    <TypeScriptCompile Include="src\Http\HttpError.ts" />
+    <TypeScriptCompile Include="src\Http\RetryHttpClient.ts" />
+    <TypeScriptCompile Include="src\Http\Impl\FetchHttpClient.ts" />
+    <TypeScriptCompile Include="src\Http\Impl\XHR2HttpClient.ts" />
+    <TypeScriptCompile Include="src\Hub\DiagnosticsEvent.ts" />
+    <TypeScriptCompile Include="src\Hub\DiagnosticsEventType.ts" />
+    <TypeScriptCompile Include="src\Hub\DiagnosticsHub.ts" />
+    <TypeScriptCompile Include="src\Hub\SessionData.ts" />
+    <TypeScriptCompile Include="src\Hub\SubscriptionData.ts" />
+    <TypeScriptCompile Include="src\Logging\LogEvent.ts" />
+    <TypeScriptCompile Include="src\Logging\LogEventData.ts" />
+    <TypeScriptCompile Include="src\Logging\Logger.ts" />
+    <TypeScriptCompile Include="src\Logging\LoggerBus.ts" />
+    <TypeScriptCompile Include="src\Logging\LoggerData.ts" />
+    <TypeScriptCompile Include="src\Logging\LoggerFactory.ts" />
+    <TypeScriptCompile Include="src\Logging\LoggerImpl.ts" />
+    <TypeScriptCompile Include="src\Logging\LoggerSink.ts" />
+    <TypeScriptCompile Include="src\Logging\LogLevel.ts" />
+    <TypeScriptCompile Include="src\Logging\UsageEvent.ts" />
+    <TypeScriptCompile Include="src\Logging\UsageEventType.ts" />
+    <TypeScriptCompile Include="src\Logging\Sinks\BrowserConsoleSink.ts" />
+    <TypeScriptCompile Include="src\Logging\Sinks\DiagnosticsHubSink.ts" />
+    <TypeScriptCompile Include="src\Utils\Assert.ts" />
+    <TypeScriptCompile Include="src\Utils\ObjectUtils.ts" />
+    <TypeScriptCompile Include="src\Utils\PromiseUtils.ts" />
+    <TypeScriptCompile Include="src\Utils\TypeInfo.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ConfigList>
+  <Config Name="CAStudioBase" Base="Common">
+    <Settings>
+      <Setting Name="GalleryEndpoint">https://aka.ms/solutionTemplates</Setting>
+      <Setting Name="PackagePath">..\Binaries\ServiceGroupRoot\bin\SAClientPackage.cspkg</Setting>
+    </Settings>
+    <ScaleUnit Type="ScaleUnit" Name="SU01">
+      <HostedService Type="Microsoft.DataStudio.Deployment" Name="$(DeploymentName)">
+        <Service>
+          <Role Name="AtlasClientRole"></Role>
+        </Service>
+      </HostedService>
+    </ScaleUnit>
+  </Config>
+</ConfigList>

@@ -1,0 +1,54 @@
+<div class="solution-info-view-container">
+    <!-- ko if: showEmptySolutionsMessage() -->
+        <div class="no-selection-message">
+            You don't have any solutions yet.
+            <br />
+            <br />
+            <a data-bind="attr: { href: galleryEndpoint} ">Visit the gallery</a> and deploy a<br />
+            Solution Template to get started!
+        </div>
+    <!-- /ko -->
+
+    <!-- ko if: DataManager.allSolutions().length > 0 -->
+        <!-- ko if: !solutionIsSelected() && DataManager.validSelection() -->
+            <div class="no-selection-message">No solution accelerator selected</div>
+        <!-- /ko -->
+        <!-- ko if: !DataManager.validSelection() -->
+            <div class="no-selection-message">The solution you are trying to access does not exist.</div>
+        <!-- /ko -->
+        <!-- ko if: solutionIsSelected() -->
+            <div class="fade-container" data-bind="visible: isGraphRendering() || isDeleted()">
+                <div class="fade-box"></div>
+                <div data-bind="datastudio-ux-progress: {visible: isGraphRendering, type: progressType}" class="progress-container"></div>
+            </div>
+            <div class="solution-header">
+                <span data-bind="text: solutionName()"></span>
+                <span class="solution-type" data-bind="text: solutionTypeDisplayName()"></span>
+            </div>
+            <div class="row graph-content-container">
+                <div class="deployment-notification-banner" data-bind="visible: showNotification(), css: { 'red-bar': showRedBar(), failed: deploymentFailed(), success: deploymentSucceeded() }">
+                    <div class="notification-container">
+                        <div class="message">
+                            <span class="error-pill">error</span>
+                            <span data-bind="text: statusMessage()"></span>
+                        </div>
+                        <button class="btn btn-primary-dark close-btn" data-bind="click: closeNotification">Close</button>
+                        <button class="btn btn-primary details-btn" data-bind="click: showDeploymentDetails">Details</button>
+                        <button class="btn btn-primary delete-btn" data-bind="click: startDeleteFlow">Delete</button>
+                    </div>
+                    <div class="deployment-progress"
+                         data-bind="datastudio-ux-progress: { visible: showNotificationProgress, type: notificationProgressType, percentComplete: deploymentCompletionPercentage }"></div>
+                </div>
+                <div id="graph-control-container" data-bind="graphControl: graphControlViewModel"></div>
+            </div>
+    <div data-bind="datastudio-ux-modal: { isVisible: isVisibleDeploymentDetails, modalContainerClass: 'deployment-details-modal' }">
+        <span class="close-wizard-btn" data-bind="click: hideDeploymentDetails"></span>
+        <div class="modal-header"><span class="icon-critical"></span>Error</div>
+        <div class="modal-message" data-bind="text: statusMessage()"></div>
+        <div class="modal-action-btns">
+            <button class="btn btn-primary" data-bind="click: hideDeploymentDetails">Ok</button>
+        </div>
+    </div>
+        <!-- /ko -->
+    <!-- /ko -->
+</div>

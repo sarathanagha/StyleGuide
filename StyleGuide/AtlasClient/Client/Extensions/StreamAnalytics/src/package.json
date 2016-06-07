@@ -1,0 +1,10 @@
+{
+  "name": "@ms-atlas-module/datastudio-streamanalytics",
+  "version": "0.1.4",
+  "description": "Azure Data Studio Stream Analytics Module.",
+  "main": "startup.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {},
+  "dependencies": {}
+}

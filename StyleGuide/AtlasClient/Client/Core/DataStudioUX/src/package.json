@@ -1,0 +1,8 @@
+{
+  "name": "@ms-atlas/datastudio-controls",
+  "version": "1.1.2",
+  "description": "Component library for Cortana Analytics.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {  }
+}

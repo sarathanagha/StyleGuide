@@ -1,0 +1,32 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#home-browse-list .facet-wrapper {
+  width: 1023px;
+  margin: auto; }
+  #home-browse-list .facet-wrapper .facet-container {
+    padding-top: 40px;
+    overflow: hidden;
+    text-align: left; }
+    #home-browse-list .facet-wrapper .facet-container .facet-list-container {
+      width: 317px;
+      margin-right: 18px;
+      padding-left: 20px;
+      float: left;
+      bottom: 0; }
+
+#home-browse-list .facet-list-container {
+  border-right: 1px solid #5E61A3; }
+  #home-browse-list .facet-list-container:nth-child(3n) {
+    border: none; }
+
+/*# sourceMappingURL=browselist.css.map */

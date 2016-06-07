@@ -1,0 +1,42 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+footer#copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 33px;
+  font-size: 12px;
+  text-align: center; }
+  footer#copyright > span {
+    display: inline-block;
+    padding: 2px;
+    line-height: 29px; }
+    footer#copyright > span a {
+      margin-left: 50px;
+      text-decoration: none; }
+  footer#copyright #version-info {
+    position: absolute;
+    right: 16px;
+    top: 2px;
+    font-size: 11px;
+    cursor: default; }
+  footer#copyright {
+    background-color: black;
+    color: #FFF; }
+    footer#copyright a {
+      color: #FFF; }
+    footer#copyright #version-info {
+      color: black; }
+
+/*# sourceMappingURL=footer.css.map */

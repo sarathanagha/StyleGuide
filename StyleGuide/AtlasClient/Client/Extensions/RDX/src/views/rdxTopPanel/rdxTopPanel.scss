@@ -1,0 +1,50 @@
+﻿@import "../../stylesheets/main";
+
+.rdxTopPanel{
+    background: $lightCanvas;
+}
+
+.errorColor{
+    color: $red;
+}
+
+.dateInput{
+    width: 90px;
+}
+
+.timeInput{
+    width: 50px;
+}
+
+.pickerControlWrapper{
+    height: 36px;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.toDateTime{
+    margin-left: 40px;
+}
+
+.metadataExplorerToggle{
+    @extend .topPanelSlideToggler;
+    margin-left: -5px;
+}
+
+.environmentToggle{
+    padding-left: 24px;
+}
+
+.timePickerToggle{
+    @extend .topPanelSlideToggler;
+    margin-left: -5px;
+}
+
+.feedbackButton{
+    @extend .topPanelSlideToggler;
+    float: right;
+}
+
+.feedbackForm{
+    float: right;
+}

@@ -1,0 +1,61 @@
+﻿<!-- ko if: loading -->
+<div data-bind="text:loadingSchemasMessage" style="margin-bottom: 10px"></div>
+<!-- /ko -->
+<div class="wizardStepTitle" style="margin-bottom: 20px">
+    Apply filter
+</div>
+<div class="wizardStepSubtitle">
+    <div style="float:left">
+        Choose date time column that will be used to filter data or use a custom query
+    </div>
+    <div class="infoDiv" style="margin-top:-5px" data-bind="callout: {innerHtml: 'If table that has been selected for copy contains columns of type \'DateTime\' you can specify that column and time-filter query will be generated. Or, you can write custom query using macro expressions.'}">
+    </div>
+</div>
+
+<!-- ko if: incrementalUpdate -->
+<div class="headerText" data-bind="style:{width:sourceTableTextWidth}">
+    Table name
+</div>
+<div class="headerText" style="margin-left: 0">
+    Filter
+</div>
+<div style="clear:both">
+</div>
+
+<!-- ko foreach: tableList -->
+<!-- ko if:selected -->
+<div class="tableMappingContainer" data-bind="with:data">
+
+    <div class="sourceTableText" data-bind="text:tableName,style:{width:$parentContext.$parent.sourceTableTextWidth}">
+    </div>
+    <div class="destinationSelectContainer">
+        <!--<div class="formFieldLabel" style="margin-top:-5px"><label>Datetime column</label></div>-->
+        <select data-bind="options: dateColumns,optionsText:'displayText',optionsValue:'value',value:selectedDateColumn"></select>
+    </div>
+    <div class="tableMappingExpander expander" data-bind="event:{click:$parentContext.$parent.expandSourceTable.bind($parentContext.$parent)},css:{expanded:expanded}"></div>
+    <div style="clear:both">
+    </div>
+    <div class="expandedContent" data-bind="css:{mappingExpanded:expanded}">
+        <div style="margin-top:10px">
+            <div data-bind="visible:useCustomQuery" style="margin-bottom:20px">
+                %%CUSTOMQUERY%%
+                <!-- ko if: queryValid -->
+                <!-- ko with: $parentContext.$parent -->
+                %%PREVIEWANDSCHEMA%%
+                <!-- /ko -->
+                <!-- /ko -->
+
+            </div>
+            <div data-bind="visible:!useCustomQuery()">
+                <div class="formFieldLabel">
+                    <label data-bind="attr:{for:idGeneratedQuery}">Generated query</label>
+                </div>
+                <textarea data-bind="value:generatedQuery,attr:{id:idGeneratedQuery}" rows="3" class="queryBox" spellcheck="false" disabled="disabled"
+                placeholder="Please select datatime column for generating query"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->

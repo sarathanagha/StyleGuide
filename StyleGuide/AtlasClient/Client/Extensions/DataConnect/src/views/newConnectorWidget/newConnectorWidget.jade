@@ -1,0 +1,39 @@
+div
+  div(data-bind="visible: currentStep()===0")
+     p Configure connection settings
+
+     div(class="col form" data-bind="with: computedConnectionSettings")
+       h2(data-bind="text: name")
+       div(data-bind="foreach: address")
+         .form-field(data-bind="if: required")
+           p(data-bind="text: displayName")
+           p
+             input(type="text" data-bind="value: propertyValue")         
+       
+       div(data-bind="if: authentication.length>0")
+         .form-field
+           p authentication
+           p
+             select(data-bind="options: authentication, value: selectedAuthenticationType, optionsText: 'displayName', optionsValue: 'name'")         
+       
+       div(data-bind="foreach: credentialFields")
+         .form-field
+           p(data-bind="text: displayName")
+           p(data-bind="if: !isPassword")
+             input(type="text" data-bind="value: propertyValue")
+           p(data-bind="if: isPassword")
+             input(type="password" data-bind="value: propertyValue")
+             
+       div(class="form-field" data-bind="visible: isOnPremises")
+         label gateway 
+         a(style={color: '#0078d7'} data-bind="click: function(){$parent.gotoNewGateway($parent);}") new gateway
+         p
+           select(data-bind="value: $parent.gatewaySelected, options: $parent.gatewayList, optionsText: 'name', optionsValue: 'url'")
+          
+     p(class="form-buttons")
+       button(data-bind="click: testConnection") Next
+
+       span(data-bind="text: processingText")
+  
+  div(data-bind="visible: currentStep()===1")
+    div(data-bind='component: { name:"dataconnect-newGatewayWidget", params:{ connectionManagerUrl: connectionManagerUrl, adminKey: adminKey, callback: newGatewayCallback } }')

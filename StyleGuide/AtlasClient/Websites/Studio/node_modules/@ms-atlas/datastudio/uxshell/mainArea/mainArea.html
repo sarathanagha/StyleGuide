@@ -1,0 +1,59 @@
+<div class="row grow mainArea" data-bind="panelSplitter:{}">
+    <!-- ko if: leftPanelElementsConfig() -->
+    <div class="col leftSidePanel collapse width no-shrink" data-bind="collapse: { expandOnClick: true, isExpanded: leftPanelIsExpanded }">
+        <div class="row grow absoluteFill" data-bind="tabControl: leftPanelElementsConfig()">
+            <div class="col no-shrink">
+                <!-- TODO change binding to new drawer -->
+                <div class="tabs drawer-tabs">
+                    <!--<div class="row center tab drawer-tab tab0 fa fa-plus fa-15x"></div>-->
+                </div>
+                <div class="tabs global-tabs"></div>
+                <div class="tabs module-tabs"></div>
+                <div class="tabs view-tabs"></div>
+            </div>
+            <div class="col grow collapsable panels"></div>
+        </div>
+        <div class="col switch" data-bind="click: toggleLeftPanel"></div>
+    </div>
+    <!-- /ko -->
+    <div class="col centerPanel grow">
+        <!-- ko if: showInputValue || hasActionButtons -->
+        <div class="row topPanel centerY">
+            <div class="col grow searchBox">
+                <!-- ko if: showInputValue -->
+                <!-- TODO bind placeholder value -->
+                <input placeholder="My Factory" data-bind="value: inputValue" />
+                <!-- /ko -->
+            </div>
+            <!-- ko if: hasActionButtons -->
+            <div class="col">
+                <div class="row" data-bind="foreach: actionButtons">
+                    <!-- TODO Add operation manager handler -->
+                    <div class="col center">
+                        <!-- TODO Implement the ability to use font or image as an action icon -->
+                        <div class="row" data-bind="css: $data.operationIcon"></div>
+                        <div class="row" data-bind="text: $data.operationName">Run</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- ko if: !!mainAreaComponent() -->
+        <div class="row grow editorArea">
+            <div data-bind="component: { name: mainAreaComponent() }" class="col grow designArea absoluteFill"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- ko if: rightPanelElementsConfig() -->
+    <div class="col rightSidePanel collapse width" data-bind="collapse: { expandOnClick: true, isExpanded: rightPanelIsExpanded }, visible: rightPanelEnabled">
+        <div class="absoluteFill col" data-bind="tabControl: rightPanelElementsConfig()">
+            <div class="row tabs view-tabs no-shrink">
+                <div class="col grow"></div>
+            </div>
+            <div class="row grow collapsable panels"></div>
+        </div>
+        <div class="col switch" data-bind="click: toggleRightPanel"></div>
+    </div>
+    <!-- /ko -->
+</div>

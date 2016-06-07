@@ -1,0 +1,40 @@
+.experimentSaveAsDialog {
+    font-family: "Segoe UI";
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.experimentSaveAsDialog h1 {
+    font-family: "Segoe UI";
+    font-weight: 200; /* Segoe UI Light */
+    font-size: 28px;
+    color: #505050
+}
+
+.contentDiv {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.enterNameLabel {
+    font-family: "Segoe UI";
+    font-weight: 400; /* Segoe UI */
+    font-size: 14px;
+    color: #444;
+    background: #ffffff;
+    margin-top: 4px;
+    float: left;
+}
+
+.experimentNameHelpLink{
+    float: right;
+}
+
+.enterField {
+    color: #434343;
+    padding: 7px 0;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #DDD;
+    padding-left: 3px;
+}

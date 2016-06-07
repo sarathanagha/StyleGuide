@@ -1,0 +1,174 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+*	ROW RULES
+*/
+.command-bar .commandbar-btn, .command-bar .commandbar-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+          align-self: stretch; }
+
+/*
+*	COLUMN RULES
+*/
+/*
+*	WRAP CONTENTS OF ROW OR COLUMN
+*/
+/*
+*	CENTER LAYOUT RULES (HORIZONTAL / VERTICAL CENTERING)
+*/
+/*
+*	SHRINK & STRETCH
+*/
+/* this is used primarily as an overwrite for the row { width: 100% } rule,
+    which causes problems when rendering a .col adjacent to a .row */
+/*
+* UTILITY CLASSES
+*/
+/*
+* VISIBILITY CLASSES
+*/
+.command-bar .space-between {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.command-bar .align-items-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.command-bar .commandbar-btn, .command-bar .commandbar-item {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-transform: capitalize; }
+  .command-bar .commandbar-btn .text, .command-bar .commandbar-item .text {
+    color: #585A5F;
+    white-space: nowrap; }
+  .command-bar .commandbar-btn.select-menu, .command-bar .commandbar-item.select-menu {
+    color: #006F94; }
+  .command-bar .commandbar-btn.select-menu .text, .command-bar .commandbar-item.select-menu .text {
+    color: #006F94; }
+  .command-bar .commandbar-btn.disabled, .command-bar .commandbar-item.disabled {
+    cursor: default;
+    opacity: 0.25;
+    filter: alpha(opacity=25); }
+
+.command-bar .commandbar-btn {
+  background-color: #FFF; }
+  .command-bar .commandbar-btn:hover:not(.disabled) {
+    background: rgba(0, 111, 148, 0.1); }
+  .command-bar .commandbar-btn .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px; }
+  .command-bar .commandbar-btn .icon-right {
+    margin-left: 8px;
+    margin-right: 0px; }
+  .command-bar .commandbar-btn.select-menu .icon svg {
+    fill: #006F94; }
+  .command-bar .commandbar-btn:active:not(.disabled) {
+    background-color: #55606E; }
+    .command-bar .commandbar-btn:active:not(.disabled) .text {
+      color: #FFF; }
+    .command-bar .commandbar-btn:active:not(.disabled) .icon svg {
+      fill: #FFF; }
+    .command-bar .commandbar-btn:active:not(.disabled) .back-btn {
+      background-image: url(../../../images/back_active.svg); }
+    .command-bar .commandbar-btn:active:not(.disabled) .copy-btn {
+      background-image: url(../../../images/copy_active.svg); }
+    .command-bar .commandbar-btn:active:not(.disabled) .delete-btn {
+      background-image: url(../../../images/delete_active.svg); }
+    .command-bar .commandbar-btn:active:not(.disabled) .sort-descending-btn {
+      background-image: url(../../../images/sort-descending_active.svg); }
+    .command-bar .commandbar-btn:active:not(.disabled) .chevron-down-btn {
+      background: url(../../../images/chevron-down_active.svg) no-repeat; }
+    .command-bar .commandbar-btn:active:not(.disabled) .list-view-btn {
+      background-image: url(../../../images/list-view_active.svg); }
+    .command-bar .commandbar-btn:active:not(.disabled) .tiles-view-btn {
+      background-image: url(../../../images/card-view_active.svg); }
+  .command-bar .commandbar-btn .back-btn {
+    background: url(../../../images/back.svg) no-repeat;
+    margin-right: 0px; }
+  .command-bar .commandbar-btn .copy-btn {
+    background: url(../../../images/copy.svg) no-repeat; }
+  .command-bar .commandbar-btn .delete-btn {
+    background: url(../../../images/delete.svg) no-repeat; }
+  .command-bar .commandbar-btn .sort-descending-btn {
+    background: url(../../../images/sort-descending.svg) no-repeat; }
+  .command-bar .commandbar-btn .chevron-down-btn {
+    background: url(../../../images/chevron-down.svg) no-repeat; }
+  .command-bar .commandbar-btn .list-view-btn {
+    background: url(../../../images/list-view.svg) no-repeat;
+    margin-right: 0px; }
+  .command-bar .commandbar-btn .tiles-view-btn {
+    background: url(../../../images/card-view.svg) no-repeat;
+    margin-right: 0px; }
+
+.command-bar .search-box {
+  height: 32px;
+  width: 100%;
+  margin-left: 40px;
+  margin-right: 64px;
+  min-width: 300px;
+  max-width: 500px; }
+
+.datacatalog-container #home-commandbar {
+  height: 48px;
+  width: 100%;
+  border-bottom: 1px solid #F2F2F2; }
+  .datacatalog-container #home-commandbar .commandbar-page-title {
+    color: #2C3137;
+    margin-right: 0px;
+    padding-right: 0; }
+
+.datacatalog-manualentry-modal-override .modal-content {
+  width: 700px; }
+
+/*# sourceMappingURL=commandBar.css.map */

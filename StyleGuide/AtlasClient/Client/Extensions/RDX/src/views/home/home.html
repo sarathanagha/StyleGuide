@@ -1,0 +1,46 @@
+﻿<div style="position: relative">
+    <div class="crystalHome">
+        <div class="toast" data-bind="toast: rdxContext.feedbackSubmitted()">
+            <div>Thanks for the feedback!<br />We'll get right on it 😉</div>
+            <span data-bind="click: function(){rdxContext.feedbackSubmitted(false)}">&times;</span>
+        </div>
+        <div class="feedbackForm" style="display: none" data-bind="slideVisible: rdxContext.feedbackFormVisible">
+            <textarea rows="4" data-bind="textInput: rdxContext.feedback"></textarea>
+            <div class="primaryButton" data-bind="click: function(){rdxContext.feedbackFormVisible(false); rdxContext.submitFeedback();}">Submit</div>
+            <div class="secondaryButton" data-bind="click: function(){rdxContext.feedback(''); rdxContext.feedbackFormVisible(false);}">Cancel</div>
+        </div>
+        <div class="rdxTopPanel" data-bind="component: { name: 'rdx-rdxTopPanel', params: {rdxContext: rdxContext} }"></div>
+        <!--<div class="resultsPanel" data-bind="visible: rdxContext.showingHelpContent()">
+            <div class="card">
+                <div data-bind="component: {name: 'rdx-helpContent', params: {rdxContext: rdxContext }}"></div>
+            </div>
+        </div>-->
+        <div class="resultsPanel">
+            <div class="visualizationWrapper card">
+                <span class="eventCount" data-bind="text: heatmap.eventsSelected().toLocaleString('en') + ' Events Selected'"></span>
+                <div class="progressBar" data-bind="component: {name: 'rdx-progressBar', params: {progressMessage: heatmap.progressMessage, progressPercentage: heatmap.progressPercentage}}"></div>
+                <div class="navTabWrapper">
+                    <span class="navTab" data-bind="css: { selected: heatmap.selectedVisualization() == 'bar' || heatmap.selectedVisualization() == 'line' }, click: function(){heatmap.selectedVisualization('line'); rdxContext.telemetryClient.logUserAction('changedVisualization', {selectedVisualization: 'line'}); heatmap.triggerRerender(); }">Chart</span>
+                    <span class="navTab" data-bind="css: { selected: heatmap.selectedVisualization() == 'heatmap' }, click: function(){heatmap.selectedVisualization('heatmap'); rdxContext.telemetryClient.logUserAction('changedVisualization', {selectedVisualization: 'heatmap'}); heatmap.triggerRerender(); }">Heatmap</span>
+                    <span class="navTab" data-bind="css: { selected: heatmap.selectedVisualization() == 'overview' }, click: function(){heatmap.selectedVisualization('overview'); rdxContext.telemetryClient.logUserAction('changedVisualization', {selectedVisualization: 'overview'}); heatmap.triggerRerender(); }">Overview</span>
+                </div>
+                <div class="clusterBreadcrumbs" data-bind="foreach: rdxContext.clusterBreadcrumbs">
+                    <span data-bind="text: clusterName, click: rdxContext.streamEventSourceHits(true)"></span>
+                </div>
+                <div class="visualizationComponentWrapper">
+                    <div class="settingsPanelWrapper">
+                        <div class="settingsPanel" data-bind="component: { name: 'rdx-groupBy', params: {rdxContext: rdxContext}  }, visible: settingsPanelOpen"></div>
+                        <div class="settingsPanelToggle" data-bind="visible: !settingsPanelOpen(), click: function(){settingsPanelOpen(!settingsPanelOpen()); heatmap.triggerRerender();}, style: {marginLeft: settingsPanelOpen() ? '160px' : '0px' } "><div><div class="fa chevron-right"></div> Settings</div></div>
+                    </div>
+                    <div data-bind="visible: heatmap.noResults(), component: { name: 'rdx-noResults', params: {rdxContext: rdxContext} }" ></div>
+                    <div data-bind="visible: !heatmap.noResults() && heatmap.selectedVisualization() == 'heatmap', component: { name: 'rdx-heatmap', params: {rdxContext: rdxContext} }, style: {marginLeft: settingsPanelOpen() ? '180px' : '28px' } "></div>
+                    <div data-bind="visible: !heatmap.noResults() && heatmap.selectedVisualization() == 'bar', component: { name: 'rdx-barChart', params: {rdxContext: rdxContext} }"></div>
+                    <div data-bind="visible: !heatmap.noResults() && heatmap.selectedVisualization() == 'overview', component: { name: 'rdx-heatmapOverview', params: {rdxContext: rdxContext} }"></div>
+                    <div data-bind="visible: !heatmap.noResults() && heatmap.selectedVisualization() == 'line', component: { name: 'rdx-lineChart', params: {rdxContext: rdxContext} }"></div>
+                </div>
+            </div>
+            <div data-bind="component: { name: 'rdx-grid', params: {rdxContext: rdxContext} }"></div>
+            <a target="_blank" class="termsOfUse" href="https://rdxint.cloudapp.net/node_modules/@ms-atlas-module/datastudio-rdx/content/TermsOfUse.PDF">Terms of use</a><a target="_blank" class="privacyLink" href="http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx">Privacy &amp; Cookies</a><span class="copyright">© 2015 Microsoft</span>
+        </div>
+    </div>
+</div> 

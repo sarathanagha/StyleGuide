@@ -1,0 +1,59 @@
+﻿<div class="tabContainer verticalInflexibleElement" style="margin-top:10px;margin-bottom:10px">
+    <div class="tab" data-bind="css:{selected:previewSelected()}, event: {click:selectPreview}">
+        Preview
+    </div>
+    <div class="tab" data-bind="css:{selected:!previewSelected()}, event: {click:selectSchema}">
+        Schema
+    </div>
+</div>
+<div style="overflow:auto" class="verticalFlexibleElement">
+    <!-- ko if:previewSelected -->
+    <div data-bind="text:previewMessage"></div>
+    <!-- ko if: preview() -->
+    <table style="border-collapse:collapse">
+        <tr class="previewTableRow">
+            <!-- ko foreach:preview().columns-->
+            <th>
+                <div data-bind="text:$data" class="tableCellDiv tableHeaderDiv"></div>
+            </th>
+            <!-- /ko -->
+        </tr>
+        <tbody data-bind="foreach:preview().rows">
+            <tr class="previewTableRow">
+                <!-- ko foreach: $data -->
+                <td>
+                    <div data-bind="text:$data" class="tableCellDiv"></div>
+                </td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko ifnot: previewSelected -->
+    <div data-bind="text:schemaMessage"></div>
+    <!-- ko if:schema() -->
+    <table style="border-collapse:collapse">
+        <tr class="previewTableRow">
+            <th>
+                <div class="tableCellDiv tableHeaderDiv">Name</div>
+            </th>
+            <th>
+                <div class="tableCellDiv tableHeaderDiv">Type</div>
+            </th>
+        </tr>
+        <tbody data-bind="foreach:schema">
+            <tr class="previewTableRow">
+
+                <td>
+                    <div data-bind="text:$data.name" class="tableCellDiv"></div>
+                </td>
+                <td>
+                    <div data-bind="text:$data.type" class="tableCellDiv"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko -->
+    <!-- /ko -->
+</div>

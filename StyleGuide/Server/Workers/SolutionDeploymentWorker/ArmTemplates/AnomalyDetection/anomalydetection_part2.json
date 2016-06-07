@@ -1,0 +1,482 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataFactoryName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63
+        },
+        "storageAccountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 24
+        },
+        "asaTransformQuery": {
+            "type": "string",
+            "defaultValue": "SELECT host_name as hostname, metric_name as metricname, Sum(metric_value) as value, System.TIMESTAMP as time INTO [asaEgress] FROM [asaIngress] TIMESTAMP By EventEnqueuedUtcTime GROUP BY TumblingWindow(Minute, 5), host_name, metric_name",
+            "metadata": {
+                "description": "Transform query for Stream Analytics Job"
+            }
+        },
+        "mLEndpointBatchLocation": {
+            "type": "string",
+            "minLength": 3,
+            "defaultValue": "https://api.datamarket.azure.com/data.ashx/aml_labs/anomalydetection/v1/Score?"
+        },
+        "mLEndpointKey": {
+            "type": "string",
+            "minLength": 3
+        },
+        "mLParams": {
+            "type": "string",
+            "defaultValue": "SpikeDetector.TukeyThresh=1; SpikeDetector.ZscoreThresh=1"
+        },
+        "rawDataInterval": {
+            "type": "int",
+            "defaultValue": 15,
+            "minValue": 15, //ADF seems to support minimum of 15 minutes as slice duration, by default.
+            "maxValue": 1051200 //2 years in minutes
+        },
+        "nowTime": {
+            "type": "string"
+        },
+        "nowPlusTenYearsTime": {
+            "type": "string"
+        },
+        //To conform to ST code requirements
+        "startTime": {
+            "type": "string",
+            "defaultValue": "2015-11-30T00:00:00Z"
+        },
+        "endTime": {
+            "type": "string",
+            "defaultValue": "2025-11-30T00:00:00Z"
+        }
+        //End of - To conform to ST code requirements
+    },
+    "variables": {
+        "apiVersion": "2014-10-01-preview",
+
+        "ehInName": "[concat(parameters('dataFactoryName'), 'ehingress')]",
+        "sbVersion": "[providers('Microsoft.Eventhub', 'namespaces').apiVersions[0]]",
+        "sbName": "[concat(parameters('dataFactoryName'), 'servicebus')]",
+        "sbKeyName": "RootManageSharedAccessKey",
+        "sbResourceId": "[resourceId('Microsoft.Eventhub/namespaces/authorizationRules', variables('sbName'), variables('sbKeyName'))]",
+        "saJobName": "[concat(parameters('dataFactoryName'), 'sajob')]",
+        "saVersion": "2015-10-01",
+
+        "dataFactoryVersion": "[providers('Microsoft.DataFactory', 'dataFactories').apiVersions[0]]",
+        "dataFactoryName": "[concat(parameters('dataFactoryName'), 'datafactory')]",
+        "pipelineName": "Anomaly-Detection-Pipeline",
+
+        "storageLinkedServiceName": "Storage-LinkedService",
+        "hdinsightLinkedServiceName": "HDInsight-LinkedService",
+
+        "storageAccountNameToLower": "[toLower(parameters('storageAccountName'))]",
+        "storageAccountUrls": "[replace('BlobEndpoint=https://$$STORAGEACCNAME$$.blob.core.windows.net/;TableEndpoint=https://$$STORAGEACCNAME$$.table.core.windows.net/;QueueEndpoint=https://$$STORAGEACCNAME$$.queue.core.windows.net/;FileEndpoint=https://$$STORAGEACCNAME$$.file.core.windows.net/', '$$STORAGEACCNAME$$', variables('storageAccountNameToLower'))]",
+        "storageAccountType": "Standard_LRS",
+        "storageAccountConnectionStringPartial": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameToLower'), ';AccountKey=', '$$ACCOUNTKEY$$', ';', variables('storageAccountUrls'))]",
+
+        "sourceRawDatasetTableName": "Source-Raw-Dataset",
+        "sourceDatasetAvailabilityFrequency": "Minute", //Currently only supporting 'Minute' since there is no way to apply conditional logic while using the same in Time* functions later.
+        "sourceDatasetAvailabilityInterval": "[parameters('rawDataInterval')]",
+
+        "intermediateMLInputDataADFTableName": "Intermediate-ML-Dataset",
+
+        "analyzedDatasetNameToUse": "Analyzed-AD-Dataset",
+        "analyzedDatasetFolderPathPrefix": "[concat('factory-data/', variables('dataFactoryName'), '/', variables('analyzedDatasetNameToUse'))]",
+        "analyzedDatasetAvailabilityFrequency": "[variables('sourceDatasetAvailabilityFrequency')]", //Use same fequency as raw cache dataset
+        "analyzedDatasetAvailabilityInterval": "[variables('sourceDatasetAvailabilityInterval')]", //Use same interval as raw cache dataset
+
+        "customActivityPackagesStorageLinkedServiceName": "Custom-Activity-Packages-Storage-LinkedService",
+        "customActivityPackagesStorageConnectionStringPartial": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameToLower'), ';AccountKey=', '$$ACCOUNTKEY$$', ';', variables('storageAccountUrls'))]"
+    },
+    "resources": [
+        {
+            // Stream Analytics Job
+            "apiVersion": "[variables('saVersion')]",
+            "type": "Microsoft.StreamAnalytics/streamingjobs",
+            "name": "[variables('saJobName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "sku": { "name": "standard" },
+                "EventsOutOfOrderMaxDelayInSeconds": 10,
+                "EventsOutOfOrderPolicy": "adjust",
+                "Inputs": [
+                    {
+                        "Name": "asaIngress",
+                        "Properties": {
+                            "DataSource": {
+                                "Properties": {
+                                    "ConsumerGroupName": "",
+                                    "EventHubName": "[variables('ehInName')]",
+                                    "ServiceBusNamespace": "[variables('sbName')]",
+                                    "SharedAccessPolicyKey": "[listkeys(variables('sbResourceId'), variables('sbVersion')).primaryKey]",
+                                    "SharedAccessPolicyName": "[variables('sbKeyName')]"
+                                },
+                                "Type": "Microsoft.ServiceBus/EventHub"
+                            },
+                            "Serialization": {
+                                "Properties": {
+                                    "Encoding": "UTF8"
+                                },
+                                "Type": "Json"
+                            },
+                            "Type": "Stream"
+                        }
+                    }
+                ],
+                "Outputs": [
+                    {
+                        "Name": "asaEgress",
+                        "Properties": {
+                            "DataSource": {
+                                "Properties": {
+                                    "Container": "inputasa",
+                                    "DateFormat": "yyyy-MM-dd",
+                                    "TimeFormat": "HH",
+                                    "PathPattern": "logs/datetimeid={date}-{time}",
+                                    "StorageAccounts": [
+                                        {
+                                            "AccountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameToLower')), '2015-06-15').key1]",
+                                            "AccountName": "[variables('storageAccountNameToLower')]"
+                                        }
+                                    ]
+                                },
+                                "Type": "Microsoft.Storage/Blob"
+                            },
+                            "Serialization": {
+                                "Properties": {
+                                    "Encoding": "UTF8",
+                                    "Format": "Array",
+                                    "FieldDelimiter": ","
+                                },
+                                "Type": "CSV"
+                            }
+                        }
+                    }
+                ],
+                "Transformation": {
+                    "Name": "AllToBlob",
+                    "Properties": {
+                        "Query": "[parameters('asaTransformQuery')]",
+                        "StreamingUnits": 1
+                    }
+                },
+                "OutputStartMode": "CustomTime",
+                "OutputStartTime": "[parameters('startTime')]"
+            }
+        },
+        {
+            //Data factory
+            "name": "[variables('dataFactoryName')]",
+            "type": "Microsoft.DataFactory/dataFactories",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "[variables('dataFactoryVersion')]",
+            "dependsOn": [
+                "[concat('Microsoft.StreamAnalytics/streamingjobs/', variables('saJobName'))]"
+            ],
+            "resources": [
+                {
+                    //Custom Activity Packages Storage linked service
+                    //Currently, it is same as the runtime storageLinkedService
+                    //However, it could be different, for keeping static data (DLLs, etc.) and runtime data in different locations.
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('customActivityPackagesStorageLinkedServiceName')]",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "properties": {
+                        "typeProperties": {
+                            "connectionString": "[replace(variables('customActivityPackagesStorageConnectionStringPartial'), '$$ACCOUNTKEY$$', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameToLower')), '2015-06-15').key1)]",
+                        },
+                        "type": "AzureStorage"
+                    }
+                },
+                {
+                    //Storage linked service
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('storageLinkedServiceName')]",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "properties": {
+                        "typeProperties": {
+                            "connectionString": "[replace(variables('storageAccountConnectionStringPartial'), '$$ACCOUNTKEY$$', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameToLower')), '2015-06-15').key1)]",
+                        },
+                        "type": "AzureStorage"
+                    }
+                },
+                {
+                    //Compute (HDInsight) linked service
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('hdinsightLinkedServiceName')]",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "properties": {
+                        "typeProperties": {
+                            "version": "3.1",
+                            "clusterSize": 1,
+                            "timeToLive": "06:00:00",
+                            "jobsContainer": "adfad",
+                            "coreConfiguration": { },
+                            "hBaseConfiguration": { },
+                            "hdfsConfiguration": { },
+                            "hiveConfiguration": { },
+                            "mapReduceConfiguration": { },
+                            "oozieConfiguration": { },
+                            "sparkConfiguration": { },
+                            "stormConfiguration": { },
+                            "yarnConfiguration": { },
+                            "additionalLinkedServiceNames": [ ],
+                            "linkedServiceName": "[variables('storageLinkedServiceName')]"
+                        },
+                        "type": "HDInsightOnDemand"
+                    }
+                },
+                {
+                    //Input dataset - raw data from ASA
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "name": "[variables('sourceRawDatasetTableName')]",
+                    "properties": {
+                        /* the structure need to change according to each project */
+                        "structure": [
+                            {
+                                "name": "hostname",
+                                "type": "String"
+                            },
+                            {
+                                "name": "metricname",
+                                "type": "String"
+                            },
+                            {
+                                "name": "value",
+                                "type": "Double"
+                            },
+                            {
+                                "name": "time",
+                                "type": "Datetime"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "inputasa/logs/datetimeid={year}-{month}-{day}-{hour}",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            },
+                            "partitionedBy": [
+                                {
+                                    "name": "year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "Minute",
+                            "interval": 15
+                        },
+                        "external": true,
+                        "policy": { }
+                    }
+                },
+                {
+                    /* This is the ADF table the ETLed by Hive for preparing the data for ML scoring*/
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "name": "[variables('intermediateMLInputDataADFTableName')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Time",
+                                "type": "Datetime"
+                            },
+                            {
+                                "name": "Data",
+                                "type": "Int32"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "fileName": "000000_0",
+                            "folderPath": "hive/hiveoutput",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "Minute",
+                            "interval": 15
+                        }
+                    }
+                },
+                {
+                    //Analyzed dataset
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('analyzedDatasetNameToUse')]",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "properties": {
+                        "published": false,
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[variables('analyzedDatasetFolderPathPrefix')]",
+                            "fileName": "analyzed.csv",
+                            "partitionedBy": [
+                                {
+                                    "name": "Slice",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyyMMddHHmm"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ",",
+                                "nullValue": "NaN"
+                            }
+                        },
+                        "availability": {
+                            "frequency": "[variables('analyzedDatasetAvailabilityFrequency')]",
+                            "interval": "[variables('analyzedDatasetAvailabilityInterval')]"
+                        }
+                    }
+                },
+                {
+                    //Pipeline
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('customActivityPackagesStorageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdinsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('sourceRawDatasetTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('intermediateMLInputDataADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('analyzedDatasetNameToUse'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('pipelineName')]",
+                    "apiVersion": "[variables('dataFactoryVersion')]",
+                    "properties": {
+                        "description": "[Ver 1.0] Pipeline to process data through Azure ML",
+                        "activities": [
+                            {
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptPath": "anomalydetection\\scripts\\HiveQuery.hql",
+                                    "scriptLinkedService": "[variables('customActivityPackagesStorageLinkedServiceName')]",
+                                    "defines": {
+                                        "Input": "[replace('wasb://inputasa@$$STORAGEACCNAME$$.blob.core.windows.net/logs/', '$$STORAGEACCNAME$$', variables('storageAccountNameToLower'))]",
+                                        "Output": "[replace('wasb://hive@$$STORAGEACCNAME$$.blob.core.windows.net/hiveoutput/', '$$STORAGEACCNAME$$', variables('storageAccountNameToLower'))]",
+                                        "StartTime": "$$Text.Format('{0:yyyy-MM-dd-HH}',Time.AddHours(SliceEnd, -168))",
+                                        "EndTime": "$$Text.Format('{0:yyyy-MM-dd-HH}',SliceEnd)",
+                                        "StartTimeInMin": "$$Text.Format('{0:yyyy-MM-dd HH:mm:00}',Time.AddHours(SliceEnd, -168))",
+                                        "EndTimeInMin": "$$Text.Format('{0:yyyy-MM-dd HH:mm:00}',SliceEnd)"
+                                    }
+                                },
+                                "inputs": [ { "name": "[variables('sourceRawDatasetTableName')]" } ],
+                                "outputs": [ { "name": "[variables('intermediateMLInputDataADFTableName')]" } ],
+                                "policy": {
+                                    "timeout": "01:00:00",
+                                    "concurrency": 1,
+                                    "retry": 2
+                                },
+                                "scheduler": {
+                                    "frequency": "Minute",
+                                    "interval": 15
+                                },
+                                "name": "HiveActivity",
+                                "linkedServiceName": "[variables('hdinsightLinkedServiceName')]"
+                            },
+                            {
+                                "name": "AnalyzeData",
+                                "description": "Component to invoke analysis of data using Azure ML",
+                                "linkedServiceName": "[variables('hdinsightLinkedServiceName')]",
+                                "type": "DotNetActivity",
+                                "typeProperties": {
+                                    "assemblyName": "AnomalyDetectionCustomActivities.dll",
+                                    "entryPoint": " AnomalyDetectionCustomActivity.Activities.MarketplaceApiMlActivity",
+                                    "packageLinkedService": "[variables('customActivityPackagesStorageLinkedServiceName')]",
+                                    "packageFile": "anomalydetection/AnomalyDetectionCustomActivity.zip",
+                                    "extendedProperties": {
+                                        "mLEndpointBatchLocation": "[parameters('mLEndpointBatchLocation')]",
+                                        "mLEndpointKey": "[parameters('mLEndpointKey')]",
+                                        "mLParams": "[string(parameters('mLParams'))]"
+                                    }
+                                },
+                                "inputs": [ { "name": "[variables('intermediateMLInputDataADFTableName')]" } ],
+                                "outputs": [ { "name": "[variables('analyzedDatasetNameToUse')]" } ],
+                                "policy": {
+                                    "timeout": "00:10:00",
+                                    //"concurrency": 1,
+                                    "retry": 3
+                                }
+                            }
+                        ],
+                        "start": "[parameters('nowTime')]",
+                        "end": "[parameters('nowPlusTenYearsTime')]"
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "exampleOutput": {
+            "value": "[deployment()]",
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,92 @@
+﻿@import 'mixins/fonts';
+@import 'colors';
+@import 'constants/fonts';
+
+/* Font Size Class Name */
+
+.dsux-font-super {   
+    font-size: $fontSizeSuper;
+}
+
+.dsux-font-xxl {   
+    font-size: $fontSizeXXL;
+}
+
+.dsux-font-xl {   
+   font-size: $fontSizeXL;
+}
+
+.dsux-font-l {   
+   font-size: $fontSizeL;
+}
+
+.dsux-font-m {   
+  font-size: $fontSizeM;
+}
+
+.dsux-font-s {   
+  font-size: $fontSizeS;
+}
+
+/* Font Weight */
+
+.dsux-weight-r {
+   font-weight: $fontWeightR;  
+}
+
+.dsux-weight-l { 
+     font-weight: $fontWeightL;   
+}
+
+.dsux-weight-sl {   
+     font-weight: $fontWeightSL; 
+}
+
+.dsux-weight-sb {  
+    font-weight: $fontWeightSB;  
+}
+
+/* Typography */
+
+h1, h2, h3 {
+  color: $neutralTertiaryColorAlt;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 { 
+   @include fontSizeTitle($fontWeightL,42px,58px);
+}
+
+h2 {  
+   @include fontSizeTitle($fontWeightR,28px,40px);
+}
+
+h3 {
+   @include fontSizeTitle($fontWeightR,21px,40px);
+}
+
+h4 {
+   @include fontSizeTitle($fontWeightR,17px,40px);
+}
+
+h5 {
+   @include fontSizeTitle($fontWeightSB,14px,40px);
+}
+
+h6 {
+   @include fontSizeTitle($fontWeightSB,12px,40px);
+}
+
+p {
+  font-size: $fontSizeM;
+  line-height: 20px;
+}
+
+.subtle {
+  color: $neutralTertiaryColorAlt2;
+  font-size: $fontSizeM;
+  line-height: 20px;
+}
+
+

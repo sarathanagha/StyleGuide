@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<ConfigList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Config Type="Abstract" Name="MonitoringBvt" Base="MonitoringCommon">
+    <Settings>
+      <Setting Name="WASubscriptionID">c1f78922-45c1-415f-b0ed-886b102d35de</Setting>
+      <Setting Name="WALocation">East US 2</Setting>
+      <Setting Name="SecretStore">test</Setting>
+      <Setting Name="ServiceName">$(RootNamespace)/test/$(DeploymentName)</Setting>
+      <Setting Name="ManagementCertPathInSecretStore">$(RootNamespace)/test/WAAPICertificate</Setting>
+
+      <Setting Name="MSFERoleInstances">2</Setting>
+      <Setting Name="MSWRRoleInstances">3</Setting>
+    </Settings>
+    <HostedService Type="Package" Name="$(DeploymentName)">
+    </HostedService>
+  </Config>
+  <!-- deployment tooling requires one non-abstract target environment; its values will be set from the deployment tool -->
+  <Config Type="Sealed" Name="MonitoringBvt-base" Base="MonitoringBvt">
+  </Config>
+</ConfigList>

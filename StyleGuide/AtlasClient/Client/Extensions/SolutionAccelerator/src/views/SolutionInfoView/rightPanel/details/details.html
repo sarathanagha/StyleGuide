@@ -1,0 +1,22 @@
+<div class="right-panel detail-panel">
+    <div class="side-pane-section-header">Properties</div>
+    <div class="resourceBox">
+        <div class="titleName">Name</div>
+        <div class="resourceName" data-bind="text: name"></div>
+    </div>
+    <div class="deploymentStatusBox" data-bind="visible: !!showDeploymentStatus()">
+        <div class="titleStatus">Deployment Status</div>
+        <div class="statusImage" data-bind="visible: !!statusIconCssClass(), css: statusIconCssClass()"></div>
+        <div class="statusMessage" data-bind="text: statusMessage()"></div>
+    </div>
+    <div class="resourceBox error-container" data-bind="visible: showError()">
+        <div class="error-message error-text" data-bind="foreach: errors">
+            <span data-bind="text: $data.message"></span>
+        </div>
+    </div>
+    <a class="btn btn-primary openButton" data-bind="visible: showOpenButton(), attr: { href: resourceUrl }" target="_blank">
+        <span data-bind="text: resourceLinkText">Open</span> <div class="linkImage"></div>
+    </a>
+    <div class="horizontalBar"></div>
+    <div class="detail" data-bind="html: details"></div>
+</div>

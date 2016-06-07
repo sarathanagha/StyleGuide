@@ -1,0 +1,19 @@
+<div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded:visible, iconFirst: true}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText" data-bind="text: headerText"></div>
+    </div>
+    <div class="dataFactory-activityTool-body">
+        <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: existingStorageLinkedServices}}"></div>
+        <div data-bind="visible: creatingNew">
+            <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: newLinkedServiceProperties.linkedServiceName} }"></div>
+            <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: newLinkedServiceProperties.selectionMethod}}"></div>
+            <div data-bind="visible: newLinkedServiceProperties.selectionMethod.value() == 0">
+                <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: newLinkedServiceProperties.existingStorageAccounts}}"></div>
+            </div>
+            <div data-bind="visible: newLinkedServiceProperties.selectionMethod.value() == 1">
+                <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: newLinkedServiceProperties.manualEntry.accountUri} }"></div>
+                <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: newLinkedServiceProperties.manualEntry.accountPassword} }"></div>
+            </div>
+        </div>
+    </div>
+</div>

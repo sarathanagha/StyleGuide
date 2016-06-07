@@ -1,0 +1,167 @@
+﻿ $accentColor: #03b092;
+ 
+.dataConnectHome {
+  background-color: #f7f7f7;
+  padding: 1em 2em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  a span, a div {
+    color: initial
+  }
+
+  .header {
+    h1 {
+      font-size: 3em;
+      font-weight: 200; /* Light */
+    }
+    padding-bottom: 2em;
+  }
+
+  .content {
+    > .col {
+      margin-right: 2em;
+
+    }
+  }
+
+  /* TODO Change to h? tag and move to the DataStudio css, update all references */
+  .sectionTitle {
+    font-weight: 400;
+    font-size: 1.1em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    line-height: 2.6em;
+  }
+
+  .insightDashBoard {
+    .row {
+      padding: 0.5em;
+    }
+  }
+
+  .content.row > .col {
+    padding-right: 2em;
+  }
+
+  .homeHeader {
+        font-size: 5em;
+        color:$accentColor;
+  }
+
+    .quickTask {
+      button {
+        font-size: 1em;
+        margin: 0.5em;
+        min-height: 14px;
+        cursor: pointer;
+        color: black;
+        background-color: lightgray;
+      }
+    }
+
+    .notifications {
+        min-height: 12em;
+
+        .notificationItem {
+            cursor: pointer;
+            padding-right: 1em;
+        
+            .notificationTile {
+                height:1.5em;
+                width:1.5em;
+                margin-right:1em;
+            }
+
+            .title {
+                font-size: 1em;
+                font-weight: 200;
+            }
+
+            .time {
+                font-size:xx-small;
+            }
+        }
+
+        .notificationItem:hover {
+            background-color: #eeeeee;
+        }
+    }
+
+ .homeSection1 {
+    width:20em;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+
+    .statusTile {
+        max-width:16em;
+        min-width:16em;
+        background-color: lightgrey;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        padding-left: 3em;
+        padding-right: 0em;
+        margin-right: 0em;
+    }
+
+    .statusTileCount{
+        font-size:5em;
+        padding-right:.1em;
+    }
+
+    .statusTileText{
+        padding-top:4em;
+        padding-right:1em;
+    }
+    
+    .homePageItem {
+      padding: 1em;
+      .icon {
+        font-size: 6em;
+      }
+      .image{
+          align-items: center;
+      }
+
+      .title {
+        color: $accentColor;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+
+    .titledListItems {
+        .titledListItem {
+            line-height: 2em;
+            > .col {
+                    padding-right: 0.5em;
+               }
+        }
+
+        .icon {
+            color: white;
+        }
+
+        .titledListItemTitle {
+            cursor: pointer;
+            color: black;
+            font-size: 0.9em;
+            font-weight: 200;
+        }
+    }
+
+   }
+  }
+  
+  .insightDashBoard {
+    margin-top: 2em;
+    
+    .col {
+      padding-right: 1em;
+    }
+  }
+  
+  justify-content: flex-start;
+}

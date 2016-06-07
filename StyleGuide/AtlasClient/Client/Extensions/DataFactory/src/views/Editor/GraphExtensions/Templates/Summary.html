@@ -1,0 +1,13 @@
+<div class='baseNode summaryNode' data-bind='css: displayClasses()' style="padding: 0">
+	<div class="header">
+        <div class="summaryText row">
+            <div class="summaryIcon icon" data-bind="html: _summaryIcon"></div><span data-bind="text: _summaryText"></span>
+        </div>
+    </header>
+    <div class="icons row" data-bind="foreach: subCollections">
+        <div class="col">
+            <div class="icon" data-bind="html: icon"></div>
+            <div class="count" data-bind="text: count"></div>
+        </div>
+    </div>
+</div>

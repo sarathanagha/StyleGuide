@@ -1,0 +1,47 @@
+﻿@import "../../../styles/variables";
+
+.textarea {
+    font-size: 12px;
+
+    span {
+        text-transform: capitalize;
+        font-weight: bold;
+        margin-top: 10px;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    textarea {
+        width:100%;
+        height: 60px;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    
+    @mixin theme {
+        $dark-border: $default-dark-gray;
+        $input-background: $default-input-background-color;
+        $body-color-light: $default-body-color-light;
+        $error-color: $default-error-text-color;
+
+        & {
+            textarea {
+                border: 1px solid $dark-border;
+                background-color: $input-background;
+
+                &:focus {
+                    background-color: $body-color-light;
+                }
+            }
+
+            .invalid {
+                border: 1px solid $error-color !important;
+                background-color: $body-color-light !important;
+            }
+        }
+    }
+
+    @include theme;
+}

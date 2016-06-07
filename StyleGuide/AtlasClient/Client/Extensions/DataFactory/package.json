@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+  },
+  "scripts": {
+    "prereq": "prereq.cmd",
+    "karma": "node node_modules/karma/bin/karma"
+  }
+}

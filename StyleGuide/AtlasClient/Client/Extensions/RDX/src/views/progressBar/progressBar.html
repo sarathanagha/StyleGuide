@@ -1,0 +1,7 @@
+﻿<div data-bind="visible: progressPercentage() != 0">
+    <div class="progressBarOuter" data-bind="visible: progressPercentage() != 100">
+        <div class="progressBarInner" data-bind="style: {width: progressPercentage() + '%'}"></div>
+    </div>
+    <span class="progressMessageSmall" data-bind="html: progressMessage, visible: progressPercentage() != 100"></span>
+    <span class="progressMessageLarge" data-bind="html: progressMessage, visible: progressPercentage() == 100"></span>
+</div>

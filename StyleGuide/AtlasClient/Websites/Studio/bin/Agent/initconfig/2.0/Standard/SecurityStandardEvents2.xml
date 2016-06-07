@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2011-08-23T20:08:38.0823856Z" >
+
+  <Events>
+
+    <!-- plugin Audit API component -->
+    <EtwProviders>
+      <EtwProvider guid="72195a52-db5a-4282-8a8e-1a64cf429e61" format="Manifest" storeType="Central" priority="High" deadline="PT7M">
+        <Event id="0" eventName="AuditTraceEvent" />
+        <Event id="1" eventName="AuditTraceEvent" />
+        <Event id="3" eventName="AuditTraceEvent" />
+      </EtwProvider>
+    </EtwProviders>
+
+    <!-- IMPORTANT, below configuration uses "AuditStore" alias attribute defined in the main MDS config Account element which a new capbility from MDS21 -->
+    <WindowsEventLogSubscriptions>
+      <Subscription eventName="ApplicationSecurityEvents"
+                    query="Security!*[System[Provider[@Name='WindowsAzureApplicationAudits']]]"
+                    storeType="Central"
+                    priority="High"
+                    account="AuditStore"
+                    duration="PT1M"
+                    retentionInDays="180">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="ManagementSecurityEvents"
+                    query="Security!*[System[Provider[@Name='WindowsAzureManagementAudits']]]"
+                    storeType="Central"
+                    priority="High"
+                    account="AuditStore"
+                    duration="PT1M"
+                    retentionInDays="90">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="SystemSecurityEvents"
+                    query="Security!*[System[Provider[@Name!='WindowsAzureApplicationAudits' and @Name!='WindowsAzureManagementAudits' and @Name!='WindowsAzureTestEvent']]]"
+                    storeType="Central"
+                    priority="Normal"
+                    account="AuditStore"
+                    deadline="PT7M"
+                    retentionInDays="90">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+
+        <Column name="EventID">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Version">
+          <Value>/Event/System/Version</Value>
+        </Column>
+        <Column name="Level">
+          <Value>/Event/System/Level</Value>
+        </Column>
+        <Column name="Task">
+          <Value>/Event/System/Task</Value>
+        </Column>
+        <Column name="OpCode">
+          <Value>/Event/System/Opcode</Value>
+        </Column>
+        <Column name="Keywords">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Correlation">
+          <Value>/Event/System/Correlation</Value>
+        </Column>
+        <Column name="ProcessId">
+          <Value>/Event/System/Execution/@ProcessID</Value>
+        </Column>
+        <Column name="ThreadId">
+          <Value>/Event/System/Execution/@ThreadID</Value>
+        </Column>
+        <Column name="Computer">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="HeartBeatAuditEvents" query="Security!*[System[Provider[@Name='WindowsAzureTestEvent']]]" storeType="Central" priority="Normal" deadline="PT7M">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+    </WindowsEventLogSubscriptions>
+
+  </Events>
+
+</MonitoringManagement>

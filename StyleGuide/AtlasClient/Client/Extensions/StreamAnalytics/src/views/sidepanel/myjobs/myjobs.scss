@@ -1,0 +1,27 @@
+﻿@import "../../../../../../Core/DataStudio/src/stylesheets/Framework/Base/layoutBase";
+.jstree-icon.none{
+  display: none;
+}
+
+.jstree-default > .jstree-no-dots {
+
+  .jstree-opened > .jstree-ocl {
+
+  }
+
+  %fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0); }
+
+  .jstree-closed > .jstree-ocl {
+    @extend %fa;
+    content: "\f078";
+  }
+}

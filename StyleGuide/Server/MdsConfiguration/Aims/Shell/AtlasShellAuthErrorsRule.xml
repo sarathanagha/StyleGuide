@@ -1,0 +1,65 @@
+<Configuration>
+  <OutputExtensions>
+    <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+      <Setting Name="tenant" Value="AtlasDataStudio"/>
+    </OutputExtension>
+  </OutputExtensions>
+
+  <GlobalDefinitions>
+    <![CDATA[
+        let ConfigOwnerAlias = "atlaslivesitemonitor@microsoft.com"
+        let ServiceName = "Atlas"
+        
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+    ]]>
+  </GlobalDefinitions>
+
+  <Rule id="AuthenticationErrorsIncident" windowSize="PT15M" windowHopSize="PT15M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasTraceLogError.*", 0)
+          where moduleName == "Application" and loggerName == "ServerAuthenticationManager"
+          groupby SourceTableName, RoleInstance, message, additionalProperties
+
+        let ErrorCount = Count()
+        let EventName = "AuthenticationError"
+        
+        let TsgId = "1200202"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200202%20-%20Authentication%20errors%7C9ED7963B-61F8-4BFA-A3BD-C4D955C54F2D%2F%29"
+
+        let Title = "Auth manager: There were atleast $(ErrorCount) errors encountered in $(SourceTableName)"
+        let Description = "Please check additionalProperties that might have more context (like error callstack)"
+
+        let IcmAlertSeverity = ErrorCount > 1 ? AlertSeverity2 : AlertSeverity3
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+
+  <Rule id="InvalidPUIDFormatDetectedIncident" windowSize="PT15M" windowHopSize="PT15M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasTraceLog.*", 0)
+          where moduleName == "Application" and loggerName == "ServerAuthenticationManager" and message.contains("Invalid PUID format") // TODO rskumar: Figure out how to avoid relying on hardcoded strings like these?
+          groupby SourceTableName, RoleInstance, message, additionalProperties
+
+        let EventName = "InvalidPUIDFormatDetected"
+        let Title = "Auth manager: Couldn't determine PUID of a logged in user"
+        let Description = "Please check additionalProperties column for more details"
+
+        let IcmAlertSeverity = AlertSeverity4
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = "1200204"
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+</Configuration>

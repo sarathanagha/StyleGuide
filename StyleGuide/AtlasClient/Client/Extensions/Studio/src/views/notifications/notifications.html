@@ -1,0 +1,49 @@
+﻿<div class="atlasNotificationPage row" id="atlasNotificationPage">
+    <div class="col leftPane"></div>
+    <div class="col notificationPane">
+        <div class="col header" data-bind="text: notificationCenterTitle"></div>
+
+        <div class="col activeNotifications">
+            <!-- ko foreach : activeNotifications -->
+            <div class="col">
+                <div class="row activeNotificationItem">
+                    <div class="row">
+                        <div class="col icon" data-bind="css: icon"></div>
+                        <div class="col textArea">
+                            <div class="col title" data-bind="text: title"></div>
+                            <a data-bind="attr: {href: url.location}">
+                                <div class="col urlDisplay" data-bind="text: url.display"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row checkbox">
+                        <input type="checkbox">
+                        <p>resolved</p>
+                    </div>
+                </div>
+                <div class="col hr"><hr /></div>
+            </div>
+            <!-- /ko -->
+        </div>
+
+        <div class="col archivedNotifications disabled">
+            <div class="col archiveHeader" data-bind="text: archivedNotificationsTitle"></div>
+
+            <!-- ko foreach : archivedNotifications -->
+            <div class="col">
+                <div class="row archivedNotificationItem">
+                    <div class="row">
+                        <div class="col icon" data-bind="css: icon"></div>
+                        <div class="col title" data-bind="text: title"></div>
+                    </div>
+                    <div class="row checkbox">
+                        <input type="checkbox" checked disabled>
+                        <p>resolved</p>
+                    </div>
+                </div>
+                <div class="col hr"><hr /></div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

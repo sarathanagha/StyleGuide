@@ -1,0 +1,92 @@
+﻿<!-- ko ifnot: tableListSource -->
+
+<div class="wizardStepTitle">
+    Source dataset settings
+</div>
+<div class="wizardStepSubtitle">
+</div>
+
+<div class="sectionTitle">
+    File Format
+</div>
+<div class="formFieldLabel">Row Delimiter</div>
+<div class="formField">
+    <select>
+        <option value="">Carriage Return (\n\r)</option>
+    </select>
+</div>
+<div class="formFieldLabel">Column Delimiter</div>
+<div class="formField">
+    <select data-bind="value:columnDelimiter">
+        <option value=",">Comma (,)</option>
+        <option value=";">Semicolon (;)</option>
+    </select>
+</div>
+
+<!--input type="checkbox" /><span>Use first row as a header</span-->
+
+
+<div class="tabContainer">
+    <div class="tab" data-bind="css:{selected:previewSelected()}, event: {click:selectPreview}">
+        Preview
+    </div>
+    <div class="tab" data-bind="css:{selected:!previewSelected()}, event: {click:selectSchema}">
+        Schema
+    </div>
+</div>
+<div class="tabContent">
+    <!-- ko if:previewSelected -->
+    <table style="border-collapse:collapse">
+        <tbody data-bind="foreach:blobTable">
+            <tr class="previewTableRow">
+                <!-- ko foreach:$data-->
+                <td>
+                    <div data-bind="text:$data" class="tableCellDiv"></div>
+                </td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko -->
+    <!-- ko ifnot:previewSelected -->
+    <table>
+        <thead>
+            <tr>
+                <td><span class="formFieldLabel">Name</span></td>
+                <td><span class="formFieldLabel">Type</span></td>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:columns">
+            <tr>
+                <td><input type="text" style="width:140px" data-bind="value:$data.name" /></td>
+                <td><input type="text" style="width:140px" data-bind="value:$data.type" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+
+
+<!-- ko if: tableListSource -->
+<!-- ko if: loading -->
+<div data-bind="text:loadingSchemasMessage" style="margin-bottom: 10px"></div>
+<!-- /ko -->
+<div class="sectionTitle" style="margin-bottom: 20px">
+    Incremental update
+</div>
+<div style="margin-bottom:18px">
+    <span class="formFieldLabel">Incremental update&nbsp;&nbsp;&nbsp;</span><input type="checkbox" data-bind="checked: incrementalUpdate" />
+</div>
+<!-- ko if: incrementalUpdate -->
+<!-- ko foreach: tableList -->
+<!-- ko if:selected -->
+<div style="margin-bottom: 4px">
+    <div data-bind="text:data.tableName" style="font-family: 'Segoe UI';font-size: 12px;line-height: 16px;display:inline-block;width: 150px"></div>
+    <select data-bind="options: data.dateColumns,optionsText:'displayText',optionsValue:'value',value:data.selectedDateColumn,enable:data.dateColumns().length-1"></select>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->

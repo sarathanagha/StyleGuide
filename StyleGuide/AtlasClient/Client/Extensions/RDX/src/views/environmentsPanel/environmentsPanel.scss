@@ -1,0 +1,259 @@
+﻿@import "../../stylesheets/main";
+
+.environmentsListWrapper{
+    background: $canvas;
+    padding-left: 20px;
+    padding-top: 10px;
+    height: 260px;
+
+    input{
+        margin: 0;
+        width: 40px;
+        vertical-align: middle;
+    }
+    .environmentsList{
+        @extend .textMR;
+        font-weight: 400;
+        max-height: 260px;
+        overflow: auto;
+        width: 400px;
+        float: left;
+
+        > ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            > li{
+                padding: 8px 0;
+            }
+        }
+    }
+    .indexAvailabilityMapWrapper{
+        @extend .opacityTransition;
+        margin-left: 402px;
+        position: relative;
+
+        .instructions{
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 130px;
+            color: rgba(0,0,0,.5);
+        }
+
+        .environmentMultiselectGhost {
+            @extend .crosshair;
+            position: absolute;
+            border-left: 1px solid rgba(0, 0, 255, 0.4);
+            border-right: 1px solid rgba(0, 0, 255, 0.4);
+            background: rgba(0, 0, 255, 0.1);
+            top: 67px;
+            height: 122px;
+            left: 10000px;
+        }
+
+        .ghostBlueLine {
+            @extend .crosshair;
+            position: absolute;
+            border-left: 1px solid rgba(0, 0, 255, 0.4);
+            width: 1px;
+            top: 67px;
+            height: 122px;
+            left: 10000px;
+        }
+
+        .mostRecentHour{
+            position: absolute;
+            top: 60px;
+            width: 145px;
+            right: 40px;
+        }
+
+        .exploreSelection{
+            position: absolute;
+            top: 110px;
+            width: 145px;
+            right: 40px;
+        }
+
+        .indexAvailabilityMapTitle{
+            position: absolute;
+            margin-left: 50px;
+        }
+
+        .indexAvailabilityMap{
+            @extend .textXSR;
+            height: 200px;
+
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+
+            .x.axis path {
+            }
+
+            .line {
+                fill: none;
+                stroke: $atlasTeal;
+                stroke-width: 1.5px;
+            }
+
+            .area{
+                fill: $atlasTeal;
+                fill-opacity: .2;
+            }
+        }
+    }
+}
+
+.dateTimePickerWrapper{
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 4px;
+
+    .dateTimePicker{
+        display: inline-block;
+        margin-left: 40px;
+
+        .dateTimePickerLabel{
+            @extend .textSB;
+            text-transform: uppercase;
+            margin-right: 8px;
+        }
+
+        .dateInput{
+            width: 100px;
+        }
+    }
+}
+
+/*datepicker styles*/
+.ui-widget-content{
+    background: $lightCanvas;
+    box-shadow: $boxShadow;
+    border-radius: 0px;
+    z-index: 1003 !important;
+}
+
+.ui-state-active{
+    border: none;
+    background: transparent;
+}
+
+.ui-state-default{
+    border: none !important;
+    background: transparent !important;
+}
+
+.ui-widget-header{
+    border: none;
+    background: transparent;
+}
+
+.ui-state-hover{
+    border: none !important;
+    background: transparent !important;
+}
+
+.ui-datepicker{
+}
+
+.ui-datepicker-title{
+    text-align: center;
+    margin-left: 40px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $grayDarkest;
+}
+
+.ui-datepicker-prev{
+    left: 2px !important;
+    top: 2px !important;
+    position: absolute;
+}
+
+.ui-datepicker-next{
+    right: 2px !important;
+    top: 2px !important;
+    float: right;
+    transform: rotate(180deg);
+}
+
+.ui-datepicker-inline{
+    display: table !important;
+}
+
+.ui-datepicker-calendar{
+    border-collapse: separate !important;
+    border-spacing: 1px;
+
+    thead{
+        tr{
+            th{
+                color: $gray;
+                font-weight: 400;
+                font-size: 13px;
+            }
+        }
+    }
+    tbody{
+        tr{
+            td{
+                width: 29px;
+                height: 29px;
+                text-align: center;
+                cursor: pointer;
+                border: 1px solid $cloudRgbLighter;
+                background: $cloudRgbLighter;
+                a{
+                    text-align: center;
+                    color: $grayDarkest;
+                }
+                &:hover{
+                    background: transparent;
+                    border: 1px solid $atlasTeal;
+                    a{
+                        color: $grayDarkest;
+                    }
+                }
+            }
+            .ui-datepicker-other-month{
+                border: 1px solid transparent;
+                background: transparent;
+                a{
+                    color: $gray;
+                }
+            }
+
+            .ui-datepicker-current-day{
+                background: $atlasTeal;
+                border: 1px solid $atlasTeal;
+                a{
+                    color: white;
+                }
+                &:hover{
+                    background: $atlasTeal;
+                    border: 1px solid $atlasTeal;
+                    a{
+                        color: white;
+                    }
+                }
+            }
+
+            .ui-datepicker-unselectable{
+               color: $grayLight;
+               cursor: default;
+               background: transparent;
+               border: 1px solid transparent;
+               &:hover{
+                    border: 1px solid transparent;
+               }
+            }
+        }
+    }
+}

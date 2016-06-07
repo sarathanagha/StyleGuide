@@ -1,0 +1,153 @@
+//@import '../../../Stylesheets/Common/_Constants.scss';
+
+$animation-delay: 0.20s;
+$animation-base: 0s;
+$circle-radius: 6px;
+$base-rotation: 225deg;
+$page-loader-z-index: 1022;
+$dialog-loader-z-index: 1024;
+
+.loader-accent {
+    background-color: #03B092;
+    color: #03B092;
+}
+
+.page-loader, .dialog-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+@mixin animation-delay($delay) {
+    animation-delay: $delay !important;
+}
+
+.page-loader {
+    z-index: $page-loader-z-index;
+}
+
+.dialog-loader {
+    z-index: $dialog-loader-z-index;
+}
+
+.nested-loader {
+    z-index: $dialog-loader-z-index;
+}
+
+.nested-loader .loader {
+    background-color: transparent;
+}
+
+.page-loader .loader, .dialog-loader .loader {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.loader {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    z-index: 1023;
+
+    .container {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        opacity: 1;
+
+        .circle {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            opacity: 0;
+            transform: rotate($base-rotation);
+            animation: orbit 4.0s infinite;
+
+            .inner-circle {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                opacity: 1;
+                border-radius: 50%;
+            }
+        }
+
+        .circle-1 {
+            @include animation-delay(0);
+        }
+
+        .circle-2 {
+            @include animation-delay($animation-delay)
+        }
+
+        .circle-3 {
+            @include animation-delay($animation-delay * 2)
+        }
+
+        .circle-4 {
+            @include animation-delay($animation-delay* 3)
+        }
+
+        .circle-5 {
+            @include animation-delay($animation-delay * 4)
+        }
+    }
+}
+
+@keyframes orbit {
+    0% {
+        opacity: 1;
+        z-index: 99;
+        transform: rotate(180deg);
+        animation-timing-function: linear;
+    }
+
+    7% {
+        opacity: 1;
+        transform: rotate(300deg);
+        animation-timing-function: linear;
+    }
+
+    35% {
+        opacity: 1;
+        transform: rotate(450deg);
+        animation-timing-function: linear;
+    }
+
+    45% {
+        opacity: 1;
+        transform: rotate(660deg);
+        animation-timing-function: linear;
+    }
+
+    70% {
+        opacity: 1;
+        transform: rotate(810deg);
+        animation-timing-function: linear;
+    }
+
+
+    75% {
+        opacity: 1;
+        transform: rotate(900deg);
+        animation-timing-function: linear;
+    }
+
+    76% {
+        opacity: 0;
+        transform: rotate(900deg);
+        animation-timing-function: ease-out;
+    }
+
+
+    100% {
+        opacity: 0;
+        transform: rotate(900deg);
+    }
+}
+

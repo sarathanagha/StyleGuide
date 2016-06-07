@@ -1,0 +1,1 @@
+{"version":3,"file":"about.js","sourceRoot":"","sources":["../../../../src/views/home/about/about.ts"],"names":["viewModel","viewModel.constructor"],"mappings":"AAAA,gDAAgD;AAChD,oDAAoD;;IAEpD,+CAA+C;IAGpC,gBAAQ,GAAW,OAAO,CAAC,mBAAmB,CAAC,CAAC;IAE3D;QAEIA,mBAAYA,UAAeA;QAE3BC,CAACA;QAELD,gBAACA;IAADA,CAACA,AAND,IAMC;IANY,iBAAS,YAMrB,CAAA"}

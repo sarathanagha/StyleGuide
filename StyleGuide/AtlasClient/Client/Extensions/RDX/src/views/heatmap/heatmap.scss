@@ -1,0 +1,317 @@
+﻿@import "../../stylesheets/main";
+
+.measureSettings{
+    display: inline;
+}
+
+.heatmapWrapper{
+    @extend .card;
+    margin: 0;
+    box-shadow: none;
+    border-top: 1px solid $cloud;
+
+    .heatmapLegendWrapper{
+        height: $heatmapHeight;
+        width: 40px;
+        float: left;
+        border-right: $cardBoarder;
+        background: $lightCanvas;
+
+        .heatmapLegend{
+            padding: $largeMarginAndPadding;
+
+            .heatmapLegendLabel{
+                font-size: 11px;
+            }
+
+            .heatmapLegendColorBar{
+                height: 5px;
+                width: 20px;
+            }
+
+        }
+    }
+
+    .heatmapHeader{
+        @extend .cardTitle;
+    }
+
+    .heatmapInfoPanel{
+        @extend .cardInfoPanel;
+
+        .progressMessage{
+            padding: 4px 2px;
+        }
+    }
+}
+
+#heatmap{
+    @extend .opacityTransition;
+    margin-left: 42px;
+}
+
+.heatmap table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    /*heatmap styles*/
+    .heatmap .labelContainer {
+        overflow: hidden;
+        width: 100%;
+        height: calc(#{$heatmapHeight} - 18px);
+    }
+
+    .heatmap .eventTableLabel {
+        font-size: 10px;
+        position: absolute;
+        bottom: 0px;
+        left: 2px;
+        cursor: default;
+    }
+
+    .heatmap .cellContainer {
+        height: $heatmapHeight;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .heatmap .topLeftCorner {
+        z-index: 20;
+        border-right: 1px solid $darkCloud;
+        border-bottom: 1px solid $darkCloud;
+        height: 24px;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+    }
+
+    .heatmap .heatmapCells {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+    }
+
+    .heatmap ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .heatmap .yAxisLabel {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        z-index: 10;
+    }
+
+    .heatmap .xAxisLabel {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        z-index: 10;
+        height: 32px;
+    }
+
+    .heatmap .heatmapCells {
+        position: absolute;
+    }
+
+    .heatmap {
+        position: relative;
+        height: $heatmapHeight;
+    }
+
+    .heatmap .selectedOverlay {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 5;
+        border: 1px solid black;
+        margin: -1px;
+    }
+
+    .heatmap table {
+        table-layout: fixed;
+    }
+
+    .heatmap .heatmapCells table td {
+        width: 24px;
+    }
+
+    .heatmap table ul {
+        list-style: none;
+        width: 24px;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .heatmap table li {
+        display: block;
+        &:hover{
+             box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);   
+        }
+    }
+
+    .heatmap .noHighlight {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .heatmap table .cell {
+        width: 24px;
+        height: 24px;
+        border: 1px solid $darkCloud;
+        cursor: default;
+        padding: 0;
+        position: relative;
+    }
+
+    .heatmap .xAxisLabel td {
+        border-right: 1px solid $darkCloud;
+        border-left: 1px solid $darkCloud;
+        border-bottom: 1px solid $darkCloud;
+    }
+
+    .heatmapWrapper .topLeftCornerControlsWrapper{
+        @extend .opacityTransition;
+        position: absolute;
+        margin-left: 47px;
+        margin-top: 4px;
+        z-index: 200;
+        color: $grayLight;
+        opacity: 0;
+
+        div{
+            display: inline-block;
+            font-size: 11px;
+            color: $grayLight;
+        }
+
+        span{
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            color: $grayLight;
+            text-transform: uppercase;
+            
+            &:hover{
+                color: $grayDark;
+            }
+
+            &.selected{
+                color: $grayDark;
+                cursor: default;
+                padding-bottom: 2px;
+                border-bottom: 2px solid $atlasTeal;
+                &:hover{
+                    color: $grayDark;
+                }
+            }
+        }
+    }
+
+    .heatmapWrapper #heatmapEventTableFilter{
+        @extend .atlasInput;
+        width: 150px;
+        padding: 2px;
+        padding-top: 1px;
+        margin-right: 12px;
+    }
+
+    .heatmap .timeLabel {
+        width: 22px;
+        font-size: 11px;
+        font-weight: 400;
+        height: 22px;
+        text-align: right;
+        padding-top: 8px;
+        margin-top: 2px;
+        margin-bottom: -2px;
+
+        &.timeLabelWithDate{
+            font-size: 10px;
+            padding-top: 0px;
+            margin-left: -2px;
+            margin-right: 2px;
+        }
+    }
+
+    .heatmap table .timeLabel:hover {
+        color: $darkCloud;
+        cursor: pointer;
+    }
+
+    .heatmap .rowLabel {
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 400;
+        border-bottom: 1px solid $darkCloud;
+        border-right: 1px solid $darkCloud;
+        height: 24px;
+        padding-right: 2px;
+        padding-left: 0px;
+        line-height: 24px;
+        max-width: 350px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover{
+            cursor: pointer;
+            .tableName{
+                color: $darkCloud;
+            }
+        }
+    }
+
+    .heatmap .rowLabel .showTableInBarChartToggle{
+        visibility: hidden;
+        font-size: 14px;
+        margin-top: 5px;
+        padding-left: $smallMarginAndPadding;
+        float: right;
+        line-height: 14px;
+
+        &:hover{
+            color: $darkCloud;
+            cursor: pointer;
+        }
+    }
+
+    .heatmap .rowLabel:hover .showTableInBarChartToggle{
+        visibility: visible;
+    }
+
+    .heatmap .rowLabel .tableName{
+        margin-left: 10px;
+    }
+
+    .heatmap .rowLabel .tableName:hover {
+        cursor: pointer;
+        color: $darkCloud;
+    }
+
+    .heatmap table .rotate {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }

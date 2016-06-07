@@ -1,0 +1,36 @@
+#dsux-toaster-container {
+    background: #343A41;
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.9;
+    padding: 12px 8px 12px 30px;
+    position: absolute;
+    right: -320px;
+    top: 60px;
+    width: 300px;
+    z-index: 100;
+
+    .btn-close-toaster {
+        cursor: pointer;
+        display: none;
+        font-size: 16px;
+        height: 20px;
+        left: 0px;
+        line-height: 18px;
+        position: absolute;
+        text-align: center;
+        text-decoration: none;
+        top: 0px;
+        width: 20px;
+
+        &:hover {
+            background: #55605E;
+        }
+    }
+
+    &:hover {
+        .btn-close-toaster {
+            display: block;
+        }
+    }
+}

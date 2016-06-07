@@ -1,0 +1,22 @@
+#ModelPackageViewContent input {
+    border-style: none;
+    width: 300px;
+}
+
+#ModelPackageViewContent div#DetailsList {
+    display: table;   
+}
+
+#ModelPackageViewContent div#DetailsList > div {
+    display: table-row;   
+}
+
+#ModelPackageViewContent div#DetailsList > div > div {
+    display: table-cell;
+}
+
+#ModelPackageViewContent div#DetailsList > div > div:first-child {
+    font-weight: bold;
+    padding: 10px;   
+}
+

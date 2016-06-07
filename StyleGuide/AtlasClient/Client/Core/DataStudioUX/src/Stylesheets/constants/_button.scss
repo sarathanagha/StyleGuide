@@ -1,0 +1,9 @@
+﻿
+/*  Variables  */
+
+$btnVerticalPadding: 8px;
+$btnHorizontalPadding: 16px;
+$btnTotalHorizontalPadding: 2 * $btnHorizontalPadding;
+$btnMinWidth: 88px - $btnTotalHorizontalPadding;
+$btnMaxWidth: 200px - $btnTotalHorizontalPadding;
+$buttonSpacing: 16px;

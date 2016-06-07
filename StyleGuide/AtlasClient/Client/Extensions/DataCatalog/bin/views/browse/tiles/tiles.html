@@ -1,0 +1,184 @@
+<div id="tiles" data-bind="if: searchResult">
+    <div data-bind="adc-loading: isSearching" class="loading-indicator"></div>
+
+    <div id="tile-container">
+
+        <div data-bind="component: 'datacatalog-browse-container'"></div>
+
+        <div class="heading">
+            <span class="results-data" data-bind="if: searchResult().totalResults > 0">
+                <span data-bind="text: numResults"></span>
+                <span class="spacer"></span>
+
+                <span tabindex="0" class="select-all" data-bind="click: toggleSelectAll">
+                    <span class="outline" role="checkbox" data-bind="attr: {'aria-checked': (allSelected()? 'true' : 'false')}">
+                        <img data-bind="visible: allSelected" src="../../../../images/checkmark.png" />
+                    </span><span data-bind="text: resx.selectAll" class="select-all-text"></span>
+                </span>
+            </span>
+
+            <div class="paging-container top" data-bind="component: { name: 'datacatalog-shell-paging', params: {
+                                                                                        totalResults: searchResult().totalResults,
+                                                                                        currentPage: searchResult().query.startPage,
+                                                                                        itemsPerPage: searchResult().itemsPerPage,
+                                                                                        onPagingChanged: onPagingChanged
+                                                                                } }"></div>
+        </div>
+
+
+        <!-- ko foreach: { data: searchResult().batchedResults, as: 'result' } -->
+        <div data-bind="css: {
+                                selected: $parent.isSelected(result),
+                                deleted: $parent.isDeleted(result),
+                                container: result.DataSourceType == $parent.DataSourceType.Container }" class="tile">
+
+            <span class="glyphicon glyphicon-info-sign delete-info"
+                  data-bind="adc-popover: {}, attr: {'data-content': $parent.resx.scheduledForDelete }"
+                  data-trigger="hover"
+                  data-placement="left"></span>
+
+            <div class="multiselect" data-bind="event: {mousedown: $parent.multiSelectAsset.bind($parent)}">
+                <div class="outline" role="checkbox" data-bind="attr: {'aria-label': $parent.resx.selectTile, 'aria-checked': ($parent.isSelected(result)? 'true' : 'false')}">
+                    <img data-bind="visible: $parent.isSelected(result)" src="../../../../images/checkmark_white.png" />
+                </div>
+            </div>
+
+            <div class="tile-contents" data-bind="event: {mousedown: $parent.selectAsset.bind($parent)}">
+
+                <div data-bind="adc-highlight: { html: displayName(), limit: 27 }" class="name"></div>
+                <div class="desc">
+                    <!-- ko if: displayDescription() -->
+                    <div data-bind="adc-highlight: { html: displayDescription(), limit: 75 }"></div>
+                    <!-- /ko -->
+                    <!-- ko if: !displayDescription() -->
+                    <span data-bind="text: $parent.resx.clickTileToAddADescription + '...'" class="hint-text"></span>
+                    <!-- /ko -->
+                </div>
+
+                <div class="expert-label" data-bind="text: $parent.resx.experts"></div>
+                <div class="expert">
+                    <span data-bind="adc-highlight: result.firstExpertDisplay()"></span>
+                    <!-- ko if: result.allExperts().length > 1 -->
+                    <span data-bind="adc-highlight: '...('+ result.allExperts().length +')'"></span>
+                    <!-- /ko -->
+                </div>
+
+                <div class="tags" data-bind="foreach: displayTags">
+                    <span data-bind="text: $parents[1].removeHtmlTags($data), css: { 'tokyo-highlight': $parents[1].isHighlighted($data) }"></span>
+                </div>
+
+                <!-- ko if: result.DataSourceType != $parent.DataSourceType.Container -->
+                <div class="location-label" data-bind="adc-highlight: $parent.formatContainedIn(result)"></div>
+                <div class="location" data-bind="adc-highlight: { html: $parent.getContainedInName(result), limit: 25 }"></div>
+                <!-- /ko -->
+
+                <div class="data-source-group">
+                    <img data-bind="attr: { src: $parent.formatObjectType(result)}" class="subtype" />
+                    <div class="data-source-type" data-bind="adc-highlight: $parent.formatSourceAndObjectTypeText(result)"></div>
+                </div>
+
+                <img data-bind="attr: { src: $parent.formatWatermark(result)}" class="watermark" />
+            </div>
+
+            <footer class="tile-footer">
+                <div class="dropdown open-in footer-action" data-bind="adc-dropdownautopos: '.center-panel-content'">
+                    <a role="button" data-toggle="dropdown" data-target="#" data-bind="css: { disabled: $parent.isDeleted(result) || !$parent.getConnectionTypes(result).length }">
+                        <span class="action-container">
+                            <span class="connect-label" data-bind="text: $parent.resx.connect + ' ...'"></span>
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </span>
+                    </a>
+                    <ul data-bind="foreach: $parent.getConnectionTypes(result)" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
+                            <a role="menuitem" tabindex="-1" data-target="#" data-bind="text: $data.text, click: function(data, e){ $parents[1].connect(result, data, e) } "></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- ko if: (result.DataSourceType == $parent.DataSourceType.Container || (result.containerId && !$parent.container())) && !$parent.isDeleted(result) -->
+                <div class="footer-action explore-action">
+                    <a role="button" data-target="#" data-bind="click: $parent.exploreContainer">
+                        <span class="action-container">
+                            <span data-bind="text: $parent.getExploreContainerText(result)"></span>
+                        </span>
+                    </a>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: result.searchRelevanceInfo && !$parent.isDeleted(result) -->
+                <div class="dropdown search-relevance" data-bind="adc-dropdownautopos: '.center-panel-content'">
+                    <a role="button" data-toggle="dropdown" data-target="#"
+                       data-bind="css: { disabled: $parent.isDeleted(result) }, adc-popover: {}, attr: {'data-content': $parent.resx.viewSearchTermMatches, 'aria-label': $parent.resx.viewSearchTermMatches }"
+                       data-trigger="hover"
+                       data-placement="top">
+                        <img src="../../../../images/search-relevance.png" />
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
+                            <div data-bind="text: $parent.resx.searchTermMatchedIn + ':'"></div>
+                        </li>
+                        <!-- ko if: result.searchRelevanceInfo.tablePropertyCount -->
+                        <li>
+                            <a role="menuitem" tabindex="-1" data-target="#" data-bind="click: function(data, e){  $parent.showPropertyMatches(result, data, e) },
+                                                                                        keyboardselect: function() { $parent.showPropertyMatches(result, $data); }">
+                                <img src="../../../../images/properties/preview.png" />
+                                <span data-bind="text: $parent.resx.propertiesCountFormat.format(result.searchRelevanceInfo.tablePropertyCount, $parent.formatObjectTypeText(result))"></span>
+                                <img src="../../../../images/paging/active_next.png" class="arrow-right">
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                        <!-- ko if: result.searchRelevanceInfo.columnPropertyCount -->
+                        <li>
+                            <a role="menuitem" tabindex="-1" data-target="#" data-bind="click: function(data, e){ $parent.showColumnMatches(result, data, e) } ">
+                                <img src="../../../../images/properties/schema.png" />
+                                <span data-bind="text: $parent.resx.columnPropertiesCountFormat.format(result.searchRelevanceInfo.columnPropertyCount)"></span>
+                                <img src="../../../../images/paging/active_next.png" class="arrow-right">
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+                <!-- /ko -->
+                
+                <div class="footer-pin">
+                    <!-- ko if: result.pinned -->
+                    <img src="../../../../images/home/pin_on.svg" data-bind="click: function(d,e){ $(e.target).popover('hide'); unpinEntity();}, 
+                                                                                    adc-popover: {}, 
+                                                                                    attr: { 'data-content': $parent.resx.unpin } " 
+                                                                                    data-placement="auto top" 
+                                                                                    data-trigger="hover" 
+                                                                                    data-container="body" />
+                    <!-- /ko -->
+                    <!-- ko ifnot: result.pinned -->
+                    <img src="../../../../images/home/pin_off.svg" data-bind="click: function(d,e){ $(e.target).popover('hide'); pinEntity();}, 
+                                                                                    adc-popover: {}, 
+                                                                                    attr: { 'data-content': $parent.resx.pin } " 
+                                                                                    data-placement="auto top" 
+                                                                                    data-trigger="hover" 
+                                                                                    data-container="body" />
+                    <!-- /ko -->
+                </div>
+            </footer>
+        </div>
+        <!-- /ko -->
+
+        <div data-bind="adc-spinner: searchResult().isBatchLoading" class="xx-large batch-loading"></div>
+    </div>
+
+    <div class="paging-container bottom" data-bind="component: { name: 'datacatalog-shell-paging', params: {
+                                                                                        totalResults: searchResult().totalResults,
+                                                                                        currentPage: searchResult().query.startPage,
+                                                                                        itemsPerPage: searchResult().itemsPerPage,
+                                                                                        onPagingChanged: onPagingChanged
+                                                                                } }"></div>
+
+
+    <!-- ko if: searchResult().totalResults == 0 -->
+    <div id="tiles-no-results">
+        <span data-bind="text: test.noResults"></span>
+        <div>
+            <div data-bind="click: clearSearch, text: test.resetQuery" class="clear-button"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+</div>

@@ -1,0 +1,21 @@
+<div id="filterSummaryContainer" class="adf-filterFlyoutContent grow shrink col">
+    <div class="row filterSummarySectionTitle">
+        <div class="filterSummaryTitle col" data-bind="text: filterSummaryStatusTitle"></div>
+        <div class="switch filterSummarySectionClose col" data-bind="click: closeClicked"></div>
+    </div>
+    <div class="filterSummarySplitter">
+        <!-- ko foreach: filterSummary -->
+                <!-- ko if: $data.data().length > 0 -->
+                    <div class="row filterSummarySectionHeader">
+                        <div class="filterSummaryHeaderText" data-bind="text: $data.header"></div>
+                        <div class="filterSummaryClearFilter" data-bind="click: $parent.removeFilterClicked"></div>
+                    </div>
+                    <div class="filterSummarySectionContent">
+                        <!-- ko foreach: $data.data -->
+                            <div class="filterSummarySectionContentText", data-bind="text: $data"></div>
+                        <!--/ko-->
+                    </div>
+                <!--/ko-->
+        <!--/ko-->
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿<div class="adf-existingDataset-container row">
+    <div class="row">
+        <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: datasetTypeFilter}}"></div>
+        <input class="nameFilter" type="text" data-bind="textInput:datasetNameFilter, attr: {placeholder: datasetNameFilterPlaceholder}" />
+    </div>
+</div>
+<div class="adf-flexGrid-container" data-bind="foreach: displayDatasets">
+    <div class="adf-flexGrid-item centerYWithoutHeight" data-bind="click: $parent.toggleSelectionForItem.bind($parent, $data), css: {selected: selected()}">
+        <div class="iconDiv" data-bind="html: icon"></div>
+        <div class="itemText">
+            <div class="dataFactory-text-ellipsis" data-bind="titleText: model.name"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ko with: previewAndSchemaViewModel -->
+<!--<div data-bind="htmlWith: {template: template, viewModel: $data}"></div>-->
+<!-- /ko -->

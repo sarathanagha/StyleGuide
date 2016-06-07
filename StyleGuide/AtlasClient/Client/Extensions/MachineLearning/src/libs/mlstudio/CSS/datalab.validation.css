@@ -1,0 +1,42 @@
+
+/* .datalab-validation-wrapper and .datalab-validation-icon allow display of an fx validation icon
+   to the right of arbitrary elements (including those that do not support background-image, such as <select>).
+   The validation icon should have a validate: binding applied to connect it with a validatable observable.
+    
+   Usage is as follows: 
+    <div class="datalab-validation-wrapper" width="your optional width here">
+        <div class="datalab-validation-icon" data-bind="validate: {value: validatable thing here}"></div>
+        your content here
+    </div> 
+   */
+
+.datalab-validation-wrapper {
+    position: relative; /* The wrapper should be a containing block for the validation icon. */
+    padding-right: 24px; /* Width of .datalab-validation-icon and couple of extra pixels */
+    box-sizing: border-box; /* Any explicit width should account for the validation icon paddding. */
+}
+
+.datalab-validation-icon {
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 21px; /* Width of the validation image (see fx-validation-invalid). */
+    height: 30px; /* Needs to match the height of input and select fields in Azure dialogs */
+}
+
+.datalab-validation-wrapper .datalab-validation-icon {
+    /* The validation icon should be positioned over the padding provided by the wrapper. */
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+    .datalab-validation-wrapper .datalab-validation-icon.heuristic-hint {
+        background-image: url('../Images/icon-status-complete-16-idl.png');
+        transition-duration: 500ms;
+        transition-property: opacity;
+        width: 15px;
+        height: 15px;        
+        top: 7.5px;
+        right: 3px;
+    }

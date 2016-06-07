@@ -1,0 +1,60 @@
+<div id="browse-container" data-bind="if: container()" class="browse-container">
+    <a data-target="#" data-bind="click: backToCatalog" class="back-to-catalog">
+        <img src="../../../../images/back_arrow.png" alt="back" />
+        <span data-bind="text: resx.backToCatalog"></span>
+    </a>
+    <div id="container-tile" data-bind="css: {
+                                selected: $parent.isSelected(container()),
+                                deleted: $parent.isDeleted(container()) },
+                            event: {mousedown: function(d, e){$parent.selectAsset(container(), e);} }">
+
+        <span class="glyphicon glyphicon-info-sign delete-info"
+              data-bind="adc-popover: {}, attr: {'data-content': $parent.resx.scheduledForDelete }"
+              data-trigger="hover"
+              data-placement="left"></span>
+
+        <div class="multiselect" data-bind="event: {mousedown: function(d, e){$parent.multiSelectAsset(container(), e); e.stopPropagation(); }}">
+            <div class="outline">
+                <img data-bind="visible: $parent.isSelected(container())" src="../../../../images/checkmark_white.png" />
+            </div>
+        </div>
+
+        <div id="container-contents" class="table-row">
+            <div class="table-cell title-desc">
+                <img data-bind="attr: { src: getSourceTypeImage(container())}" class="data-object-type-image" />
+                <span data-bind="adc-highlight: { html: container().displayName(), limit: 27 }" class="name"></span>
+
+                <div class="desc">
+                    <!-- ko if: container().displayDescription() -->
+                    <div data-bind="adc-highlight: { html: container().displayDescription(), limit: 75 }"></div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="table-cell expert-tags">
+
+                <div class="expert-label" data-bind="text: resx.experts"></div>
+                <div class="expert">
+                    <span data-bind="adc-highlight: container().firstExpertDisplay()"></span>
+                    <!-- ko if: container().allExperts().length > 1 -->
+                    <span data-bind="adc-highlight: '...('+ container().allExperts().length +')'"></span>
+                    <!-- /ko -->
+                </div>
+
+
+                <div class="tags" data-bind="foreach: container().displayTags">
+                    <span data-bind="text: $parent.util.removeHtmlTags($data), css: { 'tokyo-highlight': $parent.isHighlighted($data) }"></span>
+                </div>
+
+            </div>
+            <div class="table-cell">
+                <div data-bind="adc-spinner: isSearching()"></div>
+                <!-- ko foreach: objectTypes -->
+                <div class="object-type-box">
+                    <div data-bind="text:count" class="object-type-count"></div>
+                    <div data-bind="text:term" class="object-type-term"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>

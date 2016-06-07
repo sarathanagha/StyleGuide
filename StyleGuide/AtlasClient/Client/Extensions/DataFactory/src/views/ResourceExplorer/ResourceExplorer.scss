@@ -1,0 +1,23 @@
+@import "../../stylesheets/_AdfSpecific.scss";
+
+.documentsSidePanel {
+    width: 100%;
+
+    .header {
+        font-size: 15px;
+        text-transform: uppercase;
+        @include adf-text-ellipsis()
+    }
+
+    >.row {
+        margin-bottom: 20px;
+    }
+
+    .treeViewName {
+        font-weight: bold;
+    }
+
+    .treeViewSwitchElement {
+        width: 1em;
+    }
+}

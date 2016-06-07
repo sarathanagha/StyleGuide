@@ -1,0 +1,87 @@
+.atlasSignInPage {
+  .footer {
+
+    .footerSection1 {
+      padding-top: 3em;
+      padding-bottom: 5em;
+
+      .footerList {
+        margin-right: 2em;
+        flex-grow: 1;
+
+        .footerListHeader {
+          align-self: center;
+          color: #ffffff;
+          font-size: 1.2em;
+          font-weight: 500;
+          padding-bottom: 2em;
+        }
+
+        .footerListItems {
+          align-self: center;
+
+          .footerListItem {
+            line-height: 2em;
+
+            > .col {
+              padding-right: 0.5em;
+            }
+
+            .icon {
+              color: white;
+            }
+
+            .footerListItemTitle {
+              cursor: pointer;
+              color: #ffffff;
+              font-size: 0.9em;
+              font-weight: 200;
+            }
+          }
+        }
+      }
+    }
+
+    .footerSection2 {
+      padding-bottom: 3em;
+      justify-content: center;
+
+      button {
+        cursor: pointer;
+        color: #03b092;
+        background-color: #ffffff;
+        margin-right: 6em;
+        font-size: 1.4em;
+        font-weight: 500;
+        padding-left: 2em;
+        padding-right: 2em;
+        min-width: 10em;
+      }
+
+      h1 {
+        color: #ffffff;
+        align-self: center;
+        font-weight: 500;
+        font-size: 3.5em;
+      }
+    }
+
+    hr {
+      width: 100%;
+    }
+
+    .footerSection3 {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+
+      .socialIcons {
+
+        .icon {
+          padding: 0.5em;
+          color: white;
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+}

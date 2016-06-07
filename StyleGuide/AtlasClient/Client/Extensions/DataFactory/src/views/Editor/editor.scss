@@ -1,0 +1,432 @@
+﻿@import "../../stylesheets/_AdfSpecific";
+@import "../../stylesheets/Authoring/Fonts";
+
+$dimOpacity: .3;
+$bigPortScale: 2.3333333333;
+$waveBlueLighter: #009bcf;
+$svgWidth: 24px;
+$svgHeight: 16px;
+$activeSvgDim: 24px;
+
+$canvasBackgroundColor: #e6e6e6;
+$entityPrimaryColor: $waveBlueLighter;
+
+$entitySelectedColor: #48525E;
+$entityLightHoverColor: #CCCCCC;
+
+$blueBorder: 2px solid $entityPrimaryColor;
+$blueBorder3x: 3px solid $entityPrimaryColor;
+$whiteBorder: 2px solid white;
+$whiteBorder3x: 3px solid white;
+$backgroundBorder: 2px solid $canvasBackgroundColor;
+$backgroundBorder4x: 4px solid $canvasBackgroundColor;
+
+%basicPort {
+    position: absolute;
+
+    svg {
+        @include adf-button-dims($svgHeight, $svgWidth);
+    }
+
+    .basic {
+        display: block;
+    }
+
+    .active {
+        display: none;
+        position: absolute;
+        // account for difference in height between basic and active icons
+        top: -4px;
+    }
+}
+
+%activePort {
+    svg {
+        @include adf-button-dims($activeSvgDim, $activeSvgDim);
+    }
+
+    .basic {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+}
+
+.editor {
+    height: 100%;
+
+    > div {
+        position: relative;
+    }
+
+    .commandBar {
+        height: 48px;
+        justify-content: space-between;
+
+        .pageTitle {
+            @include LSBFont;
+            margin: 10px 10px 10px 16px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .deployButton {
+            margin: 6px;
+        }
+    }
+
+    .graphContainerDiv {
+        height: calc(100% - 48px);
+    }
+
+    .graphContainer {
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+        overflow: hidden;
+        position: absolute;
+        transform-origin: 0 0;
+    }
+
+    .canvas {
+        width: 150%;
+        height: 150%;
+        background-color: $canvasBackgroundColor;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+
+    .line {
+        padding: 0;
+        margin: 0;
+        background-color: black;
+        line-height: 1px;
+        position: absolute;
+    }
+
+    .edge, .graphNode, .ball, .arrow {
+        position: absolute;
+    }
+
+    .edge.dragging {
+        // TODO iannight refactor z-index code to avoid these
+        .line {
+            z-index: 10000 !important;
+        }
+
+        & .port, & .ball, & .arrow {
+            z-index: 10001 !important;
+        }
+    }
+
+    .ball {
+        border-radius: 50%;
+        background: white;
+        border: 2px solid black;
+    }
+
+    .arrow {
+        height: 0;
+        width: 0;
+        border-right-color: black;
+    }
+
+    .edge {
+        &.selected {
+            .ball, .line {
+                background-color: $entityPrimaryColor;
+            }
+
+            .arrow {
+                border-right-color: $entityPrimaryColor;
+                border-left-color: $entityPrimaryColor;
+            }
+        }
+    }
+
+    .port {
+        position: absolute;
+
+        &.grow {
+            @extend %basicPort;
+
+            &.output {
+                cursor: move;
+            }
+
+            &.input, &.output.static {
+                cursor: pointer;
+            }
+
+            transition: transform .5s ease;
+
+            &:hover {
+                @extend %activePort;
+            }
+        }
+        // full by default
+        opacity: 1;
+        text-align: center;
+        color: $entitySelectedColor;
+
+        &.output, &.input {
+            span {
+                user-select: none;
+                position: absolute;
+                bottom: -5px;
+                left: -1.2px;
+                font-size: 18px;
+            }
+        }
+    }
+    // dim all not-dragging nodes that we can't connect to
+    .connecting {
+        & .graphNode, & .edge, &.port.output {
+            opacity: $dimOpacity;
+        }
+    }
+
+    .node {
+        $extensionPadding: 3px;
+
+        .extensionTemplate {
+            padding: 0 $extensionPadding 0 $extensionPadding;
+            height: 100%;
+            width: auto;
+
+            span {
+                user-select: none;
+            }
+
+            input {
+                background: transparent;
+                border-color: transparent;
+
+                &:focus, &:hover {
+                    border-color: $entityLightHoverColor;
+                }
+            }
+
+            svg {
+                @include svg-icon-styles($entitySelectedColor);
+            }
+        }
+
+        &.connecting {
+            .port.grow {
+                @extend %activePort;
+            }
+        }
+
+        &.selected {
+            .graphNode {
+                // TODO vars
+                background-color: $entitySelectedColor;
+                border-color: $entitySelectedColor;
+                color: white;
+
+                // TODO avoid using *
+                .extensionTemplate > * {
+                    fill: white;
+
+                    input {
+                        color: white;
+
+                        &:focus, &:hover {
+                            border-color: white;
+                        }
+                    }
+
+                    svg {
+                        @include svg-icon-styles(white);
+                    }
+                }
+            }
+        }
+
+        &.active {
+            .graphNode {
+                opacity: 1;
+
+                .port.input {
+                    opacity: 1;
+                }
+
+                &.hover {
+                    border-color: $entityPrimaryColor;
+                }
+            }
+        }
+
+        &.dragging {
+            .line {
+                z-index: 10000 !important;
+            }
+
+            .ball, .arrow, .port.input {
+                z-index: 10001 !important;
+            }
+        }
+
+        &.expanded {
+            .graphNode {
+                background-color: transparent;
+                border-color: $entitySelectedColor;
+
+                .extensionTemplate {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .graphNode {
+        background-color: white;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        border: $whiteBorder3x;
+        border-radius: 7px;
+    }
+}
+
+$pctHeightDifference: 130px;
+
+.adf-editor-modal.modal-container .modal-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - #{$modalScreenMargin});
+    width: calc(100% - #{$modalScreenMargin});
+    max-width: $modalMaxScreenWidth - $modalScreenMargin;
+    padding: 0px;
+
+    .copytool {
+        height: calc(100% - #{$modalHeaderBarHeight});
+    }
+
+    .wizardContentClass {
+        height: calc(100vh - #{$modalScreenMargin + $pctHeightDifference});
+    }
+}
+
+$datasetToolInputWidth: 235px;
+
+.adf-datasetTool-container {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: $modalDataPadding;
+
+    .adf-datasetTool-nameFilter {
+        width: 100%;
+        @extend %largeInput;
+    }
+
+    .blobBrowser {
+        height: 500px;
+    }
+
+    .adf-datasetTool-schemaColumns {
+        margin: 5px 0 5px 0;
+
+        .validationImage, .formFieldHeaderContainer {
+            display: none;
+        }
+
+        input, select {
+            width: $datasetToolInputWidth;
+            margin: 0 10px 0 10px;
+        }
+    }
+}
+
+.adf-datasetTool-addNewColumnButton {
+    margin-top: 10px;
+}
+
+$datasetLeftPaneTabHeight: 32px;
+$tabSelectionBorderHeight: 2px;
+
+.adf-datasetTool-leftPane {
+    width: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .tab {
+        height: $datasetLeftPaneTabHeight;
+    }
+}
+
+.adf-datasetTool-leftPaneContent {
+    background-color: $canvasColor;
+    padding: #{$modalDataPadding - $tabSelectionBorderHeight} $modalDataPadding 0 $modalDataPadding;
+    border-top: $modalBorderLine;
+
+    .adf-flexGrid-container {
+        margin: 30px 0 0 0;
+    }
+
+    .adf-flexGrid-item {
+        margin: 0 0 12px 0;
+        background-color: $whiteColor;
+        width: 100%;
+
+        &.selected {
+            background-color: $darkSlateColor;
+        }
+    }
+
+    .adf-flexGrid-itemText {
+        color: $darkSlateColor;
+    }
+}
+
+.adf-datasetTool-leftPaneTabs {
+    padding-left: $modalDataPadding;
+}
+
+.adf-datasetTool-rightPane {
+    margin-top: #{$datasetLeftPaneTabHeight + $tabSelectionBorderHeight};
+    padding-top: #{$modalDataPadding - $tabSelectionBorderHeight};
+    padding-left: $modalDataPadding;
+    border-top: $modalBorderLine;
+    overflow: scroll;
+
+    input {
+        @extend %smallInput;
+    }
+}
+
+.adf-datasetTool-blobBrowserSection {
+    .label {
+        width: 90px;
+    }
+
+    button, .blobflex {
+        margin-top: 10px;
+    }
+
+    .variableExplanationText {
+        margin-top: 20px;
+    }
+}
+
+.adf-authoringOverlay-container {
+    display: flex;
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
+
+    .dataFactory-loader-blockingUiLoading {
+        background-color: $darkSlateColor;
+        opacity: 0.3;
+    }
+}
+
+.adf-datasetTool-border {
+    $border-top: $modalBorderLine;
+}

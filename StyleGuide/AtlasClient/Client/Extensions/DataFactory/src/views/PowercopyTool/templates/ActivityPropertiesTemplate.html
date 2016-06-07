@@ -1,0 +1,28 @@
+﻿<div class="wizardStepTitle">
+    Copy Activity Settings
+</div>
+<div class="wizardStepSubtitle">
+</div>
+<div class="sectionTitle">
+    Basic settings
+</div>
+<div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: retry} }" class="formField"></div>
+<div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: concurrency} }" class="formField"></div>
+
+<div class="expander" data-bind="css:{expanded:showAdvancedCopyProperties},event:{click:toggleShowAdvanced}"></div>
+<div class="sectionTitle">
+    Advanced settings
+</div>
+
+<div data-bind="visible:showAdvancedCopyProperties">
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: timeout} }" class="formField"></div>
+
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: executionPriorityOrder} }" class="formField"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: delay} }" class="formField"></div>
+
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: longRetry} }" class="formField"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: longRetryInterval} }" class="formField"></div>
+    <!-- ko if: copyBehaviourRelevant -->
+    <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: copyBehavior}}">}"></div>    
+    <!-- /ko -->
+</div>

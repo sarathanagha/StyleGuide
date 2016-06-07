@@ -1,0 +1,6 @@
+# Resolved typings
+/typings/definitelytyped/
+/typings/datastudio/
+
+# Build output
+datastudio.contracts.d.ts

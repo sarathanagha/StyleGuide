@@ -1,0 +1,141 @@
+﻿<div class="adf-datasetTool-container row">
+    <div class="col no-shrink adf-datasetTool-leftPane adf-scroll" data-bind="with: leftPane">
+        <div class="row no-shrink adf-datasetTool-leftPaneTabs">
+            <div class="tab" data-bind="titleText: newDatasetTabTitle, css: {selected: selectedNewDataset()}, click: selectGroup.bind(this, 'newDataStore')"></div>
+            <div class="tab" data-bind="titleText: existingDatasetTabTitle, css: {selected: selectedExistingDataset()}, click: selectGroup.bind(this, 'existingDataset')"></div>
+            <hr class="adf-datasetTool-border" />
+        </div>
+        <div class="adf-datasetTool-leftPaneContent">
+            <input class="no-shrink adf-datasetTool-nameFilter" type="text" data-bind="textInput: nameFilter, attr: {placeholder: nameFilterPlaceholder}" />
+            <div class="adf-flexGrid-container col" data-bind="foreach: listItems">
+                <div class="adf-flexGrid-item centerYWithoutHeight row" data-bind="click: $parent.toggleSelectionForItem.bind($parent, $data), css: {selected: $parent.selectedItem() === $data}">
+                    <div class="iconDiv" data-bind="html: metadata.icon"></div>
+                    <div class="itemText">
+                        <div class="dataFactory-text-ellipsis" data-bind="titleText: model.name"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col grow adf-datasetTool-rightPane adf-scroll" data-bind="with: rightPane">
+        <!-- ko with: commonDatasetSettings -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="collapsible: $data">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body">
+                <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: datasetName}}"></div>
+                <div class="formFieldLabel"><label for="idDescriptionBox" data-bind="titleText: descriptionLabel"></label></div>
+                <div class="descriptionBox"><textarea rows="3" id="idDescriptionBox" data-bind="value: description, attr: {placeholder: ClientResources.enterDescription}"></textarea></div>
+                <!-- ko if: displayCadence -->
+                <div data-bind="htmlWith: {template: frequencyIntervalTemplate, viewModel: properties}"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko with: settings-->
+        <!-- ko if: linkedService -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="with: linkedService, collapsible: linkedService()">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body">
+                <!-- TODO paverma Merge this with powercopytool -->
+                <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: displayList}}"></div>
+                <!-- ko if: isNewLinkedService -->
+                <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: newLinkedServiceName} }"></div>
+
+                <!-- ko foreach: renderedForm().formFields -->
+                <!-- ko if: type === "text" -->
+                <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: box} }"></div>
+                <!-- /ko -->
+                <!-- ko if: type === "password" -->
+                <div data-bind="component:{ name: 'datafactory-validatedpasswordbox', params: {vm: box} }"></div>
+                <!-- /ko -->
+                <!-- ko if: type === "dropdown" -->
+                <div data-bind="component: {name:'datafactory-validatedselectbox', params: {vm: box}}"></div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <div>
+                    <button class="btn btn-primary shrink" data-bind="click: selectLinkedService, text: selectButtonText"></button>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: blobStorage -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="with: blobStorage, collapsible: blobStorage()">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body adf-datasetTool-blobBrowserSection">
+                <!-- ko if: hideMessage -->
+                <div data-bind="text: hideMessage"></div>
+                <!-- /ko -->
+                <!-- ko ifnot: hideMessage -->
+                <div class="row">
+                    <label class="label" data-bind="text: folderPathLabel"></label>
+                    <input class="grow" data-bind="textInput: folderPath" />
+                </div>
+                <div class="row">
+                    <label class="label" data-bind="text: filenameLabel"></label>
+                    <input data-bind="textInput: filename" />
+                </div>
+                <!-- ko if: showBlobBrowser -->
+                <div data-bind="component:{name:'datafactory-blobbrowser',params:{vm: blobBrowser()}}" class="blobflex"></div>
+                <!-- /ko -->
+                <!-- ko ifnot: showBlobBrowser -->
+                <div>
+                    <button class="btn btn-primary" data-bind="click: toggleBlobBrowser, text: browseButtonLabel"></button>
+                </div>
+                <!-- /ko -->
+                <div data-bind="htmlWith: {template: hierarchicalPartitionTemplate}"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: advancedSettings -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="with: advancedSettings, collapsible: advancedSettings()">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body" data-bind="with: fileFormat">
+                <div data-bind="htmlWith: {template: hierarchicalFileSettingsTemplate}"></div>
+                <div data-bind="htmlWith: {template: hierarchicalAdvancedSettingsTemplate}"></div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: schemaSettings -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="with: schemaSettings, collapsible: schemaSettings()">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body">
+                <div class="col" data-bind="foreach: columnRows">
+                    <div class="row centerYWithoutHeight adf-datasetTool-schemaColumns">
+                        <div class="centerYWithoutHeight" data-bind="html: $parent.closeIcon, click: $parent.removeRow.bind(this, $data)"></div>
+                        <div data-bind="component: {name:'datafactory-validatedtextbox', params: {vm: name}}"></div>
+                        <div data-bind="component: {name:'datafactory-validatedselectbox', params: {vm: type}}"></div>
+                        <div data-bind="component: {name:'datafactory-validatedtextbox', params: {vm: description}}"></div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary adf-datasetTool-addNewColumnButton" data-bind="click: addNewColumn, text: addNewColumnText"></button>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: previewSettings -->
+        <div class="dataFactory-activityTool-expandableSection" data-bind="with: previewSettings, collapsible: previewSettings()">
+            <div class="row dataFactory-activityTool-header">
+                <div class="dataFactory-activityTool-headerText" data-bind="titleText: header"></div>
+            </div>
+            <div class="col dataFactory-activityTool-body">
+                wait for it...
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<div data-bind="loader: rightPane.loading"></div>

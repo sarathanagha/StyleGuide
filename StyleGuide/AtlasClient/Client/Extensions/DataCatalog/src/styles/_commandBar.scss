@@ -1,0 +1,139 @@
+﻿@import "../../../../Core/DataStudio/src/stylesheets/DataStudio/colors";
+@import "../../../../Core/DataStudio/src/Stylesheets/Framework/Base/layoutBase";
+@import "../styles/mixins";
+
+$search-panel-height: 48px;
+$search-box-height: 32px;
+$commandbar-icon-height: 16px;
+$commandbar-icon-width: 16px;
+
+.command-bar {
+    .space-between {
+        justify-content: space-between;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .commandbar-btn, .commandbar-item {
+
+        @extend %row;
+        align-items: center;
+
+        padding-left: 16px;
+        padding-right: 16px;
+        text-transform: capitalize;
+    
+        .text {
+            color: $grayDark;
+            white-space: nowrap;
+        }
+
+        &.select-menu {
+            color: $waveBlue;
+        }
+
+        &.select-menu .text {
+            color: $waveBlue;
+        }
+
+        &.disabled {
+            cursor :default;
+            @include opacity(.25);
+        }
+    }
+
+    .commandbar-btn {
+        background-color: $white;
+
+        &:hover:not(.disabled) {
+            background: rgba($waveBlue, 0.1);
+        }
+
+        .icon {
+            display: inline-block;
+            width: $commandbar-icon-width;
+            height: $commandbar-icon-height;
+            margin-right: 8px;
+        }
+        
+        .icon-right {
+            margin-left: 8px;
+            margin-right: 0px;
+        }
+
+        &.select-menu .icon svg {
+            fill: $waveBlue;
+        }
+
+        &:active:not(.disabled) {
+            background-color: $slate;
+
+            .text {
+                color: $white;
+            }
+
+            .icon svg {
+                fill: $white;
+            }
+
+            .back-btn {
+                background-image: url(../../../images/back_active.svg);
+            }
+            .copy-btn {
+                background-image: url(../../../images/copy_active.svg);
+            }
+            .delete-btn {
+                background-image: url(../../../images/delete_active.svg);
+            }
+            .sort-descending-btn {
+                background-image: url(../../../images/sort-descending_active.svg);
+            }
+            .chevron-down-btn {
+                background: url(../../../images/chevron-down_active.svg) no-repeat;
+            }
+            .list-view-btn {
+                background-image: url(../../../images/list-view_active.svg);
+            }
+            .tiles-view-btn {
+                background-image: url(../../../images/card-view_active.svg);
+            }
+        }
+
+        .back-btn {
+            background: url(../../../images/back.svg) no-repeat;
+            margin-right: 0px;
+        }
+        .copy-btn {
+            background: url(../../../images/copy.svg) no-repeat;
+        }
+        .delete-btn {
+            background: url(../../../images/delete.svg) no-repeat;
+        }
+        .sort-descending-btn {
+            background: url(../../../images/sort-descending.svg) no-repeat;
+        }
+        .chevron-down-btn {
+            background: url(../../../images/chevron-down.svg) no-repeat;
+        }
+        .list-view-btn {
+            background: url(../../../images/list-view.svg) no-repeat;
+            margin-right: 0px;
+        }
+        .tiles-view-btn {
+            background: url(../../../images/card-view.svg) no-repeat;
+            margin-right: 0px;
+        }
+    }
+
+    .search-box {
+        height: $search-box-height;
+        width: 100%;
+        margin-left: 40px;
+        margin-right: 64px;
+        min-width: 300px;
+        max-width: 500px;
+    }
+}
+

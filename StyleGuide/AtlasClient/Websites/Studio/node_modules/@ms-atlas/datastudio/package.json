@@ -1,0 +1,22 @@
+{
+  "name": "@ms-atlas/datastudio",
+  "version": "0.1.18",
+  "description": "Data application project.",
+  "main": "app-main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "window": {
+    "toolbar": false,
+    "width": 800,
+    "height": 500
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "cd ..\\ & karma start --browsers PhantomJS",
+    "start": "http-server ./ -c-1 -p8080",
+    "setup": "npm install http-server -g & npm install karma-cli -g"
+  },
+  "author": "",
+  "license": "MIT"
+}

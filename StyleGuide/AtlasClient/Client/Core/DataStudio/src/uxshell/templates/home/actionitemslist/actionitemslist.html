@@ -1,0 +1,12 @@
+<div class="actionItemsList" >
+    <div class="row sectionTitle" data-bind="text: params.title"></div>
+    <!-- ko foreach: params.items -->
+    <div class="row item" data-bind="click: $data.action">
+        <!-- ko if: $data.icon -->
+            <!-- TODO add ability to specify icon as css class OR href to image -->
+            <div class="col icon" data-bind="css: $data.icon"></div>
+        <!-- /ko -->
+        <div class="col" data-bind="text: $data.name"></div>
+    </div>
+    <!-- /ko -->
+</div>

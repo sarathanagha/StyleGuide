@@ -1,0 +1,36 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.connection-string-display {
+  margin-top: 20px;
+  padding-right: 10px; }
+  .connection-string-display .copy-button {
+    height: 25px;
+    padding-left: 10px; }
+    .connection-string-display .copy-button img {
+      width: 14px;
+      height: 14px; }
+  .connection-string-display .connection-string-label {
+    font-weight: bold; }
+  .connection-string-display .connection-string-field-container {
+    width: 100%;
+    height: 90px;
+    margin-top: 5px;
+    font-size: 12px; }
+    .connection-string-display .connection-string-field-container textarea {
+      width: 100%;
+      height: 100%;
+      padding: 5px; }
+  .connection-string-display .connection-string-field {
+    background-color: #D8DBDE; }
+
+/*# sourceMappingURL=connectionstringdisplay.css.map */

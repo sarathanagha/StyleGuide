@@ -1,0 +1,288 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#provision-catalog header {
+  color: white;
+  background-color: #26357f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 66px;
+  font-size: 17px;
+  padding: 0 30px;
+  font-family: 'Segoe UI Light','Segoe UI',sans-serif; }
+  #provision-catalog header #title {
+    font-size: 24px;
+    line-height: 60px;
+    text-transform: capitalize;
+    cursor: default; }
+
+#provision-catalog .main {
+  position: absolute;
+  top: 66px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto; }
+  #provision-catalog .main .banner-bg {
+    background-color: #00BCF2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 280px; }
+  #provision-catalog .main .contents {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1295px;
+    left: 50%;
+    margin-left: -647.5px;
+    font-family: 'Segoe UI',sans-serif; }
+    #provision-catalog .main .contents .banner-contents {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 280px;
+      padding: 50px 450px 0 125px; }
+      #provision-catalog .main .contents .banner-contents .enter-settings-text {
+        color: white;
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold; }
+      #provision-catalog .main .contents .banner-contents .product-name {
+        color: #2A3B8D;
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold;
+        text-transform: capitalize; }
+      #provision-catalog .main .contents .banner-contents .getting-started-long {
+        color: white;
+        font-size: 15px;
+        line-height: 20px;
+        width: 575px;
+        margin-top: 15px; }
+    #provision-catalog .main .contents .provision-contents {
+      position: absolute;
+      top: 280px;
+      left: 0;
+      right: 0;
+      padding: 0 100px 125px 100px; }
+      #provision-catalog .main .contents .provision-contents .settings-section {
+        margin-top: 40px; }
+        #provision-catalog .main .contents .provision-contents .settings-section .heading-row {
+          position: relative;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #BEC2C9; }
+          #provision-catalog .main .contents .provision-contents .settings-section .heading-row img {
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 5px; }
+          #provision-catalog .main .contents .provision-contents .settings-section .heading-row .heading {
+            padding-left: 25px;
+            font-size: 21px;
+            color: #474F5A;
+            line-height: 25px;
+            text-transform: capitalize; }
+            #provision-catalog .main .contents .provision-contents .settings-section .heading-row .heading:after {
+              content: ":"; }
+          #provision-catalog .main .contents .provision-contents .settings-section .heading-row .summary {
+            font-size: 15px;
+            color: #2A3B8D;
+            line-height: 25px; }
+        #provision-catalog .main .contents .provision-contents .settings-section .setting-box {
+          width: 100%;
+          background-color: white;
+          padding: 20px 20px 30px 20px;
+          display: none; }
+          #provision-catalog .main .contents .provision-contents .settings-section .setting-box .setting-title {
+            font-size: 17px;
+            color: #474F5A;
+            line-height: 25px;
+            padding-bottom: 30px; }
+        #provision-catalog .main .contents .provision-contents .settings-section.expanded .setting-box {
+          display: block; }
+      #provision-catalog .main .contents .provision-contents .dropdown {
+        border: 1px solid #BEC2C9;
+        padding: 1px 9px 3px;
+        font-size: 14px; }
+        #provision-catalog .main .contents .provision-contents .dropdown a {
+          color: #474F5A;
+          text-decoration: none;
+          cursor: pointer;
+          line-height: 25px;
+          width: 100%;
+          display: block; }
+          #provision-catalog .main .contents .provision-contents .dropdown a img {
+            position: absolute;
+            right: 10px;
+            top: 10px; }
+          #provision-catalog .main .contents .provision-contents .dropdown a .progress-indicator {
+            position: absolute;
+            right: 10px;
+            top: 0; }
+        #provision-catalog .main .contents .provision-contents .dropdown .dropdown-menu {
+          border-radius: 0;
+          font-size: 12px;
+          margin: 0;
+          padding: 3px 0;
+          left: 0;
+          right: 0; }
+      #provision-catalog .main .contents .provision-contents .validation-error {
+        font-size: 12px;
+        font-style: italic;
+        color: #E02D71 !important; }
+        #provision-catalog .main .contents .provision-contents .validation-error a {
+          color: #E02D71;
+          text-decoration: underline; }
+      #provision-catalog .main .contents .provision-contents .catalog .table {
+        margin-bottom: 0; }
+        #provision-catalog .main .contents .provision-contents .catalog .table .table-cell {
+          width: 33%;
+          padding-right: 40px; }
+          #provision-catalog .main .contents .provision-contents .catalog .table .table-cell .catalog-label {
+            text-transform: capitalize;
+            font-size: 15px;
+            color: #474F5A;
+            line-height: 25px;
+            margin-bottom: 5px; }
+            #provision-catalog .main .contents .provision-contents .catalog .table .table-cell .catalog-label:after {
+              content: ":"; }
+          #provision-catalog .main .contents .provision-contents .catalog .table .table-cell input {
+            width: 100%;
+            border: 1px solid #BEC2C9;
+            outline: 0;
+            padding: 2px 5px;
+            font-size: 14px;
+            line-height: 25px;
+            height: 31px; }
+          #provision-catalog .main .contents .provision-contents .catalog .table .table-cell .info {
+            float: right;
+            font-style: italic;
+            font-size: 12px; }
+          #provision-catalog .main .contents .provision-contents .catalog .table .table-cell .required {
+            float: right;
+            font-style: italic;
+            font-size: 12px;
+            color: #2BA9E1; }
+      #provision-catalog .main .contents .provision-contents .pricing .pricing-box {
+        display: inline-block;
+        padding: 20px;
+        background-color: #eff0f0;
+        border: 3px solid #eff0f0;
+        cursor: pointer;
+        position: relative; }
+        #provision-catalog .main .contents .provision-contents .pricing .pricing-box.selected {
+          border-color: #28c5f2; }
+          #provision-catalog .main .contents .provision-contents .pricing .pricing-box.selected .selection {
+            display: block; }
+        #provision-catalog .main .contents .provision-contents .pricing .pricing-box .selection {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 28px;
+          width: 28px;
+          text-align: center;
+          z-index: 1;
+          background-color: #28c5f2;
+          display: none; }
+          #provision-catalog .main .contents .provision-contents .pricing .pricing-box .selection .outline {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 15px;
+            width: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            top: 50%; }
+            #provision-catalog .main .contents .provision-contents .pricing .pricing-box .selection .outline img {
+              position: relative;
+              top: -4px;
+              left: -1px; }
+        #provision-catalog .main .contents .provision-contents .pricing .pricing-box .pricing-name {
+          text-transform: uppercase;
+          margin-bottom: 25px; }
+        #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-text {
+          display: inline-block;
+          padding-right: 20px;
+          position: relative; }
+          #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-text .seperator {
+            position: absolute;
+            right: 0;
+            top: 45%;
+            bottom: 0;
+            width: 1px;
+            background-color: #BEC2C9; }
+        #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units {
+          display: inline-block;
+          width: 300px;
+          height: 100%;
+          vertical-align: top;
+          position: relative; }
+          #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div {
+            padding-left: 20px;
+            position: relative;
+            top: 50px; }
+            #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper {
+              position: relative;
+              display: inline-block; }
+              #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img {
+                position: absolute;
+                left: 12px; }
+                #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img.up {
+                  bottom: 100%; }
+                #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img.down {
+                  top: 100%; }
+              #provision-catalog .main .contents .provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper input {
+                width: 40px;
+                text-align: center;
+                outline: 0; }
+      #provision-catalog .main .contents .provision-contents .create-button {
+        position: absolute;
+        right: 0;
+        margin: 30px 100px 0 0;
+        width: 250px;
+        height: 50px;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        background-color: #26357f; }
+        #provision-catalog .main .contents .provision-contents .create-button span {
+          font-size: 27px;
+          line-height: 46px;
+          text-transform: capitalize; }
+        #provision-catalog .main .contents .provision-contents .create-button img {
+          position: relative;
+          top: -5px;
+          right: -5px; }
+        #provision-catalog .main .contents .provision-contents .create-button.disabled {
+          opacity: 0.1;
+          filter: alpha(opacity=10);
+          cursor: default; }
+        #provision-catalog .main .contents .provision-contents .create-button.working {
+          cursor: default; }
+        #provision-catalog .main .contents .provision-contents .create-button .progress-indicator {
+          position: relative;
+          top: 15px; }
+      #provision-catalog .main .contents .provision-contents .create-notice {
+        position: absolute;
+        right: 0;
+        margin-right: 100px;
+        padding-top: 5px; }
+
+/*# sourceMappingURL=catalog.css.map */

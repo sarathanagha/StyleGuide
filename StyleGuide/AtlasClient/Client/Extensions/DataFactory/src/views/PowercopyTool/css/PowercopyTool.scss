@@ -1,0 +1,971 @@
+@import "../../../stylesheets/_AdfSpecific";
+@import "../../../stylesheets/Authoring/Fonts";
+
+.containerSelected {
+    border: solid blue 1px;
+}
+
+body .copytool {
+    .win-listview > .win-vertical .win-container {
+        margin-top: 0px;
+    }
+
+    $boxShadow: 0px 0px 5px rgba(181, 183, 185, 0.8);
+
+    .copyDataText {
+        @include MRFont;
+        font-family: 'Segoe UI' sans-serif;
+        text-transform: uppercase;
+        color: $darkGray;
+    }
+
+    .wizardStepTitle {
+        @include XXLRFont;
+        color: $grayDarkest;
+    }
+
+    .wizardStepSubtitle {
+        margin-top: 7px;
+        width: 600px;
+        margin-bottom: 46px;
+        @include MRFont;
+        color: $grayColor;
+    }
+
+    .tabContainer {
+        overflow: hidden;
+        margin-bottom: 24px;
+        margin-right: 40px;
+        border-bottom: solid $cloudColor 1px;
+
+        &.noBorder {
+            border: none;
+        }
+    }
+
+    .linkContainer {
+        width: 360px;
+        margin-top: -18px;
+        position: absolute;
+    }
+
+    .linkSpan {
+        font-size: 12px;
+        float: left;
+    }
+
+    $previewRowa: 10;
+    $tabLineHeight: 30px;
+
+    .tab {
+        float: left;
+        text-transform: uppercase;
+        margin-left: 12px;
+        margin-right: 16px;
+        padding-left: 2px;
+        padding-right: 2px;
+        @include MSBFont;
+        line-height: $tabLineHeight;
+        color: $grayColor;
+        cursor: pointer;
+
+        &.selected {
+            font-weight: bold;
+            border-bottom: solid $atlasTeal 2px;
+            color: $grayDarkest;
+        }
+
+        &:hover {
+            color: black;
+        }
+    }
+
+    .radioLabel {
+        text-transform: uppercase;
+        @include MSBFont;
+        line-height: $tabLineHeight;
+        color: $grayDarkest;
+        cursor: pointer;
+        margin-right: 15px;
+    }
+
+    .dataStoresGridContainer {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        .dataSourceItemContainer {
+            box-shadow: $boxShadow;
+            width: 220px;
+            margin-left: 8px;
+            margin-bottom: 8px;
+
+            &:hover {
+                background-color: $cloudColor;
+            }
+
+            &.selected {
+                background-color: $selectedColor;
+            }
+
+            .iconDiv {
+                height: 84px;
+                width: 84px;
+                margin-top: 41px;
+                margin-bottom: 41px;
+                margin-left: 66px;
+            }
+
+            .datasourceName {
+                font-size: 16px;
+                font-family: 'Segoe UI';
+                text-align: center;
+                height: 48px;
+                line-height: 48px;
+                border-top: solid $grayLightColor 1px;
+            }
+
+            &.selected {
+                .datasourceName {
+                    color: $selectedTextColor;
+                    border-top: solid gray 1px;
+                }
+            }
+        }
+    }
+
+    .placeHolder {
+        ::-webkit-input-placeholder {
+            font-style: italic;
+        }
+
+        :-moz-placeholder {
+            font-style: italic;
+        }
+
+        ::-moz-placeholder {
+            font-style: italic;
+        }
+
+        :-ms-input-placeholder {
+            font-style: italic;
+        }
+    }
+
+    .linkedServicesGridContainer {
+        $margin: 24px;
+        margin-top: $margin;
+        margin-left: 2px;
+
+        $filterControlWidth: 235px;
+
+        .linkedServicesFilter {
+            .typeFilter {
+                float: left;
+
+                .formFieldHeaderContainer {
+                    display: none;
+                }
+
+                .formFieldInput {
+                    width: $filterControlWidth;
+                }
+            }
+
+            .nameFilterContainer {
+                @extend .placeHolder;
+                float: left;
+                margin-bottom: $margin;
+
+                .nameFilter {
+                    width: $filterControlWidth;
+                }
+            }
+        }
+
+        .filteredLinkedServices {
+            clear: both;
+
+            .linkedServicesItemContainer {
+                box-shadow: $boxShadow;
+                width: 300px;
+                height: 56px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                float: left;
+
+                &:hover {
+                    background-color: $cloudColor;
+                }
+
+                &.selected {
+                    background-color: $selectedColor;
+                }
+
+                $imageMargin: 16px;
+                $imageSize: 24px;
+
+                .iconDiv {
+                    float: left;
+                    height: $imageSize;
+                    width: $imageSize;
+                    margin-left: $imageMargin;
+                    margin-top: $imageMargin;
+                    margin-right: 12px;
+                    margin-bottom: $imageMargin;
+                }
+
+                .linkedServiceName {
+                    float: left;
+                    width: 230px;
+                    margin-top: 18px;
+                    margin-bottom: 18px;
+                    color: $grayDarkest;
+                    font-family: 'Segoe UI';
+                    font-size: 14px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    &.selected {
+                        color: $selectedTextColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .dateInput {
+        margin-bottom: 24px;
+    }
+
+    .wizardBindingElement {
+        height: 100%;
+    }
+
+    .wizardContentClass {
+        @extend %adfScroll;
+        height: calc(100vh - 150px);
+        overflow: auto;
+    }
+
+    .radioText {
+        @include MRFont;
+    }
+
+    .descriptionBox {
+        margin-bottom: 20px;
+    }
+
+    .formFieldInlineText {
+        float: left;
+        margin: 24px 10px 0 -14px;
+        @include MRFont;
+    }
+
+    $invervalFieldWidth: 100px;
+
+    .frequencyAndInterval {
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    .intervalContainer {
+        float: left;
+        margin-top: 15px;
+        margin-right: 24px;
+
+        .formFieldHeaderContainer, .formFieldInputContainer, .formFieldInput {
+            width: $invervalFieldWidth;
+        }
+    }
+
+    .SRFont {
+        @include SRFont;
+    }
+
+    .queryBox {
+        width: 100%;
+        max-width: 730px;
+
+        &:disabled {
+            background-color: $lightCanvasColor;
+            border: 1px solid $cloudColor;
+            color: $grayLightColor;
+        }
+    }
+
+    input[type=checkbox] {
+        width: 15px;
+        height: 15px;
+    }
+
+    .tableAndCheckboxContainer {
+        margin-left: 10px;
+        padding-top: 10px;
+    }
+
+    .tableNameContainer {
+        @include MRFont;
+        padding-top: 1px;
+        float: left;
+        margin-left: 8px;
+        height: 30px;
+    }
+
+    .fileFolderText {
+        float: left;
+        @include SRFont;
+        line-height: 28px;
+        color: $grayDarkest;
+        width: 100px;
+    }
+
+    .variableExplanationText {
+        @include SRFont;
+        color: $grayDarkest;
+        margin-bottom: 15px;
+    }
+
+    .temp {
+        @include SRFont;
+        color: $grayDarkest;
+    }
+
+    .blobBrowserContainer {
+        background-color: white;
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .partitionDescription {
+        width: 600px;
+    }
+
+    .sectionTitle {
+        @include XLSBFont;
+        font-family: 'Segoe UI';
+        color: $grayDarkest;
+        margin-bottom: 10px;
+    }
+
+    div, span {
+        font-weight: 400;
+    }
+
+    .win-listview .win-focusedoutline,
+    .win-itemcontainer .win-focusedoutline {
+        outline: solid lightgray 2px;
+    }
+
+    .win-selectionbackground {
+        background-color: $selectedColor !important;
+        opacity: 1.0 !important;
+    }
+
+    .previewTableRow > td {
+        border-bottom: solid $grayLightColor 1px;
+    }
+
+    .tableCellDiv {
+        padding-left: 7px;
+        padding-right: 7px;
+        @include SRFont;
+        line-height: 32px;
+        text-align: left;
+        color: $grayDarkest;
+    }
+
+    .tableHeaderDiv {
+        font-weight: bold;
+    }
+
+    .expander {
+        float: left;
+        background-image: url('../images/collapse-down.svg');
+        background-repeat: no-repeat;
+        width: 15px;
+        height: 15px;
+        background-size: 15px 15px;
+        margin-top: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+
+        &.small {
+            width: 10px;
+            height: 10px;
+            margin-top: 8px;
+            background-size: 10px 10px;
+        }
+
+        &.expanded {
+            transform: rotate(180deg);
+        }
+    }
+
+    .verticalFlex {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .verticalFlexibleElement {
+        flex: 1 1 auto;
+        height: 100%;
+    }
+
+    .verticalInflexibleElement {
+        flex: 0 0 auto;
+    }
+
+    .verticallyResizableMasterPreviewAndSchema {
+        flex: 0 0 ($previewRowa + 5)*$tabLineHeight;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .verticallyResizableMasterIdempotency {
+        flex: 0 0 auto;
+        overflow: auto;
+    }
+
+    .verticallyResizableSubordinant {
+        flex: 1 1 50%;
+        overflow: auto;
+        min-height: 70px;
+    }
+
+    .link {
+        @include SRFont;
+        color: #008272 !important;
+    }
+
+    .statusHeaderText {
+        float: left;
+        margin-left: 3px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        @include MSBFont;
+    }
+
+    .individualStatus {
+        float: left;
+        margin-left: 20px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        @include MRFont;
+    }
+
+    @mixin statusBackgroundImg {
+        background-size: 16px 16px;
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+        margin-top: 5px;
+        background-repeat: no-repeat;
+    }
+
+    .progress {
+        @include statusBackgroundImg;
+        background-image: url('../../../bootstrapper/images/ProgressRing.svg');
+        animation: spin 1s linear infinite;
+    }
+
+    .success {
+        @include statusBackgroundImg;
+        background-image: url('../../../bootstrapper/images/StatusReady.svg');
+    }
+
+    .fail {
+        @include statusBackgroundImg;
+        background-image: url('../../../bootstrapper/images/ErrorStatus.svg');
+    }
+
+    .floatFieldLabel {
+        @include SRFont;
+        float: left;
+        width: 100px;
+        line-height: 60px;
+    }
+
+    .datasetLocationSummaryContainer {
+        position: relative;
+        top: -20px;
+    }
+
+    .datasetLocationSummaryText {
+        @include SRFont;
+        float: left;
+    }
+
+    .multipleDatesetsDetails {
+        @include statusBackgroundImg;
+        background-image: url('../images/collapse-down.svg');
+        float: left;
+    }
+
+    .listOfTablesContainer {
+        box-shadow: 0px 0px 5px rgba(87, 87, 87, 0.15);
+        background-color: white;
+        position: absolute;
+    }
+
+    .tablesListTmp {
+        margin: 5px 5px 5px 5px;
+        @include SRFont;
+    }
+
+    .infoDiv {
+        display: inline-block;
+        @include statusBackgroundImg;
+        background-image: url('../../../bootstrapper/images/Info.svg');
+        position: relative;
+        top: 3px;
+    }
+
+    .toolLabel {
+        @include SRFont;
+
+        &.disabled {
+            color: $grayLightColor;
+        }
+    }
+
+    .grayBackground {
+        background-color: gray;
+    }
+
+    $tableMappingHeight: 35px;
+    $floatTextMargin: 20px;
+    $warningWidth: 8px;
+    $mappingArrowWidth: 40px;
+
+    .floatText {
+        float: left;
+        margin-left: $floatTextMargin;
+        @include SRFont;
+        color: $grayDarkest;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .headerText {
+        @extend .floatText;
+        margin-left: $floatTextMargin + $warningWidth;
+        margin-bottom: 4px;
+    }
+
+    .destinationHeader {
+        margin-left: $mappingArrowWidth;
+    }
+
+    .tableMappingWarningLine {
+        width: $warningWidth;
+        height: 100%;
+        background-color: orange;
+        position: absolute;
+    }
+
+    .tableMappingArrow {
+        height: $tableMappingHeight;
+        float: left;
+        width: $mappingArrowWidth;
+        background-image: url('../images/RightArrow.svg');
+        background-size: 20px $tableMappingHeight;
+        background-repeat: no-repeat;
+    }
+
+    .tableMappingContainer {
+        width: 100%;
+        min-height: $tableMappingHeight;
+        max-width: 1000px;
+        margin-left: 8px;
+        margin-bottom: -1px;
+        overflow: hidden;
+        position: relative;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-top: 1px solid $canvasColor;
+        border-bottom: 1px solid $canvasColor;
+
+        .sourceTableText {
+            @extend .floatText;
+            line-height: $tableMappingHeight;
+        }
+
+        .destinationSelectContainer {
+            float: left;
+            margin-top: 4px;
+
+            .formFieldHeaderContainer {
+                display: none;
+            }
+        }
+
+        .storedProcText {
+            float: left;
+            @include SRFont;
+            line-height: $tableMappingHeight;
+            color: $grayDarkest;
+        }
+
+        .tableMappingExpander {
+            float: right;
+            margin-right: 20px;
+            margin-top: 10px;
+
+            &.mappingExpanded {
+                transform: rotate(180deg);
+            }
+        }
+
+        .expandedContent {
+            margin-left: 20px;
+            max-height: 0px;
+            transition-property: max-height;
+            transition-duration: 500ms;
+            overflow: hidden;
+
+            &.mappingExpanded {
+                max-height: 1000px;
+            }
+        }
+
+        $storedProcHeaderWidth: 200px;
+        $storedProcFieldRightMargin: 4px;
+
+        .nameTypeValueText {
+            width: $storedProcHeaderWidth;
+            margin-right: $storedProcFieldRightMargin;
+            float: left;
+            @include SRFont;
+        }
+
+        .spFieldContainer {
+            display: flex;
+            padding: 2px 0 2px 0;
+        }
+
+        .spFieldInput {
+            width: $storedProcHeaderWidth;
+            margin-right: $storedProcFieldRightMargin;
+            float: left;
+        }
+
+        .addLink {
+            @extend .link;
+        }
+
+        .storeProcCheckboxContainer {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .mappedTablesContainer {
+        float: left;
+        width: 300px;
+        padding-top: 20px;
+        background-color: $lightCanvasColor;
+        height: calc(100vh - 300px);
+        overflow-y: auto;
+
+        .columnMappingWarningLine {
+            @extend .tableMappingWarningLine;
+        }
+
+        .singleMappingContainer {
+            overflow: hidden;
+            background-color: $lightCanvasColor;
+            position: relative;
+            @include MRFont;
+
+            &:hover {
+                background-color: $lightestGrayColor;
+            }
+
+            .sourceDestKey {
+                margin-left: 20px;
+                float: left;
+                width: 90px;
+            }
+
+            .sourceDestValue {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .sorceDestTextContainer {
+                margin: 12px 0 12px 0;
+            }
+
+            &.selectedForColumnMapping {
+                background-color: $whiteColor;
+            }
+        }
+    }
+
+    .columnMappingAndIdempotencyContainer {
+        margin-right: 40px;
+        padding-left: 40px;
+        height: calc(100vh - 300px);
+    }
+
+    $leftPadding: 20px;
+    $arrowMargin: 12px;
+    $arrowWidth: 20px;
+    $destColumnReduction: 2 * $arrowMargin + $arrowWidth;
+
+    .columnMappingHeaderContainer {
+        @include SRFont;
+        overflow: hidden;
+
+        .columnMappingHeader {
+            float: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .source {
+            margin-left: $leftPadding;
+            width: calc(33% - 20px);
+        }
+
+        .destination {
+            margin-left: $destColumnReduction;
+            /*  $destColumnReduction=44px */
+            width: calc(33% - 44px);
+        }
+    }
+
+    .columnMappingContainer {
+        .columnMappingWarningLine {
+            @extend .tableMappingWarningLine;
+        }
+
+        .mapping {
+            background-color: $lightCanvasColor;
+            margin-top: 8px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .selectContainer {
+            /* $leftPadding = 20px */
+            width: calc(33% - 20px);
+            float: left;
+            margin-top: 4px;
+            margin-bottom: 5px;
+            margin-left: $leftPadding;
+        }
+
+        .columnMappingArrow {
+            @extend .tableMappingArrow;
+            width: $arrowWidth;
+            margin: 0 $arrowMargin 0 $arrowMargin;
+        }
+
+        .destinationColumn {
+            /*  $destColumnReduction=44px */
+            width: calc(33% - 44px);
+            float: left;
+            @include MRFont;
+            line-height: 33px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .checkboxContainer {
+            width: 33%;
+            float: left;
+            margin-top: 7px;
+        }
+    }
+
+    .sinkSettingsSection {
+        margin: 20px 0 20px 0;
+    }
+
+    .summarySectionTitle {
+        @extend .sectionTitle;
+        margin-top: 32px;
+    }
+
+    $summaryLineHeight: 23px;
+    $summaryLineMaxWidth: 800px;
+    $summaryKeyWidth: 200px;
+    $summaryArrowWidth: 300px;
+
+    .summaryHeaderSectionContainer {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .summarySectionContainer {
+        max-width: $summaryLineMaxWidth;
+    }
+
+    .summaryHeaderIconDiv {
+        height: 64px;
+        width: 64px;
+        display: block;
+        margin-right: 10px;
+        float: left;
+    }
+
+    .summaryHeaderPropertiesContainer {
+        float: left;
+    }
+
+    .summaryHeaderArrowContainer {
+        width: $summaryArrowWidth;
+        margin-right: 10px;
+        margin-left: 10px;
+        float: left;
+    }
+
+    .summaryHeaderArrowTextContainer {
+        width: $summaryArrowWidth;
+        text-align: center;
+        height: 20px;
+        margin-top: 8px;
+    }
+
+    .summaryHeaderArrowLabel {
+        @include MSBFont;
+        color: #2c3137;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    .summaryHeaderArrowValue {
+        @include MRFont;
+        color: #808387;
+        display: inline-block;
+    }
+
+    .summaryHeaderArrow {
+        height: 44px;
+        width: $summaryArrowWidth;
+        background-image: url('../images/SummaryArrow.svg');
+        background-size: 300px 20px;
+        background-repeat: no-repeat;
+        float: left;
+    }
+
+    .summaryHeaderPropertyContainer {
+        clear: both;
+    }
+
+    .summaryHeaderLabel {
+        @include MSBFont;
+        color: #2c3137;
+        float: left;
+        margin: 0 10px 5px 0;
+    }
+
+    .summaryHeaderValue {
+        @include MRFont;
+        color: #808387;
+        float: left;
+        margin: 0 0 5px 0;
+    }
+
+    .summaryHeaderDetails {
+        background-image: url(../images/eye.svg);
+        background-size: 16px 16px;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-left: 10px;
+        margin-top: 2px;
+    }
+
+    .summaryLineContainer {
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        height: 7px + $summaryLineHeight;
+        margin-top: 1px;
+        margin-bottom: 1px;
+
+        &.nestedLine {
+            margin: 0px;
+        }
+
+        .formFieldHeaderContainer {
+            display: none;
+        }
+
+        .formFieldInput {
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        .summaryPropertyKey {
+            width: $summaryKeyWidth;
+            @include MRFont;
+            color: $grayColor;
+            line-height: $summaryLineHeight;
+            @include adf-text-ellipsis;
+        }
+
+        .summaryPropertyValue {
+            max-width: $summaryLineMaxWidth - $summaryKeyWidth;
+            @include MRFont;
+            color: $grayDarkest;
+            line-height: $summaryLineHeight;
+            @include adf-text-ellipsis;
+            margin-left: 10px;
+
+            .dateInput {
+                width: 180px;
+            }
+        }
+    }
+
+    .summaryTableListExpander {
+        background-image: url(../images/eye.svg);
+        background-size: 16px 16px;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin: 5px 0 0 5px;
+    }
+
+    .summaryExpanderContent {
+        margin-top: 10px;
+        background-color: white;
+        position: absolute;
+        box-shadow: 0px 0px 5px rgba(87, 87, 87, 0.15);
+    }
+
+    .summaryExpandedListItem {
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    .summaryEditSaveLink {
+        float: right;
+        margin-right: 30px;
+        @include MRFont;
+        color: $atlasTeal;
+        cursor: pointer;
+        position: relative;
+        top: -43px;
+    }
+
+    .MSBFontSectionTitle {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        @include MSBFont;
+        color: $grayColor;
+    }
+}

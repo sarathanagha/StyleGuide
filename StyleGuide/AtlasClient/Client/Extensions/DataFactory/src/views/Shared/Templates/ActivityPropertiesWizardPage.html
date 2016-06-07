@@ -1,0 +1,14 @@
+﻿<div class="col">
+    <div class="wizardStepTitle" data-bind="titleText: wizardStepTitle"></div>
+    <div class="wizardStepSubtitle" data-bind="titleText: wizardStepSubtitle"></div>
+    <!-- ko with: activityProperties -->
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: activityName}}"></div>
+
+    <div class="formFieldLabel"><label for="idDescriptionBox" data-bind="titleText: activityDescriptionLabel"></label></div>
+    <div class="descriptionBox"><textarea rows="3" id="idDescriptionBox" data-bind="value: activityDescription, attr: {placeholder: ClientResources.enterDescription}"></textarea></div>
+    <!-- /ko -->
+
+    <!-- ko if: displayCadence -->
+    <div data-bind="htmlWith: {template: frequencyIntervalTemplate, viewModel: activityProperties}"></div>
+    <!-- /ko -->
+</div>

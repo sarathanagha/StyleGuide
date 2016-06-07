@@ -1,0 +1,11 @@
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# NPM
+node_modules/

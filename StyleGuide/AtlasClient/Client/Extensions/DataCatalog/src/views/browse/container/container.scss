@@ -1,0 +1,221 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-container {
+    margin: 0 15px 15px 15px;
+
+    a.back-to-catalog {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        span {
+            position: relative;
+            font-size: 17px;
+            top: .2em;
+        }
+    }
+
+    #container-tile {
+        margin-top: 10px;
+        padding: 20px;
+        width: 100%;
+        font-size: 12px;
+        cursor: pointer;
+        position: relative;
+
+        .delete-info {
+            display: none;
+            z-index: 1;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        &:hover,
+        &.selected {
+            .multiselect {
+                display: inline-block;
+            }
+        }
+
+        &.deleted {
+            border-color: transparent !important;
+            cursor: default;
+
+            .multiselect {
+                display: none;
+            }
+
+            .delete-info {
+                display: block;
+            }
+
+            #container-contents {
+                @include opacity(.30);
+                zoom: 1;
+            }
+        }
+
+        .table-cell {
+            vertical-align: top;
+        }
+
+        .title-desc,
+        .expert-tags {
+            width: 300px;
+        }
+
+        .data-object-type-image {
+            position: relative;
+            top: -2px;
+        }
+
+        .name {
+            line-height: 1.2em;
+            height: 1.25em;
+            font-size: 17px;
+        }
+
+        .desc {
+            margin-top: 5px;
+        }
+        
+        .expert-label {
+            margin: 0;
+            text-transform: capitalize;
+            height: 15px;
+
+            &:after {
+                content: ":";
+            }
+        }
+
+        .expert {
+            font-weight: bold;
+            height: 15px;
+            width: 245px;
+        }
+
+        .tags {
+            line-height: 20px;
+            overflow: hidden;
+            margin-top: 15px;
+
+            span {
+                padding: 1px 4px;
+                margin-right: 2px;
+                margin-bottom: 5px;
+                display: inline-block;
+            }
+        }
+
+        .object-type-box {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+
+            .object-type-count {
+                padding: 10px;
+                min-width: 60px;
+            }
+        }
+    }
+
+    .multiselect {
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
+        height: 28px;
+        width: 28px;
+        text-align: center;
+        cursor: pointer;
+
+        .outline {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 15px;
+            width: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            @include vertical-center();
+
+            img {
+                position: relative;
+                top: -4px;
+                left: -1px;
+            }
+        }
+    }
+
+    @mixin theme {
+        $body-color: $default-body-color;
+        $selected-tile: $default-selected-tile;
+        $body-color-light: $default-body-color-light;
+        $light-font-color: $default-light-font-color;
+        $light-gray: $default-light-gray;
+        $lighter-gray: $default-lighter-gray;
+        $input-text-color: $default-input-text-color;
+        $light-border: $default-light-border;
+        $input-outline: $default-input-outline;
+        $hint-text-color: $default-hint-text-color;
+        $selected-color: $default-selected-color;
+
+        & {
+
+            a.back-to-catalog {
+                span {
+                    color: $selected-color;
+                }
+            }
+
+            #container-tile {
+                background-color: $body-color-light;
+                border: 3px solid $body-color;
+                color: $input-text-color;
+
+                .multiselect {
+                    .outline {
+                        border: 1px solid $input-outline;
+                    }
+                }
+
+                &:hover {
+                    border-color: $input-outline;
+                }
+
+                &.selected {
+                    border-color: $selected-tile;
+                    .multiselect {
+                        background-color: $selected-tile;
+                        .outline {
+                            border: 1px solid fade($body-color-light, 50%);
+                        }
+                    }
+                }
+            }
+
+            .tags {
+                span {
+                    background-color: $body-color;
+                    color: $input-text-color;
+                }
+            }
+
+            .object-type-box {
+                .object-type-count {
+                    background-color: $body-color;
+                    color: $input-text-color;
+                }
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

@@ -1,0 +1,44 @@
+div(class="dataConnectHome col grow")
+  div(class="row homeHeader") Data Connect Home
+  
+  div(class="row row1")
+    div(class="col col1")
+      div(class="row grow content")
+        div(class="col quickTask wrap")
+          div(class="row sectionTitle" data-bind="text: quickLaunchTitle")
+          // ko foreach : quickLaunchButtons
+          div(class="col quickTaskItem")
+            button(data-bind="text: name, click: action")
+          // /ko
+    
+        div(class="col")
+          div(class="row sectionTitle" data-bind="text: notificationTitle")
+          div(class="col notifications")
+            // ko foreach : notificationItems
+            div(class="row notificationItem centerY" data-bind="click: action")
+              div(class="col notificationTile")
+                img(data-bind="attr:{src: icon}")
+              div(class="col")
+                div(class="title" data-bind="text: title")
+                div(class="time" data-bind="text: time")
+            // /ko
+        div(class="col")
+          div(data-bind="component: { name: 'uxshell-templates-home-actionitemslist', params: { items: connectionManagers, title: 'Recent' } }")
+  
+      div(class="row insightDashBoard")
+        .col
+          img(src="Images/diag1.png")
+        .col
+          img(src="Images/diag2.png")
+
+    div(class="col col2")
+      div(class="row homeSection1")
+        // ko foreach : statusTiles
+        div(class="col homePageItem")
+          div(class="row statusTile")
+            div(class="col statusTileCount" data-bind="text:  count")
+            div(class="col statusTileText" data-bind="text:  title")
+            div(class="col")
+              img(src="Images/statusTileOkIcon.png")
+        // /ko
+ 

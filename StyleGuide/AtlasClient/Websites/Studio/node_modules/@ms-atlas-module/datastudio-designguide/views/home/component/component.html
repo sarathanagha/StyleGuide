@@ -1,0 +1,462 @@
+<div id="Components" class="wrapperDiv1">
+    <div id="Buttons" class="page" >
+        <!--  <h2 class="title-bar maintitlebar"><div>Components</div><span class="subtitle"><a name="#Buttons">Buttons</a></span></h2>
+        -->
+
+    <div class="contentSEC" >
+            <p>Buttons are used for final actions and their intent is to "complete" a user flow. For example, at the end of a form to submit it, or shown at the end of a modal dialog to close it.</p>
+             <div>&nbsp;</div>
+        <div class="dsux-btn-group">
+            <button class='dsux-btn dsux-btn-primary'>Button Primary</button>
+            <button class='dsux-btn dsux-btn-secondary'>Button Secondary</button>
+            <button class='dsux-btn dsux-btn-tertiary'>Button Tertiary</button>
+        </div>   
+            <div>&nbsp;</div>
+              <div class="highlightsection">
+                &lt;button class='dsux-btn dsux-btn-primary' role='button' &gt; Button Primary &lt;/button&gt; <br />
+                &lt;button class='dsux-btn dsux-btn-secondary' role='button'&gt; Button Secondary&lt;/button&gt;<br /> 
+                &lt;button class='dsux-btn dsux-btn-tertiary' role='button'&gt; Button Tertiary&lt;/button&gt;<br />
+                
+               </div>
+         </div>
+    </div>
+    
+    <div id="Callout" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Tophavigation">Callout</a></span></h2>
+        <div class="contentSEC">
+            <p>
+               Callout TBD
+            </p>
+         </div>
+    </div>
+
+    <div id="DateTimePicker" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#DateTimePicker">DateTimePicker</a></span></h2>
+        <div class="contentSEC" id="DateTimePicker">
+            <p>
+                A datepicker is an inline or popover calendar that allows the user to select a date or date range. It is invoked when a Text Field is selected. A date picker can also contain a time picker.
+            </p>
+            <input type="text" name="datepicker" data-bind="datastudio-ux-BindingDatePicker:{myDate:myDate}" />
+            
+            <div class="highlightsection">
+                &lt;input type=&quot;text&quot; name=&quot;datepicker&quot;  data-bind=&quot;componentdatePicker:{myDate:myDate},value:myDate&quot; /&gt;
+                <br /> For eg: var viewModel = {myDate: ko.observable(new Date("12/01/2013"))};
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div id="Menus" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Menus">Menus</a></span></h2>
+        <div class="contentSEC">
+            <p>A Menu allows the user to select a single choice from a predetermined menu. It can be used in a variety of ways such as in the Command Bar or as a Contextual Menu. </p>
+            <div data-bind="datastudio-ux-menubinding:simpleMenuParams">
+                <a href="#">Simple Menu</a>
+            </div>
+
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:simpleMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                simpleMenuParams = {
+                    options: [
+                        { label: 'Label 1', value: 1},
+                        { label: 'Label 2', value: 2 },
+                        { label: 'Label 3', value: 3 }
+                    ]
+                };</pre>
+            </div>
+            </div>
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:complexMenuParams">
+                <a href="#">Complex Menu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:complexMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                complexMenuParams = {
+                    options: [
+                        {label: 'Label 1', value: 1, description: "description 1" },
+                        {label: 'Label 2', value: 2, description: "description 2" },
+                        {label: 'Label 3', value: 3, description: "description 3" }
+                ]
+                };</pre>
+            </div>
+            
+        </div>
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:dividerMenuParams">
+                <a href="#">Divider Menu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding: dividerMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                  dividerMenuParams = {
+                        options: [
+                             { label: 'Label 1', value: 1 },
+                             "-",
+                             { label: 'Label 3', value: 3 },
+                             { label: 'Label 4', value: 4 }
+                     ]
+                     };</pre>
+
+            </div>
+
+        </div>
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:disabledMenuParams">
+                <a href="#">Disabled Menu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:disabledMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                disabledMenuParams = {
+                    options: [
+                        { label: 'Label 1', value: 1 },
+                        { label: 'Label 2', value: 2, isDisabled: true },
+                        { label: 'Label 3', value: 3, isDisabled:true },
+                        { label: 'Label 4', value: 4 }
+                ]
+                };</pre>
+
+            </div>
+
+        </div>
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:iconMenuParams">
+                <a href="#">Icons Menu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:iconMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                iconMenuParams = {
+                    options: [
+                        { label: 'Label 1', value: 1, icon: 'svg-delete' },
+                        { label: 'Label 2', value: 2, icon: 'svg-delete' },
+                        { label: 'Label 3', value: 3, icon: 'svg-delete' },
+                        { label: 'Label 4', value: 4, icon: 'svg-delete'}
+                ]
+                };</pre>
+            </div>
+
+        </div>
+
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:selctMenuParams">
+                <a href="#">Menu Selection(Single)</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:selctMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+                 exampleOptions = [
+                        { label: 'Label 1', value: 1, action: this.callback},
+                        { label: 'Label 2', value: 2, action: this.callback},
+                        { label: 'Label 3', value: 3, action: this.callback }
+                     ];
+                     selctMenuParams = {
+                            options: this.exampleOptions,
+                            selected: ko.observableArray([this.exampleOptions[0]])
+                       };</pre>
+
+            </div>
+        </div>
+
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:multiSelctMenuParams">
+                <a href="#">Menu Selection(Multi)</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:multiSelctMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br />
+      <pre>exampleOptions = [
+          { label: 'Label 1', value: 1, action: this.callback},
+           { label: 'Label 2', value: 2, action: this.callback},
+            { label: 'Label 3', value: 3, action: this.callback }
+          ]; 
+     multiSelctMenuParams = {
+     options: this.exampleOptions,
+     isMultiselect: true,
+     selected: ko.observableArray([this.exampleOptions[0], this.exampleOptions[1]])
+       };</pre>
+
+            </div>
+        </div>
+
+        <div class="contentSEC">
+            <div>
+                <a data-bind="datastudio-ux-menubinding:cascadeMenuParams" href="#">CascadeMenu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding:cascadeMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre> cascadeMenuParams = {
+        options: [
+            {
+                label: 'Label 1', value: 1,
+                options: [
+                    {
+                        label: 'a', value: 1,
+                        options: [
+                            {
+                                label: 'b', value: 1
+                            },
+                            {
+                                label: 'c', value: 2,
+                                options: [
+                                    {
+                                        label: 'd', value: 1
+                                    }, {
+                                        label: 'e', value: 2
+                                    }]
+                            }]
+                    },
+                    { label: 'f', value: 2 }
+                ]
+            },
+            {
+                label: 'Label 2', value: 2,
+                options: [
+                    {
+                        label: 'Sub Label 21', value: 1
+                    },
+                    {
+                        label: 'Sub Label 2', value: 2
+                    }
+                ]
+            },
+            {
+                label: 'Label 3', value: 3,
+                options: [
+                    {
+                        label: 'Sub Label 31', value: 1
+                    },
+                    {
+                        label: 'Sub Label 2', value: 2
+                    }
+                ]
+            },
+            {
+                label: 'Label 4', value: 4,
+                options: [
+                    {
+                        label: 'Sub Label 41', value: 1
+                    },
+                    {
+                        label: 'Sub Label 2', value: 2
+                    }
+                ]
+            }
+        ]
+    };
+</pre>
+
+            </div>
+        </div>
+
+        <div class="contentSEC">
+            <div data-bind="datastudio-ux-menubinding:headerMenuParams">
+                <a href="#">HeaderMenu</a>
+            </div>
+            <div class="highlightsection">
+                &lt;div data-bind=&quot;datastudio-ux-menubinding: headerMenuParams&quot;&gt;
+                &lt;a href=&quot;#&quot;&gt;Simple Menu&lt;/a&gt;
+                &lt;/div&gt;
+                <br /><pre>
+             headerMenuParams = {
+                options: [
+                     { label: 'Label 1', value: 1 },
+                     "Header",
+                     { label: 'Label 3', value: 3 },
+                     { label: 'Label 4', value: 4 }
+         ]
+         };</pre>
+
+            </div>
+        </div>
+   </div>
+<div class="clearfix"></div>
+    <div id="HyperLink" class="page">
+       <div class="title-bar"><div></div><span class="subtitle"><a name="#HyperLink">HyperLink</a></span></div>
+
+         <div class="contentSEC">
+             <p>
+                 Hyperlinks are textual links that navigate the user to another page within the app or elsewhere on the web. 
+             </p>
+            <p>
+                <a href="#" class="ms-hyperlink">Herolink</a>
+            </p>
+            
+            <div class="highlightsection">
+                &lt;a href=&quot;#&quot; class=&quot;ms-hyperlink&quot;&gt;Herolink&lt;/a&gt;
+            </div>
+           
+           
+        
+    </div>
+</div>
+    <div id="Forms" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Forms">Forms</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                Forms TBD
+            </p>
+           
+            <p>
+                
+            </p>
+        </div>
+    </div>
+
+    <div id="Label" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Label">Label</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                Label TBD
+            </p>
+           
+        </div>
+    </div>
+
+    <div id="List" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Lists">Lists</a></span></h2>
+        <div class="contentSEC">
+            <p>
+              List TBD
+            </p>
+           
+        </div>
+    </div>
+
+    <div id="ModalDialog" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Modaldialog">Modaldialog</a></span></h2>
+        <div class="contentSEC">
+            <p>
+              ModalDialog TBD
+            </p>
+          
+        </div>
+    </div>
+
+    <div id="Popover" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Popovers">Popovers</a></span></h2>
+        <div class="contentSEC">
+            <p>
+               Popover TBD
+            </p>
+            
+        </div>
+    </div>
+
+    <div id="ProgressiveDisclosure" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#ProgressiveDisclosure">ProgressiveDisclosure</a></span></h2>
+        <div class="contentSEC">
+            <p> 
+               ProgressiveDisclouser TBD
+            </p>
+          
+        </div>
+    </div>
+
+    <div id="ProgressIndicators" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#ProgressIndicators">ProgressIndicators</a></span></h2>
+        <div class="contentSEC">
+            <!--<p>Progress indicators help reassure the user that a system process is currently take place. These may either take a predictable (progress bar) or unpredictable (spinner) amount of time before it's finished.
+</p>
+            <div class="spinnercontainer">
+                <div class="load-container load8"><div class="spinner-large">Loading...</div></div>
+               
+            </div>
+            <div class="highlightsection">
+                &lt;div class=&quot;load-container load8&quot;&gt;&lt;div class=&quot;spinner-large&quot;&gt;Loading...&lt;/div&gt;&lt;/div&gt;
+            </div>
+
+            <div class="spinnercontainer">
+                <div class="load-container load8"><div class="spinner-large">Loading...</div><a class="loadinglable">Loading</a></div>
+
+            </div>
+            <div class="highlightsection">
+                &lt;div class=&quot;load-container load8&quot;&gt;&lt;div class=&quot;spinner-large&quot;&gt;Loading...&lt;/div&gt;&lt;a class=&quot;loadinglable&quot;&gt;Loading&lt;/a&gt;&lt;/div&gt;
+            </div>
+
+            <div class="spinnercontainer">
+                <div class="load-container load8"><div class="spinner-large">Loading...</div><a class="loadinglableRight">Loading</a></div>
+
+            </div>
+            <div class="highlightsection">
+                &lt;div class=&quot;load-container load8&quot;&gt;&lt;div class=&quot;spinner-large&quot;&gt;Loading...&lt;/div&gt;&lt;a class=&quot;loadinglableRight&quot;&gt;Loading&lt;/a&gt;&lt;/div&gt;
+            </div>-->
+
+        </div>
+    </div>
+
+    <div id="SelectButtons" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#SelectButtons">SelectButtons</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                SelectButtons TBD
+            </p>
+          
+        </div>
+    </div>
+
+    <div id="SelectMenu" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#SelectMenu">SelectMenu</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                SelectMenu TBD
+            </p>
+            <a href="#" data-bind="datastudio-ux-selectmenu: selctMenuParams">
+                <span class="text" data-bind="text: selctMenuParams.selected().label"></span>
+                <span class="icon icon-right chevronDown"></span>
+            </a>
+        </div>
+    </div>
+
+    <div id="Tooltips" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Tooltips">Tooltips</a></span></h2>
+        <div class="contentSEC">
+            <p>
+               Tooltips TBD
+            </p>
+           
+        </div>
+    </div>
+
+    <div id="Triggers" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#Triggers">Triggers</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                Triggers TBD
+            </p>
+           
+        </div>
+    </div>
+
+    <div id="AlertsErrors" class="page">
+        <h2 class="title-bar"><div></div><span class="subtitle"><a name="#AlertsErrors">AlertsErrors</a></span></h2>
+        <div class="contentSEC">
+            <p>
+                AlertsErrors TBD
+            </p>
+            
+        </div>
+    </div>
+
+    
+
+</div>

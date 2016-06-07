@@ -1,0 +1,192 @@
+﻿@import "../../stylesheets/main";
+
+.crystalLineChartWrapper{
+    background: white;
+    border-top: $cardBoarder;
+    height: $heatmapHeight;
+
+    #lineChartTooltip{
+        @extend .opacityTransition;
+        left: -1000px;
+        top: -1000px;
+    }
+
+    .crystalLineChartLegendSlider{
+        @extend .crystalButton;
+        @extend .textMR;
+        width: 28px;
+        float: left;
+        height: calc(#{$heatmapHeight} - 20px);
+        padding: 0px;
+        border: none;
+        border-right: $cardBoarder;
+        padding-top: 20px;
+
+         > div{
+            transform: rotate(90deg);
+            white-space: nowrap;
+        }
+    }
+
+    .crystalLineChartLegendWrapper{
+        float: left;
+        height: calc(#{$heatmapHeight} - 10px);
+        overflow-y: auto;
+        white-space: nowrap;
+        width: 250px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        background: $lightCanvas;
+        padding: 10px 10px 0 0;
+        border-right: $cardBoarder;
+
+        .orderByWrapper{
+            margin-left: 10px;
+            padding-bottom: 12px;
+            margin-top: -4px;
+            border-bottom: $cardBoarder;
+
+            div{
+                display: inline-block;
+                font-size: 11px;
+                color: $grayLight;
+            }
+
+            span{
+                font-weight: 600;
+                font-size: 11px;
+                cursor: pointer;
+                color: $grayLight;
+                text-transform: uppercase;
+            
+                &:hover{
+                    color: $grayDark;
+                }
+
+                &.selected{
+                    color: $grayDark;
+                    cursor: default;
+                    padding-bottom: 2px;
+                    border-bottom: 2px solid $atlasTeal;
+                    &:hover{
+                        color: $grayDark;
+                    }
+                }
+            }
+        }
+
+        .crystalLineChartLegend{
+            @extend .opacityTransition;
+            opacity: 0;
+            height: 390px;
+            overflow-y: auto;
+        }
+
+        .legendTitle{
+            @extend .textLR;
+            padding-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        input{
+            padding-left: 10px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            width: 210px;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 5px 10px;
+                .colorSquare{
+                    height: 16px;
+                    width: 16px;
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+                &:hover{
+                    background: $cloud;
+                }
+
+                &.hovered{
+                    background: $cloud;
+                }
+
+                &.stickied{
+                    color: white;
+                    background: $charcoal;
+                }
+            }
+        }
+    }
+
+    .crystalLineChartTitle {
+        @extend .h4;
+        @extend .crosshair;
+        position: absolute;
+        margin-left: 70px;
+        margin-top: 12px;
+    }
+
+    .crystalLineChart{
+        @extend .opacityTransition;
+        opacity: 0;
+        font-size: 11px;
+        fill-opacity: .2;
+        overflow-x: auto;
+        height: 100%;
+        overflow-y: hidden;
+        position: relative;
+
+        svg{
+            @extend .crosshair;
+        }
+
+        circle, text{
+            fill-opacity: 1 !important;
+        }
+
+        .multiselectGhost {
+            @extend .crosshair;
+            position: absolute;
+            border-left: 1px solid rgba(0, 0, 255, 0.4);
+            border-right: 1px solid rgba(0, 0, 255, 0.4);
+            background: rgba(0, 0, 255, 0.1);
+            display: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: optimizeQuality;
+        }
+
+        .dimensions {
+            fill: none;
+            stroke-width: 2px;
+        }
+
+        .line-hover {
+            stroke-width: 3.5px !important;
+            opacity: 1 !important;
+            fill-opacity: .4 !important;
+        }
+
+        .not-hover{
+            stroke-width: 2px;
+            opacity: .2;
+        }
+
+        .voronoi path {
+            fill: none;
+            pointer-events: all;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+﻿@mixin absolute($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    position: absolute;
+}
+
+@mixin relative($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    position: relative;
+}
+
+@mixin rotate-text($deg: 0deg) {
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+    filter: none; /*Mandatory for IE9 to show the vertical text correctly*/      
+}
+
+@mixin vertical-center() {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+@mixin non-selectable() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin opacity ($opacity) {
+    $opacityPercentage: $opacity * 100;
+    opacity: $opacity;
+    filter: alpha(opacity=$opacityPercentage);
+}
+
+@mixin transition($settings) {
+    -moz-transition: $settings;
+    -o-transition: $settings;
+    -webkit-transition: $settings;
+    transition: $settings;
+}
+
+@mixin text-overflow($settings){
+    -ms-text-overflow: $settings;
+    -o-text-overflow: $settings;
+    text-overflow: $settings;
+}

@@ -1,0 +1,70 @@
+﻿
+<script>
+    function onload() {
+        var displayError = function() {
+            // We've run into a problem where the parent window is no longer available through callback or cookie
+            var errorTemplate =
+                "<div class=\"notification\">" +
+                    "<div class=\"notification-title\">Unexpected error has occurred</div>" +
+                "</div>";
+            document.title = "OAuth authorization";
+            document.body.innerHTML = errorTemplate;
+        }
+
+        if (window.location.search && window.location.search.indexOf("redirectFailure") !== -1) {
+            window.opener = null;
+            displayError();
+            return;
+        }
+
+        if (window && window.opener) {
+            // Check that the spawning window (e.g. main portal) hasn't been closed
+            // Close this spawned window if it has been
+            if (!window.opener.closed) {
+                window.opener.oauthbuttonCallback(window.location.href);
+            } else {
+                window.close();
+            }
+        } else if (document) {
+            var oauthCookieName = "oAuthToken";
+            document.cookie = oauthCookieName + "=" + window.location.href + "; expires=" + new Date(new Date().getTime() + 1 * 60 * 1000).toGMTString() +  "; path=/"; // store cookie for 1 minute (it is used only to pass value between windows)
+
+            var intervalCounter = 0;
+            var intervalCounterLimit = 100;
+            var interval = 300;
+
+            var intervalId = window.setInterval(function () {
+                if (document.cookie.indexOf(oauthCookieName) === -1) {
+                    // cookie consumed by parent window, clear interval and close the window
+                    window.clearInterval(intervalId);
+                    window.open(window.location, "_self").close();  // https://jeffclayton.wordpress.com/2015/02/13/javascript-window-close-method-that-still-works/
+                }
+
+                if (++intervalCounter > intervalCounterLimit) {
+                    window.clearInterval(intervalId);
+                    displayError();
+                }
+            }, interval);
+        }
+    }
+</script>
+<html>
+<head>
+    <title>OAuth redirect page</title>
+    <style>
+        .notification {
+            font-family: sans-serif;
+            position: relative;
+            margin: 40px auto;
+            width: 75%;
+        }
+
+        .notification-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body onload="javascript:onload()">
+</body>
+</html>

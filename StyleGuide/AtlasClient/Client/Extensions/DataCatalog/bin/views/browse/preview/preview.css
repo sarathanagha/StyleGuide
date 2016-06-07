@@ -1,0 +1,89 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-preview {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+  #browse-preview .remove-preview {
+    position: absolute;
+    top: 29px;
+    left: 30px;
+    padding: 3px 5px;
+    height: 28px;
+    cursor: pointer;
+    text-transform: capitalize;
+    display: none;
+    z-index: 2; }
+  #browse-preview .error-fetching-preview,
+  #browse-preview .no-preview-data {
+    position: absolute;
+    top: 30px;
+    left: 30px; }
+  #browse-preview .scrollable-table {
+    padding: 0 30px;
+    position: absolute; }
+    #browse-preview .scrollable-table.header {
+      top: 65px;
+      left: 0;
+      right: 0;
+      height: 27px; }
+    #browse-preview .scrollable-table.content {
+      padding: 0 13px 0 30px;
+      top: 88px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      overflow-x: auto;
+      overflow-y: scroll;
+      zoom: 1; }
+    #browse-preview .scrollable-table table {
+      table-layout: fixed;
+      width: 100%; }
+      #browse-preview .scrollable-table table th {
+        text-transform: none;
+        font-size: 12px;
+        font-weight: normal;
+        padding: 5px 10px; }
+      #browse-preview .scrollable-table table tbody tr td {
+        font-size: 12px;
+        padding: 15px 10px 15px 10px;
+        cursor: default;
+        vertical-align: top;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+  #browse-preview .preview-loading {
+    padding: 30px; }
+  #browse-preview .please-try-again {
+    cursor: pointer; }
+    #browse-preview .please-try-again:hover {
+      text-decoration: underline; }
+  #browse-preview table th {
+    background-color: #EFF0F0; }
+  #browse-preview table tbody tr {
+    border-bottom: 1px solid #D8DBDE; }
+    #browse-preview table tbody tr td {
+      color: #474F5A; }
+  #browse-preview .please-try-again {
+    color: #2AB7D8; }
+  #browse-preview .remove-preview {
+    background-color: #006F94;
+    color: #FFF; }
+
+.bottom-panel.expanded #browse-preview .remove-preview {
+  display: block; }
+
+/*# sourceMappingURL=preview.css.map */

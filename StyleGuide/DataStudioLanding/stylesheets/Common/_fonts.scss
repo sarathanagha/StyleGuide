@@ -1,0 +1,82 @@
+$font-segoe: "Segoe UI", sans-serif;
+$font-weight-normal: 400;
+$font-weight-semilight: 300;
+
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 200;
+    src: local("Segoe UI Light");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 300;
+    src: local("Segoe UI Semilight");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semilight/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semilight/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semilight/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semilight/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semilight/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 400; /* normal */
+    src: local("Segoe UI");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semibold/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semibold/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semibold/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semibold/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Semibold/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 700; /* bold */
+    src: local("Segoe UI Bold");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 400; /* normal */
+    src: local("Segoe UI Italic");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Italic/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Italic/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Italic/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Italic/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Italic/latest.svg#web") format("svg");
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 700; /* bold */
+    src: local("Segoe UI Bold Italic");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold-Italic/latest.eot");
+    src: url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold-Italic/latest.eot?#iefix") format("embedded-opentype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold-Italic/latest.woff") format("woff"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold-Italic/latest.ttf") format("truetype"),
+    url("http://i.s-microsoft.com/fonts/Segoe-UI/West-European/Bold-Italic/latest.svg#web") format("svg");
+}

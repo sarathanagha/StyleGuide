@@ -1,0 +1,139 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#publish .main {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: auto; }
+  #publish .main .publish-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 702px; }
+  #publish .main .notification-pane {
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+    font-family: 'Segoe UI',sans-serif;
+    width: 100%;
+    -webkit-transition: top 0.5s;
+            transition: top 0.5s; }
+    #publish .main .notification-pane .notification-pane-top {
+      position: relative;
+      height: 82px;
+      width: 100%; }
+      #publish .main .notification-pane .notification-pane-top .notification-pane-text {
+        position: relative;
+        width: 1023px;
+        left: 50%;
+        margin-left: -511.5px;
+        letter-spacing: 0em;
+        padding-top: 20px; }
+        #publish .main .notification-pane .notification-pane-top .notification-pane-text .notification-header {
+          font-size: 19px;
+          font-weight: bold;
+          line-height: 20px; }
+        #publish .main .notification-pane .notification-pane-top .notification-pane-text .notification-text {
+          font-size: 15px;
+          font-style: normal;
+          line-height: 20px; }
+      #publish .main .notification-pane .notification-pane-top .close-notification {
+        position: relative;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        float: right;
+        top: -41px;
+        right: 20px; }
+    #publish .main .notification-pane .notification-pane-border {
+      position: relative;
+      height: 3px;
+      margin-left: 7px;
+      margin-right: 7px; }
+    #publish .main .notification-pane.notification-close {
+      top: -85px; }
+  #publish .main .contents {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: 1023px;
+    left: 50%;
+    margin-left: -511.5px;
+    font-family: 'Segoe UI',sans-serif;
+    -webkit-transition: top 0.5s;
+            transition: top 0.5s; }
+    #publish .main .contents .publish-contents {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 618px; }
+      #publish .main .contents .publish-contents .publish-text-pane {
+        width: 409.2px;
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold;
+        margin-top: 40px; }
+      #publish .main .contents .publish-contents .publish-message {
+        width: 409.2px;
+        font-size: 19px;
+        line-height: 25px;
+        margin-top: 30px; }
+      #publish .main .contents .publish-contents .launch-buttons {
+        display: table; }
+      #publish .main .contents .publish-contents .launch-button {
+        height: 50px;
+        cursor: pointer;
+        text-align: left;
+        padding-left: 20px;
+        margin-top: 30px; }
+        #publish .main .contents .publish-contents .launch-button span {
+          position: relative;
+          font-size: 27px;
+          line-height: 58px;
+          text-transform: capitalize;
+          top: -6px; }
+        #publish .main .contents .publish-contents .launch-button img {
+          position: relative;
+          margin-right: 5px;
+          margin-left: 5px;
+          top: -11px; }
+    #publish .main .contents.contents-show-notification {
+      top: 85px; }
+
+#publish .main {
+  background: #2BA9E1; }
+  #publish .main .publish-bg {
+    background-color: #2BA9E1; }
+  #publish .main .notification-pane .notification-pane-top {
+    background-color: #1888CA; }
+    #publish .main .notification-pane .notification-pane-top .notification-pane-text .notification-header {
+      color: #006F94; }
+    #publish .main .notification-pane .notification-pane-top .notification-pane-text .notification-text {
+      color: #FFF; }
+  #publish .main .notification-pane .notification-pane-border {
+    background-color: #0E68B2; }
+  #publish .main .contents .publish-contents .publish-text {
+    color: #006F94; }
+  #publish .main .contents .publish-contents .your-data-now-text {
+    color: #FFF; }
+  #publish .main .contents .publish-contents .publish-message {
+    color: #006F94; }
+  #publish .main .contents .publish-contents .launch-button {
+    color: #FFF;
+    background-color: #26357F; }
+
+/*# sourceMappingURL=publish.css.map */

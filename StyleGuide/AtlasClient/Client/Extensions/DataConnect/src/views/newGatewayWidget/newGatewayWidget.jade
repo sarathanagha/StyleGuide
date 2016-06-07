@@ -1,0 +1,51 @@
+div
+  div(data-bind="visible: step()===1")
+    h1 New Gateway
+    div(class="col form", data-bind="with: formFields")
+      .form-field
+        p Gateway Name
+        p
+          input(type="text", data-bind="value: name")
+      .form-field
+        p Description
+        p
+          textarea(data-bind="value: description", rows="5")
+        
+      p(class="form-buttons")
+        button(data-bind="click: function(data, event) { $parent.createGateway($parent) }") Next
+        span(data-bind="visible: $parent.processing") processing ...
+        
+  div(data-bind="visible: step()===2")
+    h1 Install and Register Gateway
+    div(class="row row1")
+      p To enalbe the gateway, you need to install Microsoft Data Gateway Management and register on a host machine that has connectivity to the data source you wish to connect to. Choose one of the two option below that best suits your scenario:
+      
+    div(class="row row2")
+      div(class="col col1 gatewayRegisterForm borderAround")
+        h4 Automatic Registration on this machine
+        
+        div
+          p Choose this option if you:
+          ul
+            li want to host the gateway on this machine
+            li have ClickOnce enabled on this machine
+          a(href='#') Install and register automatically now ->
+          
+      div(class="col col2 gatewayRegisterForm borderWithoutLeft")
+        h4 Manual Registration
+        
+        div
+          p Choose this option if you:
+          ul
+            li want to host the gateway on another machine
+            li OR do not have ClickOnce enabled      
+                  
+          a(href="http://www.microsoft.com/en-us/download/details.aspx?id=39717") Download and install the Gateway Manager 
+          span and follow the instructions to register this gateway. When asked for the registration key, use the following key:
+          
+          label Key
+          input(type="text", disabled, data-bind="value: key")
+    
+    div(class="row row3")
+      p(class="form-buttons")
+        button(data-bind="click: finish") Finish

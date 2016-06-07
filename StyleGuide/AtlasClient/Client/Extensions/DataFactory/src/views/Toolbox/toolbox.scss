@@ -1,0 +1,52 @@
+$toolHeight: 36px;
+$toolSvgSize: 16px;
+$folderSvgSize: 10px;
+$fontColor: #505050;
+$rootTwo: 1.4;
+
+.toolbox {
+    .header {
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+    .tool {
+        cursor: move;
+        background: white;
+        margin-bottom: 12px;
+        height: $toolHeight;
+        line-height: $toolHeight;
+        padding-left: 20px;
+        font-size: 14px;
+
+        svg {
+            width: $toolSvgSize;
+            height: $toolSvgSize;
+            margin-top: 10px;
+        }
+    }
+
+    .folder {
+        margin-bottom: 20px;
+    }
+
+    .gripper {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .caret {
+        width: $folderSvgSize;
+        height: $folderSvgSize;
+        margin-right: 10px;
+    }
+
+    .collapsed svg {
+        height: $folderSvgSize * $rootTwo;
+        width: $folderSvgSize * $rootTwo;
+    }
+}
+
+ .tool.ui-draggable-dragging {
+     background: white;
+ }

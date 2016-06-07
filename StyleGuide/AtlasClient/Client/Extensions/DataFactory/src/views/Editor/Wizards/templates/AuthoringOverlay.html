@@ -1,0 +1,28 @@
+<!-- ko if: authoringOverlay() -->
+<!-- ko with: authoringOverlay -->
+<div class="adf-activityToolHeaderBar row">
+    <div class="title" data-bind="text: overlayTitle"></div>
+    <div class="close-container">
+        <div class="authoring-overlay-close-button centerYWithoutHeight" data-bind="html: closeIcon, click: hideOverlay"></div>
+    </div>
+</div>
+<!-- ko if: overlayType === overlayEnum.WIZARD -->
+<div data-bind="wizard: overlayContent" class="copytool"></div>
+<!-- /ko -->
+<!-- ko if: overlayType !== overlayEnum.WIZARD -->
+<div class="activity-wizard-container copytool hive col">
+    <!-- ko if: overlayType === overlayEnum.PIVOT -->
+    <div class="adf-pivot-content grow" data-bind="pivot: overlayContent"></div>
+    <!-- /ko -->
+    <!-- ko if: overlayType === overlayEnum.HTML -->
+    <div data-bind="htmlWith: overlayContent" class="adf-authoringOverlay-container"></div>
+    <!-- /ko -->
+    <div class="adf-activityToolCommandBar row">
+        <div>
+            <button class="btn btn-primary" data-bind="click: _applyClicked, text: ClientResources.applyText"></button>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->

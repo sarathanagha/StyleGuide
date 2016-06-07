@@ -1,0 +1,235 @@
+<div id="browse-properties" data-bind="if: entity()">
+    <div class="static-header">
+        <ul>
+            <!-- ko foreach: { data: propertyActions, as: 'propertyAction' } -->
+            <li data-bind="visible: propertyAction.visible()">
+                <a tabindex="0" data-target="#" data-bind="click: propertyAction.action.bind($parent)">
+                    <!-- ko if: propertyAction.iconPath -->
+                    <img data-bind="attr: { src: propertyAction.iconPath }" />
+                    <!-- /ko -->
+                    <!-- ko if: propertyAction.iconClass -->
+                    <i data-bind="attr: { class: propertyAction.iconClass }"></i>
+                    <!-- /ko -->
+                    <div data-bind="text: propertyAction.name"></div>
+                </a>
+            </li>
+            <!-- /ko -->
+        </ul>
+
+        <span class="hr"></span>
+    </div>
+
+    <div class="scrollable-content" data-bind="event: {scroll: dismissPopovers}">
+
+        <div class="friendly-name">
+            <div>
+                <div data-bind="text: resx.name" class="property-label" style="margin: 0;"></div>
+                <span data-bind="adc-highlight: entity().name" class="property-value"></span>
+            </div>
+
+            <div data-bind="text: resx.friendlyName" class="property-label friendly-name"></div>
+            <div class="spinner-wrapper">
+                <div data-bind="adc-spinner: { working: isChangingFriendlyName() || isSettingFriendlyName(), success: successUpdatingFriendlyName() }" class="small"></div>
+                <input id="properties-friendly-name" data-bind="textInput: friendlyName,
+                              event: {
+                                  change: updateFriendlyName,
+                                  keydown: function(){ isChangingFriendlyName(true); return true; },
+                                  blur: function(){ isChangingFriendlyName(false); return true; }
+                              },
+                              attr: { placeholder: resx.addFriendlyName + '...' }" spellcheck="false" />
+            </div>
+        </div>
+
+        <div class="desc">
+            <span data-bind="text: resx.description" class="property-label"></span>
+            <div class="spinner-wrapper">
+                <div data-bind="adc-spinner: { working: isChangingDesc() || isSettingDesc(), success: successUpdatingDesc() }" class="small"></div>
+                <textarea tabindex="0" data-bind="textInput: myDesc().plainDescription,
+                                 event: {
+                                     change: function() { updateUserDesc(isSettingDesc, successUpdatingDesc); },
+                                     keydown: function(){ isChangingDesc(true); return true; },
+                                     blur: function(){ onDescBlur(); return true; }
+                                 },
+                                 attr: {placeholder: $parent.resx.addYourDesc + '...' }" spellcheck="false"></textarea>
+            </div>
+
+            <!-- ko foreach: { data: otherDescriptions, as: 'desc' } -->
+            <div>
+                <span data-bind="text: $parent.resx.from, visible: !desc.isExpertDesc()" class="desc-label from"></span>
+                <span data-bind="text: $parent.resx.fromExpert, visible: desc.isExpertDesc()" class="desc-label from"></span>
+                <span data-bind="adc-highlight: desc.displayCreatedBy(), css: { lower: desc.isUserCreated(), cap: !desc.isUserCreated() }" class="desc-label lower"></span>
+                <span data-bind="adc-highlight: desc.displayDate()" class="desc-label"></span>
+                <div data-bind="html: desc.linkedDescription()"></div>
+            </div>
+            <!-- /ko -->
+            <a tabindex="0" data-bind="text: expandText, click: onSeeMore, keyboardselect: onSeeMore, visible: expandable" data-target="#" class="expand-desc"></a>
+        </div>
+
+        <div class="expert">
+            <span data-bind="text: resx.experts" class="property-label"></span>
+            <div class="spinner-wrapper">
+                <div data-bind="adc-spinner: { working: isSettingExperts(), success: successUpdatingExperts() }" class="small"></div>
+                <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: expertAttributes,
+                                            placeholderText: resx.addAnExpert,
+                                            onAdd: addUserExperts.bind($data),
+                                            onRemove: removeUserExpert.bind($data),
+                                            showTooltip: true,
+                                            onValidate: validateEmail
+                                        }
+                                   }"></div>
+            </div>
+        </div>
+
+        <div class="tags">
+            <span data-bind="text: resx.tags" class="property-label"></span>
+            <div class="spinner-wrapper">
+                <div data-bind="adc-spinner: { working: isSettingTags(), success: successUpdatingTags() }" class="small"></div>
+                <div data-bind="component: {
+                                    name: 'datacatalog-browse-attributes',
+                                    params: {
+                                        attributesOnAll: tagAttributes,
+                                        placeholderText: resx.addYourTags,
+                                        groupTypeName: 'tags',
+                                        onAdd: addUserTags.bind($data),
+                                        onRemove: removeUserTag.bind($data),
+                                        showTooltip:true
+                                    }
+                                }"></div>
+            </div>
+        </div>
+
+        <div class="connection-info">
+            <div data-bind="text: resx.connectionInfo" class="property-label"></div>
+            <div class="properties">
+                <!-- ko if: entity().dsl.address.server-->
+                <div data-bind="text: resx.serverName" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.server, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.path-->
+                <div data-bind="text: resx.path" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.path, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.database-->
+                <div data-bind="text: resx.databaseName" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.database, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.schema-->
+                <div data-bind="text: resx.schemaName" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.schema, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.object-->
+                <div data-bind="text: resx.objectName" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.object, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.model-->
+                <div data-bind="text: resx.modelName" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.model, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.url-->
+                <div data-bind="text: resx.url" class="property-label url"></div>
+                <a data-bind="attr: {href: plainText(entity().dsl.address.url)}, adc-highlight: entity().dsl.address.url, event: { copy: onCopy }" href="#" class="property-value url" target="_blank"></a>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.domain-->
+                <div data-bind="text: resx.domain" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.domain, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.account-->
+                <div data-bind="text: resx.account" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.account, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.container-->
+                <div data-bind="text: resx.container" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.container, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.name-->
+                <div data-bind="text: resx.name" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.name, event: { copy: onCopy }" class="property-value"></div>
+                <!-- /ko -->
+                <!-- ko if: entity().dsl.address.assetId -->
+                <div data-bind="text: resx.sourcetype_id" class="property-label"></div>
+                <div data-bind="adc-highlight: entity().dsl.address.assetId, event: {copy: onCopy}" class="property-value"></div>
+                <!-- /ko -->
+                <div style="position: relative">
+                    <span data-bind="text: resx.requestAccess, adc-popover: {}, attr: { 'data-content': getRequestAccessLabelTooltipText() }"
+                          data-placement="auto top"
+                          data-trigger="hover"
+                          data-container="body"
+                          data-html="true"
+                          class="property-label dismiss-popover-on-scroll"></span>
+                    
+                    <span data-bind="adc-popover: {},
+                                     attr: { 'data-content': resx.edit }"
+                          data-placement="auto top"
+                          data-trigger="hover"
+                          data-container="body"
+                          data-html="true"
+                          style="position: absolute; right: 0; top: 3px; cursor: pointer"
+                          class="dismiss-popover-on-scroll">
+                        <!-- ko if: !showEditForRequestAccess() && entity() && !isSettingRequestAccess() && !successUpdatingRequestAccess() -->
+                        <i tabindex="0" class="glyphicon glyphicon-pencil"
+                           data-bind="click: function(d, e){ $(e.target).parent().popover('hide'); requestAccessShowEditMode(true); return true; }, keyboardselect: function() {requestAccessShowEditMode(true);}"></i>
+                        <!-- /ko -->
+                    </span>
+
+                    <div data-bind="adc-spinner: { working: isSettingRequestAccess(), success: successUpdatingRequestAccess() }" class="small" style="position: absolute; right: 0; top: 1px"></div>
+                </div>
+                <!-- ko if: showEditForRequestAccess -->
+                <textarea id="properties-request-access-instructions" data-bind="textInput: requestAccessInstructions,
+                              hasFocus: requestAccessShowEditMode,
+                              event: {
+                                  change: updateRequestAccess,
+                                  keydown: function(){ isChangingRequestAccess(true); return true; },
+                                  blur: function(){ isChangingRequestAccess(false); requestAccessShowEditMode(false); return true; }
+                              },
+                              attr: { placeholder: resx.requestAccessPlaceholder + '...' }"
+                          style="margin-top: 5px"
+                          spellcheck="false"></textarea>
+                <!-- /ko -->
+                <!-- ko ifnot: showEditForRequestAccess -->
+                <div data-bind="html: requestAccessLinkText,
+                                adc-popover: {},
+                                attr: { 'data-content': getRequestAccessValueTooltipText() }"
+                     data-placement="auto top"
+                     data-trigger="hover"
+                     data-container="body"
+                     data-html="true"
+                     class="dismiss-popover-on-scroll"></div>
+                <!-- /ko -->
+                <span id="properties-connection-string" tabindex="0" role="button" data-bind="text: resx.viewConnectionStrings, visible: hasConnectionStrings, click: function(d, e) { onShowConnectionStrings(); }, keyboardselect: function(){ onShowConnectionStrings();}"></span>
+            </div>
+        </div>
+
+        <div data-bind="component: 'datacatalog-browse-management'"></div>
+
+        <div class="date-info">
+            <!-- ko if: entity().metadataLastUpdated() -->
+            <div data-bind="text: resx.lastUpdated" class="property-label"></div>
+            <span data-bind="adc-highlight: entity().metadataLastUpdated().toLocaleDateString() + ' ' + entity().metadataLastUpdated().toLocaleTimeString()" class="property-value"></span>
+            <!-- /ko -->
+            <!-- ko if: entity().metadataLastUpdatedBy() -->
+            <div data-bind="text: resx.lastUpdatedBy" class="property-label"></div>
+            <span data-bind="adc-highlight: entity().metadataLastUpdatedBy" class="property-value"></span>
+            <!-- /ko -->
+            <!-- ko if: entity().modifiedTime -->
+            <div data-bind="text: resx.lastRegistered" class="property-label"></div>
+            <span data-bind="text: new Date(entity().modifiedTime).toLocaleDateString() + ' ' + new Date(entity().modifiedTime).toLocaleTimeString()" class="property-value"></span>
+            <!-- /ko -->
+            <!-- ko if: entity().lastRegisteredBy -->
+            <div data-bind="text: resx.lastRegisteredBy" class="property-label"></div>
+            <span data-bind="adc-highlight: entity().lastRegisteredBy.upn" class="property-value"></span>
+            <!-- /ko -->
+            <!-- ko if: entity().originalRegistrationDate -->
+            <div data-bind="text: resx.originalRegistrationDate" class="property-label"></div>
+            <span data-bind="text: new Date(entity().originalRegistrationDate).toLocaleDateString() + ' ' +  new Date(entity().originalRegistrationDate).toLocaleTimeString()" class="property-value"></span>
+            <!-- /ko -->
+        </div>
+
+    </div>
+</div>
+<div id="browse-properties-empty" data-bind="if: !delayedEntityChange()">
+    <span data-bind="text: resx.selectForProperties"></span>
+    <img src="../../../../images/indicators/arrows_1.png" alt="" />
+</div>

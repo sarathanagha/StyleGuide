@@ -1,0 +1,16 @@
+<div class="wizardStepSubtitle">
+    Specify the settings for the HDInsight cluster. You can use an existing HDInsight linked service (or) specify a new HDInsight cluster.<br />
+</div>
+
+<div class="dataFactory-activityTool-radioOptions">
+  <input type="radio" value="existingCluster" data-bind="checked: clusterSelectionType">Existing</input>
+  <input type="radio" value="newCluster" data-bind="checked: clusterSelectionType">New</input>
+</div>
+
+<!-- ko if: clusterSelectionType() === "existingCluster" -->
+    <div data-bind="htmlWith: {template: linkedServicesGridTemplate}"></div>
+<!-- /ko -->
+
+<!-- ko if: clusterSelectionType() === "newCluster" -->
+    <div data-bind="htmlWith: {template: newClusterSelectionTemplate}"></div>
+<!-- /ko -->

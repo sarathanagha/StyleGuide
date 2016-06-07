@@ -1,0 +1,62 @@
+@import "colors";
+
+// Select menu binding CSS
+// TODO (stpryor): Share CSS with menu binding
+#datastudio-ux-selectmenu 
+{
+    border-top: 1px solid $cloud;
+    display:block;
+    overflow: hidden;
+    position:absolute;
+    z-index: 10;
+
+    .contents 
+    {
+        background-color: #fff;
+        background-color: $white;
+        border: 1px solid $cloud;
+        border-top: none;
+        color: $grayDark;
+        display:block;
+        left:0px;
+        overflow: hidden;
+        padding: 4px 0px;
+        position:relative;
+        top: -4000px;
+        width: 180px;
+
+        a 
+        {
+            color: $grayDark;
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            padding: 0px 12px;
+            text-decoration: none;
+            width: calc(100% - 24px);
+
+            &:focus {
+
+            }
+
+            &:hover
+            {
+                background-color: $canvas;
+                color: $grayDarkest;
+            }
+
+            &.selected 
+            {
+                background-color: $waveBlue;
+                color: $white;
+            }
+
+            &.disabled 
+            {
+                background-color: $white;
+                color: $grayLight;
+                cursor: default;
+            }
+        }
+    }
+}

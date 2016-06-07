@@ -1,0 +1,198 @@
+@import "shellConstants"; 
+$cloudRgbLighter: rgba(211, 212, 212, .7);
+$sliderBorderColor: #d3d3d3;
+$sliderBackgroundColor: #e6e6e6;
+$buttonBackgroundColor: #e6e6e6;
+// Add $grayLight & $grayDarkest because _buttons.scss was removed
+// All colors need to be migrated to use the datastudio folder colors guide
+$grayLight: #D5D6D7;
+$grayDarkest: #2C3137;
+
+/* datepicker styles */
+// TODO tilarden or matdar: remove duplicate styling from the RDX extension stylesheets when our child branches are merged back into CAMain. 
+
+.datastudio .ui-widget-content {
+    background: $lightCanvasColor;
+}
+
+.datastudio .ui-state-active {
+    border: none;
+    background: transparent;
+}
+
+.datastudio .ui-state-default {
+    border: none;
+    background: transparent;
+}
+
+.datastudio .ui-datepicker .ui-datepicker-buttonpane button {
+    background: $buttonBackgroundColor;
+    font-weight: normal;
+}
+
+.datastudio .ui-slider-handle {
+    border: 1px solid $sliderBorderColor;
+    background: $sliderBackgroundColor;
+    width: 10px;
+    &:hover{
+        border: 1px solid $grayColor;
+        background: $sliderBackgroundColor;
+    }
+}
+
+.datastudio .ui-widget-header {
+    border: none;
+    background: transparent;
+}
+
+.datastudio .ui-state-hover {
+    border: none;
+    background: transparent;
+}
+
+.datastudio .ui-datepicker-title {
+    text-align: center;
+    margin-left: 40px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $grayDarkest;
+}
+
+.datastudio .ui-datepicker-prev {
+    left: 2px;
+    top: 2px;
+    position: absolute;
+}
+
+.datastudio .ui-datepicker-next {
+    right: 2px;
+    top: 2px;
+    float: right;
+    transform: rotate(180deg);
+}
+
+.datastudio .ui-datepicker-inline {
+    display: table;
+}
+
+.datastudio .ui-datepicker-calendar {
+    border-collapse: separate;
+    border-spacing: 1px;
+
+    thead {
+        tr {
+            th {
+                color: $grayColor;
+                font-weight: 400;
+                font-size: 13px;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                width: 29px;
+                height: 29px;
+                text-align: center;
+                cursor: pointer;
+                border: 1px solid $cloudRgbLighter;
+                background: $cloudRgbLighter;
+                a {
+                    text-align: center;
+                    color: $grayDarkest;
+                }
+                &:hover {
+                    background: transparent;
+                    border: 1px solid $atlasTeal;
+                    a {
+                        color: $grayDarkest;
+                    }
+                }
+            }
+            .ui-datepicker-other-month {
+                border: 1px solid transparent;
+                background: transparent;
+                a {
+                    color: $grayColor;
+                }
+            }
+
+            .ui-datepicker-current-day {
+                background: $atlasTeal;
+                border: 1px solid $atlasTeal;
+                a {
+                    color: white;
+                }
+                &:hover {
+                    background: $atlasTeal;
+                    border: 1px solid $atlasTeal;
+                    a {
+                        color: white;
+                    }
+                }
+            }
+
+            .ui-datepicker-unselectable {
+               color: $grayLight;
+               cursor: default;
+               background: transparent;
+               border: 1px solid transparent;
+               &:hover {
+                    border: 1px solid transparent;
+               }
+            }
+        }
+    }
+}
+
+.datastudio .chevron-left {
+    &:hover {
+        cursor: pointer;
+        background: url(/Images/icons/collapse-left-teal.svg);
+        width: 12px;
+        height: 12px;
+        background-size: 12px;
+    }
+    background: url(/Images/icons/collapse-left.svg);
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+}
+
+.datastudio .ui-icon-circle-triangle-e {
+    background: url(/Images/icons/collapse-left.svg) !important;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 16px;
+    &:hover {
+        cursor: pointer;
+        background: url(/Images/icons/collapse-left-teal.svg) !important;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+    }
+    margin-left: 12px;
+}
+
+.datastudio .ui-icon-circle-triangle-w {
+    @extend .chevron-left;
+    background: url(/Images/icons/collapse-left.svg) !important;
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    &:hover {
+        cursor: pointer;
+        background: url(/Images/icons/collapse-left-teal.svg) !important;
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+    }
+    margin-left: 12px;
+    line-height: 26px;
+}

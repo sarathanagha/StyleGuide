@@ -1,0 +1,129 @@
+﻿@import "css/_sprite";
+@import "../../../../../../Core/DataStudioUX/src/Stylesheets/colors";
+@import "../../../../../../Core/DataStudioUX/src/Stylesheets/fonts";
+
+@mixin basecolor ($bgcolor,$color) {
+  color: $color;
+  background-color: $bgcolor;
+}
+
+.themePrimaryDarkColor {
+    @include basecolor($themePrimaryDarkColor, $white);
+}
+
+.themePrimaryColor{
+    @include basecolor($themePrimaryColor, $white);
+}
+
+.themePrimaryLightColor{
+    @include basecolor($themePrimaryLightColor, $white);
+}
+
+.themePrimaryLighterColor{
+    @include basecolor($themePrimaryLighterColor, $white);
+}
+
+
+.themePrimaryLightestColor{ 
+    @include basecolor($themePrimaryLightestColor, $white);
+}
+
+.themeSecondaryDarkColor{
+    @include basecolor($themeSecondaryDarkColor, $white);
+}
+
+.themeSecondaryColor{
+    @include basecolor($themeSecondaryColor, $white);
+}
+
+.themeSecondaryLightColor{
+    @include basecolor($themeSecondaryLightColor, $white);
+}
+
+.themeSecondaryLighterColor{
+    @include basecolor($themeSecondaryLighterColor, $white);
+}
+
+.themeSecondaryLightestColor{
+    @include basecolor($themeSecondaryLightestColor, $white);
+}
+
+.neutralDarkColor {
+    @include basecolor($neutralDarkColor , $white);
+}
+
+.neutralPrimaryColor {
+    @include basecolor($neutralPrimaryColor , $white);
+}
+
+.neutralSecondaryColor {
+    @include basecolor($neutralSecondaryColor , $white);
+}
+
+.neutralSecondaryColorAlt {
+    @include basecolor($neutralSecondaryColorAlt , $white);
+}
+
+.neutralTertiaryColor {
+    @include basecolor($neutralTertiaryColor , $white);
+}
+
+.neutralTertiaryColorAlt{
+    @include basecolor($neutralTertiaryColorAlt ,$grayDark);
+}
+
+.neutralTertiaryColorAlt2 {
+    @include basecolor($neutralTertiaryColorAlt2 ,$grayDark);
+}
+
+.neutralLight{
+    @include basecolor($neutralLight , $grayDark);
+}
+
+.neutralLighter{
+    @include basecolor($neutralLighter , $grayDark);
+}
+
+.alertColor{
+    @include basecolor($alertColor,$grayDark);
+}
+
+.warningColor{
+    @include basecolor($warningColor,$grayDark);
+}
+
+.successColor{
+    @include basecolor($successColor,$grayDark);
+}
+
+.infoColor{
+    @include basecolor($infoColor,$white);
+}
+
+.infoColorlighter{
+    @include basecolor($infoColorlighter,$grayDark);
+}
+
+.white{
+    @include basecolor($white,$grayDark);
+}
+
+.gray-lightest{
+    @include basecolor($grayLightest,$grayDark);
+}
+
+.gray-light{
+    @include basecolor($grayLight,$grayDark);
+}
+
+.gray{
+    @include basecolor($gray,$white);
+}
+
+.gray-dark{
+    @include basecolor($grayDark,$white);
+}
+
+.gray-darkest{
+    @include basecolor($grayDarkest,$white);
+}

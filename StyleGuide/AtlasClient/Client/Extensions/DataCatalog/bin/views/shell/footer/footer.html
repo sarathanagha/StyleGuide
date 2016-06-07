@@ -1,0 +1,14 @@
+<footer id="copyright">
+    <span>
+        &copy;
+        <span data-bind="text: new Date().getFullYear()"></span>
+        <span data-bind="text: resx.brand"></span>
+        <a data-action="privacy + terms" data-bind="text: resx.privacyPlusTerms, click: logFooterAction" href="https://go.microsoft.com/fwlink/?LinkId=522330" target="_blank"></a>
+        <a data-action="forum" data-bind="text: resx.forum, click: logFooterAction" href="http://go.microsoft.com/fwlink/?LinkId=616424" target="_blank"></a>
+        <a data-action="blog" data-bind="text: resx.blog, click: logFooterAction" href="http://go.microsoft.com/fwlink/?LinkId=616425" target="_blank"></a>
+        <a data-action="documentation" data-bind="text: resx.documentation, click: logFooterAction" href="http://go.microsoft.com/fwlink/?LinkId=616426" target="_blank"></a>
+        <a data-action="give feedback" data-bind="text: resx.giveFeedback, attr:{href: giveFeedbackUri}, click: logFooterAction"></a>
+        <a data-action="get a demo" data-bind="text: resx.getADemo, attr:{href: getADemoUri}, click: logFooterAction"></a>
+        <a data-action="ask a question" data-bind="text: resx.askAQuestion, attr:{href: askAQuestionUri}, click: logFooterAction"></a>
+    </span>
+</footer>

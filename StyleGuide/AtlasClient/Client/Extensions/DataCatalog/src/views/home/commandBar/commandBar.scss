@@ -1,0 +1,21 @@
+﻿@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/commandBar.scss";
+
+.datacatalog-container {
+    #home-commandbar {
+        height: $search-panel-height;
+        width: 100%;
+        border-bottom: 1px solid $lightCanvas;
+
+        .commandbar-page-title {
+            color: $grayDarkest;
+            margin-right: 0px;
+            padding-right: 0;
+        }
+    }
+}
+
+.datacatalog-manualentry-modal-override .modal-content{
+    width: 700px;
+}

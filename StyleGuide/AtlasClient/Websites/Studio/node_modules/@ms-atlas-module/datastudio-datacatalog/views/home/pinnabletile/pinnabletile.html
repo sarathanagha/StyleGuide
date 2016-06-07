@@ -1,0 +1,43 @@
+<div class="home-pinnable-tile" data-bind="event: { mouseleave: onMouseLeaveTile, mouseenter: onMouseEnterTile}" tabindex="0">
+    <div class="home-pinnable-tile-content" data-bind="">
+        <span class="home-pinnable-tile-title in-tile-label" data-bind="text: title, adc-popover: {}, attr: {'data-content':titlePopover}"
+                                                                                                                                data-trigger="hover"
+                                                                                                                                data-placement="auto top"
+                                                                                                                                data-container="body"
+                                                                                                                                data-html="true"
+                                                                                                                        ></span>
+        <!-- ko if: items().length -->
+        <ul class="pinnable-items" data-bind="attr:{ id: listID}">
+            <!-- ko foreach: { data: items, as: 'item' } -->
+            <li class="pinnable-item">
+                <div>
+                    <!-- ko if: item.pinned -->
+                    <img src="../../../../images/home/pin_on.svg" data-bind="event: { click: function(d,e) { $(e.target).popover('hide'); $parent.onUnpin(d,e); } }, 
+                                                                        adc-popover: {}, 
+                                                                        attr: { 'data-content': $parent.resx.unpin }" 
+                                                                        data-placement="auto left"
+                                                                        data-trigger="hover" 
+                                                                        data-container="body" />
+                    <!-- /ko -->
+                    <!-- ko ifnot: item.pinned -->
+                    <img src="../../../../images/home/pin_off.svg" data-bind="event: { click: function(d,e) { $(e.target).popover('hide'); $parent.onPin(d,e); } }, 
+                                                                        adc-popover: {}, 
+                                                                        attr: { 'data-content': $parent.resx.pin }" 
+                                                                        data-placement="auto left" 
+                                                                        data-trigger="hover" 
+                                                                        data-container="body" />
+                    <!-- /ko -->
+                    <span class="pinnable-item-label" data-bind="text: displayLabel, attr: { id: ($parent.idPrefix + '_' + item.id.replace(/\//, '_')) }, event: { click: $parent.onSelect }, css: {grayed: ($parent.grayUnpinned && !item.pinned())}"></span>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+        <!-- /ko -->
+        <!-- ko if: (items().length < baseItems().length) -->
+        <span class="pinnable-tile-see-more" data-bind="text: seeAll, event: { click: onSeeMore }"></span>
+        <!-- /ko -->
+        <!-- ko ifnot: items().length -->
+        <div class="pinnable-empty-message" data-bind="html: emptyMessage"></div>
+        <!-- /ko -->
+    </div>
+</div>

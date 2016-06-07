@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{39D1CCB8-2739-4A9C-A91E-8875B1949F91}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.DataStudio.WebExtensions</RootNamespace>
+    <AssemblyName>Microsoft.DataStudio.WebExtensions</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="$(NugetPack)\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>System.Web.Http</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>System.Web.Http.Cors</Name>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\HttpConfigurationExtensions.cs" />
+    <Compile Include="src\HttpRequestHeadersExtensions.cs" />
+    <Compile Include="src\HttpResponseHeadersExtensions.cs" />
+    <Compile Include="src\HttpWebResponseExtensions.cs" />
+    <Compile Include="src\WebConstants.cs" />
+    <Compile Include="src\WebExceptionUtils.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

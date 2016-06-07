@@ -1,0 +1,5 @@
+﻿<div class="predicatePanel">
+    <div style="position: absolute; left: 4px; top: 30px;" data-bind="component: { name: 'rdx-helpBubble', params: {messageType: 'predicateInfo', direction: 'bottom'} }"></div>
+    <input class="andNotExpression" data-bind="textInput: rdxContext.predicate.predicateText, event: {keypress: handleEnterEsc}" />
+    <div class="searchButton fa fa-search" data-bind="click: function(){$parent.rdxContext.streamEventSourceHits()}"></div>
+</div> 

@@ -1,0 +1,344 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Microsoft.DataPipeline.Deployment.Workflow.MonitoringServiceDeploy" this:MonitoringServiceDeploy.Environment="[Nothing]" this:MonitoringServiceDeploy.ResumePoint="[Nothing]" this:MonitoringServiceDeploy.ConfigFolder="Config" this:MonitoringServiceDeploy.SerializedSymbols="[Nothing]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdd="clr-namespace:Microsoft.DPG.Deployment;assembly=Microsoft.DPG.WadiActivities"
+ xmlns:mdda="clr-namespace:Microsoft.DataPipeline.Deployment.Activities;assembly=Adf.Activities"
+ xmlns:mddc="clr-namespace:Microsoft.DPG.Deployment.Configuration;assembly=Microsoft.DPG.WadiConfiguration"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:this="clr-namespace:Microsoft.DataPipeline.Deployment.Workflow"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Environment" Type="InArgument(x:String)" />
+    <x:Property Name="ResumePoint" Type="InArgument(x:String)" />
+    <x:Property Name="ConfigFolder" Type="InArgument(x:String)" />
+    <x:Property Name="DeploymentID" Type="OutArgument(x:String)" />
+    <x:Property Name="SerializedSymbols" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Microsoft.DataPipeline.Deployment.Workflow.AzureDeploy_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>Microsoft.DPG.WadiConfiguration</x:String>
+      <x:String>Microsoft.DataPipeline.Deployment.Activities</x:String>
+      <x:String>Microsoft.DPG.Deployment</x:String>
+      <x:String>Microsoft.DPG.Deployment.Operations</x:String>
+      <x:String>Microsoft.DPG.Deployment.Configuration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.DataPipeline.Deployment.Workflow</x:String>
+      <x:String>Microsoft.WindowsAzure.Management.Storage</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Adf.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiActivities</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiConfiguration</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.WindowsAzure.Management.Storage</AssemblyReference>
+      <AssemblyReference>Microsoft.WindowsAzure.Common</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mddc:ConfigType" Default="[Nothing]" Name="Config" />
+      <Variable x:TypeArguments="x:String" Default="[Nothing]" Name="DeploymentRecordKey" />
+      <!--<Variable x:TypeArguments="x:String" Default="MonitoringServiceCleanDeployment" Name="DeploymentType" />-->
+    </Sequence.Variables>
+    <TryCatch sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_38">
+          <mdd:InitLog sap2010:WorkflowViewState.IdRef="InitLog_1" />
+          <!--<mdd:LoadConfig EnableEncryption="{x:Null}" ExternalSymbols="{x:Null}" IdentifySecrets="{x:Null}" OfflineLoad="{x:Null}" Config="[Config]" ConfigFolder="[ConfigFolder]" Environment="[Environment]" sap2010:WorkflowViewState.IdRef="LoadConfig_2" />-->
+          <!--<mdda:SaveDeploymentRunRecord Exception="{x:Null}" ClusterDetail="[Config.GetDeployItem(&quot;DeploymentRunRecord&quot;).First()]" ClusterRecordToBeUpdated="[DeploymentRecordKey]" DeploymentId="[DeploymentID]" DeploymentRecordID="[DeploymentRecordKey]" DeploymentType="[DeploymentType]" sap2010:WorkflowViewState.IdRef="SaveDeploymentRunRecord_3" StorageConnctionString="[Config.GetDeploymentRecordConnectionString()]" Subscription="[Config.Base]" />-->
+          <!--
+          <mdd:DeployStage Enabled="{x:Null}" DisplayName="Create Inventory" sap2010:WorkflowViewState.IdRef="DeployStage_36" Name="CreateInventory" ResumePoint="[ResumePoint]">
+            <mdd:DeployStage.Body>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_51">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="PrimaryStorageKey" />
+                  <Variable x:TypeArguments="x:Boolean" Default="False" Name="StorageExists" />
+                  <Variable x:TypeArguments="x:String" Name="SecondaryStorageKey" />
+                </Sequence.Variables>
+                <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_28" Text="Creating inventory" />
+                <mdda:CreateInventory Config="[Config]" sap2010:WorkflowViewState.IdRef="CreateInventory_1" />
+                <mdd:GetWAStorageAccountPrimaryKey AccountName="[Config.GetWAStorageName()]" Certificate="[Config.HostedService.First().GetServiceActivityInfo().ServiceManagementCertificate]" sap2010:WorkflowViewState.IdRef="GetWAStorageAccountPrimaryKey_1" PrimaryStorageKey="[PrimaryStorageKey]" StorageClientFactory="[New StorageClientFactory()]" SubscriptionId="[New Guid(Config.GetSubscriptionId())]" Success="[StorageExists]" />
+                <If Condition="[StorageExists]" sap2010:WorkflowViewState.IdRef="If_4">
+                  <If.Else>
+                    <mdd:CreateWAStorageAccount AffinityGroup="{x:Null}" GeoReplicationEnabled="{x:Null}" StorageClientFactory="{x:Null}" AccountName="[Config.GetWAStorageName()]" Certificate="[Config.HostedService.First().GetServiceActivityInfo().ServiceManagementCertificate]" Description="[Config.GetDeploymentName()]" sap2010:WorkflowViewState.IdRef="CreateWAStorageAccount_1" Label="[Config.GetDeploymentName()]" Location="[Config.WALocation]" PrimaryStorageKey="[PrimaryStorageKey]" Redundancy="[StorageRedundancy.Geo]" SubscriptionId="[New Guid(Config.GetSubscriptionId())]" />
+                  </If.Else>
+                </If>
+                <mdd:GetWAStorageAccountKeys AccountName="[Config.GetWAStorageName()]" Certificate="[Config.HostedService.First().GetServiceActivityInfo().ServiceManagementCertificate]" sap2010:WorkflowViewState.IdRef="GetWAStorageAccountKeys_1" PrimaryStorageKey="[PrimaryStorageKey]" SecondaryStorageKey="[SecondaryStorageKey]" StorageClientFactory="[New StorageClientFactory()]" SubscriptionId="[New Guid(Config.GetSubscriptionId())]" Success="[StorageExists]" />
+                <mdda:UpdateStorageAccountKey Config="[Config]" sap2010:WorkflowViewState.IdRef="UpdateStorageAccountKey_1" />
+              </Sequence>
+            </mdd:DeployStage.Body>
+          </mdd:DeployStage>
+          -->
+          <If Condition="[SerializedSymbols = &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <mdd:LoadConfig EnableEncryption="{x:Null}" ExternalSymbols="{x:Null}" IdentifySecrets="{x:Null}" Config="[Config]" ConfigFolder="[ConfigFolder]" Environment="[Environment]" sap2010:WorkflowViewState.IdRef="LoadConfig_2" OfflineLoad="{x:Null}" />
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_52">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdda:ConfigSymbols" Name="TargetSymbols" />
+                </Sequence.Variables>
+                <mdda:LoadConfigSymbols sap2010:WorkflowViewState.IdRef="LoadConfigSymbols_1" SerializedSymbols="[SerializedSymbols]" Symbols="[TargetSymbols]" />
+                <mdd:LoadConfig EnableEncryption="{x:Null}" IdentifySecrets="{x:Null}" Config="[Config]" ConfigFolder="[ConfigFolder]" Environment="[TargetSymbols.BaseConfigName]" ExternalSymbols="[TargetSymbols.Symbols]" sap2010:WorkflowViewState.IdRef="LoadConfig_3" OfflineLoad="{x:Null}" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <mdd:DeployStage Enabled="{x:Null}" DisplayName="Create Inventory" sap2010:WorkflowViewState.IdRef="DeployStage_36" Name="CreateInventory" ResumePoint="[ResumePoint]">
+            <mdd:DeployStage.Body>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_51">
+                <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_28" Text="Creating inventory" />
+                <mdda:CreateStorageAccountAndSecret AffinityGroup="{x:Null}" Redundancy="{x:Null}" AccountName="[Config.GetWAStorageName()]" Certificate="[Config.HostedService.First().GetServiceActivityInfo().ServiceManagementCertificate]" DeploymentName="[Config.GetDeploymentName()]" HostedServicesToUpdate="[Config.GetEnabledHostedServices()]" sap2010:WorkflowViewState.IdRef="CreateStorageAccountAndSecret_1" Location="[Config.WALocation]" RootServicePath="[Config.GetRootServiceName()]" SecretStore="[Config.GetSecretStoreEnv()]" StorageSecretName="WAStorage" SubscriptionId="[New Guid(Config.GetSubscriptionId())]" />
+              </Sequence>
+            </mdd:DeployStage.Body>
+          </mdd:DeployStage>
+          <!--<mdd:LoadConfig EnableEncryption="{x:Null}" ExternalSymbols="{x:Null}" IdentifySecrets="{x:Null}" OfflineLoad="{x:Null}" Config="[Config]" ConfigFolder="[ConfigFolder]" Environment="[Environment]" sap2010:WorkflowViewState.IdRef="LoadConfig_4" />-->
+          <mdd:DeployStage Enabled="{x:Null}" DisplayName="Create WA Services" sap2010:WorkflowViewState.IdRef="DeployStage_30" Name="CreateWAServices" ResumePoint="[ResumePoint]">
+            <mdd:DeployStage.Body>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_20" Text="Create Hosted Services" />
+                <ParallelForEach x:TypeArguments="mddc:HostedServiceType" DisplayName="Deploy To Staging" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_3" Values="[Config.HostedService.Where(Function(svc) svc.IsEnabled)]">
+                  <ActivityAction x:TypeArguments="mddc:HostedServiceType">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="mddc:HostedServiceType" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_40">
+                      <mdd:CreateWAService AsyncException="{x:Null}" sap2010:WorkflowViewState.IdRef="CreateWAService_2" ItemConfig="[item]" />
+                      <mdd:TeardownWAService AsyncException="{x:Null}" DisplayName="TeardownWAServiceInstances" sap2010:WorkflowViewState.IdRef="TeardownWAService_2" ItemConfig="[item]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ParallelForEach>
+                <mdd:UploadCertificates RetryCount="{x:Null}" RetryWaitSeconds="{x:Null}" SideLoadCertificatesChunkSize="{x:Null}" Config="[Config]" sap2010:WorkflowViewState.IdRef="UploadCertificates_4" />
+              </Sequence>
+            </mdd:DeployStage.Body>
+          </mdd:DeployStage>
+          <mdd:DeployStage Enabled="{x:Null}" DisplayName="Deploy WA Packages" sap2010:WorkflowViewState.IdRef="DeployStage_31" Name="DeployWAPackages" ResumePoint="[ResumePoint]">
+            <mdd:DeployStage.Body>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_43">
+                <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_21" Text="Deploy WA Packages" />
+                <ParallelForEach x:TypeArguments="mddc:HostedServiceType" DisplayName="Deploy To Staging" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_4" Values="[Config.HostedService.Where(Function(svc) svc.IsEnabled)]">
+                  <ActivityAction x:TypeArguments="mddc:HostedServiceType">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="mddc:HostedServiceType" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_42">
+                      <mdd:WAServiceDeployStagingSlot AsyncException="{x:Null}" sap2010:WorkflowViewState.IdRef="WAServiceDeployStagingSlot_2" ItemConfig="[item]" />
+                      <mdd:WAServiceSwapVip SwapPerformed="{x:Null}" sap2010:WorkflowViewState.IdRef="WAServiceSwapVip_2" ItemConfig="[item]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ParallelForEach>
+              </Sequence>
+            </mdd:DeployStage.Body>
+          </mdd:DeployStage>
+          <mdd:DownloadDeploymentIdBySlot ComputeClientFactory="{x:Null}" DeploymentId="[DeploymentID]" sap2010:WorkflowViewState.IdRef="DownloadDeploymentIdBySlot_2" ProductionSlot="True" ServiceConfig="[Config.HostedService.First(Function(svc) svc.IsEnabled)]" />
+          <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_22" Text="[&quot;DeploymentID: &quot; + DeploymentID]" />
+          <mdd:DeployStage Enabled="{x:Null}" DisplayName="EndDeploymentRecord" sap2010:WorkflowViewState.IdRef="DeployStage_34" Name="EndDeploymentRecord" ResumePoint="[ResumePoint]">
+            <mdd:DeployStage.Body>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_47">
+                <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_25" Text="End Deployment Record (Monitoring)" />
+                <!--<mdda:SaveDeploymentRunRecord Exception="{x:Null}" ClusterDetail="[Config.GetDeployItem(&quot;DeploymentRunRecord&quot;).First()]" ClusterRecordToBeUpdated="[DeploymentRecordKey]" DeploymentId="[DeploymentID]" DeploymentRecordID="[DeploymentRecordKey]" DeploymentType="[DeploymentType]" sap2010:WorkflowViewState.IdRef="SaveDeploymentRunRecord_4" StorageConnctionString="[Config.GetDeploymentRecordConnectionString()]" Subscription="[Config.Base]" />-->
+              </Sequence>
+            </mdd:DeployStage.Body>
+          </mdd:DeployStage>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_49">
+              <mdd:DeployStage Enabled="{x:Null}" DisplayName="EndDeploymentRecord" sap2010:WorkflowViewState.IdRef="DeployStage_35" Name="EndDeploymentRecord" ResumePoint="[ResumePoint]">
+                <mdd:DeployStage.Body>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_48">
+                    <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_26" Text="End Deployment Record" />
+                    <If Condition="[Config Is Nothing]" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_27" Text="Config Not Loaded" />
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_50">
+                          <!--<mdda:SaveDeploymentRunRecord ClusterDetail="[Config.GetDeployItem(&quot;DeploymentRunRecord&quot;).First()]" ClusterRecordToBeUpdated="[DeploymentRecordKey]" DeploymentId="[DeploymentID]" DeploymentRecordID="[DeploymentRecordKey]" DeploymentType="[DeploymentType]" Exception="[exception]" sap2010:WorkflowViewState.IdRef="SaveDeploymentRunRecord_5" StorageConnctionString="[Config.GetDeploymentRecordConnectionString()]" Subscription="[Config.Base]" />-->
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </mdd:DeployStage.Body>
+              </mdd:DeployStage>
+              <Rethrow sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <sads:DebugSymbol.Symbol>d1tmOlx0ZnNcZHAtbWFpbjAxXFByb2R1Y3RcU291cmNlXFBsYXRmb3JtVjJcRGVwbG95bWVudFxXb3JrZmxvd1xNb25pdG9yaW5nU2VydmljZURlcGxveS54YW1shgEB1gEB4AEBBAGMAgGTAgEDAaEBAasBAQJMA78BDgIBAU47TkYCAQVPSE92AgEEUDRQPwIBA1E0UVYCAQJTBb0BEAIBBlUJngEUAgEjpgENuQEYAgEHVgtWRgMBqwFXC1eBAgMBpAFYC1jNAwMBmAFZC20dAgFpbgtugQICAWJvC4EBHQIBT4IBC5MBHQIBP5QBC5QBigICATqVAQuVAYABAgE3lgELnQEdAgEkpwEPtwEhAgEJuAEPuAFGAgEIV6MBV7MBAwGpAVfAAVfPAQMBpwFXiwFXlQEDAaUBWLsDWMoDAwGjAVj9AlitAwMBogFYpwFYvgEDAaABWMwBWNwBAwGeAViXAlipAgMBnAFY8AFYhwIDAZoBWExYjQEDAZkBWaIBWbEBAgFrWYQBWZUBAgFqWw9rGgIBbW6jAW6zAQIBZ27AAW7PAQIBZW6LAW6VAQIBY2+lAW+0AQIBUW+GAW+YAQIBUHEPfxoCAVOCAaUBggG0AQIBQYIBhgGCAZgBAgFAhAEPkQEaAgFDlAG3AZQBvQECAT6UAcwBlAGHAgIBPZQBWJQBaAIBO5UBUJUBfQIBOJYBqQGWAbgBAgEmlgGHAZYBnAECASWYAQ+bARoCASinAa0BpwG8AQIBC6cBiwGnAaABAgEKqQETtQEeAgENXkFeSAIBbmERYW0DAZYBYhFibwMBkwFjEWOzAwMBigFkEWgWAgF9aRFp0wMCAXJqEWp/AgFvchFycQIBYHMRfSMCAVd+EX7PAQIBVIUBEYUBbQIBTYYBEZABIwIBRJkBEZkBfQIBNZoBEZoB0wMCASmqARWqAXQCASGrARW0ARoCAQ5hVmFqAwGXAWIuYjgDAZQBY58DY7ADAwGRAWPAAmPeAgMBkAFjQGNdAwGPAWPuAmOWAwMBjgFjlQJjqgIDAYwBY2pjwAEDAYsBZB9kMAIBfmYVZskEAwGAAWmzAmnKAgIBe2m/A2nQAwIBeWngAmn+AgIBeGk6aVcCAXdpjgNptgMCAXZpiQJpngICAXRpZGm6AQIBc2o2akACAXByVnJuAgFhc6gBc+MBAgFfeBV7IAIBWH6LAX6VAQIBVYUBVoUBagIBToYBqAGGAeMBAgFMiwEVjgEgAgFFmQFWmQF6AgE2mgHBA5oB0AMCATSaAYMDmgGzAwIBM5oBrQGaAcQBAgExmgHSAZoB4gECAS+aAZ0CmgGvAgIBLZoB9gGaAY0CAgErmgFSmgGTAQIBKqoBWqoBcQIBIqsBI6sBOAIBD60BGa0BdAIBH7ABGbIBJAIBEGasA2bBAwMBiQFmhANmogMDAYgBZqQCZsICAwGHAWaXAWa0AQMBhgFmngRmxgQDAYUBZtQDZukDAwGDAWbBAWaXAgMBggFm9QNmjgQDAYEBeRd5kAECAVx6F3q9AQIBWYwBF4wBpgECAUmNAReNAZEBAgFGrQFerQFxAgEgsQEbsQHgAwIBEXmFAXmNAQIBXXqyAXq6AQIBWowBmwGMAaMBAgFKjQGGAY0BjgECAUexAc4DsQHdAwIBHrEBkAOxAcADAgEdsQGiAbEBuQECARuxAccBsQHXAQIBGbEBkgKxAaQCAgEXsQGvArEBvAICARWxAesBsQGCAgIBE7EBR7EBiAECARI=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InitLog_1" sap:VirtualizedContainerService.HintSize="500,22" />
+      <!--<sap2010:ViewStateData Id="LoadConfig_2" sap:VirtualizedContainerService.HintSize="500,22" />-->
+      <!--<sap2010:ViewStateData Id="SaveDeploymentRunRecord_3" sap:VirtualizedContainerService.HintSize="500,22" />-->
+      <sap2010:ViewStateData Id="LogMessage_28" sap:VirtualizedContainerService.HintSize="464,61" />
+      <!--<sap2010:ViewStateData Id="CreateInventory_1" sap:VirtualizedContainerService.HintSize="464,22" />-->
+      <!--<sap2010:ViewStateData Id="GetWAStorageAccountPrimaryKey_1" sap:VirtualizedContainerService.HintSize="464,22" />-->
+      <!--<sap2010:ViewStateData Id="CreateWAStorageAccount_1" sap:VirtualizedContainerService.HintSize="200,22" />-->
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,208" />
+      <!--<sap2010:ViewStateData Id="GetWAStorageAccountKeys_1" sap:VirtualizedContainerService.HintSize="464,22" />-->
+      <!--<sap2010:ViewStateData Id="UpdateStorageAccountKey_1" sap:VirtualizedContainerService.HintSize="464,22" />-->
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="486,681">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeployStage_36" sap:VirtualizedContainerService.HintSize="500,792" />
+      <!--<sap2010:ViewStateData Id="LoadConfig_4" sap:VirtualizedContainerService.HintSize="500,22" />-->
+      <sap2010:ViewStateData Id="LogMessage_20" sap:VirtualizedContainerService.HintSize="287,61" />
+      <sap2010:ViewStateData Id="CreateWAService_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="TeardownWAService_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="222,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ParallelForEach`1_3" sap:VirtualizedContainerService.HintSize="287,356" />
+      <sap2010:ViewStateData Id="UploadCertificates_4" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="309,643">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeployStage_30" sap:VirtualizedContainerService.HintSize="500,754" />
+      <sap2010:ViewStateData Id="LogMessage_21" sap:VirtualizedContainerService.HintSize="287,61" />
+      <sap2010:ViewStateData Id="WAServiceDeployStagingSlot_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="WAServiceSwapVip_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="222,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ParallelForEach`1_4" sap:VirtualizedContainerService.HintSize="287,356" />
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="309,581">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeployStage_31" sap:VirtualizedContainerService.HintSize="500,692" />
+      <sap2010:ViewStateData Id="DownloadDeploymentIdBySlot_2" sap:VirtualizedContainerService.HintSize="500,22" />
+      <sap2010:ViewStateData Id="LogMessage_22" sap:VirtualizedContainerService.HintSize="500,61" />
+      <sap2010:ViewStateData Id="LogMessage_25" sap:VirtualizedContainerService.HintSize="225,61" />
+      <!--<sap2010:ViewStateData Id="SaveDeploymentRunRecord_4" sap:VirtualizedContainerService.HintSize="225,22" />-->
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="247,247">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeployStage_34" sap:VirtualizedContainerService.HintSize="500,358" />
+      <sap2010:ViewStateData Id="Sequence_38" sap:VirtualizedContainerService.HintSize="522,3251">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_26" sap:VirtualizedContainerService.HintSize="464,61" />
+      <sap2010:ViewStateData Id="LogMessage_27" sap:VirtualizedContainerService.HintSize="200,61" />
+      <!--<sap2010:ViewStateData Id="SaveDeploymentRunRecord_5" sap:VirtualizedContainerService.HintSize="200,22" />-->
+      <sap2010:ViewStateData Id="Sequence_50" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,294" />
+      <sap2010:ViewStateData Id="Sequence_48" sap:VirtualizedContainerService.HintSize="486,519">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeployStage_35" sap:VirtualizedContainerService.HintSize="500,630" />
+      <sap2010:ViewStateData Id="Rethrow_1" sap:VirtualizedContainerService.HintSize="500,22" />
+      <sap2010:ViewStateData Id="Sequence_49" sap:VirtualizedContainerService.HintSize="522,816">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="526,21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="540,3478" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="562,3602">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Microsoft.DataPipeline.Deployment.Workflow.AzureDeploy_1" sap:VirtualizedContainerService.HintSize="602,3682">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

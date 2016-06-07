@@ -1,0 +1,144 @@
+﻿@import "../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+@import "../../../../../Core/DataStudio/src/stylesheets/Framework/Base/layoutBase.scss";
+
+.new-solution-container {
+    background-color: #E6E6E6;
+
+    .solution-header {
+        background-color: #fff;
+        display: block;
+        font-size: 1.1em;
+        font-weight: 400;
+        padding: 18px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        .solution-type {
+            color: $grayLightColor;
+        }
+    }
+
+    .no-selection-message {
+        background-color: #F2F2F2;
+        color: #7D7D7D;
+        font-size: 2em;
+        height: 100vh;
+        padding-top: 25%;
+        text-align: center;
+
+        a {
+            color: $atlasDarkTeal !important;
+        }
+    }
+}
+
+/** Store deployment wizard CSS outside container because it will be applied to the modal attached to the body **/
+.deployment-wizard-modal {
+    .modal-content {
+        width: 400px;
+
+        a {
+            color: #00B294;
+            text-decoration: none;
+        }
+
+        .wizard-header {
+            color: #888;
+            display: block;
+            font-size: 0.8em;
+            font-weight: 400;
+            margin-bottom: 9px;
+            text-transform: uppercase;
+        }
+
+        .wizard-sub-header {
+            color: #000;
+            display: block;
+            font-size: 1.4em;
+            margin-bottom: 9px;
+        }
+
+        .wizard-description {
+            display: block;
+            font-size: 1em;
+        }
+
+        .wizard-error {
+            display: block;
+            font-size: 1em;
+            color: $errorRed;
+        }
+
+        label {
+            color: #000;
+            display: block;
+            font-size: 0.85em;
+            padding-bottom: 2px;
+            padding-top: 20px;
+
+            &.terms {
+                color: #484848;
+                padding-bottom: 0px;
+                padding-top: 20px;
+
+                input[type=checkbox] {
+                    bottom: -2px;
+                    height: 1em;
+                    position: relative;
+                    width: 1em;
+                }
+            }
+        }
+
+        select, input[type=text], input[type=password] {
+            background-color: #fff;
+            border-color: #C3C3C3;
+            border-width: 1px;
+            font-size: 1em;
+            line-height: 1.5em;
+            margin: 0;
+            max-width: 100% !important;
+            padding: 6px;
+            width: 100% !important;
+
+            &.error {
+                border-color: $errorRed;
+            }
+        }
+
+        select:hover, select:focus {
+            background-color: #fff;
+        }
+
+        input[type=checkbox] {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0px;
+        }
+
+        .input-validation-message {
+            color: #808387;
+            display: block;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 400;
+            padding-top: 5px;
+
+            &.error {
+                color: $errorRed;
+            }
+        }
+
+        .modal-action-btns {
+            padding-top: 40px;
+
+            .btn {
+                /** Overriding padding and min-width to defaults because of ui-light being pulled in by winJS **/
+                border: none !important;
+                display: inline-block;
+                min-width: 88px;
+                padding: 9px 16px;
+            }
+        }
+    }
+}

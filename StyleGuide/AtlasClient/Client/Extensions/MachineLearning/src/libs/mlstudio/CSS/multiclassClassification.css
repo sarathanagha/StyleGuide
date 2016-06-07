@@ -1,0 +1,70 @@
+.multiclassViewModelContainer {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.multiclassSection {
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.multiclassSectionHeader {
+    font-size: 18px;
+	margin-bottom: 8px;
+    color: #3aa0cc;
+}
+
+.metricsTableContainer {
+    padding-top: 8px;
+    margin-bottom: 30px;
+    border-top: 1px solid #3da0c3;
+    width: 335px;
+}
+
+.metricsTable td {
+    padding: 2px 26px 2px 26px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.multiclassExpanderContainer {
+    height: 25px;
+    justify-content: center;
+}
+
+.multiclassExpander {
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 9px;
+    height: 9px;
+}
+
+.multiclassSvg {
+    border-top: 1px solid #3da0c3;
+    padding-top: 8px;    
+}
+
+.superHeaderText {
+    font-family: Segoe UI;
+    font-size: 18px;
+    font-weight: 200;
+    text-anchor: middle;
+    color: #444;
+}
+
+.labelHeaderText {
+    font-family: Segoe UI;
+}
+
+.confusionMatrixEntry {
+    fill: #71B1D1;
+    stroke: darkgray;
+    stroke-width: 1;
+}
+
+.entryLabel {
+    fill: #454545;
+    text-anchor: middle;
+    font-size: 14px;
+    font-weight: bold;
+}

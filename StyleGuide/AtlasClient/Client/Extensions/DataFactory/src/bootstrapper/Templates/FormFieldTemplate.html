@@ -1,0 +1,26 @@
+﻿<div data-bind="visible:viewModel.options.visible">
+    <div class="formFieldHeaderContainer">
+        <div class="formFieldLabel" style="float:left">
+            <label data-bind="text:viewModel.labelText, attr:{for:viewModel.id}">
+            </label>
+            <!-- ko if: viewModel.required -->
+            <span class="required">(required)</span>
+            <!-- /ko -->
+        </div>
+
+        <!-- ko if: viewModel.infoBalloonText -->
+        <!-- TODO rigoutam: apply class based on length of text -->
+        <div class="infoImage top medium" data-bind="attr: { 'data-tooltip': viewModel.infoBalloonText }">
+        </div>
+        <!-- /ko -->
+        <div style="clear:both">
+        </div>
+    </div>
+    <div class="formFieldInputContainer">
+        %%INPUTFIELD%%
+        <div data-bind="attr:{title:viewModel.errorMessage,class:validationImageClass}">
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+

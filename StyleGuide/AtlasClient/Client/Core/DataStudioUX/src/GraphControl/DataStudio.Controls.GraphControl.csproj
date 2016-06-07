@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{623532F8-9A60-450E-8E70-AB6B6A020429}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="graphControl.ts" />
+    <TypeScriptCompile Include="graphControlExternal.ts" />
+    <TypeScriptCompile Include="Bindings\graphControlBinding.ts" />
+    <TypeScriptCompile Include="VivaGraphControl\loader.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

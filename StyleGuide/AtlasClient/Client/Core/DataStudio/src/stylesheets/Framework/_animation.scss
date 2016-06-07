@@ -1,0 +1,36 @@
+@import "Base/layoutBase";
+
+$transitionTime:0.35s;
+$transitionType:ease;
+
+.collapse.height {
+  $heightTransition : height $transitionTime $transitionType, min-height $transitionTime $transitionType, max-height $transitionTime $transitionType;
+
+  -webkit-transition: $heightTransition;
+  -moz-transition: $heightTransition;
+  -o-transition: $heightTransition;
+  transition: $heightTransition;
+}
+
+.collapse.width {
+  $widthTransition : width $transitionTime $transitionType, min-width $transitionTime $transitionType, max-width $transitionTime $transitionType;
+
+  -webkit-transition: $widthTransition;
+  -moz-transition: $widthTransition;
+  -o-transition: $widthTransition;
+  transition: $widthTransition;
+}
+
+.collapsed .row.collapsable{
+  @extend %height0;
+  @extend %hide;
+}
+
+.collapsed .col.collapsable {
+  @extend %width0;
+  @extend %hide;
+}
+
+.switch {
+  cursor: pointer;
+}

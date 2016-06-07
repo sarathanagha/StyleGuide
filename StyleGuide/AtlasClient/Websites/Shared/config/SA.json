@@ -1,0 +1,6 @@
+{
+    "SA": {
+        "defaultModule": "solutionaccelerator",
+        "modules": [ "solutionaccelerator" ]
+    }
+}

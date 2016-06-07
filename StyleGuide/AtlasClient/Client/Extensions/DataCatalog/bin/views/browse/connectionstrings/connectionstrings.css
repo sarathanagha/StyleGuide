@@ -1,0 +1,11 @@
+#connection-strings .scrollable-content {
+  overflow: auto;
+  max-height: 450px; }
+  #connection-strings .scrollable-content .connection-strings-title {
+    font-size: 14px;
+    font-weight: bold; }
+  #connection-strings .scrollable-content .copy-button {
+    cursor: pointer;
+    float: right; }
+
+/*# sourceMappingURL=connectionstrings.css.map */

@@ -1,0 +1,14 @@
+<div id="connection-strings">
+    <div class="scrollable-content">
+        <span class="connection-strings-title" data-bind="text: resx.connectionStringInfo"></span>
+        <!-- ko foreach: {data: connectionStrings, as: 'connectionString' } -->
+        <div data-bind="component: { name: 'datacatalog-browse-connectionstringdisplay', params: {
+                                                                            driver: connectionString.driver,
+                                                                            label: connectionString.label,
+                                                                            baseString: connectionString.baseString,
+                                                                            sourceType: $parent.sourceType
+                                                                        }
+                                                                    }"></div>
+        <!-- /ko -->
+    </div>
+</div>

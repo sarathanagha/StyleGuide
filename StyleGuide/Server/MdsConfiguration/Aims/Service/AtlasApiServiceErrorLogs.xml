@@ -1,0 +1,148 @@
+<Configuration>
+  <OutputExtensions>
+    <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+      <Setting Name="tenant" Value="AtlasDataStudio"/>
+    </OutputExtension>
+  </OutputExtensions>
+
+  <GlobalDefinitions>
+    <![CDATA[
+        let ConfigOwnerAlias = "atlaslivesitemonitor@microsoft.com"
+        let ServiceName = "Atlas"
+        
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+        
+        let MaxMessageLength = 800
+    ]]>
+  </GlobalDefinitions>
+
+  <Rule id="ApiServiceErrorLogs" windowSize="PT24H" windowHopSize="PT24H" queryDelay="PT30M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasApiServiceLog.*", 0)
+            where TaskName == "LogError" and !message.Contains("MLDeploymentActor: Exception while processing ML queue message")
+	      let ShortMessage = message.Substring(0, MaxMessageLength)
+            
+        groupby Tenant, SourceTableName, Role, RoleInstance, ShortMessage
+
+        let ErrorMessageShort = Last(ShortMessage)
+        let ErrorCount = Count()
+        let ActivityId = Last(ActivityId)
+        let MinTimestamp = Min(PreciseTimeStamp)
+        let MaxTimestamp = Max(PreciseTimeStamp)
+          
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          select ErrorMessageShort, ErrorCount, ActivityId, MinTimestamp, MaxTimestamp
+        }
+         
+        let IcmHtmlDescription = HtmlTable()
+      
+        let EventName = "AtlasApiServiceErrorLogs"
+        
+        let BeginWindowIntervalInPacificTime = AddMinutes(BeginWindowInterval, -7 * 60)
+        let BeginDateInPacificTime = MatchAndExtract(BeginWindowIntervalInPacificTime ,"([0-9\-]+)T([0-9:]+)\.0+(Z)")
+        let Title = "$(Tenant): Role: $(Role) :: There were error logs in the last 24 hours on $(BeginDateInPacificTime)"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let TsgId = "1200103"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200103%20-%20Api%20service%20error%20logs%7C7F2FDF2F-E6F3-4927-9DB1-4846C4B3607C%2F%29"
+
+        let IcmAlertSeverity = AlertSeverity4
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+
+  <Rule id="MLDeploymentFailures" windowSize="PT15M" windowHopSize="PT15M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasApiServiceLog.*", 0)
+            where message.Contains("MLDeploymentActor: Exception while processing ML queue message")
+        let ShortMessage = message.Substring(0, MaxMessageLength)
+
+        groupby Tenant, SourceTableName, Role, RoleInstance, ShortMessage
+
+        let ErrorMessageShort = Last(ShortMessage)
+        let ErrorCount = Count()
+        let ActivityId = Last(ActivityId)
+        let MinTimestamp = Min(PreciseTimeStamp)
+        let MaxTimestamp = Max(PreciseTimeStamp)
+          
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          select ErrorMessageShort, ErrorCount, ActivityId, MinTimestamp, MaxTimestamp
+        }
+         
+        let IcmHtmlDescription = HtmlTable()
+      
+        let EventName = "AtlasMLDeploymentFailures"
+        let FailedDeploymentsCount = Count()
+        
+        let BeginWindowIntervalInPacificTime = AddMinutes(BeginWindowInterval, -7 * 60)
+        let BeginDateInPacificTime = MatchAndExtract(BeginWindowIntervalInPacificTime ,"([0-9\-]+)T([0-9:]+)\.0+(Z)")
+        let Title = "$(Tenant): Role: $(Role) :: $(FailedDeploymentsCount) solution template deployment attempt(s) failed due to MachineLearning deployment failure(s) in the last 15 mins"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let TsgId = "1200101"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200101%20-%20Machine%20Learning%20deployment%20failures%7C54F23671-BD12-4384-8C4E-4F5CDE61B585%2F%29"
+
+        let IcmAlertSeverity = FailedDeploymentsCount > 1 ? AlertSeverity2 : AlertSeverity3
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+
+  <Rule id="QueueMessageTimeoutExceededWarnings" windowSize="PT24H" windowHopSize="PT24H" queryDelay="PT30M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasApiServiceLog.*", 0)
+            where message.Contains("Possible QueueMessageTimeoutExceeded event")
+        let ShortMessage = message.Substring(0, MaxMessageLength)
+
+        groupby Tenant, SourceTableName, Role, RoleInstance, ShortMessage
+
+        let ErrorMessageShort = Last(ShortMessage)
+        let ErrorCount = Count()
+        let ActivityId = Last(ActivityId)
+        let MinTimestamp = Min(PreciseTimeStamp)
+        let MaxTimestamp = Max(PreciseTimeStamp)
+          
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          select ErrorMessageShort, ErrorCount, ActivityId, MinTimestamp, MaxTimestamp
+        }
+         
+        let IcmHtmlDescription = HtmlTable()
+      
+        let EventName = "AtlasQueueMessageTimeoutExceededWarnings"
+        
+        let BeginWindowIntervalInPacificTime = AddMinutes(BeginWindowInterval, -7 * 60)
+        let BeginDateInPacificTime = MatchAndExtract(BeginWindowIntervalInPacificTime ,"([0-9\-]+)T([0-9:]+)\.0+(Z)")
+        let Title = "$(Tenant): Role: $(Role) :: Possible QueueMessageTimeoutExceeded events in the last 24 hours on $(BeginDateInPacificTime)"
+        let Description = "Please review these cases where a worker instance might've taken more time to process a queue message for solution deployment, in table - $(SourceTableName)"
+
+        let TsgId = "1200104"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200104%20-%20Queue%20message%20timeout%20warnings%7C774DADEA-77F4-4DFB-98D0-0D379EBC623E%2F%29"
+
+        let IcmAlertSeverity = AlertSeverity4
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+</Configuration>

@@ -1,0 +1,19 @@
+<div class="home-attribute-tile">
+    <div class="home-attribute-tile-contents">
+        <span class="home-attribute-title" data-bind="text: title"></span>
+        <!-- ko if: attributes().length -->
+        <ul class="home-attribute-list">
+            <!-- ko foreach: { data: attributes, as: 'attribute' } -->
+            <li class="home-attribute-list-item">
+                <div>
+                    <span class="home-attribute-term" data-bind="text: attribute.term, event: { click: $parent.onSelect }"></span>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+        <!-- /ko -->
+        <!-- ko ifnot: attributes().length -->
+        <div class="home-attribute-empty-message" data-bind="text: emptyMessage"></div>
+        <!-- /ko -->
+    </div>
+</div>

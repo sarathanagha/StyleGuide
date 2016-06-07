@@ -1,0 +1,28 @@
+div(class="dataconnect-container col grow")
+  h1(data-bind="text: connectionManager().name")
+  div(class="row grow content")
+    .col
+      .row
+        img(src="../Images/Sample1.png")
+      .row
+        h3(data-bind="text: ConnectorSectionHeader")
+      .row
+        // ko foreach: connectionManager().connectors.slice(0, 4)
+        div(class="dataconnect-resource-tile")
+          h4(data-bind="text: name")
+          p(data-bind="text: properties().type")
+        // /ko
+        div(class="dataconnect-resource-tile")
+          h4(data-bind="text: ConnectorViewAllText")
+      .row
+        h3(data-bind="text: GatewaySectionHeader")
+      .row
+        // ko foreach: connectionManager().gateways
+        div(class="dataconnect-resource-tile")
+          h4(data-bind="text: name")
+        // /ko
+        div(class="dataconnect-resource-tile")
+          h4(data-bind="text: GatewayViewAllText")        
+    .col
+      .row
+        div(data-bind="component: { name: 'uxshell-templates-home-actionitemslist', params: { items: topTasks, title: 'Top Tasks' } }")

@@ -1,0 +1,17 @@
+﻿<div class="adf-alert-step">
+    <div class="adf-alerts-header">
+        <div>
+            <span class="header-name header" data-bind="text: ClientResources.alertStepHeader"></span>
+            <span class="step-name" data-bind="text: ClientResources.alertStepOneTitle"></span>
+            <span class="action-button" data-bind="html: closeIcon, click: onCloseClicked"></span>
+        </div>
+    </div>
+    <div class="adf-alerts-item">
+        <div data-bind="text: ClientResources.alertNameTitle"></div>
+        <div><input type="text" placeholder="Name" data-bind="textInput: alertName" /></div>
+    </div>
+    <div class="adf-alerts-item">
+        <div data-bind="text: ClientResources.alertDescriptionTitle"></div>
+        <textarea data-bind="textInput: alertDescription, attr: { placeholder: ClientResources.alertDescriptionPlaceholder }" rows="3" type="text"></textarea>
+    </div>
+</div>

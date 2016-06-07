@@ -1,0 +1,25 @@
+<div class='updatingNode' data-bind='pcGraphNodeContent: null, css: displayClasses()'>
+    <div class="click-container">
+        <div class="statusBar" data-bind="ignoreInput: null">
+            <div class="type" data-bind="html: staticData.nodeDisplayName"></div>
+            <div class="linkImage" data-bind="visible: resourceUrl, click: openResourceUrl"></div>
+        </div>
+        <!-- ko if: staticData.name -->
+        <div class="name" data-bind="html: staticData.name, attr: { title: staticData.name }"></div>
+        <!-- /ko -->
+        <div class="statusText"></div>
+    </div>
+    <!-- ko if: tooltipAvailable() -->
+    <div class="description-container">
+        <div class="image" data-bind="style: { backgroundImage: 'url(\'' + image + '\')' }"></div>
+        <div class="infoImage" data-bind="event: {mouseover: showTooltip , mouseout: hideTooltip }"></div>
+        <div class="descriptionBox col" data-bind="visible: tooltipIsVisible() ">
+            <div class="arrowdiv"></div>
+            <div class="nodedescription">
+                <div class="infoBoxTitle row" data-bind="html: staticData.nodeDisplayName"></div>
+                <div class="infoBoxDescription" data-bind="html: staticData.description"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

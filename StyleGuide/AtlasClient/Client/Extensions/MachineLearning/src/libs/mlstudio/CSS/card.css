@@ -1,0 +1,337 @@
+﻿.blankExperimentCard {
+    background-color: white;
+    margin-top: 12px;
+    margin-right: 24px;
+    margin-bottom: 12px;
+    width: 230px; /*Same as experimentCard*/
+    height: 285px; /*Same as experimentCard*/
+    cursor: pointer;
+    /*float: left;*/
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-justify-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.blankExperimentCard .blank-icon {
+    width: 120px;
+    height: 120px;
+}
+
+.blankExperimentCard .blank-name {
+    font-family: "Segoe UI";
+    font-size: 16px;
+    color: #808080;
+    display: block;
+}
+
+.tourExperimentCard {
+    margin-top: 12px;
+    margin-right: 24px;
+    margin-bottom: 12px;
+    background: url(/Content/SampleExperimentIcons/GuidedExperimentInterimTile.png);
+    background-size: 100% 100%;
+    width: 230px; /*Same as experimentCard*/
+    height: 285px; /*Same as experimentCard*/
+    cursor: pointer;
+    /*float: left;*/
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+.tourExperimentCard .tour-name {
+    font-family: "Segoe UI";
+    font-size: 40px;
+    font-weight: 100;
+    margin-bottom: 130px;
+    margin-left: 10px;
+}
+
+.experimentCard {
+    margin-top: 12px;
+    margin-right: 24px;
+    margin-bottom: 12px;
+    line-height: 1.2em;
+    padding: 10px 15px 15px 15px;
+    background-color: white;
+    color: #666666;
+    position: relative;
+    width: 230px; /*same as blankExperimentCard*/
+    height: 285px; /*same as blankExperimentCard*/
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.experimentCard .hoverOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-left: -15px;
+    margin-top: -10px;
+    padding: 15px;
+    background-color: rgba(45, 52, 58, .95);
+    z-index: 1;
+}
+
+.experimentCard .hoverOverlay .studioOpen {
+    margin-top: 30px;
+    margin-left: 12px; /*centers the button*/
+    margin-bottom: 20px; /*creates space with the view in gallery link*/
+    background-color: #8DC53E;
+    color: white;
+    height: 36px;
+    width: 176px;
+    Font-family: "Segoe UI";
+    Font-weight: 400;
+    padding-bottom: 3px; /*centers the text*/
+    Font-size: 14px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.experimentCard .hoverOverlay .galleryViewContainer {
+    margin-left: 44.5px; /*centers the link and popout image = (card width (without padding) - span width) / 2 */
+}
+
+.experimentCard .hoverOverlay .galleryViewContainer .galleryViewLabel {
+    font-family: "Segoe UI";
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.experimentCard .hoverOverlay .galleryViewContainer .popoutImage {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 4px;
+}
+
+.experimentCard .hoverOverlay .description {
+    font-size: 14px;
+    line-height: 21px;
+    height: 110px;
+    overflow: hidden;
+    color: white;
+    margin-top: 40px;
+}
+
+.experimentCard h2 {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #666666;
+    font-family: 'Segoe UI Light';
+}
+.experimentCard .headerContainer {
+    width: 100%;
+    position: relative;
+}
+.experimentCard .headerContainer .header {
+    color: #666666;
+    width: 100%;
+    padding-right: 20px;
+    height: 65px;
+    overflow: hidden;
+    font-size: 16px;
+    font-family: "Segoe UI";
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+.experimentCard .headerContainer .msftBadge {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    background-image: url('/Content/Images/ExperimentCard/icons_msftbadge.svg');
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 24px;
+    -moz-transform: translate(0, -20px);
+    -ms-transform: translate(0, -20px);
+    -o-transform: translate(0, -20px);
+    -webkit-transform: translate(0, -20px);
+    transform: translate(0, -20px);
+    z-index: 2; /*keep badge above the hover overlay*/
+}
+
+.experimentCard img.screenShot {
+    margin-bottom: 10px;
+    width: 100%;
+    max-height: 133px;
+}
+
+.experimentCard .experimentMetadata {
+    height: 215px;
+    margin-bottom: 47px;
+}
+
+.experimentCard .ratingContainer {
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.experimentCard .count {
+    font-size: 12px;
+    color: #969696;
+    padding-right: 5px;
+    padding-left: 1px;
+    float: left;
+}
+.experimentCard .commentCount {
+    font-size: 12px;
+    color: #969696;
+    padding-right: 12px;
+    padding-left: 4px;
+    float: left;
+    padding-left: 8px;
+    line-height: 12px;
+}
+.experimentCard .countContainer {
+    position: absolute;
+    bottom: 65px;
+    height: 16px;
+    width: 90%;
+}
+
+.experimentCard .countContainer .viewsIcon {
+    background-image: url(/Content/Images/ExperimentCard/card_icons2x.png);
+    background-size: 75px 25px;
+    width: 16px;
+    height: 16px;
+    background-position-y: -4px;
+    float: left;
+    background-position-x: -56px;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.experimentCard .countContainer .donwloadIcon {
+    background-image: url(/Content/Images/ExperimentCard/card_icons2x.png);
+    background-size: 75px 25px;
+    width: 16px;
+    height: 16px;
+    background-position-y: -4px;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    background-position-x: -29px;
+    background-position-y: -3px;
+}
+.experimentCard .countContainer .timeOffset {
+    font-size: 12px;
+    color: #aaa;
+    right: 0;
+    position: absolute;
+}
+
+.experimentCard .tagsAlgosContainer {
+    position: absolute;
+    bottom: 76px;
+    vertical-align: bottom;
+    width: 90%;
+}
+
+.experimentCard  .tagsAlgosContainer .tagsContainer {
+    overflow: hidden;
+    margin-bottom: 5px;
+    max-height: 28px;
+}
+
+.experimentCard  .tagsAlgosContainer .tagsContainer .tag {
+    font-size: 12px;
+    line-height: 29px;
+    color: #2086bf;
+    background-color: #e6eef5;
+    padding: 3px 7px 4px 7px;
+    cursor: pointer;
+}
+.experimentCard  .tagsAlgosContainer .tagsContainer .tag:hover {
+    text-decoration: none;
+    background-color: #cddfeb;
+}
+.experimentCard .icon {
+    background-image: url(/Content/Images/ExperimentCard/card_icons2x.png);
+    background-size: 75px 25px;
+    width: 16px;
+    height: 16px;
+    background-position-y: -4px;
+    float: left;
+}
+.experimentCard .algoContainer {
+    font-size: 12px;
+    line-height: 12px;
+    height: 34px;
+    width: 100%;
+}
+.experimentCard  .algoContainer .algoTextContainer {
+    height: 36px;
+    overflow: hidden;
+    padding-left: 3px;
+    line-height: 18px;
+}
+.experimentCard .algoContainer .algoTextContainer .algoText {
+    line-height: 16px;
+}
+.experimentCard .algoContainer .algoIcon {
+    background-image: url(/Content/Images/ExperimentCard/card_icons2x.png);
+    background-size: 75px 25px;
+    width: 16px;
+    float: left;
+    height: 16px;
+    line-height: 17px;
+    background-position-x: -4px;
+    background-position-y: -4px;
+    display: inline-block;
+}
+
+.experimentCard .separator {
+    /*the separator is at the absolute position offset from the bottom*/
+    height: 2px;
+    background-color: #eaeaea;
+    bottom: 54px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+.experimentCard .authorContainer {
+    /*binding it to the bottom of the card with explicit height and 100% width*/
+    padding: 12px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 54px;
+    /*this should appear here, not on the author name itself*/
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.experimentCard .authorContainer .avatar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+    float: left;
+}
+.experimentCard .authorContainer .author {
+    /*having the image as absolute and padding the author name is the only
+                way to keep these 2 on the same line
+            */
+    cursor: pointer;
+    line-height: 26px;
+    white-space: nowrap;
+    padding-left: 42px;
+}

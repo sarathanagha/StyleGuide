@@ -1,0 +1,36 @@
+﻿<div class="wizardStepTitle">
+    Dataset properties
+</div>
+<div class="wizardStepSubtitle">
+</div>
+<!-- ko ifnot: usePrefix -->
+<div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: datasetName}}">}"></div>
+<!-- /ko -->
+<!-- ko if: usePrefix -->
+<div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: datasetPrefix}}">}"></div>
+<!-- /ko -->
+
+<div data-bind="event:{click:toggleAdvancedDatasetSettingsVisible}" style="cursor:pointer">
+    <div class="expander" data-bind="css:{expanded:advancedDatasetSettingsVisible}"></div>
+    <div class="sectionTitle">
+        Advanced settings
+    </div>
+</div>
+
+<div data-bind="visible:advancedDatasetSettingsVisible">
+    <!-- ko if: tableListSource -->
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: minimumRows}}">}"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: tableListSource -->
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: minimumSizeInMb}}">}"></div>
+    <!-- /ko -->
+
+    <!-- ko if: isSource -->
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: dataDelay}}">}"></div>
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: maximumRetry}}">}"></div>
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: retryInterval}}">}"></div>
+    <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: retryTimeout}}">}"></div>
+    <!-- /ko -->
+
+
+</div>

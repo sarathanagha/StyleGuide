@@ -1,0 +1,36 @@
+﻿<div class="dataFactory-activityTool-subheaderText" data-bind="text:propertiesStepSubtitle"></div>
+
+<div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: activityProperties.activityName}}">}"></div>
+
+<div class="formFieldLabel">
+    <label for="idDescriptionBox">Description</label>
+</div>
+<div class="descriptionBox">
+    <textarea rows="3" id="idDescriptionBox" data-bind="value: activityProperties.activityDescription, attr: {placeholder: ClientResources.enterDescription}"></textarea>
+</div>
+
+<!-- ko if: showScheduler -->
+<div class="frequencyAndInterval">
+    <div style="float:left">
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: activityProperties.frequency} }"></div>
+    </div>
+    <div class="formFieldInlineText">every</div>
+    <div class="intervalContainer">
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: activityProperties.interval} }"></div>
+    </div>
+    <div class="formFieldInlineText timemodifier" data-bind="text: timeModifier"></div>
+</div>
+<!-- /ko -->
+
+<div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded: advancedPropertiesExpanded, iconFirst: true}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Advanced</div>
+    </div>
+    <div class="dataFactory-activityTool-body">
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: activityProperties.retry} }"></div>
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: activityProperties.concurrency} }"></div>
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: activityProperties.delay} }"></div>
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: activityProperties.timeout} }"></div>
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: activityProperties.executionPriorityOrder} }"></div>
+    </div>
+</div>

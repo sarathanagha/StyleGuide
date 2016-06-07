@@ -1,0 +1,44 @@
+﻿<div class="atlasHome col grow">
+    <!-- Light Gray -->
+    <div class="row header">
+        <h1 data-bind="text:greeting"></h1>
+    </div>
+    <div class="row grow content">
+        <div class="col">
+            <!-- Quick Launch -->
+            <div data-bind="component: {
+                name: 'uxshell-templates-home-quicklaunch',
+                params: {
+                    buttons: quickLaunchButtons,
+                    title: quickLaunchTitle
+                }
+            }"></div>
+            <!-- Recently Opened -->
+            <div data-bind="component: {
+                name: 'uxshell-templates-home-actionitemslist',
+                params: {
+                    items: recentlyOpenedItems,
+                    title: recentlyOpenedTitle
+                }
+            }"></div>
+        </div>
+
+        <!-- TODO START: Remove Insight Dashboard images after demo-->
+        <div class="col insightDashBoard">
+            <div class="row">
+                <img style="width: 565px; height 464px;" src="/images/chart-01.svg"/>
+            </div>
+            <div class="row">
+                <img style="width: 565px; height 464px;" src="/images/chart-02.svg"/>
+                <!--
+                <img src="Images/diag2.png" hspace="10" />
+                <img src="Images/diag2.png" hspace="10" />
+                <img src="Images/diag2.png" hspace="10" />
+                -->
+            </div>
+        </div>
+        <!-- TODO End: Remove Insight Dashboard images after demo-->
+ 
+        
+    </div>
+</div>

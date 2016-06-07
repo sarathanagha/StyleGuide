@@ -1,0 +1,31 @@
+﻿@import "../../stylesheets/Framework/Base/layoutBase";
+
+.studioPanel {
+    color: white;
+    background-color: black;
+    width: 300px;
+    position:relative;
+    @extend %scrollY;
+    overflow-x: hidden;
+    height: calc(100vh - 40px);
+
+    > div {
+        flex-shrink: 0;
+    }
+
+    &.collapsed {
+        width: 40px;
+    }
+    
+    .switch {
+        background-image: url("../../content/images/burger.svg");
+        width: 30px;
+        height:30px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+
+}
+
+

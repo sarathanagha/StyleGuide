@@ -1,0 +1,3459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="createFactoryBladeTitle" xml:space="preserve">
+    <value>New data factory</value>
+  </data>
+  <data name="createFactoryMenuItemDescription" xml:space="preserve">
+    <value>Create a data factory that holds datasets, pipelines, etc.</value>
+  </data>
+  <data name="createFactoryMenuItemText" xml:space="preserve">
+    <value>Create a data factory</value>
+  </data>
+  <data name="createFactoryPartTitle" xml:space="preserve">
+    <value>Create a data factory</value>
+  </data>
+  <data name="createFactoryProvisioningPartDescription" xml:space="preserve">
+    <value>Creates a new data factory</value>
+  </data>
+  <data name="dataArtifactPropertiesNameLabel" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="dataArtifactsTitle" xml:space="preserve">
+    <value>Datasets</value>
+  </data>
+  <data name="dataSlicesTitle" xml:space="preserve">
+    <value>Data slices</value>
+  </data>
+  <data name="factoryInformationWizardStepBladeName" xml:space="preserve">
+    <value>Data factory information</value>
+  </data>
+  <data name="factoryInformationWizardStepTitle" xml:space="preserve">
+    <value>Data factory information</value>
+  </data>
+  <data name="factoryListLensTitle" xml:space="preserve">
+    <value>Existing data factories</value>
+  </data>
+  <data name="factoryLocationHeading" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="factoryNameFieldLabel" xml:space="preserve">
+    <value>Data factory name</value>
+  </data>
+  <data name="factoryNameGridHeading" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="factoriesBladeTitle" xml:space="preserve">
+    <value>Data factories</value>
+  </data>
+  <data name="factorySubscriptionHeading" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="factorySubtitle" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="factoryTypeHeading" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="mdpExtensionDescription" xml:space="preserve">
+    <value>The starting point for all your Azure Data Factory needs.</value>
+  </data>
+  <data name="mdpExtensionTitle" xml:space="preserve">
+    <value>MDW extension</value>
+  </data>
+  <data name="sliceEndTime" xml:space="preserve">
+    <value>Slice end time</value>
+  </data>
+  <data name="slicesList" xml:space="preserve">
+    <value>List of slices</value>
+  </data>
+  <data name="sliceStartTime" xml:space="preserve">
+    <value>Slice start time</value>
+  </data>
+  <data name="sliceStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="statusFailed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="statusInProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="statusNotSpecified" xml:space="preserve">
+    <value>Not specified</value>
+  </data>
+  <data name="statusOnHold" xml:space="preserve">
+    <value>On hold</value>
+  </data>
+  <data name="statusPendingExecution" xml:space="preserve">
+    <value>Pending execution</value>
+  </data>
+  <data name="statusReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="statusRetry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="statusSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="statusTimedOut" xml:space="preserve">
+    <value>Timed out</value>
+  </data>
+  <data name="statusWaiting" xml:space="preserve">
+    <value>Waiting...</value>
+  </data>
+  <data name="factoryAssetText" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="factoryPropertiesTitle" xml:space="preserve">
+    <value>Data Factory</value>
+  </data>
+  <data name="linkedServiceAssetText" xml:space="preserve">
+    <value>Linked Service</value>
+  </data>
+  <data name="summaryLensTitle" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="learnMoreTitle" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="propertiesTitle" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="quickStartTitle" xml:space="preserve">
+    <value>Quick start</value>
+  </data>
+  <data name="consumedByTitle" xml:space="preserve">
+    <value>Consumed by</value>
+  </data>
+  <data name="producedByTitle" xml:space="preserve">
+    <value>Produced by</value>
+  </data>
+  <data name="dataArtifactDetailsTitle" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="activityWindowTitle" xml:space="preserve">
+    <value>Activity Window Explorer</value>
+  </data>
+  <data name="activityWindowPropertiesTitle" xml:space="preserve">
+    <value>Activity Window</value>
+  </data>
+  <data name="dataSliceTitle" xml:space="preserve">
+    <value>Data slice</value>
+  </data>
+  <data name="todayWithTime" xml:space="preserve">
+    <value>Today {0}</value>
+    <comment>Parameter should be a time, e.g. Today 10:30am.</comment>
+  </data>
+  <data name="tomorrowWithTime" xml:space="preserve">
+    <value>Tomorrow {0}</value>
+    <comment>Parameter should be a time, e.g. Tomorrow 10:30am.</comment>
+  </data>
+  <data name="yesterdayWithTime" xml:space="preserve">
+    <value>Yesterday {0}</value>
+    <comment>Parameter should be a time, e.g. Yesterday 10:30am.</comment>
+  </data>
+  <data name="sliceRetryCount" xml:space="preserve">
+    <value>Retry count</value>
+  </data>
+  <data name="runsTitle" xml:space="preserve">
+    <value>Activity windows</value>
+  </data>
+  <data name="artifactNameAndSliceDate" xml:space="preserve">
+    <value>{0}, {1}</value>
+    <comment>Parameter 1 should be table name. Parameter 2 should be a date/time.</comment>
+  </data>
+  <data name="runActivityTitle" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="runCompletedTitle" xml:space="preserve">
+    <value>Run completed at</value>
+  </data>
+  <data name="runDurationTitle" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="runPipelineTitle" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="runStartedTitle" xml:space="preserve">
+    <value>Run started at</value>
+  </data>
+  <data name="runStateTitle" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="runDetailsSubtitle" xml:space="preserve">
+    <value>Activity window details</value>
+  </data>
+  <data name="daysWithValue" xml:space="preserve">
+    <value>{0} days</value>
+    <comment>Parameter should be an integer, e.g. 3 days.</comment>
+  </data>
+  <data name="hoursWithValue" xml:space="preserve">
+    <value>{0} hours</value>
+    <comment>Parameter should be an integer, e.g. 6 hours.</comment>
+  </data>
+  <data name="minutesWithValue" xml:space="preserve">
+    <value>{0} minutes</value>
+    <comment>Parameter should be an integer, e.g. 28 minutes.</comment>
+  </data>
+  <data name="secondsWithValue" xml:space="preserve">
+    <value>{0} seconds</value>
+    <comment>Parameter should be an integer, e.g. 15 seconds.</comment>
+  </data>
+  <data name="createFactoryFailed" xml:space="preserve">
+    <value>Data factory creation failed.</value>
+  </data>
+  <data name="createFactorySucceeded" xml:space="preserve">
+    <value>Data factory has been created successfully!</value>
+  </data>
+  <data name="addNewInputCommandLabel" xml:space="preserve">
+    <value>Add new input</value>
+  </data>
+  <data name="addNewOutputCommandLabel" xml:space="preserve">
+    <value>Add new output</value>
+  </data>
+  <data name="deleteCommandText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="commentCommandText" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="pinCommandText" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="deleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete the data factory(s)?</value>
+  </data>
+  <data name="deletePrompt" xml:space="preserve">
+    <value>Delete it?</value>
+  </data>
+  <data name="factoryDeleteCommandFailure" xml:space="preserve">
+    <value>Delete factory command on {0} failed.</value>
+    <comment>Parameter should be a string, e.g. Delete factory command on my factory failed.</comment>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="errorOccurred" xml:space="preserve">
+    <value>An error has occurred.</value>
+  </data>
+  <data name="nextButtonText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="previousButtonText" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="refreshButtonText" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="rerunCommandText" xml:space="preserve">
+    <value>Run</value>
+    <comment>Command button text on a data slice for running a slice.</comment>
+  </data>
+  <data name="statusAllocatingResources" xml:space="preserve">
+    <value>Allocating resources</value>
+  </data>
+  <data name="statusCanceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="statusConfiguring" xml:space="preserve">
+    <value>Configuring</value>
+  </data>
+  <data name="statusFailedExecution" xml:space="preserve">
+    <value>Failed execution</value>
+  </data>
+  <data name="statusFailedResourceAllocation" xml:space="preserve">
+    <value>Failed resource allocation</value>
+  </data>
+  <data name="statusRunning" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="statusStarting" xml:space="preserve">
+    <value>Starting</value>
+  </data>
+  <data name="statusSucceeded" xml:space="preserve">
+    <value>Succeeded</value>
+  </data>
+  <data name="timestampProperty" xml:space="preserve">
+    <value>Timestamp</value>
+  </data>
+  <data name="batchTimeProperty" xml:space="preserve">
+    <value>Slice batch time</value>
+  </data>
+  <data name="continuationTokenProperty" xml:space="preserve">
+    <value>Continuation Token</value>
+  </data>
+  <data name="dataSliceEndTimeProperty" xml:space="preserve">
+    <value>Data slice end time</value>
+  </data>
+  <data name="dataSliceStartTimeProperty" xml:space="preserve">
+    <value>Data slice start time</value>
+  </data>
+  <data name="percentCompleteProperty" xml:space="preserve">
+    <value>Percent complete</value>
+  </data>
+  <data name="resumptionTokenProperty" xml:space="preserve">
+    <value>Resumption token</value>
+  </data>
+  <data name="retryAttemptCountProperty" xml:space="preserve">
+    <value>Retry attempts</value>
+  </data>
+  <data name="pipelinesListLensTitle" xml:space="preserve">
+    <value>Pipelines</value>
+  </data>
+  <data name="pipelineEndGridHeading" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="pipelineIsPausedGridHeading" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="pipelineNameGridHeading" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="pipelineStartGridHeading" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="runLogsTitle" xml:space="preserve">
+    <value>Log files</value>
+  </data>
+  <data name="blobDate" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="blobName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="blobDownload" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="blobSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="unitBytesFull" xml:space="preserve">
+    <value>{0} bytes</value>
+  </data>
+  <data name="unitGigabytesShort" xml:space="preserve">
+    <value>{0} GB</value>
+  </data>
+  <data name="unitKilobytesShort" xml:space="preserve">
+    <value>{0} KB</value>
+  </data>
+  <data name="unitMegabytesShort" xml:space="preserve">
+    <value>{0} MB</value>
+  </data>
+  <data name="unitPetabytesShort" xml:space="preserve">
+    <value>{0} PB</value>
+  </data>
+  <data name="unitTerabytesShort" xml:space="preserve">
+    <value>{0} TB</value>
+  </data>
+  <data name="factoryDeletionErrorLabel" xml:space="preserve">
+    <value>Deletion failed</value>
+  </data>
+  <data name="factoryDeletionErrorMessage" xml:space="preserve">
+    <value>There was an error while deleting the data factory. {message} {code}</value>
+    <comment>Parameters should be an IAzureError</comment>
+  </data>
+  <data name="unknownText" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="pipelineArtifactsConsumedShortTitle" xml:space="preserve">
+    <value>Consumed</value>
+  </data>
+  <data name="pipelineArtifactsConsumedTitle" xml:space="preserve">
+    <value>Consumed datasets</value>
+  </data>
+  <data name="pipelineArtifactsProducedShortTitle" xml:space="preserve">
+    <value>Produced</value>
+  </data>
+  <data name="pipelineArtifactsProducedTitle" xml:space="preserve">
+    <value>Produced datasets</value>
+  </data>
+  <data name="pipelineBladeTitle" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="pipelineDeploymentDate" xml:space="preserve">
+    <value>Deployment time</value>
+  </data>
+  <data name="pipelineProperties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="pipelinePropertiesDeployedDate" xml:space="preserve">
+    <value>Deployed</value>
+  </data>
+  <data name="pipelinePropertiesEndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="pipelinePropertiesIsPaused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="pipelinePropertiesProvisioningState" xml:space="preserve">
+    <value>Provisioning State</value>
+  </data>
+  <data name="pipelinePropertiesStartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="gridLoadingMessage" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="noRunLogsGridMessage" xml:space="preserve">
+    <value>No log files for this activity run.</value>
+  </data>
+  <data name="noDataArtifactsMessage" xml:space="preserve">
+    <value>No datasets in this data factory.</value>
+  </data>
+  <data name="noDataSlicesInTimeRangeMessage" xml:space="preserve">
+    <value>No data slices between {0} and {1} matching the status filter.</value>
+    <comment>Parameters should be date/time, e.g. 2014/04/25 2:30pm.</comment>
+  </data>
+  <data name="noDataFactoriesMessage" xml:space="preserve">
+    <value>No data factories.</value>
+  </data>
+  <data name="noPipelinesMessage" xml:space="preserve">
+    <value>No pipelines in this data factory.</value>
+  </data>
+  <data name="retryAttemptNumberProperty" xml:space="preserve">
+    <value>Retry attempt</value>
+  </data>
+  <data name="runProperties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="emptyFieldPlaceholder" xml:space="preserve">
+    <value>--</value>
+    <comment>A symbol/message indicating a particular field has no value.</comment>
+  </data>
+  <data name="activityRunDetailsEmptyMessage" xml:space="preserve">
+    <value>Please select a single Activity Window to display.</value>
+  </data>
+  <data name="errorMessageTitle" xml:space="preserve">
+    <value>Error message</value>
+  </data>
+  <data name="statusFailedValidation" xml:space="preserve">
+    <value>Failed validation</value>
+  </data>
+  <data name="statusPendingValidation" xml:space="preserve">
+    <value>Pending validation</value>
+  </data>
+  <data name="statusRetryValidation" xml:space="preserve">
+    <value>Retry validation</value>
+  </data>
+  <data name="azureStorageLinkedService" xml:space="preserve">
+    <value>Azure storage</value>
+  </data>
+  <data name="noRunsGridMessage" xml:space="preserve">
+    <value>No runs for this data slice.</value>
+  </data>
+  <data name="tableCreationHeader" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="frequencyTitle" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="intervalTitle" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="monitoringLensTitle" xml:space="preserve">
+    <value>Monitoring</value>
+  </data>
+  <data name="dataFactory" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="enterName" xml:space="preserve">
+    <value>Enter name</value>
+  </data>
+  <data name="enterDescription" xml:space="preserve">
+    <value>Enter description here</value>
+  </data>
+  <data name="enterNameDataFactory" xml:space="preserve">
+    <value>Enter name for data factory</value>
+  </data>
+  <data name="regexFactoryNameValidationMessage" xml:space="preserve">
+    <value>The name can contain only letters, numbers and hyphens. The first and last characters must be a letter or number. Spaces are not allowed.</value>
+  </data>
+  <data name="selectSubscription" xml:space="preserve">
+    <value>Select subscription</value>
+  </data>
+  <data name="subscriptionName" xml:space="preserve">
+    <value>Subscription name</value>
+  </data>
+  <data name="subscriptionIdValidationMessage" xml:space="preserve">
+    <value>Subscription id must be selected.</value>
+  </data>
+  <data name="resourceGroupName" xml:space="preserve">
+    <value>Resource group name</value>
+  </data>
+  <data name="resourceGroupNameProperty" xml:space="preserve">
+    <value>Resource Group Name</value>
+  </data>
+  <data name="selectResourceGroup" xml:space="preserve">
+    <value>Select resource group</value>
+  </data>
+  <data name="floorplanBladeTitle" xml:space="preserve">
+    <value>Diagram</value>
+  </data>
+  <data name="floorplanPartTitle" xml:space="preserve">
+    <value>Diagram</value>
+  </data>
+  <data name="noTablesWithErrorMessage" xml:space="preserve">
+    <value>No datasets have slices fail execution since {0}.</value>
+  </data>
+  <data name="pipelinesSummaryCollectionTitle" xml:space="preserve">
+    <value>Pipelines</value>
+  </data>
+  <data name="tablesWithErrorShortTitle" xml:space="preserve">
+    <value>With errors</value>
+  </data>
+  <data name="tablesWithErrorLongTitle" xml:space="preserve">
+    <value>Datasets with errors</value>
+  </data>
+  <data name="statusValidationInProgress" xml:space="preserve">
+    <value>Validation in progress</value>
+  </data>
+  <data name="noRecentDataSlicesMessage" xml:space="preserve">
+    <value>No data slices since {0}. Click here to see and filter for other slices.</value>
+    <comment>Parameter should be a date/time, e.g. 2014/04/25 2:30pm.</comment>
+  </data>
+  <data name="dataSlicesBySliceTimeTitle" xml:space="preserve">
+    <value>Data slices (by slice time)</value>
+  </data>
+  <data name="emptyFactoryNameValidationMessage" xml:space="preserve">
+    <value>Factory name is required.</value>
+  </data>
+  <data name="resourceGroupValidationMessage" xml:space="preserve">
+    <value>Resource group must be selected.</value>
+  </data>
+  <data name="resourceGroupNotInSubscription" xml:space="preserve">
+    <value>This resource group is not in the selected subscription.</value>
+  </data>
+  <data name="noProblemDataSlicesMessage" xml:space="preserve">
+    <value>No data slices with problems since {0}. Click here to see and filter for other slices.</value>
+    <comment>Parameter should be a date/time, e.g. 2014/04/25 2:30pm.</comment>
+  </data>
+  <data name="problemSlicesTitle" xml:space="preserve">
+    <value>Problem slices</value>
+  </data>
+  <data name="maxNameLengthValidationMessage" xml:space="preserve">
+    <value>The name must be fewer than 64 characters long.</value>
+  </data>
+  <data name="emptyLocationValidationMessage" xml:space="preserve">
+    <value>Location cannot be empty.</value>
+  </data>
+  <data name="clipboardFallbackMessage" xml:space="preserve">
+    <value>Press 'Ctrl+C, Enter' to copy to clipboard</value>
+  </data>
+  <data name="enterRegion" xml:space="preserve">
+    <value>Enter region</value>
+  </data>
+  <data name="regionName" xml:space="preserve">
+    <value>Region name</value>
+  </data>
+  <data name="westus" xml:space="preserve">
+    <value>West US</value>
+  </data>
+  <data name="resourceGroupTitle" xml:space="preserve">
+    <value>Resource group</value>
+  </data>
+  <data name="factoryIsEmpty" xml:space="preserve">
+    <value>This factory contains no pipelines or datasets.</value>
+  </data>
+  <data name="factoryQuickStartText" xml:space="preserve">
+    <value>Click here to get started.</value>
+  </data>
+  <data name="datasetNameGridHeading" xml:space="preserve">
+    <value>Dataset</value>
+  </data>
+  <data name="datasetWithErrorNameGridHeading" xml:space="preserve">
+    <value>Failed datasets generated with execution time after {0}</value>
+  </data>
+  <data name="factoryNameLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="availability" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="availabilityEveryDay" xml:space="preserve">
+    <value>Every day</value>
+  </data>
+  <data name="availabilityEveryDayMultiple" xml:space="preserve">
+    <value>Every {0} days</value>
+  </data>
+  <data name="availabilityEveryHour" xml:space="preserve">
+    <value>Every hour</value>
+  </data>
+  <data name="availabilityEveryHourMultiple" xml:space="preserve">
+    <value>Every {0} hours</value>
+  </data>
+  <data name="availabilityEveryMinute" xml:space="preserve">
+    <value>Every minute</value>
+  </data>
+  <data name="availabilityEveryMinuteMultiple" xml:space="preserve">
+    <value>Every {0} minutes</value>
+  </data>
+  <data name="availabilityEveryMonth" xml:space="preserve">
+    <value>Every month</value>
+  </data>
+  <data name="availabilityEveryMonthMultiple" xml:space="preserve">
+    <value>Every {0} months</value>
+  </data>
+  <data name="availabilityEveryWeek" xml:space="preserve">
+    <value>Every week</value>
+  </data>
+  <data name="availabilityEveryWeekMultiple" xml:space="preserve">
+    <value>Every {0} weeks</value>
+  </data>
+  <data name="sliceAvailabilityLabel" xml:space="preserve">
+    <value>Slice availability</value>
+  </data>
+  <data name="filterSlicesCommandTitle" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="filterBySliceStartDateTimeSectionLabel" xml:space="preserve">
+    <value>Show data slices with start time between the times (in UTC):</value>
+  </data>
+  <data name="filterBySliceStatusSectionLabel" xml:space="preserve">
+    <value>Slice status</value>
+  </data>
+  <data name="filterEndTimeFieldLabel" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="filterStartTimeFieldLabel" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="statusLongRetry" xml:space="preserve">
+    <value>Long retry</value>
+  </data>
+  <data name="pipelinePropertiesNameLabel" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="accessLensTitle" xml:space="preserve">
+    <value>Access</value>
+  </data>
+  <data name="dataFactoryMetricsTitle" xml:space="preserve">
+    <value>Data factory metrics</value>
+  </data>
+  <data name="failedRunsMetricTitle" xml:space="preserve">
+    <value>Failed runs</value>
+  </data>
+  <data name="successfulRunsMetricTitle" xml:space="preserve">
+    <value>Successful runs</value>
+  </data>
+  <data name="operationsLensTitle" xml:space="preserve">
+    <value>Operations</value>
+  </data>
+  <data name="tableSource" xml:space="preserve">
+    <value>Table source</value>
+  </data>
+  <data name="pipelineSource" xml:space="preserve">
+    <value>Pipeline source</value>
+  </data>
+  <data name="statusAllFailed" xml:space="preserve">
+    <value>All failed</value>
+  </data>
+  <data name="statusAllInProgress" xml:space="preserve">
+    <value>All in progress</value>
+  </data>
+  <data name="statusAllPending" xml:space="preserve">
+    <value>All pending</value>
+  </data>
+  <data name="noDataArtifactsConsumedMessage" xml:space="preserve">
+    <value>No datasets consumed by this pipeline.</value>
+  </data>
+  <data name="noDataArtifactsProducedMessage" xml:space="preserve">
+    <value>No datasets produced by this pipeline.</value>
+  </data>
+  <data name="noActivitiesMessage" xml:space="preserve">
+    <value>No activities in this pipeline.</value>
+  </data>
+  <data name="activityHeader" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="linkedServiceType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="activityConsumedDatasetsShortTitle" xml:space="preserve">
+    <value>Consumed</value>
+  </data>
+  <data name="activityConsumedDatasetsTitle" xml:space="preserve">
+    <value>Consumed datasets</value>
+  </data>
+  <data name="activityProducedDatasetsShortTitle" xml:space="preserve">
+    <value>Produced</value>
+  </data>
+  <data name="activityProducedDatasetsTitle" xml:space="preserve">
+    <value>Produced datasets</value>
+  </data>
+  <data name="noActivityConsumedDatasetsMessage" xml:space="preserve">
+    <value>No consumed datasets for this activity.</value>
+  </data>
+  <data name="noActivityProducedDatasetsMessage" xml:space="preserve">
+    <value>No produced datasets for this activity.</value>
+  </data>
+  <data name="noPropertiesMessage" xml:space="preserve">
+    <value>Could not load properties. Please try again later.</value>
+  </data>
+  <data name="factoryPropertiesNameLabel" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="activityDetailsTitle" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="activitiesListLensTitle" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="tableSchema" xml:space="preserve">
+    <value>Table schema</value>
+  </data>
+  <data name="tableSchemaNameGridHeading" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
+  <data name="tableSchemaTypeGridHeading" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="noTableSchemaMessage" xml:space="preserve">
+    <value>No schema for this table.</value>
+  </data>
+  <data name="tableSchemaLengthGridHeading" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="tableSchemaNullableGridHeading" xml:space="preserve">
+    <value>Nullable</value>
+  </data>
+  <data name="nullableFalse" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="nullableTrue" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="azureBlobTable" xml:space="preserve">
+    <value>Azure blob table</value>
+  </data>
+  <data name="azureSqlDatabaseTable" xml:space="preserve">
+    <value>Azure SQL database table</value>
+  </data>
+  <data name="azureStorageTable" xml:space="preserve">
+    <value>Azure storage table</value>
+  </data>
+  <data name="sqlDatabaseTable" xml:space="preserve">
+    <value>SQL database table</value>
+  </data>
+  <data name="activityPropertiesConcurrency" xml:space="preserve">
+    <value>Concurrency</value>
+  </data>
+  <data name="activityPropertiesDelay" xml:space="preserve">
+    <value>Delay</value>
+  </data>
+  <data name="activityPropertiesDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="activityPropertiesExecutesOnFailure" xml:space="preserve">
+    <value>Executes on failure</value>
+  </data>
+  <data name="activityPropertiesExecutionPriorityOrder" xml:space="preserve">
+    <value>Execution priority order</value>
+  </data>
+  <data name="activityPropertiesLinkedServiceName" xml:space="preserve">
+    <value>Linked service</value>
+  </data>
+  <data name="activityPropertiesLongRetry" xml:space="preserve">
+    <value>Long retry</value>
+  </data>
+  <data name="activityPropertiesLongRetryInterval" xml:space="preserve">
+    <value>Long retry interval</value>
+  </data>
+  <data name="activityPropertiesName" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="activityPropertiesRequiresHotStandby" xml:space="preserve">
+    <value>Requires hot standby</value>
+  </data>
+  <data name="activityPropertiesRetry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="activityPropertiesStyle" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="activityPropertiesTimeout" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="activityPropertiesType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="activitiesListTitle" xml:space="preserve">
+    <value>Pipeline activities</value>
+  </data>
+  <data name="activityScript" xml:space="preserve">
+    <value>Activity script</value>
+  </data>
+  <data name="copyActivity" xml:space="preserve">
+    <value>Copy activity</value>
+  </data>
+  <data name="customActivity" xml:space="preserve">
+    <value>Custom activity</value>
+  </data>
+  <data name="dotNetActivity" xml:space="preserve">
+    <value>.NET activity</value>
+  </data>
+  <data name="hDInsightActivity" xml:space="preserve">
+    <value>HDInsight activity</value>
+  </data>
+  <data name="storedProcedureActivity" xml:space="preserve">
+    <value>Stored procedure activity</value>
+  </data>
+  <data name="mapReduceActivity" xml:space="preserve">
+    <value>Map reduce activity</value>
+  </data>
+  <data name="activityPropertiesTransformationType" xml:space="preserve">
+    <value>Transformation type</value>
+  </data>
+  <data name="scriptLinkedService" xml:space="preserve">
+    <value>Script linked service: </value>
+  </data>
+  <data name="scriptPath" xml:space="preserve">
+    <value>Script path: </value>
+  </data>
+  <data name="typeSeparator" xml:space="preserve">
+    <value> - </value>
+    <comment>A symbol/message separating activity type from HDInsight type.</comment>
+  </data>
+  <data name="hDInsightActivityWithType" xml:space="preserve">
+    <value>{0} - {1}</value>
+    <comment>First parameter is activity type (currently only HDInsight) and second is HDInsight type, e.g. 'HDInsight activity - Pig'</comment>
+  </data>
+  <data name="noActivityScript" xml:space="preserve">
+    <value>No script in this activity.</value>
+  </data>
+  <data name="statusFailedDescription" xml:space="preserve">
+    <value>Execution of the run that produces the slice failed.</value>
+  </data>
+  <data name="statusFailedValidationDescription" xml:space="preserve">
+    <value>Validation of the slice failed.</value>
+  </data>
+  <data name="statusInProgressDescription" xml:space="preserve">
+    <value>Data processing is in-progress.</value>
+  </data>
+  <data name="statusLongRetryDescription" xml:space="preserve">
+    <value>A slice will be in this status if LongRetry is specified in the table JSON, and regular retries for the slice have failed.</value>
+  </data>
+  <data name="statusPendingExecutionDescription" xml:space="preserve">
+    <value>Data processing has not started yet.</value>
+  </data>
+  <data name="statusPendingValidationDescription" xml:space="preserve">
+    <value>Data slice is waiting for validation against validation policies before being processed.</value>
+  </data>
+  <data name="statusReadyDescription" xml:space="preserve">
+    <value>Data processing has completed and the data slice is ready.</value>
+  </data>
+  <data name="statusRetryDescription" xml:space="preserve">
+    <value>Retrying the run that produces the slice.</value>
+  </data>
+  <data name="statusRetryValidationDescription" xml:space="preserve">
+    <value>Retrying the validation of the slice.</value>
+  </data>
+  <data name="statusSkipDescription" xml:space="preserve">
+    <value>Skip processing of the slice.</value>
+  </data>
+  <data name="statusTimedOutDescription" xml:space="preserve">
+    <value>Data processing of the slice has timed out.</value>
+  </data>
+  <data name="statusValidationInProgressDescription" xml:space="preserve">
+    <value>Validation of the slice (based on the policies defined in the table JSON) is being performed.</value>
+  </data>
+  <data name="breadcrumbBackTooltip" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="selectionModeTooltip" xml:space="preserve">
+    <value>Selection mode</value>
+  </data>
+  <data name="zoomInTooltip" xml:space="preserve">
+    <value>Zoom in</value>
+  </data>
+  <data name="zoomOneHundredPercentTooltip" xml:space="preserve">
+    <value>Zoom to 100%</value>
+  </data>
+  <data name="zoomOutTooltip" xml:space="preserve">
+    <value>Zoom out</value>
+  </data>
+  <data name="zoomToFitTooltip" xml:space="preserve">
+    <value>Zoom to fit</value>
+  </data>
+  <data name="getStartedTitle" xml:space="preserve">
+    <value>Get started</value>
+  </data>
+  <data name="documentation" xml:space="preserve">
+    <value>Documentation</value>
+  </data>
+  <data name="forums" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="installDotNET" xml:space="preserve">
+    <value>Install the .NET SDK</value>
+  </data>
+  <data name="installPowerShell" xml:space="preserve">
+    <value>Install the PowerShell SDK</value>
+  </data>
+  <data name="overviewVideo" xml:space="preserve">
+    <value>Overview video</value>
+  </data>
+  <data name="pricing" xml:space="preserve">
+    <value>Pricing</value>
+  </data>
+  <data name="samples" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="toolsTitle" xml:space="preserve">
+    <value>Get the tools</value>
+  </data>
+  <data name="tutorialGuide" xml:space="preserve">
+    <value>Tutorial guide</value>
+  </data>
+  <data name="tutorialVideo" xml:space="preserve">
+    <value>Tutorial video</value>
+  </data>
+  <data name="nextTimePeriodTooltip" xml:space="preserve">
+    <value>Next {0}</value>
+    <comment>Parameter should be a time period, e.g. 6 months.</comment>
+  </data>
+  <data name="previousTimePeriodTooltip" xml:space="preserve">
+    <value>Previous {0}</value>
+    <comment>Parameter should be a time period, e.g. 6 months.</comment>
+  </data>
+  <data name="timePeriodDay" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="timePeriodDayMultiple" xml:space="preserve">
+    <value>{0} days</value>
+  </data>
+  <data name="timePeriodHour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="timePeriodHourMultiple" xml:space="preserve">
+    <value>{0} hours</value>
+  </data>
+  <data name="timePeriodMonth" xml:space="preserve">
+    <value>month</value>
+  </data>
+  <data name="timePeriodMonthMultiple" xml:space="preserve">
+    <value>{0} months</value>
+  </data>
+  <data name="timePeriodWeek" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="timePeriodWeekMultiple" xml:space="preserve">
+    <value>{0} weeks</value>
+  </data>
+  <data name="timePeriodYear" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="timePeriodYearMultiple" xml:space="preserve">
+    <value>{0} years</value>
+  </data>
+  <data name="activityAssetText" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="sliceAssetText" xml:space="preserve">
+    <value>Slice</value>
+  </data>
+  <data name="tableAssetText" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="pipelineAssetText" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="linkedServiceAzureBlobLocation" xml:space="preserve">
+    <value>Azure Blob Storage</value>
+  </data>
+  <data name="linkedServiceAzureSqlTableLocation" xml:space="preserve">
+    <value>Azure SQL database</value>
+  </data>
+  <data name="linkedServiceAzureTableLocation" xml:space="preserve">
+    <value>Azure table storage</value>
+  </data>
+  <data name="linkedServiceCustomLocation" xml:space="preserve">
+    <value>Data factory custom location</value>
+  </data>
+  <data name="linkedServiceOnPremisesSqlServerTableLocation" xml:space="preserve">
+    <value>On-premises SQL database</value>
+  </data>
+  <data name="linkedServiceTypeLongLabel" xml:space="preserve">
+    <value>Linked service type</value>
+  </data>
+  <data name="factoryNameAvailabilityMessage" xml:space="preserve">
+    <value>Data factory name "{0}" is not available.</value>
+  </data>
+  <data name="statusNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="statusNoneDescription" xml:space="preserve">
+    <value>A slice that used to exist with a different status, but has been reset.</value>
+  </data>
+  <data name="rerunCommandErrorMessage" xml:space="preserve">
+    <value>Could not set data slice to be run. {message} {code}</value>
+    <comment>Error message shown in notification when slice could not be set to Pending Execution.</comment>
+  </data>
+  <data name="rerunCommandErrorTitle" xml:space="preserve">
+    <value>Data slice could not be run.</value>
+    <comment>Title of notification message when slice could not be run.</comment>
+  </data>
+  <data name="runTypeCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="runTypeCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="runTypeScript" xml:space="preserve">
+    <value>Script</value>
+  </data>
+  <data name="runTypeUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="runTypeValidation" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="runTypeTitle" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="invalidSubscription" xml:space="preserve">
+    <value>The selected subscription is not valid, please choose a different one.</value>
+  </data>
+  <data name="jarFilePath" xml:space="preserve">
+    <value>JAR file path: {0}</value>
+  </data>
+  <data name="jarLinkedService" xml:space="preserve">
+    <value>JAR linked service: {0}</value>
+  </data>
+  <data name="displayTextForLargeLogFile" xml:space="preserve">
+    <value>Loaded only first portion of the file due to size. To get the entire file, download it.</value>
+  </data>
+  <data name="factoryProvisioningFailedActionBarText" xml:space="preserve">
+    <value>Provisioning this factory failed. See properties for details.</value>
+  </data>
+  <data name="pipelineProvisioningFailedActionBarText" xml:space="preserve">
+    <value>Provisioning this pipeline failed. See properties for details.</value>
+  </data>
+  <data name="tableProvisioningFailedActionBarText" xml:space="preserve">
+    <value>Provisioning this table failed. See properties for details.</value>
+  </data>
+  <data name="provisioningStateTitle" xml:space="preserve">
+    <value>Provisioning state</value>
+  </data>
+  <data name="azureMLActivity" xml:space="preserve">
+    <value>AzureML activity</value>
+  </data>
+  <data name="azureMLLinkedService" xml:space="preserve">
+    <value>Azure ML Batch scoring</value>
+  </data>
+  <data name="azureSqlLinkedService" xml:space="preserve">
+    <value>Azure SQL database</value>
+  </data>
+  <data name="hDInsightBYOCLinkedService" xml:space="preserve">
+    <value>HDInsight cluster (bring your own cluster)</value>
+  </data>
+  <data name="hDInsightOnDemandLinkedService" xml:space="preserve">
+    <value>HDInsight cluster (on-demand)</value>
+  </data>
+  <data name="onPremisesSqlLinkedService" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="localWithDateTime" xml:space="preserve">
+    <value>{0} local</value>
+    <comment>Parameter can be either a date, time or a combination of both.</comment>
+  </data>
+  <data name="runListCompletedTitle" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="runListStartedTitle" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="hDInsightLinkedService" xml:space="preserve">
+    <value>HDInsight cluster</value>
+  </data>
+  <data name="activityPropertiesClassName" xml:space="preserve">
+    <value>Class name</value>
+  </data>
+  <data name="activityPropertiesJarFilePath" xml:space="preserve">
+    <value>JAR file path</value>
+  </data>
+  <data name="activityPropertiesJarLinkedService" xml:space="preserve">
+    <value>JAR linked service</value>
+  </data>
+  <data name="activityPropertiesScript" xml:space="preserve">
+    <value>Script</value>
+  </data>
+  <data name="activityPropertiesScriptLinkedService" xml:space="preserve">
+    <value>Script linked service</value>
+  </data>
+  <data name="activityPropertiesScriptPath" xml:space="preserve">
+    <value>Script path</value>
+  </data>
+  <data name="linkedServiceNameGridHeading" xml:space="preserve">
+    <value>Linked service</value>
+  </data>
+  <data name="resetFilterButtonLabel" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="revalidateCommandErrorMessage" xml:space="preserve">
+    <value>Could not set data slice to be validated. {message} {code}</value>
+    <comment>Error message shown in notification when slice could not be set to Pending Validation.</comment>
+  </data>
+  <data name="revalidateCommandErrorTitle" xml:space="preserve">
+    <value>Data slice could not be validated.</value>
+    <comment>Title of notification message when slice could not be validated.</comment>
+  </data>
+  <data name="revalidateCommandText" xml:space="preserve">
+    <value>Validate</value>
+    <comment>Command button text on a data slice for validating a slice.</comment>
+  </data>
+  <data name="azureDataFactoryExtension" xml:space="preserve">
+    <value>Azure Data Factory Extension</value>
+  </data>
+  <data name="blobFetchFailedWithReason" xml:space="preserve">
+    <value>Blob retrieval failed with reason: {0}</value>
+  </data>
+  <data name="emptyBlobString" xml:space="preserve">
+    <value>No content.</value>
+  </data>
+  <data name="layoutSavedMessage" xml:space="preserve">
+    <value>Last edited by {0} {1}.</value>
+  </data>
+  <data name="unknownUser" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="nameFormat" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>Determines the order of the user's surname and first name</comment>
+  </data>
+  <data name="lineageDisplayTooltip" xml:space="preserve">
+    <value>Show lineage. Highlights upstream and downstream items of selected items.</value>
+  </data>
+  <data name="azureBlobLocationFileNameTitle" xml:space="preserve">
+    <value>Azure blob file name</value>
+  </data>
+  <data name="azureBlobLocationFolderPathTitle" xml:space="preserve">
+    <value>Azure blob folder path</value>
+  </data>
+  <data name="azureSqlTableLocationTableNameTitle" xml:space="preserve">
+    <value>Azure SQL database table name</value>
+  </data>
+  <data name="azureTableLocationTableNameTitle" xml:space="preserve">
+    <value>Azure table name</value>
+  </data>
+  <data name="onPremisesSqlServerTableLocationTableNameTitle" xml:space="preserve">
+    <value>On-premises SQL Server database table name</value>
+  </data>
+  <data name="linkedServiceNameLongLabel" xml:space="preserve">
+    <value>Linked service name</value>
+  </data>
+  <data name="linkedServiceNameProperty" xml:space="preserve">
+    <value>Linked Service Name</value>
+  </data>
+  <data name="connectionStringProperty" xml:space="preserve">
+    <value>Connection String</value>
+  </data>
+  <data name="tableTypeLabel" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="clusterLocationLabel" xml:space="preserve">
+    <value>Cluster location</value>
+  </data>
+  <data name="clusterSizeLabel" xml:space="preserve">
+    <value>Cluster size</value>
+  </data>
+  <data name="clusterUriLabel" xml:space="preserve">
+    <value>Cluster URI</value>
+  </data>
+  <data name="connectionStringLabel" xml:space="preserve">
+    <value>Connection string</value>
+  </data>
+  <data name="gatewayLocationLabel" xml:space="preserve">
+    <value>Gateway location</value>
+  </data>
+  <data name="gatewayNameLabel" xml:space="preserve">
+    <value>Gateway name</value>
+  </data>
+  <data name="jobsContainerLabel" xml:space="preserve">
+    <value>Jobs container</value>
+  </data>
+  <data name="linkedServiceBlobStoreLabel" xml:space="preserve">
+    <value>Blob store</value>
+  </data>
+  <data name="timeToLiveLabel" xml:space="preserve">
+    <value>Time to live</value>
+  </data>
+  <data name="versionLabel" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="runIdLabel" xml:space="preserve">
+    <value>Run ID</value>
+  </data>
+  <data name="autolayoutTooltip" xml:space="preserve">
+    <value>Automatically position pipelines and tables.</value>
+  </data>
+  <data name="diagramLockedNoAccessTooltip" xml:space="preserve">
+    <value>Layout locked. Cannot edit layout because you do not have owner or contributer permissions.</value>
+  </data>
+  <data name="lockDiagramTooltip" xml:space="preserve">
+    <value>Lock layout. When enabled, prevents you from accidentally moving tables and pipelines.</value>
+  </data>
+  <data name="addActivity" xml:space="preserve">
+    <value>Add activity</value>
+  </data>
+  <data name="computeTemplates" xml:space="preserve">
+    <value>New compute</value>
+  </data>
+  <data name="createEntityMessage" xml:space="preserve">
+    <value>{message}</value>
+  </data>
+  <data name="createEntityTitle" xml:space="preserve">
+    <value>Deploying data factory entity...</value>
+  </data>
+  <data name="dataStoreTemplates" xml:space="preserve">
+    <value>New data store</value>
+  </data>
+  <data name="pipelineTemplate" xml:space="preserve">
+    <value>New pipeline</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Deploy</value>
+  </data>
+  <data name="tableTemplates" xml:space="preserve">
+    <value>New dataset</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="linkedServices" xml:space="preserve">
+    <value>Linked services</value>
+  </data>
+  <data name="noLinkedServiceMessage" xml:space="preserve">
+    <value>No linked services found in this data factory.</value>
+  </data>
+  <data name="pipelines" xml:space="preserve">
+    <value>Pipelines</value>
+  </data>
+  <data name="tables" xml:space="preserve">
+    <value>Datasets</value>
+  </data>
+  <data name="azureSql" xml:space="preserve">
+    <value>Azure SQL</value>
+  </data>
+  <data name="azureStorage" xml:space="preserve">
+    <value>Azure storage</value>
+  </data>
+  <data name="blobTable" xml:space="preserve">
+    <value>Azure Blob storage</value>
+  </data>
+  <data name="byoc" xml:space="preserve">
+    <value>HDInsight cluster</value>
+  </data>
+  <data name="notAPipeline" xml:space="preserve">
+    <value>Editor JSON content is not a pipeline - properties.activities field could not be found.</value>
+    <comment>Do not translate "properties.activities"</comment>
+  </data>
+  <data name="notValidJson" xml:space="preserve">
+    <value>The submitted JSON is not valid. Check the syntax and try again.</value>
+  </data>
+  <data name="onDemand" xml:space="preserve">
+    <value>On demand HDInsight cluster</value>
+  </data>
+  <data name="sqlTable" xml:space="preserve">
+    <value>Azure SQL</value>
+  </data>
+  <data name="unknownEntityType" xml:space="preserve">
+    <value>Cannot deploy "{0}". Entity type is unknown. Supported object types are Linked services, Tables and Pipelines.Check the type of the JSON that you are deploying and ensure it is one of the supported types.</value>
+  </data>
+  <data name="clone" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="drafts" xml:space="preserve">
+    <value>Drafts</value>
+  </data>
+  <data name="discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="factoryContent" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="alreadyExistsMessage" xml:space="preserve">
+    <value>The {0} "{1}" already exists. Change the name and try again.</value>
+    <comment>{0} is type of data factory entity, {1} is the name of the entity</comment>
+  </data>
+  <data name="authorDeploy" xml:space="preserve">
+    <value>Author and deploy</value>
+  </data>
+  <data name="deleting" xml:space="preserve">
+    <value>Deleting...</value>
+  </data>
+  <data name="confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="deleteEntityConfirmationMessage" xml:space="preserve">
+    <value>Are you sure you want to delete {0}: "{1}"</value>
+    <comment>{0} is type of the entity to be deleted, {1} is the name of the entity</comment>
+  </data>
+  <data name="deploying" xml:space="preserve">
+    <value>Deploying {0}...</value>
+  </data>
+  <data name="deploySuccess" xml:space="preserve">
+    <value>{0} deployed successfully.</value>
+  </data>
+  <data name="draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="draftsLossMessage" xml:space="preserve">
+    <value>Draft could not be recovered. In most cases this is caused by changing the machine and/or browser in which work is being done. If you want to recover drafts please close this browser window and go back to machine and/or browser that was used to create
+        draft.
+      </value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="entityTypeChangeNotAllowedMessage" xml:space="preserve">
+    <value>Cannot deploy {0} "{1}". Entity type cannot be changed. If you want to create entity, use clone and try again.</value>
+  </data>
+  <data name="templateParametersNotReplacedMessage" xml:space="preserve">
+    <value>Cannot deploy {0}: "{1}". Some parameters in the template are not replaced with actual values: {2}</value>
+  </data>
+  <data name="useCloneMessage" xml:space="preserve">
+    <value>Cannot deploy {0} "{1}". Name cannot be changed. If you want to create new {0}, use 'Clone' and try again</value>
+  </data>
+  <data name="linkedService" xml:space="preserve">
+    <value>Linked service</value>
+  </data>
+  <data name="pipeline" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="deleteUserError" xml:space="preserve">
+    <value>Entity could not be deleted, make sure that there are no other dependent entities</value>
+  </data>
+  <data name="hiveActivity" xml:space="preserve">
+    <value>Hive activity</value>
+  </data>
+  <data name="onPremisesTable" xml:space="preserve">
+    <value>SQL Server table</value>
+  </data>
+  <data name="pigActivity" xml:space="preserve">
+    <value>Pig activity</value>
+  </data>
+  <data name="sprocActivity" xml:space="preserve">
+    <value>SPROC Activity</value>
+  </data>
+  <data name="recentlyUpdatedSlicesTitle" xml:space="preserve">
+    <value>Recently updated slices</value>
+  </data>
+  <data name="lastUpdatedTimeHeading" xml:space="preserve">
+    <value>Last update time</value>
+  </data>
+  <data name="recentlyFailedSlicesTitle" xml:space="preserve">
+    <value>Recently failed slices</value>
+  </data>
+  <data name="noDataSlicesMessage" xml:space="preserve">
+    <value>No data slices in this table.</value>
+  </data>
+  <data name="noFailedDataSlicesMessage" xml:space="preserve">
+    <value>No data slices with problems in this table.</value>
+  </data>
+  <data name="noDataSlicesBeforeTime" xml:space="preserve">
+    <value>No data slices updated before {0} matching the status filter.</value>
+    <comment>Parameter should be a date time.</comment>
+  </data>
+  <data name="filterUntilTimeFieldLabel" xml:space="preserve">
+    <value>Until</value>
+  </data>
+  <data name="dataSlicesByUpdateTimeTitle" xml:space="preserve">
+    <value>Data slices (by update time)</value>
+  </data>
+  <data name="filterBySliceUpdateDateTimeSectionLabel" xml:space="preserve">
+    <value>Show last 200 slices updated before (in UTC):</value>
+  </data>
+  <data name="recentSlicesTitle" xml:space="preserve">
+    <value>Recent slices</value>
+  </data>
+  <data name="autolayoutConfirmationMessage" xml:space="preserve">
+    <value>This will discard all previous positioning. You may click in the factory diagram and hit control-Z to undo this action.</value>
+  </data>
+  <data name="autolayoutConfirmationTitle" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="autolayoutLockedTooltip" xml:space="preserve">
+    <value>Cannot autolayout because the diagram is locked.</value>
+  </data>
+  <data name="gettingLocationMessage" xml:space="preserve">
+    <value>Getting location...</value>
+  </data>
+  <data name="australiaEast" xml:space="preserve">
+    <value>Australia East</value>
+  </data>
+  <data name="australiaSoutheast" xml:space="preserve">
+    <value>Australia Southeast</value>
+  </data>
+  <data name="brazilSouth" xml:space="preserve">
+    <value>Brazil South</value>
+  </data>
+  <data name="centralus" xml:space="preserve">
+    <value>Central US</value>
+  </data>
+  <data name="eastAsia" xml:space="preserve">
+    <value>East Asia</value>
+  </data>
+  <data name="eastus" xml:space="preserve">
+    <value>East US</value>
+  </data>
+  <data name="eastus2" xml:space="preserve">
+    <value>East US 2</value>
+  </data>
+  <data name="japanEast" xml:space="preserve">
+    <value>Japan East</value>
+  </data>
+  <data name="japanWest" xml:space="preserve">
+    <value>Japan West</value>
+  </data>
+  <data name="northCentralus" xml:space="preserve">
+    <value>North Central US</value>
+  </data>
+  <data name="northEurope" xml:space="preserve">
+    <value>North Europe</value>
+  </data>
+  <data name="southCentralus" xml:space="preserve">
+    <value>South Central US</value>
+  </data>
+  <data name="southeastAsia" xml:space="preserve">
+    <value>Southeast Asia</value>
+  </data>
+  <data name="westEurope" xml:space="preserve">
+    <value>West Europe</value>
+  </data>
+  <data name="lowerActivityAssetText" xml:space="preserve">
+    <value>activity</value>
+  </data>
+  <data name="lowerFactoryAssetText" xml:space="preserve">
+    <value>data factory</value>
+  </data>
+  <data name="lowerPipelineAssetText" xml:space="preserve">
+    <value>pipeline</value>
+  </data>
+  <data name="lowerPluralActivityAssetText" xml:space="preserve">
+    <value>activities</value>
+  </data>
+  <data name="lowerPluralFactoryAssetText" xml:space="preserve">
+    <value>data factories</value>
+  </data>
+  <data name="lowerPluralPipelineAssetText" xml:space="preserve">
+    <value>pipelines</value>
+  </data>
+  <data name="lowerPluralSliceAssetText" xml:space="preserve">
+    <value>slices</value>
+  </data>
+  <data name="lowerPluralTableAssetText" xml:space="preserve">
+    <value>tables</value>
+  </data>
+  <data name="lowerSliceAssetText" xml:space="preserve">
+    <value>slice</value>
+  </data>
+  <data name="lowerTableAssetText" xml:space="preserve">
+    <value>table</value>
+  </data>
+  <data name="pluralActivityAssetText" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="pluralFactoryAssetText" xml:space="preserve">
+    <value>Data factories</value>
+  </data>
+  <data name="pluralPipelineAssetText" xml:space="preserve">
+    <value>Pipelines</value>
+  </data>
+  <data name="pluralSliceAssetText" xml:space="preserve">
+    <value>Slices</value>
+  </data>
+  <data name="pluralTableAssetText" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="messageTitle" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="upstreamSlicesOfInterestTitle" xml:space="preserve">
+    <value>Upstream slices that are not ready</value>
+  </data>
+  <data name="noUpstreamSlicesOfInterestMessage" xml:space="preserve">
+    <value>No upstream slices that are not ready.</value>
+  </data>
+  <data name="impactingUpstreamStatus" xml:space="preserve">
+    <value>Upstream</value>
+  </data>
+  <data name="DataStoreDescriptionTextBoxPlaceholder" xml:space="preserve">
+    <value>(Optional)</value>
+  </data>
+  <data name="DataStoreDescriptionTextBoxTitle" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DataStoreNameTextBoxTitle" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DataStoreNameTitle" xml:space="preserve">
+    <value>Data store name</value>
+  </data>
+  <data name="DataStoresLensTitle" xml:space="preserve">
+    <value>Data stores</value>
+  </data>
+  <data name="DataStoreTypeSelectorTitle" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="HtmlTitle" xml:space="preserve">
+    <value>Azure Data Factory</value>
+  </data>
+  <data name="NewDataStoreBladeTitle" xml:space="preserve">
+    <value>New data store</value>
+  </data>
+  <data name="NewDataStoreCommandTitle" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="SampleDataWarehouseTitle" xml:space="preserve">
+    <value>Data Warehouses</value>
+  </data>
+  <data name="DataStoreTypeBladeFormTitle" xml:space="preserve">
+    <value>AVAILABLE TYPES</value>
+  </data>
+  <data name="DataStoreTypeBladeTitle" xml:space="preserve">
+    <value>Data store type</value>
+  </data>
+  <data name="DataStoreTypeSqlAzure" xml:space="preserve">
+    <value>Azure SQL Database</value>
+  </data>
+  <data name="DataStoreTypeSqlServer" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="DataStoreTypeStorageAccount" xml:space="preserve">
+    <value>Azure Storage</value>
+  </data>
+  <data name="GatewaySelectorTitle" xml:space="preserve">
+    <value>Data gateway</value>
+  </data>
+  <data name="GatewayCreateTitle" xml:space="preserve">
+    <value>Create new data gateway</value>
+  </data>
+  <data name="PickerGatewayListTitle" xml:space="preserve">
+    <value>Use existing gateway</value>
+  </data>
+  <data name="PickerNoRowDoneMessage" xml:space="preserve">
+    <value>No existing available.</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="ValidationSettingsRequired" xml:space="preserve">
+    <value>Settings required</value>
+  </data>
+  <data name="StorageAccountNameTextBoxTitle" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="StorageAccountUseHttpsCheckBoxTitle" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="SqlAzureDatabaseTextBoxTitle" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="SqlAzurePasswordPasswordBoxTitle" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SqlAzureServerNameTextBoxTitle" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="SqlAzureUsernameTextBoxTitle" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="StorageAccountProtocolHttp" xml:space="preserve">
+    <value>HTTP</value>
+  </data>
+  <data name="StorageAccountProtocolHttps" xml:space="preserve">
+    <value>HTTPS</value>
+  </data>
+  <data name="GatewayCreateInfoStepTitle" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="GatewayCreateRegStepTitle" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="GatewayCreateWizardTitle" xml:space="preserve">
+    <value>New data gateway</value>
+  </data>
+  <data name="GatewayDownloadTitle" xml:space="preserve">
+    <value>Download and install data gateway</value>
+  </data>
+  <data name="GatewayExpressInstallTitle" xml:space="preserve">
+    <value>Express setup</value>
+  </data>
+  <data name="GatewayExpressInstallDescription" xml:space="preserve">
+    <value>Install directly on this computer</value>
+  </data>
+  <data name="GatewayExpressHelpText" xml:space="preserve">
+    <value>Requires Internet Explorer or a Microsoft ClickOnce compatible web browser.</value>
+  </data>
+  <data name="GatewayExpressInstallDone" xml:space="preserve">
+    <value>Succeeded</value>
+  </data>
+  <data name="GatewayExpressDownloading" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="GatewayExpressError" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="GatewayExpressInstalling" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="GatewayExpressRegistering" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="GatewayExpressInstallDisconnectedLabel" xml:space="preserve">
+    <value>Express setup disconnected</value>
+  </data>
+  <data name="GatewayExpressInstallDisconnectedMessage" xml:space="preserve">
+    <value>Express setup could be still in progress. Refer to data gateway event log for express setup status.</value>
+  </data>
+  <data name="GatewayExpressInstallFailedLabel" xml:space="preserve">
+    <value>Failed to complete express setup</value>
+  </data>
+  <data name="GatewayExpressInstallFailedMessage" xml:space="preserve">
+    <value>Express setup for the gateway '{gatewayName}' failed. Error message : {errorMessage}</value>
+  </data>
+  <data name="GatewayExpressInstallProgressLabel" xml:space="preserve">
+    <value>Express setup in progress</value>
+  </data>
+  <data name="GatewayExpressInstallProgressMessage" xml:space="preserve">
+    <value>Step {currentStep} / {totalSteps} steps: {stepName}...</value>
+  </data>
+  <data name="GatewayExpressInstallSucceededLabel" xml:space="preserve">
+    <value>Express setup succeeded</value>
+  </data>
+  <data name="GatewayExpressInstallSucceededMessage" xml:space="preserve">
+    <value>Express setup for '{gatewayName}' succeeded.</value>
+  </data>
+  <data name="GatewayManualInstallTitle" xml:space="preserve">
+    <value>Manual setup</value>
+  </data>
+  <data name="GatewayManualInstallLinkTitle64bit" xml:space="preserve">
+    <value>Download and install manually (64-bit)</value>
+  </data>
+  <data name="GatewayKeyTitle" xml:space="preserve">
+    <value>Register with key</value>
+  </data>
+  <data name="GatewayNameTitle" xml:space="preserve">
+    <value>Data gateway name</value>
+  </data>
+  <data name="GatewayPickerTitle" xml:space="preserve">
+    <value>Select data gateway</value>
+  </data>
+  <data name="GatewayTitle" xml:space="preserve">
+    <value>Data gateway</value>
+  </data>
+  <data name="GatewayNoDataMessage" xml:space="preserve">
+    <value>Data gateway does not exist</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Operations</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="GatewayRegisterHelpText" xml:space="preserve">
+    <value>You will use this key to register the data gateway installed on your on-premises computer.</value>
+  </data>
+  <data name="DataStoreCredentialDescription" xml:space="preserve">
+    <value>set credentials</value>
+  </data>
+  <data name="DataStoreCredentialsHelpText" xml:space="preserve">
+    <value>Click here to set credentials</value>
+  </data>
+  <data name="DataStoreCredentialsTitle" xml:space="preserve">
+    <value>Credentials</value>
+  </data>
+  <data name="ValidationFieldLengthViolation" xml:space="preserve">
+    <value>This field should be between 1 and 150 characters long.</value>
+  </data>
+  <data name="ValidationFieldIsRequired" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="DeleteCommand" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditCommand" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ViewCommand" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="DatabaseTitle" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ServerTitle" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Connectivity" xml:space="preserve">
+    <value>Connectivity</value>
+  </data>
+  <data name="RegisterKey" xml:space="preserve">
+    <value>Registration Key</value>
+  </data>
+  <data name="DeleteDataStoreConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this data store?</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="DataStoreCredentialsBladeTitle" xml:space="preserve">
+    <value>Credentials</value>
+  </data>
+  <data name="ClickOnceLoadingFailedMessage" xml:space="preserve">
+    <value>Sorry, something went wrong</value>
+  </data>
+  <data name="MultipleInstances" xml:space="preserve">
+    <value>{0} instances</value>
+  </data>
+  <data name="NoInstance" xml:space="preserve">
+    <value>There is no instance</value>
+  </data>
+  <data name="NoGatewayError" xml:space="preserve">
+    <value>There is no gateway.</value>
+  </data>
+  <data name="AccountName" xml:space="preserve">
+    <value>Account name</value>
+  </data>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SubscriptionId" xml:space="preserve">
+    <value>Subscription ID</value>
+  </data>
+  <data name="CredentialsNotSet" xml:space="preserve">
+    <value>Credentials not set</value>
+  </data>
+  <data name="CredentialsSet" xml:space="preserve">
+    <value>Credentials set successfully</value>
+  </data>
+  <data name="CredentialsSetFailed" xml:space="preserve">
+    <value>Failed to set credentials</value>
+  </data>
+  <data name="SkipCredentialsTitle" xml:space="preserve">
+    <value>Skip entering credentials for now.</value>
+  </data>
+  <data name="SkipCredentialsNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="SkipCredentialsYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SkipCredentialsValidationMessage" xml:space="preserve">
+    <value>Set credentials</value>
+  </data>
+  <data name="ErrorString" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="CreateLinkedServiceDescription" xml:space="preserve">
+    <value>To add this data store, you need to install, configure and register a gateway on an on-premises computer.</value>
+  </data>
+  <data name="CredentialSettingsHelpInfo" xml:space="preserve">
+    <value>Credentials are locally encrypted for your security consideration.</value>
+  </data>
+  <data name="GatewayExpiredMessage" xml:space="preserve">
+    <value>The data gateway has expired. Click Download and install data gateway button to download and install the latest version of data gateway.</value>
+  </data>
+  <data name="GatewayExpiringMessage" xml:space="preserve">
+    <value>The data gateway is about to expire. We recommend that you download and install the latest version of data gateway by clicking Download and install data gateway button.</value>
+  </data>
+  <data name="GatewayNeedRegistrationMessage" xml:space="preserve">
+    <value>The data gateway needs to be registered with the Data Factory service. Click Download and install data gateway button to download and install data gateway on a machine within your enterprise. Then, launch Data Management Gateway Configuration Manager
+        on the gateway machine and register the gateway using the key from the Configure blade on the portal.</value>
+  </data>
+  <data name="GatewayOfflineMessage" xml:space="preserve">
+    <value>The data gateway is offline. Launch Data Management Gateway Configuration Manager on the gateway machine and confirm that the "Service status" is "Started", "Gateway key status" is "Registered", and the status bar shows "Connected to Data Management Gateway
+        Cloud Service". If not, check Windows Event Log on the gateway machine for detailed information.</value>
+  </data>
+  <data name="GatewaySelectorHelpInfo" xml:space="preserve">
+    <value>Data gateway is a client agent installed in your corporate environment that provides Azure Data Factory the access to on-premises data stores.</value>
+  </data>
+  <data name="InstallGateway" xml:space="preserve">
+    <value>Install and register the data gateway</value>
+  </data>
+  <data name="InstallGatewayDescription" xml:space="preserve">
+    <value>Download, install, configure and register the gateway on a Windows computer in your corporate environment.</value>
+  </data>
+  <data name="CreateNewDataGateway" xml:space="preserve">
+    <value>Create a new data gateway</value>
+  </data>
+  <data name="LinkedServiceCreatingLabel" xml:space="preserve">
+    <value>Creating the data store</value>
+  </data>
+  <data name="LinkedServiceCreatingMessage" xml:space="preserve">
+    <value>Please wait a moment for creating data store '{0}'.</value>
+  </data>
+  <data name="LinkedServiceCreatedFailedLabel" xml:space="preserve">
+    <value>Failed to create data store</value>
+  </data>
+  <data name="LinkedServiceCreatedFailedMessage" xml:space="preserve">
+    <value>Could not create a new data store '{0}'. Try again or contact Microsoft support.</value>
+  </data>
+  <data name="LinkedServiceCreatedSuccessLabel" xml:space="preserve">
+    <value>Created a new data store successfully</value>
+  </data>
+  <data name="LinkedServiceCreatedSuccessMessage" xml:space="preserve">
+    <value>The new data store '{0}' has been created successfully.</value>
+  </data>
+  <data name="GatewayCreatedFailedLabel" xml:space="preserve">
+    <value>Failed to create data gateway</value>
+  </data>
+  <data name="GatewayCreatedFailedMessage" xml:space="preserve">
+    <value>Could not create a new data gateway '{0}'. Try again or contact Microsoft support.</value>
+  </data>
+  <data name="GatewayCreatedSuccessLabel" xml:space="preserve">
+    <value>Created a new data gateway successfully</value>
+  </data>
+  <data name="GatewayCreatedSuccessMessage" xml:space="preserve">
+    <value>The new data gateway '{0}' has been created successfully.</value>
+  </data>
+  <data name="LinkedServiceModifiedFailedLabel" xml:space="preserve">
+    <value>Failed to modify data store</value>
+  </data>
+  <data name="LinkedServiceModifiedFailedMessage" xml:space="preserve">
+    <value>Could not modify the data store '{0}'. Try again or contact Microsoft support.</value>
+  </data>
+  <data name="LinkedServiceModifiedSuccessLabel" xml:space="preserve">
+    <value>Modified the data store successfully</value>
+  </data>
+  <data name="LinkedServiceModifiedSuccessMessage" xml:space="preserve">
+    <value>The data store '{0}' has been modified successfully.</value>
+  </data>
+  <data name="LinkedServiceModifyingLabel" xml:space="preserve">
+    <value>Data store is being modified</value>
+  </data>
+  <data name="LinkedServiceModifyingMessage" xml:space="preserve">
+    <value>Please wait a moment for updating data store '{0}'.</value>
+  </data>
+  <data name="GatewayDeletedSuccessLabel" xml:space="preserve">
+    <value>Deleted data gateway successfully</value>
+  </data>
+  <data name="GatewayDeletedSuccessMessage" xml:space="preserve">
+    <value>The data gateway '{0}' has been deleted successfully.</value>
+  </data>
+  <data name="LinkedServiceDeletedSuccessLabel" xml:space="preserve">
+    <value>Deleted data store successfully</value>
+  </data>
+  <data name="LinkedServiceDeletedSuccessMessage" xml:space="preserve">
+    <value>The data store '{0}' has been deleted successfully.</value>
+  </data>
+  <data name="DescriptionPlaceholder" xml:space="preserve">
+    <value>(Optional)</value>
+  </data>
+  <data name="GatewayModifiedFailedLabel" xml:space="preserve">
+    <value>Failed to modify data gateway</value>
+  </data>
+  <data name="GatewayModifiedFailedMessage" xml:space="preserve">
+    <value>Could not modify the data gateway '{0}'. Try again or contact Microsoft support.</value>
+  </data>
+  <data name="GatewayModifiedSuccessLabel" xml:space="preserve">
+    <value>Modified the data gateway successfully</value>
+  </data>
+  <data name="GatewayModifiedSuccessMessage" xml:space="preserve">
+    <value>The data gateway '{0}' has been modified successfully.</value>
+  </data>
+  <data name="GatewayModifyingLabel" xml:space="preserve">
+    <value>Modifying the data gateway</value>
+  </data>
+  <data name="GatewayModifyingMessage" xml:space="preserve">
+    <value>Please wait a moment for updating data gateway '{0}'.</value>
+  </data>
+  <data name="DeleteGatewayConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this data gateway?</value>
+  </data>
+  <data name="ManageKeys" xml:space="preserve">
+    <value>Manage Key</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Keys</value>
+  </data>
+  <data name="KeyRegenerationMessage" xml:space="preserve">
+    <value>This will make the data gateway non-functional immediately until the data gateway is newly registered with the regenerated key.</value>
+  </data>
+  <data name="KeyRegenerationTitle" xml:space="preserve">
+    <value>Recreate key</value>
+  </data>
+  <data name="RegenerateTitle" xml:space="preserve">
+    <value>Regenerate</value>
+  </data>
+  <data name="GatewayExpiredTitle" xml:space="preserve">
+    <value>Error: Data gateway has expired</value>
+  </data>
+  <data name="GatewayOfflineTitle" xml:space="preserve">
+    <value>Error: Data gateway is offline</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error Message</value>
+  </data>
+  <data name="GatewayExpiringTitle" xml:space="preserve">
+    <value>Warning: Data gateway is expiring</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="KeyTitle" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="regeneratingMessage" xml:space="preserve">
+    <value>Regenerating key...</value>
+  </data>
+  <data name="RegionEastUS" xml:space="preserve">
+    <value>East US</value>
+  </data>
+  <data name="RegionNorthEurope" xml:space="preserve">
+    <value>North Europe</value>
+  </data>
+  <data name="RegionSouthEastAsia" xml:space="preserve">
+    <value>Southeast Asia</value>
+  </data>
+  <data name="RegionWestEurope" xml:space="preserve">
+    <value>West Europe</value>
+  </data>
+  <data name="RegionWestUS" xml:space="preserve">
+    <value>West US</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="GatewayDeleteFailedByLinkedServices" xml:space="preserve">
+    <value>This data gateway cannot be deleted because there are {0} data stores associated with it.</value>
+  </data>
+  <data name="LinkedServicesPartTitle" xml:space="preserve">
+    <value>Linked Services</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="TypeTitle" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="SearchTitle" xml:space="preserve">
+    <value>Search to filter resources...</value>
+  </data>
+  <data name="DataStore" xml:space="preserve">
+    <value>Data store</value>
+  </data>
+  <data name="DataStores" xml:space="preserve">
+    <value>Data Stores</value>
+  </data>
+  <data name="Gateways" xml:space="preserve">
+    <value>Data Gateways</value>
+  </data>
+  <data name="GatewayNeedRegistrationTitle" xml:space="preserve">
+    <value>Warning: Data gateway needs registration</value>
+  </data>
+  <data name="DataStoresAssociated" xml:space="preserve">
+    <value>Associated Data Stores</value>
+  </data>
+  <data name="DataStoreType" xml:space="preserve">
+    <value>Data store type</value>
+  </data>
+  <data name="HostName" xml:space="preserve">
+    <value>Host Name</value>
+  </data>
+  <data name="DataManagementKey" xml:space="preserve">
+    <value>Data Management Key</value>
+  </data>
+  <data name="DataStoreAddCommandTitle" xml:space="preserve">
+    <value>New data store</value>
+  </data>
+  <data name="GatewayAddCommandTitle" xml:space="preserve">
+    <value>New data gateway</value>
+  </data>
+  <data name="StorageAccountKeyPasswordBoxTitle" xml:space="preserve">
+    <value>Account Key</value>
+  </data>
+  <data name="LinkedServicesCollectionSummaryPartDescriptionError" xml:space="preserve">
+    <value>You have a problem with one of your data gateways</value>
+  </data>
+  <data name="ValidationFieldGatewayNameRegex" xml:space="preserve">
+    <value>This field can contain letters, numbers, dashes and underscores.</value>
+  </data>
+  <data name="GatewayNameAlreadyTaken" xml:space="preserve">
+    <value>A gateway with the name already exists.</value>
+  </data>
+  <data name="UnableToCheckGatewayName" xml:space="preserve">
+    <value>Sorry, we are unable to validate gateway name at this time.</value>
+  </data>
+  <data name="SetupLensTitle" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="DataStoreTypeHDInsight" xml:space="preserve">
+    <value>Azure HDInsight cluster</value>
+  </data>
+  <data name="Compute" xml:space="preserve">
+    <value>Compute</value>
+  </data>
+  <data name="ValidationLinkedServiceLength" xml:space="preserve">
+    <value>This field should be between 1 and 260 characters long.</value>
+  </data>
+  <data name="ValidationLinkedServicesNameAlreadyTaken" xml:space="preserve">
+    <value>A linked service with the name already exists.</value>
+  </data>
+  <data name="ValidationLinkedServicesRegex" xml:space="preserve">
+    <value>Names must start with a letter, number or underscore (_) and following characters are not allowed: &lt;,&gt;,*,%,&amp;,:,\, +, ?, /</value>
+  </data>
+  <data name="ValidationUnableToValidateLinkedServiceName" xml:space="preserve">
+    <value>Sorry, we are unable to validate linked service name at this time.</value>
+  </data>
+  <data name="OnPremDataStoreGatewayNeedRegistrationMessage" xml:space="preserve">
+    <value>The data gateway '{gatewayName}' associated with the data store needs to be registered with the Data Factory service. Click Data Gateway button and follow instructions to register the data gateway.</value>
+  </data>
+  <data name="GatewayManualInstallLinkTitle32bit" xml:space="preserve">
+    <value>Download and install manually (32-bit)</value>
+  </data>
+  <data name="LinkedServiceCreatedFailedMessageInvalidSqlAzureDatabase" xml:space="preserve">
+    <value>The Azure SQL Database for the data store '{0}' cannot be reached. Check connection settings for the data store.</value>
+  </data>
+  <data name="LinkedServiceCreatedFailedMessageInvalidStorageAccount" xml:space="preserve">
+    <value>The Storage Account for the data store '{0}' cannot be reached. Check settings for the data store.</value>
+  </data>
+  <data name="GatewayCreateWizardDescription" xml:space="preserve">
+    <value>Set up a data gateway to connect to an on-premises data store in your corporate environment.</value>
+  </data>
+  <data name="NewDataStoreBladeDescription" xml:space="preserve">
+    <value>Create a data store to connect your data to the data factory.</value>
+  </data>
+  <data name="LinkedServiceCreateValidatedFailedLabel" xml:space="preserve">
+    <value>Failed to connect to a data store</value>
+  </data>
+  <data name="linkedServiceCreateValidatedFailedMessage" xml:space="preserve">
+    <value>The data store '{0}' cannot be reached. Check settings for the data store.</value>
+  </data>
+  <data name="LinkedServiceCreateValidatingLabel" xml:space="preserve">
+    <value>Connecting to the data store</value>
+  </data>
+  <data name="DataStoreTypeFileSystem" xml:space="preserve">
+    <value>File System</value>
+  </data>
+  <data name="FileDataStoreHostTitle" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="NewGateWayVersionAvailable" xml:space="preserve">
+    <value>New Data Gateway Version Available</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="VersionStatus" xml:space="preserve">
+    <value>Version Status</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Update Available</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Up to date</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GatewayUpdateTitle" xml:space="preserve">
+    <value>Update to the latest version</value>
+  </data>
+  <data name="DataStoreTypeAzureML" xml:space="preserve">
+    <value>Azure ML</value>
+  </data>
+  <data name="ValidationInvalidCharacters" xml:space="preserve">
+    <value>This field contains invalid characters.</value>
+  </data>
+  <data name="DataFactoryPlaceHolderPartTitle" xml:space="preserve">
+    <value>Data Factories (Mocked)</value>
+  </data>
+  <data name="NoDataFactoriesTitle" xml:space="preserve">
+    <value>You don't have any data factories.</value>
+  </data>
+  <data name="ResourceGroup" xml:space="preserve">
+    <value>Resource Group</value>
+  </data>
+  <data name="Subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="NeedRegistration" xml:space="preserve">
+    <value>Unregistered</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="CredentialsHelpText" xml:space="preserve">
+    <value>Requires Internet Explorer or a Microsoft ClickOnce compatible web browser.</value>
+  </data>
+  <data name="SuggestDataStoreTypeLinkText" xml:space="preserve">
+    <value>Request a new data store type</value>
+  </data>
+  <data name="DataStoreErrorMessageGatewayOffline" xml:space="preserve">
+    <value>Credentials cannot be set using an offline data gateway. Launch Data Management Gateway Configuration Manager on the gateway machine and confirm that the "Service status" is "Started", "Gateway key status" is "Registered", and the status bar shows "Connected
+        to Data Management Gateway Cloud Service". If not, check Windows Event Log on the gateway machine for detailed information. Reopen CREDENTIALS blade to set credentials when the data gateway is online.</value>
+  </data>
+  <data name="DataStoreErrorMessageGatewayUnregistered" xml:space="preserve">
+    <value>Credentials cannot be set using an unregistered data gateway. The data gateway '{gatewayName}' associated with the data store needs to be registered with the Data Factory service. Click Data Gateway button and follow instructions to register the data
+        gateway. Reopen CREDENTIALS blade to set credentials when the data gateway is online.</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentGatewayOffline" xml:space="preserve">
+    <value>Credentials cannot be set using an offline data gateway. Select an online data gateway in DATA GATEWAY field and reopen CREDENTIALS blade to set your data store credentials.</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentGatewayRequired" xml:space="preserve">
+    <value>No data gateway is selected. Select an online data gateway in DATA GATEWAY field and reopen CREDENTIALS blade to set your data store credentials.</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentGatewayUnregistered" xml:space="preserve">
+    <value>Credentials cannot be set using an unregistered data gateway. Select an online data gateway in DATA GATEWAY field and reopen CREDENTIALS blade to set your data store credentials.</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentServerDatabaseRequired" xml:space="preserve">
+    <value>The Server and Database fields are required.</value>
+  </data>
+  <data name="GatewayStatusDeleting" xml:space="preserve">
+    <value>Deleting</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentFileHostRequired" xml:space="preserve">
+    <value>The Host field is required.</value>
+  </data>
+  <data name="DataStoreTypeOracle" xml:space="preserve">
+    <value>Oracle Database</value>
+  </data>
+  <data name="DataStoreTypeDynamicsAX" xml:space="preserve">
+    <value>Dynamics AX</value>
+  </data>
+  <data name="DataStoreTypeSalesforce" xml:space="preserve">
+    <value>Salesforce</value>
+  </data>
+  <data name="DataStoreTypeAzureSearchIndex" xml:space="preserve">
+    <value>Azure Search Index</value>
+  </data>
+  <data name="DataStoreTypeCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="DataStoreTypeMds" xml:space="preserve">
+    <value>MDS</value>
+  </data>
+  <data name="DataStoreTypeServiceBus" xml:space="preserve">
+    <value>Service Bus</value>
+  </data>
+  <data name="OracleConnectDescriptorTitle" xml:space="preserve">
+    <value>Connect Descriptor</value>
+  </data>
+  <data name="FileSystemHostHintText" xml:space="preserve">
+    <value>UNC path e.g. \\host name</value>
+  </data>
+  <data name="DataStoreStaleErrorMessage" xml:space="preserve">
+    <value>Data store is stale. The associated data gateway '{gatewayName}' does not exist. Delete the data store '{dataStoreName}' manually. To recover datasets and pipelines related to this linked service, recreate a new data store with the same name '{dataStoreName}'.</value>
+  </data>
+  <data name="DataStoreStaleMessage" xml:space="preserve">
+    <value>Data store is stale</value>
+  </data>
+  <data name="DataStoreStaleTitle" xml:space="preserve">
+    <value>ERROR: DATA STORE IS STALE</value>
+  </data>
+  <data name="RecreateKeyHintText" xml:space="preserve">
+    <value>Click "Recreate key" to create a new key</value>
+  </data>
+  <data name="RecreateKeyLabel" xml:space="preserve">
+    <value>New key</value>
+  </data>
+  <data name="DataStoreErrorMessageSegmentOracleFieldRequired" xml:space="preserve">
+    <value>The Connect Descriptor field is required.</value>
+  </data>
+  <data name="OracleConnectDescriptorHintText" xml:space="preserve">
+    <value>Example: (DESCRIPTION=   (ADDRESS=(PROTOCOL=tcp)(HOST=sales-server)(PORT=1521))   (CONNECT_DATA=     (SERVICE_NAME=sales.us.example.com)))
+      </value>
+  </data>
+  <data name="minNameLengthValidationMessage" xml:space="preserve">
+    <value>The name must be at least 3 characters long.</value>
+  </data>
+  <data name="onPremisesFileSystemLinkedService" xml:space="preserve">
+    <value>File system</value>
+  </data>
+  <data name="onPremisesFile" xml:space="preserve">
+    <value>On-premises file</value>
+  </data>
+  <data name="onPremisesOracleLinkedService" xml:space="preserve">
+    <value>Oracle</value>
+  </data>
+  <data name="onPremisesOracleTable" xml:space="preserve">
+    <value>Oracle table</value>
+  </data>
+  <data name="samplePipelinesTitle" xml:space="preserve">
+    <value>Sample pipelines</value>
+  </data>
+  <data name="samplesTitle" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="sampleCustomerProfilingTitle" xml:space="preserve">
+    <value>Customer profiling</value>
+  </data>
+  <data name="samplePipelineTitle" xml:space="preserve">
+    <value>Sample pipeline</value>
+  </data>
+  <data name="createButtonLabel" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="validatingMessage" xml:space="preserve">
+    <value>Validating...</value>
+  </data>
+  <data name="azureSqlDatabaseNameLabel" xml:space="preserve">
+    <value>Azure SQL Database name</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="azureSqlServerNameLabel" xml:space="preserve">
+    <value>Azure SQL server name</value>
+  </data>
+  <data name="azureStorageAccountLabel" xml:space="preserve">
+    <value>Azure Storage account</value>
+  </data>
+  <data name="usernameLabel" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="suggestSampleTitle" xml:space="preserve">
+    <value>Suggest a sample</value>
+  </data>
+  <data name="sqlServerFirewallRuleErrorMessage" xml:space="preserve">
+    <value>Firewall rules for the selected SQL server do not allow connection to server from Azure services. Change the server settings or select a different server.</value>
+  </data>
+  <data name="sqlServerLoginConnectionFailedErrorMessage" xml:space="preserve">
+    <value>Database connection test failed, check user name and password.</value>
+  </data>
+  <data name="databaseListRequiresServerMessage" xml:space="preserve">
+    <value>A server needs to be selected.</value>
+  </data>
+  <data name="fieldLoadingMessage" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="passwordRequiredMessage" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="storageAccountRequiredMessage" xml:space="preserve">
+    <value>Storage account is required</value>
+  </data>
+  <data name="usernameRequiredMessage" xml:space="preserve">
+    <value>User name is required</value>
+  </data>
+  <data name="insufficientPermissionMessage" xml:space="preserve">
+    <value>You don't have sufficient permissions on this storage account to use it for sample deployment. You need to be an owner or contributor on the selected storage account.</value>
+  </data>
+  <data name="unexpectedErrorMessage" xml:space="preserve">
+    <value>Unexpected error has occurred</value>
+  </data>
+  <data name="unauthorizedMessage" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="loadingResourcesMessage" xml:space="preserve">
+    <value>Loading resources. Please wait...</value>
+  </data>
+  <data name="copyErrorMessage" xml:space="preserve">
+    <value>An unexpected error has occured when trying to copy sample data and scripts to storage account: </value>
+  </data>
+  <data name="createSqlEntitiesErrorMessage" xml:space="preserve">
+    <value>An error occured when creating SQL objects that are needed to run the sample. This could be because the login provided does not have sufficent permissions to create tables, types and stored procedures. Please check permissions and try again. Message:
+      </value>
+  </data>
+  <data name="createNewDatabaseText" xml:space="preserve">
+    <value>Create new database</value>
+  </data>
+  <data name="createNewStorageAccountText" xml:space="preserve">
+    <value>Create new storage account</value>
+  </data>
+  <data name="deployingMessage" xml:space="preserve">
+    <value>Deploying...</value>
+  </data>
+  <data name="deploymentFailedMessage" xml:space="preserve">
+    <value>Deployment failed</value>
+  </data>
+  <data name="deploymentSucceededMessage" xml:space="preserve">
+    <value>Deployment succeeded</value>
+  </data>
+  <data name="preparingMessage" xml:space="preserve">
+    <value>Preparing... Please keep blade open.</value>
+  </data>
+  <data name="sampleCustomerProfilingDescriptionTextHtml" xml:space="preserve">
+    <value>&lt;p&gt;Contoso is a gaming company that creates games for multiple platforms: game consoles, hand held devices, and personal computers (PCs). These games produce a lot of logs and Contoso’s goal is to collect and analyze these logs to gain insights
+        into customer preferences, demographics, usage behavior etc. to identify up-sell and cross-sell opportunities, develop new compelling features to drive business growth and provide a better experience to customers.&lt;/p&gt; &lt;p&gt;This sample specifically
+        evaluates the effectiveness of a marketing campaign that Contoso has recently launched by collecting sample logs, processing and enriching them with reference data, and transforming the data. It has the following three pipelines:&lt;/p&gt; &lt;ol&gt;
+        &lt;li&gt;The &lt;b&gt;PartitionGameLogsPipeline&lt;/b&gt; reads the raw game events from blob storage and creates partitions based on year, month, and day.&lt;/li&gt; &lt;li&gt;The &lt;b&gt;EnrichGameLogsPipeline&lt;/b&gt; joins partitioned game events
+        with geo code reference data and enriches the data by mapping IP addresses to the corresponding geo-locations.&lt;/li&gt; &lt;li&gt;The &lt;b&gt;AnalyzeMarketingCampaignPipeline&lt;/b&gt; pipeline leverages the enriched data and processes it with the
+        advertising data to create the final output that contains marketing campaign effectiveness.&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;The sample showcases how you can use the Azure Data Factory service to compose data integration workflows to copy/move data using
+        the Copy Activity and process data using Pig or Hive scripts on an Azure HDInsight cluster using the HDInsight Activity.&lt;/p&gt; &lt;p&gt;To deploy the sample:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Select the &lt;b&gt;storage account&lt;/b&gt; from the drop-down
+        list that you want to use with the sample.&lt;/li&gt; &lt;li&gt;Select the &lt;b&gt;database server&lt;/b&gt; and &lt;b&gt;database&lt;/b&gt; that you want to use with the sample.&lt;/li&gt; &lt;li&gt;Enter &lt;b&gt;username&lt;/b&gt; and &lt;b&gt;password&lt;/b&gt;
+        to access the database&lt;/li&gt; &lt;li&gt;Click the &lt;b&gt;Create&lt;/b&gt; button.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The deployment process does the following:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Uploads sample data to your Azure storage&lt;/li&gt; &lt;li&gt;Creates
+        a table in the Azure SQL database&lt;/li&gt; &lt;li&gt;Deploys linked services, tables, and pipelines to run the sample.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;An on-demand HDInsight linked service is used in this sample, which creates a one-node on-demand
+        HDInsight cluster to run Pig and Hive scripts and is deleted after the processing is completed.&lt;/p&gt; &lt;p&gt;After the deployment is complete, you can monitor end-to-end data integration workflow using the diagram view and use the monitoring features
+        of the Microsoft Azure Portal to monitor datasets and pipelines.&lt;/p&gt; &lt;p&gt;NOTE: there are costs associated with &lt;a href="http://go.microsoft.com/fwlink/?LinkId=534048" target="_blank"&gt;transferring the data&lt;/a&gt; and processing the
+        data with an on-demand &lt;a href="http://go.microsoft.com/fwlink/?LinkId=534049" target="_blank"&gt;HDInsight&lt;/a&gt; Cluster. See &lt;a href="http://go.microsoft.com/fwlink/?LinkId=534049" target="_blank"&gt;HDInsight Pricing&lt;/a&gt; and &lt;a
+        href="http://go.microsoft.com/fwlink/?LinkId=534048" target="_blank"&gt;Data Transfer Pricing&lt;/a&gt; for details.&lt;/p&gt; &lt;p&gt;For more details about this sample, see &lt;a href="http://go.microsoft.com/fwlink/?LinkId=534874" target="_blank"&gt;this
+        tutorial&lt;/a&gt; on Azure.com.&lt;/p&gt;</value>
+  </data>
+  <data name="couldNotListDatabasesMessage" xml:space="preserve">
+    <value>Could not list databases for server: </value>
+  </data>
+  <data name="failedToGetResourcesForSubscriptionMessage" xml:space="preserve">
+    <value>Failed to get resources of type '{0}' for subscription '{1}'.</value>
+  </data>
+  <data name="testSqlConnectionButtonText" xml:space="preserve">
+    <value>Test SQL connection</value>
+  </data>
+  <data name="resourceGroupPermissionMessage" xml:space="preserve">
+    <value>No permission to resource group: {0}</value>
+  </data>
+  <data name="azureBatchByoc" xml:space="preserve">
+    <value>Azure Batch</value>
+  </data>
+  <data name="linkedServiceAzureSqlDwTableLocation" xml:space="preserve">
+    <value>Azure SQL DW</value>
+  </data>
+  <data name="openPipelineCommandText" xml:space="preserve">
+    <value>Open pipeline</value>
+  </data>
+  <data name="onPremisesDb2LinkedService" xml:space="preserve">
+    <value>DB2</value>
+  </data>
+  <data name="onPremisesMySqlLinkedService" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="onPremisesPostgreSqlLinkedService" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="onPremisesRelationalTableLocation" xml:space="preserve">
+    <value>Database table</value>
+  </data>
+  <data name="onPremisesSybaseLinkedService" xml:space="preserve">
+    <value>Sybase</value>
+  </data>
+  <data name="onPremisesTeradataLinkedService" xml:space="preserve">
+    <value>Teradata</value>
+  </data>
+  <data name="provisioning" xml:space="preserve">
+    <value>Provisioning...</value>
+  </data>
+  <data name="provisioningFailed" xml:space="preserve">
+    <value>Entity provisioning failed: {0}</value>
+  </data>
+  <data name="entityloadFailed" xml:space="preserve">
+    <value>Unable to load entity source from the service, error: {0}</value>
+  </data>
+  <data name="onPremDbSchemaTitle" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="defaultDialogPrimaryCommandText" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="defaultDialogSecondaryCommandText" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="cancelPipelineTooltip" xml:space="preserve">
+    <value>Pause and terminate activities</value>
+  </data>
+  <data name="rerunDownstreamLabel" xml:space="preserve">
+    <value>Rerun with downstream</value>
+  </data>
+  <data name="rerunDownstreamTooltip" xml:space="preserve">
+    <value>Rerun selected items and their downstream dependencies.</value>
+  </data>
+  <data name="rerunFactoryDialogContent" xml:space="preserve">
+    <value>This will recreate all of your existing slices.</value>
+  </data>
+  <data name="rerunFactoryDialogTitle" xml:space="preserve">
+    <value>Are you sure you want to rerun the entire factory?</value>
+  </data>
+  <data name="rerunFactoryLabel" xml:space="preserve">
+    <value>Rerun entire factory</value>
+  </data>
+  <data name="rerunFactoryTooltip" xml:space="preserve">
+    <value>Rerun this entire factory</value>
+  </data>
+  <data name="rerunMenuTooltip" xml:space="preserve">
+    <value>Choose to run with upstream or downstream dependencies.</value>
+  </data>
+  <data name="rerunTableTooltip" xml:space="preserve">
+    <value>Rerun all slices selected tables</value>
+  </data>
+  <data name="rerunTooltip" xml:space="preserve">
+    <value>Reruns the selected activity windows.</value>
+  </data>
+  <data name="rerunUpstreamLabel" xml:space="preserve">
+    <value>Rerun with upstream in pipeline</value>
+  </data>
+  <data name="rerunUpstreamTooltip" xml:space="preserve">
+    <value>Rerun selected items and their upstream dependencies.</value>
+  </data>
+  <data name="resumePipelineTooltip" xml:space="preserve">
+    <value>Resume selected pipelines</value>
+  </data>
+  <data name="pausePipelineTooltip" xml:space="preserve">
+    <value>Pause selected pipelines</value>
+  </data>
+  <data name="rerunEntitiesLabel" xml:space="preserve">
+    <value>Rerun</value>
+  </data>
+  <data name="rerunEntitiesTooltip" xml:space="preserve">
+    <value>Rerun all selected entities.</value>
+  </data>
+  <data name="cancelSingletonPipelineTooltip" xml:space="preserve">
+    <value>Pause this pipeline and terminate existing activities</value>
+  </data>
+  <data name="resumeSingletonPipelineTooltip" xml:space="preserve">
+    <value>Resume this pipeline</value>
+  </data>
+  <data name="pauseSingletonPipelineTooltip" xml:space="preserve">
+    <value>Pause this pipeline</value>
+  </data>
+  <data name="cancelPipelineLabel" xml:space="preserve">
+    <value>Pause and terminate activities</value>
+  </data>
+  <data name="pausePipelineLabel" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="activePipelineStatusText" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="pipelineSubheader" xml:space="preserve">
+    <value>PIPELINE</value>
+  </data>
+  <data name="pausedPipelineStatusText" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="failedProvisioningStatusText" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="activityRunListActivityNameTitle" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="activityRunListActivityTypeTitle" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="activityRunListAttemptsTitle" xml:space="preserve">
+    <value>Retry Attempts</value>
+  </data>
+  <data name="activityRunListDurationTitle" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="activityRunListPercentageCompleteTitle" xml:space="preserve">
+    <value>Complete (%)</value>
+  </data>
+  <data name="activityRunListPipelineTitle" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="activityRunListLastRunEndTitle" xml:space="preserve">
+    <value>Attempt End</value>
+  </data>
+  <data name="activityRunListLastRunStartTitle" xml:space="preserve">
+    <value>Attempt Start</value>
+  </data>
+  <data name="activityRunListWindowStartTitle" xml:space="preserve">
+    <value>Window Start</value>
+  </data>
+  <data name="activityRunListStateTitle" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="markReadyDownstreamLabel" xml:space="preserve">
+    <value>Mark as ready with downstream</value>
+  </data>
+  <data name="changeStateLabel" xml:space="preserve">
+    <value>Change State</value>
+  </data>
+  <data name="readyLabel" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="rerunLabel" xml:space="preserve">
+    <value>Rerun</value>
+  </data>
+  <data name="changeStateTooltip" xml:space="preserve">
+    <value>Change the state of the activity window.</value>
+  </data>
+  <data name="datetimeInUTCLabel" xml:space="preserve">
+    <value>Date/time in UTC</value>
+  </data>
+  <data name="errorMessageCollapse" xml:space="preserve">
+    <value>Less</value>
+  </data>
+  <data name="errorMessageExpand" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="hideDashboardTooltip" xml:space="preserve">
+    <value>Hide dashboard</value>
+  </data>
+  <data name="showDashboardTooltip" xml:space="preserve">
+    <value>Show dashboard</value>
+  </data>
+  <data name="activityWindowsListEmptyMessage" xml:space="preserve">
+    <value>There are currently no activity windows to display.</value>
+  </data>
+  <data name="activityRunsListLoadingMessage" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="activityRunsListRefreshTooltip" xml:space="preserve">
+    <value>Refresh this list of activity windows. Note: newly created activity windows may take a few minutes to appear in this list.</value>
+  </data>
+  <data name="percentageCompleteInBracketText" xml:space="preserve">
+    <value>({0}% complete)</value>
+  </data>
+  <data name="informationTitle" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="missingActivityWindowText" xml:space="preserve">
+    <value>Activity window is missing.</value>
+  </data>
+  <data name="failedToFetchActivityWindowText" xml:space="preserve">
+    <value>Failed to fetch activity window.</value>
+  </data>
+  <data name="activityRunDetailsRefreshTooltip" xml:space="preserve">
+    <value>Refresh this panel.</value>
+  </data>
+  <data name="accessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="activityWindowsResource" xml:space="preserve">
+    <value>Activity windows.</value>
+  </data>
+  <data name="noFactoryErrorText" xml:space="preserve">
+    <value>The URL to access this factory must include a data factory name, resource group, and subscription. Please access via the URL in the email you received.</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="permissionDenied" xml:space="preserve">
+    <value>Permission Denied</value>
+  </data>
+  <data name="resourcePermissionFaliedMessageText" xml:space="preserve">
+    <value>You do not have access to the following factory: {0}. Please contact the administrator. If you recently acquired permissions for this subscription, then please logout and login again.</value>
+  </data>
+  <data name="resourceNotFound" xml:space="preserve">
+    <value>Resource Not Found</value>
+  </data>
+  <data name="resourceNotFoundMessageText" xml:space="preserve">
+    <value>The following resource was not found: {0}. Please contact the administrator of the {1} data factory.</value>
+  </data>
+  <data name="resourceUnknownErrorMessageText" xml:space="preserve">
+    <value>An unknown error occured for the following resource: {0}. Please contact the administrator of the {1} data factory.</value>
+  </data>
+  <data name="subscriptionNotFound" xml:space="preserve">
+    <value>Subscription Not Found</value>
+  </data>
+  <data name="subscriptionNotFoundErrorMessageText" xml:space="preserve">
+    <value>The subscription {0} could not be found. Please use the URL in the email you received.</value>
+  </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Unknown Error</value>
+  </data>
+  <data name="frequencyAndIntervalText" xml:space="preserve">
+    <value>Frequency: {0}, Interval: {1}</value>
+  </data>
+  <data name="frequencyAndIntervalLineBreakText" xml:space="preserve">
+    <value>Freq: {0}&lt;br /&gt;Intvl: {1}</value>
+  </data>
+  <data name="activityWindowListTitle" xml:space="preserve">
+    <value>Activity Windows</value>
+  </data>
+  <data name="activityRunDetailsTitle" xml:space="preserve">
+    <value>Attempts</value>
+  </data>
+  <data name="activityRunDetailsInputsTitle" xml:space="preserve">
+    <value>Input Datasets</value>
+  </data>
+  <data name="activityRunDetailsOutputsTitle" xml:space="preserve">
+    <value>Output Datasets</value>
+  </data>
+  <data name="refreshGraphTooltip" xml:space="preserve">
+    <value>Refresh the data in the graph</value>
+  </data>
+  <data name="activityRunsListFooterStatus" xml:space="preserve">
+    <value>Loading more items...</value>
+  </data>
+  <data name="endTimeUTCLabel" xml:space="preserve">
+    <value>End time (UTC):</value>
+  </data>
+  <data name="startEndPickerText" xml:space="preserve">
+    <value>Update start and end time.</value>
+  </data>
+  <data name="startTimeUTCLabel" xml:space="preserve">
+    <value>Start time (UTC):</value>
+  </data>
+  <data name="pausePipelinesTitle" xml:space="preserve">
+    <value>Pause pipelines</value>
+  </data>
+  <data name="resumePipelinesTitle" xml:space="preserve">
+    <value>Resume pipelines</value>
+  </data>
+  <data name="cancelPipelinesTitle" xml:space="preserve">
+    <value>Pause and terminate pipelines</value>
+  </data>
+  <data name="pausePipelineTitle" xml:space="preserve">
+    <value>Pause pipeline</value>
+  </data>
+  <data name="resumePipelineTitle" xml:space="preserve">
+    <value>Resume pipeline</value>
+  </data>
+  <data name="cancelPipelineTitle" xml:space="preserve">
+    <value>Pause and terminate pipeline</value>
+  </data>
+  <data name="pauseSelectedPipelinesQuestion" xml:space="preserve">
+    <value>Pause selected pipelines?</value>
+  </data>
+  <data name="resumeSelectedPipelinesQuestion" xml:space="preserve">
+    <value>Resume selected pipelines?</value>
+  </data>
+  <data name="cancelSelectedPipelinesQuestion" xml:space="preserve">
+    <value>Pause selected pipelines and terminate all their currently running activities?</value>
+  </data>
+  <data name="pausePipelineQuestionTemplate" xml:space="preserve">
+    <value>Pause {0} pipeline?</value>
+  </data>
+  <data name="resumePipelineQuestionTemplate" xml:space="preserve">
+    <value>Resume {0} pipeline?</value>
+  </data>
+  <data name="cancelPipelineQuestionTemplate" xml:space="preserve">
+    <value>Pause {0} pipeline and terminate its currently running activities?</value>
+  </data>
+  <data name="pipelineNameCopyLabel" xml:space="preserve">
+    <value>Copy pipeline name</value>
+  </data>
+  <data name="activityNameCopyLabel" xml:space="preserve">
+    <value>Copy activity name</value>
+  </data>
+  <data name="statusCopyLabel" xml:space="preserve">
+    <value>Copy status</value>
+  </data>
+  <data name="typeCopyLabel" xml:space="preserve">
+    <value>Copy type</value>
+  </data>
+  <data name="attemptsCopyLabel" xml:space="preserve">
+    <value>Copy attempts</value>
+  </data>
+  <data name="attemptStartCopyLabel" xml:space="preserve">
+    <value>Copy attempt start</value>
+  </data>
+  <data name="attemptEndCopyLabel" xml:space="preserve">
+    <value>Copy attempt end</value>
+  </data>
+  <data name="windowStartCopyLabel" xml:space="preserve">
+    <value>Copy window start</value>
+  </data>
+  <data name="durationCopyLabel" xml:space="preserve">
+    <value>Copy duration</value>
+  </data>
+  <data name="percentCompleteCopyLabel" xml:space="preserve">
+    <value>Copy percent complete</value>
+  </data>
+  <data name="entireRowCopyLabel" xml:space="preserve">
+    <value>Copy entire row</value>
+  </data>
+  <data name="copySuccessful" xml:space="preserve">
+    <value>Copy successful</value>
+  </data>
+  <data name="errorOccurredTitle" xml:space="preserve">
+    <value>Error Occurred</value>
+  </data>
+  <data name="copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="copyThroughputLabelAndValueTemplate" xml:space="preserve">
+    <value>Throughput: {0}</value>
+  </data>
+  <data name="sortAscending" xml:space="preserve">
+    <value>Sort ascending</value>
+  </data>
+  <data name="sortDescending" xml:space="preserve">
+    <value>Sort descending</value>
+  </data>
+  <data name="cancelFilterLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="okFilterLabel" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="operationNameRunFinished" xml:space="preserve">
+    <value>Activity Run Finished</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="operationNameRunStarted" xml:space="preserve">
+    <value>Activity Run Started</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="statusStarted" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="operationNameOnDemandClusterCreateStarted" xml:space="preserve">
+    <value>On-Demand HDI Cluster Create Started</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="operationNameOnDemandClusterCreateSuccessful" xml:space="preserve">
+    <value>On-Demand HDI Cluster Created Successfully</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="operationNameOnDemandClusterDeleted" xml:space="preserve">
+    <value>On-Demand HDI Cluster Deleted</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusStarting" xml:space="preserve">
+    <value>Starting</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusFailedResourceAllocation" xml:space="preserve">
+    <value>Failed Resource Allocation</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusSucceeded" xml:space="preserve">
+    <value>Succeeded</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusFailedExecution" xml:space="preserve">
+    <value>Failed Execution</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusTimedOut" xml:space="preserve">
+    <value>Timed Out</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusFailedValidation" xml:space="preserve">
+    <value>Failed Validation</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="substatusAbandoned" xml:space="preserve">
+    <value>Abandoned</value>
+    <comment>Alert dropdown item</comment>
+  </data>
+  <data name="createAlertTooltip" xml:space="preserve">
+    <value>Create a new alert</value>
+  </data>
+  <data name="createAlertButtonText" xml:space="preserve">
+    <value>+ Add Alert</value>
+  </data>
+  <data name="deleteAlertQuestion" xml:space="preserve">
+    <value>Are you sure you want to delete this alert rule?</value>
+  </data>
+  <data name="deleteAlertTitle" xml:space="preserve">
+    <value>Delete alert</value>
+  </data>
+  <data name="deleteAlertTooltip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="disableAlertTooltip" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="enableAlertTooltip" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="editAlertTooltip" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="wizardFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="wizardNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="wizardPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="alertStepHeader" xml:space="preserve">
+    <value>Create Alert / </value>
+  </data>
+  <data name="alertStepOneTitle" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="alertStepTwoTitle" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="alertStepThreeTitle" xml:space="preserve">
+    <value>Recipients</value>
+  </data>
+  <data name="alertDescriptionPlaceholder" xml:space="preserve">
+    <value>Enter your description here</value>
+  </data>
+  <data name="alertDescriptionTitle" xml:space="preserve">
+    <value>Description (optional)</value>
+  </data>
+  <data name="alertNameTitle" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="alertEventTitle" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="sendToServiceOwnersText" xml:space="preserve">
+    <value>Email subscription admins</value>
+  </data>
+  <data name="additionalAdminEmailText" xml:space="preserve">
+    <value>Additional administrator emails</value>
+  </data>
+  <data name="alertStatusTitle" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="alertSubstatusTitle" xml:space="preserve">
+    <value>Substatus (optional)</value>
+  </data>
+  <data name="alertAggregationTitle" xml:space="preserve">
+    <value>Aggregate events</value>
+  </data>
+  <data name="alertConditionTitle" xml:space="preserve">
+    <value>Single alert if count is</value>
+  </data>
+  <data name="alertTimeTitle" xml:space="preserve">
+    <value>in the last</value>
+  </data>
+  <data name="alertEmptyAlertsListMessage" xml:space="preserve">
+    <value>You don't have any alerts. Create your first one now!</value>
+  </data>
+  <data name="createAlertText" xml:space="preserve">
+    <value>Create alert</value>
+  </data>
+  <data name="alertPermissionMissing" xml:space="preserve">
+    <value>You have insufficient permissions to view alert rules. Please check with your data factory administrator.</value>
+  </data>
+  <data name="alertWizardStepOne" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="alertWizardStepThree" xml:space="preserve">
+    <value>Recipients</value>
+  </data>
+  <data name="alertWizardStepTwo" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="activityWindowsClearFilterTooltip" xml:space="preserve">
+    <value>Clear all filters from the activity windows list.</value>
+  </data>
+  <data name="windowEndCopyLabel" xml:space="preserve">
+    <value>Copy window end</value>
+  </data>
+  <data name="activityRunListWindowEndTitle" xml:space="preserve">
+    <value>Window End</value>
+  </data>
+  <data name="ActivityResumeDescription" xml:space="preserve">
+    <value>Activity is paused and cannot run the activity windows until it is resumed.</value>
+  </data>
+  <data name="ActivityResumeDisplayName" xml:space="preserve">
+    <value>Activity resume</value>
+  </data>
+  <data name="CanceledDescription" xml:space="preserve">
+    <value>Canceled by user action.</value>
+  </data>
+  <data name="CanceledDisplayName" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ComputeResourcesDescription" xml:space="preserve">
+    <value>The compute resources are not available.</value>
+  </data>
+  <data name="ComputeResourcesDisplayName" xml:space="preserve">
+    <value>Compute resources</value>
+  </data>
+  <data name="ConcurrencyLimitDescription" xml:space="preserve">
+    <value>All the activity instances are busy running other activity windows.</value>
+  </data>
+  <data name="ConcurrencyLimitDisplayName" xml:space="preserve">
+    <value>Concurrency limit</value>
+  </data>
+  <data name="DatasetDependenciesDescription" xml:space="preserve">
+    <value>The upstream dependencies are not ready.</value>
+  </data>
+  <data name="DatasetDependenciesDisplayName" xml:space="preserve">
+    <value>Dataset dependencies</value>
+  </data>
+  <data name="FailedDescription" xml:space="preserve">
+    <value>Failed to generate and/or validate the activity window.</value>
+  </data>
+  <data name="FailedDisplayName" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="FailedValidationDescription" xml:space="preserve">
+    <value>Validation has failed.</value>
+  </data>
+  <data name="InProgressDescription" xml:space="preserve">
+    <value>The activity window is being processed.</value>
+  </data>
+  <data name="InProgressDisplayName" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="NoneDescription" xml:space="preserve">
+    <value>An activity window that used to exist with a different status, but has been reset.</value>
+  </data>
+  <data name="NoneDisplayName" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ReadyDescription" xml:space="preserve">
+    <value>The activity window is ready for consumption.</value>
+  </data>
+  <data name="RetryDescription" xml:space="preserve">
+    <value>Activity execution will be retried.</value>
+  </data>
+  <data name="RetryDisplayName" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="ScheduledTimeDescription" xml:space="preserve">
+    <value>The time has not come for the activity window to run.</value>
+  </data>
+  <data name="ScheduledTimeDisplayName" xml:space="preserve">
+    <value>Scheduled time</value>
+  </data>
+  <data name="SkippedDescription" xml:space="preserve">
+    <value>The activity window is not processed.</value>
+  </data>
+  <data name="SkippedDisplayName" xml:space="preserve">
+    <value>Skipped</value>
+  </data>
+  <data name="TimedOutDescription" xml:space="preserve">
+    <value>Execution took longer than allowed by the activity's TimeOut setting.</value>
+  </data>
+  <data name="TimedOutDisplayName" xml:space="preserve">
+    <value>Timed out</value>
+  </data>
+  <data name="ValidatingDescription" xml:space="preserve">
+    <value>Validation in progress.</value>
+  </data>
+  <data name="ValidatingDisplayName" xml:space="preserve">
+    <value>Validating</value>
+  </data>
+  <data name="ValidationDisplayName" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="ValidationRetryDescription" xml:space="preserve">
+    <value>Waiting for the validation to be retried.</value>
+  </data>
+  <data name="ValidationRetryDisplayName" xml:space="preserve">
+    <value>Validation retry</value>
+  </data>
+  <data name="WaitingValidationDescription" xml:space="preserve">
+    <value>Validation has not started yet.</value>
+  </data>
+  <data name="ReadyDisplayName" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="WaitingDisplayName" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="activityWindowDetailsTitle" xml:space="preserve">
+    <value>Activity Window</value>
+  </data>
+  <data name="startAndEndTitle" xml:space="preserve">
+    <value>Start &amp; End Time</value>
+  </data>
+  <data name="statusCalendarBoxTooltip" xml:space="preserve">
+    <value>{0} - {1} - {2}</value>
+    <comment>&lt;Status&gt; - &lt;Window Start time&gt; - &lt;Window End time&gt;</comment>
+  </data>
+  <data name="activityWindowListActivityNameTooltip" xml:space="preserve">
+    <value>Name of the activity creating the activity window.</value>
+  </data>
+  <data name="activityWindowListActivityTypeTooltip" xml:space="preserve">
+    <value>Type of activity.</value>
+  </data>
+  <data name="activityWindowListAttemptsTooltip" xml:space="preserve">
+    <value>Number of attempts to generate the activity window.</value>
+  </data>
+  <data name="activityWindowListDurationTooltip" xml:space="preserve">
+    <value>Duration of the most recent attempt.</value>
+  </data>
+  <data name="activityWindowListLastRunEndTooltip" xml:space="preserve">
+    <value>End time of the most recent attempt.</value>
+  </data>
+  <data name="activityWindowListLastRunStartTooltip" xml:space="preserve">
+    <value>Start time of the most recent attempt.</value>
+  </data>
+  <data name="activityWindowListPipelineTooltip" xml:space="preserve">
+    <value>Name of the pipeline.</value>
+  </data>
+  <data name="activityWindowListStateTooltip" xml:space="preserve">
+    <value>Status of the activity window.</value>
+  </data>
+  <data name="activityWindowListWindowEndTooltip" xml:space="preserve">
+    <value>End time of the activity window in UTC.</value>
+  </data>
+  <data name="activityWindowListWindowStartTooltip" xml:space="preserve">
+    <value>Start time of the activity window in UTC.</value>
+  </data>
+  <data name="idlePipelineStatusText" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="failedToLoadPipelineView" xml:space="preserve">
+    <value>Failed to load pipeline view.</value>
+  </data>
+  <data name="pipelineNotFound" xml:space="preserve">
+    <value>Pipeline not found. Please re-load the app.</value>
+  </data>
+  <data name="applyText" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="requiredPropertyLabel" xml:space="preserve">
+    <value>(Required)</value>
+  </data>
+  <data name="addRowPropertyLabel" xml:space="preserve">
+    <value>+ Add</value>
+  </data>
+  <data name="addRowPropertyTooltip" xml:space="preserve">
+    <value>Add new row</value>
+  </data>
+  <data name="deleteRowPropertyTooltip" xml:space="preserve">
+    <value>Delete row</value>
+  </data>
+  <data name="gatewayPropertiesCreateTime" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="gatewayPropertiesDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="gatewayPropertiesLastConnectTime" xml:space="preserve">
+    <value>Last Connect Time</value>
+  </data>
+  <data name="gatewayPropertiesLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="gatewayPropertiesProvisioningState" xml:space="preserve">
+    <value>Provisioning State</value>
+  </data>
+  <data name="gatewayPropertiesRegisterTime" xml:space="preserve">
+    <value>Register Time</value>
+  </data>
+  <data name="gatewayPropertiesStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="gatewayPropertiesVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="gatewayPropertiesHostServiceUri" xml:space="preserve">
+    <value>Host Service URI</value>
+  </data>
+  <data name="gatewayAssetText" xml:space="preserve">
+    <value>GATEWAY</value>
+  </data>
+  <data name="gatewayPropertiesErrorMessage" xml:space="preserve">
+    <value>Error Message</value>
+  </data>
+  <data name="gatewayPropertiesAutoUpdate" xml:space="preserve">
+    <value>Auto Update</value>
+  </data>
+  <data name="gatewayPropertiesAutoUpdateOff" xml:space="preserve">
+    <value>Automatic update is off</value>
+  </data>
+  <data name="gatewayPropertiesLastEndUpgradeTime" xml:space="preserve">
+    <value>Last Update Time</value>
+  </data>
+  <data name="gatewayPropertiesLastUpdateResult" xml:space="preserve">
+    <value>Last Update Result</value>
+  </data>
+  <data name="gatewayPropertiesScheduledUpgradeStartTime" xml:space="preserve">
+    <value>Next Scheduled Update Time</value>
+  </data>
+  <data name="GatewayUpdatingMessage" xml:space="preserve">
+    <value>Gateway is updating...</value>
+  </data>
+  <data name="upstreamDependenciesTitle" xml:space="preserve">
+    <value>Upstream Dependencies</value>
+  </data>
+  <data name="activityWindowExplorerTabTitle" xml:space="preserve">
+    <value>Activity window explorer</value>
+  </data>
+  <data name="alertsTabTitle" xml:space="preserve">
+    <value>Alerts</value>
+  </data>
+  <data name="dataFactoryTitle" xml:space="preserve">
+    <value>Data factory</value>
+  </data>
+  <data name="monitoringViewsTabTitle" xml:space="preserve">
+    <value>Monitoring views</value>
+  </data>
+  <data name="propertiesTabTitle" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="resourceExplorerTabTitle" xml:space="preserve">
+    <value>Resource explorer</value>
+  </data>
+  <data name="toolboxTabTitle" xml:space="preserve">
+    <value>Toolbox</value>
+  </data>
+  <data name="oneTimeListTitle" xml:space="preserve">
+    <value>One time</value>
+  </data>
+  <data name="nextScheduledRunText" xml:space="preserve">
+    <value>Next scheduled run at {0}.</value>
+  </data>
+  <data name="noScheduledRunText" xml:space="preserve">
+    <value>No scheduled runs for this pipeline.</value>
+  </data>
+  <data name="emptyFactoryText" xml:space="preserve">
+    <value>This factory has no pipeline or dataset to display.</value>
+  </data>
+  <data name="emptyPipelineText" xml:space="preserve">
+    <value>This pipeline has no content to display.</value>
+  </data>
+  <data name="createAlertStepThreeErrorMessage" xml:space="preserve">
+    <value>Enable Email subscription admins or add a Additional Enable Email subscription admins or add a Additional administrator email.</value>
+  </data>
+  <data name="jsonViewerTabTitle" xml:space="preserve">
+    <value>Script</value>
+  </data>
+  <data name="jsonViewerActivityTitle" xml:space="preserve">
+    <value>Activity: {0}</value>
+    <comment>Activity: Abc</comment>
+  </data>
+  <data name="jsonViewerDatasetTitle" xml:space="preserve">
+    <value>Dataset: {0}</value>
+    <comment>Dataset: Abc</comment>
+  </data>
+  <data name="jsonViewerLinkedServiceTitle" xml:space="preserve">
+    <value>LinkedService: {0}</value>
+    <comment>LinkedService: Abc</comment>
+  </data>
+  <data name="jsonViewerNoSelectionText" xml:space="preserve">
+    <value>Please select a single linked service/pipeline/dataset/activity from the resource explorer or diagram to view its script.</value>
+  </data>
+  <data name="jsonViewerNoSuchActivityInPipelineText" xml:space="preserve">
+    <value>There is no activity {0} in pipeline {1}.</value>
+    <comment>There is no activity Abc in pipeline Def.</comment>
+  </data>
+  <data name="jsonViewerPipelineTitle" xml:space="preserve">
+    <value>Pipeline: {0}</value>
+    <comment>Pipeline: Abc</comment>
+  </data>
+  <data name="additionalAdminEmailTooltip" xml:space="preserve">
+    <value>Multiple emails are comma separated</value>
+  </data>
+  <data name="alertEventTooltip" xml:space="preserve">
+    <value>Event that will trigger the alert</value>
+  </data>
+  <data name="alertStatusTooltip" xml:space="preserve">
+    <value>Status condition to trigger alert</value>
+  </data>
+  <data name="alertSubstatusTooltip" xml:space="preserve">
+    <value>Substatus condition to trigger alert</value>
+  </data>
+  <data name="alertAggregationTooltip" xml:space="preserve">
+    <value>Leave unchecked to trigger one alert for every event</value>
+  </data>
+  <data name="runInputPropertiesText" xml:space="preserve">
+    <value>Run input properties</value>
+  </data>
+  <data name="genericActivityWizardSubtitle" xml:space="preserve">
+    <value>Enter name and description for the activity and specify how often you want to run it.</value>
+  </data>
+  <data name="pctFromExistingDatasetTabTitle" xml:space="preserve">
+    <value>From existing dataset</value>
+  </data>
+  <data name="pctExistingDatasetNotSelectedErrorMessage" xml:space="preserve">
+    <value>Please select at least one dataset from the list.</value>
+  </data>
+  <data name="propertiesStepSubtitle" xml:space="preserve">
+    <value>Enter name and description for the {0} and specify how often you want to run the activity.</value>
+    <comment>Parameter should be an activity title, e.g. Hive activity</comment>
+  </data>
+  <data name="oneTimeCopySubheaderText" xml:space="preserve">
+    <value>One time copy</value>
+  </data>
+  <data name="recurringCopySubheaderText" xml:space="preserve">
+    <value>Recurring copy</value>
+  </data>
+  <data name="existingDatasetNameLabel" xml:space="preserve">
+    <value>Existing dataset name</value>
+  </data>
+  <data name="filterByNameLabel" xml:space="preserve">
+    <value>Filter by name</value>
+  </data>
+  <data name="linkedServiceAzureDataLakeStore" xml:space="preserve">
+    <value>Azure Data Lake Store</value>
+  </data>
+  <data name="advancedPropertiesLabel" xml:space="preserve">
+    <value>Advanced properties</value>
+  </data>
+  <data name="pipelineActivePeriodLabel" xml:space="preserve">
+    <value>Active period</value>
+  </data>
+  <data name="pipelineDescriptionLabel" xml:space="preserve">
+    <value>Pipeline description</value>
+  </data>
+  <data name="pipelineDescriptionPlaceholderText" xml:space="preserve">
+    <value>Description of the pipeline.</value>
+  </data>
+  <data name="pipelineNameLabel" xml:space="preserve">
+    <value>Pipeline name</value>
+  </data>
+  <data name="everyXText" xml:space="preserve">
+    <value>Every {0}</value>
+    <comment>e.g Every 2 days, Every week</comment>
+  </data>
+  <data name="noDescriptionPlaceholder" xml:space="preserve">
+    <value>&lt;no description has been provided&gt;</value>
+  </data>
+  <data name="recurringPatternText" xml:space="preserve">
+    <value>Recurring pattern</value>
+  </data>
+  <data name="noFilterCountText" xml:space="preserve">
+    <value>No filter applied.</value>
+  </data>
+  <data name="singleFilterCountText" xml:space="preserve">
+    <value>1 filter applied.</value>
+  </data>
+  <data name="multipleFilterCountText" xml:space="preserve">
+    <value>{0} filters applied.</value>
+  </data>
+  <data name="oneTimePipelineModeLabel" xml:space="preserve">
+    <value>One time</value>
+  </data>
+  <data name="scheduledPipelineModeLabel" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
+  <data name="datasetNameLabel" xml:space="preserve">
+    <value>Dataset name</value>
+  </data>
+  <data name="azureBlobStorageText" xml:space="preserve">
+    <value>Azure blob storage</value>
+  </data>
+  <data name="existingDatasetTabTitle" xml:space="preserve">
+    <value>Existing dataset</value>
+  </data>
+  <data name="nameFilterPlaceholder" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="newDatasetTabTitle" xml:space="preserve">
+    <value>New dataset</value>
+  </data>
+  <data name="fileOrFolderText" xml:space="preserve">
+    <value>File or folder</value>
+  </data>
+  <data name="folderPathText" xml:space="preserve">
+    <value>Folder path</value>
+  </data>
+  <data name="newLinkedServiceText" xml:space="preserve">
+    <value>New linked service</value>
+  </data>
+  <data name="selectLinkedServiceText" xml:space="preserve">
+    <value>Select linked service</value>
+  </data>
+  <data name="datasetPropertiesCollapsibleTitle" xml:space="preserve">
+    <value>Dataset properties</value>
+  </data>
+  <data name="nameText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="advancedSettingsText" xml:space="preserve">
+    <value>Advanced settings</value>
+  </data>
+  <data name="datasetText" xml:space="preserve">
+    <value>Dataset</value>
+  </data>
+  <data name="chooseText" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="selectLinkedServiceForStorageMessage" xml:space="preserve">
+    <value>Please select/configure a linked service from above.</value>
+  </data>
+  <data name="chooseInputFileFolderText" xml:space="preserve">
+    <value>Choose input file or folder</value>
+  </data>
+  <data name="updateInputFileFolderText" xml:space="preserve">
+    <value>Update input file or folder</value>
+  </data>
+  <data name="addNewColumnText" xml:space="preserve">
+    <value>Add new column</value>
+  </data>
+  <data name="browseBlobText" xml:space="preserve">
+    <value>Browse blob</value>
+  </data>
+  <data name="columnDescriptionOptionalText" xml:space="preserve">
+    <value>Column description (optional)</value>
+  </data>
+  <data name="columnNameText" xml:space="preserve">
+    <value>Column name</value>
+  </data>
+  <data name="filenameText" xml:space="preserve">
+    <value>Filename</value>
+  </data>
+  <data name="previewTitle" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="schemaTitle" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="deployLabel" xml:space="preserve">
+    <value>Deploy</value>
+  </data>
+  <data name="runTotalCopyDurationTitle" xml:space="preserve">
+    <value>Total copy duration</value>
+  </data>
+  <data name="tableSliceOutOfRange" xml:space="preserve">
+    <value>Table Slice Out Of Range</value>
+  </data>
+  <data name="paramNameHeading" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="paramValueHeading" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="pageNotFound" xml:space="preserve">
+    <value>Page not found.</value>
+  </data>
+  <data name="useOriginalUrlMessage" xml:space="preserve">
+    <value>Please click on the "Monitor &amp; Manage" link for your Data Factory in the &lt;a href="http://portal.azure.com"&gt;Azure Portal&lt;/a&gt;.</value>
+  </data>
+  <data name="azureSqlDataWarehouseLabel" xml:space="preserve">
+    <value>Azure SQL Data Warehouse</value>
+  </data>
+  <data name="hDInsightLabel" xml:space="preserve">
+    <value>HDInsight</value>
+  </data>
+  <data name="onDemandHDInsightLabel" xml:space="preserve">
+    <value>On-Demand HDInsight</value>
+  </data>
+  <data name="onPremisesSqlServerLabel" xml:space="preserve">
+    <value>On-Premises SQL Server</value>
+  </data>
+  <data name="selectSqlServerLabel" xml:space="preserve">
+    <value>Select SQL Server</value>
+  </data>
+  <data name="selectStoredProcedureLabel" xml:space="preserve">
+    <value>Select Stored Procedure</value>
+  </data>
+</root>

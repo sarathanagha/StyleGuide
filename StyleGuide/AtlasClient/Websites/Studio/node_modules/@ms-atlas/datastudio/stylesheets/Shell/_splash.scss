@@ -1,0 +1,76 @@
+@import "../Common/fonts";
+
+#splash-container {
+    -ms-flex-align: center;
+    -ms-flex-direction: row;
+    -ms-flex-line-pack: stretch;
+    -ms-flex-pack: center;
+    -ms-flex-wrap: nowrap;
+    -webkit-align-content: stretch;
+    -webkit-align-items: center;
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-family: $font-segoe;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#splash-content-container {
+    background-color: #03B092;
+    color: #fff; 
+    display: block;
+    width: 400px;
+    height: 200px
+}
+
+#splash-title {
+    -webkit-animation-delay: 0s;
+    -webkit-animation: splash-fade-slide 0.5s forwards cubic-bezier(0.86, 0, 0.07, 1);
+    animation-delay: 0s; 
+    animation: splash-fade-slide 0.5s forwards cubic-bezier(0.86, 0, 0.07, 1);
+    display: block;
+    font-size: 36px;
+    font-weight: 200;
+    left: -80px;
+    opacity: 0;
+    padding: 70px 0 50px 0;
+    position: relative;
+    text-align: center;
+}
+
+#splash-status {
+    -webkit-animation: splash-fade 2s infinite;
+    animation: splash-fade 1s infinite; 
+    color: #C7FFF5;
+    display: block;
+    font-size: 13px;
+    padding: 8px;
+}
+
+@-webkit-keyframes splash-fade-slide {
+    100% { left: 0; opacity: 1; } 
+}
+
+@keyframes splash-fade-slide {
+    100% { left: 0; opacity: 1; }
+}
+
+@-webkit-keyframes splash-fade {
+    50% { opacity: 0.5; } 
+}
+
+@keyframes splash-fade {
+    50% { opacity: 0.5; }
+}

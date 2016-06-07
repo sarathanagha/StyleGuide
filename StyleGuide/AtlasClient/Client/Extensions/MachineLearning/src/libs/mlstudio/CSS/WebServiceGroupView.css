@@ -1,0 +1,70 @@
+#WebServiceGroupViewContent input {
+    border-style: none;
+    width: 300px;
+}
+
+#WebServiceGroupViewContent div#DetailsList {
+    display: table;   
+}
+
+#WebServiceGroupViewContent div#DetailsList > div {
+    display: table-row;   
+}
+
+#WebServiceGroupViewContent div#DetailsList > div > div {
+    display: table-cell;
+}
+
+#WebServiceGroupViewContent div#DetailsList > div > div:first-child {
+    font-weight: bold;
+    padding: 10px;   
+}
+
+#WebServiceGroupConfig textarea{
+    border-style: none; 
+    width: 304px; /* this matches 300px for input*/
+}
+
+
+#WebServiceGroupConfig table td:nth-child(2) > input {
+    background-color: white;
+}
+
+#WebServiceGroupConfig td {
+    vertical-align: middle;
+}
+
+/* Since placeholder has yet to be standardized, styles are applied through vendor-specific prefixes*/
+#WebServiceGroupConfig  :-ms-input-placeholder { text-transform: uppercase; }
+#WebServiceGroupConfig  ::-webkit-input-placeholder { text-transform: uppercase; }
+#WebServiceGroupConfig  ::-moz-placeholder { text-transform: uppercase; } /* FF 19+ */
+#WebServiceGroupConfig  :-moz-placeholder { text-transform: uppercase; } /* FF 18- */
+#WebServiceGroupConfig  .placeholder { text-transform: uppercase; } /* for the polyfill */
+
+.configGroup {    
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+#WebServiceGroupDashboardViewContent .WebServiceKeyBox {
+    width: 60%;
+}
+
+#WebServiceGroupDashboardViewContent a.WebServiceTestLink {
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 168, 224);
+    padding: 0px 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+#WebServiceGroupDashboardViewContent a.LinkToLatestExperiment {
+    margin-left: 20px;
+}
+
+
+
+
+

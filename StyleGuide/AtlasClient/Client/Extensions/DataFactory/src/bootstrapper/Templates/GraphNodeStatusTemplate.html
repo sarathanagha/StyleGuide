@@ -1,0 +1,8 @@
+<!-- ko if: shouldDisplay -->
+<div data-bind="foreach: {data: nodeStatus, as: 'statusRow'}" class="dataFactory-diagram-statusBoxes">
+    <div data-bind="foreach: {data: statusRow, as: 'statusBox'}" class="row" style="height: 9px">
+        <div class="col grow" data-bind="statusBox: statusBox"></div>
+    </div>
+</div>
+<div style="position: absolute; top: 0px; left: 0px; height: 30px; width: 100%;"></div>
+<!-- /ko -->

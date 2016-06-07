@@ -1,0 +1,84 @@
+@import "../../../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+
+@mixin sidePanelMargin()
+{
+    margin:20px;
+}
+
+.powerbi-panel
+{
+    a
+    {
+        color: $atlasDarkTeal !important;
+        text-decoration: none;
+    }
+
+    .resource-header
+    {
+        @include fontStyleMediumRegular();
+        color: $grayLightColor;
+
+        &.bold {
+            font-weight: 700;
+        }
+    }
+
+    .resource-contents
+    {
+        @include fontStyleMediumRegular();
+        color: $darkestGray;
+        display: inline-block;
+
+        ul 
+        {
+            padding-left: 30px;
+            margin: 0;
+        }
+    }
+
+    .resource-container
+    {
+        @include sidePanelMargin();
+    }
+
+    .horizontalBar
+    {
+        display:block;
+        height: 2px;
+        background: $cloudColor;
+        @include sidePanelMargin();
+    }
+
+    // TODO: stpryor: These shared styles need to be extracted for easier sharing
+    //                This code was copied from details.scss
+    .detail
+    {
+        @include fontStyleExtraSmallSemiBold();
+        @include sidePanelMargin();
+        height: 100%;
+
+        a
+        {
+            @include fontStyleExtraSmallSemiBold();
+            align-content: flex-start;
+            align-items: flex-start;
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+
+        .inline {
+            margin-top: 0px;
+            display: inline;
+        }
+
+        h4
+        {
+            @include fontStyleSmallBold();
+            margin-bottom: 20px;
+        }
+    }
+}

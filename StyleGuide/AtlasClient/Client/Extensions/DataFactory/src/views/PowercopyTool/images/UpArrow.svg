@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#010101;}
+	.st1{fill:none;}
+</style>
+<symbol  id="acending" viewBox="0 -16 16 16">
+	<polygon class="st0" points="2.8,-7.1 7.3,-2.6 7.3,-16 8.7,-16 8.7,-2.6 13.2,-7.1 14.1,-6.1 8,0 1.9,-6.1 	"/>
+	<polygon class="st1" points="0,0 16,0 16,-16 0,-16 	"/>
+</symbol>
+<use xlink:href="#acending"  width="16" height="16" id="XMLID_36_" x="0" y="-16" transform="matrix(1 0 0 -1 2.672276e-006 2.199158e-008)" style="overflow:visible;"/>
+</svg>

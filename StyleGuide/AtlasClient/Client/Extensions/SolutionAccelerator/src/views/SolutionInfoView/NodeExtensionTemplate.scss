@@ -1,0 +1,321 @@
+@import "../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+
+@mixin graphNodeTitleFont
+{
+    font: Segoe UI;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+@mixin graphNodeDescriptionFont
+{
+    font: Segoe UI;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+@mixin hyperlinkFont
+{
+    font: Segoe UI Semibold;
+    font-size: 11px;
+}
+
+@mixin overflowEllipse
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin nodeDisplayNameStyle()
+{
+    @include graphNodeTitleFont();
+    color: white;
+    padding-left: 10px;
+    width: calc(100% - 10px);
+}
+
+@mixin statusText($text)
+{
+    .statusText:before
+    {
+        content: $text;
+    }
+}
+
+@mixin status($className, $color, $text)
+{
+    &.#{$className}
+    {
+        .statusBar
+        {
+            background-color: $color;
+        }
+
+        .statusText
+        {
+            color: $color;
+        }
+
+        @include statusText($text);
+    }
+}
+
+.azc-graph-node-container
+{
+    overflow: visible !important;
+}
+
+.azc-br-selected
+{
+    border-color: #046b99 !important;
+    border-width: 3px !important;
+}
+
+.dottedNode
+{
+    background-color: transparent !important;
+    border: 2px dotted #55606E !important;
+}
+
+.descriptionBox
+{
+    background-color: #4A535F;
+    padding: 20px;
+    position: absolute;
+    right: -244px;
+    bottom: -13px;
+    width: 200px;
+    z-index: 5;
+
+    .arrowdiv
+    {
+        background: #4A535F;
+        height: 16px;
+        position: absolute;
+        bottom: 18px;
+        left: -7px;
+        width: 16px;
+        -ms-transform: rotate(45deg); /* IE9 */
+        -moz-transform: rotate(45deg); /* FF3.5/3.6 */
+        -o-transform: rotate(45deg); /* Opera 10.5 */
+        -webkit-transform: rotate(45deg); /* Saf3.1+ */
+        transform: rotate(45deg); /* Newer browsers */
+    }
+
+    .nodedescription
+    {
+        @include overflowEllipse();
+
+        .infoBoxTitle
+        {
+            color: #FFF;
+            padding-bottom: 12px;
+        }
+
+        .infoBoxDescription
+        {
+            @include graphNodeTitleFont();
+            color: $grayLightestColor;
+            display: block;
+            line-height: 17px;
+
+            a
+            {
+                @include hyperlinkFont();
+                align-content: flex-start;
+                align-items: flex-start;
+                align-self: stretch;
+                color: #0099BC;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                margin-top: 10px;
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+// todo (sbian): move the constant to datastudio\src constants.scss when we figuring the versioning among branches
+$runningYellow: #EAA300;
+
+.updatingNode
+{
+    /* Individual Statuses */
+    @include status(waitfordeploy, $darkSlateColor, "Not Deployed");
+    @include status(inprogress, $runningYellow, "In Progress...");
+    @include status(succeeded, $successGreen, "Deployed");
+    @include status(failed, $errorRed, "Failed");
+    @include status(stopped, $darkCloudColor, "Stopped");
+    @include status(deleting, #ABADAF, "Deleting...");
+    @include status(deleted, #ABADAF, "Deleted");
+    @include status(staticnode, #FFF, "&nbsp;");
+    background-color: white;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+
+    .click-container 
+    {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    &.power-bi, &.sample-data
+    {
+        .statusBar
+        {
+            background-color: #55606E;
+            /*border-bottom: 1px solid #D3D3D4;*/
+        }
+
+        @include statusText("" !important);
+    }
+    &.existing-resource
+    {
+        .statusBar
+        {
+            background-color: $successGreen;
+            /*border-bottom: 1px solid #D3D3D4;*/
+        }
+        .statusText
+            {
+            color: $successGreen;
+        }
+        @include statusText("Deployed" !important);
+    }
+    /* Individual Statuses */
+    &.diagnostic
+    {
+        .name
+        {
+            top: 60px;
+        }
+
+        .statusBar
+        {
+            background-color: white !important;
+            border-bottom: thin solid #D3D3D4;
+        }
+
+        .type
+        {
+            color: black !important;
+        }
+
+        .statusText
+        {
+            color: #00B294 !important;
+            text-transform: none !important;
+        }
+
+        @include statusText("" !important);
+    }
+
+    .image
+    {
+        background-size: 100% 100%;
+        bottom: 0;
+        display: inline-block;
+        height: 65px;
+        opacity: .2;
+        position: absolute;
+        right: 0;
+        width: 65px;
+    }
+
+    .infoImage
+    {
+        background-size: 100% 100%;
+        /* TODO: stpryor: This image is changed later on. 
+            We need to move away from using svgs in the 
+            css since it is not possible to dynamically 
+            update the internal structure if color 
+            changes are required */
+        background-image: url("/Images/icons/info.svg");
+        bottom: 5px;
+        color: #D3D3D4;
+        display: inline-block;
+        height: 16px;
+        opacity: .4;
+        position: absolute;
+        right: 10px;
+        width: 16px;
+    }
+
+    .linkImage
+    {
+        background-image: url("./icons/node_arrow-01.svg");
+        background-size: 16px 16px;
+        background-position: 6px 6px;
+        background-repeat: no-repeat;
+        height: 25px;
+        position: absolute;
+        right: 1px;
+        top: -2px;
+        width: 25px;
+    }
+
+    .name
+    {
+        @include graphNodeTitleFont();
+        @include overflowEllipse();
+        font-size: 13px;
+        font-weight: 300;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+        font-style: italic;
+        white-space: nowrap;
+    }
+
+    .statusBar
+    {
+        height: 25px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .statusText
+    {
+        @include graphNodeTitleFont();
+        @include overflowEllipse();
+        font-size: 13px;
+        font-weight: 300;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .type
+    {
+        @include graphNodeTitleFont();
+        @include overflowEllipse();
+        color: white;
+        height: 25px;
+        line-height: 25px;
+        padding-left: 10px;
+        width: calc(100% - 35px);
+        white-space: nowrap;
+    }
+}
+
+.selected .updatingNode {
+    background-color: $darkSlateColor;
+    color: #FFF;
+
+    &.waitfordeploy {
+        .statusText {
+            color: #FFF !important;
+        }
+    }
+
+    .infoImage {
+        background-image: url("/Images/icons/info-white.svg");
+    }
+}

@@ -1,0 +1,12 @@
+﻿<div class="drawer power-surface">
+    <nav role="navigation">
+        <div class="col switch"><img src="/Images/close.svg"></div>
+        <div class="main">
+            <div class="row drawerPanel">
+                <!-- ko if: panelComponentName() -->
+                <div class="col" data-bind='component: panelComponentName()'></div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </nav>
+</div>

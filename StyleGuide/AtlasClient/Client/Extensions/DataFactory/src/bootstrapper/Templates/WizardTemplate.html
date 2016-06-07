@@ -1,0 +1,90 @@
+<div data-bind="stopBindings: true" style="height:100%">
+    <div class="wizardBindingElement">
+        <div class="wizardPanel">
+            <!-- ko foreach: navItems-->
+            <div data-bind="css: {'navItemSelected': selected()}">
+                <div class="navItemContainer" data-bind="event:{click:$parent.selectNavItemByClick},css:{'completed':completed}">
+                    <div class="navItemSpacer">
+                        <div class="navItemNumber" data-bind="text:$index()+1,css:{'completed':completed}">
+                        </div>
+                        <div class="navItemTextContainer">
+                            <div class="navItemText" data-bind="text:wizardStep.displayText,css:{'completed':completed}">
+                            </div>
+                            <!-- ko if: completed-->
+                            <div class="navItemSubheaderText" data-bind="text:wizardStep.subheaderText">
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ko if: selected-->
+                <!-- ko foreach: $parent.pivotGroups -->
+                <div class="pivotContainer" data-bind="event:{click:$parentContext.$parent.selectPivotGroup}, visible:!cloacked()">
+                    <div class="pivotNumberContainer">
+                        <div class="pivotNumber" data-bind="css:{'selected':selected}">
+                            <!-- Show connector line on all pivots except the last one -->
+                            <div data-bind="css:{'completed':completed,'connectorLine': $parentContext.$parent.visiblePivotGroupsCount() !== $index() + 1 }">
+                            </div>
+                            <!-- ko if: completed -->
+                            <div class="pivotSvg">
+                                <svg class='runStatusIcon' viewBox='0 0 16 16' role='img' xmlns:svg='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'
+                                focusable='false'>
+                                    <circle fill="#00B294" cx='8' cy='8' r='8'></circle>
+                                    <path fill="white" d='M3.989,8.469L3.7,8.156C3.625,8.073,3.625,7.942,3.712,7.863l0.835-0.772 c0.04-0.036,0.087-0.055,0.139-0.055c0.059,0,0.111,0.024,0.15,0.067l2.296,2.462l3.951-5.06c0.04-0.051,0.099-0.079,0.162-0.079 c0.048,0,0.091,0.016,0.127,0.044l0.903,0.697c0.044,0.032,0.071,0.079,0.079,0.135c0.004,0.055-0.008,0.111-0.044,0.15 l-5.075,6.497L3.989,8.469z'></path>
+                                </svg>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="pivotText" data-bind="text:displayText"></div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <!-- ko if: hasFinalStep -->
+            <!-- ko if: finalNavItem.selected -->
+            <!-- ko with: finalNavItem -->
+            <div data-bind="css: {'navItemSelected': selected()}">
+                <div class="navItemContainer" data-bind="event:{click:$parent.selectNavItemByClick},css:{'completed':completed}">
+                    <div class="navItemSpacer">
+                        <div class="navItemNumber finalItemNumber">
+                        </div>
+                        <div class="navItemTextContainer">
+                            <div class="navItemText" data-bind="text:wizardStep.displayText,css:{'completed':completed}">
+                            </div>
+                            <!-- ko if: completed-->
+                            <div class="navItemSubheaderText" data-bind="text:wizardStep.subheaderText">
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+        <div class="wizardContentArea" style="overflow:hidden">
+            <div class="wizardHeader">
+                </div>
+            <div class="wizardContent" data-bind="stopBindings:true">
+                <div class="wizardContentClass">
+                </div>
+            </div>
+            <div class="wizardErrorMessage" data-bind="visible:!nextEnabled()">
+                <div style="float:left" class="validationImage failo"></div>
+                <div class="errorMessageText" data-bind="text:errorMessage"></div>
+            </div>
+            <div class="wizardFooter" data-bind="visible:hasPrevNextButtons">
+                <input type="button" value="Previous" data-bind="event:{click: previous}, enable: previousButtonVisible()"
+                       class="btn" />
+                <input type="button" value="Next" data-bind="event:{click:next}, enable:nextEnabled, value: nextButtonText" class="nextButton btn btn-primary" />
+            </div>
+        </div>
+        <div data-bind="css:{'loadingShield':loading}">
+        </div>
+    </div>
+</div>
+
+

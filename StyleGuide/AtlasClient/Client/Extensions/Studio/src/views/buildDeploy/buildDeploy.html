@@ -1,0 +1,14 @@
+﻿<div class="buildDeploy">
+    <div class="center row grow">
+        <div class="modules col" data-bind="foreach: modules">
+            <div data-bind="text: ModuleName, click: $parent.moduleClicked.bind($data), css:{active: $parent.activeModule() === $data}"></div>    
+        </div>
+        <div class="squiggle">
+        </div>
+        <div class="create col">
+            <div class="instructions">Build the blocks for your solution</div>
+            <div class="createButton"><button>Create</button></div>
+        </div>
+    </div>
+</div>
+

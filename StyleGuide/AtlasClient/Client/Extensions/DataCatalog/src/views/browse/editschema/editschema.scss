@@ -1,0 +1,93 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#edit-schema {
+    @include absolute();
+    font-size: 12px;
+
+    .tool-bar {
+        position:absolute;
+        left: 30px;
+        top: 30px;
+
+        .tool-bar-button {
+            display: inline-block;
+            cursor: pointer;
+            padding: 3px 5px;
+            font-size: 14px;
+            text-decoration: none;
+            text-transform: capitalize;
+            height: 28px;
+            line-height: 20px;
+        
+            &.disabled {
+                @include opacity(.5);
+                cursor: default;
+            }
+        }
+    }
+
+    .scrollable-table {
+        padding: 0 30px;
+        position: absolute;
+
+        &.header {
+            top: 63px;
+            left: 0;
+            right: 0;
+            height: 27px;
+        }
+
+        &.content {
+            padding: 0 13px 0 30px;
+            top: 93px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            overflow-x: auto;
+            overflow-y: scroll;
+            zoom: 1;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+
+            th {
+                text-transform: capitalize;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $body-color-light: $default-body-color-light;
+        $font-color-light: $default-font-color-light;
+        $font-color-med: $default-font-color-med;
+        $input-text-color: $default-input-text-color;
+        $input-outline: $default-input-outline;
+        $body-navigation-selected-color: $default-navigation-selected-color;
+
+        & {
+
+            .tool-bar-button {
+                color: $font-color-light;
+                background: $body-navigation-selected-color;
+                border: 1px solid $body-navigation-selected-color;
+            }
+
+            table {
+                th {
+                    background-color: $light-border;
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

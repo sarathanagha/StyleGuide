@@ -1,0 +1,17 @@
+﻿<div class="adfDiagramWidget col grow" data-bind="stopBindings: true">
+    <div class="adfGraphNodeStatusFlyout">
+        <div class="flyoutContent" data-bind="statusCalendar: {id: 'graphNodeStatusHover', viewModel: statusCalendar}, telemetry: {areaId: 'TableStatusHover', configs: ['click']}"></div>
+    </div>
+    <div class="vivaGraphControl row grow azc-light-theme" style="position: relative" data-bind="stopBindings: true"></div>
+    <div class="row adf-diagramToolbar">
+        <div id="diagramToolbar" class="adf-darkIconToolbar centerY row shrink" data-win-control="WinJS.UI.ToolBar" data-win-options="{data: DataFactory.WinJSExtensions.DiagramToolbar.commandList}"></div>
+        <div class="adf-statusText col shrink centerY wrap">
+            <div class="dataFactory-text-ellipsis" data-bind="titleText: diagramViewModel.layoutStatus"></div>
+        </div>
+    </div>
+    <!-- ko if: diagramViewModel.diagramStatus -->
+    <div class="absoluteFill center">
+        <div class="dataFactory-text-ellipsis" data-bind="titleText: diagramViewModel.diagramStatus"></div>
+    </div>
+    <!-- /ko -->
+</div>

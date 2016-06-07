@@ -1,0 +1,59 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-details ul.details-tabs {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  height: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 2; }
+  #browse-details ul.details-tabs li {
+    display: inline-block; }
+    #browse-details ul.details-tabs li a {
+      cursor: pointer;
+      font-size: 15px;
+      text-transform: capitalize;
+      padding-right: 20px;
+      text-decoration: none;
+      position: relative;
+      top: 2px; }
+
+#browse-details .details-content {
+  top: 25px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+
+#browse-details ul.details-tabs li a {
+  color: #8A96A2; }
+  #browse-details ul.details-tabs li a.active {
+    color: #006F94; }
+
+#browse-details-empty {
+  position: relative;
+  top: 22px; }
+  #browse-details-empty span {
+    margin-left: 30px;
+    font-size: 14px;
+    color: #474F5A; }
+  #browse-details-empty img {
+    position: absolute;
+    margin-left: -120px; }
+
+.bottom-panel.expanded #browse-details ul.details-tabs {
+  top: 10px; }
+
+/*# sourceMappingURL=details.css.map */

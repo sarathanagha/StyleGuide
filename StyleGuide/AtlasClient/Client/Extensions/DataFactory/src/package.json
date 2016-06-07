@@ -1,0 +1,10 @@
+{
+  "name": "@ms-atlas-module/datastudio-datafactory",
+  "version": "0.1.35",
+  "description": "Azure Data Studio DataFactory Module.",
+  "license": "Microsoft Corporation",
+  "main": "bootstrapper/startup.js",
+  "repository": {},
+  "dependencies": {
+  }
+}

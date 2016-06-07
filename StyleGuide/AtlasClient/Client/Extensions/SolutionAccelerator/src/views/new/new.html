@@ -1,0 +1,103 @@
+<div class="new-solution-container">
+    <!-- ko ifnot: solutionType() -->
+        <div class="no-selection-message">
+            Invalid solution type provided.
+            <br />
+            <br />
+            <a href="http://gallery.cortanaanalytics-int.com/?newazureml=1">Visit the gallery</a> to deploy a valid <br />
+            Solution Accelerator.
+        </div>
+    <!-- /ko -->
+    <!-- ko if: solutionType() -->
+        <div class="solution-header">
+            <span data-bind="text: solutionName()"></span>
+            <span class="solution-type" data-bind="text: solutionTypeDisplayName()"></span>
+        </div>
+        <div data-bind="datastudio-ux-modal: { isVisible: isVisible, modalContainerClass: 'deployment-wizard-modal', disableFadeClose: true }">
+            <div class="wizard-header">Deploy Solution</div>
+            <span class="close-wizard-btn" data-bind="click: close"></span>
+
+            <div data-bind="visible: selectedSection() === 0">
+                <div class="wizard-sub-header">Solution details</div>
+                <div class="wizard-description">
+                    Provide a name to your solution and select the Azure subscription you would like to deploy this solution to.
+                </div>
+
+                <label for="newSolution_solutionName">Solution name</label>
+                <input type="text"
+                       id="newSolution_solutionName"
+                       placeholder="<Enter Solution Name>"
+                       data-bind="value: solutionName,
+                                        valueUpdate: ['afterkeydown', 'input'],
+                                        css: {error: solutionName() && !solutionName.isValid()}">
+                <div class="input-validation-message" data-bind="css: { error: solutionName() && !solutionName.isValid() }">
+                    Solution names can only contain lowercase letters and numbers. 17 characters max.
+                </div>
+
+                <label for="newSolution_subscription">Subscription Id</label>
+                <select id="newSolution_subscription" data-bind="options: subscriptionArray, optionsText: 'displayName', value: subscription, optionsCaption: 'Select a subscription'"></select>
+
+                <label class="terms">
+                    <input class="checkboxclass" type="checkbox" data-bind="checked: isTermsAndConditionsAccepted" />
+                    I agree to the <a href="https://azure.microsoft.com/en-us/support/legal/" target="_blank">Terms and Conditions</a>
+                </label>
+            </div>
+
+            <!-- ko if: solutionType() !== 'anomalydetection' -->
+            <div data-bind="visible: selectedSection() === 1">
+                <div class="wizard-sub-header">Azure SQL Database</div>
+                <div class="wizard-description">
+                    This solution will create an Azure SQL database in your subscription.
+                    Specify a username and password that will be used to access the database.
+                </div>
+
+                <label for="newSolution_username">Login username</label>
+                <input type="text" id="newSolution_username" data-bind="value: userName , valueUpdate: ['afterkeydown', 'input'], css: {error: userName() && !userName.isValid()}" />
+                <div class="input-validation-message error" data-bind="css: { error: userName() && !userName.isValid() }">
+                    Username can contain letters, numbers, _, @, $, or # characters, starting with either _ or a letter. 128 character max.
+                </div>
+
+                <label for="newSolution_password">Password</label>
+                <input type="password" id="newSolution_password" data-bind="value: password, valueUpdate: ['afterkeydown', 'input'], css: {error: password() && !password.isValid()}" />
+                <div class="input-validation-message" data-bind="css: { error: password() && !password.isValid() }">
+                    Passwords contain 8 to 128 characters chosen from three of the following four categories: lowercase letters, uppercase letters, numbers, and special characters other than the ' character.
+                    Your username cannot be part of your password.
+                </div>
+
+                <label for="newSolution_passwordConfirmation">Confirm password</label>
+                <input type="password" id="newSolution_passwordConfirmation" data-bind="value: confirmPassword, valueUpdate: ['afterkeydown', 'input'], css: {error: confirmPassword() && !confirmPassword.isValid()}" />
+                <div class="input-validation-message error" data-bind="visible: confirmPassword() && !confirmPassword.isValid()">
+                    Password should match
+                </div>
+                <div class="wizard-description" data-bind="visible: failedToDeploy">
+                    Deployment failed with the following response: <span data-bind="text: failureMessage"></span>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: solutionType() === 'anomalydetection' -->
+            <div data-bind="visible: selectedSection() === 1">
+                <div class="wizard-sub-header">Microsoft Azure Marketplace</div>
+                <div class="wizard-description">
+                    Sign up for <a href="https://datamarket.azure.com/dataset/aml_labs/anomalydetection" target="_blank">Azure Marketplace Anomaly detection</a> and provide us the primary key
+                </div>
+
+                <label for="newSolution_primaryKey">Primary Key</label>
+                <input type="text" id="newSolution_primaryKey" data-bind="value: marketPlaceApiKey, valueUpdate: ['afterkeydown', 'input'], css: {error: marketPlaceApiKey() && !marketPlaceApiKey.isValid()}"/>
+                <div class="input-validation-message error" data-bind="css: { error: marketPlaceApiKey() && !marketPlaceApiKey.isValid() }">
+                    Api key cannot be empty
+                </div>
+
+                <div class="wizard-description" data-bind="visible: failedToDeploy">
+                    Deployment failed with the following response: <span data-bind="text: failureMessage"></span>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="modal-action-btns">
+                <input type="button" class="btn btn-primary" data-bind="visible: selectedSection() != 0, click: backBtn" value="Back">
+                <input type="button" class="btn btn-primary" data-bind="visible: selectedSection() < 1, enable: enableNextButton, click: nextBtn" value="Next">
+                <input type="button" class="btn btn-primary" data-bind="click: deploy, enable: enableDeployButton, visible: selectedSection() === 1" value="Deploy">
+            </div>
+        </div>
+    <!-- /ko -->
+</div>

@@ -1,0 +1,33 @@
+﻿<div class="verticalFlex" style="height:100%">
+    <div class="verticallyResizableSubordinant">
+        <div class="wizardStepTitle">
+            File format settings
+        </div>
+        <div class="wizardStepSubtitle">
+        </div>
+
+        <!-- ko with: fileFormatViewModel -->
+        <div data-bind="htmlWith: {template: hierarchicalFileSettingsTemplate}"></div>
+        <div data-bind="event:{click:toggleAdvancedSettingsVisible}" style="cursor:pointer">
+            <div class="expander" data-bind="css:{expanded:advancedSettingsVisible}"></div>
+            <div class="sectionTitle">
+                Advanced settings
+            </div>
+        </div>
+        <div data-bind="visible:advancedSettingsVisible">
+            <div data-bind="htmlWith: {template: hierarchicalAdvancedSettingsTemplate}"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- ko if: isSource -->
+    <div class="verticallyResizableMasterPreviewAndSchema" data-bind="splitter:{startSize: '25%',location:'top',key: 'copyToolBlobPreviewPanel'}">
+        %%PREVIEWANDSCHEMA%%
+        <div>
+            <div data-bind="visible:isDirectory, callout: {innerHtml: 'When folder is selected, first file from the folder is selected for preview and schema setting. Service assumes that all files to be copied within the directory have the same format and structure'}" class="infoDiv">
+            </div>
+            <span class="temp">Filename:</span>
+            <span class="temp" data-bind="text:previewFile"></span>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

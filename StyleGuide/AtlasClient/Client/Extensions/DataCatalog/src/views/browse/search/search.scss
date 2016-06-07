@@ -1,0 +1,102 @@
+﻿@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/commandBar.scss";
+
+$toggle-width: 35px;
+$toggle-circle-width: 18px;
+
+.datacatalog-container {
+    #search {
+        height: $search-panel-height;
+        width: 100%;
+        border-bottom: 1px solid $lightCanvas;
+
+        .search-spacer {
+            padding-left: 8px;
+            margin-left: 8px;
+            display: inline-block;
+            height: $search-box-height;
+            border-left: 1px solid $cloud;
+        }
+
+        .search-page-title {
+            color: $grayDarkest;
+            margin-left: 4px;
+            margin-right: 0px;
+            padding: 0;
+        }
+
+        .dropdown-menu {
+            display: none;
+            border-radius: 0;
+            font-size: 12px;
+            margin: 0;
+            padding: 3px 0;
+            left: -1px;
+
+            &.numbers {
+                left: auto;
+                right: -1px;
+                min-width: 73px;
+
+                a {
+                    text-align: right;
+                }
+            }
+        }
+
+        .slide-toggle-container {
+            align-items: center;
+
+            .slide-toggle {
+                height: 30px;
+                width: $toggle-width;
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                margin-left: 8px;
+
+                .line {
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    @include vertical-center();
+                    background-color: $waveBlue;
+                }
+
+                .circle {
+                    position: absolute;
+                    height: $toggle-circle-width;
+                    width: $toggle-circle-width;
+                    @include vertical-center();
+                    border-radius: 100%;
+                    @include transition(left .1s ease-out);
+                    left: $toggle-width - $toggle-circle-width;
+                    border: 1px solid $white;
+                    background-color: $waveBlue;
+
+                    &:after {
+                        content: "";
+                        height: 20px;
+                        width: 1px;
+                        display: inline-block;
+                        left: -1px;
+                        position: absolute;
+                    }
+                }
+
+                &.off {
+                    .circle {
+                        left: 0;
+                        background-color: $white;
+                        border-color: $waveBlue;
+
+                        &:after {
+                            left: 17px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

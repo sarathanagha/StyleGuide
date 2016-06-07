@@ -1,0 +1,194 @@
+﻿@import 'fonts';
+@import 'colors';
+
+
+/* ::::::::::datepicker style guide:::::::::: */
+.datastudio {
+
+    #ui-datepicker-div{
+        width: 220px;
+        padding: 16px;
+    }
+    .datepicker-wrapper{
+        *border-bottom-width: 2px;
+        *border-right-width: 2px;
+        -moz-background-clip: padding;
+        -moz-border-radius: 5px;
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        -webkit-background-clip: padding-box;
+        -webkit-border-radius: 5px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        background-clip: padding-box;
+        background-color: $white!important;
+        border-radius: 5px;
+        border: 1px solid $neutralTertiaryColorAlt2;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        color: #333;
+        font-family: Segoe UI;
+        font-size: 13px;
+        line-height: 20px;
+        list-style: none;
+        padding: 16px;
+        width: 220px;
+
+        button{
+        padding:.2em!important;  
+        min-width: 95px!important;
+        border-radius:0px!important;
+        }
+   
+    .ui-datepicker{
+        width:auto!important;
+        padding:0px !important;
+        background-color:$white!important;        
+
+        td a,span{
+        padding: 0px!important;
+        padding: 0px!important;
+        text-align: center!important;
+        }
+
+       .ui-datepicker-buttonpane{
+            margin: 24px 0 0 0!important;
+        }          
+
+    }
+
+   
+
+    .ui-datepicker-calendar tbody tr td{
+        background-color:$white!important;
+        border:2px solid $white;
+
+        &:hover{
+          border:2px solid $themePrimaryDarkColor!important;   
+          color:$white!important;
+        }
+    }
+
+    .ui_tpicker_hour_slider{
+         width: 125px;
+         height: 8px;
+         background: $neutralLighter;
+         box-shadow:none;
+         border:none;
+         padding:1px;
+
+    }
+    .ui-slider-handle{
+        -webkit-appearance: none;
+        border: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background:$white;
+        border:3px solid $themePrimaryColor;
+        margin-top: -4px;
+
+        &:hover{
+         background:$themePrimaryColor;
+         border:2px solid $themePrimaryColor;
+        }
+        &:active{
+         background:$themePrimaryColor;
+         border:2px solid $themePrimaryDarkColor;
+        }
+    }
+    .ui_tpicker_minute_slider{
+         width: 125px;
+         height: 8px;
+         background: $neutralLighter;
+         box-shadow:none;
+         border:none;
+         padding:1px;
+     }
+
+
+    .ui-timepicker-div dl dt{
+        font-size:12px;
+        font-weight:normal;
+    }
+
+   .ui-datepicker-calendar tbody tr .ui-datepicker-current-day{
+         background:$themePrimaryColor;
+   }
+   .ui-datepicker-next-hover, .ui-datepicker-prev-hover{
+        background:$neutralLighter;
+        color:$themeSecondaryDarkColor;
+    }
+
+    .ui-icon-circle-triangle-e{
+        &:hover{
+        color:$themeSecondaryColor;
+        background: url(/Images/icons/collapse-left.svg)!important;
+        }
+    }
+
+    .ui-icon-circle-triangle-w{
+        &:hover{
+            color:$themeSecondaryColor;
+            background: url(/Images/icons/collapse-left.svg)!important;
+        }
+
+    }
+    .ui-datepicker-title{
+        color:$themeSecondaryDarkColor;
+    }
+
+    .ui-datepicker-calendar tbody tr td{
+    width:30px;
+    height:30px;
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+
+    }
+    
+
+    .ui-state-active{
+        background-color:$themePrimaryDarkColor;
+        border:2px solid $themePrimaryDarkColor;
+        color:$white;
+    }
+    .ui-state-hover{
+        color:$grayDarkest;
+   
+    }
+    .ui-widget-content{
+        border:none;
+    }
+   
+
+    .ui-datepicker-calendar tbody tr .ui-datepicker-current-day a{
+        color: white;
+        padding: 0px;
+        border: 0px solid $themePrimaryDarkColor!important;
+
+    }
+     .ui-datepicker-calendar tbody tr .ui-datepicker-current-day{
+        border: 2px solid $themePrimaryDarkColor!important;
+        background-color: $themePrimaryDarkColor!important;
+    }
+
+
+} 
+
+
+.showDtaepicker{
+    position: relative;
+    top: 100px;
+    left: 200px;
+}
+
+
+.ui-timepicker-div dl dd{
+      margin: 0 10px 20px 40%;
+}
+.dt.ui_tpicker_time_label{
+    color: $grayDarkest;
+}
+
+
+
+}

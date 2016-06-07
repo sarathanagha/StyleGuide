@@ -1,0 +1,16 @@
+﻿<div class="adf-breadcrumb col row centerY shrink dataFactory-text-ellipsis">
+    <!-- ko if: itemList().length > 0 -->
+    <div class="back_arrow" data-bind="winjsbutton:{options: backArrow}"></div>
+    <!-- /ko -->
+    <!-- ko foreach: itemList -->
+    <a data-bind="attr:{title:displayText}, click: nodeClickedCallback">
+        <span data-bind="text:displayText"></span>
+    </a>
+    <span class="seperator">/</span>
+    <!-- /ko -->
+    <!-- ko if: activeItem -->
+    <!-- ko with: activeItem -->
+    <span class="active" data-bind="text: displayText, attr:{title:displayText}"></span>
+    <!-- /ko -->
+    <!-- /ko -->
+</div>

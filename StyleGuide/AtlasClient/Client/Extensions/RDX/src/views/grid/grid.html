@@ -1,0 +1,13 @@
+﻿<div class="gridWrapper">
+    <div class="progressBar" data-bind="component: {name: 'rdx-progressBar', params: {progressMessage: grid.progressMessage, progressPercentage: grid.progressPercentage}}"></div>
+    <div class="navTabWrapper">
+        <span class="navTab selected">Table</span>
+    </div>
+    <div class="gridContentWrapper" data-bind="slideVisible: visible">
+        <div class="gridValuesWrapper">
+            <div class="columns" onmousewheel="ko.dataFor(this).handleMousewheel('columns')"></div>
+            <div class="grid" onscroll="ko.dataFor(this).handleMousewheel('grid')" onmousewheel="ko.dataFor(this).handleMousewheel('grid')">
+            </div>
+        </div>
+    </div>
+</div>

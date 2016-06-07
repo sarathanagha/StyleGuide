@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{56C93C92-CC84-40B6-8768-0D8521668D29}</ProjectGuid>
+    <TypeScriptOutFile>..\..\bin\Module.js</TypeScriptOutFile>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="DesignGuideModule.ts" />
+    <TypeScriptCompile Include="LoggerFactory.ts" />
+    <TypeScriptCompile Include="Config\DesignGuideConfig.ts" />
+    <TypeScriptCompile Include="knockout\BindingHandler.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

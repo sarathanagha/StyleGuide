@@ -1,0 +1,7 @@
+﻿<div class="helpBubbleWrapper" data-bind="visible: message">
+    <div class="helpIcon" data-bind="click: function(){showMessage(!showMessage()); event.stopPropagation();}"></div>
+    <div class="helpContentWrapper" data-bind="visible: showMessage, click: function(){event.stopPropagation()}">
+        <div class="helpContentMessageCaret" data-bind="css: {bottom: direction() == 'bottom'}"></div>
+        <div class="helpContentMessage" data-bind="html: message, css: {bottom: direction() == 'bottom'}"></div>
+    </div>
+</div>

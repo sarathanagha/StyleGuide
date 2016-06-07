@@ -1,0 +1,287 @@
+﻿@import "../../stylesheets/Framework/Base/layoutBase";
+@import "../../stylesheets/Common/_shellConstants";
+
+$atlas-green: #03b092;
+$atlas-dark-green: #328b7c;
+$atlas-mediumDark-grey: #ccc;
+$atlas-medium-grey: #dbdde0;
+$atlas-light-grey: #e6e6e6;
+$atlas-light-canvas: #F2F2F2;
+$atlas-reserve-white: #fff;
+$atlas-dark-cloud: #B5B7B9;
+
+$sidePanel-bgcolor: $atlas-light-canvas;
+$rightSidePanel-tabs-bgColor: $atlas-dark-cloud;
+$sidePanel-tabs-bgcolor: $atlas-green;
+$sidePanel-tabs-fontColor: $atlas-reserve-white;
+$sidePanel-tabs-hoverColor: $atlas-dark-green;
+$sidePanel-tabs-active-hoverColor: $atlas-mediumDark-grey;
+$sidePanel-tabs-active-fontColor: $atlas-green;
+$topPanel-search-bgcolor: $atlas-reserve-white;
+$rightSidePanel-tabs-hoverColor: $atlasDarkCloudColor10PercentDarker;
+$rightSidePanel-tabs-active-hoverColor: $atlasLightCanvasColor10percentDarker;
+
+$panelPaddingWidth: 15px;
+
+.mainArea {
+
+  height: calc(100vh - 138px);
+
+  .topPanel {
+    height: 3em;
+    min-height: 3em;
+    max-height: 3em;
+    padding-left: 0.5em;
+    padding-right: 1em;
+
+    .searchBox {
+      input {
+        outline-width: 0;
+        background: $topPanel-search-bgcolor;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .editorArea {
+      overflow: hidden;
+      @extend %position.relative;
+  }
+
+  .centerPanel {
+      overflow: hidden;
+  }
+}
+
+
+.dataConnectHome {
+    .col2 {
+      display: none; /* TODO: for demo - need redesign this layout to reflow second column */
+    }
+}
+
+$tabColumnSize: 48px; /* TODO make it resizable. */
+
+.leftSidePanel .panels {
+    width: calc(100% - #{$tabColumnSize});
+}
+
+.absoluteFill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+%sidePanelBase {
+  @extend %position.relative;
+  $sidePanelBaseWidth: 300px;
+  $sidePanelMinWidth: 200px;
+  width: $sidePanelBaseWidth;
+  min-width: $sidePanelMinWidth;
+  max-width: calc(100vw - #{$sidePanelMinWidth});
+  
+  
+  $backgroundColor: $sidePanel-bgcolor;
+  background-color: $backgroundColor;
+
+  .switch {
+    @extend %position.absolute;
+    font-weight: bold;
+    top: 15px;
+  }
+
+  .tabs {
+    .tab {
+      width: $tabColumnSize;
+      min-width: $tabColumnSize;
+      max-width: $tabColumnSize;
+      height: $tabColumnSize;
+      min-height: $tabColumnSize;
+      max-height: $tabColumnSize;
+      display: flex;
+      
+      svg {
+        $tabIconSize: 25px;
+        width: $tabIconSize;
+        height: $tabIconSize;
+        
+        @include svg-icon-styles(white);
+      }
+    }
+
+    .tab.active {
+      background-color: $backgroundColor;
+      
+      svg {
+        @include svg-icon-styles($charcoalColor);
+      }
+    }
+
+    hr {
+      border-top: 1px solid #f7f7f7;
+    }
+  }
+
+  .panels {
+    overflow: hidden;
+  }
+
+  .panelContent {
+    background-color: $backgroundColor;
+    @extend %scroll;
+    @include atlasScroll();
+
+    > div {
+      @extend %grow;
+      height: calc(100% - #{2 * $panelPaddingWidth});
+      padding: $panelPaddingWidth;
+      // paverma The panel should allow for x-axis scrolling too, hence this should be
+      // removed.
+      overflow-x:hidden; 
+    }
+
+    > .row {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .searchBox {
+      min-width: 5em;
+      width: 100%;
+
+      input {
+        height: 1.5em;
+        outline-width: 0;
+      }
+    }
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+  }
+}
+
+%sidePanelBase.collapsed {
+  $sidePanelCollapsedWidth: $tabColumnSize;
+  width: $sidePanelCollapsedWidth;
+  min-width: $sidePanelCollapsedWidth;
+  max-width: $sidePanelCollapsedWidth;
+  
+  .switch {
+    display: none;
+  }
+}
+
+.leftSidePanel {
+  @extend %sidePanelBase;
+  background-color: $sidePanel-tabs-bgcolor;
+
+  .panels {
+    background-color: $sidePanel-bgcolor;
+  }
+  
+  .panelContent {
+    // TODO iannight: fix hack
+    margin-top: 48px;
+    width: 100%;
+
+    > div {
+        flex: 1 0 auto;
+    }
+    
+    .panelHeaderContainer {
+        // TODO tilarden or iannight: this is a work-around to reposition the left panel titles, 
+        // In future it would be good if the Shell supports a title field that can be set in the view config.
+        position: absolute;
+        top: 15px;
+        left: #{$tabColumnSize + 15px};
+        right: 31px;
+    }
+  }
+  
+  .tabs {
+    color: $sidePanel-tabs-fontColor;
+    .tab {
+      font-size: 1.2em;
+      img {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+  
+  .tab.active {
+    color: $sidePanel-tabs-active-fontColor;
+  }
+  
+  .tab:hover {
+     background-color: $sidePanel-tabs-hoverColor;
+  }
+
+  .tab.active:hover {
+     background-color: $sidePanel-tabs-active-hoverColor;
+  }
+  
+  .switch {
+    right: 16px;
+  }
+}
+
+.rightSidePanel {
+  @extend %sidePanelBase;
+  
+  .panelContent {
+    width: 100%;
+  }
+  
+  .tabs {
+    background-color: $rightSidePanel-tabs-bgColor;
+    
+    .tab {
+      cursor: pointer;
+      font-size: 1.2em;
+      img {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+  
+  .tab:hover {
+     background-color: $rightSidePanel-tabs-hoverColor;
+  }
+  
+   .tab.active:hover {
+     background-color: $rightSidePanel-tabs-active-hoverColor;
+  }
+  
+  .switch {
+    right: 15px;
+    top: 15px;
+    &.icon-Atlas_collapse {
+      display:none;
+    }
+  }
+}
+
+.rightSidePanel.collapsed .tabs {
+  /* this rule flips row into column when panel collapsed */
+  @extend %col;
+}
+
+.designArea > div {
+  @extend %col;
+  @extend %grow;
+}
+
+.switch
+{
+    background-image: url(../../content/images/close.svg);
+    background-repeat: no-repeat;
+    min-height: 1em;
+    min-width: 1em;
+}
+
+

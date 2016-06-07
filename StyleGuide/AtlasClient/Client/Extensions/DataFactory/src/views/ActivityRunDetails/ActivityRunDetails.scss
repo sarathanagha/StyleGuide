@@ -1,0 +1,376 @@
+@import "../../stylesheets/_AdfSpecific";
+
+$detailsTitleSize: 18px;
+
+@mixin subtitleStyle {
+    font-family: $boldFont;
+    font-size: 14px;
+    color: $darkCharColor;
+}
+
+@mixin flex {
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin nowrap {
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+// Pass in width as percent
+@mixin flex-basis($width) {
+    -webkit-flex-basis: $width;
+    flex-basis: $width;
+}
+
+@mixin subHeadings {
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+#activityRunDetailsContent {
+    font-family: $regularFont;
+    padding-left: 15px;
+    padding-top: 11px;
+    padding-right: 15px;
+    width: 100%;
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    td {
+        width: 25%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.activityWindowDetailsHeader {
+    display: flex;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
+    font-family: $regularFont;
+    font-size: $detailsTitleSize;
+    color: $darkCharColor;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $darkCloud;
+}
+
+.activityRunDetailsProperty {
+    margin-top: 10px;
+    font-size: 14px;
+    color: $darkGray;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    .hover {
+        color: $atlasTeal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .hover:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    & span:first-child {
+        color: $darkCharColor;
+        padding-bottom: 1px;
+        font-size: 16px;
+    }
+
+    & * {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+#activityRunDetails-statusHTML {
+    .adf-statusImage {
+        margin-right: 5px;
+        padding-top: 3px;
+    }
+
+    svg {
+        height: 15px;
+        width: 15px;
+    }
+}
+
+.rightSidePanelHeader {
+    padding-bottom: 8px;
+}
+
+.rightSidePanelHeader > h4 {
+    font-size: 16px;
+    color: $darkCharColor;
+    margin-top: 5px;
+}
+
+#activityRunDetailAccordion {
+    word-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .accordionItem {
+        padding-top: 20px;
+        border-bottom: 1px solid $darkCloud;
+
+        &.expanded .itemHeader {
+            background-color: $cloudColor;
+        }
+
+        .itemHeader {
+            display: flex;
+            @include nowrap;
+            padding: 10px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            .headerIcon {
+                @include adf-button-dims(20px, 20px);
+                @include flex-basis(0%);
+                margin-top: 1.5px;
+                margin-right: 2.5px;
+
+                & svg {
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+
+            .headerContent {
+                @include flex-basis(100%);
+            }
+        }
+
+        .itemContent {
+            display: block;
+            color: $darkGray;
+            font-size: 13px;
+            padding-left: 12px;
+            padding-right: 12px;
+            margin-bottom: 10px;
+
+            .attemptStatus {
+                @include subtitleStyle;
+                padding-top: 6px;
+                margin-bottom: 5px;
+            }
+
+            .attemptMessage {
+                padding-top: 6px;
+
+                @mixin messageHeight($fontSize, $scale, $numLines) {
+                    height: $fontSize * $scale * $numLines * 1px;
+                }
+
+                $messageFontSize: 12;
+                $messageScale: 1.5;
+
+                font-size: $messageFontSize * 1px;
+                line-height: $messageScale * 100%;
+                color: $darkGray;
+                white-space: pre-line;
+                // Show first n lines: 12px * 150% * n lines
+                &.overflowMessage {
+                    overflow: hidden;
+                    @include messageHeight($messageFontSize, $messageScale, 2);
+                }
+            }
+        }
+    }
+}
+
+.headerChevron {
+    @include adf-button-dims(20px, 20px);
+    text-align: right;
+    float: right;
+
+    & svg {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+.messageExpander {
+    text-transform: uppercase;
+    color: $darkBlueColor;
+    cursor: pointer;
+}
+
+.subSection {
+    padding-top: 24px;
+
+    .subSectionHeader {
+        padding-bottom: 12px;
+        vertical-align: middle;
+
+        .subSectionHeaderIcon {
+            width: 16px;
+            height: 16px;
+            padding-right: 8px;
+        }
+
+        .subSectionHeaderText {
+            @include subtitleStyle;
+            flex-basis: 100%;
+        }
+    }
+}
+
+.attemptLogLink {
+    color: #505050 !important;
+
+    &:hover .sasuri {
+        text-decoration: underline;
+    }
+}
+
+@mixin detailsTableRow {
+    display: flex;
+    @include nowrap;
+    height: 27px;
+    vertical-align: middle;
+    justify-content: space-around;
+
+    div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        flex-wrap: nowrap;
+    }
+}
+
+.upstreamActivityRow {
+    @include detailsTableRow;
+
+    .statusIcon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    }
+
+    .statusText {
+        @include flex-basis(30%);
+        padding-right: 5px;
+    }
+
+    .startDate {
+        @include flex-basis(35%);
+    }
+
+    .endDate {
+        @include flex-basis(35%);
+    }
+
+    .header {
+        @include subtitleStyle;
+    }
+}
+
+.attemptLogRow {
+    @include detailsTableRow;
+
+    .logIcon {
+        width: 16px;
+        height: 16px;
+        padding-right: 8px;
+    }
+
+    .sasuri {
+        @include flex-basis(60%);
+    }
+
+    .date {
+        @include flex-basis(25%);
+    }
+
+    .filesize {
+        @include flex-basis(15%);
+    }
+
+    .date, > .filesize {
+        justify-content: flex-end;
+    }
+}
+
+.adf-rerunCommand {
+    min-width: 10px;
+    max-width: 200px;
+    margin-left: 10px;
+
+    @include flex-basis(0);
+
+    & button.adf-greenButton {
+        min-width: 10px;
+
+        & svg {
+            height: 10px;
+            width: 10px;
+
+            @include svg-icon-styles(white);
+        }
+
+        &:disabled svg {
+            @include svg-icon-styles($darkCloudColor);
+        }
+    }
+}
+
+.activityRunDetailCalendar {
+    min-height: 250px;
+    overflow: auto;
+    width: inherit;
+    @extend %adfScroll;
+    display: flex;
+}
+
+.adf-attemptProperties {
+    display: flex;
+    flex-direction: column;
+}
+
+.activityHeaderText {
+    flex-basis: 100%;
+}
+
+.activityDetails {
+    display: block;
+}
+
+.activityWindowSubsection {
+    @extend col;
+    @extend no-shrink;
+    padding-bottom: 34px;
+}
+
+.activityDetailsToolbar {
+    padding-top: 10px;
+
+    .activityDetails & button.win-command {
+        margin-left: 0px;
+    }
+}
+
+.activityPropertiesWrapper {
+    padding-top: 3px;
+}
+
+span.propertyName {
+    width: 40%;
+}
+
+span.propertyValue {
+    width: 56%;
+}

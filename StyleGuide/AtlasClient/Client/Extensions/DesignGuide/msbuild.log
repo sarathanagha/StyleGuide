@@ -1,0 +1,260 @@
+Build started 6/6/2016 8:26:40 PM.
+     1>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" on node 1 (default targets).
+     1>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" (1) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\DataStudio.Contracts.csproj" (2) on node 1 (default targets).
+     2>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --declaration --module AMD --out "src\datastudio.contracts.js" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\declarations.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\references.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Application\Environment.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Application\IRouter.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Application\IShellContext.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Application\ManagerFactory.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Managers\IAuthenticationManager.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Managers\INotificationManager.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\ICommand.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\INotificationItem.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\IUrl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\IUser.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\Subscriptions.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\Config\ModuleConfig.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\Config\ModuleReferenceConfig.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Model\Config\UserConfig.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Modules\DataStudioModule.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Modules\ModuleCatalog.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Services\IDataHandler.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\Services\UserConfigService.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\UxShell\ContextMenu.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\UxShell\ModuleContext.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\src\scripts\UxShell\Controls\IActionItem.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DataStudio.Contracts -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+     2>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudio.Contracts\DataStudio.Contracts.csproj" (default targets).
+     1>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" (1) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\DataStudio.Diagnostics.csproj" (3) on node 2 (default targets).
+     3>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --declaration --module AMD --out "lib\datastudio.diagnostics.js" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\references.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\HttpClient.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\HttpClientFactory.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\HttpError.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\RetryHttpClient.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\Impl\FetchHttpClient.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Http\Impl\XHR2HttpClient.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Hub\DiagnosticsEvent.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Hub\DiagnosticsEventType.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Hub\DiagnosticsHub.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Hub\SessionData.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Hub\SubscriptionData.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LogEvent.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LogEventData.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\Logger.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LoggerBus.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LoggerData.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LoggerFactory.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LoggerImpl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LoggerSink.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\LogLevel.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\UsageEvent.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\UsageEventType.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\Sinks\BrowserConsoleSink.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Logging\Sinks\DiagnosticsHubSink.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Utils\Assert.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Utils\ObjectUtils.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Utils\PromiseUtils.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\src\Utils\TypeInfo.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DataStudio.Diagnostics -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+     3>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\Diagnostics\DataStudio.Diagnostics.csproj" (default targets).
+     1>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" (1) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\DataStudio.Controls.csproj" (4) on node 3 (default targets).
+     4>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\DataStudio.Controls.csproj" (4) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\DataStudio.Controls.GraphControl.csproj" (6) on node 3 (default targets).
+     6>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --module AMD --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\graphControl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\graphControlExternal.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\Bindings\graphControlBinding.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\VivaGraphControl\loader.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DataStudio.Controls.GraphControl -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+     6>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\GraphControl\DataStudio.Controls.GraphControl.csproj" (default targets).
+     4>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --declaration --module AMD --out "src\lib\datastudio.ux.js" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\menu.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\datepicker.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\requireStylesheets.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\DropDown\DropdownBindingHandler.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\LoaderControl\loaderControlBinding.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\ModalControl\modalControl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\ProgressControl\progressControl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\SelectMenu\SelectMenu.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\SingleContextualMenu\singleContextualMenuControl.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\SplitterControl\splitterControlBinding.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Bindings\svgLoader.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Common\EventListner.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Helpers\keycodes.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Helpers\modalHelper.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Interfaces\controlDefinitions.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Interfaces\IModalInterfaces.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Interfaces\ISelectMenuInterfaces.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Interfaces\IMenuInterfaces.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Managers\modalManager.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Managers\Notifications\Balloon.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Managers\Notifications\NotificationManager.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\Managers\ToasterManager\ToasterManager.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DataStudio.Controls -> 
+       AfterBuild:
+         Copying file from "src\GraphControl\Bindings\graphControlBinding.js" to "src\lib\GraphControl\Bindings\graphControlBinding.js".
+         Copying file from "src\GraphControl\Bindings\graphControlBinding.ts" to "src\lib\GraphControl\Bindings\graphControlBinding.ts".
+         Copying file from "src\GraphControl\graphControl.js" to "src\lib\GraphControl\graphControl.js".
+         Copying file from "src\GraphControl\graphControl.ts" to "src\lib\GraphControl\graphControl.ts".
+         Copying file from "src\GraphControl\graphControlExternal.js" to "src\lib\GraphControl\graphControlExternal.js".
+         Copying file from "src\GraphControl\graphControlExternal.ts" to "src\lib\GraphControl\graphControlExternal.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\d3.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\d3.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\hammer.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\hammer.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Html5.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Html5.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\jquery.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\jquery.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\jquery_viva.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\jquery_viva.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes_viva.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes_viva.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.fxinternals.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout.fxinternals.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout_viva.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\knockout_viva.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Q.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Q.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Q_viva.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\Q_viva.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Definitions\viva_d3.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Definitions\viva_d3.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.Disposable.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.Disposable.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Promise.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Promise.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\ICommand.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\ICommand.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.js".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.d.ts" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.d.ts".
+         Copying file from "src\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.js" to "src\lib\GraphControl\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.js".
+         Copying file from "src\GraphControl\VivaGraphControl\loader.js" to "src\lib\GraphControl\VivaGraphControl\loader.js".
+         Copying file from "src\GraphControl\VivaGraphControl\loader.ts" to "src\lib\GraphControl\VivaGraphControl\loader.ts".
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildSassTasks:
+       Skipping target "GulpBuildSassTasks" because all output files are up-to-date with respect to the input files.
+       GulpStripTasks:
+         Executing the gulp strip task for project: DataStudio.Controls
+         "D:\tfs\dp-main\CAMain\External\OpenSource\nodejs\v4.2.6\node.exe" "D:\tfs\dp-main\CAMain\node_modules\gulp\bin\gulp.js" --gulpfile src/gulpfile-msbuild.js build-fix-dts
+         [20:26:41] Working directory changed to D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src
+         [20:26:42] Using gulpfile D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\src\gulpfile-msbuild.js
+         [20:26:42] Starting 'build-fix-dts'...
+         [20:26:42] Finished 'build-fix-dts' after 20 ms
+         Gulp Exit Code: 0
+     4>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Core\DataStudioUX\DataStudio.Controls.csproj" (default targets).
+     1>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" (1) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\startup\DesignGuide.Bootstrapper.csproj" (5) on node 4 (default targets).
+     5>Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\startup\DesignGuide.Bootstrapper.csproj" (5) is building "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\DesignGuide.Core.csproj" (7) on node 2 (default targets).
+     7>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --declaration --module AMD --out "..\..\bin\Module.js" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\DesignGuideModule.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\LoggerFactory.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\Config\DesignGuideConfig.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\knockout\BindingHandler.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DesignGuide.Core -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+     7>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\scripts\DesignGuide.Core.csproj" (default targets).
+     5>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --module AMD --outDir "..\..\bin" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\startup\Startup.ts"
+       CompileTypeScript:
+       Skipping target "CompileTypeScript" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DesignGuide.Bootstrapper -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+     5>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\startup\DesignGuide.Bootstrapper.csproj" (default targets).
+     1>PreComputeCompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --module AMD --outDir "bin\views\home" --sourcemap --target ES5 --noEmitOnError COMPUTE_PATHS_ONLY "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\about\about.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\component\component.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\design\design.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\home.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\navmodel.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\scrollSpy.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\layout\layout.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\navbar\navbar.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\navigation\navigation.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\patterns\patterns.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\resource\resource.ts"
+       CompileTypeScript:
+         D:\NuGetPackages\Microsoft.TypeScript.SQLIS.1.6.3\v12.0\..\Tools\1.6\tsc.exe  --module AMD --outDir "bin\views\home" --sourcemap --target ES5 --noEmitOnError "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\about\about.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\component\component.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\design\design.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\home.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\navmodel.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\home\scrollSpy.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\layout\layout.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\navbar\navbar.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\navigation\navigation.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\patterns\patterns.ts" "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\resource\resource.ts"
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       VersionGenerateFile:
+       Skipping target "VersionGenerateFile" because all output files are up-to-date with respect to the input files.
+       GetTypeScriptCopyToOutputDirectoryItems:
+         Adding items with BuildAction=TypeScriptCompile to the same collections that will be populated (with items of other BuildActions) by the GetCopyToOutputDirectoryItems target
+       CopyFilesToOutputDirectory:
+         DesignGuide.UX -> 
+       NuGetParseOverwriteItems:
+       Skipping target "NuGetParseOverwriteItems" because it has no outputs.
+       NuGetFindOutputPackageVersion:
+       Skipping target "NuGetFindOutputPackageVersion" because it has no inputs.
+       ProjectCopRunThisProject:
+       Skipping target "ProjectCopRunThisProject" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       GulpBuildTasks:
+       Skipping target "GulpBuildTasks" because all output files are up-to-date with respect to the input files.
+       CopyStaticFiles:
+         Copying file from "src\views\home\design\img\sprite.png" to "bin\views\home\design\img\sprite.png".
+         Copying file from "src\views\home\design\img\sprite.svg" to "bin\views\home\design\img\sprite.svg".
+       GulpSpriteTasks:
+         Executing gulp tasks for project: DesignGuide.UX
+         "D:\tfs\dp-main\CAMain\External\OpenSource\nodejs\v4.2.6\node.exe" "D:\tfs\dp-main\CAMain\node_modules\gulp\bin\gulp.js" --gulpfile gulpfile-msbuild.js build-sprite
+         [20:26:45] Using gulpfile D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\gulpfile-msbuild.js
+         [20:26:45] Starting 'svgSprite'...
+         [20:26:47] Finished 'svgSprite' after 2.32 s
+         [20:26:47] Starting 'build-sprite'...
+         [20:26:49] Converted file: D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\src\views\home\design\img\sprite.png
+         [20:26:49] sprite.png 70.16 kB
+         [20:26:49] Finished 'build-sprite' after 1.67 s
+         Gulp Exit Code: 0
+     1>Done Building Project "D:\tfs\dp-main\CAMain\Product\Source\DataStudioPOC\AtlasClient\Client\Extensions\DesignGuide\DesignGuide.UX.csproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.58

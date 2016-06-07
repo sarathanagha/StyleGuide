@@ -1,0 +1,8 @@
+{
+    "CAV2": {
+        "defaultModule": "designguide",
+        "shellVersion": "ShellV2",
+        "modules": [ "datacatalog", "designguide" ],
+        "applicationName": "cortanaanalytics"
+    }
+}

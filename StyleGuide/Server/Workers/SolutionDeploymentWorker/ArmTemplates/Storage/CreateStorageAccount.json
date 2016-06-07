@@ -1,0 +1,117 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_GRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS",
+                "Premium_LRS"
+            ],
+            "metadata": {
+                "description": "Storage Account type"
+            }
+        },
+        "sqlServerUserName": {
+            "type": "string",
+            "defaultValue": "mylogin"
+        },
+        "sqlServerPassword": {
+            "type": "string", //Should be securestring. But when returning as outputs it comes back as null. Wondering if there is a secure way of getting password out from outputs
+            "defaultValue": "Password!"
+        }
+    },
+    "variables": {
+        "apiVersion": "2014-06-01",
+        "location": "centralus",
+
+        // Storage account
+        "storageAccountName": "[concat(uniquestring(resourceGroup().id, deployment().name))]",
+
+        // SQL Server and Database
+        "sqlServerName": "[concat(uniquestring(resourceGroup().id, deployment().name, '-sqlserver'))]",
+        "databaseName": "[concat(uniquestring(resourceGroup().id, deployment().name, '-database'))]",
+        "edition": "Basic",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": "2147483648",
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "255.255.255.255"
+    },
+    "resources": [
+        /* create a sql server, database and configure ip addresses */
+        {
+            "name": "[variables('sqlServerName')]",
+            "type": "Microsoft.Sql/servers",
+            "location": "[variables('location')]",
+            "apiVersion": "2014-04-01-preview",
+            "properties": {
+                "administratorLogin": "[parameters('sqlServerUserName')]",
+                "administratorLoginPassword": "[parameters('sqlServerPassword')]"
+            },
+            "resources": [
+                {
+                    "name": "[variables('databaseName')]",
+                    "type": "databases",
+                    "location": "[variables('location')]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+                    "properties": {
+                        "edition": "[variables('edition')]",
+                        "collation": "[variables('collation')]",
+                        "maxSizeBytes": "[variables('maxSizeBytes')]"
+                    }
+                },
+                {
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+                    "location": "[variables('location')]",
+                    "name": "AllowAllWindowsAzureIps",
+                    "properties": {
+                        "startIpAddress": "[variables('startIpAddress')]",
+                        "endIpAddress": "[variables('endIpAddress')]"
+                    },
+                    "type": "firewallrules"
+                }
+            ]
+        },
+        // Creata Classing Storage account
+        {
+            "type": "Microsoft.ClassicStorage/storageAccounts",
+            "name": "[variables('storageAccountName')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "accountType": "[parameters('storageAccountType')]"
+            }
+        }
+    ],
+    "outputs": {
+        "storageAccountName": {
+            "type": "string",
+            "value": "[variables('storageAccountName')]"
+        },
+        "storageAccountConnectionString": {
+            "type": "string",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), variables('apiVersion')).primaryKey)]"
+        },
+        "sqlServerName": {
+            "type": "string",
+            "value": "[variables('sqlServerName')]"
+        },
+        "databaseName": {
+            "type": "string",
+            "value": "[variables('databaseName')]"
+        },
+        "sqlServerUserName": {
+            "type": "string",
+            "value": "[parameters('sqlServerUserName')]"
+        },
+        "sqlPassword": {
+            "type": "string",
+            "value": "[parameters('sqlServerPassword')]"
+        }
+    }
+}

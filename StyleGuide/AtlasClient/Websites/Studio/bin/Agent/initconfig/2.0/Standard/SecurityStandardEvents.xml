@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2014-02-02T20:08:38.0823856Z" >
+
+  <Events>
+
+    <!-- For security compliance, all security events are captured. RD Task #191933 !-->
+    <WindowsEventLogSubscriptions>
+      <Subscription eventName="SecurityEvents"
+                    query="Security!*"
+                    storeType="Central"
+                    duration="PT5M" >
+          <Column name="ProviderName" defaultAssignment="" >
+            <Value>/Event/System/Provider/@Name</Value>
+          </Column>
+          <Column name="ProviderGuid" defaultAssignment="{00000000-0000-0000-0000-000000000000}" >
+            <Value>/Event/System/Provider/@Guid</Value>
+          </Column>
+          <Column name="EventId" defaultAssignment="0" >
+            <Value>/Event/System/EventID</Value>
+          </Column>
+          <Column name="Version" defaultAssignment="0" >
+            <Value>/Event/System/Version</Value>
+          </Column>
+          <Column name="Level" defaultAssignment="0" >
+            <Value>/Event/System/Level</Value>
+          </Column>
+          <Column name="Task" defaultAssignment="0" >
+            <Value>/Event/System/Task</Value>
+          </Column>
+          <Column name="OpCode" defaultAssignment="0" >
+            <Value>/Event/System/Opcode</Value>
+          </Column>
+          <Column name="Keywords" defaultAssignment="0x0000000000000000" >
+            <Value>/Event/System/Keywords</Value>
+          </Column>
+          <Column name="TimeCreated" defaultAssignment="" >
+            <Value>/Event/System/TimeCreated/@SystemTime</Value>
+          </Column>
+          <Column name="EventRecordID" defaultAssignment="0" >
+            <Value>/Event/System/EventRecordID</Value>
+          </Column>
+          <Column name="Correlation" defaultAssignment="" >
+            <Value>/Event/System/Correlation</Value>
+          </Column>
+          <Column name="ProcessId" defaultAssignment="-1" >
+            <Value>/Event/System/Execution/@ProcessID</Value>
+          </Column>
+          <Column name="ThreadId" defaultAssignment="-1" >
+            <Value>/Event/System/Execution/@ThreadID</Value>
+          </Column>
+          <Column name="Computer" defaultAssignment="" >
+            <Value>/Event/System/Computer</Value>
+          </Column>
+          <Column name="EventData" defaultAssignment="" >
+            <Value>/Event/EventData/Data</Value>
+          </Column>
+        </Subscription>
+    </WindowsEventLogSubscriptions>
+
+  </Events>
+
+</MonitoringManagement>

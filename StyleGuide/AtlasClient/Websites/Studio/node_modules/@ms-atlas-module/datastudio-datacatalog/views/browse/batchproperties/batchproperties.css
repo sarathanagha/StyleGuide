@@ -1,0 +1,209 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-batchproperties {
+  font-size: 12px;
+  padding-bottom: 30px; }
+  #browse-batchproperties .static-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px; }
+    #browse-batchproperties .static-header ul.details {
+      list-style: none;
+      padding: 0;
+      margin: 0; }
+      #browse-batchproperties .static-header ul.details li {
+        display: inline-block;
+        font-size: 12px; }
+        #browse-batchproperties .static-header ul.details li a {
+          display: inline-block;
+          min-width: 40px;
+          height: 40px;
+          text-align: center;
+          text-decoration: none;
+          padding: 0 15px;
+          outline: 0;
+          cursor: pointer; }
+          #browse-batchproperties .static-header ul.details li a img {
+            margin-top: 15px; }
+          #browse-batchproperties .static-header ul.details li a div {
+            text-transform: capitalize;
+            font-size: 10px; }
+        #browse-batchproperties .static-header ul.details li:hover {
+          background-color: rgba(0, 0, 0, 0.1); }
+    #browse-batchproperties .static-header .hr {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 50px;
+      display: block; }
+  #browse-batchproperties div.save-cancel {
+    position: fixed;
+    top: 0;
+    right: -347px;
+    height: 116px;
+    width: 347px;
+    margin: 0;
+    font-size: 12px;
+    padding: 20px 30px;
+    -webkit-transition: right 0.4s ease-out;
+    transition: right 0.4s ease-out; }
+    #browse-batchproperties div.save-cancel.show {
+      right: 0; }
+    #browse-batchproperties div.save-cancel > div {
+      margin: 0; }
+    #browse-batchproperties div.save-cancel a.save-btn {
+      display: inline-block;
+      cursor: pointer;
+      text-align: center;
+      padding: 3px 20px;
+      text-decoration: none;
+      margin-top: 15px;
+      margin-right: 20px; }
+      #browse-batchproperties div.save-cancel a.save-btn span {
+        text-transform: uppercase;
+        font-size: 11px;
+        position: relative; }
+    #browse-batchproperties div.save-cancel a.cancel-btn {
+      cursor: pointer; }
+      #browse-batchproperties div.save-cancel a.cancel-btn span {
+        text-transform: lowercase; }
+    #browse-batchproperties div.save-cancel .tokyo-spinner {
+      margin-top: 15px; }
+  #browse-batchproperties .scrollable-content {
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    padding-right: 30px;
+    overflow: auto; }
+    #browse-batchproperties .scrollable-content > div {
+      margin-top: 35px; }
+      #browse-batchproperties .scrollable-content > div .property-label {
+        text-transform: capitalize;
+        font-size: 12px;
+        margin-bottom: 10px;
+        font-weight: bold; }
+        #browse-batchproperties .scrollable-content > div .property-label:after {
+          content: ":"; }
+      #browse-batchproperties .scrollable-content > div .button-group {
+        float: right; }
+        #browse-batchproperties .scrollable-content > div .button-group span {
+          padding: 0 14px;
+          text-transform: uppercase;
+          font-size: 10px;
+          cursor: pointer;
+          margin-left: -3px; }
+      #browse-batchproperties .scrollable-content > div > div {
+        margin-top: 10px; }
+    #browse-batchproperties .scrollable-content textarea {
+      width: 100%;
+      height: 60px;
+      padding: 10px;
+      font-size: 12px;
+      margin-top: 10px; }
+    #browse-batchproperties .scrollable-content .tags .readonly {
+      margin-top: 5px; }
+      #browse-batchproperties .scrollable-content .tags .readonly span {
+        font-size: 12px;
+        cursor: pointer;
+        padding: 1px 4px; }
+    #browse-batchproperties .scrollable-content .connection-info {
+      font-size: 12px; }
+      #browse-batchproperties .scrollable-content .connection-info .properties {
+        padding: 10px;
+        overflow: auto; }
+        #browse-batchproperties .scrollable-content .connection-info .properties .property-label {
+          margin: 0;
+          font-weight: normal; }
+          #browse-batchproperties .scrollable-content .connection-info .properties .property-label.url {
+            text-transform: uppercase; }
+        #browse-batchproperties .scrollable-content .connection-info .properties .property-value {
+          margin-bottom: 10px; }
+          #browse-batchproperties .scrollable-content .connection-info .properties .property-value.url {
+            text-decoration: none; }
+    #browse-batchproperties .scrollable-content .desc .desc-label {
+      font-size: 12px;
+      text-transform: capitalize; }
+      #browse-batchproperties .scrollable-content .desc .desc-label.from:after {
+        content: ":"; }
+      #browse-batchproperties .scrollable-content .desc .desc-label.lower {
+        text-transform: lowercase; }
+      #browse-batchproperties .scrollable-content .desc .desc-label.cap {
+        text-transform: capitalize; }
+    #browse-batchproperties .scrollable-content .desc .expand-desc {
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 5px; }
+    #browse-batchproperties .scrollable-content .desc textarea {
+      height: 80px; }
+    #browse-batchproperties .scrollable-content .desc > div {
+      margin-top: 5px; }
+    #browse-batchproperties .scrollable-content > :last-child {
+      margin-bottom: 35px; }
+  #browse-batchproperties a {
+    color: #2AB7D8; }
+  #browse-batchproperties div.save-cancel {
+    background-color: #474F5A;
+    color: #FFF; }
+    #browse-batchproperties div.save-cancel a.cancel-btn {
+      color: #FFF; }
+  #browse-batchproperties .static-header ul li a {
+    color: #474F5A; }
+  #browse-batchproperties .static-header .hr {
+    border-bottom: 1px solid #BEC2C9; }
+  #browse-batchproperties .scrollable-content > div .button-group span {
+    color: #BEC2C9;
+    background-color: transparent;
+    border: 1px solid #BEC2C9; }
+    #browse-batchproperties .scrollable-content > div .button-group span.selected {
+      color: #FFFFFF;
+      background-color: #006F94;
+      border: 1px solid #006F94; }
+  #browse-batchproperties .scrollable-content textarea {
+    border: 1px solid #BEC2C9;
+    background-color: #E1E3E5; }
+    #browse-batchproperties .scrollable-content textarea:focus {
+      background-color: #FFFFFF; }
+  #browse-batchproperties .scrollable-content .tags .readonly span.user-tag {
+    color: #3D4045;
+    border: 1px solid #BEC2C9; }
+    #browse-batchproperties .scrollable-content .tags .readonly span.user-tag:hover {
+      background-color: fade(#26357F, 25%); }
+    #browse-batchproperties .scrollable-content .tags .readonly span.user-tag.isfiltered {
+      background-color: fade(#26357F, 25%); }
+  #browse-batchproperties .scrollable-content .connection-info .properties {
+    background-color: #EFF0F0; }
+    #browse-batchproperties .scrollable-content .connection-info .properties .property-value {
+      color: #8A96A2; }
+      #browse-batchproperties .scrollable-content .connection-info .properties .property-value.url {
+        color: #26357F; }
+  #browse-batchproperties .scrollable-content .desc .desc-label {
+    color: #8A96A2; }
+  #browse-batchproperties a.save-btn {
+    background-color: #00BCF2; }
+  #browse-batchproperties a.cancel-btn span,
+  #browse-batchproperties a.save-btn span {
+    color: #FFF; }
+  #browse-batchproperties a.cancel-btn.disabled,
+  #browse-batchproperties a.save-btn.disabled {
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    cursor: default; }
+  #browse-batchproperties .validation-error {
+    color: #E02D71;
+    font-style: italic; }
+
+/*# sourceMappingURL=batchproperties.css.map */

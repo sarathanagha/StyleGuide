@@ -1,0 +1,89 @@
+<div id="saved-searches">
+    <!-- ko if: searches() && searches().length -->
+
+    <div class="type-name current-filter-label">
+        <img class="arrow-r" src="../../../../images/arrow_r.png" data-bind="css: { expanded: isExpanded }, click: function(){ isExpanded(!isExpanded()) }" />
+        <span data-bind="text: resx.savedSearches"></span>
+        <span data-bind="text: searches().length" class="saved-searches-count"></span>
+    </div>
+    <div id="saved-searches-container" class="saved-searches-box" data-bind="visible: isExpanded">
+        <!-- ko foreach: { data: currentSearchesPage(), as: 'savedSearch' } -->
+        <div class="saved-search-row" data-bind="css: { isDefault: savedSearch.isDefault, active: savedSearch.id() == $parent.appliedSearchId() }">
+
+            <img src="../../../../images/checkmark.png" class="checkmark"
+                 data-bind="visible: savedSearch.isDefault,
+                            adc-popover: {},
+                            attr: {'data-content': $parent.resx.defaultSearchTip }"
+                 data-trigger="hover"
+                 data-container="body"
+                 data-placement="auto right" />
+
+            <!-- ko if: $parent.idOfSearchBeingRenamed() === savedSearch.id() -->
+            <span class="saved-search-name">
+                <input data-bind="textInput: savedSearch.name,
+                                  hasFocus: true,
+                                  event: {
+                                      blur: $parent.updateSearchName.bind($parent),
+                                      keyup: $parent.onRenameKeyUp.bind($parent)
+                                  }" />
+            </span>
+            <div data-bind="adc-spinner: $parent.isUpdatingName" class="rename-spinner small"></div>
+            <!-- /ko -->
+            <!-- ko ifnot: $parent.idOfSearchBeingRenamed() === savedSearch.id() -->
+            <span data-bind="click: $parent.applySearch.bind($parent)" class="saved-search-name">
+                <span data-bind="text: savedSearch.name()"></span>
+            </span>
+
+            <div class="dropdown">
+                <a role="button" data-toggle="dropdown" data-target="#">
+                    <img src="../../../../images/edd_drop_arrow.png" class="dropdown-arrow" />
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a role="menuitem" tabindex="-1" data-target="#" data-bind="text: $parent.resx.rename, click: function(){ $parent.idOfSearchBeingRenamed(savedSearch.id()) }"></a></li>
+                    <li><a role="menuitem" tabindex="-1" data-target="#" data-bind="text: $parent.resx.deleteStr, click: $parent.deleteSearch.bind($parent)"></a></li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" data-target="#" data-bind="text: $parent.resx.saveAsDefault,
+                                                                                    click: $parent.saveAsDefault.bind($parent),
+                                                                                    css: { disabled: savedSearch.isDefault() }"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- ko if: hasPaging -->
+        <div class="paging-controls-row">
+
+            <span class="paging-controls">
+
+                <img class="paging paging-prev"
+                     src="../../../../images/arrow_l.png"
+                     data-bind="adc-popover: {},
+                            css: { disabled: !prevPageArrowIsEnabled() },
+                            click: function(){ prevPageArrowIsEnabled() && currentPage(currentPage()-1) },
+                            attr: {'data-content': resx.previous }"
+                     data-trigger="hover"
+                     data-container="body"
+                     data-placement="auto bottom" />
+
+                <span class="paging-text" data-bind="text: pagingDisplayText"></span>
+
+                <img class="paging paging-next"
+                     src="../../../../images/arrow_r.png"
+                     data-bind="adc-popover: {},
+                            css: { disabled: !nextPageArrowIsEnabled() },
+                            click: function(){ nextPageArrowIsEnabled() && currentPage(currentPage()+1) },
+                            attr: {'data-content': resx.next }"
+                     data-trigger="hover"
+                     data-container="body"
+                     data-placement="auto bottom" />
+
+            </span>
+
+
+        </div>
+        <!-- /ko -->
+    </div>
+
+    <!-- /ko -->
+</div>

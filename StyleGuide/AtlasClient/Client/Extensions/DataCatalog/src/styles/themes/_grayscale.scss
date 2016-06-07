@@ -1,0 +1,51 @@
+﻿/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+$grayscale-dark-gray:                 #404040;
+$grayscale-light-gray:                #4C4C4C;
+$grayscale-lighter-gray:              #D8DBDE;
+$grayscale-selected-color:            #6A6A6A;
+$grayscale-light-font-color:          #ECECEC;
+$grayscale-header-color:              #393939;
+$grayscale-light-border:              #EFF0f0;
+$grayscale-dark-border:               #BEC2C9;
+$grayscale-med-border:                #45549B;
+$grayscale-light-border-alpha:        rgba(255, 255, 255, .5);
+
+$grayscale-body-color:                #E9E9E9;
+$grayscale-body-color-light:          #FFFFFF;
+$grayscale-body-color-med:            #8E8E8E;
+$grayscale-home-bar-color:            #D3D2D3;
+$grayscale-body-color-dark:           #393939;
+$grayscale-font-color-light:          #FFFFFF;
+$grayscale-font-color:                $grayscale-dark-gray;
+$grayscale-font-color-med:            #8A96A2;
+$grayscale-font-color-dark:           #3F3F3F;
+$grayscale-notification-color-med:    #1888CA;
+$grayscale-notification-border-med:   #0E68B2;
+
+$grayscale-brand-color:               #C1C1C1;
+$grayscale-navigation-text-color:     #FFFFFF;
+$grayscale-navigation-selected-color: #3F3F3F;
+
+$grayscale-input-outline:             #C2C2C2;
+$grayscale-input-text-color:          #4E4E4E;
+$grayscale-input-background-color:    #E1E3E5;
+$grayscale-selected-tile:             #6A6A6A;
+$grayscale-hint-text-color:           #C0C5CB;
+$grayscale-properties-link-color:     #2AB7D8;
+
+$grayscale-home-border-color:         #D1D1D1;
+$grayscale-home-tile-background:      #00BCF2;
+$grayscale-hit-highlight:             #C9F0FC;
+$grayscale-hit-highlight-selected:    #88C6DB;
+$grayscale-error-text-color:          #E02D71;
+
+$grayscale-block-med:                 #0E69B2;
+$grayscale-block-light:               #1989CA;
+
+$grayscale-home-tile-font-dark:       #2C3137;
+$grayscale-home-tile-font-med:        #585B60;

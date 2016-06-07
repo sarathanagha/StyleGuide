@@ -1,0 +1,13 @@
+{
+  "name": "@ms-atlas-module/datastudio-datacatalog",
+  "resxPath": "nls/resx",
+  "version": "0.0.1",
+  "description": "Data Catalog Module.",
+  "main": "startup.js",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

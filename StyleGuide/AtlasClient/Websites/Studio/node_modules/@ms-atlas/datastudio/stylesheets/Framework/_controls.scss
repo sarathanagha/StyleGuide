@@ -1,0 +1,57 @@
+﻿.gutter05x05 {
+  width: 0.5em !important;
+  height: 0.5em !important;
+}
+
+.gutter1x1 {
+  width: 1em !important;
+  height: 1em !important;
+}
+
+.gutter2x2 {
+  width: 2em !important;
+  height: 2em !important;
+}
+
+.gutter4x4 {
+  width: 4em !important;
+  height: 4em !important;
+}
+
+.gutter8x8 {
+  width: 8em !important;
+  height: 8em !important;
+}
+
+.separator {
+  height: 1px;
+  background-color: white;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.searchBox {
+  width: 75%;
+  background-color: white;
+  min-width: 300px;
+  padding: 0.2em;
+}
+
+.searchBox input {
+  border: none;
+  width: 100%;
+  height: 36px;
+  font-size: 1em;
+  font-weight: normal;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAh1JREFUeNq0Vr2OAVEUviNCpdJp2IaGZDcqqtHzDMsjeILdN9jdJ6DSSSQ6jaloSIROQ0VDdhMVzez5bu6ZXMzfYr/kGnfu3O/83O+cGSFCwrbtDI0PGiv7GkMadbd9Rkjyd7q84f96vRb7/V6cTicRi8XkeiaTEclkUi7TaBiGYYU2QOQtutRBPB6PxeFwcH0ulUqJUqnEhmCkHWiAyZfLpbAsKzBSRFQul0U2m8W0gkgMH3KTLkN4PhgMnPuFQkHk83mRSCTkHOmaTqcydWykVqshkjUZePIzMKQ8m51OR+YbME2TvbuCHiXSVa1WZaoiXooBH7xi8mKx6EkOYA2HDWw2GxkZ4TXi8bzJitFTEwQ4wVB7TS8D0hX2HiGzJP2gFCT0vRHxTzgej74GfvTJbrcLRarXCKvMy8AMP+l02gkXKgmC/gxXtqsBLnVWBTAajTyrWK8H9l7t7UV8Klhst9uzQ+t2u2f3GIvFQvT7fWeOlqHwZdzSHuAh5xjnw4phOSsDn5SJpnFP7/HpQzMif8GfaFhyHBpaBdaRb5wHSOPxuBRDLpfjWkEXbZ616zDkaGABxYbSbZLnPf1mFG8pkIPYTYoaOaRbUW3k+aJmLCKeuSoS77sQnvfUS+TnrxUdvaxApxmRjpFzIm8TcePWlhG9bFLcekGOA7uHnNWDLwV7tVrZk8nEns/n/KXQeljnYyMK3+or4iH4FWAAVYpNoIWbhNgAAAAASUVORK5CYII=') /*/app/Content/Images/Discovery.png*/;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: right 10px center;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+}
+

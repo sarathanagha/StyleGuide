@@ -1,0 +1,23 @@
+﻿<div class="rdxTopPanel">
+    <!-- TOP TOGGLES -->
+    <div class="topToggles">
+        <div class="metadataExplorerToggle environmentToggle" data-bind="css: {selected: environmentsVisible()}, click: function(){timePickerVisible(false);metadataExplorerVisible(false); environmentsVisible(!environmentsVisible()); if(environmentsVisible()) timePicker.loadingAvailability.valueHasMutated();}">
+            <div data-bind="css: {'toggleChevronDown': !rdxContext.environmentsVisible(), 'toggleChevronUp': rdxContext.environmentsVisible()}"></div>
+            <span data-bind="text: rdxContext.environmentName"></span>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="timePickerValue" data-bind="html: timePicker.prettyPrintedValue"></span>
+        </div>
+        <span data-bind="visible: rdxContext.clusteringAvailable">
+            <input style="height: 12px" type="checkbox" data-bind="checked: rdxContext.shouldClusterEventSourceHits" />
+            Cluster Results 
+        </span>
+        <span class="errorColor" data-bind="visible: rdxContext.errorMessage(), text: rdxContext.errorMessage"></span>
+        <span class="feedbackButton" data-bind="css: {selected: rdxContext.feedbackFormVisible()}, click: function(){rdxContext.feedbackFormVisible(!rdxContext.feedbackFormVisible())}">Got Feedback?</span>
+    </div>
+
+    <!-- ENVIRONMENTS EXPLORER -->
+    <div data-bind="component: { name: 'rdx-environmentsPanel', params: {rdxContext: rdxContext} }"></div>
+    <!-- END ENVIRONMENTS EXPLORER -->
+
+    <div data-bind="component: { name: 'rdx-predicatePanel', params: {rdxContext: rdxContext} }"></div>
+</div>

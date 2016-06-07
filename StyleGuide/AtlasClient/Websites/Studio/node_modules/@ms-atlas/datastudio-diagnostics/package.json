@@ -1,0 +1,8 @@
+{
+  "name": "@ms-atlas/datastudio-diagnostics",
+  "version": "0.2.8",
+  "description": "Diagnostics library for Atlas.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {}
+}

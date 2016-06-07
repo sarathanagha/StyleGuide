@@ -1,0 +1,23 @@
+<div class="linkedServicesGridContainer">
+    <div class="linkedServicesFilter">
+        <!-- ko if: existingLinkedServicesGrid.showTypeFilterOptions -->
+        <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: existingLinkedServicesGrid.selectedLinkedServiceTypeFilter}}"></div>
+        <!-- /ko -->
+        <div class="nameFilterContainer">
+            <input class="nameFilter" type="text" data-bind="value:existingLinkedServicesGrid.selectedLinkedServiceNameFilter, valueUpdate:'afterkeydown'"
+                   placeholder="Filter by name..." />
+        </div>
+    </div>
+    <div class="filteredLinkedServices">
+        <!-- ko foreach: existingLinkedServicesGrid.filteredLinkedServices -->
+        <div class="top large linkedServicesItemContainer" data-bind="css:{selected:linkedService.name==$parent.selectedLinkedServiceName()}, attr: {'data-tooltip': summary},
+                    click: $parent.existingLinkedServicesGrid.onExistingLinkedServiceSelectionChanged.bind($parent)">
+            <div class="iconDiv" data-bind="html: icon"></div>
+            <div class="linkedServiceName" data-bind="css:{selected:linkedService.name==$parent.selectedLinkedServiceName()}, text:linkedService.name"></div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: existingLinkedServicesGrid.filteredLinkedServices().length === 0 -->
+        No linked services found.
+        <!-- /ko -->
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿/*
+    Explicitly define a Segoe UI font-family so that we can assign Segoe UI 
+    Semilight to font-weight:300, as said in MS guidelines.  Also define so 
+    that the CSS can specify Segoe UI in the font-family independently of
+    the font weight, and the browsers (including FireFox) will do the right
+    thing.
+*/
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 200;
+    src: local("Segoe UI Light"), url(/Content/Fonts/segoeuil.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 300;
+    src: local("Segoe UI Semilight"); /* @TODO Not in the fonts folder, so there is no fallback. (Defect 2516765) */
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 400;
+    src: local("Segoe UI"), url(/Content/Fonts/segoeui.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold"), url(/Content/Fonts/seguisb.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold"), url(/Content/Fonts/segoeuib.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Segoe UI Italic"), url(/Content/Fonts/segoeuii.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Segoe UI Bold Italic"), url(/Content/Fonts/segoeuiz.ttf);
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 200;
+    src: local("Segoe UI Light Italic"), url(/Content/Fonts/seguili.ttf);
+}
+
+/* Specify all the weighted font style mappings. */
+@font-face { 
+    font-family: "Segoe UI Light"; 
+    src: local("Segoe UI Light"), url(/Content/Fonts/segoeuil.ttf);
+}
+@font-face {
+    font-family: "Segoe UI Semilight";
+    src: local("Segoe UI Semilight"); /* @TODO Not in the fonts folder, so there is no fallback. */
+}
+@font-face {
+    font-family: "Segoe UI Semibold";
+    src: local("Segoe UI Semibold"), url(/Content/Fonts/seguisb.ttf);
+}
+@font-face {
+    font-family: "Segoe UI Bold";
+    src: local("Segoe UI Bold"), url(/Content/Fonts/segoeuib.ttf);
+}
+@font-face {
+    font-family: "Segoe UI Italic";
+    src: local("Segoe UI Italic"), url(/Content/Fonts/segoeuii.ttf);
+}
+@font-face {
+    font-family: "Segoe UI Bold Italic";
+    src: local("Segoe UI Bold Italic"), url(/Content/Fonts/segoeuiz.ttf);
+}
+@font-face {
+    font-family: "Segoe UI Light Italic";
+    src: local("Segoe UI Light Italic"), url(/Content/Fonts/seguili.ttf); /* @TODO Not in the fonts folder, so there is no fallback. */
+}

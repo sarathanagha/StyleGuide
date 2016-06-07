@@ -1,0 +1,74 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.searchbox-box {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%; }
+  .searchbox-box .searchbox-input-wrapper {
+    top: 0;
+    right: 55px;
+    bottom: 0;
+    left: 10px;
+    position: absolute; }
+    .searchbox-box .searchbox-input-wrapper input {
+      height: 100%;
+      width: 100%;
+      border: 0;
+      margin: 0px;
+      font-style: italic;
+      text-indent: 3px; }
+      .searchbox-box .searchbox-input-wrapper input::-webkit-input-placeholder {
+        text-transform: capitalize; }
+      .searchbox-box .searchbox-input-wrapper input::-moz-placeholder {
+        text-transform: capitalize; }
+      .searchbox-box .searchbox-input-wrapper input:-moz-placeholder {
+        text-transform: capitalize; }
+      .searchbox-box .searchbox-input-wrapper input:-ms-input-placeholder {
+        text-transform: capitalize; }
+      .searchbox-box .searchbox-input-wrapper input::-ms-clear {
+        display: none;
+        height: 0;
+        width: 0; }
+      .searchbox-box .searchbox-input-wrapper input:focus {
+        outline: 0; }
+  .searchbox-box img {
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 50%;
+    cursor: pointer; }
+    .searchbox-box img.search {
+      right: 0;
+      padding-right: 10px; }
+    .searchbox-box img.clear {
+      right: 35px; }
+  .searchbox-box .dropdown-menu {
+    left: -1px;
+    right: -1px;
+    margin: 0;
+    border-radius: 0; }
+    .searchbox-box .dropdown-menu li {
+      cursor: default; }
+      .searchbox-box .dropdown-menu li a:hover,
+      .searchbox-box .dropdown-menu li a:active {
+        background-color: transparent; }
+    .searchbox-box .dropdown-menu .dropdown-header {
+      text-transform: capitalize; }
+  .searchbox-box {
+    background-color: #FFFFFF;
+    border: 1px solid #BEC2C9; }
+    .searchbox-box .dropdown-menu li a.selected {
+      background-color: #EFF0F0; }
+
+/*# sourceMappingURL=searchbox.css.map */

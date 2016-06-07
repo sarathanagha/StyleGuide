@@ -1,0 +1,67 @@
+﻿@import "../../../styles/variables";
+
+ul.paging {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    font-weight: bold;
+
+    li {
+        display: inline-block;
+        padding-right: 5px;
+
+        a {
+            display: inline-block;
+            
+            font-size: 12px;
+            padding: 5px 10px;
+            cursor: pointer;
+            text-decoration: none;
+
+            &.arrow {
+                padding: 5px 0;
+
+                &.left {
+                    padding-right: 15px;
+                }
+
+                &.right {
+                    padding-left: 15px;
+                }
+            }
+
+            &.disabled {
+                cursor: default;
+            }
+        }
+
+        &.last {
+            padding-right: 0;
+        }
+    }
+    
+    @mixin theme {
+        $input-text-color: $default-input-text-color;
+        $body-color-light: $default-body-color-light;
+        $navigation-selected-color: $default-navigation-selected-color;
+
+        & {
+            li a {
+                color: $input-text-color;
+                background-color: $body-color-light;
+
+                &.arrow {
+                    background-color: transparent;
+                }
+
+                &.current {
+                    background-color: $navigation-selected-color;
+                    color: $body-color-light;
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

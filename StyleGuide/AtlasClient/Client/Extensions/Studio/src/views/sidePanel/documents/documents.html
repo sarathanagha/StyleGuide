@@ -1,0 +1,16 @@
+﻿<div class="documentsSidePanel">
+    <div class="row">
+        <div class="col header">Resource Explorer</div>
+    </div>
+    <div class="row searchBox">
+        <input placeholder="Search">
+    </div>
+
+    <div id="myweblogsfactorylist"
+         class="col collapsable"
+         data-bind="jsTree: {
+        data: treeData,
+        config: treeConfig,
+        handler: onSelectNode }">
+    </div>
+</div>

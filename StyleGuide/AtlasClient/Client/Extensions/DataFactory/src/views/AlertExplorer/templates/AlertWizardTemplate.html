@@ -1,0 +1,7 @@
+<div id="adf-alerts-flyout" data-bind="visible: alertFlyoutVisible">
+    <!-- ko if: makingRequest() -->
+    <div data-bind="loading:{}"></div>
+    <!-- /ko -->
+    <!-- END if makingRequest -->
+    <div class="adf-alerts-wizard" data-bind="wizard: wizard"></div>
+</div>

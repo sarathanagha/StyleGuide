@@ -1,0 +1,27 @@
+﻿
+@mixin button($color,$fontsize,$bgcolor) {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size:$fontsize;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: none;
+  background-color:$bgcolor;
+  color:$color; 
+  min-width: 88px;
+  max-width: 200px;
+  margin-right: 16px;
+}
+
+@mixin buttonvariant($color, $background) {
+  color: $color;
+  background-color: $background;
+ 
+  }

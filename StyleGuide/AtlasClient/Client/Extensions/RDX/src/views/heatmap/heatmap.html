@@ -1,0 +1,40 @@
+﻿<div class="heatmapWrapper">
+    <div class="topLeftCornerControlsWrapper">
+        <input id="heatmapEventTableFilter" data-bind="textInput: heatmap.filter, attr: {placeholder: 'Filter ' + dimensionForFilter() + ' series...'}" />
+        <div>Order by: </div>
+        &nbsp;
+        <span data-bind="css: {selected: !heatmap.orderByName()}, click: function(){heatmap.orderByName(false); heatmap.triggerRerender()}">value</span>
+        &nbsp;
+        <span data-bind="css: {selected: heatmap.orderByName()}, click: function(){heatmap.orderByName(true); heatmap.triggerRerender()}">name</span>
+    </div>
+    <div class="rdxContextMenu" id="heatmapExploreMenu" style="display: none">
+        <div>
+            <div class="contextMenuOptions">
+                <div data-bind="event: {mouseup: function(){exploreMenu.style('display', 'none'); rdxContext.zoomFromHeatmap(); }}">Zoom</div>
+                <div data-bind="event: {mouseup: function(){exploreMenu.style('display', 'none'); rdxContext.streamEventsFromHeatmap();}}">Explore events</div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxContextMenu" id="crystalHeatmapZoomExploreMenu" style="display: none;">
+        <div>
+            <div class='contextMenuOptions'>
+                <div class='contextMenuTitle' data-bind="event: {mouseover: function(){showAndGroupByMenu();}, mouseup: function(){event.stopPropagation();}, mousedown: function(){event.stopPropagation();}}">Split this series by... <div class='chevron-right'></div></div>
+                <div data-bind="event: {mouseup: function(){exploreDimension(); filterByDimension(); singleDimensionExploreMenu.style('display', 'none'); event.stopPropagation(); }, mousedown: function(){event.stopPropagation();}}">Show only this series</div>
+                <div id='heatmapSingleDimensionExplore' data-bind="event: {mouseup: function(){exploreDimension(); singleDimensionExploreMenu.style('display', 'none'); event.stopPropagation();}, mousedown: function(){event.stopPropagation();}}">Explore events</div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxContextMenu" id="heatmapAndGroupByMenu" style="display: none">
+        <div data-bind="event: {mouseleave: hideAndGroupByMenu}">
+            <div class='contextMenuOptions' data-bind="event: {mousedown: function(){event.stopPropagation();}, mouseup: function(){event.stopPropagation();}}, foreach: rdxContext.dimensionOptions">
+                <div data-bind="event: {mousedown: function(){event.stopPropagation();}, mouseup: function(){$parent.groupByAndFilter($data); event.stopPropagation()}}, text: $data"></div>
+            </div>
+        </div>
+    </div>
+    <div class="rdxTooltip" id="heatmapTooltip" style="display: none"></div>
+    <div class="heatmapLegendWrapper">
+        <div class="heatmapLegend" id="heatmapLegend"></div>
+    </div>
+    <div data-bind="slideVisible: visible, event: {mouseout: hideTooltip}" class="heatmap" id="heatmap">
+    </div>
+</div>

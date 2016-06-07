@@ -1,0 +1,35 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.textarea {
+  font-size: 12px; }
+  .textarea span {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-top: 10px; }
+    .textarea span:after {
+      content: ":"; }
+  .textarea textarea {
+    width: 100%;
+    height: 60px;
+    padding: 5px;
+    margin-top: 5px; }
+  .textarea textarea {
+    border: 1px solid #3D4045;
+    background-color: #E1E3E5; }
+    .textarea textarea:focus {
+      background-color: #FFFFFF; }
+  .textarea .invalid {
+    border: 1px solid #E02D71 !important;
+    background-color: #FFFFFF !important; }
+
+/*# sourceMappingURL=textarea.css.map */

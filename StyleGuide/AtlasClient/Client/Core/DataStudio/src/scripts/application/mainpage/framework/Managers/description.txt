@@ -1,0 +1,7 @@
+This folder will contain "thick" data managers like BlueprintDataManager.
+
+They will get data from thin services and apply required logic to prepare data for UI.
+
+The call chain should be ViewModel -> DataManager -> DataService -> Proxy -> remote service;
+
+

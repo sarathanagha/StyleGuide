@@ -1,0 +1,64 @@
+<div id="start-search">
+    <div data-bind="adc-loading: isSearching" class="loading-indicator"></div>
+    <div class="search-container">
+        <div class="search-wrapper wrapper">
+            <header class="search-header">
+                <span class="search-title search-head" data-bind="text: resx.discover"></span>
+                <span class="search-subtitle search-head" data-bind="text: resx.browse_searchbrowse"></span>
+            </header>
+
+            <div class="start-searchbox" data-bind="component: { name: 'datacatalog-shell-searchbox', params: {
+                                                        text: searchTerm,
+                                                        placeholderText: resx.searchDataCatalog,
+                                                        onChange: doSearch.bind($data)
+                                                    } }"></div>
+
+
+            <!--<div class="input-wrapper">
+                <input type="text" data-bind="textInput: searchTerm, attr: { placeholder: resx.searchDataCatalog }, event: { keyup: onSearchKeyUp }" spellcheck="false">
+                <div class="search-icons">
+                    <img src="../../../../images/edd_clear_search.png" data-bind="attr: { alt: resx.clear, title: resx.clear }, click: clearSearch, visible: showClearButton" class="clear" />
+                    <img src="../../../../images/edd_search_icon.png" data-bind="attr: { alt: resx.search, title: resx.search }, click: doSearch" class="search" />
+                </div>
+            </div>-->
+            <div class="tag-cloud" data-bind="component: {name: 'datacatalog-shell-treemap', params: {
+                                                                                    items: tags(),
+                                                                                    click: selectFacet
+                                                                                    }}"></div>
+        </div>
+    </div>
+    <div class="facet-container">
+        <div class="facet-wrapper wrapper">
+
+            <div class="facet-list-container experts">
+                <div data-bind="component: {name: 'datacatalog-shell-list', params: {
+                                                                    title: resx.browse_byexpert,
+                                                                    data: experts(),
+                                                                    click: selectFacet,
+                                                                    numberInitiallyVisible: listLimit,
+                                                                    groupType: 'experts'
+                                                                }}"></div>
+            </div>
+
+            <div class="facet-list-container sources">
+                <div data-bind="component: { name: 'datacatalog-shell-list', params: {
+                                                                    title: resx.browse_bysource,
+                                                                    data: sources(),
+                                                                    click: selectFacet,
+                                                                    numberInitiallyVisible: 0,
+                                                                    groupType: 'sourceType'
+                                                                    }}"></div>
+            </div>
+
+            <div class="facet-list-container types">
+                <div data-bind="component: {name: 'datacatalog-shell-list', params: {
+                                                                    title: resx.browse_byobject,
+                                                                    data: types(),
+                                                                    numberInitiallyVisible: 0,
+                                                                    click: selectFacet,
+                                                                    groupType: 'objectType'
+                                                                }}"></div>
+            </div>
+        </div>
+    </div>
+</div>

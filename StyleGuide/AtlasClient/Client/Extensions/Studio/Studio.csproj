@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{42F0E402-ACFD-11BA-A8DF-30D2E9A4177D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.5</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Studio</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49586/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="Build">
+  </Target>
+  <ItemGroup>
+    <Content Include="src\.gitignore" />
+    <Content Include="src\.npmignore" />
+    <Content Include="src\.npmrc" />
+    <Content Include="src\package.json" />
+    <Content Include="src\tsd.json" />
+    <Content Include="src\views\buildDeploy\buildDeploy.html" />
+    <Content Include="src\views\buildDeploy\buildDeploy.scss" />
+    <Content Include="src\views\editor\editor.html" />
+    <Content Include="src\views\editor\editor.scss" />
+    <Content Include="src\views\editor\GraphEntities\Templates\OutputPort.html" />
+    <Content Include="src\views\editor\GraphEntities\Templates\Port.html" />
+    <Content Include="src\views\editor\GraphExtensions\Templates\Base.html" />
+    <Content Include="src\views\editor\GraphExtensions\Templates\Base.scss" />
+    <Content Include="src\views\editor\Wizards\templates\CopyWizardTemplate.html" />
+    <Content Include="src\views\editor\Wizards\templates\Wizard.scss" />
+    <Content Include="src\views\landingPage\landingPage.html" />
+    <Content Include="src\views\landingPage\landingPage.scss" />
+    <Content Include="src\views\landingPage\landingPage.svg" />
+    <Content Include="src\views\notifications\notifications.html" />
+    <Content Include="src\views\notifications\notifications.scss" />
+    <Content Include="src\views\sidePanel\documents\documents.html" />
+    <Content Include="src\views\sidePanel\documents\documents.scss" />
+    <Content Include="src\views\sidePanel\newBlueprintButton\newBlueprintButton.html" />
+    <Content Include="src\views\toolbox\toolbox.html" />
+    <Content Include="src\views\toolbox\toolbox.scss" />
+    <Content Include="src\Web.config" />
+    <Content Include="test\.gitignore" />
+    <Content Include="test\gulpfile.js" />
+    <Content Include="test\index.html" />
+    <Content Include="test\require.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\References.d.ts" />
+    <TypeScriptCompile Include="src\scripts\AppContext.ts" />
+    <TypeScriptCompile Include="src\scripts\Common\PropertyValidators.ts" />
+    <TypeScriptCompile Include="src\scripts\Common\Util.ts" />
+    <TypeScriptCompile Include="src\scripts\Contracts\Common.ts" />
+    <TypeScriptCompile Include="src\scripts\Contracts\Constants.ts" />
+    <TypeScriptCompile Include="src\scripts\Contracts\Resource.ts" />
+    <TypeScriptCompile Include="src\scripts\Framework\ADF.ts" />
+    <TypeScriptCompile Include="src\scripts\Framework\Model\DataCache.ts" />
+    <TypeScriptCompile Include="src\scripts\Framework\Model\StudioCache.ts" />
+    <TypeScriptCompile Include="src\scripts\Framework\Shared\DataConstants.ts" />
+    <TypeScriptCompile Include="src\scripts\Framework\UI\Spinner.ts" />
+    <TypeScriptCompile Include="src\scripts\Model\AdfModelTypes.ts" />
+    <TypeScriptCompile Include="src\scripts\Model\Resource.ts" />
+    <TypeScriptCompile Include="src\scripts\Model\ResourcePort.ts" />
+    <TypeScriptCompile Include="src\scripts\Model\ResourceProperty.ts" />
+    <TypeScriptCompile Include="src\scripts\Model\ResourceType.ts" />
+    <TypeScriptCompile Include="src\scripts\Module\LoggerFactory.ts" />
+    <TypeScriptCompile Include="src\scripts\Module\references.d.ts" />
+    <TypeScriptCompile Include="src\scripts\Module\StudioConfig.ts" />
+    <TypeScriptCompile Include="src\scripts\Module\StudioModule.ts" />
+    <TypeScriptCompile Include="src\scripts\references.d.ts" />
+    <TypeScriptCompile Include="src\scripts\Services\BaseService.ts" />
+    <TypeScriptCompile Include="src\scripts\Services\StudioService.ts" />
+    <TypeScriptCompile Include="src\typings\definitelytyped\node-uuid\node-uuid-base.d.ts" />
+    <TypeScriptCompile Include="src\typings\definitelytyped\node-uuid\node-uuid-cjs.d.ts" />
+    <TypeScriptCompile Include="src\typings\definitelytyped\tsd.d.ts" />
+    <TypeScriptCompile Include="src\typings\StudioInterfaceExtensions.d.ts" />
+    <TypeScriptCompile Include="src\typings\TypeMetadataModels.d.ts" />
+    <TypeScriptCompile Include="src\views\buildDeploy\buildDeploy.ts" />
+    <TypeScriptCompile Include="src\views\editor\editor.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphContracts.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Edge.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Entities.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Geometry.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Graph.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Includes.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Index.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Node.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Piece.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Port.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphEntities\Puzzle.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Activities\Activity.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Activities\CopyActivity.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Activities\HiveActivity.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Base.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\ExtensionConfigs.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Shared.ts" />
+    <TypeScriptCompile Include="src\views\editor\GraphExtensions\Tables.ts" />
+    <TypeScriptCompile Include="src\views\editor\Wizards\ActivityWizard.ts" />
+    <TypeScriptCompile Include="src\views\editor\Wizards\CopyActivityWizard.ts" />
+    <TypeScriptCompile Include="src\views\landingPage\landingPage.ts" />
+    <TypeScriptCompile Include="src\views\notifications\notifications.ts" />
+    <TypeScriptCompile Include="src\views\properties\Properties.ts" />
+    <TypeScriptCompile Include="src\views\references.d.ts" />
+    <TypeScriptCompile Include="src\views\sidePanel\documents\documents.ts" />
+    <TypeScriptCompile Include="src\views\sidePanel\newBlueprintButton\newBlueprintButton.ts" />
+    <TypeScriptCompile Include="src\views\toolbox\toolbox.ts" />
+    <TypeScriptCompile Include="src\views\toolbox\ToolboxItems.ts" />
+    <TypeScriptCompile Include="test\mocks\ModuleCatalogImpl.ts" />
+    <TypeScriptCompile Include="test\mocks\Router.ts" />
+    <TypeScriptCompile Include="test\References.d.ts" />
+    <TypeScriptCompile Include="test\SpecRunner.karma.ts" />
+    <TypeScriptCompile Include="test\spec\testDemo.ts" />
+  </ItemGroup>
+</Project>

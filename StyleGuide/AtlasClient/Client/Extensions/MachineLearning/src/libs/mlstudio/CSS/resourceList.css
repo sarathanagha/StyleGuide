@@ -1,0 +1,10 @@
+.fxs-notification-details-text .dependants-list,
+.fxs-confirmation-details-text .dependants-list {
+    margin-top: -12px; /* negate top padding of parent */
+}
+
+.fxs-notification-details-text .dependants-list > ol,
+.fxs-confirmation-details-text .dependants-list > ol {
+    max-height: 300px;
+    overflow-y: auto;
+}

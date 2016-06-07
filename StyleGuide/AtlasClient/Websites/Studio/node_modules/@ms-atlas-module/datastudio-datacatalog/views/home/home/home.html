@@ -1,0 +1,80 @@
+<div id="home-home" class="bootstrap">
+    <div class="main">
+        <div class="top-row">
+            <div class="top-row-contents">
+                <div class="top-row-text-contents">
+                    <!-- ko if: isSearching -->
+                    <div class="spinner-wrapper">
+                        <div data-bind="adc-loading: isSearching" class="loading-indicator"></div> 
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: showMessage -->
+                    <!--<span class="get-text" data-bind="text: resx.get"></span>
+                    <span class="more-value-text" data-bind="text: resx.moreValue"></span>
+                    <span class="from-your-data-text" data-bind="text: resx.fromYourData"></span>
+                    <div class="top-row-message">
+                        <span data-bind="text: resx.homePageMessage1"></span>
+                        <br/><br/>
+                        <span data-bind="text: resx.homePageMessage2"></span>
+                    </div>-->
+                    <!-- /ko -->
+                    <!-- ko if: showMyAssets -->
+                    <div class="top-tiles home-tile-row">
+                        <span class="top-tiles-label home-tiles-label" data-bind="html: myAssetsLabel"></span>
+                        <div class="home-tile-container top-tile-container">
+                            <div class="home-tile recent-tile" data-bind="component: {name: 'datacatalog-home-pinnabletile', params: {
+                                                                                                title: resx.recentAssets,
+                                                                                                popover: resx.recentTilePopover,
+                                                                                                max: tileMax,
+                                                                                                emptyMessage: resx.addRecent,
+                                                                                                grayUnpinned: false,
+                                                                                                items: recent,
+                                                                                                onPinToggled: syncPinned,
+                                                                                                idPrefix: 'recent'
+                                                                                                }}"></div>
+                            <div class="home-tile pinned-tile" data-bind="component: {name: 'datacatalog-home-pinnabletile', params: {
+                                                                                                title: resx.myPins,
+                                                                                                popover: resx.pinTilePopover,
+                                                                                                max: tileMax,
+                                                                                                emptyMessage: pinnedEmptyTileMessage,
+                                                                                                grayUnpinned: true,
+                                                                                                items: pins,
+                                                                                                onPinToggled: syncRecent,
+                                                                                                idPrefix: 'pinned'
+                                                                                                }}"></div>
+                            <div class="home-tile" data-bind="component: { name: 'datacatalog-home-savedsearchestile', params: {
+                                                                                                title: resx.savedSearches,
+                                                                                                popover: resx.savedSearchTilePopover,
+                                                                                                max: tileMax,
+                                                                                                emptyMessage: resx.addSavedSearches
+                                                                                                }}"></div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: showStats -->
+                    <div class="bottom-tiles home-tile-row">
+                        <span class="bottom-tiles-label home-tiles-label" data-bind="html: statsLabel"></span>
+                        <div class="home-tile-container bottom-tile-container">
+                            <div class="home-tile" data-bind="component: { name: 'datacatalog-home-attributetile', params:{
+                                                                                                        title: resx.topTags,
+                                                                                                        max: 5,
+                                                                                                        emptyMessage: resx.noTags,
+                                                                                                        group: 'tags',
+                                                                                                        attributes: tags
+                                                                                                        }}"></div>
+                            <div class="home-tile" data-bind="component: { name: 'datacatalog-home-statstile', params: { items: assetStats } }"></div>
+                            <div class="home-tile" data-bind="component: { name: 'datacatalog-home-statstile', params: { items: userStats } }"></div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+        <div class="bottom-row">
+            <!-- ko if: showFacets -->
+            <div class="home-facet-list" data-bind="component: 'datacatalog-home-browselist'"></div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+

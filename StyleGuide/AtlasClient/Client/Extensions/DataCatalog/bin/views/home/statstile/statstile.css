@@ -1,0 +1,39 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.home-stats-tile .home-stats-tile-content {
+  width: 300px;
+  height: 185px;
+  margin-right: 35px;
+  padding: 20px;
+  position: relative; }
+  .home-stats-tile .home-stats-tile-content .home-stat {
+    width: 100%; }
+    .home-stats-tile .home-stats-tile-content .home-stat .progress-indicator {
+      height: 35px; }
+    .home-stats-tile .home-stats-tile-content .home-stat .home-stat-value {
+      font-size: 38px;
+      line-height: 35px; }
+    .home-stats-tile .home-stats-tile-content .home-stat .home-stat-label {
+      font-size: 18px;
+      text-transform: capitalize; }
+    .home-stats-tile .home-stats-tile-content .home-stat:nth-child(2n+2) {
+      bottom: 20px;
+      position: absolute; }
+    .home-stats-tile .home-stats-tile-content .home-stat .stat-annotation {
+      margin-left: -14px; }
+
+.home-stats-tile .home-stats-tile-content {
+  background-color: #006F94;
+  color: #FFF; }
+
+/*# sourceMappingURL=statstile.css.map */

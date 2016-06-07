@@ -1,0 +1,137 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-container {
+  margin: 0 15px 15px 15px; }
+  #browse-container a.back-to-catalog {
+    cursor: pointer; }
+    #browse-container a.back-to-catalog:hover {
+      text-decoration: none; }
+    #browse-container a.back-to-catalog span {
+      position: relative;
+      font-size: 17px;
+      top: .2em; }
+  #browse-container #container-tile {
+    margin-top: 10px;
+    padding: 20px;
+    width: 100%;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative; }
+    #browse-container #container-tile .delete-info {
+      display: none;
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      top: 10px; }
+    #browse-container #container-tile:hover .multiselect, #browse-container #container-tile.selected .multiselect {
+      display: inline-block; }
+    #browse-container #container-tile.deleted {
+      border-color: transparent !important;
+      cursor: default; }
+      #browse-container #container-tile.deleted .multiselect {
+        display: none; }
+      #browse-container #container-tile.deleted .delete-info {
+        display: block; }
+      #browse-container #container-tile.deleted #container-contents {
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        zoom: 1; }
+    #browse-container #container-tile .table-cell {
+      vertical-align: top; }
+    #browse-container #container-tile .title-desc,
+    #browse-container #container-tile .expert-tags {
+      width: 300px; }
+    #browse-container #container-tile .data-object-type-image {
+      position: relative;
+      top: -2px; }
+    #browse-container #container-tile .name {
+      line-height: 1.2em;
+      height: 1.25em;
+      font-size: 17px; }
+    #browse-container #container-tile .desc {
+      margin-top: 5px; }
+    #browse-container #container-tile .expert-label {
+      margin: 0;
+      text-transform: capitalize;
+      height: 15px; }
+      #browse-container #container-tile .expert-label:after {
+        content: ":"; }
+    #browse-container #container-tile .expert {
+      font-weight: bold;
+      height: 15px;
+      width: 245px; }
+    #browse-container #container-tile .tags {
+      line-height: 20px;
+      overflow: hidden;
+      margin-top: 15px; }
+      #browse-container #container-tile .tags span {
+        padding: 1px 4px;
+        margin-right: 2px;
+        margin-bottom: 5px;
+        display: inline-block; }
+    #browse-container #container-tile .object-type-box {
+      display: inline-block;
+      margin: 0 10px;
+      text-align: center; }
+      #browse-container #container-tile .object-type-box .object-type-count {
+        padding: 10px;
+        min-width: 60px; }
+  #browse-container .multiselect {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    height: 28px;
+    width: 28px;
+    text-align: center;
+    cursor: pointer; }
+    #browse-container .multiselect .outline {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      height: 15px;
+      width: 15px;
+      margin-left: auto;
+      margin-right: auto;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      top: 50%; }
+      #browse-container .multiselect .outline img {
+        position: relative;
+        top: -4px;
+        left: -1px; }
+  #browse-container a.back-to-catalog span {
+    color: #006F94; }
+  #browse-container #container-tile {
+    background-color: #FFFFFF;
+    border: 3px solid #EFF0F0;
+    color: #474F5A; }
+    #browse-container #container-tile .multiselect .outline {
+      border: 1px solid #BEC2C9; }
+    #browse-container #container-tile:hover {
+      border-color: #BEC2C9; }
+    #browse-container #container-tile.selected {
+      border-color: #28C5F2; }
+      #browse-container #container-tile.selected .multiselect {
+        background-color: #28C5F2; }
+        #browse-container #container-tile.selected .multiselect .outline {
+          border: 1px solid fade(#FFFFFF, 50%); }
+  #browse-container .tags span {
+    background-color: #EFF0F0;
+    color: #474F5A; }
+  #browse-container .object-type-box .object-type-count {
+    background-color: #EFF0F0;
+    color: #474F5A; }
+
+/*# sourceMappingURL=container.css.map */

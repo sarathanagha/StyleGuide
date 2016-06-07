@@ -1,0 +1,220 @@
+﻿/*
+*	ROW RULES
+*/
+%row
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+
+%grow
+{
+    flex-grow: 1;
+}
+
+%no-shrink
+{
+    flex-shrink: 0;
+}
+
+/*
+*	COLUMN RULES
+*/
+%col
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    align-self: stretch; /*to-do:  stretch causes unintended wrapping with listview...it has to do with scrollY */
+}
+
+/*
+*	WRAP CONTENTS OF ROW OR COLUMN
+*/
+%wrap
+{
+    flex-wrap: wrap !important;
+    align-items: flex-start;
+}
+
+%nowrap
+{
+    flex-wrap: nowrap !important;
+    align-items: flex-start;
+}
+
+/*
+*	CENTER LAYOUT RULES (HORIZONTAL / VERTICAL CENTERING)
+*/
+%center
+{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
+}
+
+%centerY
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    height: 100%;
+}
+
+%position.relative
+{
+    position: relative;
+}
+
+%position.absolute
+{
+    position: absolute;
+}
+
+%right0
+{
+    right: 0;
+}
+
+/*
+*	SHRINK & STRETCH
+*/
+%shrink
+{
+    flex: 0 1 auto !important;
+}
+
+%stretch
+{
+    align-self: stretch;
+    flex: 1 100% !important;
+}
+
+/* this is used primarily as an overwrite for the row { width: 100% } rule,
+    which causes problems when rendering a .col adjacent to a .row */
+%widthAuto
+{
+    width: auto !important;
+}
+
+%heightAuto
+{
+    height: auto !important;
+}
+
+%width100Percent
+{
+    width: 100% !important;
+}
+
+%height100Percent
+{
+    height: 100%;
+}
+
+%height0
+{
+    height: 0;
+    min-height: 0;
+    max-height: 0;
+}
+
+%width0
+{
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+}
+
+/*
+* UTILITY CLASSES
+*/
+%scroll
+{
+    overflow: auto;
+}
+
+%scrollY
+{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto !important;
+}
+
+%scrollX
+{
+    width: 100%;
+    height: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+}
+
+/*
+* VISIBILITY CLASSES
+*/
+%hide
+{
+    display: none !important;
+}
+
+//scroll bar styles
+@mixin atlasScrollHover() {
+    scrollbar-face-color: #3b444e;
+
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #3b444e;
+    }
+}
+
+
+@mixin atlasScroll()
+{
+    $basecolor: transparent;
+    
+    scrollbar-base-color: $basecolor;
+    scrollbar-arrow-color: $basecolor;
+    scrollbar-highlight-color: $basecolor;
+    scrollbar-darkshadow-color: $basecolor;
+    scrollbar-face-color: $basecolor;
+    scrollbar-shadow-color: $basecolor;
+    scrollbar-3dlight-color: $basecolor;
+
+    &:hover
+    {
+        @include atlasScrollHover()
+    }
+
+    &::-webkit-scrollbar
+    {
+        width: 7px;
+        height: 7px;
+        background-color: $basecolor;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: $basecolor;
+
+        &:hover
+        {
+            background-color: #3b444e;
+        }
+    }
+}

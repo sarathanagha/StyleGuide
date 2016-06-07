@@ -1,0 +1,168 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#manual-entry {
+    font-size: 12px;
+
+    .scrollable-content {
+        padding-right: 30px;
+        max-height: 600px;
+        overflow: auto;
+
+        > div {
+            margin-top: 20px;
+
+            .manual-entry-label {
+                text-transform: capitalize;
+                font-size: 12px;
+                font-weight: bold;
+                width: 100%;
+            }
+
+            .manual-entry-facet-label {
+                text-transform: capitalize;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            input.manual-entry-input {
+                width: 100%;
+                padding: 5px;
+                font-size: 12px;
+                padding-left: 10px;
+                margin-top: 10px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 60px;
+                padding: 10px;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+        }
+
+        .manual-entry-single-option {
+            width:100%;
+            margin-top: 10px;
+            text-transform: capitalize;
+            float: left;
+            height: 22px;
+            text-indent: 5px;
+            margin-bottom: 10px;
+        }
+
+        .manual-entry-select {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin-top: 10px;
+
+            option {
+                text-transform: capitalize;
+            }
+        }
+
+        .connection-info-fields {
+            padding: 10px;
+
+            span {
+                &:after {
+                    content: "";
+                }
+            }
+        }
+
+        .error-message {
+            width:100%;
+            font-size:14px;
+            padding:2px;
+        }
+
+        .required-label {
+            padding-left: 5px;
+            text-transform: lowercase;
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        .with-required {
+            float: left;
+        }
+    }
+
+    @mixin theme {
+        $body-color: $default-body-color;
+        $body-color-light: $default-body-color-light;
+        $body-color-med: $default-body-color-med;
+        $header-color: $default-header-color;
+        $input-text-color: $default-input-text-color;
+        $dark-border: $default-dark-border;
+        $lighter-gray: $default-lighter-gray;
+        $input-background: $default-input-background-color;
+        $selected-color: $default-selected-color;
+        $font-color-med: $default-font-color-med;
+        $dark-gray: $default-dark-gray;
+        $link-color: $default-properties-link-color;
+        $navigation-text-color: $default-navigation-text-color;
+        $home-tile-background: $default-home-tile-background;
+        $dark-border: $default-dark-border;
+        $header-color: $default-header-color;
+        $error-color: $default-error-text-color;
+
+        & {
+
+            .scrollable-content {
+
+                > div {
+                    input.manual-entry-input {
+                        border: 1px solid $dark-border;
+                        background-color: $input-background;
+
+                        &:focus {
+                            background-color: $body-color-light;
+                        }
+                    }
+
+                    textarea {
+                        border: 1px solid $dark-border;
+                        background-color: $input-background;
+
+                        &:focus {
+                            background-color: $body-color-light;
+                        }
+                    }
+                }
+
+                .manual-entry-single-option {
+                    background-color: $body-color;
+                    border: 1px solid $dark-border;
+                    color: $font-color-med;
+                }
+
+                .manual-entry-select {
+                    background-color: $body-color;
+                }
+
+                .connection-info-fields {
+                    background-color: $body-color;
+                }
+
+                .error-message {
+                    color: $error-color;
+                }
+
+                .required {
+                    border: 1px solid $error-color !important;
+                    background-color: $body-color-light !important;
+                }
+
+                .required-label {
+                    color: $body-color-med;
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

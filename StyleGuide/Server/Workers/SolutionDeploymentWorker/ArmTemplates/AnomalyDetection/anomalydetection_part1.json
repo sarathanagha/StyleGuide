@@ -1,0 +1,133 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataFactoryName": {
+            "type": "string",
+            "minLength": 3
+        },
+        "storageAccountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 24
+        },
+        "mLEndpointBatchLocation": {
+            "type": "string",
+            "defaultValue": "https://api.datamarket.azure.com/data.ashx/aml_labs/anomalydetection/v1/Score?"
+        },
+        "mLEndpointKey": {
+            "type": "string",
+            "minLength": 3
+        }
+    },
+    "variables": {
+        "apiVersion": "2014-10-01-preview",
+        "containerName": "anomalydetection",
+        "storageAccountNameToLower": "[toLower(parameters('storageAccountName'))]",
+        "storageAccountUrls": "[replace('BlobEndpoint=https://$$STORAGEACCNAME$$.blob.core.windows.net/;TableEndpoint=https://$$STORAGEACCNAME$$.table.core.windows.net/;QueueEndpoint=https://$$STORAGEACCNAME$$.queue.core.windows.net/;FileEndpoint=https://$$STORAGEACCNAME$$.file.core.windows.net/', '$$STORAGEACCNAME$$', variables('storageAccountNameToLower'))]",
+        "storageAccountType": "Standard_LRS",
+        "storageAccountConnectionStringPartial": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountNameToLower'), ';AccountKey=', '$$ACCOUNTKEY$$', ';', variables('storageAccountUrls'))]",
+
+        "sbName": "[concat(parameters('dataFactoryName'), 'servicebus')]",
+        "sbVersion": "[providers('Microsoft.Eventhub', 'namespaces').apiVersions[0]]",
+        "sbKeyName": "RootManageSharedAccessKey",
+        "sbResourceId": "[resourceId('Microsoft.Eventhub/namespaces/authorizationRules', variables('sbName'), variables('sbKeyName'))]",
+        "ehInName": "[concat(parameters('dataFactoryName'), 'ehingress')]"
+    },
+    "resources": [
+        {
+            //Storage account
+            "name": "[variables('storageAccountNameToLower')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-05-01-preview",
+            "dependsOn": [ ],
+            "properties": {
+                "accountType": "[variables('storageAccountType')]"
+            }
+        },
+        {
+            "apiVersion": "[variables('sbVersion')]",
+            "name": "[variables('sbName')]",
+            "type": "Microsoft.EventHub/namespaces",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "region": "[resourceGroup().location]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "[variables('sbVersion')]",
+                    "name": "[variables('ehInName')]",
+                    "type": "eventHubs",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.EventHub/namespaces/', variables('sbName'))]"
+                    ],
+                    "properties": {
+                        "path": "[variables('ehInName')]"
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        /* Required by part2 */
+        "dataFactoryName": {
+            "type": "string",
+            "value": "[parameters('dataFactoryName')]"
+        },
+        /* Required by part2 */
+        "storageAccountName": {
+            "type": "string",
+            "value": "[variables('storageAccountNameToLower')]"
+        },
+        "eventHubName": {
+            "type": "string",
+            "value": "[variables('sbName')]"
+        },
+        "eventHubConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('sbResourceId'), variables('sbVersion')).primaryConnectionString]"
+        },
+        "ingestEventHubName": {
+            "type": "string",
+            "value": "[variables('ehInName')]"
+        },
+        /* Required by part2 */
+        "mLEndpointBatchLocation": {
+            "type": "string",
+            "value": "[parameters('mLEndpointBatchLocation')]"
+        },
+        /* Required by part2 */
+        "mLEndpointKey": {
+            "type": "string",
+            "value": "[parameters('mLEndpointKey')]"
+        },
+        /* Required by part2 */
+        "storageAccountConnectionString": {
+            "type": "string",
+            "value": "[replace(variables('storageAccountConnectionStringPartial'), '$$ACCOUNTKEY$$', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameToLower')), '2015-06-15').key1)]"
+        },
+        "scriptContainerName": { //Required
+            "type": "string",
+            "value": "[variables('containerName')]"
+        },
+        "dataGenerator": { //Optional only need when updating config in the sample data generator exe
+            "type": "object",
+            "value": {
+                "containerName": "[variables('containerName')]",
+                "generatorNames": [
+                    {
+                        "name": "ADDataGen", //Name of the zip file in the blob storage which has the exe
+                        "config": "generator" // Actual name of the exe/config file that needs to be configured.
+                    }
+                ]
+            }
+        },
+        /* Dummy - Required by part2 */
+        "sqlScript": {
+            "type": "string",
+            "value": "DummyNotUsed"
+        }
+    }
+}

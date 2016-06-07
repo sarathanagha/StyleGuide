@@ -1,0 +1,18 @@
+﻿<div class="toolbox col">
+    <div class="row panelHeaderContainer">
+        <div class="header">Toolbox</div>
+    </div>
+
+    <div class="folders col" data-bind="foreach: toolbox.categories">
+        <div class="folder row" data-bind="css:{collapsed: !categoryContentsVisible()}, event:{click:toggleCategoryContents}">
+            <div class="caret" data-bind="html: caretIcon"></div>
+            <div data-bind="text: name"></div>
+        </div>
+        <div data-bind="foreach: tools, visible: categoryContentsVisible">
+            <div class="tool row" data-bind="attr:{'data-entityType': category, 'data-entityId': id}, jqueryUI: {draggable: {helper: 'clone', cursorAt:{top:0, left: -10}, appendTo: 'body', zIndex: 999, stop:$parents[1].entityDropped.bind($parents[1], $data)}}">
+                <div data-bind="text: name"></div>
+                <div class="gripper" data-bind="html: $parents[1].gripperIcon"></div>
+            </div>
+        </div>
+    </div>
+</div>

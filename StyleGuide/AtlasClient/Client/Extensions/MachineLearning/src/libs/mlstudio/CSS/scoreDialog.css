@@ -1,0 +1,17 @@
+#scoreDialogContent
+{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#webServiceParametersPanel input[type=checkbox], #parameterPanel input[type=checkbox]
+{
+    float:left !important;
+    margin-top: 0px !important;
+    top: 0px !important;
+}
+
+#webServiceParametersPanel input[type=checkbox] + label, #parameterPanel input[type=checkbox] + label
+{
+    margin-bottom:20px !important;
+}

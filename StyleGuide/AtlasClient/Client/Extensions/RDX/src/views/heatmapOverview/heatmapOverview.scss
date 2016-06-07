@@ -1,0 +1,104 @@
+﻿@import "../../stylesheets/main";
+
+.heatmapOverviewWrapper{
+    background: white;
+    border-top: $cardBoarder;
+
+    .topLeftCornerControlsWrapper{
+        position: relative;
+        height: 0;
+        top: -28px;
+        left: -20px;
+        z-index: 200;
+        color: $grayLight;
+
+        div{
+            display: inline-block;
+            font-size: 11px;
+            color: $grayLight;
+        }
+
+        span{
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            color: $grayLight;
+            text-transform: uppercase;
+            
+            &:hover{
+                color: $grayDark;
+            }
+
+            &.selected{
+                color: $grayDark;
+                cursor: default;
+                padding-bottom: 2px;
+                border-bottom: 2px solid $atlasTeal;
+                &:hover{
+                    color: $grayDark;
+                }
+            }
+        }
+        #heatmapEventTableFilter{
+            @extend .atlasInput;
+            width: 150px;
+            padding: 2px;
+            padding-top: 1px;
+            margin-right: 12px;
+        }
+    }
+
+    .heatmapLegendWrapper{
+        height: $heatmapHeight;
+        width: 40px;
+        float: left;
+        border-right: $cardBoarder;
+        background: $lightCanvas;
+
+        .heatmapLegend{
+            padding: $largeMarginAndPadding;
+
+            .heatmapLegendLabel{
+                font-size: 11px;
+            }
+
+            .heatmapLegendColorBar{
+                height: 5px;
+                width: 20px;
+            }
+
+        }
+    }
+
+    .heatmapOverviewCanvasWrapper{
+        @extend .opacityTransition;
+        margin: 0;
+        box-shadow: none;
+        padding-left: 24px;
+        padding-top: 32px;
+        height: calc(#{$heatmapHeight} - 32px); 
+        overflow: hidden;
+        opacity: 0;
+
+        .overviewYAxisLabel{
+            position: relative;
+            left: -42px;
+            transform: rotate(-90deg);
+            top: 240px;
+            width: 44px;
+            height: 0px;
+        }
+
+        .overviewXAxisLabel{
+            position: relative;
+            top: -20px;
+            height: 0px;
+            left: 400px;
+        }
+
+        #heatmapOverviewCanvas{
+            border-left: $cardBoarder;
+            border-top: $cardBoarder;
+        }
+    }
+}

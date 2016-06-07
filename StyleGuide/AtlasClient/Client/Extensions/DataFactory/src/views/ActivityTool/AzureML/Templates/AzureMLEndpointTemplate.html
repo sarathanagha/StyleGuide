@@ -1,0 +1,15 @@
+﻿<div class="wizardStepSubtitle">
+    Specify the settings for the AzureML endpoint. You can use an existing AzureML endpoint (or) specify a new AzureML endpoint.<br />
+</div>
+
+<div class="dataFactory-activityTool-radioOptions">
+    <input type="radio" data-bind="checked: endpointSelectionType, checkedValue: endpointPresence.Existing">Existing
+    <input type="radio" data-bind="checked: endpointSelectionType, checkedValue: endpointPresence.New">New
+</div>
+
+<!-- ko if: endpointSelectionType() === endpointPresence.Existing -->
+<div data-bind="htmlWith: {template: linkedServicesGridTemplate}"></div>
+<!-- /ko -->
+<!-- ko if: endpointSelectionType() === endpointPresence.New -->
+<div data-bind="htmlWith: {template: newMLEndpointSelectionTemplate}"></div>
+<!-- /ko -->

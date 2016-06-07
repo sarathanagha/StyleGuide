@@ -1,0 +1,179 @@
+#bubble-container {
+    background-color: transparent;
+    position: absolute;
+    z-index: 2100;
+}
+
+#bubble {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255,255,255,1);
+    color: #323232;
+    z-index: 2100;
+    border-radius: 4px;
+}
+
+#bubble-arrow {
+    position: absolute;
+    z-index: 2100;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #FFF;
+}
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #FFF;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #FFF;
+}
+
+.bubble-close:before {
+    content: "×";
+}
+
+a.bubble-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: grey;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;
+    text-decoration: none;
+}
+
+.bubble-title {
+    font-size: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+
+.bubble-content {
+    font-size: 15px;
+    padding: 5px 5px 0 20px;
+}
+
+.bubble-content-small {
+    font-size: 12px;
+}
+
+.bubble-bottom {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 40px;
+    margin: 0px 20px;
+}
+
+.bubble-button {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.left {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bubble-progress {
+    height: 20px;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.bubble-progress li {
+    list-style: none;
+    display: inline-block;
+    background: #eaeaea;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.bubble-progress li.white {
+    background: #666;
+}
+
+.bubble-overlay {
+    position: fixed;
+    z-index: 2098;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.bubble-transparent-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 2099;
+    background-color: rgba(0,0,0,0.01);
+}
+
+.bubble-overlay-top {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.bubble-overlay-left {
+    left: 0px;
+}
+
+.bubble-overlay-right {
+    right: 0px;
+}
+
+.bubble-overlay-bottom {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}

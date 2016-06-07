@@ -1,0 +1,19 @@
+{
+  "name": "DataStudioApp",
+  "version": "1.0.0",
+  "description": "Appified version of Data Studio code.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Microsoft Corporation",
+  "private": true,
+  "devDependencies": {
+    "asa": "^0.1.1",
+    "atom-shell-installer": "^0.2.4",
+    "electron-packager": "^4.1.2",
+    "gulp": "^3.8.11",
+    "gulp-asar": "0.0.2",
+    "gulp-electron": "0.0.4",
+    "run-sequence": "^1.1.0"
+  }
+}

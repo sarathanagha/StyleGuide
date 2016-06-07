@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src(4)", "http://localhost:6024", "{A9E7DEF3-D2F8-48D7-A24E-4923769235D4}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_6024"
+		Debug.AspNetCompiler.PhysicalPath = "src\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6024\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_6024"
+		Release.AspNetCompiler.PhysicalPath = "src\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6024\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "src\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueprint", "Blueprint.csproj", "{7FCE0682-DCF0-4938-9639-30AFF56C325B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sqlbuvsts01:8080/main
+		SccLocalPath0 = .
+		SccWebProject1 = true
+		SccProjectUniqueName1 = http://localhost:6024
+		SccProjectName1 = src
+		SccLocalPath1 = src
+		SccProjectEnlistmentChoice1 = 2
+		SccProjectUniqueName2 = Blueprint.csproj
+		SccLocalPath2 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9E7DEF3-D2F8-48D7-A24E-4923769235D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E7DEF3-D2F8-48D7-A24E-4923769235D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E7DEF3-D2F8-48D7-A24E-4923769235D4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E7DEF3-D2F8-48D7-A24E-4923769235D4}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7FCE0682-DCF0-4938-9639-30AFF56C325B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FCE0682-DCF0-4938-9639-30AFF56C325B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FCE0682-DCF0-4938-9639-30AFF56C325B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FCE0682-DCF0-4938-9639-30AFF56C325B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

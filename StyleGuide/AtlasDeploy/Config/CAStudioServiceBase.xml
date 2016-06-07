@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ConfigList>
+  <Config Name="CAStudioServiceBase" Base="Common">
+    <Settings>
+      <Setting Name="Microsoft.TableStorage.ConnectionString">DefaultEndpointsProtocol=https;AccountName=$(@Storage.Account);AccountKey=$(@Storage.ActiveKey)</Setting>      
+
+      <Setting Name="Microsoft.QueueNames.CreateDeployment">create-deployment-requests</Setting>
+      <Setting Name="Microsoft.QueueNames.UpdateDeploymentStatus">update-deployment-status-requests</Setting>
+      <Setting Name="Microsoft.QueueNames.MLDeploymentRequests">ml-deployment-requests</Setting>
+      <Setting Name="Microsoft.QueueNames.DeleteDeployment">delete-deployment-requests</Setting>
+      <Setting Name="PackagePath">..\Binaries\ServiceGroupRoot\bin\ServerPackage.cspkg</Setting>
+
+      <Setting Name="Microsoft.Cors.ShouldAllowHttpOrigins">True</Setting>
+
+      <Setting Name="Microsoft.Diagnostics.EnableMdsTracing">True</Setting>
+      <Setting Name="Microsoft.Diagnostics.LogLevel">All</Setting>
+      <Setting Name="Microsoft.DataStudio.Services.Tenant">72f988bf-86f1-41af-91ab-2d7cd011db47</Setting>
+      <Setting Name="Microsoft.DataStudio.Services.Audience">https://management.core.windows.net/</Setting>
+
+      <Setting Name="Microsoft.UriEndpoints.AzureResourceManagementUri">https://management.azure.com/</Setting>
+      <Setting Name="Microsoft.ApiVersions.AzureResourceManagementApiVersion">2015-07-01</Setting>
+      <Setting Name="Microsoft.ApiVersions.WorkFlow">2015-02-01-preview</Setting>
+      <Setting Name="Microsoft.SqlServer.Import.Suffix">.database.windows.net</Setting>
+
+    </Settings>
+    <ScaleUnit Type="ScaleUnit" Name="SU01">
+      <HostedService Type="Microsoft.DataStudio.Deployment" Name="$(DeploymentName)">
+        <Service>
+          <Role Name="DataStudioService"></Role>
+          <Role Name="SolutionDeploymentWorker">
+            <Setting Name="Microsoft.MachineLearning.WorkspaceLocation">South Central US</Setting>
+            <Setting Name="Microsoft.MachineLearning.MaxRetryAttempts">3</Setting>
+            <Setting Name="Microsoft.UriEndpoints.WindowsManagementUri">https://management.core.windows.net/</Setting>
+            <Setting Name="Microsoft.UriEndpoints.AzuremlManagementUri">https://management.azureml.net/</Setting>
+            <Setting Name="Microsoft.UriEndpoints.StudioApiUri">https://studioapi.azureml.net/</Setting>
+            <Setting Name="Microsoft.UriEndpoints.ResourceManagementUri">https://ms.portal.azure.com/#resource</Setting>
+            <Setting Name="Microsoft.UriEndpoints.OldResourceManagementUri">https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/</Setting>
+          </Role>
+        </Service>
+      </HostedService>
+    </ScaleUnit>
+  </Config>
+ </ConfigList>

@@ -1,0 +1,128 @@
+/** When making custom tags like this, IE and FF default to display: inline while Chrome defaults to 
+  * display: block. So, to have your tags look remotely reasonable in all browsers, you need to always
+  * set the display property.   
+ **/
+
+/* A vertical flexbox */
+vflexbox {
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    height: 100%;
+}
+
+/* A horizontal flexbox */
+hflexbox {
+    flex-direction: row;    
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    width: 100%;
+}
+
+/**
+  * Flex items with content in the direction of flex sizing need to be position relative and their
+  * children need to be position absolute.
+  * http://stackoverflow.com/questions/8633964/using-percentage-values-to-fill-flexbox-items
+ **/
+
+/* A flexbox item that grows and shrinks to consume remaining space in the parent flexbox */
+flexfill {
+    display: block;
+    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    position: relative;
+}
+
+/* A flexbox item that does not grow or shrink with the parent flexbox */
+flexstatic {
+    display: block;
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    position: relative;
+}
+
+/* The content area of a flexbox item. */
+flexcontent {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+/* When a drawer is opening or closing, it goes into this state to induce animation */
+.minimizing, .maximizing {
+    transition-duration: 0.4s;
+    transition-delay: 0s;
+    transition-timing-function: ease;
+    -moz-transition-duration: 0.4s;
+    -moz-transition-timing-function: ease;
+    -moz-transition-delay: 0s;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+}
+
+/* For horizontal drawers */
+.transitionWidth {
+    transition-property: width;
+    -moz-transition-property: width;
+    -webkit-transition-property: width;
+}
+
+/* For vertical drawers */
+.transitionHeight {
+    transition-property: height;
+    -moz-transition-property: height;
+    -webkit-transition-property: height;
+}
+
+/* An invisible drag region for resizing drawers */
+.resize {
+    position: absolute;
+    background-color: transparent;
+}
+
+.resize.top {
+    left: 0px;
+    top: 0px;
+    height: 10px;
+    width: 100%;
+    cursor: ns-resize;
+}
+
+.resize.bottom {
+    left: 0px;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+    cursor: ns-resize;
+}
+
+.resize.left {
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 10px;
+    cursor: ew-resize;
+}
+
+.resize.right {
+    right: -5px; /* Needs to be shifted over to the right so that when the scroll bar appears to the left, the cursor over most of the scroll bar is normal and not resize*/
+    top: 0px;
+    height: 100%;
+    width: 10px;
+    cursor: ew-resize;
+    z-index: 1; /* needs to be above the .experimentCanvas which has z-index of 0. */
+}
+
+.minimized .resize {
+    cursor: default;
+}

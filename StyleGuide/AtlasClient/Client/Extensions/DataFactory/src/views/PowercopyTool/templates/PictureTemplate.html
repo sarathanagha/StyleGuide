@@ -1,0 +1,51 @@
+﻿<!-- ko if: sourceSummaryHeaderDataType -->
+<!-- ko if: destinationSummaryHeaderDataType -->
+<div class="summaryHeaderSectionContainer">
+    <div class="summaryHeaderIconDiv" data-bind="html: sourceSummaryHeaderDataType().icon"></div>
+    <div class="summaryHeaderPropertiesContainer">
+        <div class="summaryHeaderPropertyContainer">
+            <div class="summaryHeaderLabel" data-bind="text: sourceSummaryHeaderDataType().displayText"></div>
+        </div>
+        <div class="summaryHeaderPropertyContainer">
+            <!-- ko ifnot: sourceSummaryHeaderTable().expandable -->
+            <div class="summaryHeaderLabel" data-bind="text: sourceSummaryHeaderTable().value"></div>
+            <!-- /ko -->
+            <!-- ko if: sourceSummaryHeaderTable().expandable -->
+            <div class="summaryHeaderValue" data-bind="text: sourceSummaryHeaderTable().value"></div>
+            <div class="summaryHeaderDetails" data-bind="event:{click:sourceSummaryHeaderTable().expander.toggleExpamd.bind(sourceSummaryHeaderTable().expander)}, callout:{innerHtml:sourceSummaryHeaderTable().calloutHtml}"></div>
+            <!-- /ko -->
+        </div>
+        <div class="summaryHeaderPropertyContainer">
+            <div class="summaryHeaderLabel">Region:</div>
+            <div class="summaryHeaderValue" data-bind="text:sourceNavModel.runtimeRegionObservable"></div>
+        </div>
+    </div>
+    <div class="summaryHeaderArrowContainer">
+        <div class="summaryHeaderArrowTextContainer">
+            <div class="summaryHeaderArrowLabel">Copy Run Time Region:</div>
+            <div class="summaryHeaderArrowValue" data-bind="text:runTimeRegion()"></div>
+        </div>
+        <div class="summaryHeaderArrow"></div>
+    </div>
+    <div class="summaryHeaderIconDiv" data-bind="html: destinationSummaryHeaderDataType().icon"></div>
+    <div class="summaryHeaderPropertiesContainer">
+        <div class="summaryHeaderPropertyContainer">
+            <div class="summaryHeaderLabel" data-bind="text: destinationSummaryHeaderDataType().displayText"></div>
+        </div>
+        <div class="summaryHeaderPropertyContainer">
+            <!-- ko ifnot: destinationSummaryHeaderTable().expandable -->
+            <div class="summaryHeaderLabel" data-bind="text: destinationSummaryHeaderTable().value"></div>
+            <!-- /ko -->
+            <!-- ko if: destinationSummaryHeaderTable().expandable -->
+            <div class="summaryHeaderValue" data-bind="text: destinationSummaryHeaderTable().value"></div>
+            <div class="summaryHeaderDetails" data-bind="event:{click:destinationSummaryHeaderTable().expander.toggleExpamd.bind(destinationSummaryHeaderTable().expander)}, callout:{innerHtml:destinationSummaryHeaderTable().calloutHtml}"></div>
+            <!-- /ko -->
+        </div>
+        <div class="summaryHeaderPropertyContainer">
+            <div class="summaryHeaderLabel">Region:</div>
+            <div class="summaryHeaderValue" data-bind="text:destinationNavModel.runtimeRegionObservable"></div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+<!-- /ko -->

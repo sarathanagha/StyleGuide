@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("stylesheets/External/AtlasFont/fonts/icomoon.eot?-dg84jy");
+  src: url("stylesheets/External/AtlasFont/fonts/icomoon.eot?#iefix-dg84jy") format('embedded-opentype'), 
+        url("stylesheets/External/AtlasFont/fonts/icomoon.woff?-dg84jy") format('woff'), 
+        url("stylesheets/External/AtlasFont/fonts/icomoon.ttf?-dg84jy") format('truetype'), 
+        url("/stylesheets/External/AtlasFont/fonts/icomoon.svg?-dg84jy#icomoon") format('svg');
+ font-weight: normal;
+  font-style: normal; }        

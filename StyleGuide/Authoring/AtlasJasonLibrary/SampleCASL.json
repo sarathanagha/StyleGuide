@@ -1,0 +1,167 @@
+﻿
+    {
+        "Id": "HiveActivity",
+        "Name": "Hive Activity",
+        "Description": "ADF Hive Activity",
+        "FamilyId": "1",
+        "Category": "ADF",
+        "Items": null,
+        "Parameters": [
+            {
+                "ParameterName": "Name",
+                "IsOptional": false,
+                "ParameterType": 0,
+                "ParameterRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "Activity name",
+                "FriendlyName": "Activity Name"
+            },
+            {
+                "ParameterName": "Description",
+                "IsOptional": true,
+                "ParameterType": 0,
+                "ParameterRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "Activity Description",
+                "FriendlyName": "Activity Description"
+            },
+            {
+                "ParameterName": "LinkedServiceName",
+                "IsOptional": false,
+                "ParameterType": 0,
+                "ParameterRules": null,
+                "HasDefaultValue": false,
+                "DefaultValue": "",
+                "ScriptName": "",
+                "Description": "LinkedService name where the Activity Runs.",
+                "FriendlyName": "LinkedService Name"
+            },
+            {
+                "ParameterName": "Policy",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityPolicy",
+                "FriendlyName": "Activity policy.",
+                "ParameterType": 6,
+                "Parameters": [
+                    {
+                        "ParameterName": "Timeout",
+                        "IsOptional": false,
+                        "ParameterType": 0,
+                        "ParameterRules": {
+                            "Pattern": "((\\d+)\\.)?(\\d\\d):(60|([0-5][0-9])):(60|([0-5][0-9]))"
+                        },
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "LinkedService name where the Activity Runs.",
+                        "FriendlyName": "LinkedServiceName"
+                    },
+                    {
+                        "ParameterName": "ExecutionPriorityOrder",
+                        "IsOptional": false,
+                        "ParameterType": 3,
+                        "ParameterRules": null,
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "LinkedService name where the Activity Runs.",
+                        "FriendlyName": "LinkedServiceName",
+                        "ParameterValueInfo": [
+                            {
+                                "Key": "OldestFirst",
+                                "Value": {
+                                    "DisplayValue": "OldestFirst"
+                                }
+                            },
+                            {
+                                "Key": "NewestFirst",
+                                "Value": {
+                                    "DisplayValue": "NewestFirst"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ParameterName": "Inputs",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityInput",
+                "FriendlyName": "An activity input.",
+                "ParameterType": 7,
+                "TableParameters": [
+                        {
+                            "ParameterName": "StartTime",
+                            "IsOptional": true,
+                            "ParameterType": 0,
+                            "ParameterRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Start time",
+                            "FriendlyName": "StartTime"
+                        },
+                        {
+                            "ParameterName": "EndTime",
+                            "IsOptional": true,
+                            "ParameterType": 3,
+                            "ParameterRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "EndTime",
+                            "FriendlyName": "EndTime",
+                            "ParameterValueInfo": null
+                        },
+                        {
+                            "ParameterName": "Length",
+                            "IsOptional": true,
+                            "ParameterType": 3,
+                            "ParameterRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Length",
+                            "FriendlyName": "Length",
+                            "ParameterValueInfo": null
+                        },
+                        {
+                            "ParameterName": "Name",
+                            "IsOptional": true,
+                            "ParameterType": 3,
+                            "ParameterRules": null,
+                            "HasDefaultValue": false,
+                            "DefaultValue": "",
+                            "ScriptName": "",
+                            "Description": "Name",
+                            "FriendlyName": "Name",
+                            "ParameterValueInfo": null
+                        }
+
+                    ]
+            },
+            {
+                "ParameterName": "Outputs",
+                "Description": "Microsoft.Azure.Management.DataFactories.Models.ActivityOutput",
+                "FriendlyName": "An activity output.",
+                "ParameterType": 11,
+                "Parameters": [
+                    {
+                        "ParameterName": "Name",
+                        "IsOptional": true,
+                        "ParameterType": 3,
+                        "ParameterRules": null,
+                        "HasDefaultValue": false,
+                        "DefaultValue": "",
+                        "ScriptName": "",
+                        "Description": "Name",
+                        "FriendlyName": "Name",
+                        "ParameterValueInfo": null
+                    }
+                ]
+            }
+        ]
+    }
+

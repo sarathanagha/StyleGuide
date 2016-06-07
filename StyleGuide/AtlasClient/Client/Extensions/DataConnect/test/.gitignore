@@ -1,0 +1,9 @@
+# Scripts ignores
+*.js
+*.js.map
+
+spec/**/*.d.ts
+spec/**/*.js
+spec/**/*.js.map
+
+!gulpfile.js

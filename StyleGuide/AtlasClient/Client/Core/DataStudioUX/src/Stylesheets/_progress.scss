@@ -1,0 +1,91 @@
+@import "colors";
+
+//Colors
+$atlas-teal: #00B294;
+$progress-bar-height: 8px; 
+
+.progress {
+    display: block;
+    color: $grayDark;
+    font-family: "Segoe UI", sans-serif;
+
+    // Determinate progress
+    &.determinate {
+        padding: 24px 60px;
+    }
+
+    > .progress-text {
+        display: block;
+        padding-top: 8px;
+        font-size: 0.75em;
+    }
+
+    &.progress-large > .progress-text {
+        display: block;
+        padding-top: 28px;
+        text-align: center;
+        font-size: 1.125em;
+    }
+
+    > .progress-bar {
+        display:block;
+        width: 100%;
+        height: $progress-bar-height;
+        background-color: $canvas;
+        overflow: hidden;
+
+        > span {
+            display:block;
+            width: 0%; /* Default to 0% progress */
+            height: $progress-bar-height;
+            background-color: $atlas-teal;
+        }
+    }
+
+    // Tndeterminate progress
+    &.indeterminate {
+        border-top: .3em solid $canvas;
+        border-right: .3em solid $canvas;
+        border-bottom: .3em solid $canvas;
+        border-left: .3em solid $atlas-teal;
+        display: inline-block;
+        font-size: inherit;
+        position: relative;
+        text-indent: -9999em;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation: spinner 1s infinite linear;
+        animation: spinner 1s infinite linear;
+        overflow: hidden;
+    }
+
+    &.indeterminate,
+    &.indeterminate:after {
+        border-radius: 50%;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

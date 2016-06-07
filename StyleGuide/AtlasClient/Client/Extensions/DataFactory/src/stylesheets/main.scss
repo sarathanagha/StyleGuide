@@ -1,0 +1,769 @@
+﻿/* This is a module-level base CSS */
+@import "./_AdfSpecific";
+@import "./tooltip";
+
+$failedBackgroundColor: $redColor;
+$successBackgroundColor: $atlasGreenColor;
+$missingBackgroundColor: $grayLightColor;
+$waitingBackgroundColor: $yellowColor;
+$selectedBackgroundColor: $darkSlateColor;
+$defaultBackgroundColor: white;
+
+$pausedBackgroundColor: #f69123;
+$activeBackgroundColor: #8bc141;
+$idleBackgroundColor: #d8dbde;
+
+$calendarIconSize: 16px;
+$statusCalendarFontColor: $darkCharColor;
+$statusCalendarStatusBoxFontColor: $whiteColor;
+$fontBaseSize: 12px;
+$defaultCalendarWidth: 250px;
+$hourlyCalendarWidth: 519px;
+
+$largeSpinnerDim: 50px;
+
+.adf-darkIconToolbar {
+   @include adf-darkIconToolbar();
+}
+
+.adf-lightIconToolbar {
+    @include adf-lightIconToolbar();
+}
+
+textarea.adf-invisibleInput {
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    overflow: hidden;
+}
+
+input.atlas-input, textarea.atlas-input {
+    margin-top: 4px;
+    padding: 8px;
+    border: solid 1px $darkCloud;
+
+    &:hover {
+        border: solid 1px $slateColor;
+    }
+
+    &:focus {
+        border: solid 1px $atlasTeal;
+    }
+}
+
+table.atlas-table {
+    margin-top: 4px;
+    padding: 8px;
+    border: solid 1px $darkCloud;
+    background: white;
+
+    &:hover {
+        border: solid 1px $slateColor;
+    }
+
+    &:focus {
+        border: solid 1px $atlasTeal;
+    }
+}
+
+$adfNavToolbarDim: 48px;
+
+sidePanel.dataFactory {
+  background-color: $bgColor;
+}
+
+// TODO paverma not sure what is the most cleanway to get shell's center CSS.
+%shell-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
+}
+
+.dataFactoryHome {
+
+    .quickLaunch {
+    button {
+      background-color: $bgColor;
+    }
+  }
+}
+
+%adf-text-ellipsis {
+    @include adf-text-ellipsis();
+}
+
+.dataFactory-text-ellipsis {
+    @extend %adf-text-ellipsis;
+}
+
+.dataFactory-text-muted {
+    opacity: 0.5;
+}
+
+.adfGraphNodeStatusFlyout.win-flyout {
+    padding: 10px 10px 10px 10px;
+    background-color: $lightCanvasColor;
+    border: 1px solid $darkCharColor;
+    max-width: $hourlyCalendarWidth * 2;
+}
+
+.dataFactory-statusCalendar {
+    @extend .dataFactory-statusCalendar-font;
+    color: $statusCalendarFontColor;
+
+    background-color: $lightCanvasColor;
+}
+
+.dataFactory-statusCalendar-font {
+    font-family: 'Segoe UI';
+    font-size: $fontBaseSize;
+}
+
+.dataFactory-statusCalendar-header {
+    font-size: 13px;
+    text-align: center;
+}
+
+.dataFactory-statusCalendar-subHeader {
+    font-size: $fontBaseSize;
+    text-align: center;
+}
+
+.dataFactory-statusCalendar-pageHeader {
+    font-size: $fontBaseSize;
+    text-transform: uppercase;
+    margin: 10px 8px 16px 8px;
+    justify-content: space-between;
+    > div {
+        min-width: 0;
+    }
+}
+
+.dataFactory-statusCalendar-footer {
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+.activityRunDetailCalendar {
+    .dataFactory-statusCalendar-footer {
+        color: $blueColor;
+    }
+
+    .dataFactory-loader-blockingUiLoading {
+        background-color: $lightCanvasColor;
+    }
+}
+
+.dataFactory-statusCalendar-label {
+    font-size: 13px;
+}
+
+.dataFactory-statusCalendar-columnLabel {
+    @extend .dataFactory-statusCalendar-label;
+    margin-bottom: 6px;
+}
+
+.dataFactory-statusCalendar .dataFactory-statusCalendar-columnLabel {
+    flex: 1;
+    align-items: flex-end;
+}
+
+.dataFactory-statusCalendar-columnLabelOuter {
+    flex: 1;
+}
+
+.dataFactory-statusCalendar-rowLabel {
+    @extend .dataFactory-statusCalendar-label;
+    width: 100px;
+}
+
+$selectionBorderWidth: 4px;
+.dataFactory-statusCalendar-statusBox {
+    @extend .dataFactory-statusCalendar-font;
+    color: $statusCalendarStatusBoxFontColor;
+
+    padding: 1px;
+    width: $selectionBorderWidth * 3;
+
+    > div {
+        height: auto;
+        width: auto;
+    }
+
+    .success {
+        background-color: $successBackgroundColor;
+    }
+
+    .failed {
+        background-color: $failedBackgroundColor;
+    }
+
+    .missing {
+        background-color: $missingBackgroundColor;
+    }
+
+    .waiting {
+        background-color: $waitingBackgroundColor;
+    }
+
+    .inprogress {
+        background: linear-gradient( 45deg, rgba(0,0,0,0) 33%, $atlasGreenColor 33%, $atlasGreenColor 50%, rgba(0,0,0,0) 50% );
+        background-size: 3px 3px;
+    }
+
+    &.selected > div {
+        border: $selectionBorderWidth solid $selectedBackgroundColor;
+    }
+
+    &.highlight {
+        background-color: $highlightColor;
+    }
+}
+
+// Most of the type specific css should be added here
+.dataFactory-statusCalendar-type {
+
+    &.Minute {
+        width: $defaultCalendarWidth;
+
+        .dataFactory-statusCalendar-statusBox {
+            height: 15px;
+            padding: 3px;
+        }
+    }
+
+    &.Hour {
+        width: $hourlyCalendarWidth;
+        .dataFactory-statusCalendar-columnLabel {
+            margin-bottom: 0;
+        }
+
+        .dataFactory-statusCalendar-columnTicker {
+            border-left: solid;
+            border-width: 2px;
+            border-color: $darkCloudColor;
+            margin-bottom: 0;
+            height: 6px;
+        }
+        .dataFactory-statusCalendar-statusBox {
+            height: 16px;
+            padding: 2px 2.5px 2px 2.5px;
+        }
+    }
+
+    &.Day {
+        @include adf-fixedWidth($defaultCalendarWidth);
+        .dataFactory-statusCalendar-columnLabel {
+            @extend %shell-center;
+        }
+        .dataFactory-statusCalendar-statusBox {
+            height: 30px;
+            padding: 2px;
+        }
+    }
+
+    &.Week {
+        width: $defaultCalendarWidth;
+        .dataFactory-statusCalendar-statusBox {
+            height: 18px;
+            width: 18px;
+            padding: 2px;
+        }
+        .dataFactory-statusCalendar-rowLabel {
+            width: 150px;
+        }
+    }
+
+    &.Month {
+        width: $defaultCalendarWidth;
+        .dataFactory-statusCalendar-statusBox {
+            height: 38px;
+            padding: 4px;
+        }
+    }
+
+    &.Year {
+       @extend .Month;
+    }
+
+    &.Generic {
+        @extend .Week;
+    }
+}
+
+.dataFactory-statusCalendar-rowSeparator {
+    width: 100%;
+    height: 1px;
+    min-height: 1px;
+    color: $darkCloudColor;
+    background-color: $darkCloudColor;
+    border: none;
+    margin: 0 0 0 0;
+}
+
+.dataFactory-statusCalendar-icon button {
+    height: $calendarIconSize;
+    min-height: $calendarIconSize;
+    max-height: $calendarIconSize;
+    width: $calendarIconSize;
+    min-width: $calendarIconSize;
+    max-width: $calendarIconSize;
+}
+
+.dataFactory-statusCalendar-page {
+    padding-left: 5px;
+    padding-right: 5px;
+    min-width: 0;
+    min-height: 0;
+}
+
+$barberpoleWidth: 10px;
+
+@keyframes barberpole {
+   0% {
+       left: -$barberpoleWidth;
+   }
+   100% {
+       left: $barberpoleWidth;
+   }
+}
+
+.dataFactory-diagram-pipelineStatus {
+    width: 100%;
+    border: 1px solid $whiteColor;
+    white-space: nowrap;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    .row {
+        position: absolute;
+        animation: barberpole .75s linear infinite;
+        $stripeCount: 24;
+        width: #{$stripeCount * $barberpoleWidth};
+
+        .cell {
+            width: $barberpoleWidth;
+            height: $barberpoleWidth;
+            transform: skew(-20deg);
+            background-color:#75A03F;
+
+            &.empty {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &.paused {
+        background-color: $pausedBackgroundColor;
+    }
+
+    &.failed {
+        background-color: $failedBackgroundColor;
+    }
+
+    &.active {
+        background-color: $activeBackgroundColor;
+    }
+
+    &.idle {
+        background-color: $idleBackgroundColor;
+    }
+}
+
+.leftSidePanel .jstree-default .adf-highlighted.jstree-wholerow {
+    background: $highlightColor;
+}
+
+.leftSidePanel .jstree-default .jstree-wholerow-clicked {
+    background: $selectedColor;
+}
+
+.leftSidePanel .jstree-clicked {
+    color: $selectedTextColor;
+}
+
+.adf-breadcrumb-base {
+    font-size: 12pt;
+    // TODO iannight: find out why atlas is making the links white by default
+    color: $darkCharColor !important;
+    font-family: "Segoe UI";
+}
+
+.adf-breadcrumb {
+    @extend .adf-breadcrumb-base;
+
+    .active {
+        font-family: "Segoe UI Semibold";
+        @extend .adf-breadcrumb-base;
+    }
+
+    a {
+        @extend .adf-breadcrumb-base;
+        display: flex;
+        height: 100%;
+        align-items: center;
+
+        &:hover {
+            @include adf-hovered;
+        }
+
+        span {
+            display: flex;
+        }
+    }
+
+    .seperator {
+        margin-left: 10px;
+        margin-right: 10px;
+        @extend .adf-breadcrumb-base;
+    }
+
+    .back_arrow {
+        button {
+            @include adf-button-dims(48px, 48px);
+        }
+
+        svg {
+            @include adf-button-dims(16px, 16px);
+        }
+    }
+}
+
+#adf-navToolbar {
+    @include adf-fixedHeight($adfNavToolbarDim);
+    @include adf-fixedWidth(48px);
+    background-color: transparent;
+
+    button {
+        @include adf-button-dims($adfNavToolbarDim, $adfNavToolbarDim);
+    }
+
+    & svg {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+.diagramBreadcrumbs{
+    height: $adfNavToolbarDim;
+    min-width: 100px;
+    width: 100%;
+    background-color: white;
+    z-index: 900;
+    padding-right: 15px;
+}
+
+
+.adf-largeSpinner {
+     @include adf-button-dims($largeSpinnerDim , $largeSpinnerDim );
+
+     position: absolute;
+
+     $dim: 50%;
+
+     left: $dim;
+     top: $dim;
+
+     z-index: 4;
+
+     svg {
+         height: 100%;
+         width: 100%;
+     }
+}
+
+/* Panel message */
+.adf-panelMessage{
+    height: 48px;
+    background-color: yellow;
+}
+
+// hide it when we're collapsed
+.collapsed .adf-panelMessage{
+    display: none;
+}
+
+.rightSidePanel .switch.adf-panelMessageSwitch {
+    top: calc(48px + 15px);
+}
+
+.dataFactory-loader-loading {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0);
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.dataFactory-loader-blockingUiLoading {
+    @extend .dataFactory-loader-loading;
+    background-color: $lightCanvasColor;
+}
+
+.dataFactory-loader-failed {
+    @extend .dataFactory-loader-loading;
+    background-color: red;
+}
+
+button.adf-greenButton {
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 10px;
+    min-height: 36px;
+    min-width: 88px;
+    max-width: 200px;
+    cursor: pointer;
+    color: white;
+    background-color: $atlasTeal;
+    text-align: center;
+
+    &.small {
+        min-height: 28px;
+        min-width: 64px;
+    }
+
+    &:disabled{
+        background-color:$cloudColor;
+    }
+
+    &:hover, &.adf-hovered {
+        color: white !important;
+        background-color: $atlasDarkTeal !important;
+    }
+}
+
+#adf-dialog {
+    > div.win-contentdialog-backgroundoverlay {
+        background-color: $darkCloudColor;
+    }
+
+    > div.win-contentdialog-dialog {
+        padding: 24px 24px 24px 24px;
+        outline-color: transparent;
+        position: relative;
+    }
+
+    .win-contentdialog-title {
+        font-family: Segoe UI Light;
+        font-size: 1.75em;
+        line-height: 125%;
+    }
+
+    .adf-dialogContent {
+        font-family: Segoe UI;
+        font-size: .875em;
+        line-height: 150%;
+        margin-top: 12px;
+        word-wrap: break-word;
+    }
+
+    &.win-contentdialog .win-contentdialog-commands{
+        width: 100%;
+        margin-top: 24px;
+        margin-right: 0px;
+        min-height: 36px;
+        max-height: 36px;
+        justify-content: flex-end;
+    }
+
+    button {
+        @include adf-button-dims(36px, 88px);
+        font-size: 13px;
+        font-family: 'Segoe UI';
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+        color: white;
+
+        &:disabled {
+            display: none;
+        }
+
+        &.win-contentdialog-primarycommand{
+            background-color: $atlasTeal;
+            &:hover{
+                background-color: $atlasDarkTeal;
+            }
+        }
+
+        &.win-contentdialog-secondarycommand{
+            margin-left: 12px;
+            &:hover{
+                background-color: $atlasDarkTeal;
+            }
+        }
+    }
+}
+
+.adf-boldFont {
+    font-family: $boldFont;
+    }
+
+/* ADF spinner */
+#adf-spinner svg {
+    width: 30px;
+    height: 30px;
+}
+
+$adfActivityRunsToolbarButtonSvgHeight: 16px;
+$adfActivityRunsToolbarButtonHeight: 36px;
+$adfActivityRunsToolbarButtonWidth: 32px;
+$adfToolbarDim: 48px;
+
+/* Activity Runs Toolbar */
+.adf-activityRunsToolbar {
+    height: $adfActivityRunsToolbarButtonHeight;
+
+    background-color: inherit;
+    // left align
+    &.win-toolbar .win-toolbar-actionarea {
+        @include adf-left-aligned-toolbar();
+        height: $adfActivityRunsToolbarButtonHeight;
+        background-color: inherit;
+
+        .win-toolbar-spacer {
+            height: $adfActivityRunsToolbarButtonHeight;
+            width: 12px;
+        }
+    }
+
+    & button.win-command {
+        @include adf-button-dims($adfActivityRunsToolbarButtonHeight, $adfActivityRunsToolbarButtonWidth);
+
+        & svg {
+            height: $adfActivityRunsToolbarButtonSvgHeight;
+            width: $adfActivityRunsToolbarButtonWidth;
+        }
+    }
+
+    & hr.win-command {
+        height: $adfToolbarDim;
+        margin-right: 5px;
+        margin-left: 0;
+    }
+}
+
+.adf-scroll {
+    @extend %adfScroll;
+}
+
+.centerYWithoutHeight {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.datafactory-container {
+    .rightSidePanel {
+        .panelContent > div {
+            width: 100%;
+            @extend %adfScroll;
+            align-self: stretch;
+            display: flex;
+            height: auto;
+            overflow-y: auto;
+        }
+    }
+}
+
+.adf-existingDataset-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    $filterInputFieldWidth: 235px;
+
+    .typeFilter .formFieldInput {
+        width: $filterInputFieldWidth;
+    }
+    .formFieldHeaderContainer {
+        display: none;
+    }
+
+    .nameFilter {
+        width: $filterInputFieldWidth;
+    }
+}
+
+$gridBoxShadowWidth: 5px;
+.adf-flexGrid-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    margin-left: $gridBoxShadowWidth;
+}
+
+.adf-flexGrid-item {
+    display: flex;
+    flex: 0 1 auto;
+    width: 300px;
+    height: 56px;
+
+    $boxShadow: 0px 0px $gridBoxShadowWidth $cloudColor;
+    box-shadow: $boxShadow;
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    &:hover {
+        background-color: $cloudColor;
+        cursor: pointer;
+    }
+
+    &.selected {
+        background-color: $selectedColor;
+        color: $whiteColor;
+    }
+
+    $imageMargin: 16px;
+    $imageSize: 24px;
+
+    .iconDiv {
+        display: flex;
+        margin: $imageMargin 12px $imageMargin $imageMargin;
+
+        svg {
+            height: $imageSize;
+            width: $imageSize;
+        }
+    }
+
+    .itemText {
+        display: flex;
+        flex: 0 1 auto;
+        margin: 18px 5px 18px 0px;
+        color: $grayDarkest;
+        font-family: 'Segoe UI';
+        font-size: 14px;
+        @extend %adf-text-ellipsis;
+    }
+
+    &.selected .itemText {
+        color: $whiteColor;
+    }
+}

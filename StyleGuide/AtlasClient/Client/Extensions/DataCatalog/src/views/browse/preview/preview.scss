@@ -1,0 +1,123 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-preview {
+    @include absolute();
+
+    .remove-preview {
+        position: absolute;
+        top: 29px;
+        left: 30px;
+        padding: 3px 5px;
+        height: 28px;
+        cursor: pointer;
+        text-transform: capitalize;
+        display: none;
+        z-index: 2;
+    }
+
+    .error-fetching-preview,
+    .no-preview-data {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .scrollable-table {
+        padding: 0 30px;
+        position: absolute;
+
+        &.header {
+            top: 65px;
+            left: 0;
+            right: 0;
+            height: 27px;
+        }
+
+        &.content {
+            padding: 0 13px 0 30px;
+            top: 88px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            overflow-x: auto;
+            overflow-y: scroll;
+            zoom: 1;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            th {
+                text-transform: none;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+            tbody tr {
+                td {
+                    font-size: 12px;
+                    padding: 15px 10px 15px 10px;
+                    cursor: default;
+                    vertical-align: top;
+                    @include text-overflow(ellipsis);
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+
+    .preview-loading {
+        padding: 30px;
+    }
+
+    .please-try-again {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $input-text-color: $default-input-text-color;
+        $properties-link-color: $default-properties-link-color;
+        $button-background: $default-selected-color;
+        $font-color-light: $default-font-color-light;
+        
+
+        & {
+            table {
+                th {
+                    background-color: $light-border;
+                }
+
+                tbody tr {
+                    border-bottom: 1px solid $lighter-gray;
+
+                    td {
+                        color: $input-text-color;
+                    }
+                }
+            }
+
+            .please-try-again {
+                color: $properties-link-color;
+            }
+
+            .remove-preview {
+                background-color: $button-background;
+                color: $font-color-light;
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}
+
+.bottom-panel.expanded #browse-preview .remove-preview {
+    display: block;
+}

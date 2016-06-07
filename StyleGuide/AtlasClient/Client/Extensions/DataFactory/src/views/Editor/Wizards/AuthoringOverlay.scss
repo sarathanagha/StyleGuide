@@ -1,0 +1,51 @@
+/* Authoring Overlay wrapper styles */
+
+@import "../../../stylesheets/Authoring/Fonts";
+@import "../../../stylesheets/_AdfSpecific";
+
+.adf-activityToolHeaderBar {
+    height: $modalHeaderBarHeight;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    align-items: center;
+    padding-left: $modalDataPadding;
+    background-color: $themeSecondaryLightestColor;
+
+    .title {
+        @include XLRFont;
+        color: $whiteColor;
+    }
+
+    .close-container {
+        height: 60px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .authoring-overlay-close-button {
+            opacity: 0.6;
+
+            svg {
+                @include svg-icon-styles($whiteColor);
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+$pivotContentPadding: 40px;
+.adf-pivot-content {
+    padding-left: $pivotContentPadding;
+    padding-right: $pivotContentPadding;
+}
+
+.adf-activityToolCommandBar {
+    height: 100px;
+    align-items: center;
+    border-top: $modalBorderLine;
+    padding-left: 40px;
+}

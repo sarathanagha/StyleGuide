@@ -1,0 +1,18 @@
+﻿<div class="groupByPanelWrapper">
+    <div class="textLR panelTitle">Settings</div>
+    <div class="measurePanel">
+        <div class="groupByLabel show">Show</div>
+        <div class="measureSettings">
+            <select class="atlasInput" data-bind="options: rdxContext.propertyOptions, value: rdxContext.aggregatePropertyName, valueAllowUnset: true"></select>
+        </div>
+    </div>
+    <div class="groupByPanel">
+        <div class="groupByLabel">Group by</div> 
+        <div><select class="atlasInput" id="rdxSearchGroupBy" data-bind="value: rdxContext.dimension, options: rdxContext.dimensionOptions, valueAllowUnset: true" /></div>
+    </div>
+    <div class="intervalPanel">
+        <div class="groupByLabel">Interval<div style="display: inline-block" data-bind="component: {name : 'rdx-alertIcon', params: {message: rdxContext.timeDimensionAlert}}"></div></div>
+        <div><input class="atlasInput" data-bind="textInput: rdxContext.timeInteger, event: {keypress: handleEnter}" /> <select class="atlasInput" id="rdxSearchGroupBy" data-bind="value: rdxContext.timeDimension, options: rdxContext.timeDimensionOptions"></select></div>
+    </div>
+    <div class="primaryButton refreshButton" data-bind="click: function(){ rdxContext.telemetryClient.logUserAction('refreshButtonClicked'); rdxContext.streamEventSourceHits() }">Refresh</div>
+</div>

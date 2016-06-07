@@ -1,0 +1,79 @@
+@import "../../../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+
+@mixin sidePanelMargin()
+{
+    margin:20px;
+}
+.default-container {
+    color: #95999E;
+    display:block;
+    padding: 30px;
+    text-align: center;
+}
+
+.template-detail-panel
+{
+    .status-icon
+    {
+        background-repeat: no-repeat;
+        bottom: -4px;
+        display: none;
+        height: 19px;
+        position: relative;
+        width: 19px;
+
+        &.success
+        {
+            display: inline-block !important;
+            background-image: url("/Images/icons/status_success.svg");
+        }
+
+        &.failed
+        {
+            display: inline-block !important;
+            background-image: url("/Images/icons/status_fail.svg");
+        }
+
+        &.inprogress
+        {
+            display: inline-block !important;
+            background-image: url("/Images/icons/status_inprogress.svg");
+        }
+    }
+
+    .resource-header
+    {
+        @include fontStyleMediumRegular();
+        color: $grayLightColor;
+        padding-bottom: 4px;    // todo (sbian): needs clarification on this, but without this the title/content are too closed to each other
+    }
+
+    .resource-contents
+    {
+        @include fontStyleMediumRegular();
+        color: $darkestGray;
+        display: inline-block;
+    }
+
+    .resource-container
+    {
+        @include sidePanelMargin();
+        a {
+            @include fontStyleExtraSmallSemiBold();
+            align-content: flex-start;
+            align-items: flex-start;
+            align-self: stretch;
+            color: $atlasDarkTeal;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin-top: 10px;
+            justify-content: flex-start;
+            font-size: 14px;
+        }
+
+        p {
+            margin-top: 0px;
+        }
+    }
+}

@@ -1,0 +1,146 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.browse-attributes .add-btn-container {
+  position: relative;
+  width: 100%;
+  margin-top: 4px; }
+  .browse-attributes .add-btn-container .add-btn {
+    display: inline-block;
+    cursor: pointer;
+    padding: 3px 5px;
+    text-decoration: none;
+    text-transform: capitalize;
+    text-align: left;
+    height: 28px;
+    line-height: 20px; }
+    .browse-attributes .add-btn-container .add-btn:after {
+      content: "..."; }
+  .browse-attributes .add-btn-container .input-box {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 28px; }
+    .browse-attributes .add-btn-container .input-box > span {
+      top: 0;
+      right: 30px;
+      bottom: 0;
+      left: 10px;
+      position: absolute; }
+      .browse-attributes .add-btn-container .input-box > span input {
+        height: 100%;
+        width: 100%;
+        border: 0;
+        background-color: transparent;
+        margin: 0; }
+        .browse-attributes .add-btn-container .input-box > span input:focus {
+          outline: 0; }
+    .browse-attributes .add-btn-container .input-box img {
+      right: 0;
+      padding-right: 10px;
+      position: absolute;
+      height: 16px;
+      top: 5px;
+      cursor: pointer; }
+
+.browse-attributes .group-label {
+  font-size: 12px;
+  color: #4e4e4e;
+  display: inline-block;
+  margin-bottom: 2px; }
+  .browse-attributes .group-label:after {
+    content: ":"; }
+
+.browse-attributes ul.pills {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .browse-attributes ul.pills li {
+    display: inline-block;
+    margin: 3px 0;
+    padding: 3px 3px 3px 5px;
+    position: relative;
+    min-width: 80px; }
+    .browse-attributes ul.pills li > span {
+      padding-right: 28px;
+      width: 100%;
+      display: inline-block; }
+      .browse-attributes ul.pills li > span:hover .add-to-all {
+        display: block; }
+    .browse-attributes ul.pills li.readOnly > span {
+      padding-right: 3px; }
+    .browse-attributes ul.pills li .remove-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 25px;
+      cursor: pointer; }
+      .browse-attributes ul.pills li .remove-button img {
+        position: absolute;
+        left: 50%;
+        margin-left: -3px;
+        top: 9px; }
+    .browse-attributes ul.pills li .add-to-all {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      line-height: 24px;
+      cursor: pointer;
+      display: none;
+      z-index: 1;
+      font-size: 11px;
+      text-transform: uppercase; }
+
+.browse-attributes .attribute-text {
+  max-width: 250px;
+  display: inline-block;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  vertical-align: middle; }
+
+.browse-attributes .error {
+  font-size: 12px;
+  text-indent: 2px; }
+
+.browse-attributes .add-btn-container .add-btn {
+  background-color: #006F94;
+  border: 1px solid #006F94;
+  color: #FFF; }
+
+.browse-attributes .add-btn-container .input-box {
+  border: 1px solid #BEC2C9;
+  background-color: #E1E3E5; }
+  .browse-attributes .add-btn-container .input-box.focus {
+    background-color: #FFF; }
+
+.browse-attributes ul.pills li {
+  background-color: #E1E3E5; }
+  .browse-attributes ul.pills li.isfiltered {
+    background-color: fade(#26357F, 25%); }
+  .browse-attributes ul.pills li > div {
+    border-left: 1px solid #D8DBDE; }
+    .browse-attributes ul.pills li > div:hover {
+      background-color: #BEC2C9; }
+  .browse-attributes ul.pills li .add-to-all {
+    color: #FFF;
+    background-color: #006F94; }
+
+.browse-attributes .error {
+  color: #E02D71; }
+
+/*# sourceMappingURL=attributes.css.map */

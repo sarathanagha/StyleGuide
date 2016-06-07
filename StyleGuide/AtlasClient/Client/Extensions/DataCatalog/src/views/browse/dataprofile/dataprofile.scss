@@ -1,0 +1,140 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-dataprofile {
+    @include absolute();
+
+    .profile {
+        position:absolute;
+        left:34px;
+        font-size:17px;
+    }
+
+    .table-profile {
+        top:15px;
+    }
+
+    .column-profile {
+        top:122px;
+    }
+
+    .column-profile-loading {
+        top:125px;
+        left:30px;
+    }
+
+    .scrollable-table {
+        padding: 0 30px;
+        position: absolute;
+
+        &.header {
+            height: 27px;
+            left: 0;
+        }
+
+        &.content {
+            padding: 0 13px 0 30px;
+            left: 0;
+            right: 0;
+            overflow: auto;
+            overflow-x: auto;
+            overflow-y: scroll;
+            zoom: 1;
+        }
+
+        &.table-data-header {
+            top: 43px;
+        }
+
+        &.table-data-content {
+            top: 63px;
+            overflow: hidden;
+        }
+
+        &.column-data-header {
+            top: 150px;
+            right: 0;
+        }
+
+        &.column-data-content {
+            top: 177px;
+            bottom: 0;
+        }
+
+        table {
+            table-layout: fixed;
+
+            &.full-width {
+                width: 100%;
+            }
+
+            th {
+                text-transform: capitalize;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+
+            tbody tr {
+                td {
+                    font-size: 12px;
+                    padding: 15px 10px 15px 10px;
+                    cursor: default;
+                    vertical-align: top;
+                    position: relative;
+                    word-wrap: break-word;
+                }
+            }
+        }
+    }
+
+    .error-fetching-column-data {
+        position: absolute;
+        top:122px;
+        left:90px;
+
+        .please-try-again {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $body-color-light: $default-body-color-light;
+        $font-color-med: $default-font-color-med;
+        $input-text-color: $default-input-text-color;
+        $body-navigation-selected-color: $default-navigation-selected-color;
+        $properties-link-color: $default-properties-link-color;
+
+        & {
+            table {
+                th {
+                    background-color: $light-border;
+                }
+
+                tbody tr {
+                    border-bottom: 1px solid $lighter-gray;
+
+                    td {
+                        color: $input-text-color;
+                    }
+                }
+            }
+
+            .profile {
+                color: $input-text-color;
+            }
+
+            .please-try-again {
+                color: $properties-link-color;
+            }
+        }
+    }
+
+    // Use themes
+    @include theme;
+}

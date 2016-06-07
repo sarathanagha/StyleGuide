@@ -1,0 +1,66 @@
+<div id="edit-schema">
+
+    <div class="tool-bar">
+        <div class="tool-bar-button exit-button" data-bind="text: resx.exitEditSchema, css:{ disabled: !exitButtonEnabled()}, click: exitEditSchema"></div> 
+        <div class="tool-bar-button add-button" data-bind="text: resx.insertAbove, css:{disabled: !addButtonEnabled()}, click: insertRow"></div> 
+        <div class="tool-bar-button delete-button" data-bind="text: resx.deleteRow, css:{disabled: !deleteButtonEnabled()}, click: deleteRows"></div>  
+    </div>
+    <div class="scrollable-table header">
+        <table>
+            <colgroup>
+                <col style="width:25px;" />
+                <col style="width:120px;" />
+                <col style="width:120px;" />
+                <col style="width:200px;" />
+                <col style="width:200px;" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" data-bind="checked: selectAll, click: onSelectAll" /> </th>
+                    <th data-bind="text: resx.columnName"></th>
+                    <th data-bind="text: resx.dataType"></th>
+                    <th data-bind="text: resx.tags"></th>
+                    <th data-bind="text: resx.description"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollable-table content">
+        <table>
+            <colgroup>
+                <col style="width:25px;" />
+                <col style="width:120px;" />
+                <col style="width:120px;" />
+                <col style="width:200px;" />
+                <col style="width:200px;" />
+            </colgroup>
+            <tbody>
+                <!-- ko foreach: {data: columns, as: 'columnData' } -->
+                <!-- ko component: {
+                                name: 'datacatalog-browse-schemaitemeditor',
+                                params: {
+                                        column: columnData,
+                                        includeCheckbox: true,
+                                        updateColumn: $parent.updateColumn.bind($parent),
+                                        duplicateName: $parent.duplicateName,
+                                        updateDescription: $parent.updateDescription.bind($parent),
+                                        checkBoxChanged: $parent.checkBoxChanged.bind($parent)
+                                    }
+                                } -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko component: {
+                                name: 'datacatalog-browse-schemaitemeditor',
+                                params: {
+                                        column: {},
+                                        includeCheckbox: false,
+                                        updateColumn: updateColumn.bind($data),
+                                        duplicateName: duplicateName,
+                                        updateDescription: updateDescription.bind($data)
+                                    }
+                                } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+</div>

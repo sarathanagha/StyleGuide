@@ -1,0 +1,20 @@
+#publishWebServiceDialogContent
+{
+    margin-left: 20px;
+    height: 100%;
+}
+#publishWebServiceDialogContent #wsgNameLabel 
+{
+    font-size: medium;
+}
+
+#publishWebServiceDialogContent #wsgNameBox
+{
+    width: 360px;
+}
+
+#publishWebServiceDialogContent #webServiceInfoBox
+{
+    font-size: x-small;
+    font-style: italic;
+}

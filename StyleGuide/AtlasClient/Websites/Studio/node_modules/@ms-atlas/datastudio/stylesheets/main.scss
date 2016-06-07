@@ -1,0 +1,74 @@
+﻿@import "DataStudio/index";
+@import "Shell/splash";
+@import "Common/index";
+@import "External/index";
+@import "Framework/index";
+@import "Shell/header";
+@import "Framework/fontmixins";
+
+@mixin new-btn-theme($size: 1.0em) {
+    font-size: $size;
+    @extend %new-btn;
+}
+
+%new-btn {
+    @include new-btn-theme(1.5em);
+}
+
+.nav-new-btn {
+    @extend %new-btn;
+}
+
+// Required for the WinJS clickeater.
+section.win-flyoutmenuclickeater {
+    max-height: 110%;
+}
+
+// Override WinJS's css to allow text selection.
+body.datastudio {
+  user-select: text;
+  cursor: auto;
+  -webkit-touch-callout: initial;
+}
+
+.atlas-menu.win-menu.win-flyout {
+    $menuItemHeight: 36px;
+    padding: 4px 0 4px 0;
+    min-height: $menuItemHeight;
+    button.win-command {
+        padding: 0 0 0 0;
+        height: $menuItemHeight;
+        min-height: $menuItemHeight;
+        color: $darkGray;
+        .win-menucommand-liner {
+            .win-label {
+                @include fontStyleMediumRegular();
+            }
+            .win-toggleicon {
+                display: none;
+            }
+        }
+        &:enabled:hover {
+            color: $darkGray;
+            background-color: $cloudColor;
+        }
+        
+        &[aria-checked=true], &[aria-checked=true]:enabled:hover {
+            .win-label {
+                color: $whiteColor;    
+            }
+            background-color: $slateColor;
+        }
+        
+        &:disabled, &:disabled:hover {
+            color: $grayLightColor;
+            background-color: $whiteColor;
+        }    
+    }
+}
+
+@import "bootstrap";
+
+.fontStyleBody {
+    @include fontStyleBody();
+}

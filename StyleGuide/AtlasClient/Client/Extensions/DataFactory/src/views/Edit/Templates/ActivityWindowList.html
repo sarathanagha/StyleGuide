@@ -1,0 +1,26 @@
+﻿<div class="col grow" style="height:100%; width:100%">
+    <div class="row" style="justify-content: space-between">
+        <div class="row">
+            <div class="adf-activityRunsToolbarContainer">
+                <div class="adf-activityRunsToolbar adf-darkIconToolbar" data-bind="winjstoolbar: activityRunsToolbarBindingOptions"></div>
+            </div>
+            <div class="adf-activityWindowsListHeaderText shrink">
+                <div class="dataFactory-text-ellipsis totalFilterCountLabel" data-bind="text: totalFilterCountStatus(), click: filterSummaryViewModel.filterSummaryClicked, css: {'adf-activityRunsToolbarFilterSummary' : filterSummaryViewModel.filterSummaryVisible()}"></div>
+            </div>
+        </div>
+        <div class="adf-activityWindowsListHeaderText shrink">
+            <div class="dataFactory-text-ellipsis" data-bind="text: latestUpdateStatus()()"></div>
+        </div>
+    </div>
+
+    <div id="adf-activityRunsListHeaderToolbar" data-bind="winjstoolbar: activityRunsListHeaderToolbarBindingOptions"></div>
+    <div class="activityRunsEmptyMessage row" data-bind="visible: (list().length === 0), text: emptyMessage()"></div>
+    <div class="dataFactoryDesignPanel activityRunsListView col">
+        <div class="activityRunsListViewFooter row">
+            <!-- ko if: activityRunsListViewFooterStatus().length > 0 -->
+            <div class="activityRunsListViewFooterStatus" data-bind="html: activityRunsListViewFooterStatus"></div>
+            <!-- /ko -->
+        </div>
+        <div style="height: 100%; position: absolute" data-bind="winjslist: winJSListViewBindingOptions"></div>
+    </div>
+</div>

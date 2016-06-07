@@ -1,0 +1,12 @@
+# Bower
+bower_modules/
+
+module.d.ts
+**/*.css
+**/*.js
+**/*.map
+!gulpfile.js
+
+!/libs/**/*.js
+!/libs/**/*.css
+!/libs/**/*.d.ts

@@ -1,0 +1,135 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.browse-filter {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+  .browse-filter .body-scroll-container {
+    width: 100%;
+    height: 100%; }
+  .browse-filter .body {
+    height: 100%; }
+  .browse-filter .body-content-outer-wrapper {
+    height: 100%; }
+  .browse-filter .body-content-inner-wrapper {
+    height: 100%;
+    position: relative;
+    overflow: auto; }
+  .browse-filter .body-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+  .browse-filter .current-filter-label > .arrow-r,
+  .browse-filter .filters-label > .arrow-r {
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-filter: none;
+            filter: none;
+    /*Mandatory for IE9 to show the vertical text correctly*/
+    -webkit-transition: -webkit-transform 0.15s ease-out;
+    transition: transform 0.15s ease-out; }
+    .browse-filter .current-filter-label > .arrow-r.expanded,
+    .browse-filter .filters-label > .arrow-r.expanded {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+      -webkit-filter: none;
+              filter: none;
+      /*Mandatory for IE9 to show the vertical text correctly*/ }
+  .browse-filter .type-name {
+    padding-top: 15px;
+    text-transform: capitalize; }
+    .browse-filter .type-name:first-child {
+      padding-top: 0; }
+  .browse-filter .current-filter-label {
+    margin-bottom: 10px; }
+  .browse-filter .filters-label {
+    padding: 0;
+    margin: 0; }
+  .browse-filter .current-filter-header {
+    text-transform: capitalize;
+    margin-top: 15px; }
+    .browse-filter .current-filter-header:first-child {
+      margin-top: 0; }
+    .browse-filter .current-filter-header.link {
+      cursor: pointer;
+      display: inline-block; }
+      .browse-filter .current-filter-header.link:hover {
+        text-decoration: underline; }
+    .browse-filter .current-filter-header.seperator {
+      width: 1px;
+      cursor: default;
+      display: inline-block;
+      height: 15px;
+      position: relative;
+      top: 3px;
+      margin: 0 5px; }
+    .browse-filter .current-filter-header.save-search {
+      margin-top: 5px; }
+    .browse-filter .current-filter-header.disabled {
+      opacity: 0.25;
+      filter: alpha(opacity=25);
+      cursor: default; }
+  .browse-filter input#search-definition {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0 0;
+    padding: 4px 6px; }
+  .browse-filter .current-filter-value {
+    position: relative;
+    padding-right: 20px; }
+    .browse-filter .current-filter-value img {
+      position: absolute;
+      right: 0;
+      cursor: pointer; }
+  .browse-filter .saved-search-name-container {
+    font-size: 12px; }
+    .browse-filter .saved-search-name-container .search-name-default-text:before {
+      content: "("; }
+    .browse-filter .saved-search-name-container .search-name-default-text:after {
+      content: ")"; }
+    .browse-filter .saved-search-name-container.hasChanges .saved-search-name {
+      font-style: italic; }
+      .browse-filter .saved-search-name-container.hasChanges .saved-search-name:after {
+        content: "*"; }
+    .browse-filter .saved-search-name-container.hasChanges .search-name-default-text {
+      display: none; }
+  .browse-filter .current-box {
+    padding: 10px;
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 15px;
+    max-height: 250px;
+    overflow: auto; }
+    .browse-filter .current-box .current-results .none {
+      font-style: italic; }
+  .browse-filter .filter-types {
+    margin-bottom: 35px; }
+  .browse-filter .current-filter-header.link {
+    color: #2AB7D8; }
+  .browse-filter .current-filter-header.seperator {
+    background: #8A96A2; }
+  .browse-filter .current-filter-value span {
+    color: #8A96A2; }
+  .browse-filter .saved-search-name-container .saved-search-name {
+    color: #3D4045; }
+  .browse-filter .current-box {
+    background-color: #EFF0F0; }
+
+/*# sourceMappingURL=filter.css.map */

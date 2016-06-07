@@ -1,0 +1,148 @@
+﻿@import "Base/layoutBase";
+
+/*
+*	MAIN CONTENT CONTAINER RULES
+*/
+section {
+    width: calc(100%);
+    max-height: 100%;
+    overflow-y: hidden; /* landscape only */
+}
+
+
+section.row {
+    @extend %row;
+    @extend %grow;
+    @extend %shrink;
+    flex-basis: auto;
+
+}
+
+section.pad0 {
+    padding: 0em !important;
+}
+
+.fragment {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/*
+*	ROW RULES
+*/
+.row {
+    @extend %row;
+}
+
+
+.grow {
+    @extend %grow;
+}
+
+.no-shrink {
+    @extend %no-shrink;
+}
+
+
+/*
+*	COLUMN RULES
+*/
+.col {
+    @extend %col;
+}
+
+/*
+*	WRAP CONTENTS OF ROW OR COLUMN
+*/
+.wrap {
+    @extend %wrap;
+}
+
+.nowrap {
+    @extend %nowrap;
+}
+
+/*
+*	CENTER LAYOUT RULES (HORIZONTAL / VERTICAL CENTERING)
+*/
+.center {
+    @extend %center;
+}
+
+.centerY {
+    @extend %centerY;
+}
+
+.center > div,
+.centerY > div {
+    align-self: auto;
+}
+
+.position.relative {
+  @extend %position.relative;
+}
+
+.position.absolute {
+  @extend %position.absolute;
+}
+
+.right0 {
+  @extend %right0;
+}
+
+/*
+*	SHRINK & STRETCH
+*/
+.shrink {
+    @extend %shrink;
+}
+
+.stretch {
+    @extend %stretch;
+}
+
+/* this is used primarily as an overwrite for the row { width: 100% } rule,
+    which causes problems when rendering a .col adjacent to a .row */
+.widthAuto {
+    @extend %widthAuto;
+}
+
+.heightAuto {
+    @extend %heightAuto;
+}
+
+.width100Percent {
+    @extend %width100Percent;
+}
+
+.height100Percent {
+    @extend %height100Percent;
+}
+
+/*
+* UTILITY CLASSES
+*/
+.scroll {
+    @extend %scroll;
+}
+
+.scrollY {
+    @extend %scrollY;
+}
+
+.scrollX {
+    @extend %scrollX;
+}
+
+/*
+* VISIBILITY CLASSES
+*/
+.hide {
+    @extend %hide;
+}

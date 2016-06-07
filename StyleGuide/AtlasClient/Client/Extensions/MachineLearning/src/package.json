@@ -1,0 +1,11 @@
+{
+  "name": "@ms-atlas-module/datastudio-machinelearning",
+  "version": "0.1.11",
+  "description": "Azure Data Studio Machine Learning Module.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "main": "startup.js",
+  "devDependencies": {},
+  "dependencies": {
+  }
+}

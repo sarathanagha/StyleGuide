@@ -1,0 +1,78 @@
+﻿<div style="width: 100%; background-color: white; height: 48px; overflow: hidden; position: relative; top:0; left: 0; flex-direction: row" class="row shrink">
+    <!-- ko with: navToolbar -->
+    <div id="adf-navToolbar" class="adf-darkIconToolbar col centerY" data-bind="winjstoolbar: {}"></div>
+    <!-- /ko -->
+    <div data-bind="breadcrumbs: breadcrumbs" class="diagramBreadcrumbs col row centerY shrink"></div>
+</div>
+<div class="dataFactory-home row grow">
+    <div class="row dashboard">
+        <div class="col summaryWrap">
+            <div class="row sectionTitle" data-bind="text: summaryTitle"></div>
+            <div class="row summaryWrapper overflowHidden">
+                <div class="col largeTile linkedServicesSummary">
+                    <div class="row linkedServicesTitle" data-bind="text: linkedServicesTitle"></div>
+                    <div class="row grow center tileNumberAndIconWrapper">
+                        <div class="col largeTileNumber numberOfLinkedServices" data-bind="html: numberOfLinkedServices"></div>
+                        <div class="col largeTileIcon" id="linkedServicesIcon" data-bind="image:linkedServicesIcon"></div>
+                    </div>
+                    <div class="row col grow linkedServicesDetailsRowsWrapper">
+                        <!-- ko foreach : linkedServicesDetails -->
+                        <div class="row tileDetailsRow">
+                            <div class="col linkedServicesDetailTitle innerLeftText" data-bind="text: linkedServicesDetailTitle"></div>
+                            <div class="col linkedServicesDetailNumber innerCenterRightText" data-bind="html: linkedServicesDetailNumber"></div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: (linkedServicesDetails().length === 0)-->
+                        <div class="row tileDetailsRow">
+                            <div class="col linkedServicesDetailTitle innerLeftText">Loading...</div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div class="col datasetsPipelinesWrapper">
+                    <div class="col mediumTile datasetsSummary">
+                        <div class="row datasetsSummary" data-bind="text: datasetsSummary"></div>
+                        <div class="row grow center tileNumberAndIconWrapper">
+                            <div class="col mediumTileNumber numberOfDatasets" data-bind="html: numberOfDatasets"></div>
+                            <div class="col mediumTileIcon" id="datasetsIcon" data-bind="image:datasetsIcon"></div>
+                        </div>
+                    </div>
+                    <div class="col mediumTile pipelinesSummary">
+                        <div class="row pipelinesSummary" data-bind="text: pipelinesSummary"></div>
+                        <div class="row grow center tileNumberAndIconWrapper">
+                            <div class="col mediumTileNumber numberOfPipelines" data-bind="html: numberOfPipelines"></div>
+                            <div class="col mediumTileIcon" id="pipelinesIcon" data-bind="image:pipelinesIcon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col longTile metricsSummary">
+                    <div class="row metricsSummaryBox dataFactory-text-ellipsis" data-bind="text: metricsSummary"></div>
+                    <div class="row col metricsRowsWrapper">
+                        <!-- ko foreach : metricsDetails -->
+                        <div class="row tileDetailsRow">
+                            <div class="col metricsTitle innerLeftText" data-bind="text: metricsTitle"></div>
+                            <div class="col metricsDate innerCenterLeftText" data-bind="text: metricsDate"></div>
+                            <div class="col metricsNumber innerCenterRightText" data-bind="html: metricsNumber"></div>
+                            <div class="col metricsIcon innerRightText" data-bind="html: metricsIcon"></div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: (metricsDetails().length === 0)-->
+                        <div class="row  tileDetailsRow">
+                            <div class="col metricDate innerCenterLeftText">Loading...</div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col monitorTaskWrapper">
+            <div class="row sectionTitle" data-bind="text: monitorTitle"></div>
+            <!-- ko foreach : monitorLaunchButtons -->
+            <div class="row monitorTaskItem">
+                <button class="adf-greenButton" data-bind="text: name, click: action"></button>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

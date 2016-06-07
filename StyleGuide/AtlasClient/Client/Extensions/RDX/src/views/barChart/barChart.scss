@@ -1,0 +1,271 @@
+﻿@import "../../stylesheets/main";
+$barChartHeight: $heatmapHeight;
+
+.measureSettings{
+    display: inline;
+}
+
+.chartToggle{
+    float: right;
+    margin-top: -35px;
+    margin-right: 10px;
+}
+
+.barChartWrapper{
+    @extend .card;
+    margin: 0;
+    box-shadow: none;
+    border-top: 1px solid $cloud;
+
+    .barChartHeader{
+        @extend .cardTitle;
+    }
+
+    .barChartInfoPanel{
+        @extend .cardInfoPanel;
+
+        .chartToggle{
+            float: left;
+            margin-top: $tinyMarginAndPadding;
+            margin-left: $largeMarginAndPadding; 
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        .showAllButton{
+            @extend .crystalButton;
+            float: left;
+        }
+
+    }
+}
+
+.crystalBarChartLegendSlider{
+    @extend .crystalButton;
+    @extend .textMR;
+    width: 28px;
+    float: left;
+    height: calc(#{$heatmapHeight} - 20px);
+    padding: 0px;
+    border: none;
+    border-right: $cardBoarder;
+    padding-top: 20px;
+
+     > div{
+        transform: rotate(90deg);
+        white-space: nowrap;
+    }
+}
+
+.crystalBarChartLegendWrapper{
+    float: left;
+    height: calc(#{$heatmapHeight} - 10px);
+    overflow-y: auto;
+    white-space: nowrap;
+    width: 250px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    background: $lightCanvas;
+    padding: 10px 10px 0 0;
+    border-right: $cardBoarder;
+
+    .crystalBarChartLegend{
+        opacity: 0;
+        height: 380px;
+        overflow-y: auto;
+    }
+
+    .legendTitle{
+        @extend .textLR;
+        padding-bottom: 20px;
+        padding-left: 10px;
+    }
+
+    input{
+        padding-left: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 210px;
+    }
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 5px 10px;
+            .colorSquare{
+                height: 16px;
+                width: 16px;
+                display: inline-block;
+                margin-right: 10px;
+            }
+            &:hover{
+                background: $cloud;
+            }
+        }
+    }
+}
+
+.crystalBarChart {
+        font-size: 11px;
+        background: white;
+        overflow-x: auto;
+        height: $barChartHeight;
+        overflow-y: hidden;
+        opacity: 0;
+    }
+  
+    .tick line, .domain{
+        opacity: 0.2;
+    }
+
+    .y{
+        .domain{
+            display: none;
+        }
+    }
+
+    .crystalBarChart .crystalBarChartTitle {
+        @extend .h4;
+        @extend .crosshair;
+        position: absolute;
+        padding: 4px;
+        margin-left: 70px;
+    }
+
+    .crystalBarChart .crystalBarChartSettingsButton {
+        position: absolute;
+        right: 10px;
+        top: 6px;
+        padding: 2px 14px 1px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #eee;
+        cursor: pointer;
+        font-size: 1.6em;
+    }
+
+    .crystalBarChart .crystalBarChartTablePicker input {
+        font-size: 12px;
+        height: 18px;
+        margin-left: 4px;
+        margin-top: 8px;
+        margin-right: 4px;
+        line-height: 12px;
+        margin-bottom: 8px;
+    }
+
+    .crystalBarChart .crystalBarChartTablePicker {
+        position: absolute;
+        top: 6px;
+        right: 55px;
+        background: #fff;
+        border: 1px solid silver;
+        border-radius: 3px;
+        box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .2);
+        z-index: 100;
+        padding: 4px;
+        height: 240px;
+    }
+
+    .crystalBarChart .crystalBarChartTablePicker .selectAllButton {
+        padding: 3px 6px;
+        margin: 0 1px;
+        cursor: pointer;
+        display: inline-block;
+        background-color: #2773ed;
+        color: #fff;
+        font-size: 12px;
+    }
+
+    .crystalBarChart .selectAllButton:hover {
+        box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.75);
+    }
+
+    .crystalBarChart .barChartFilteredTableList {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 188px;
+        font-size: 12px;
+        border-top: 1px solid silver;
+    }
+
+    .crystalBarChart .barChartFilteredTableList ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    .crystalBarChart .barChartFilteredTableList li {
+        margin-left: 6px;
+        white-space: nowrap;
+        padding-right: 8px;
+    }
+
+    .crystalBarChart .barChartFilteredTableList li input {
+        margin: 0px;
+        margin-right: 2px;
+    }
+
+    .crystalBarChart .barChartFilteredTableList li > a {
+        display: inline;
+        margin-left: 4px;
+        opacity: .6;
+        visibility: hidden;
+        cursor: pointer;
+    }
+    
+    .crystalBarChart .barChartFilteredTableList li:hover > a{
+        visibility: visible;
+    }
+
+    .crystalBarChart .barChartFilteredTableList li:hover > a:hover{
+        opacity: 1;
+    }
+
+    .crystalBarChart .selectedTablePicker {
+        background: #444;
+        color: #888;
+        border: 1px solid #444;
+    }
+
+    .showHeatmapToggle {
+        position: absolute;
+        top: 128px;
+        left: -147px;
+        transform: rotate(-90deg);
+        cursor: pointer;
+        padding: 0 90px 0 90px;
+        color: #005580;
+    }
+
+    .showHeatmapToggle:hover {
+        background: #e6e6e6;
+    }
+
+
+    .crystalBarChart .multiselectGhost {
+        @extend .crosshair;
+        position: absolute;
+        border-left: 1px solid rgba(0, 0, 255, 0.4);
+        border-right: 1px solid rgba(0, 0, 255, 0.4);
+        background: rgba(0, 0, 255, 0.1);
+        display: none;
+    }
+
+    .crystalBarChart .axis path,
+    .crystalBarChart .axis line {
+        fill: none;
+        stroke: #333;
+        shape-rendering: crispEdges;
+    }
+
+    .crystalBarChart .line{
+      fill: none;
+      pointer-events: stroke;
+    }

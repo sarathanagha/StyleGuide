@@ -1,0 +1,10 @@
+{
+  "name": "@ms-atlas-module/datastudio-studio",
+  "version": "0.0.1",
+  "description": "Azure Data Studio Studio Module.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {
+    
+  }
+}

@@ -1,0 +1,90 @@
+﻿@import "../../stylesheets/_AdfSpecific";
+
+input[type=text], input[type=password], textarea, select {
+    width: $formfieldwidth;
+    color: $grayDarkest;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 0;
+    margin-top: 0;
+    background-color: white;
+    border-color: $darkCloud;
+    border-width: 1px;
+    min-height: 0px;
+
+    &::placeholder {
+        color: $grayColor;
+    }
+
+    &:focus {
+        border-color: $atlasTeal;
+    }
+
+    &:hover {
+        border-color: $darkGray;
+    }
+}
+
+input[type=text], input[type=password], textarea {
+    padding: 3px 8px 5px 8px;
+}
+
+select {
+    padding: 1px 8px 3px 8px;
+}
+
+input[type=radio], input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    margin: 4px 8px 4px 4px;
+    position: relative;
+    top: 3px;
+}
+
+input[type=button], button {
+    min-width: 101px;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    line-height: 16px;
+    height: 36px;
+    background-color: $lightCanvasColor;
+
+    &:hover {
+        background-color: $canvasColor;
+        border: none;
+    }
+}
+
+
+.formFieldLabel {
+    margin-bottom: 4px;
+    color: $darkGray;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.formFieldInputContainer {
+    .formFieldInput {
+        margin-bottom: 24px;
+    }
+}
+
+.formFieldHeaderContainer {
+    width: $formfieldwidth;
+}
+
+.required {
+    color: red;
+}
+
+.infoImage {
+    float: right;
+    width: 16px;
+    height: 16px;
+    background-image: url('../images/Info.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-right: 3px;
+}

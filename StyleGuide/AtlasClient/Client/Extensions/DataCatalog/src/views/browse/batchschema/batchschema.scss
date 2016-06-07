@@ -1,0 +1,139 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-batchschema {
+    @include absolute();
+
+    .scrollable-table {
+        padding: 0 30px;
+        position: absolute;
+
+        &.header {
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 27px;
+        }
+
+        &.content {
+            padding: 0 13px 0 30px;
+            top: 57px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            overflow-x: auto;
+            overflow-y: scroll;
+            zoom: 1;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            th {
+                text-transform: uppercase;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+            tbody tr {
+                td {
+                    font-size: 12px;
+                    padding: 15px 10px 0 10px;
+                    cursor: default;
+                    vertical-align: top;
+
+                    &.tags {
+                        width: 260px;
+                    }
+
+                    textarea {
+                        margin-bottom: 15px;
+                        height: 40px;
+                        width: 100%;
+                        padding: 10px;
+                    }
+                    .other-descriptions {
+                        width: 265px;
+
+                        a {
+                            float: right;
+                            cursor: pointer;
+                            margin-bottom: 15px;
+                            text-decoration: none;
+                        }
+                    }
+
+                    .desc-label.from {
+                        text-transform: capitalize;
+
+                        &:after {
+                            content: ":";
+                        }
+                        &.lower {
+                            text-transform: lowercase;
+                        }
+                        &.cap {
+                            text-transform: capitalize;
+                        }
+                    }
+                    .other-desc {
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .no-common-columns {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .tags-control {
+        margin-bottom: 20px;
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $body-color-light: $default-body-color-light;
+        $font-color-med: $default-font-color-med;
+        $input-text-color: $default-input-text-color;
+        $input-outline: $default-input-outline;
+        $body-navigation-selected-color: $default-navigation-selected-color;
+
+        & {
+           table {
+               th {
+                   background-color: $light-border;
+               }
+
+               tbody tr {
+                    border-bottom: 1px solid $lighter-gray;
+
+                    td {
+                        color: $input-text-color;
+
+                        textarea {
+                            border: 1px solid $input-outline;
+                            color: $input-text-color;
+                        }
+
+                        .desc-label {
+                            color: $font-color-med;
+                        }
+
+                        .other-descriptions a {
+                            color: $body-navigation-selected-color;
+                        }
+                    }
+                }
+           }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

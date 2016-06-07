@@ -1,0 +1,31 @@
+﻿<div class="infoHeader">Example queries:</div>
+<table>
+    <tr>
+        <td>*.*</td>
+        <td>Returns all events from all event sources</td>
+    </tr>
+    <tr>
+        <td>*.Description LIKE hello world</td>
+        <td>Returns events containing the phrase "hello world" <br />in property Description across all event sources</td>
+    </tr>
+    <tr>
+        <td>hello world</td>
+        <td>Returns events containing the phrase "hello world"</td>
+    </tr>
+    <tr>
+        <td>*.PointValue = 3.14</td>
+        <td>Returns events with PointValue equal to 3.14</td>
+    </tr>
+    <tr>
+        <td>*.Status LIKE_ANY Good Bad</td>
+        <td>Returns events with Status containing "Good" or "Bad"</td>
+    </tr>
+    <tr>
+        <td>*.PointValue > 3.14 AND<br />*.Status LIKE Good</td>
+        <td>Returns events with PointValue greater than 3.14 and Status "Good"</td>
+    </tr>
+    <tr>
+        <td>*.PointValue > 3.14 AND <br/>*.Status LIKE Good AND NOT <br />*.Description LIKE hello world</td>
+        <td>Returns events with PointValue greater than 3.14 and Status "Good"<br />and Description not containing the phrase "hello world"</td>
+    </tr>
+</table>

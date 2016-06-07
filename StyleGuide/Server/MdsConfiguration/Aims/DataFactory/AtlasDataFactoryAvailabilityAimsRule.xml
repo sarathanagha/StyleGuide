@@ -1,0 +1,78 @@
+<Configuration>
+    <OutputExtensions>
+      <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+        <Setting Name="tenant" Value="AzureDataFactory"/>
+      </OutputExtension>
+       <OutputExtension id="console" name="AimsOutputExtensionConsole">
+    </OutputExtension>
+    </OutputExtensions>
+    <GlobalQuery>
+      <![CDATA[
+        var AtlasTraces = from ExpandTableName("AtlasTraceLog.*", 0);
+      ]]>
+    </GlobalQuery>
+
+    <GlobalDefinitions>
+      <![CDATA[
+        let ConfigOwnerAlias = "adflivesitemonitor@microsoft.com"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+
+        let ADFLoggerName = "ShellModulesInitializer"
+        let ADFModuleFailedMessage = "Module initialization failed for module: datastudio-datafactory"
+        let ADFModuleLoadedMessage = "Module initialization completed successfully for module: datastudio-datafactory"
+        let ADFModuleName = "Application"
+        
+        let DefaultShortMessageLength = 200
+    ]]>
+    </GlobalDefinitions>
+  <Rule id="ModuleLoadFailureIncident" windowSize="PT15M" windowHopSize="PT15M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from AtlasTraces
+          where moduleName == ADFModuleName and loggerName == ADFLoggerName
+          let success = message == ADFModuleLoadedMessage ? 1 : 0
+          let failure = message == ADFModuleFailedMessage ? 1 : 0
+
+        groupby SourceTableName, Tenant, Role, RoleInstance, SubscriptionId
+          
+        let successes = Sum(success)
+        let failures = Sum(failure)
+          
+        let failing = successes == 0 and failures > 0 ? 1 : 0
+        
+        where failing == 1
+       
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          select SubscriptionId, successes, failures
+        }
+        
+        let FailingUsersCount = Count()
+         
+        let IcmHtmlDescription = HtmlTable()
+      
+        let EventName = "ADFModuleLoadFailureIncident"
+        let Title = "Data Factory module failed to load in Atlas $(Tenant)"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+
+        let IcmAlertSeverity = FailingUsersCount > 1 ? AlertSeverity3 : AlertSeverity4
+        let IcmRoutingId = "ADF_UX_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = "1400607"
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+    </Rule>
+</Configuration>

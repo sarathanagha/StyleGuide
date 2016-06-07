@@ -1,0 +1,6 @@
+{
+    "rdx": {
+        "defaultModule": "rdx",
+        "modules": [ "rdx" ]
+    }
+}

@@ -1,0 +1,93 @@
+﻿@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$search-border-size: 1px;
+
+.searchbox-box {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .searchbox-input-wrapper {
+        @include absolute(0, 55px, 0, 10px);
+
+        input {
+            height: 100%;
+            width: 100%;
+            border: 0;
+            margin: 0px;
+            font-style: italic;
+            text-indent: 3px;
+
+            &::-webkit-input-placeholder { text-transform: capitalize; }
+            &::-moz-placeholder { text-transform: capitalize; }
+            &:-moz-placeholder { text-transform: capitalize; }
+            &:-ms-input-placeholder { text-transform: capitalize; }
+            &::-ms-clear { display: none; height: 0; width: 0; }
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+
+    img {
+        position: absolute;
+        @include vertical-center();
+        cursor: pointer;
+
+        &.search {
+            right: 0;
+            padding-right: 10px;
+        }
+
+        &.clear {
+            right: 35px;
+        }
+    }
+
+    .dropdown-menu {
+        left: -1px;
+        right: -1px;
+        margin: 0;
+        border-radius: 0;
+
+        li {
+            cursor: default;
+
+            a:hover,
+            a:active {
+                background-color: transparent;
+            }
+        }
+
+        .dropdown-header {
+            text-transform: capitalize;
+        }
+    }
+    
+    @mixin theme {
+        $body-color-light: $default-body-color-light;
+        $input-text-color: $default-input-text-color;
+        $input-outline: $default-input-outline;
+        $header-color: $default-header-color;
+        $body-color: $default-body-color;
+        $body-color-light: $default-body-color-light;
+
+        & {
+            background-color: $body-color-light;
+            border: $search-border-size solid $input-outline;
+
+            .dropdown-menu {
+                li {
+                    a.selected {
+                        background-color: $body-color;
+                    }
+                }
+            }
+        }
+    }
+
+    @include theme;
+}

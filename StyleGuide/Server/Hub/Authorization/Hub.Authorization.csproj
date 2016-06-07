@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8A5E8A0D-AFF6-48A6-87DE-A4E237E83889}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.DataStudio.Hub.Authorization</RootNamespace>
+    <AssemblyName>Microsoft.DataStudio.Hub.Authorization</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\DataStudio.Solutions\DataStudio.Solutions.csproj">
+      <Project>{84bcf7c9-9dde-4038-8853-8a39d64da64d}</Project>
+      <Name>DataStudio.Solutions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="$(NugetPack)\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <Name>System.Web.Http</Name>
+    </Reference>
+    <Reference Include="$(NugetPack)\WindowsAzure.Storage.5.0.2\lib\net40\Microsoft.WindowsAzure.Storage.dll">
+      <Name>Microsoft.WindowsAzure.Storage</Name>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\IAuthContextInitializer.cs" />
+    <Compile Include="Contracts\IAuthenticatedUser.cs" />
+    <Compile Include="Helpers\ClaimsConstants.cs" />
+    <Compile Include="Helpers\ClaimsHelpers.cs" />
+    <Compile Include="src\AuthenticatedUser.cs" />
+    <Compile Include="src\HubAuthorizeAttribute.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

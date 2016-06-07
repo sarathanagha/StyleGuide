@@ -1,0 +1,11 @@
+<div class="checkbox-list">
+    <div class="checkbox-list-window">
+        <ul data-bind="foreach: computedData" class="checkbox-list">
+            <li>
+                <input type="checkbox" data-bind="attr: { id: groupType + '_' + term }, checked: $parent.selected, checkedValue: $data, event: { change: $parent.onChange } " />
+                <label data-bind="text: $parent.formatLabel($data), attr: { for: groupType + '_' + term }"></label>
+            </li>
+        </ul>
+    </div>
+    <a data-bind="text: expandText, click: onSeeMore, visible: expandable" data-target="#"></a>
+</div>

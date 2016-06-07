@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title></title>
+    <script>
+        if (window.require) {
+            window.nodeRequire = window.require;
+            delete window.require;
+        }
+        
+        require = {
+            urlArgs: "v=1.0.0.0"
+        };    
+    </script>
+    <script src="node_modules/@ms-atlas/datastudio/scripts/libs/adal/adal.js"></script>
+    <script src="node_modules/@ms-atlas/datastudio/ExternalLibraries/URI.min.js"></script>
+    <script src="node_modules/@ms-atlas/datastudio/ExternalLibraries/jwt-decode.min.js"></script>
+    <script data-main="datastudio.root.bootstrapper.js" data-version="1.0.0.0" src="node_modules/@ms-atlas/datastudio/ExternalLibraries/require.js"></script>
+</head>
+<body></body>
+</html>

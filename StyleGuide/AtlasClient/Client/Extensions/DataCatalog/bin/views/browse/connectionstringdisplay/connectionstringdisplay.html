@@ -1,0 +1,9 @@
+<div class="connection-string-display">
+    <span class="connection-string-label" data-bind="text: label"></span>
+    <div class="copy-button" data-bind="click: onCopy, adc-popover:true, attr: { 'data-content': resx.connectionStringPopover }" data-placement="left" data-trigger="hover">
+        <img src="../../../../images/browse/copy.svg" />
+    </div>
+    <div class="connection-string-field-container">
+        <textarea class="connection-string-field" data-bind="textInput: connectionString, attr: { id: textFieldId }, event: { copy: onStringCopied }" readonly="readonly"></textarea>
+    </div>
+</div>

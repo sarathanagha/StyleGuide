@@ -1,0 +1,103 @@
+@import "colors";
+
+$modalContentColor: #FFF;
+$modalDefaultWidth: 480px;
+$modalSmallWidth: 300px;
+$modalFadeColor: #3B444E;
+$modalContentPadding: 28px;
+
+$closeIconSize: 13px;
+$closeIconBoundingBoxSize: 36px;
+
+.modal-container 
+{
+    -ms-flex-align: center;
+    -ms-flex-direction: row;
+    -ms-flex-line-pack: stretch;
+    -ms-flex-pack: center;
+    -ms-flex-wrap: nowrap;
+    -webkit-align-content: stretch;
+    -webkit-align-items: center;
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-width: $modalSmallWidth + (2 * $modalContentPadding);
+    z-index: 4;
+    overflow-y: auto;
+    background-color: rgba($darkCharcoal, .85);
+
+    .close-wizard-btn 
+    {
+        background-image: url("../Images/close.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: $closeIconSize $closeIconSize;
+        cursor: pointer;
+        display: block;
+        height: $closeIconBoundingBoxSize;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: $closeIconBoundingBoxSize;
+
+        &:hover {
+            background-color: $canvas;
+        }
+    }
+
+    .modal-content 
+    {
+        background: $modalContentColor;
+        display: block;
+        padding: $modalContentPadding;
+        position: relative;
+        width: $modalDefaultWidth;
+        margin: auto; // Prevents the top from going off the page if the window is too small for the modal
+
+        &.small-content {
+            width: $modalSmallWidth;
+        }
+
+        .modal-header 
+        {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+
+        .modal-message 
+        {
+            display: block;
+            padding-bottom: 24px;
+            padding-top: 12px;
+            word-wrap: break-word;
+        }
+
+        .modal-action-btns 
+        {
+            display: block;
+            text-align: right;
+
+            .btn 
+            {
+                display: inline-block;
+                margin-left: 16px;
+                text-transform: capitalize;
+            }
+        }
+    }
+}

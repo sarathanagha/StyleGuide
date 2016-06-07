@@ -1,0 +1,57 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.schema-column-editor {
+  min-height: 75px;
+  vertical-align: top; }
+  .schema-column-editor td {
+    padding: 18px 10px 10px 10px; }
+    .schema-column-editor td.tags {
+      padding-top: 14px; }
+  .schema-column-editor textarea {
+    resize: vertical; }
+  .schema-column-editor .desc {
+    width: 100%; }
+  .schema-column-editor .disabled-add-btn {
+    display: inline-block;
+    padding: 3px 5px;
+    text-decoration: none;
+    text-transform: capitalize;
+    text-align: left;
+    height: 28px;
+    line-height: 20px;
+    margin-top: 5px; }
+    .schema-column-editor .disabled-add-btn:after {
+      content: "..."; }
+  .schema-column-editor .tokyo-spinner {
+    text-align: right; }
+  .schema-column-editor .schema-input-wrapper {
+    position: relative;
+    padding-right: 30px; }
+    .schema-column-editor .schema-input-wrapper .schema-input {
+      width: 100%; }
+  .schema-column-editor {
+    border-bottom: 1px solid #EFF0F0; }
+    .schema-column-editor.row-selected {
+      background-color: #EFF0F0; }
+    .schema-column-editor .disabled-add-btn {
+      background-color: #006F94;
+      border: 1px solid #006F94;
+      color: #FFF;
+      opacity: 0.5;
+      filter: alpha(opacity=50); }
+    .schema-column-editor .duplicate-error {
+      border: 1px solid #E02D71; }
+    .schema-column-editor .duplicate-error-message {
+      color: #E02D71; }
+
+/*# sourceMappingURL=schemaitemeditor.css.map */

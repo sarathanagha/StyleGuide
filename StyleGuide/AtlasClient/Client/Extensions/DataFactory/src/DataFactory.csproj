@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{42F0E402-ACFD-4EBA-A8DF-30D2E9A4177D}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+    <!--
+     <ProjectReference Include=".\tools\UpdateCsproj\UpdateCsproj.csproj">
+      <Project>{DB24F274-E08D-4B90-9506-DC2497D2E3C8}</Project>
+      <Name>UpdateCsproj</Name>
+    </ProjectReference>
+    -->
+  </ItemGroup>
+  <!-- Local Reference Variables -->
+  <PropertyGroup>
+    <OutputDir>..\bin\</OutputDir>
+    <SrcDir>.\</SrcDir>
+    <GeneratedDir>.\_generated\</GeneratedDir>
+    <FrameworkDir>$(SrcDir)scripts\Framework\</FrameworkDir>
+    <ResourcesDir>$(FrameworkDir)shared\Resources\</ResourcesDir>
+    <SvgDir>$(ResourcesDir)svg\</SvgDir>
+    <ClientResourcesTS>$(GeneratedDir)ClientResources.ts</ClientResourcesTS>
+    <SvgTS>$(GeneratedDir)Svg.ts</SvgTS>
+    <FrameworkTS>$(GeneratedDir)Framework.ts</FrameworkTS>
+    <GulpBuildCommand>$(GulpCmd) --gulpfile ..\gulpfile-msbuild.js</GulpBuildCommand>
+  </PropertyGroup>
+  <!-- External Reference Variables -->
+  <PropertyGroup>
+    <TypeScriptRootDir>$(SrcDir)</TypeScriptRootDir>
+    <TypeScriptOutDir>$(OutputDir)</TypeScriptOutDir>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptSourceRoot>/node_modules/@ms-atlas-module/datastudio-datafactory/</TypeScriptSourceRoot>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.6.3</TypeScriptToolsVersion>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>DataFactory</RootNamespace>
+  </PropertyGroup>
+  <!-- Included Files -->
+  <ItemGroup>
+    <!-- These are generated and therefore should not show up in solution explorer -->
+    <TypeScriptCompile Include="$(FrameworkTS)">
+      <InProject>false</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(SvgTs)">
+      <InProject>false</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(ClientResourcesTS)">
+      <InProject>false</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="bootstrapper\BreadcrumbsKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\CalloutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\CollapsibleKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\CopyBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\FilterFlyoutKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\FormFields.ts" />
+    <TypeScriptCompile Include="bootstrapper\JQueryUIBindings.ts" />
+    <TypeScriptCompile Include="bootstrapper\KnockoutBindings.ts" />
+    <TypeScriptCompile Include="bootstrapper\LoadingBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\ParameterGroupsBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\PivotKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\startup.ts" />
+    <TypeScriptCompile Include="bootstrapper\StatusCalendarFlyoutKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\StatusCalendarKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\TelemetryKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\Validation.ts" />
+    <TypeScriptCompile Include="bootstrapper\WinJSButtonKnockoutBinding.ts" />
+    <TypeScriptCompile Include="bootstrapper\WinJSKnockoutBindings.ts" />
+    <TypeScriptCompile Include="bootstrapper\WizardBinding.ts" />
+    <TypeScriptCompile Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\DockedBalloon.ts" />
+    <TypeScriptCompile Include="scripts\AppContext.ts" />
+    <TypeScriptCompile Include="scripts\Config\DataFactoryConfig.ts" />
+    <TypeScriptCompile Include="scripts\Config\ViewConfig.ts" />
+    <TypeScriptCompile Include="scripts\DataFactoryModule.ts" />
+    <TypeScriptCompile Include="scripts\ExposureControl.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\ActivityWindowCache.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\ArmDataFactoryCache.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\ActivityEntity.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\DatasetEntity.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\Entity.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\EntityDeployer.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\EntityStore.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Authoring\LinkedServiceEntity.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Activity.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\ActivityWindow.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\AzureResourceManager.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\BaseEncodable.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Common.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\DataArtifact.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\DataSlice.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Diagram.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Encodable.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Gateway.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\LinkedService.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\Pipeline.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Contracts\RunRecord.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\DataCache.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\DataFactoryCache.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\EntityProperties.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Filter.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Helpers\ActivityWindowHelper.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\Helpers\DatasetHelper.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Model\MonitoringView.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\Constants.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\DataConstants.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\Disposable.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\IconResources.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\Resources\IbizaSvgs.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Shared\TypeDeclarations.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Telemetry\Telemetry.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Breadcrumbs.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Command.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Loader.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Menu.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\PanelMessage.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Refresh.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Spinner.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\StatusCalendar.ts" />
+    <TypeScriptCompile Include="scripts\Framework\UI\Toolbar.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Util\Datetime.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Util\Log.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Util\ResourceIdUtil.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Util\Security.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Util\Util.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Views\HoverFlyout.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Views\Properties\PropertiesViewModel.ts" />
+    <TypeScriptCompile Include="scripts\Framework\Views\Properties\PropertyTypes.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\AuthoringHandler.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\ErrorHandler.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\MessageHandler.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\MonitoringViewHandler.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\RoutingHandler.ts" />
+    <TypeScriptCompile Include="scripts\Handlers\WinJSHandlers.ts" />
+    <TypeScriptCompile Include="scripts\Managers\NotificationManager.ts" />
+    <TypeScriptCompile Include="scripts\Services\AzureInsightsService.ts" />
+    <TypeScriptCompile Include="scripts\Services\AzureResourceManagerService.ts" />
+    <TypeScriptCompile Include="scripts\Services\BaseService.ts" />
+    <TypeScriptCompile Include="scripts\Services\Commands\ActivityRunCommands.ts" />
+    <TypeScriptCompile Include="scripts\Services\DataFactoryService.ts" />
+    <TypeScriptCompile Include="scripts\Services\HDInsightArmService.ts" />
+    <TypeScriptCompile Include="scripts\Services\NotificationService.ts" />
+    <TypeScriptCompile Include="views\ActivityRunDetails\ActivityRunDetails.ts" />
+    <TypeScriptCompile Include="views\ActivityRunDetails\ActivityRunDetailsToolbarViewModel.ts" />
+    <TypeScriptCompile Include="views\ActivityTool\ActivityTool.ts" />
+    <TypeScriptCompile Include="views\ActivityTool\AzureML\AzureMLTool.ts" />
+    <TypeScriptCompile Include="views\ActivityTool\HDInsight\HDInsightTool.ts" />
+    <TypeScriptCompile Include="views\ActivityTool\MapReduce\MapReduceTool.ts" />
+    <TypeScriptCompile Include="views\ActivityTool\StoredProcedure\StoredProcedureTool.ts" />
+    <TypeScriptCompile Include="views\AlertExplorer\Alert.ts" />
+    <TypeScriptCompile Include="views\AlertExplorer\AlertExplorer.ts" />
+    <TypeScriptCompile Include="views\AlertExplorer\AlertWizard.ts" />
+    <TypeScriptCompile Include="views\AuthoringProperties\AuthoringProperties.ts" />
+    <TypeScriptCompile Include="views\Editor\Editor.ts" />
+    <TypeScriptCompile Include="views\Editor\EditorCommandBar.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphContracts.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Adornment.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Edge.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Entities.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Geometry.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Graph.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Includes.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Index.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Node.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\NodeToolbar.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Piece.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Port.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphEntities\Puzzle.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\Activity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\AzureMLActivity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\CopyActivity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\HiveActivity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\MapReduceActivity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\NodePatcher.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Activities\StoredProcedureActivity.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Base.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\ExtensionConfigs.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Shared.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Summary.ts" />
+    <TypeScriptCompile Include="views\Editor\GraphExtensions\Tables.ts" />
+    <TypeScriptCompile Include="views\Editor\Wizards\AuthoringOverlay.ts" />
+    <TypeScriptCompile Include="views\Editor\Wizards\CopyActivityWizard.ts" />
+    <TypeScriptCompile Include="views\Editor\Wizards\DatasetTool.ts" />
+    <TypeScriptCompile Include="views\Edit\ActionToolbarViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\ActivityRunsListHeaderViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\ActivityRunsListViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\ActivityRunsToolbarViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\BasePipelineExtensionViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DatasetNodeCommands.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramLayout.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramModuleDeclarations.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramToolbar.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramUtil.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\DiagramWidget.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\GraphNodeViewModels.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\GraphViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\PipelineNodeCommands.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\PipelineToGraphViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\DataFactory\Diagram\ResourceToGraphViewModels.ts" />
+    <TypeScriptCompile Include="views\Edit\DateTimeFilterViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\Edit.ts" />
+    <TypeScriptCompile Include="views\Edit\FilterSummaryViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\FilterViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\ItemListFilterViewModel.ts" />
+    <TypeScriptCompile Include="views\Edit\NavToolbar.ts" />
+    <TypeScriptCompile Include="views\Edit\StartEndTimePickerViewModel.ts" />
+    <TypeScriptCompile Include="views\Home\Home.ts" />
+    <TypeScriptCompile Include="views\JsonViewer\JsonViewer.ts" />
+    <TypeScriptCompile Include="views\landingPage\landingPage.ts" />
+    <TypeScriptCompile Include="views\MonitoringViews\MonitoringViews.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\AuthorizationButton.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\BlobBrowser.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Common.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Configuration.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Constants.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\CredentialEncryption.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\DataNavModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\DataTypeConstants.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\DataTypeViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\DestinationTableViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\EntityType.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\ExistingDatasetGroupTypeViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\ExpressDeployer.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\FactoryEntities.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\FileFormatViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\FormRender.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\GatewayViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\IdempotencyMethods.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\JSONTemplates.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\JSONWriter.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\LinkedServicePropertiesViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\LinkedServicesViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\LinkedServiceTypeProperties.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Logger.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Net.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\NetTypes.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\PerformanceSettings.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\PipelineMode.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\PowercopyTool.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\PreviewAndSchemaViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\ProvisioningState.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Settings.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\SourceTableViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\SubscriptionData.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\Summary.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\SyncMethods.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\TableViewModel.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\test\AdmsApiTip.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\test\BlobToSql.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\test\FileDestinationTest.ts" />
+    <TypeScriptCompile Include="views\PowercopyTool\test\TestUtil.ts" />
+    <TypeScriptCompile Include="views\Properties\Properties.ts" />
+    <TypeScriptCompile Include="views\ResourceExplorer\ResourceExplorer.ts" />
+    <TypeScriptCompile Include="views\Shared\ActivityPropertiesWizardPage.ts" />
+    <TypeScriptCompile Include="views\Shared\CommonWizardPage.ts" />
+    <TypeScriptCompile Include="views\Shared\CopySummaryWizardPage.ts" />
+    <TypeScriptCompile Include="views\Shared\DatasetWizardPage.ts" />
+    <TypeScriptCompile Include="views\Toolbox\Toolbox.ts" />
+    <TypeScriptCompile Include="views\Toolbox\ToolboxItems.ts" />
+  </ItemGroup>
+  <!-- Target References -->
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+  <!-- Before Typescript Tasks -->
+  <ItemGroup>
+    <ResourceSvgs Include="$(SvgDir)*.svg">
+      <InProject>false</InProject>
+    </ResourceSvgs>
+    <FrameworkModules Include="$(FrameworkDir)*\*.ts">
+      <InProject>false</InProject>
+    </FrameworkModules>
+    <SASSFiles Include="$(SrcDir)**\*.scss">
+      <InProject>false</InProject>
+    </SASSFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="bootstrapper\CSS\Callout.scss" />
+    <Content Include="bootstrapper\CSS\Common.scss" />
+    <Content Include="bootstrapper\CSS\FormFields.scss" />
+    <Content Include="bootstrapper\CSS\ParameterGroups.scss" />
+    <Content Include="bootstrapper\CSS\Pivot.scss" />
+    <Content Include="bootstrapper\CSS\Wizard.scss" />
+    <Content Include="bootstrapper\images\ErrorStatus.svg" />
+    <Content Include="bootstrapper\images\Info.svg" />
+    <Content Include="bootstrapper\images\ProgressRing.svg" />
+    <Content Include="bootstrapper\images\StatusReady.svg" />
+    <Content Include="bootstrapper\Templates\Breadcrumbs.html" />
+    <Content Include="bootstrapper\Templates\ComboboxTemplate.html" />
+    <Content Include="bootstrapper\Templates\FilterCheckboxTemplate.html" />
+    <Content Include="bootstrapper\Templates\FilterDateTimeTemplate.html" />
+    <Content Include="bootstrapper\Templates\FilterSearchTemplate.html" />
+    <Content Include="bootstrapper\Templates\FilterSortOnlyTemplate.html" />
+    <Content Include="bootstrapper\Templates\FormFieldTemplate.html" />
+    <Content Include="bootstrapper\Templates\GraphNodeStatusTemplate.html" />
+    <Content Include="bootstrapper\Templates\ParameterGroupsTemplate.html" />
+    <Content Include="bootstrapper\Templates\PasswordboxTemplate.html" />
+    <Content Include="bootstrapper\Templates\PivotTemplate.html" />
+    <Content Include="bootstrapper\Templates\TextboxTemplate.html" />
+    <Content Include="bootstrapper\Templates\WizardTemplate.html" />
+    <Content Include="libs\VivaGraphControl\Content\CSS\DarkTheme.css" />
+    <Content Include="libs\VivaGraphControl\Content\CSS\Graph.css" />
+    <Content Include="libs\VivaGraphControl\Content\CSS\LightTheme.css" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.js" />
+    <Content Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.js" />
+    <Content Include="package.json" />
+    <Content Include="scripts\.gitignore" />
+    <Content Include="scripts\Framework\Shared\Resources\ClientResources.resx" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\active.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\activity.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\activity_windows.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\alerts.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\align.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\arrow_down.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\arrow_up.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\autoLayout.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\azureBlob.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\azureDataLake.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\azureMLActivity.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\azureSql.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\azureSqlDW.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\back_arrow.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\blue_plus.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\caret_down.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\caret_downright.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\caret_left.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\caret_right.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\caret_up.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\close.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\collapseDown.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\collapseUp.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\comment.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\copyActivity.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\dashboard.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\database.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\del.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\download.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\edit.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\file.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\filter.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\filter_clear_all.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\gripper.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\hadoop.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\hiveActivity.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\info.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\leftarrow.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\lineageDisplay.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\lock.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\logs.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\monitor_views.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\node_arrow.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\node_input.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\node_output.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\pause.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\pin_off.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\pin_on.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\progressRing.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\properties.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\refresh.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\rerun.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\resource_explorer.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\resume.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\rightarrow.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\scriptFile.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\selectionMode.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\sort_down.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\sort_up.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\sqlOnPrem.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusFailed.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusInProgress.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusNone.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusReady.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusSkipped.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusStarting.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\statusWaiting.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\status_warning.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\stop.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\submit.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\table.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\tableSummary.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\toggle_off.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\toggle_on.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\toolbox.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\zoomIn.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\zoomOut.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\zoomTo100.svg" />
+    <Content Include="scripts\Framework\Shared\Resources\Svg\zoomToFit.svg" />
+    <Content Include="scripts\Framework\UI\Templates\StatusCalendar.html" />
+    <Content Include="scripts\Framework\Views\Properties\Properties.html" />
+    <Content Include="scripts\Framework\Views\Properties\Properties.scss" />
+    <Content Include="stylesheets\Authoring\Fonts.scss" />
+    <Content Include="stylesheets\Base.Images.css" />
+    <Content Include="stylesheets\main.scss" />
+    <Content Include="stylesheets\tooltip.scss" />
+    <Content Include="stylesheets\_AdfSpecific.scss" />
+    <Content Include="tsd.json" />
+    <Content Include="views\.gitignore" />
+    <Content Include="views\ActivityRunDetails\ActivityRunDetails.html" />
+    <Content Include="views\ActivityRunDetails\ActivityRunDetails.scss" />
+    <Content Include="views\ActivityTool\ActivityTool.scss" />
+    <Content Include="views\ActivityTool\AzureML\AzureMLTool.scss" />
+    <Content Include="views\ActivityTool\AzureML\Templates\AzureMLEndpointPropertiesTemplate.html" />
+    <Content Include="views\ActivityTool\AzureML\Templates\AzureMLEndpointTemplate.html" />
+    <Content Include="views\ActivityTool\AzureML\Templates\NewMLEndpointSelectionTemplate.html" />
+    <Content Include="views\ActivityTool\HDInsight\Templates\HDInsightClusterSelectionTemplate.html" />
+    <Content Include="views\ActivityTool\HDInsight\Templates\NewClusterSelectionTemplate.html" />
+    <Content Include="views\ActivityTool\HDInsight\Templates\SelectScriptTemplate.html" />
+    <Content Include="views\ActivityTool\HDInsight\Templates\StorageLinkedServiceTemplate.html" />
+    <Content Include="views\ActivityTool\StoredProcedure\Templates\NewSqlServerTemplate.html" />
+    <Content Include="views\ActivityTool\StoredProcedure\Templates\SqlServerTemplate.html" />
+    <Content Include="views\ActivityTool\Templates\PropertiesTemplate.html" />
+    <Content Include="views\AlertExplorer\AlertExplorer.scss" />
+    <Content Include="views\AlertExplorer\templates\AlertExplorer.html" />
+    <Content Include="views\AlertExplorer\templates\AlertWizardTemplate.html" />
+    <Content Include="views\AlertExplorer\templates\CreateAlertStepOneTemplate.html" />
+    <Content Include="views\AlertExplorer\templates\CreateAlertStepThreeTemplate.html" />
+    <Content Include="views\AlertExplorer\templates\CreateAlertStepTwoTemplate.html" />
+    <Content Include="views\Editor\editor.html" />
+    <Content Include="views\Editor\editor.scss" />
+    <Content Include="views\Editor\GraphEntities\Templates\NodeToolbar.html" />
+    <Content Include="views\Editor\GraphEntities\Templates\NodeToolbar.scss" />
+    <Content Include="views\Editor\GraphEntities\Templates\OutputPort.html" />
+    <Content Include="views\Editor\GraphEntities\Templates\Port.html" />
+    <Content Include="views\Editor\GraphExtensions\Templates\Base.html" />
+    <Content Include="views\Editor\GraphExtensions\Templates\Base.scss" />
+    <Content Include="views\Editor\GraphExtensions\Templates\Summary.html" />
+    <Content Include="views\Editor\Wizards\AuthoringOverlay.scss" />
+    <Content Include="views\Editor\Wizards\templates\AuthoringOverlay.html" />
+    <Content Include="views\Editor\Wizards\templates\CopyWizardTemplate.html" />
+    <Content Include="views\Editor\Wizards\templates\DatasetToolTemplate.html" />
+    <Content Include="views\Edit\.gitignore" />
+    <Content Include="views\Edit\DataFactory\Diagram\Templates\ActivityGraphNodeTemplate.html" />
+    <Content Include="views\Edit\DataFactory\Diagram\Templates\Barberpole.html" />
+    <Content Include="views\Edit\DataFactory\Diagram\Templates\BasePipelineGraphNodeTemplate.html" />
+    <Content Include="views\Edit\DataFactory\Diagram\Templates\DiagramWidget.html" />
+    <Content Include="views\Edit\DataFactory\Diagram\Templates\TableGraphNodeTemplate.html" />
+    <Content Include="views\Edit\Edit.html" />
+    <Content Include="views\Edit\Edit.scss" />
+    <Content Include="views\Edit\MsPortalFx.css" />
+    <Content Include="views\Edit\Templates\ActivityWindowList.html" />
+    <Content Include="views\Edit\Templates\FilterSummary.html" />
+    <Content Include="views\Home\Home.html" />
+    <Content Include="views\Home\Home.scss" />
+    <Content Include="views\Home\Images\chart-01.svg" />
+    <Content Include="views\Home\Images\chart-02.svg" />
+    <Content Include="views\Home\Images\diag0.PNG" />
+    <Content Include="views\Home\Images\diag1.png" />
+    <Content Include="views\Home\Images\diag2.png" />
+    <Content Include="views\Home\Images\diverse.png" />
+    <Content Include="views\JsonViewer\JsonViewer.html" />
+    <Content Include="views\JsonViewer\JsonViewer.scss" />
+    <Content Include="views\landingPage\landingPage.html" />
+    <Content Include="views\landingPage\landingPage.scss" />
+    <Content Include="views\landingPage\landingPage.svg" />
+    <Content Include="views\MonitoringViews\MonitoringViews.html" />
+    <Content Include="views\MonitoringViews\MonitoringViews.scss" />
+    <Content Include="views\PowercopyTool\css\BlobBrowser.scss" />
+    <Content Include="views\PowercopyTool\css\Gateway.scss" />
+    <Content Include="views\PowercopyTool\css\PowercopyTool.scss" />
+    <Content Include="views\PowercopyTool\images\collapse-down.svg" />
+    <Content Include="views\PowercopyTool\images\collapse-right.svg" />
+    <Content Include="views\PowercopyTool\images\eye.svg" />
+    <Content Include="views\PowercopyTool\images\FileIcon.svg" />
+    <Content Include="views\PowercopyTool\images\FileIconSelected.svg" />
+    <Content Include="views\PowercopyTool\images\FolderIcon.svg" />
+    <Content Include="views\PowercopyTool\images\FolderIconSelected.svg" />
+    <Content Include="views\PowercopyTool\images\ProgressRing.svg" />
+    <Content Include="views\PowercopyTool\images\RightArrow.svg" />
+    <Content Include="views\PowercopyTool\images\SummaryArrow.svg" />
+    <Content Include="views\PowercopyTool\images\UpArrow.svg" />
+    <Content Include="views\PowercopyTool\templates\ActivityPropertiesTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\BlobBrowserTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ColumnMappingTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ColumnTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ConnectionFormTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ConnectionTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ContainerItemTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\CustomQueryTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\DatasetProperties.html" />
+    <Content Include="views\PowercopyTool\templates\DataSourceItemTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\DataSourcesTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\DateTimeColumnsTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\DeploymentTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ExistingDatasetGroupTypeTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\FileFormatTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\FrequencyIntervalTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\GatewayTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\HierarchicalAdvancedSettingsTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\HierarchicalFileSettingsTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\HierarchicalLocationTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\HierarchicalPartitionTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\LinkedServicePropertiesTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\LinkedServicesGridTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ListItemTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\PerformanceTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\PictureTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\PreviewAndSchemaTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ScheduleTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\SummaryTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\TableListItemTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\TableListSourceLocationTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\TableMappingTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\TaskPropertiesTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ToolHeaderTemplate.html" />
+    <Content Include="views\PowercopyTool\templates\ToolTemplate.html" />
+    <Content Include="views\ResourceExplorer\ResourceExplorer.html" />
+    <Content Include="views\ResourceExplorer\ResourceExplorer.scss" />
+    <Content Include="views\Shared\Templates\ActivityPropertiesWizardPage.html" />
+    <Content Include="views\Toolbox\toolbox.html" />
+    <Content Include="views\Toolbox\toolbox.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\d3.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\hammer.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\Html5.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\jquery.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\jquery_viva.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\knockout.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\knockout.extensionstypes_viva.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\knockout.fxinternals.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\knockout_viva.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\Q.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\Q_viva.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Definitions\viva_d3.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.Disposable.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Base\Base.TriggerableLifetimeManager.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Base.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Image.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\KnockoutExtensions.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Base\Promise.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Animation.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\ICommand.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Commands\MoveNodes.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\Geometry.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntitiesAddition.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphEntityViewModel.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphViewModel.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.Constants.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\GraphWidget.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\MouseCapture.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Controls\Visualization\Graph\SvgUtils.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Detection.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Resize.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\Content\Scripts\Viva.Controls\Util\Util.Private.d.ts" />
+    <Typescript Include="libs\VivaGraphControl\moduleDefinitions.d.ts" />
+    <Typescript Include="References.d.ts" />
+    <Typescript Include="typings\DataFactoryInterfaceExtensions.d.ts" />
+    <Typescript Include="typings\definitelytyped\node-uuid\node-uuid-base.d.ts" />
+    <Typescript Include="typings\definitelytyped\node-uuid\node-uuid-cjs.d.ts" />
+    <Typescript Include="typings\definitelytyped\tsd.d.ts" />
+    <Typescript Include="typings\hull.d.ts" />
+    <Typescript Include="typings\TypeMetadataModels.d.ts" />
+  </ItemGroup>
+  <Target Name="BuildSvgs" BeforeTargets="PreComputeCompileTypeScript" Inputs="@(ResourceSvgs)" Outputs="$(SvgTS)">
+    <Message Text="Executing gulp build-svgs for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand) build-svgs" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp build-svg Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build-svgs build failed!" />
+  </Target>
+  <Target Name="CompileResx" Inputs="$(ResourcesDir)ClientResources.resx" Outputs="$(GeneratedDir)ClientResources.txt">
+    <GenerateResource Sources="$(ResourcesDir)ClientResources.resx" OutputResources="$(GeneratedDir)ClientResources.txt">
+    </GenerateResource>
+  </Target>
+  <!-- TODO iannight: use T4 templates or some other native templating solution -->
+  <Target Name="BuildResources" DependsOnTargets="CompileResx" BeforeTargets="PreComputeCompileTypeScript" Inputs="$(GeneratedDir)ClientResources.txt" Outputs="$(ClientResourcesTS)">
+    <Message Text="Executing gulp build-resources for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand) build-resources-msbuild" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp build-resources Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build-resources-msbuild failed!" />
+  </Target>
+  <Target Name="BuildFramework" BeforeTargets="PreComputeCompileTypeScript" Inputs="@(FrameworkModules)" Outputs="$(FrameworkTS)">
+    <Message Text="Executing gulp build-framework for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand) build-framework" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp build-framework Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build-framework failed!" />
+  </Target>
+  <Target Name="CreateGenerated" BeforeTargets="BuildSvgs;BuildResources;CompileResx;BuildFramework">
+    <MakeDir Directories="$(GeneratedDir)" />
+  </Target>
+  <!-- After Build Tasks -->
+  <Target Name="BuildSass" AfterTargets="Build" Inputs="@(SASSFiles)" Outputs="@(SASSFiles->'$(OutputDir)%(RecursiveDir)%(FileName).scss')">
+    <Message Text="Executing gulp build-sass for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand) build-sass-msbuild" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp build-sass Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build-sass failed!" />
+    <Copy SourceFiles="@(SassFiles)" DestinationFolder="$(OutputDir)%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyStaticFiles" AfterTargets="Build">
+    <!-- these wildcards need to happen inside of the target so we don't exclude the generated files -->
+    <ItemGroup>
+      <StaticFiles Include="$(SrcDir)**\*.html">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.svg">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.css">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.css.map">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.js">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.ts">
+        <InProject>false</InProject>
+      </StaticFiles>
+      <StaticFiles Include="$(SrcDir)**\*.png">
+        <InProject>false</InProject>
+      </StaticFiles>
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticFiles)" DestinationFolder="$(OutputDir)%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(SrcDir)\package.json" DestinationFolder="$(OutputDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <!-- Clean -->
+  <Target Name="CleanGenerated" AfterTargets="Clean">
+    <RemoveDir Directories="$(OutputDir);$(GeneratedDir)" ContinueOnError="false" />
+  </Target>
+  <!-- Linting and other gulp tests -->
+  <Target Name="RunTests" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Executing gulp run-tests for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand) production" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp run-tests Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp run-tests failed!" />
+  </Target>
+</Project>

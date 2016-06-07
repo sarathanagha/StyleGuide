@@ -1,0 +1,67 @@
+<!--ko if: (entity().hasAuthorizationManagement() || ownerAttributes().length > 0) -->
+<div class="browse-management">
+    <div data-bind="text: resx.management" class="property-label"></div>
+    <div data-bind="adc-spinner: isResolvingObjectIds" class="small"></div>
+    <!-- ko ifnot: isResolvingObjectIds-->
+    <div class="authorization-box">
+        <!-- ko if: ownerAttributes().length == 0 && entity().hasTakeOwnershipRight() -->
+        <div class="spinner-wrapper">
+            <div data-bind="adc-spinner: { working: isSettingOwners(), success: successUpdatingOwners() }" class="small" style="margin-bottom: -20px"></div>
+            <div data-bind="text: resx.takeOwnership, click: takeOwnership" class="take-ownership"></div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: ownerAttributes().length > 0 -->
+        <span data-bind="text: resx.owners" class="property-label light"></span>
+        <div class="spinner-wrapper owners">
+            <div data-bind="adc-spinner: { working: isSettingOwners(), success: successUpdatingOwners() }" class="small" style="margin-bottom: 10px"></div>
+            <div data-bind="adc-spinner: validatingOwners" class="small" style="margin-bottom: 10px"></div>
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: ownerAttributes,
+                                            placeholderText: resx.addOwnersAndGroups,
+                                            onAdd: addOwners.bind($data),
+                                            onRemove: removeOwner.bind($data),
+                                            hideAddButton: !entity().hasChangeOwnershipRight(),
+                                            onValidate: function(upns){ return onValidateUpns.bind($data)(upns, 'owners');}
+                                        }
+                                   }" class="owners-control"></div>
+            <span data-bind="text: invalidOwnersText" class="validation-error"></span>
+            <span data-bind="text: failedOwnersText" class="validation-error"></span>
+            <span data-bind="text: duplicatedOwnersText" class="validation-error"></span>
+        </div>
+        <!--/ko-->
+
+        <!-- ko if: ownerAttributes().length > 0 && entity().hasChangeVisibilityRight() -->
+        <div data-bind="text: resx.visibility" class="property-label light" style="margin-top: 10px"></div>
+
+        <div class="spinner-wrapper users" style="padding-bottom: 3px">
+            <div class="visibility-toggle">
+                <div data-bind="text: resx.everyone, css: { selected: visibleToEveryoneSelected }, click: changeVisibilityToAll"></div>
+                <div data-bind="text: resx.ownersAndTheseUsers, css: { selected: !visibleToEveryoneSelected() }, click: changeVisibilityToSome"></div>
+            </div>
+            <div data-bind="adc-spinner: { working: isSettingUsers(), success: successUpdatingUsers() }" class="small" style="margin-bottom: 15px"></div>
+            <div data-bind="adc-spinner: validatingUsers" class="small" style="margin-bottom: 15px"></div>
+            <!-- ko ifnot: visibleToEveryoneSelected-->
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: userAttributes,
+                                            placeholderText: resx.addUsersAndGroups,
+                                            onAdd: addUsers.bind($data),
+                                            onRemove: removeUser.bind($data),
+                                            onValidate: function(upns){ return onValidateUpns.bind($data)(upns, 'users');}
+                                        }
+                                   }" class="users-control"></div>
+            <span data-bind="text: invalidUsersText" class="validation-error"></span>
+            <span data-bind="text: failedUsersText" class="validation-error"></span>
+            <span data-bind="text: duplicatedUsersText" class="validation-error"></span>
+            <!-- /ko -->
+
+        </div>
+
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+<!--/ko -->

@@ -1,0 +1,163 @@
+@import "../../../../stylesheets/_AdfSpecific.scss";
+
+$detailsTitleSize: 18px;
+$detailsPropertySize: 14px;
+
+$errorColor: rgba(234,0,94, .15);
+
+@mixin subtitleStyle {
+    font-family: $boldFont;
+    font-size: 14px;
+    color: $darkCharColor;
+}
+
+// Pass in width as percent
+@mixin flex-basis($width) {
+    -webkit-flex-basis: $width;
+    flex-basis: $width;
+}
+
+@mixin subHeadings {
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+#propertiesContent {
+    width: 100%;
+    margin-right: 10px;
+    font-family: $regularFont;
+
+    .attemptHeader {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 10px 0px 0px 10px;
+        margin-bottom: 10px;
+
+        &.active {
+            background-color: $cloudColor;
+        }
+
+        .attemptChevron {
+            @include adf-button-dims(20px, 20px);
+            @include flex-basis(10%);
+            text-align: right;
+            margin-top: 2px;
+            margin-right: 2px;
+            margin-left: 10px;
+
+            & svg {
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+
+    .error {
+        margin-top: 25px;
+    }
+
+    .panelTitle {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: $detailsTitleSize;
+        color: $darkCharColor;
+        margin-bottom: 10px;
+    }
+
+    .panelType {
+        text-transform: uppercase;
+        font-size: 10px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .groupName {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 16px;
+        color: $darkCharColor;
+    }
+
+    .seperator {
+        background-color: $grayLightColor;
+        height: 1px;
+        margin-bottom: 10px;
+    }
+
+    .property {
+        margin-bottom: 10px;
+        margin-left: 10px;
+
+        &.invalid {
+            input, select {
+                background-color: $errorColor;
+            }
+        }
+
+        .name {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: $grayLightColor;
+        }
+
+        .value {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: $detailsPropertySize;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        input {
+            background-color: white;
+        }
+
+        textarea {
+            background-color: white;
+            height: 100%;
+        }
+
+        .largeTextArea {
+            height: 200px;
+        }
+
+        button {
+            padding: 8px;
+            margin-top: 4px;
+            margin-bottom: 1px;
+            margin-left: 10px;
+
+            &.delete {
+                display: none;
+                @include adf-button-dims(40px, 40px);
+                margin: 0;
+                padding: 0;
+
+                svg {
+                     @include adf-button-dims(16px, 16px);
+                }
+            }
+        }
+
+        // only show on row hover
+        table:hover button.delete {
+            display: block;
+        }
+
+        table {
+            @extend .value;
+            text-align: left;
+
+            td {
+                padding-right: 20px;
+
+                &.delete {
+                    padding: 0;
+                }
+            }
+        }
+
+        .dateRangeField {
+            margin-top: 10px;
+        }
+    }
+}

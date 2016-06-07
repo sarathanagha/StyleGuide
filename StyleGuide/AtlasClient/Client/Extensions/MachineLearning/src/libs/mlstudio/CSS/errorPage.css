@@ -1,0 +1,91 @@
+﻿.error-container {
+    background-color: #8cc7e5;
+    max-width: 1000px;
+    padding: 15px;
+    font-family: "Segoe UI Light";
+    margin: 50px auto;
+}
+
+.error-body {
+    background-color: #565551;
+    color: #fff;
+    padding-bottom: 40px;
+}
+
+.error-body .header {
+    border-bottom: 1px solid #fff;
+    margin: 0 30px 20px 30px;
+    padding: 20px 0 15px 0;
+    text-align: center;
+}
+
+.error-body .header .message {
+    font-family: "Segoe UI Light";
+    font-size: 44pt;
+    text-align: left;
+}
+
+.error-body .more-details {
+    width: 80%;
+    font-family: "Segoe UI Light";
+    margin-left: 30px;
+}
+
+.error-body .more-details .summary {
+    font-size: 24pt;
+}
+
+.additional-info {
+    margin-left: 20px;   
+}
+/* Browser not supported CSS */
+.browser-not-supported .current-browser {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.browser-not-supported .browser-name {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.browser-not-supported .browser-version {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.browser-not-supported .upgrade-your-browser-text {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.browser-not-supported .supported-browser-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.browser-not-supported .supported-browser-list:last-child {
+    margin-bottom: 20px;
+}
+
+.browser-not-supported .continue {
+    cursor: pointer;
+    color: #28A8E0;
+}
+
+.browser-not-supported .continue:hover {
+    text-decoration: underline;
+}
+
+
+/* Service Unavailable */
+.service-unavailable .unavailable {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.service-unavailable .updates {
+    font-style: italic;
+}

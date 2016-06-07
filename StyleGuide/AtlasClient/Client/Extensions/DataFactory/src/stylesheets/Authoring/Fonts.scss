@@ -1,0 +1,41 @@
+﻿@mixin SRFont {
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@mixin MRFont {
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@mixin MSBFont {
+    font-family: 'Segoe UI Semibold';
+    font-size: 14px;
+    line-height: 16px;
+}
+
+@mixin LSBFont {
+    font-size: 18px;
+    line-height: 28px;
+    font-family: 'Segoe UI Semibold';
+}
+
+@mixin XLRFont {
+    font-family: 'Segoe UI';
+    font-size: 21px;
+    line-height: 32px;
+}
+
+@mixin XLSBFont {
+    font-family: 'Segoe UI Semibold';
+    font-size: 21px;
+    line-height: 32px;
+}
+
+@mixin XXLRFont {
+    font-family: 'Segoe UI';
+    font-size: 28px;
+    line-height: 40px;
+}

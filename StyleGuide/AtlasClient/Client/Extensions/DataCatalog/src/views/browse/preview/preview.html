@@ -1,0 +1,62 @@
+<div id="browse-preview" data-bind="if: selected() && selected().hasPreviewLink()">
+    <!-- ko if: !selected().hasPreviewData() -->
+    <span class="no-preview-data" data-bind="text:resx.noPreviewData"></span>
+    <!-- /ko -->
+    <!-- ko if: selected().hasPreviewData() -->
+
+    <!-- ko if: previewData() && previewData().keys.length == 0 -->
+    <span class="no-preview-data" data-bind="text:resx.noPreviewData"></span>
+    <!-- /ko -->
+
+    <!-- ko if: previewData() && previewData().keys.length > 0 -->
+    <span class="remove-preview" data-bind="text: resx.removePreview, click: removePreview"></span>
+    <div class="scrollable-table header">
+        <table>
+            <colgroup>
+                <!-- ko foreach: { data: previewData().keys, as: 'key' } -->
+                <col data-bind="style: { width: Math.max(key.length * 10 + 10, 100) + 'px' }">
+                <!-- /ko -->
+            </colgroup>
+            <thead>
+                <tr>
+                    <!-- ko foreach: { data: previewData().keys, as: 'key' } -->
+                    <th data-bind="text: key"></th>
+                    <!-- /ko -->
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="scrollable-table content">
+        <table>
+            <colgroup>
+                <!-- ko foreach: { data: previewData().keys, as: 'key' } -->
+                <col data-bind="style: { width: Math.max(key.length * 10 + 10, 100) + 'px' }">
+                <!-- /ko -->
+            </colgroup>
+            <tbody>
+            <!-- ko foreach: { data: previewData().data, as: 'datum' } -->
+            <tr>
+                <!-- ko foreach: { data: $parent.previewData().keys, as: 'key' } -->
+                <td data-bind="text: datum[key]"></td>
+                <!-- /ko -->
+            </tr>
+            <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: previewData -->
+    <div data-bind="adc-spinner: true" class="preview-loading x-large"></div>
+    <!-- /ko -->
+    <!-- ko if: errorFetchingPreviewData -->
+    <span class="error-fetching-preview">
+        <span data-bind="text:resx.errorFetchingPreviewData"></span>
+        <span data-bind="text:resx.pleaseTryAgain, click: fetchPreviewData" class="please-try-again"></span>
+    </span>
+
+    <!-- /ko -->
+
+
+
+    <!-- /ko -->
+</div>

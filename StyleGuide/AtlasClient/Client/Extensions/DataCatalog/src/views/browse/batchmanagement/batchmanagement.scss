@@ -1,0 +1,102 @@
+﻿@import "../../../styles/variables";
+
+.browse-batchmanagement {
+
+    .authorization-box {
+        padding: 10px;
+
+        .take-ownership {
+            display: inline-block;
+            color: white;
+            padding: 3px 5px;
+            cursor: pointer;
+            text-transform: capitalize;
+            height: 28px;
+            line-height: 20px;
+        }
+
+        .owners-control {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .validation-error {
+            font-size: 12px;
+            font-style: italic;
+            display: block;
+            padding-top: 5px;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .visibility-toggle {
+        text-transform: capitalize;
+        display: table;
+        width: 100%;
+        margin-bottom: 5px;
+
+        div {
+            display: table-cell;
+            text-align: center;
+            cursor: pointer;
+            padding: 3px 0;
+
+            &:first-child {
+                padding: 3px 10px;
+            }
+        }
+    }
+
+    @mixin theme {
+        $body-color: $default-body-color;
+        $body-color-dark: $default-body-color-dark;
+        $header-color: $default-header-color;
+        $input-text-color: $default-input-text-color;
+        $dark-border: $default-dark-border;
+        $lighter-gray: $default-lighter-gray;
+        $input-background: $default-input-background-color;
+        $body-color-light: $default-body-color-light;
+        $selected-color: $default-selected-color;
+        $font-color-light: $default-font-color-light;
+        $font-color-med: $default-font-color-med;
+        $dark-grey: $default-dark-gray;
+        $link-color: $default-properties-link-color;
+        $navigation-text-color: $default-navigation-text-color;
+        $navigation-selected-color: $default-navigation-selected-color;
+        $home-tile-background: $default-home-tile-background;
+        $dark-border: $default-dark-border;
+        $header-color: $default-header-color;
+        $error-text-color: $default-error-text-color;
+
+        //scope these colors to this theme
+        & {
+            .authorization-box {
+                background-color: $body-color;
+                .take-ownership {
+                    background-color: $navigation-selected-color;
+                }
+                .validation-error {
+                    color: $error-text-color !important;
+                    a {
+                        color: $error-text-color;
+                    }
+                }
+            }
+            .visibility-toggle {
+                border: 1px solid $body-color-dark;
+                div {
+                    &.selected {
+                        color: $font-color-light;
+                        background-color: $body-color-dark;
+                    }
+                }
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

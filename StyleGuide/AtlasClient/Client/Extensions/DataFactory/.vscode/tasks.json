@@ -1,0 +1,64 @@
+{
+    "version": "0.1.0",
+    "command": "gulp",
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+    "tasks": [
+        {
+            "taskName": "default",
+            "args": [],
+            "isBuildCommand": true, // use ctrl shift b to run this task
+            "isWatching": false,
+            "problemMatcher": [
+                "$lessCompile",
+                "$tsc",
+                "$jshint"
+            ]
+        },
+        {
+            "taskName": "run-tests", // TODO this task should run our tests rather than just build them
+            "args": [],
+            "isTestCommand": true // use ctrl shift t to run this task
+        },
+        {
+            "taskName": "edit",
+            "args": [
+                "--inputFile=${file}"
+            ],
+            "showOutput": "never"
+        },
+        {
+            "taskName": "undo",
+            "args":
+                ["--inputFile=${file}"],
+            "showOutput": "never"
+        },
+        {
+            "taskName": "htmlhint",
+            "args":
+                ["--inputFile=${file}"],
+            "showOutput": "always"
+        },
+        {
+            "taskName": "tslint",
+            "args": [],
+            "showOutput": "always",
+            "problemMatcher": {
+                "owner": "typescript",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern":
+                    {
+                        "regexp": "^.*?error \\(.*?\\) (.*?)\\[(\\d+), (\\d+)\\]: (.*?)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "message": 4
+                    }
+            }
+        }
+    ]
+}

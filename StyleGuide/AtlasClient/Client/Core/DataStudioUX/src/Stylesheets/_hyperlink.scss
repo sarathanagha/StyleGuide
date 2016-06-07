@@ -1,0 +1,20 @@
+﻿@import "colors";
+@import "fonts";
+
+a.ms-hyperlink {
+            text-decoration: none;
+            color: $themePrimaryLightColor ;          
+           font-size:$fontSizeM;
+           font-weight:$fontWeightR;
+
+           &:visited,&:hover{
+            text-decoration: underline!important;
+            color: $themePrimaryDarkColor;
+           }
+           &:active{
+                text-decoration: underline!important;
+                color: $themeSecondaryDarkColor;
+           }
+            
+}
+ 

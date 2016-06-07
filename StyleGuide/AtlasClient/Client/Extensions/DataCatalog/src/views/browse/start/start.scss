@@ -1,0 +1,139 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$container-margin: 100px;
+$content-width:980px;
+$facet_width:($content-width/3);
+
+#start-search {
+    @include absolute();
+    overflow:visible;
+    left:-15px;
+    right:-15px;
+
+    .loading-indicator {
+        position:fixed;
+        width:100%;
+        text-align: center;
+        margin-top: -35px;
+    }
+
+    .wrapper {
+        width: $content-width;
+        margin: auto;
+    }
+
+    .search-container {
+        width: 100%;
+
+        .search-title {
+            font-size: 58px;
+            text-transform:capitalize;
+            font-weight: bold;
+            line-height:60px;
+            margin-top: 35px;
+        }
+
+        .search-subtitle {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .search-head {
+            display: block;
+        }
+
+        .start-searchbox {
+            height: 50px;
+            width: 100%;
+            font-size: 21px;
+            padding-right: 20px;
+
+            .dropdown-menu {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .facet-container {
+        padding-top:40px;
+        overflow:hidden;
+
+        .facet-list-container {
+            width: $facet_width;
+            float: left;
+            padding-left: 35px;
+            bottom: 0;
+
+            .facet-label {
+                font-size:19px;
+                text-transform: capitalize;
+
+                &:after {
+                    content:":";
+                }
+            }
+
+            .facet-list {
+                padding-top: 20px;
+                list-style:none;
+                margin-left: 0;
+                padding-left: 0;
+
+                li {
+                    font-size:14px;
+                    margin-bottom:20px;
+                }
+            }
+
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-med-border;
+        $body-color-light: $default-body-color-light;
+        $body-color-med: $default-body-color-med;
+        $body-color-dark: $default-body-color-dark;
+        $font-color-light: $default-font-color-light;
+        $font-color-med: $default-block-med;
+        $font-color-dark: $default-font-color-dark;
+        $body-color-med: $default-body-color-med;
+
+        & {
+                background-color: $body-color-dark;
+
+                .search-container {
+
+                    .search-title {
+                        color: $font-color-dark;
+                    }
+
+                    .search-subtitle {
+                        color: $font-color-med;
+                    }
+                }
+
+                .facet-container {
+                    color: $body-color-light;
+                    background-color: $body-color-dark;
+
+                    .experts {
+                         ul {
+                            border-right: 1px solid $light-border;
+                        }
+                    }
+
+                    .sources {
+                         ul {
+                            border-right: 1px solid $light-border;
+                        }
+                    }
+                }
+            }
+            
+    }
+    
+    @include theme;
+}

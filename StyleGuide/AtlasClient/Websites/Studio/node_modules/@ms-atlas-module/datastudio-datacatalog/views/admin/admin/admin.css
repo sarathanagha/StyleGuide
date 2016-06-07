@@ -1,0 +1,533 @@
+/**
+ * --------------------------------------------------------------------
+ * <copyright>
+ *  Copyright (c) Microsoft Corporation.  All rights reserved.
+ * </copyright>
+ * --------------------------------------------------------------------
+**/
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+/*
+html {
+    @include htmlAndBody();
+}
+
+@media screen and (min-width: 768px){
+    .modal-dialog {
+        width: 750px;
+    }
+}
+
+body {
+    @include htmlAndBody();
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    .table {
+        display: table;
+    }
+
+    .table-row {
+        display: table-row;
+    }
+
+    .table-cell {
+        display: table-cell;
+    }
+
+    .modal-content {
+        border-radius: 0;
+
+        .modal-title {
+            text-transform: capitalize;
+        }
+
+        .btn {
+            border-radius: 0;
+            text-transform: capitalize;
+        }
+    }
+
+    .popover {
+        border-radius: 0;
+        font-size:12px;
+    }
+
+    .popover-title {
+        font-size:13px;
+        line-height:16px;
+    }
+
+    .tokyo-spinner {
+        display: none;
+        position: relative;
+
+        > img {
+            position: absolute;
+            left: 6px;
+            display: none;
+        }
+
+        > .dot {
+            visibility: hidden;
+            display: inline-block;
+            height: 7px;
+            width: 7px;
+            background-color: black;
+            opacity: .2;
+            border-radius: 100%;
+            .transition(opacity .5s);
+            margin-left: 3px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+  
+            &.curr {
+                opacity: .6;
+            }
+        }
+
+        &.light {
+            > .dot {
+                background-color: white;
+            }
+        }
+
+        &.small {
+            > .dot {
+                height: 5px;
+                width: 5px;
+            }
+        }
+
+        &.large {
+            > .dot {
+                height: 10px;
+                width: 10px;
+            }
+        }
+
+        &.x-large {
+            > .dot {
+                height: 15px;
+                width: 15px;
+            }
+        }
+
+        &.xx-large {
+            > .dot {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        &.working  {
+            display: block;
+            > img {
+                visibility: hidden;
+            }
+            > .dot {
+                visibility: visible;
+            }
+        }
+
+        &.success {
+            display: block;
+
+            > img {
+                display: inline-block;
+            }
+        }
+    }
+    */
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#admin-catalog {
+  color: #3D4045;
+  background-color: #EFF0F0; }
+  #admin-catalog .modal-content .btn-primary {
+    background-color: #28C5F2;
+    border-color: #28C5F2; }
+  #admin-catalog .tokyo-highlight {
+    background-color: #C9F0FC !important; }
+    #admin-catalog .tokyo-highlight.isfiltered {
+      background-color: #88C6DB !important; }
+
+#admin-catalog .main {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: auto; }
+  #admin-catalog .main .banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 280px; }
+  #admin-catalog .main .admin-contents {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1295px;
+    left: 50%;
+    margin-left: -647.5px;
+    font-family: 'Segoe UI',sans-serif; }
+    #admin-catalog .main .admin-contents .banner-contents {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 280px;
+      padding: 50px 450px 0 125px; }
+      #admin-catalog .main .admin-contents .banner-contents .enter-settings-text {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold; }
+      #admin-catalog .main .admin-contents .banner-contents .product-name {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold;
+        text-transform: capitalize; }
+      #admin-catalog .main .admin-contents .banner-contents .settings-long {
+        font-size: 15px;
+        line-height: 20px;
+        width: 575px;
+        margin-top: 15px; }
+    #admin-catalog .main .admin-contents .admin-provision-contents {
+      position: absolute;
+      top: 280px;
+      left: 0;
+      right: 0;
+      padding: 0 100px 125px 100px; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .settings-section {
+        margin-top: 40px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row {
+          position: relative;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #BEC2C9; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row img {
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 5px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .heading {
+            padding-left: 25px;
+            font-size: 21px;
+            line-height: 25px;
+            text-transform: capitalize; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .heading:after {
+              content: ":"; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .heading.no-colon:after {
+              content: ""; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .summary {
+            font-size: 15px;
+            line-height: 25px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .setting-box {
+          width: 100%;
+          padding: 20px 20px 30px 20px;
+          display: none; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .setting-box .setting-title {
+            font-size: 17px;
+            line-height: 25px;
+            padding-bottom: 30px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .setting-box .attribute-text {
+            max-width: 1000px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .settings-section.expanded .setting-box {
+          display: block; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .dropdown {
+        padding: 1px 9px 3px;
+        font-size: 14px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .dropdown a {
+          text-decoration: none;
+          cursor: pointer;
+          line-height: 25px;
+          width: 100%;
+          display: block; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .dropdown a img {
+            position: absolute;
+            right: 10px;
+            top: 10px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .dropdown a .progress-indicator {
+            position: absolute;
+            right: 10px;
+            top: 0; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .dropdown .dropdown-menu {
+          border-radius: 0;
+          font-size: 12px;
+          margin: 0;
+          padding: 3px 0;
+          left: 0;
+          right: 0; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .validation-error {
+        font-size: 12px;
+        font-style: italic;
+        display: block;
+        padding-top: 5px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .validation-error a {
+          text-decoration: underline; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table {
+        margin-bottom: 0; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell {
+          width: 33%;
+          padding-right: 40px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .catalog-label {
+            text-transform: capitalize;
+            font-size: 15px;
+            line-height: 25px;
+            margin-bottom: 5px; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .catalog-label:after {
+              content: ":"; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .catalog-label-value {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 25px;
+            margin-bottom: 5px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell input {
+            width: 100%;
+            outline: 0;
+            padding: 2px 5px;
+            font-size: 14px;
+            line-height: 25px;
+            height: 31px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .mixin {
+            float: right;
+            font-style: italic;
+            font-size: 12px; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .required {
+            float: right;
+            font-style: italic;
+            font-size: 12px; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box {
+        display: inline-block;
+        padding: 20px;
+        cursor: pointer;
+        position: relative; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box.selected .selection {
+          display: block; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .selection {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 28px;
+          width: 28px;
+          text-align: center;
+          z-index: 1;
+          display: none; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .selection .outline {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 15px;
+            width: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            top: 50%; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .selection .outline img {
+              position: relative;
+              top: -4px;
+              left: -1px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .pricing-name {
+          text-transform: uppercase;
+          margin-bottom: 25px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-text {
+          display: inline-block;
+          padding-right: 20px;
+          position: relative; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-text .seperator {
+            position: absolute;
+            right: 0;
+            top: 45%;
+            bottom: 0;
+            width: 1px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units {
+          display: inline-block;
+          width: 300px;
+          height: 100%;
+          vertical-align: top;
+          position: relative; }
+          #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div {
+            padding-left: 20px;
+            position: relative;
+            top: 50px; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper {
+              position: relative;
+              display: inline-block; }
+              #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img {
+                position: absolute;
+                left: 12px; }
+                #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img.up {
+                  bottom: 100%; }
+                #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper img.down {
+                  top: 100%; }
+              #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .unit-wrapper input {
+                width: 40px;
+                text-align: center;
+                outline: 0; }
+            #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-units > div .progress-indicator {
+              display: inline-block;
+              position: relative;
+              top: -2px;
+              left: 5px; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .cancel-button {
+        position: absolute;
+        right: 155px;
+        margin: 30px 100px 0 0;
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        bottom: 30px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .cancel-button span {
+          cursor: pointer;
+          font-size: 21px;
+          line-height: 25px;
+          text-transform: capitalize; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .action-button {
+        position: absolute;
+        right: 0;
+        margin-top: 30px;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        text-align: center; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button.update {
+          right: 0;
+          margin-right: 100px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button.delete {
+          position: relative;
+          margin: 0; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button span {
+          font-size: 27px;
+          line-height: 46px;
+          text-transform: capitalize; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button img {
+          position: relative;
+          top: -5px;
+          right: -5px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button.disabled {
+          opacity: 0.1;
+          filter: alpha(opacity=10);
+          cursor: default; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button.working {
+          cursor: default; }
+        #admin-catalog .main .admin-contents .admin-provision-contents .action-button .progress-indicator {
+          position: relative;
+          top: 15px; }
+      #admin-catalog .main .admin-contents .admin-provision-contents .update-notice {
+        position: absolute;
+        right: 0;
+        margin-right: 100px;
+        padding-top: 5px; }
+      #admin-catalog .main .admin-contents .admin-provision-contents #user-group-disclaimer {
+        padding: 5px;
+        margin-bottom: 10px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents #user-group-disclaimer #enable-groups {
+          position: relative;
+          top: 2px; }
+        #admin-catalog .main .admin-contents .admin-provision-contents #user-group-disclaimer.disabled {
+          opacity: 0.5;
+          filter: alpha(opacity=50);
+          cursor: default; }
+  #admin-catalog .main .important-label {
+    text-transform: uppercase; }
+    #admin-catalog .main .important-label:after {
+      content: ":"; }
+
+#admin-catalog .main .banner-bg {
+  background-color: #00BCF2; }
+
+#admin-catalog .main .admin-contents .banner-contents .enter-settings-text {
+  color: #FFF; }
+
+#admin-catalog .main .admin-contents .banner-contents .product-name {
+  color: #006F94; }
+
+#admin-catalog .main .admin-contents .banner-contents .settings-long {
+  color: #FFF; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row {
+  border-bottom: 1px solid #BEC2C9; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .heading {
+    color: #474F5A; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .heading-row .summary {
+    color: #006F94; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .settings-section .setting-box {
+  background-color: #FFFFFF; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .settings-section .setting-box .setting-title {
+    color: #474F5A; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .dropdown {
+  border: 1px solid #BEC2C9; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .dropdown a {
+    color: #474F5A; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .validation-error {
+  color: #E02D71 !important; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .validation-error a {
+    color: #E02D71; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .catalog-label {
+  color: #474F5A; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .catalog-label-value {
+  color: #474F5A; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell input {
+  border: 1px solid #BEC2C9; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .catalog .table .table-cell .required {
+  color: #2BA9E1; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box {
+  background-color: #EFF0F0;
+  border: 3px solid #EFF0F0; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box.selected {
+    border-color: #28C5F2; }
+  #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .selection {
+    background-color: #28C5F2; }
+    #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .selection .outline {
+      border: 1px solid rgba(255, 255, 255, 0.5); }
+  #admin-catalog .main .admin-contents .admin-provision-contents .pricing .pricing-box .standard-text .seperator {
+    background-color: #BEC2C9; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .cancel-button {
+  color: #474F5A; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents .action-button {
+  color: #FFF;
+  background-color: #26357F; }
+
+#admin-catalog .main .admin-contents .admin-provision-contents #user-group-disclaimer {
+  border: 1px solid #E1E3E5; }
+
+#admin-catalog .main .important-label {
+  color: #E02D71; }
+
+/*# sourceMappingURL=admin.css.map */

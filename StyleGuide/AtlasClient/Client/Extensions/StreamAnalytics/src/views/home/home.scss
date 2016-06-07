@@ -1,0 +1,39 @@
+.atlasHome {
+  background-color: #f7f7f7;
+  padding: 1em 2em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  a span, a div {
+    color: initial
+  }
+
+  .header {
+    h1 {
+      font-size: 3em;
+      font-weight: 200; /* Light */
+    }
+    padding-bottom: 2em;
+  }
+
+  .content {
+    > .col {
+      margin-right: 2em;
+
+    }
+  }
+
+  .insightDashBoard {
+    .row {
+      padding: 0.5em;
+    }
+  }
+
+  .content.row > .col {
+    padding-right: 2em;
+  }
+
+  justify-content: flex-start;
+
+}

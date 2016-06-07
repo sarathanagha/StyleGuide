@@ -1,0 +1,1 @@
+{"version":3,"file":"navigation.js","sourceRoot":"","sources":["../../../../src/views/home/navigation/navigation.ts"],"names":["viewModel","viewModel.constructor"],"mappings":"AAAA,gDAAgD;AAChD,oDAAoD;;IAOzC,gBAAQ,GAAW,OAAO,CAAC,wBAAwB,CAAC,CAAC;IAEhE;QAEIA,mBAAYA,UAAcA;QAE1BC,CAACA;QAELD,gBAACA;IAADA,CAACA,AAND,IAMC;IANY,iBAAS,YAMrB,CAAA"}

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ConfigList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Config Type="Sealed" Name="MonProdUSWest" Base="MonitoringProdCommon">
+    <Settings>
+      <Setting Name="DeploymentName">adfmonprodwestus</Setting>
+      <Setting Name="BuildDropPath">##BuildDropPath##</Setting>
+    </Settings>
+  </Config>
+  <Config Type="Sealed" Name="MonProdUSWestBCDR" Base="MonitoringProdCommonBcdr">
+    <Settings>
+      <Setting Name="DeploymentName">adfmonprodwestusbcdr</Setting>
+      <Setting Name="BuildDropPath">##BuildDropPath##</Setting>
+    </Settings>
+  </Config>
+</ConfigList>

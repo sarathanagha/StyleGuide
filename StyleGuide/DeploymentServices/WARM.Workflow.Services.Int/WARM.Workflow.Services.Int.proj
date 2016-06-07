@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8DF3EE40-79B3-4C25-A72B-9375AAEC45FE}</ProjectGuid>
+    <EnableWadi>true</EnableWadi>
+    <EnableWadiRuntime>true</EnableWadiRuntime>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <Import Project="..\Build.props" />
+  <PropertyGroup>
+    <WadiEnvironment>Production</WadiEnvironment>
+    <WadiJumpbox Condition="'$(WadiJumpbox)'==''">SN1ProdDpg</WadiJumpbox>
+    <WadiRSR>1450925</WadiRSR>
+    <WadiInitialState>Pause</WadiInitialState>
+    <XamlWorkflowBasePath>$(PlatformRootV2)\DeploymentServices\Workflow.Services</XamlWorkflowBasePath>
+    <!-- input properties needed for AdfWarmRdToolsArtifacts.target -->
+    <AdfWarmConfigDirectory>MonitoringConfig</AdfWarmConfigDirectory>
+    <RDToolsAzureConfigDir>$(OutDir)RDTools\$(AdfWarmConfigDirectory)</RDToolsAzureConfigDir>
+  </PropertyGroup>
+  <Import Project="$(WadiJumpboxNuget)\build\Microsoft.DPG.WadiJumpbox.props" />
+  <ItemGroup>
+    <WorkflowFiles Include="$(XamlWorkflowBasePath)\MonitoringServiceDeploy.xaml" />
+    <AzureConfigTemplateFiles Include="$(XamlWorkflowBasePath)\MonitoringConfig\MonitoringIntDeployment.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <ADF_TargetEnvironment Include="MonInt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(SharedAdfActivitiesLibPath)\Adf.Activities.dll">
+      <Name>Adf.Activities</Name>
+    </Reference>
+    <ProjectReference Include="$(PlatformRootV2)\DeploymentServices\Workflow.Services\Workflow.Services.csproj">
+      <Project>{B6A1C307-CA2C-4E71-88AB-C5E2F726C473}</Project>
+      <Name>Workflow.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceDeploy\ServiceDeploy.csproj">
+      <Project>{3A4812D1-AD18-453B-B3CC-04597C4674D2}</Project>
+      <Name>ServiceDeploy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(BuildExtensionsPath)\NoTarget.targets" />
+  <Import Project="$(WadiJumpboxNuget)\build\Microsoft.DPG.WadiJumpbox.targets" />
+  <Import Project="$(CustomBuildExtensionsPath)\AdfWarmRdToolsArtifacts.targets" />
+</Project>

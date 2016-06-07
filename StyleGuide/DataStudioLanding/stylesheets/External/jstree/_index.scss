@@ -1,0 +1,89 @@
+﻿.leftSidePanel {
+  
+   .panelContent {
+     > div {
+       overflow-y:auto;
+       overflow-x:hidden;
+       scrollbar-base-color:#dbdde0;
+       scrollbar-arrow-color: #dbdde0;
+       scrollbar-highlight-color: #dbdde0;
+       scrollbar-darkshadow-color: #dbdde0;
+       scrollbar-face-color: #dbdde0;
+       scrollbar-shadow-color: #dbdde0;
+       scrollbar-3dlight-color:#dbdde0;
+       &:hover {
+         scrollbar-face-color: #3b444e;
+       }
+       &::-webkit-scrollbar {
+          width: 5px;
+          background-color: #dbdde0;
+       }
+       &::-webkit-scrollbar-thumb {
+          background-color: #dbdde0;
+          &:hover {
+            background-color: #3b444e;
+          }
+       }
+
+     }
+   }
+ 
+   .labelButton {
+    > .col.icon {
+      display: none;
+    }
+  } 
+  
+  .jstree-default {
+      font-size: 0.95em;
+
+      .jstree-anchor {
+         font-size: 0.95em;
+         width: 180px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
+      }
+            
+      > .jstree-node {
+        margin-left: 10px;
+      }
+
+      > .jstree-container-ul {
+         > .jstree-node {
+            > .jstree-anchor {
+              font-weight: bold;
+            }
+          }
+        }  
+
+    .jstree-wholerow-hovered {
+      background: #fbfcfc;
+    }        
+        
+    .jstree-wholerow-clicked {
+      background: #b9ddd9;
+    }        
+
+  }
+  
+  .jstree-icon {
+      &.none {
+        display: none;
+      }
+      &:empty {
+        margin-left: -7px;
+      }
+  }
+  
+  .jstree-leaf {
+     .jstree-icon {
+      margin-left: -24px;
+    }
+  }
+  
+  
+}
+
+
+

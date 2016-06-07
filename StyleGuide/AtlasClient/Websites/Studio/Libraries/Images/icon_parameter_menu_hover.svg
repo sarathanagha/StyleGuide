@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<symbol  id="Hamburger_x5F_Active" viewBox="0 -16 16 16">
+	<polygon fill="#FFFFFF" points="16,-16 0,-16 0,0 16,0 	"/>
+	<g>
+		<polygon fill="#414141" points="14,-5 2,-5 2,-3 14,-3 		"/>
+		<polygon fill="#414141" points="14,-9 2,-9 2,-7 14,-7 		"/>
+		<polygon fill="#414141" points="14,-13 2,-13 2,-11 14,-11 		"/>
+	</g>
+</symbol>
+<g id="BG">
+</g>
+<g id="Layer_3">
+	<g>
+		<use xlink:href="#Hamburger_x5F_Active"  width="16" height="16" y="-16" transform="matrix(1 0 0 -1 0 0)" overflow="visible"/>
+		<g display="none">
+			<rect x="2" y="3" display="inline" fill="#D2D2D2" width="12" height="2"/>
+			<rect x="2" y="7" display="inline" fill="#D2D2D2" width="12" height="2"/>
+			<rect x="2" y="11" display="inline" fill="#D2D2D2" width="12" height="2"/>
+		</g>
+		<g display="none">
+			<circle display="inline" fill="#424242" cx="8" cy="7.999" r="6"/>
+			<path display="inline" fill="#FFFFFF" d="M10,4c0.13,0.454-0.086,1.46,0,2h2C11.6,5.365,10.628,4.35,10,4z"/>
+			<path display="inline" fill="#FFFFFF" d="M6.922,6h2.156C8.932,5.174,8.731,4.525,8.534,4.06C8.359,4.035,8.183,4,8,4
+				C7.817,4,7.643,4.035,7.466,4.06C7.269,4.525,7.07,5.174,6.922,6z"/>
+			<path display="inline" fill="#FFFFFF" d="M4.195,9h1.655C5.816,8.678,5.8,8.344,5.8,8c0-0.342,0.016-0.676,0.049-1H4.195
+				C4.08,7.319,4,7.65,4,8C4,8.351,4.08,8.682,4.195,9z"/>
+			<path display="inline" fill="#FFFFFF" d="M6,4C5.372,4.35,4.4,5.365,4,6h1.803C5.888,5.46,5.869,4.454,6,4z"/>
+			<path display="inline" fill="#FFFFFF" d="M9.304,8c0-0.357-0.022-0.688-0.055-1H6.751C6.718,7.313,6.696,7.643,6.696,8
+				c0,0.358,0.022,0.688,0.055,1h2.498C9.282,8.688,9.304,8.358,9.304,8z"/>
+			<path display="inline" fill="#FFFFFF" d="M12,8c0-0.35-0.086-0.681-0.211-1H10c0.034,0.324,0.052,0.658,0.052,1
+				c0,0.344-0.018,0.678-0.052,1h1.789C11.914,8.682,12,8.351,12,8z"/>
+			<path display="inline" fill="#FFFFFF" d="M12,10h-2c-0.086,0.54,0.13,1.546,0,2C10.628,11.65,11.6,10.635,12,10z"/>
+			<path display="inline" fill="#FFFFFF" d="M7.466,11.94C7.643,11.965,7.817,12,8,12c0.183,0,0.359-0.035,0.534-0.06
+				c0.197-0.465,0.397-1.115,0.544-1.94H6.922C7.07,10.826,7.269,11.475,7.466,11.94z"/>
+			<path display="inline" fill="#FFFFFF" d="M5.803,10H4c0.4,0.635,1.372,1.65,2,2C5.869,11.546,5.888,10.54,5.803,10z"/>
+		</g>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>

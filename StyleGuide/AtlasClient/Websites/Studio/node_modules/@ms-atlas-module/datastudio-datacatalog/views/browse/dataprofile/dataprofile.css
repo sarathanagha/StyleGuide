@@ -1,0 +1,90 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-dataprofile {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+  #browse-dataprofile .profile {
+    position: absolute;
+    left: 34px;
+    font-size: 17px; }
+  #browse-dataprofile .table-profile {
+    top: 15px; }
+  #browse-dataprofile .column-profile {
+    top: 122px; }
+  #browse-dataprofile .column-profile-loading {
+    top: 125px;
+    left: 30px; }
+  #browse-dataprofile .scrollable-table {
+    padding: 0 30px;
+    position: absolute; }
+    #browse-dataprofile .scrollable-table.header {
+      height: 27px;
+      left: 0; }
+    #browse-dataprofile .scrollable-table.content {
+      padding: 0 13px 0 30px;
+      left: 0;
+      right: 0;
+      overflow: auto;
+      overflow-x: auto;
+      overflow-y: scroll;
+      zoom: 1; }
+    #browse-dataprofile .scrollable-table.table-data-header {
+      top: 43px; }
+    #browse-dataprofile .scrollable-table.table-data-content {
+      top: 63px;
+      overflow: hidden; }
+    #browse-dataprofile .scrollable-table.column-data-header {
+      top: 150px;
+      right: 0; }
+    #browse-dataprofile .scrollable-table.column-data-content {
+      top: 177px;
+      bottom: 0; }
+    #browse-dataprofile .scrollable-table table {
+      table-layout: fixed; }
+      #browse-dataprofile .scrollable-table table.full-width {
+        width: 100%; }
+      #browse-dataprofile .scrollable-table table th {
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: normal;
+        padding: 5px 10px; }
+      #browse-dataprofile .scrollable-table table tbody tr td {
+        font-size: 12px;
+        padding: 15px 10px 15px 10px;
+        cursor: default;
+        vertical-align: top;
+        position: relative;
+        word-wrap: break-word; }
+  #browse-dataprofile .error-fetching-column-data {
+    position: absolute;
+    top: 122px;
+    left: 90px; }
+    #browse-dataprofile .error-fetching-column-data .please-try-again {
+      cursor: pointer; }
+      #browse-dataprofile .error-fetching-column-data .please-try-again:hover {
+        text-decoration: underline; }
+  #browse-dataprofile table th {
+    background-color: #EFF0F0; }
+  #browse-dataprofile table tbody tr {
+    border-bottom: 1px solid #D8DBDE; }
+    #browse-dataprofile table tbody tr td {
+      color: #474F5A; }
+  #browse-dataprofile .profile {
+    color: #474F5A; }
+  #browse-dataprofile .please-try-again {
+    color: #2AB7D8; }
+
+/*# sourceMappingURL=dataprofile.css.map */

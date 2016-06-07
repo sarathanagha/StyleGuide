@@ -1,0 +1,183 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.layout-container {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden; }
+  .layout-container .layout-backdrop {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 20px;
+    left: 0;
+    z-index: -1;
+    background-color: #000;
+    -webkit-transition: opacity .15s linear;
+    transition: opacity .15s linear; }
+    .layout-container .layout-backdrop.mask {
+      opacity: 0.6;
+      filter: alpha(opacity=60); }
+    .layout-container .layout-backdrop.top {
+      z-index: 990; }
+  .layout-container .masked-pane {
+    z-index: 1000; }
+  .layout-container .clamp-right {
+    right: 0 !important; }
+  .layout-container .clamp-left {
+    left: 0 !important; }
+  .layout-container .clamp-bottom {
+    bottom: 0 !important; }
+  .layout-container > .left-panel {
+    left: 0; }
+    .layout-container > .left-panel .v-handle,
+    .layout-container > .left-panel .toggler {
+      right: 0;
+      bottom: 0; }
+    .layout-container > .left-panel .panel-container {
+      right: 30px; }
+  .layout-container > .center-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 285px;
+    right: 285px; }
+    .layout-container > .center-panel .center-panel-content {
+      position: absolute;
+      top: 0;
+      bottom: 200px;
+      left: 0;
+      right: 0;
+      overflow: auto; }
+      .layout-container > .center-panel .center-panel-content .center-panel-container {
+        position: absolute;
+        top: 30px;
+        left: 15px;
+        right: 15px; }
+    .layout-container > .center-panel .bottom-panel {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 200px;
+      overflow: auto;
+      margin-left: 1px;
+      margin-right: 1px; }
+      .layout-container > .center-panel .bottom-panel .h-handle {
+        width: 100%;
+        height: 5px; }
+      .layout-container > .center-panel .bottom-panel .toggler {
+        right: 0;
+        top: 5px;
+        height: 30px;
+        left: 0;
+        z-index: 1; }
+        .layout-container > .center-panel .bottom-panel .toggler .icon {
+          top: 5px;
+          right: 30px;
+          position: absolute; }
+      .layout-container > .center-panel .bottom-panel .panel-container {
+        top: 5px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        overflow: hidden; }
+      .layout-container > .center-panel .bottom-panel.expanded .toggler .bottom-title {
+        display: none; }
+      .layout-container > .center-panel .bottom-panel.expanded .h-handle {
+        cursor: ns-resize; }
+  .layout-container > .right-panel {
+    right: 0; }
+    .layout-container > .right-panel .v-handle,
+    .layout-container > .right-panel .toggler {
+      left: 0;
+      bottom: 0; }
+    .layout-container > .right-panel .panel-container {
+      right: 0; }
+  .layout-container .side-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0; }
+    .layout-container .side-panel .toggler {
+      width: 30px;
+      text-align: center; }
+      .layout-container .side-panel .toggler .icon {
+        top: 30px;
+        position: relative; }
+      .layout-container .side-panel .toggler .v-title {
+        position: relative;
+        top: 45px;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        -webkit-filter: none;
+                filter: none;
+        /*Mandatory for IE9 to show the vertical text correctly*/
+        white-space: nowrap;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+        font-size: 13px; }
+    .layout-container .side-panel .panel-container {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      bottom: 0;
+      overflow: hidden; }
+    .layout-container .side-panel.expanded .toggler .v-title {
+      display: none; }
+    .layout-container .side-panel.expanded .v-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      cursor: ew-resize; }
+  .layout-container .h-title {
+    font-size: 15px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    cursor: pointer; }
+  .layout-container .side-contents {
+    top: 30px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute; }
+  .layout-container .toggler {
+    position: absolute;
+    top: 0;
+    cursor: pointer; }
+  .layout-container.masked .masked-pane .toggler {
+    display: none; }
+  .layout-container .bottom-panel,
+  .layout-container .side-panel {
+    background-color: #fff;
+    border-left: 1px solid #E8E8E8;
+    border-right: 1px solid #E8E8E8; }
+  .layout-container .left-panel {
+    border-right: 1px solid #EFF0F0; }
+  .layout-container .right-panel {
+    border-left: 1px solid #EFF0F0; }
+  .layout-container .bottom-panel {
+    background-color: #FFFFFF; }
+    .layout-container .bottom-panel .h-handle {
+      background-color: #8A96A2; }
+
+/*# sourceMappingURL=layout.css.map */

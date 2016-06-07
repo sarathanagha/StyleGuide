@@ -1,0 +1,198 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.browse-attributes {
+
+    .add-btn-container {
+        position: relative;
+        width: 100%;
+        margin-top: 4px;
+
+        .add-btn {
+            display: inline-block;
+            cursor: pointer;
+            padding: 3px 5px;
+            text-decoration: none;
+            text-transform: capitalize;
+            text-align: left;
+            height: 28px;
+            line-height: 20px;
+
+            &:after {
+                content: "...";
+            }
+        }
+
+        .input-box {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            height: 28px;
+
+            > span {
+                @include absolute(0, 30px, 0, 10px);
+            
+                input {
+                    height: 100%;
+                    width: 100%;
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0;
+                    &:focus {
+                        outline: 0;
+                    }
+                }
+            }
+            img {
+                right: 0;
+                padding-right: 10px;
+                position: absolute;
+                height: 16px;
+                top: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .group-label {
+        font-size: 12px;
+        color: #4e4e4e;
+        display: inline-block;
+        margin-bottom: 2px;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    ul.pills {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: inline-block;
+            margin: 3px 0;
+            padding: 3px 3px 3px 5px;
+            position: relative;
+            min-width: 80px;
+
+            > span {
+                padding-right: 28px;
+                width: 100%;
+                display: inline-block;
+
+                &:hover {
+                    .add-to-all {
+                        display: block;
+                    }
+                }
+            }
+
+            &.readOnly {
+                > span {
+                    padding-right: 3px;
+                }
+            }
+
+            .remove-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 25px;
+                cursor: pointer;
+
+                img {
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -3px;
+                    top: 9px;
+                } 
+            }
+
+            .add-to-all {
+                @include absolute();
+                width: 100%;
+                text-align: center;
+                line-height: 24px;
+                cursor: pointer;
+                display: none;
+                z-index: 1;
+                font-size: 11px;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .attribute-text {
+        max-width: 250px;
+        display: inline-block;
+        overflow: hidden;
+        @include text-overflow(ellipsis);
+        vertical-align: middle;
+    }
+
+    .error {
+        font-size:12px;
+        text-indent: 2px;
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $input-background-color: $default-input-background-color;
+        $input-outline: $default-input-outline;
+        $font-color-light: $default-font-color-light;
+        $home-tile-background: $default-home-tile-background;
+        $header-color: $default-header-color;
+        $navigation-selected-color: $default-navigation-selected-color;
+        $header-color: $default-header-color;
+        $error-color: $default-error-text-color;
+
+        & {
+            .add-btn-container {
+                .add-btn {
+                    background-color: $navigation-selected-color;
+                    border: 1px solid $navigation-selected-color;
+                    color: $font-color-light;
+                }
+
+                .input-box {
+                     border: 1px solid $input-outline;
+                     background-color: $input-background-color;
+                     
+                     &.focus {
+                        background-color: $font-color-light;
+                    }
+                }
+            }
+
+            ul.pills li {
+                background-color: $input-background-color;
+
+                &.isfiltered {
+                    background-color: fade($header-color, 25%);
+                }
+
+                > div {
+                    border-left: 1px solid $lighter-gray;
+                    &:hover {
+                        background-color: $input-outline;
+                    }
+                }
+
+                .add-to-all {
+                    color: $font-color-light;
+                    background-color: $navigation-selected-color;
+                }
+            }
+
+            .error {
+                color:$error-color;
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

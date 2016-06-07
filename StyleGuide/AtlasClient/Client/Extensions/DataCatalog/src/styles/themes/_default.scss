@@ -1,0 +1,48 @@
+﻿@import "../../../../../Core/DataStudio/src/stylesheets/DataStudio/colors";
+
+//default theme, this is defined on the body tag by default (go figure)
+$default-dark-gray:                 #3D4045;
+$default-light-gray:                #4A4C4F;
+$default-lighter-gray:              #D8DBDE;
+$default-selected-color:            $waveBlue;
+$default-light-font-color:          #EBECEE;
+$default-header-color:              #26357F;
+$default-light-border:              #EFF0F0;
+$default-dark-border:               #BEC2C9;
+$default-med-border:                #5E61A3;
+$default-light-border-alpha:        rgba(255, 255, 255, .5);
+
+$default-body-color:                #EFF0F0;
+$default-body-color-light:          #FFFFFF;
+$default-body-color-med:            #2BA9E1;
+$default-home-bar-color:            #D3D2D3;
+$default-body-color-dark:           #26357F;
+$default-font-color-light:          $white;
+$default-font-color:                $default-dark-gray;
+$default-font-color-med:            #8A96A2;
+$default-font-color-dark:           $waveBlue;
+$default-notification-color-med:    #1888CA;
+$default-notification-border-med:   #0E68B2;
+
+$default-brand-color:               #C1C1C1;
+$default-navigation-text-color:     $white;
+$default-navigation-selected-color: $waveBlue;
+
+$default-input-outline:             #BEC2C9;
+$default-input-text-color:          #474F5A;
+$default-input-background-color:    #E1E3E5;
+$default-selected-tile:             #28C5F2;
+$default-hint-text-color:           #C0C5CB;
+$default-properties-link-color:     #2AB7D8;
+
+$default-home-border-color:         #D1D1D1;
+$default-home-tile-background:      #00BCF2;
+$default-hit-highlight:             #C9F0FC;
+$default-hit-highlight-selected:    #88C6DB;
+$default-error-text-color:          #E02D71;
+
+$default-block-med:                 #0E69B2;
+$default-block-light:               #1989CA;
+
+$default-home-tile-font-dark:       #2C3137;
+$default-home-tile-font-med:        #585B60;

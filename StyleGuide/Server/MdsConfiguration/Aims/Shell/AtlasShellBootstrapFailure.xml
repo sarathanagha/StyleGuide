@@ -1,0 +1,46 @@
+<Configuration>
+  <OutputExtensions>
+    <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+      <Setting Name="tenant" Value="AtlasDataStudio"/>
+    </OutputExtension>
+  </OutputExtensions>
+
+  <GlobalDefinitions>
+    <![CDATA[
+        let ConfigOwnerAlias = "atlaslivesitemonitor@microsoft.com"
+        let ServiceName = "Atlas"
+        
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+    ]]>
+  </GlobalDefinitions>
+
+  <Rule id="BootstrapErrorIncident" windowSize="PT15M" windowHopSize="PT15M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasTraceLogError.*", 0)
+          where moduleName == "Application" and loggerName == "Bootstrapper"
+          groupby SourceTableName, RoleInstance, message, additionalProperties
+
+        let ErrorCount = Count()
+        let EventName = "ApplicationBootstrapErrors"
+        
+        let TsgId = "1200201"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200201%20-%20Application%20bootstrap%20failure%7C49EF4878-DB44-4914-887F-B0A3BC9ACBDE%2F%29"
+        
+        let Title = "Application bootstrapper: There were atleast $(ErrorCount) errors encountered in $(SourceTableName)"
+        let Description = "Please check additionalProperties that might have more context (like error callstack)"
+
+        let IcmAlertSeverity = ErrorCount > 1 ? AlertSeverity2 : AlertSeverity3
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+</Configuration>

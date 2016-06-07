@@ -1,0 +1,144 @@
+﻿@import 'constants/fonts';
+@import 'constants/button';
+@import 'colors';
+
+.dsux-btn {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  border: none;
+  color: $neutralSecondaryColorAlt;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $fontSizeM;
+  max-width: $btnMaxWidth;
+  min-width: $btnMinWidth;
+  padding: $btnVerticalPadding $btnHorizontalPadding;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  /* Default Button */
+ 
+  &:hover {
+       color: $themeSecondaryColor;
+       background-color: $neutralLight;
+     }
+
+  &:focus {
+       color: $themeSecondaryColor;
+       background-color: $neutralLighter;
+       outline: 1px dotted $themePrimaryLighterColor;
+     }
+
+  &:active, &.active {
+       background-color: $white;
+     }
+
+  &:disabled, &.disabled {
+       background-color: $neutralLighter;
+       color: $neutralLighter;
+       cursor: default;
+     }
+
+  /* Primary Button */
+
+&.dsux-btn-primary {
+      color: $white;
+      background-color: $themePrimaryColor;
+    
+  &:hover {
+      color: $white;
+      background-color: $themePrimaryDarkColor;
+    }
+
+  &:focus {
+      color: $white;
+      background-color: $themePrimaryColor;
+      outline: 1px dotted $themePrimaryLighterColor;
+    }
+
+  &:active, &.active {
+      color: $white;
+      background-color: $themePrimaryDarkColor;
+    }
+
+  &:disabled, &.disabled {
+      color: $neutralTertiaryColorAlt;
+      background-color: $neutralLighter;
+      cursor: default;
+    }
+}
+     
+  /* Secondary Button */
+  
+&.dsux-btn-secondary {
+      color: $neutralSecondaryColor;
+      background-color: $neutralLight;
+
+  &:hover {
+      color: $neutralSecondaryColor;
+      background-color: $neutralLight;
+   }
+
+  &:focus {
+      color: $neutralSecondaryColor;
+      background-color: $lightCanvas;
+      outline: 1px dotted $themePrimaryLighterColor;
+   }
+
+  &:active, &.active {
+      color: $neutralSecondaryColor;
+      background-color: $neutralTertiaryColorAlt2;
+   }
+
+  &:disabled, &.disabled {
+      color: $neutralSecondaryColorAlt;
+      background-color: $neutralLighter;
+      cursor: default;
+   }
+}
+
+  /* Tertiary Button */
+
+&.dsux-btn-tertiary {
+      color: $themePrimaryColor;
+      background-color: transparent;
+    
+  &:hover {
+      color: $themePrimaryDarkColor;
+      background-color: transparent;
+   }
+
+  &:focus {
+      color: $neutralSecondaryColor;
+      background-color: transparent;
+      outline: 1px dotted $themePrimaryLighterColor;
+   }
+
+  &:active, &.active {
+      color: $neutralSecondaryColor;
+      background-color: transparent;
+    }
+
+  &:disabled, &.disabled {
+      color: $neutralSecondaryColorAlt;
+      background-color: transparent;
+      cursor: default;
+   }
+ }
+
+}
+.dsux-btn-group {
+
+   .dsux-btn { 
+      margin-right: 16px;
+     }
+
+   .dsux-btn:last-child {
+        margin-right: 0px;
+   }
+
+}
+

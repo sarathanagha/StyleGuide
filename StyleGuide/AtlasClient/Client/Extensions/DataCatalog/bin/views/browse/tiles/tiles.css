@@ -1,0 +1,356 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#tiles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 50px; }
+  #tiles .loading-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    margin-left: -121px; }
+  #tiles #tile-container {
+    width: 100%;
+    float: left; }
+  #tiles .paging-container {
+    float: right;
+    margin-right: 20px; }
+    #tiles .paging-container.top {
+      position: relative;
+      top: -3px; }
+  #tiles .heading {
+    display: block;
+    margin: 0 0 25px 15px;
+    font-size: 15px; }
+    #tiles .heading .results-data {
+      position: relative;
+      top: -6px; }
+      #tiles .heading .results-data .spacer {
+        padding-left: 20px;
+        margin-left: 20px;
+        display: inline-block;
+        position: relative;
+        height: 24px;
+        top: 6px; }
+      #tiles .heading .results-data .select-all {
+        text-transform: capitalize;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+        #tiles .heading .results-data .select-all .select-all-text {
+          margin-left: 10px; }
+        #tiles .heading .results-data .select-all .outline {
+          margin: 0;
+          padding: 0;
+          height: 15px;
+          width: 15px;
+          position: relative;
+          top: 2px;
+          display: inline-block; }
+          #tiles .heading .results-data .select-all .outline img {
+            position: absolute;
+            top: -1px;
+            left: -1px; }
+  #tiles .tile {
+    position: relative;
+    height: 325px;
+    width: 281px;
+    float: left;
+    margin: 15px;
+    font-size: 12px;
+    cursor: default; }
+    #tiles .tile .delete-info {
+      display: none;
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      top: 10px; }
+    #tiles .tile .multiselect {
+      z-index: 1;
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: none;
+      height: 28px;
+      width: 28px;
+      text-align: center;
+      cursor: pointer; }
+      #tiles .tile .multiselect .outline {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        height: 15px;
+        width: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        top: 50%; }
+        #tiles .tile .multiselect .outline img {
+          position: relative;
+          top: -4px;
+          left: -1px; }
+    #tiles .tile.container:before {
+      content: "";
+      position: absolute;
+      width: calc(100% - 10px);
+      bottom: calc(100% + 3px);
+      height: 3px;
+      left: 5px; }
+    #tiles .tile.container:after {
+      content: "";
+      position: absolute;
+      width: calc(100% - 20px);
+      bottom: calc(100% + 9px);
+      height: 3px;
+      left: 10px; }
+    #tiles .tile.container .tile-contents .data-source-group .data-source-type {
+      left: 0; }
+    #tiles .tile:hover .multiselect, #tiles .tile.selected .multiselect {
+      display: inline-block; }
+    #tiles .tile:hover:before, #tiles .tile.selected:before {
+      bottom: calc(100% + 5px); }
+    #tiles .tile:hover:after, #tiles .tile.selected:after {
+      bottom: calc(100% + 10px); }
+    #tiles .tile.deleted .multiselect {
+      display: none; }
+    #tiles .tile.deleted .tile-contents,
+    #tiles .tile.deleted .tile-footer {
+      opacity: 0.3;
+      filter: alpha(opacity=30);
+      zoom: 1;
+      cursor: default; }
+    #tiles .tile.deleted a {
+      cursor: default !important; }
+    #tiles .tile.deleted .delete-info {
+      display: block; }
+    #tiles .tile .tile-contents {
+      cursor: pointer;
+      padding: 15px 15px 0 15px;
+      top: 0;
+      right: 0;
+      bottom: 25px;
+      left: 0;
+      position: absolute; }
+      #tiles .tile .tile-contents > div {
+        margin-bottom: 15px; }
+      #tiles .tile .tile-contents .name {
+        line-height: 1.2em;
+        height: 1.25em;
+        font-size: 17px;
+        overflow: hidden; }
+      #tiles .tile .tile-contents .desc {
+        line-height: 1.2em;
+        height: 2.4em;
+        overflow: hidden; }
+      #tiles .tile .tile-contents .expert-label,
+      #tiles .tile .tile-contents .location-label {
+        margin: 0;
+        text-transform: capitalize;
+        height: 15px; }
+        #tiles .tile .tile-contents .expert-label:after,
+        #tiles .tile .tile-contents .location-label:after {
+          content: ":"; }
+      #tiles .tile .tile-contents .tags {
+        line-height: 20px;
+        overflow: hidden;
+        height: 50px; }
+        #tiles .tile .tile-contents .tags span {
+          padding: 1px 4px;
+          margin-right: 2px;
+          margin-bottom: 5px;
+          display: inline-block; }
+      #tiles .tile .tile-contents .expert,
+      #tiles .tile .tile-contents .location {
+        font-weight: bold;
+        height: 15px;
+        width: 245px; }
+      #tiles .tile .tile-contents .data-source-group {
+        position: absolute;
+        top: 250px;
+        line-height: 1.2em;
+        height: 2.4em;
+        overflow: hidden; }
+        #tiles .tile .tile-contents .data-source-group .subtype {
+          position: absolute; }
+        #tiles .tile .tile-contents .data-source-group .data-source-type {
+          text-transform: uppercase;
+          font-weight: bold;
+          position: relative;
+          left: 25px;
+          padding-right: 25px;
+          width: 170px; }
+      #tiles .tile .tile-contents .watermark {
+        position: absolute;
+        bottom: 20px;
+        right: 20px; }
+    #tiles .tile .tile-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 10px;
+      text-transform: capitalize;
+      line-height: 25px; }
+      #tiles .tile .tile-footer .footer-action {
+        position: relative;
+        float: left; }
+        #tiles .tile .tile-footer .footer-action > a {
+          padding-left: 8px;
+          padding-right: 5px;
+          color: inherit;
+          height: 100%;
+          display: block;
+          width: 100%;
+          text-decoration: none;
+          cursor: pointer; }
+          #tiles .tile .tile-footer .footer-action > a span {
+            font-size: 11px;
+            text-transform: capitalize; }
+          #tiles .tile .tile-footer .footer-action > a.disabled {
+            opacity: 0.25;
+            filter: alpha(opacity=25); }
+        #tiles .tile .tile-footer .footer-action span.action-container {
+          max-width: 90px;
+          overflow: hidden;
+          display: block;
+          white-space: nowrap;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          position: relative; }
+          #tiles .tile .tile-footer .footer-action span.action-container i {
+            padding: 0;
+            position: absolute;
+            right: 0;
+            top: 7px; }
+      #tiles .tile .tile-footer .dropdown {
+        width: 90px; }
+        #tiles .tile .tile-footer .dropdown.search-relevance {
+          float: right;
+          border-left: 1px solid transparent;
+          width: 40px; }
+          #tiles .tile .tile-footer .dropdown.search-relevance img {
+            position: relative;
+            top: -1px; }
+          #tiles .tile .tile-footer .dropdown.search-relevance ul {
+            left: auto;
+            right: 0; }
+          #tiles .tile .tile-footer .dropdown.search-relevance > a {
+            padding-left: 0;
+            padding-right: 0; }
+          #tiles .tile .tile-footer .dropdown.search-relevance .popover {
+            width: 130px; }
+            #tiles .tile .tile-footer .dropdown.search-relevance .popover .popover-content {
+              padding: 0 0 0 4px; }
+        #tiles .tile .tile-footer .dropdown .dropdown-menu {
+          margin: 0;
+          padding: 3px 0;
+          border-radius: 0; }
+          #tiles .tile .tile-footer .dropdown .dropdown-menu div {
+            font-size: 12px;
+            padding-left: 15px; }
+          #tiles .tile .tile-footer .dropdown .dropdown-menu a {
+            font-size: 12px;
+            cursor: pointer;
+            position: relative; }
+            #tiles .tile .tile-footer .dropdown .dropdown-menu a img {
+              top: 2px; }
+              #tiles .tile .tile-footer .dropdown .dropdown-menu a img.arrow-right {
+                top: 5px;
+                width: 12px;
+                position: absolute;
+                right: 10px; }
+            #tiles .tile .tile-footer .dropdown .dropdown-menu a span {
+              padding: 0 10px; }
+      #tiles .tile .tile-footer .glyphicon {
+        padding: 0 5px; }
+      #tiles .tile .tile-footer .footer-pin {
+        float: right;
+        cursor: pointer; }
+        #tiles .tile .tile-footer .footer-pin img {
+          width: 20px;
+          height: 20px;
+          margin-bottom: 3px;
+          margin-right: 8px; }
+  #tiles .batch-loading {
+    float: left;
+    width: 281px;
+    margin: 15px;
+    padding-left: 100px; }
+  #tiles .heading {
+    color: #474F5A; }
+    #tiles .heading .results-data .spacer {
+      border-left: 1px solid #474F5A; }
+    #tiles .heading .results-data .select-all .outline {
+      border: 1px solid #474F5A; }
+  #tiles .tile {
+    border: 3px solid #EFF0F0;
+    background-color: #FFFFFF;
+    color: #474F5A; }
+    #tiles .tile .hint-text {
+      color: #C0C5CB; }
+    #tiles .tile .tags span {
+      background-color: #EFF0F0;
+      color: #474F5A; }
+    #tiles .tile .multiselect .outline {
+      border: 1px solid #BEC2C9; }
+    #tiles .tile:hover {
+      border-color: #BEC2C9; }
+    #tiles .tile:before, #tiles .tile:after {
+      background-color: #FFFFFF; }
+    #tiles .tile.selected {
+      border-color: #28C5F2; }
+      #tiles .tile.selected:before, #tiles .tile.selected:after {
+        background-color: #28C5F2; }
+      #tiles .tile.selected .multiselect {
+        background-color: #28C5F2; }
+        #tiles .tile.selected .multiselect .outline {
+          border: 1px solid fade(#FFFFFF, 50%); }
+    #tiles .tile.deleted {
+      border-color: transparent; }
+  #tiles .tile-footer {
+    color: #474F5A;
+    border-top: 1px solid #EFF0F0; }
+    #tiles .tile-footer .dropdown .dropdown-menu {
+      border: 1px solid #EFF0F0;
+      border-top: 1px solid #FFFFFF; }
+    #tiles .tile-footer .dropdown.open.open-in {
+      border-right: 1px solid #D8DBDE; }
+    #tiles .tile-footer .dropdown.open.search-relevance {
+      border-left: 1px solid #D8DBDE; }
+    #tiles .tile-footer .explore-action {
+      border-right: 1px solid #EFF0F0;
+      border-left: 1px solid #EFF0F0; }
+    #tiles .tile-footer .footer-pin {
+      border-right: 1px solid #EFF0F0; }
+
+#tiles-no-results div {
+  margin: 5px 0; }
+  #tiles-no-results div .clear-button {
+    display: inline-block;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 5px 20px;
+    cursor: pointer; }
+
+#tiles-no-results .clear-button {
+  background-color: #00BCF2;
+  color: #FFF; }
+
+/*# sourceMappingURL=tiles.css.map */

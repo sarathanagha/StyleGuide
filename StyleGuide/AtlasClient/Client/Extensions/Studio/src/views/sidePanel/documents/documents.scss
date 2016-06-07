@@ -1,0 +1,25 @@
+.documentsSidePanel {
+    .header {
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+    >.row {
+        margin-bottom: 20px;
+    }
+
+    .treeViewName {
+        font-weight: bold;
+    }
+
+    .treeViewSwitchElement {
+        width: 1em;
+    }
+}
+
+.panelContent {
+    h4 {
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+}

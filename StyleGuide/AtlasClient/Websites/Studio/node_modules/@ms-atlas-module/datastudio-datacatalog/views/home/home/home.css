@@ -1,0 +1,146 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#home-home .main {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: auto; }
+  #home-home .main .home-row {
+    height: 105px;
+    position: relative;
+    top: 0; }
+    #home-home .main .home-row div.home-box {
+      height: 50px;
+      position: relative;
+      top: 27.5px;
+      width: 1023px;
+      margin: auto;
+      font-size: 21px; }
+      #home-home .main .home-row div.home-box .searchbox-box {
+        border: 0; }
+      #home-home .main .home-row div.home-box .dropdown-menu {
+        font-size: 18px; }
+  #home-home .main .publish-row {
+    width: 100%; }
+    #home-home .main .publish-row .publish-row-content {
+      width: 1023px;
+      margin-left: auto;
+      margin-right: auto; }
+      #home-home .main .publish-row .publish-row-content .publish-text {
+        display: inline;
+        font-size: 24px;
+        margin-right: 30px; }
+      #home-home .main .publish-row .publish-row-content .publish-data-button {
+        display: inline-block;
+        padding-left: 17px;
+        padding-right: 15px;
+        margin-top: 28px;
+        margin-bottom: 30px;
+        text-transform: capitalize;
+        font-size: 27px;
+        line-height: 50px;
+        cursor: pointer; }
+        #home-home .main .publish-row .publish-row-content .publish-data-button img {
+          margin-bottom: 4px; }
+  #home-home .main .top-row-bg {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0; }
+  #home-home .main .top-row {
+    top: 150px;
+    width: 100%;
+    min-height: 550px;
+    overflow: hidden;
+    padding-bottom: 40px;
+    padding-top: 40px; }
+  #home-home .main .top-row-contents {
+    width: 1023px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI'; }
+    #home-home .main .top-row-contents .top-row-text-contents {
+      top: 5px;
+      left: 26px;
+      right: 0;
+      height: 265px;
+      width: 100%; }
+      #home-home .main .top-row-contents .top-row-text-contents .spinner-wrapper {
+        position: absolute;
+        width: 1023px;
+        text-align: center;
+        margin-top: -30px; }
+      #home-home .main .top-row-contents .top-row-text-contents .get-text {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold; }
+      #home-home .main .top-row-contents .top-row-text-contents .more-value-text {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold;
+        margin-right: 10px; }
+      #home-home .main .top-row-contents .top-row-text-contents .from-your-data-text {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: bold; }
+      #home-home .main .top-row-contents .top-row-text-contents .top-row-message {
+        font-size: 19px;
+        line-height: 25px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding-right: 190px; }
+      #home-home .main .top-row-contents .top-row-text-contents .home-tile-container {
+        margin-top: 13px; }
+      #home-home .main .top-row-contents .top-row-text-contents .top-tile-container {
+        height: 285px; }
+      #home-home .main .top-row-contents .top-row-text-contents .bottom-tile-container {
+        height: 185px; }
+      #home-home .main .top-row-contents .top-row-text-contents .home-tile {
+        float: left; }
+      #home-home .main .top-row-contents .top-row-text-contents .home-tiles-label {
+        text-transform: capitalize;
+        font-size: 21px;
+        font-family: 'Segoe UI Semibold', sans-serif; }
+  #home-home .main .bottom-row {
+    position: relative;
+    text-align: center; }
+
+#home-home .main {
+  background: #00526d; }
+  #home-home .main .home-row {
+    background-color: #006F94; }
+  #home-home .main .home-data-text {
+    color: #FFF; }
+  #home-home .main .home-data-button {
+    color: #FFF;
+    background-color: #26357F; }
+  #home-home .main .publish-row {
+    background-color: #D3D2D3; }
+  #home-home .main .top-row {
+    background-color: #EFF0F0; }
+    #home-home .main .top-row .top-row-contents .top-row-text-contents .get-text {
+      color: #006F94; }
+    #home-home .main .top-row .top-row-contents .top-row-text-contents .more-value-text {
+      color: #0E69B2; }
+    #home-home .main .top-row .top-row-contents .top-row-text-contents .from-your-data-text {
+      color: #006F94; }
+    #home-home .main .top-row .top-row-contents .top-row-text-contents .top-row-message {
+      color: #006F94; }
+    #home-home .main .top-row .top-row-contents .home-tiles-label {
+      color: #0E69B2; }
+  #home-home .main .bottom-row {
+    color: #FFF; }
+
+/*# sourceMappingURL=home.css.map */

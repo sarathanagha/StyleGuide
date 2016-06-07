@@ -1,0 +1,79 @@
+<div class="layout-container" data-bind="css: { masked: isMasked() }" data-focus-id="layout">
+    <div class="layout-backdrop"></div>
+    <!-- ko if: showLeft -->
+    <div data-bind="style: { width: leftWidth },
+                layoutPanel: leftExpanded,
+                position: 'left',
+                duration: leftDuration(),
+                attr: {tabindex: leftSelected()? '-1': '0'},
+                event: {keyup: function(d,e) { selectSection(leftFocus(), e); return true; }, focus: onSectionFocus}"
+         class=" left-panel side-panel" role="complementary" data-focus-id="left">
+        <div class="panel-container">
+            <div class="h-title h-toggler" data-bind="text: leftTitle, click: toggleLeft"></div>
+            <!-- ko if: leftComponent -->
+            <div class="side-contents" data-bind="component: { name: leftComponent, params: {}}"></div>
+            <!-- /ko -->
+        </div>
+        <div role="button" class="toggler" data-bind="click: toggleLeft, keyboardselect: toggleLeft">
+            <img src="../../../../images/edd_left_arrow.png" data-bind="visible: leftExpanded()" class="icon" />
+            <img src="../../../../images/edd_right_arrow.png" data-bind="visible: !leftExpanded()" class="icon" />
+            <div class="v-title" data-bind="text: leftTitle"></div>
+        </div>
+        <div class="v-handle" data-bind="layoutResizeable: 'left'"></div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: showCenter -->
+    <div class="center-panel" data-bind="css: {'clamp-left': !showLeft(), 'clamp-right': !showRight(), 'clamp-bottom': !showBottom()},
+                                        attr:{tabindex: centerSelected()? '-1':'0'},
+                                        event: {keyup: function(d,e) { selectSection(centerFocus(), e); return true;}, focus: onSectionFocus}" data-focus-id="center">
+        <div class="center-panel-content" data-bind="css: {'clamp-bottom': !showBottom()}">
+            <div class="center-panel-container">
+                <div data-bind="component: { name: centerComponent, params: {}}"></div>
+            </div>
+        </div>
+        <!-- ko if: showBottom -->
+        <div data-bind="style: { height: bottomHeight },
+                        layoutPanel: bottomExpanded,
+                        position: 'bottom',
+                        attr: {tabindex: bottomSelected()? '-1': '0'},
+                        event: {keyup: function(d,e) { selectSection(bottomFocus(), e); return true;}, focus: onSectionFocus},
+                        duration: bottomDuration()"
+             class="bottom-panel" role="complementary" data-focus-id="bottom">
+            <div class="h-handle" data-bind="layoutResizeable: 'bottom'"></div>
+            <div role="button" class="toggler" data-bind="click: toggleBottom">
+                <img src="../../../../images/edd_down_arrow.png" data-bind="visible: bottomExpanded()" class="icon" />
+                <img src="../../../../images/edd_up_arrow.png" data-bind="visible: !bottomExpanded()" class="icon" />
+            </div>
+            <div class="panel-container">
+                <!-- ko if: bottomComponent -->
+                <div data-bind="component: { name: bottomComponent, params: {}}"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko if: showRight -->
+    <div data-bind="style: { width: rightWidth },
+                    layoutPanel: rightExpanded,
+                    position: 'right',
+                    duration: rightDuration(),
+                    attr: {tabindex: rightSelected()? '-1': '0'},
+                    event: {keyup: function(d,e) { selectSection(rightFocus(), e); return true;}, focus: onSectionFocus}"
+         class="right-panel side-panel" role="complementary" data-focus-id="right">
+        <div class="panel-container">
+            <div class="h-title h-toggler" data-bind="text: rightTitle, click: toggleRight"></div>
+            <!-- ko if: rightComponent -->
+            <div class="side-contents" data-bind="component: { name: rightComponent, params: {}}"></div>
+            <!-- /ko -->
+        </div>
+        <div role="button" class="toggler" data-bind="click: toggleRight">
+            <img src="../../../../images/edd_left_arrow.png" data-bind="visible: !rightExpanded()" class="icon" />
+            <img src="../../../../images/edd_right_arrow.png" data-bind="visible: rightExpanded()" class="icon" />
+            <div class="v-title" data-bind="text: rightTitle"></div>
+        </div>
+        <div class="v-handle" data-bind="layoutResizeable: 'right'"></div>
+    </div>
+    <!-- /ko -->
+
+</div>

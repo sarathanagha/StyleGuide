@@ -1,0 +1,35 @@
+﻿@import "../../stylesheets/main";
+
+.predicatePanel{
+    box-shadow: $boxShadow;
+    padding-bottom: 20px;
+    background: $lightCanvas;
+    position: relative;
+    z-index: 1001;
+
+    .andNotExpression{
+        width: calc(100% - 197px);
+        margin: 20px 30px 0;
+        font-size: 20px;
+        color: $grayDark;
+        outline: none; 
+        padding: 4px;
+        border: 1px solid $darkCloud;
+        padding-right: 40px;
+
+        &:hover, &:active, &:focus{
+            color: $grayDarkest;
+            border: 1px solid $atlasTeal;
+        }
+    }
+
+    .searchButton{
+        @extend .primaryButton;
+        font-size: 24px;
+        position: absolute;
+        right: 50px;
+        top: 20px;
+        width: 40px;
+        height: 37px;
+    }
+}

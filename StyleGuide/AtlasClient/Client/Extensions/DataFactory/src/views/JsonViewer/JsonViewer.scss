@@ -1,0 +1,16 @@
+﻿@import "../../stylesheets/_AdfSpecific.scss";
+
+$sidePanelLoaderSize: 50px;
+
+.adf-jsonViewer-textarea {
+    word-wrap: normal;
+    word-break: normal;
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+.adf-jsonViewer-loader svg {
+    height: $sidePanelLoaderSize;
+    width: $sidePanelLoaderSize;
+}

@@ -1,0 +1,243 @@
+﻿/*These classes override the classes defined in UxFxCss.css when NewExperimentFlow feature is On*/
+.fxs-drawer .fxs-drawer-slip {
+    height: 100%;
+}
+
+.fxs-drawermenu .fxs-drawerdetails {
+    float: none;
+    overflow: auto;
+    width: auto;
+    height: 100%;
+    padding-top: 0;
+}
+
+.fxs-drawermenu .fxs-drawerdetails .fxs-drawerdetails-details-box {
+    height: inherit;
+}
+
+.fxs-drawermenu .fxs-drawermenu-menuandbutton {
+    display: block;
+    height: calc(100% - 70px);
+}
+
+.fxs-drawer .fxs-drawer-drawermenu .fxs-drawermenu-menuarea {
+    height: 100%;
+}
+
+.fxs-drawermenu .fxs-drawermenu-menuarea {
+    display: block;
+}
+
+.fxs-drawermenu .fxs-menu {
+    height: auto;
+}
+
+.fxs-drawer .fxs-drawer-drawermenu,
+.fxs-drawer .fxs-drawer-drawerhelp {
+    height: 100%;
+}
+
+/*These classes override the classes defined in DataLab.css when NewExperimentFlow feature is On*/
+#drawer .UploadDatasetMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -64px;
+}
+
+#drawer .UploadCustomModulePackageMenuItem img {
+    width: 0px;
+    height: 0px;
+    padding: 16px;
+    background: url("/Content/Images/drawer-icons.png") 0px -64px;
+}
+/* -- End copied classes -- */
+
+.fxs-drawerdetails-new-dataset {
+    height: 45px; /*matches the height of the menu item to its left*/
+    line-height: 45px; /*centers the text in the div*/
+}
+
+.fxs-drawerdetails-new-module {
+    height: 45px; /*matches the height of the menu item to its left*/
+    line-height: 45px; /*centers the text in the div*/
+}
+
+.fxs-drawerdetails-new-experiment {
+    /*This height is same as the fxs-drawermenu-menuarea
+        Redefining it here to properly show the scroll bars.        
+    */
+    height: 100%;
+    position: relative; /*needed so that loading shield is 100% of this width and not a previous, wider ancestor*/
+}
+
+.fxs-drawerdetails-new-experiment .loading-shield {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 1, 1, 0);
+    z-index: 2001;
+    align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+
+.loading-label {
+    font-family: "Segoe UI";
+    font-weight: 200;
+    font-size: 46px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile-list {
+    overflow:auto;
+    height: calc(100% - 70px);
+    margin-top: 25px;
+}
+
+
+.fxs-drawerdetails-new-experiment .experiment-list-container {
+    width: 100%;
+    padding-right: 30px;
+    height: calc(100% - 61px);
+    margin-top: 25px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-align-content: flex-start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    overflow-x: auto;
+    line-height: 1.428571429; /*This comes from Bootstrap.css when new nav bar is enabled. When it is Foofed off, the layout is messed up. Adding it here for both cases*/
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-list-header-container {
+    width: 100%;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-list-header-container .experiment-list-title-icon {
+    height: 30px;
+    width: 30px;
+    float: left;
+    margin-top: 3px;
+    margin-right: 7px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-list-header-container .experiment-list-title {
+    font-family: "Segoe UI";
+    font-weight: 200;
+    font-size: 24px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-list-header-container .experiment-list-view-more {
+    font-family: "Segoe UI";
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 7px;
+    color: #71b1d1;
+    cursor: pointer;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-list-header-container .view-more-popout-image {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 6px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-list-container .experiment-card-list {
+    width: 100%;
+    margin-bottom: 15px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+}
+
+.fxs-drawerdetails-new-experiment .search-box {
+    width: 50%;
+    background-color: white;
+    min-width: 300px;
+}
+
+.fxs-drawerdetails-new-experiment .search-box input{
+    border: none;
+    width: calc(100% - 35px); /* make room for .icon-Discovery */
+    height: 36px;
+    font-size: 18px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.fxs-drawerdetails-new-experiment .search-box .icon-Discovery {
+    font-size: 22px;
+    color: #999;
+    width: 35px;
+    padding: 8px 0 0 9px;
+    float: left;
+    display: block;
+    cursor: default;
+}
+
+.fxs-drawerdetails-new-experiment .guided-experiment-tile {
+    margin: 10px 20px 10px 0px;
+    width: 268px;
+    height: 265px;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    cursor: pointer;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    background: url(/Content/SampleExperimentIcons/GuidedExperimentShortTile.svg);
+}
+
+.fxs-drawerdetails-new-experiment .guided-experiment-tile .guided-experiment-name {
+    font-family: "Segoe UI";
+    font-size: 40px;
+    font-weight: 100;
+    margin-bottom: 110px;
+    margin-left: 20px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile {
+    margin: 10px 20px 10px 0px;
+    width: 268px;
+    height: 265px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile .icon {
+    width: 100%;
+    height: 159px;
+    margin-bottom: 12px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile .name {
+    margin: 12px 12px 10px 12px;
+    font-family: "Segoe UI";
+    font-weight: 200; /* Segoe UI Light */
+    font-size: 18px;
+    color: #606060;
+    height: 4em;
+    overflow: hidden;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile .blank-icon {
+    width: 100%;
+    height: 100px;
+    margin-top: 40px;
+}
+
+.fxs-drawerdetails-new-experiment .experiment-tile .blank-name {
+    margin: 0px 25px 101px 70px;
+    font-family: "Segoe UI";
+    font-size: 16px;
+    color: #808080;
+}

@@ -1,0 +1,3 @@
+**/*.*
+!OAuthMiddleware/bin/*.*
+!OAuthMiddleware/Global.asax

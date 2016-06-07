@@ -1,0 +1,550 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$tile-height:   325px;
+$tile-width:    281px;
+
+#tiles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 50px;
+
+    .loading-indicator {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        margin-left: -121px;
+    }
+
+    #tile-container {
+        width: 100%;
+        float: left;
+    }
+
+    .paging-container {
+        float: right;
+        margin-right: 20px;
+
+        &.top {
+            position: relative;
+            top: -3px;
+        }
+    }
+
+    .heading {
+        display: block;
+        margin: 0 0 25px 15px;
+        font-size: 15px;
+
+        .results-data {
+            position: relative;
+            top: -6px;
+
+            .spacer {
+                padding-left: 20px;
+                margin-left: 20px;
+                display: inline-block;
+                position: relative;
+                height: 24px;
+                top: 6px;
+            }
+
+            .select-all {
+                text-transform: capitalize;
+                cursor: pointer;
+                @include non-selectable();
+
+                .select-all-text {
+                    margin-left: 10px;
+                }
+
+                .outline {
+                    margin: 0;
+                    padding: 0;
+                    height: 15px;
+                    width: 15px;
+                    position: relative;
+                    top: 2px;
+                    display: inline-block;
+
+                    img {
+                        position: absolute;
+                        top: -1px;
+                        left: -1px;
+                    }
+                }
+            }
+        }
+    }
+
+    .tile {
+        position: relative;
+        height: $tile-height;
+        width: $tile-width;
+        float: left;
+        margin: 15px;
+        font-size: 12px;
+        cursor: default;
+
+        .delete-info {
+            display: none;
+            z-index: 1;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .multiselect {
+            z-index: 1;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none;
+            height: 28px;
+            width: 28px;
+            text-align: center;
+            cursor: pointer;
+
+            .outline {
+                position: relative;
+                margin: 0;
+                padding: 0;
+                height: 15px;
+                width: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                @include vertical-center();
+
+                img {
+                    position: relative;
+                    top: -4px;
+                    left: -1px;
+                }
+            }
+        }
+
+        &.container {
+            &:before {
+                content: "";
+                position: absolute;
+                width: calc(100% - 10px);
+                bottom: calc(100% + 3px);
+                height: 3px;
+                left: 5px;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                width: calc(100% - 20px);
+                bottom: calc(100% + 9px);
+                height: 3px;
+                left: 10px;
+            }
+
+            .tile-contents .data-source-group .data-source-type {
+                left: 0;
+            }
+        }
+
+        &:hover,
+        &.selected {
+            .multiselect {
+                display: inline-block;
+            }
+
+            &:before {
+                bottom: calc(100% + 5px);
+            }
+
+            &:after {
+                bottom: calc(100% + 10px);
+            }
+        }
+
+        &.deleted {
+
+            .multiselect {
+                display: none;
+            }
+
+            .tile-contents,
+            .tile-footer {
+                @include opacity(.30);
+                zoom: 1;
+                cursor: default;
+            }
+
+            a {
+                cursor: default !important;
+            }
+
+            .delete-info {
+                display: block;
+            }
+        }
+
+        .tile-contents {
+            cursor: pointer;
+            padding: 15px 15px 0 15px;
+            @include absolute(0, 0, 25px, 0);
+            > div {
+                margin-bottom: 15px;
+            }
+
+            .name {
+                line-height: 1.2em;
+                height: 1.25em; //only show one line of text
+                font-size: 17px;
+                overflow: hidden;
+            }
+
+            .desc {
+                line-height: 1.2em;
+                height: 2.4em; //only show two lines of text
+                overflow: hidden;
+            }
+
+            .expert-label,
+            .location-label {
+                margin: 0;
+                text-transform: capitalize;
+                height: 15px;
+
+                &:after {
+                    content: ":";
+                }
+            }
+
+            .tags {
+                line-height: 20px;
+                overflow: hidden;
+                height: 50px;
+
+                span {
+                    padding: 1px 4px;
+                    margin-right: 2px;
+                    margin-bottom: 5px;
+                    display: inline-block;
+                }
+            }
+
+            .expert,
+            .location {
+                font-weight: bold;
+                height: 15px;
+                width: 245px;
+            }
+
+            .data-source-group {
+                position: absolute;
+                top: $tile-height - 75;
+                line-height: 1.2em;
+                height: 2.4em;
+                overflow: hidden;
+
+                .subtype {
+                    position: absolute;
+                }
+
+                .data-source-type {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    position: relative;
+                    left: 25px;
+                    padding-right: 25px;
+                    width: 170px;
+                }
+            }
+
+            .watermark {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .tile-footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 10px;
+            text-transform: capitalize;
+            line-height: 25px;
+
+            .footer-action {
+                position: relative;
+                float: left;
+
+                > a {
+                    padding-left: 8px;
+                    padding-right: 5px;
+                    color: inherit;
+                    height: 100%;
+                    display: block;
+                    width: 100%;
+                    text-decoration: none;
+                    cursor: pointer;
+
+                    span {
+                        font-size: 11px;
+                        text-transform: capitalize;
+                    }
+
+                    &.disabled {
+                        @include opacity(.25);
+                    }
+                }
+
+                span.action-container {
+                    max-width: 90px;
+                    overflow: hidden;
+                    display: block;
+                    white-space: nowrap;
+                    @include text-overflow(ellipsis);
+                    position: relative;
+
+                    i {
+                        padding: 0;
+                        position: absolute;
+                        right: 0;
+                        top: 7px;
+                    }
+                }
+            }
+
+            .dropdown {
+                width: 90px;
+
+                &.search-relevance {
+                    float: right;
+                    border-left: 1px solid transparent;
+                    width: 40px;
+                    img {
+                        position: relative;
+                        top: -1px;
+                    }
+
+                    ul {
+                        left: auto;
+                        right: 0;
+                    }
+                    > a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+
+                    .popover {
+                        width: 130px;
+
+                        .popover-content {
+                            padding: 0 0 0 4px;
+                        }
+                    }
+                }
+
+
+
+                .dropdown-menu {
+                    margin: 0;
+                    padding: 3px 0;
+                    border-radius: 0;
+
+                    div {
+                        font-size: 12px;
+                        padding-left: 15px;
+                    }
+
+                    a {
+                        font-size: 12px;
+                        cursor: pointer;
+                        position: relative;
+
+                        img {
+                            top: 2px;
+
+                            &.arrow-right {
+                                top: 5px;
+                                width: 12px;
+                                position: absolute;
+                                right: 10px;
+                            }
+                        }
+                        span {
+                            padding: 0 10px;
+                        }
+                    }
+                }
+            }
+
+            .glyphicon {
+                padding: 0 5px;
+            }
+
+            .footer-pin {
+                float: right;
+                cursor: pointer;
+                img {
+                    width: 20px;
+                    height: 20px;
+                    margin-bottom: 3px;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    .batch-loading {
+        float: left;
+        width: $tile-width;
+        margin: 15px;
+        padding-left: 100px;
+    }
+
+    //define theme mixin for various colors
+    @mixin theme {
+        $body-color: $default-body-color;
+        $selected-tile: $default-selected-tile;
+        $body-color-light: $default-body-color-light;
+        $light-font-color: $default-light-font-color;
+        $light-gray: $default-light-gray;
+        $lighter-gray: $default-lighter-gray;
+        $input-text-color: $default-input-text-color;
+        $light-border: $default-light-border;
+        $input-outline: $default-input-outline;
+        $hint-text-color: $default-hint-text-color;
+
+        & {
+            .heading {
+                color: $input-text-color;
+                .results-data {
+                    .spacer {
+                        border-left: 1px solid $input-text-color;
+                    }
+                    .select-all {
+                        .outline {
+                            border: 1px solid $input-text-color;
+                        }
+                    }
+                }
+            }
+
+            .tile {
+                border: 3px solid $body-color;
+                background-color: $body-color-light;
+                color: $input-text-color;
+
+                .hint-text {
+                    color: $hint-text-color;
+                }
+
+                .tags {
+                    span {
+                        background-color: $light-border;
+                        color:  $input-text-color;
+                    }
+                }
+
+                .multiselect {
+                    .outline {
+                        border: 1px solid $input-outline;
+                    }
+                }
+
+                &:hover {
+                    border-color: $input-outline;
+                }
+
+                &:before,
+                &:after {
+                    background-color: $body-color-light;
+                }
+
+                &.selected {
+                    border-color: $selected-tile;
+
+                    &:before,
+                    &:after {
+                        background-color: $selected-tile;
+                    }
+
+                    .multiselect {
+                        background-color: $selected-tile;
+                        .outline {
+                            border: 1px solid fade($body-color-light, 50%);
+                        }
+                    }
+                }
+                &.deleted {
+                    border-color: transparent;
+                }
+
+            }
+
+            .tile-footer {
+                color: $input-text-color;
+                border-top: 1px solid $light-border;
+                .dropdown {
+
+                    .dropdown-menu {
+                        border: 1px solid $light-border;
+                        border-top: 1px solid $body-color-light;
+                    }
+
+                    &.open.open-in {
+                        border-right: 1px solid $lighter-gray;
+                    }
+
+                    &.open.search-relevance {
+                        border-left: 1px solid $lighter-gray;
+                    }
+                }
+
+                .explore-action {
+                    border-right: 1px solid $light-border;
+                    border-left: 1px solid $light-border;
+                }
+
+                .footer-pin {
+                    border-right: 1px solid $light-border;
+                }
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}
+
+#tiles-no-results {
+    div {
+        margin: 5px 0;
+
+        .clear-button{
+            display: inline-block;
+            font-size: 15px;
+            text-transform: uppercase;
+            padding: 5px 20px;
+            cursor: pointer;
+        }
+    }
+
+
+    @mixin theme {
+        $home-tile-background: $default-home-tile-background;
+        $navigation-text-color: $default-navigation-text-color;
+
+        & {
+            .clear-button {
+                background-color: $home-tile-background;
+                color: $navigation-text-color;
+            }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

@@ -1,0 +1,62 @@
+<Configuration>
+  <OutputExtensions>
+    <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+      <Setting Name="tenant" Value="AtlasDataStudio"/>
+    </OutputExtension>
+  </OutputExtensions>
+
+  <GlobalDefinitions>
+    <![CDATA[
+        let ConfigOwnerAlias = "atlaslivesitemonitor@microsoft.com"
+        let ServiceName = "Atlas"
+        
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"        
+    ]]>
+  </GlobalDefinitions>
+
+  <Rule id="FailedApiCallsIncident" windowSize="PT24H" windowHopSize="PT24H" queryDelay="PT30M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasRestApiCalls.*", 0)
+            where httpStatusCode >= 500
+            
+        groupby Tenant, SourceTableName, Role, RoleInstance, requestUri, httpStatusCode
+
+        let RequestUri = Last(requestUri)
+        let ResponseCode = Last(httpStatusCode)
+        let FailedApiCallsCount = Count()
+        let ActivityId = Last(ActivityId)
+        let MinTimestamp = Min(PreciseTimeStamp)
+        let MaxTimestamp = Max(PreciseTimeStamp)
+        
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          select RequestUri, ResponseCode, FailedApiCallsCount, ActivityId, MinTimestamp, MaxTimestamp
+        }
+         
+        let IcmHtmlDescription = HtmlTable()
+        
+        let EventName = "ApiCallFailures"
+        
+        let BeginWindowIntervalInPacificTime = AddMinutes(BeginWindowInterval, -7 * 60)
+        let BeginDateInPacificTime = MatchAndExtract(BeginWindowIntervalInPacificTime ,"([0-9\-]+)T([0-9:]+)\.0+(Z)")        
+        let Title = "$(Tenant) has encountered API failures with system errors in the last 24 hours on $(BeginDateInPacificTime)"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let TsgId = "1200102"
+        let TsgLink = "https://microsoft.sharepoint.com/teams/azuredatastudio/_layouts/OneNote.aspx?id=%2Fteams%2Fazuredatastudio%2FSiteAssets%2Fazuredatastudio%20Notebook&wd=target%28ENGINEERING.one%7C28FB3781-D33C-4D43-B83C-89913299767F%2FTSG%20ID%3A%201200102%20-%20HTTP%20Request%20Failures%7CE09F7EC9-C82B-44E5-8834-BEAEE716B221%2F%29"
+
+        let IcmAlertSeverity = AlertSeverity4
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = TsgId
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+</Configuration>

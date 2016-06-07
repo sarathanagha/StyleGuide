@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<ConfigList>
+  <Config Name="Common" Type="Abstract">
+    <Settings>
+      <!--0.0 Cscfg OSVersion Settings-->
+      <Setting Name="OSVersion">*</Setting>
+      <Setting Name="OSFamily">4</Setting>
+      <Setting Name="SchemaVersion">2014-06.2.4</Setting>
+
+      <!-- Secret store settings -->
+      <Setting Name="SecretStore"/>
+      <Setting Name="ServiceName">$(RootNamespace)</Setting>
+      <Setting Name="RootNamespace">AzureDataStudio/ADS-Server</Setting>
+      <Setting Name="OptOutOfSecretDataBackupValidation">true</Setting>
+
+      <!--0.2 Windows Azure Deployment Settings-->
+      <Setting Name="WASubscriptionID" />
+      <Setting Name="WAKeepStagingSlot">false</Setting>
+
+      <Setting Name="WAStorage">$(@Storage.Account)</Setting>
+      <Setting Name="WAAccount">$(@Storage.ActiveKey)</Setting>
+
+      <Setting Name="WAAPICertificateBase64">$(@WADIDeploymentCert.Certificate)</Setting>
+      <Setting Name="WAAPICertificatePassword">$(@WADIDeploymentCert.CertPassword)</Setting>
+
+      <!--0.6 Cscfg Encryption Settings-->
+      <!-- THE BELOW 3 SETTINGS HAS TO BE OVERRIDDEN IN THE SPECIFIC DEPLOYMENT FILES -->
+      <Setting Name="ProtectedSettingsEncryptionCertificate">$(@ProtectedSettingsEncryptionCertificate.Certificate)</Setting>
+      <Setting Name="ProtectedSettingsDecryptionCertificate">$(@ProtectedSettingsDecryptionCertificate.Certificate)</Setting>
+      <Setting Name="ProtectedSettingsDecryptionPassword">$(@ProtectedSettingsDecryptionCertificate.CertPassword)</Setting>
+
+      <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString">DefaultEndpointsProtocol=https;AccountName=$(WAStorage);AccountKey=$(WAAccount)</Setting>
+
+      <Setting Name="MonitoringXStoreAccounts" />
+      <Setting Name="MAConfigFileLocation" />
+      <Setting Name="DeploymentName" />
+
+      <Setting Name="Microsoft.TableStorage.ConnectionString" />
+      <Setting Name="Microsoft.BlobStorage.ConnectionString" />
+      <Setting Name="Microsoft.QueueNames.CreateDeployment" />
+      <Setting Name="Microsoft.QueueNames.UpdateDeploymentStatus" />
+      <Setting Name="Microsoft.QueueNames.MLDeploymentRequests" />
+      <Setting Name="Microsoft.QueueNames.DeleteDeployment" />
+      <Setting Name="PackagePath" />
+
+      <!-- CORS config -->
+      <Setting Name="Microsoft.Cors.AllowedOrigins" />
+      <Setting Name="Microsoft.Cors.ShouldAllowHttpOrigins" />
+
+      <!-- Diagnostics config -->
+      <Setting Name="Microsoft.Diagnostics.EnableMdsTracing" />
+      <Setting Name="Microsoft.Diagnostics.LogLevel" />
+      <Setting Name="Microsoft.DataStudio.Services.Tenant" />
+      <Setting Name="Microsoft.DataStudio.Services.Audience" />
+      <Setting Name="Microsoft.UriEndpoints.AzureResourceManagementUri"/>
+      <Setting Name="Microsoft.ApiVersions.AzureResourceManagementApiVersion"/>
+      <Setting Name="Microsoft.ApiVersions.WorkFlow" />
+      <Setting Name="Microsoft.SqlServer.Import.Suffix"/>
+    </Settings>
+    <ScaleUnit Type="ScaleUnit">
+      <HostedService Type="Microsoft.DataStudio.Deployment">
+        <Setting Name="WASubscriptionID" />
+        <Setting Name="WAStorage" />
+        <Setting Name="WAAccount" />
+        <Setting Name="WAAPICertificateBase64"/>
+        <Setting Name="WAAPICertificatePassword" />
+        <Setting Name="WAKeepStagingSlot" />
+        <Setting Name="PackagePath"/>
+        <Setting Name="ConfigurationXslt"/>
+        <Setting Name="ProtectedSettingsEncryptionCertificate"/>
+        <Setting Name="ProtectedSettingsDecryptionCertificate"/>
+        <Setting Name="ProtectedSettingsDecryptionPassword"/>
+        <Service>
+          <Role Name="DataStudioService" InstancesCount="2">
+            <Setting Name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+            <Setting Name="DeploymentName" />
+            <Setting Name="MonitoringXStoreAccounts" />
+            <Setting Name="MAConfigFileLocation" />
+            <Setting Name="Microsoft.BlobStorage.ConnectionString" />
+            <Setting Name="Microsoft.TableStorage.ConnectionString" />            
+            <Setting Name="Microsoft.QueueNames.CreateDeployment" />
+            <Setting Name="Microsoft.QueueNames.UpdateDeploymentStatus" />
+            <Setting Name="Microsoft.QueueNames.MLDeploymentRequests" />
+            <Setting Name="Microsoft.QueueNames.DeleteDeployment" />
+            <Setting Name="Microsoft.Cors.AllowedOrigins" />
+            <Setting Name="Microsoft.Cors.ShouldAllowHttpOrigins" />
+            <Setting Name="Microsoft.Diagnostics.EnableMdsTracing" />
+            <Setting Name="Microsoft.Diagnostics.LogLevel" />
+            <Setting Name="Microsoft.DataStudio.Services.Tenant" />
+            <Setting Name="Microsoft.DataStudio.Services.Audience" />
+            <Setting Name="Microsoft.UriEndpoints.AzureResourceManagementUri"/>
+            <Setting Name="Microsoft.ApiVersions.AzureResourceManagementApiVersion"/>
+            <Setting Name="Microsoft.ApiVersions.WorkFlow" />
+            <Setting Name="Microsoft.SqlServer.Import.Suffix"/>
+            <Certificates>
+              <Certificate Name="SSLCert" Body="$(@SSLCert.Certificate)" Password="$(@SSLCert.CertPassword)" />
+              <Certificate Name="MdsCert" Body="$(@MdsCert.Certificate)" Password="$(@MdsCert.CertPassword)" />
+            </Certificates>
+          </Role>
+          <Role Name="SolutionDeploymentWorker" InstancesCount="2">
+            <Setting Name="Microsoft.TableStorage.ConnectionString" />
+            <Setting Name="Microsoft.BlobStorage.ConnectionString" />
+            <Setting Name="Microsoft.QueueNames.CreateDeployment" />
+            <Setting Name="Microsoft.QueueNames.UpdateDeploymentStatus" />
+            <Setting Name="Microsoft.QueueNames.MLDeploymentRequests" />
+            <Setting Name="Microsoft.QueueNames.DeleteDeployment" />
+            <Setting Name="DeploymentName"/>
+            <Setting Name="MonitoringXStoreAccounts"/>
+            <Setting Name="MAConfigFileLocation"/>
+            <Setting Name="Microsoft.MachineLearning.WorkspaceLocation"/>
+            <Setting Name="Microsoft.MachineLearning.MaxRetryAttempts"/>
+            <Setting Name="Microsoft.UriEndpoints.WindowsManagementUri"/>
+            <Setting Name="Microsoft.UriEndpoints.AzuremlManagementUri"/>
+            <Setting Name="Microsoft.UriEndpoints.AzureResourceManagementUri"/>
+            <Setting Name="Microsoft.UriEndpoints.StudioApiUri"/>
+            <Setting Name="Microsoft.UriEndpoints.ResourceManagementUri"/>
+            <Setting Name="Microsoft.UriEndpoints.OldResourceManagementUri"/>
+            <Setting Name="Microsoft.ApiVersions.AzureResourceManagementApiVersion"/>
+            <Setting Name="Microsoft.ApiVersions.WorkFlow" />
+            <Setting Name="Microsoft.SqlServer.Import.Suffix"/>
+            <Setting Name="Microsoft.Cors.AllowedOrigins" />
+            <Setting Name="Microsoft.Cors.ShouldAllowHttpOrigins" />
+            <Setting Name="Microsoft.Diagnostics.EnableMdsTracing" />
+            <Setting Name="Microsoft.Diagnostics.LogLevel" />
+            <Certificates>
+              <Certificate Name="MdsCert" Body="$(@MdsCert.Certificate)" Password="$(@MdsCert.CertPassword)" />
+            </Certificates>
+          </Role>
+        </Service>
+      </HostedService>
+    </ScaleUnit>
+  </Config>
+</ConfigList>

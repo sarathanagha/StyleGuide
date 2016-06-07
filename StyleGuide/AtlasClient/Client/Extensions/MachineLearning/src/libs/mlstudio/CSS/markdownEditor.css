@@ -1,0 +1,217 @@
+.wmd-button-bar {
+  width: 100%;
+  background-color: Silver;
+}
+.wmd-preview {
+  background-color: #f4f4f4;
+}
+.wmd-preview code {
+  white-space: pre;
+}
+.wmd-button-row {
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  padding: 0px;
+  height: 20px;
+}
+.wmd-spacer {
+  width: 1px;
+  height: 20px;
+  margin-left: 14px;
+  position: absolute;
+  background-color: Silver;
+  display: inline-block;
+  list-style: none;
+}
+.wmd-button {
+  width: 20px;
+  height: 20px;
+  padding-left: 2px;
+  padding-right: 3px;
+  position: absolute;
+  display: inline-block;
+  list-style: none;
+  cursor: pointer;
+}
+.wmd-button > span {
+  background-image: url(../Images/wmd-buttons.png);
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+.wmd-spacer1 {
+  left: 50px;
+}
+.wmd-spacer2 {
+  left: 175px;
+}
+.wmd-spacer3 {
+  left: 300px;
+}
+.wmd-prompt-background {
+  background-color: Black;
+  z-index: 3000 !important;
+}
+.wmd-prompt-dialog {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: none;
+  border-radius: 0;
+  z-index: 3001 !important;
+}
+.wmd-prompt-dialog > div {
+  border: 0;
+}
+.wmd-prompt-dialog > div > p:first-child {
+  margin: 0 !important;
+  padding: 30px !important;
+  color: #515151;
+  font: 32px "Segoe UI light";
+}
+.wmd-prompt-dialog > div > p:last-child {
+  position: relative;
+  padding: 20px;
+  white-space: pre-line;
+  padding: 0 30px;
+  color: #333;
+}
+.wmd-prompt-dialog > div > p > b {
+  font-weight: normal;
+}
+.wmd-prompt-dialog > form {
+  padding: 30px !important;
+  padding-bottom: 22px !important;
+  text-align: right !important;
+}
+.wmd-prompt-dialog > form > input[type="text"] {
+  border: 1px solid #999999;
+  color: black;
+  width: 100% !important;
+}
+.wmd-prompt-dialog > form > input[type="button"] {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+  margin-right: 0 !important;
+}
+.wmd-prompt-dialog > form > input[type="button"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.wmd-prompt-dialog > form > input[type="button"]:hover,
+.wmd-prompt-dialog > form > input[type="button"]:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.wmd-prompt-dialog > form > input[type="button"]:active,
+.wmd-prompt-dialog > form > input[type="button"].active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.wmd-prompt-dialog > form > input[type="button"].disabled,
+.wmd-prompt-dialog > form > input[type="button"][disabled],
+fieldset[disabled] .wmd-prompt-dialog > form > input[type="button"] {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.wmd-prompt-dialog > form > input[type="button"]:nth-child(2) {
+  color: #ffffff;
+  background-color: #8dc53e;
+  border-color: #8dc53e;
+}
+.datalab-dialog markdown-editor {
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+.datalab-dialog .wmd-input,
+.datalab-dialog .wmd-preview {
+  width: 90%;
+  height: 220px;
+  margin-bottom: 20px;
+  display: inline-block;
+  position: relative;
+  left: 0;
+  -moz-transition: left ease 300ms;
+  -o-transition: left ease 300ms;
+  -webkit-transition: left ease 300ms;
+  transition: left ease 300ms;
+  overflow: auto;
+  white-space: normal;
+}
+.datalab-dialog .wmd-preview{
+  cursor: pointer;
+}
+.datalab-dialog .wmd-input.in-preview,
+.datalab-dialog .wmd-preview.in-preview {
+  left: -80%;
+}
+.wmd-preview h1 {
+  font-size: 20px;
+  line-height: 1.2;
+  color: #666666;
+  font-family: 'Segoe UI Light';
+  margin: 0;
+  margin-bottom: 15px;
+}
+.wmd-preview h2 {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #666666;
+  font-family: 'Segoe UI Light';
+  margin: 0;
+  margin-bottom: 10px;
+}
+.wmd-preview h3 {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #666666;
+  font-family: 'Segoe UI Light';
+  margin: 0;
+  margin-bottom: 5px;
+}
+.wmd-preview ol {
+    list-style-type: decimal;
+    padding-left: 40px;
+    position: static;
+}
+.wmd-preview ul {
+    padding-left: 40px;
+}
+.wmd-preview hr {
+    border-bottom: 1px solid #333;
+}

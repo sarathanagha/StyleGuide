@@ -1,0 +1,75 @@
+<section id="search" class="row space-between align-items-center" data-bind="event: {keyup: onSectionSelect}, attr: {tabindex: isSelectedSection()? '-1':'0'}">
+
+    <div class="search-left-area row grow align-items-center">
+        <a role="button" class="commandbar-btn" data-bind="click: navigateBack, attr: {title: resx.commandBar_navigateBack, tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="icon back-btn"></span>
+        </a>
+
+        <div class="commandbar-item search-page-title">
+            <span data-bind="text: resx.commandBar_searchResults"></span>
+        </div>
+
+        <div class="search-box" data-bind="component: { name: 'datacatalog-shell-searchbox', params: {
+                                                        text: searchTerm,
+                                                        placeholderText: resx.search,
+                                                        onChange: doSearch.bind($data),
+                                                        onClear: doSearch.bind($data),
+                                                        focusId: id
+                                                      } }"></div>
+    </div>
+
+    <div class="search-right-area row align-items-center">
+
+        <a role="button" class="commandbar-btn"
+            data-bind="datastudio-ux-selectmenu: openWithMenuParams,
+                css: { disabled: !isSingleAssetSelected() || (isSingleAssetSelected() && !getConnectionTypes().length) },
+                attr: {tabindex: (!isSingleAssetSelected() || (isSingleAssetSelected() && !getConnectionTypes().length) || !isSelectedSection()? '-1':'0', title: resx.commandBar_open}">
+            <span class="text" data-bind="text: resx.commandBar_open"></span>
+            <span class="icon icon-right" data-bind="datastudio-ux-svgloader: svgPaths.chevronDown"></span>
+        </a>
+
+        <a role="button" class="commandbar-btn"
+            data-bind="css: { disabled: !isAnyDeletableAssetSelected() }, click: deleteSelected,
+                attr: {title: resx.commandBar_delete, tablindex: isAnyDeletableAssetSelected() && isSelectedSection() ? '0' : '-1'}">
+            <span class="icon delete-btn"></span>
+            <span class="text" data-bind="text: resx.commandBar_delete"></span>
+        </a>
+
+        <a role="button" class="commandbar-btn" data-bind="attr: {title: resx.commandBar_copyData, tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="icon copy-btn"></span>
+            <span class="text" data-bind="text: resx.commandBar_copyData"></span>
+        </a>
+
+        <a style="display:none;" role="button" class="commandbar-btn" title="Actions with another elements">
+            <img class="icon hidden-buttons-btn" src="../../../../images/dots.svg" alt="" />
+        </a>
+
+        <div class="search-spacer"></div>
+
+        <div class="commandbar-item">
+            <span data-bind="text: resx.commandBar_show" class="dropdown-label"></span>
+            <a role="button" class="commandbar-btn select-menu" data-bind="datastudio-ux-selectmenu: availablePageSizes, attr: {tabindex: isSelectedSection()? '0':'-1'}">
+                <span class="text" data-bind="text: pageSizeLabel"></span>
+                <span class="icon icon-right" data-bind="datastudio-ux-svgloader: svgPaths.chevronDown"></span>
+            </a>
+        </div>
+
+        <div class="commandbar-item row slide-toggle-container">
+            <span data-bind="text: resx.commandBar_highlight" class="text"></span>
+            <div class="slide-toggle"
+                 data-bind="event : {click: toggleHightlight, keyup: onToggleHighlightKeyUp},
+                    css: { off: !showHighlight()},
+                    attr: {tabindex: isSelectedSection()? '0':'-1', 'aria-checked': showHighlight() ? 'true':'false'}">
+                <div class="line"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+
+        <a role="button" class="commandbar-btn"
+            data-bind="event: {click: toggleShowResult, keyup: onToggleShowResultKeyUp}, attr: {tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="icon" data-bind="css: {'tiles-view-btn': resultsType() == 'datacatalog-browse-list', 'list-view-btn': resultsType() == 'datacatalog-browse-tiles'}">
+            </span>
+        </a>
+
+    </div>
+</section>

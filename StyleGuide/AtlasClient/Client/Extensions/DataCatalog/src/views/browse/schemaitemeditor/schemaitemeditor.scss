@@ -1,0 +1,85 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.schema-column-editor {
+    min-height: 75px;
+    vertical-align: top;
+
+    td {
+        padding: 18px 10px 10px 10px;
+
+        &.tags {
+            padding-top: 14px;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .desc {
+        width: 100%;
+    }
+
+    .disabled-add-btn {
+        display: inline-block;
+        padding: 3px 5px;
+        text-decoration: none;
+        text-transform: capitalize;
+        text-align: left;
+        height: 28px;
+        line-height: 20px;
+        margin-top: 5px;
+
+        &:after {
+            content: "...";
+        }
+    }
+
+    .tokyo-spinner {
+        text-align: right;
+    }
+
+    .schema-input-wrapper {
+        position:relative;
+        padding-right:30px;
+
+        .schema-input {
+            width:100%;
+        }
+    }
+
+
+    @mixin theme {
+        $light-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $font-color-light: $default-font-color-light;
+        $navigation-selected-color: $default-navigation-selected-color;
+        $error-color: $default-error-text-color;
+
+        & {
+            border-bottom: 1px solid $light-border;
+
+            &.row-selected {
+                background-color: $light-border;
+            }
+
+            .disabled-add-btn {
+                background-color: $navigation-selected-color;
+                border: 1px solid $navigation-selected-color;
+                color: $font-color-light;
+                @include opacity(.5);
+            }
+
+            .duplicate-error {
+                border: 1px solid $error-color;
+            }
+
+            .duplicate-error-message {
+                color: $error-color;
+            }
+        }
+    }
+
+    @include theme;
+}

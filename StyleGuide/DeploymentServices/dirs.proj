@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\Build.props" />
+  <ItemGroup>
+    <ProjectFile Include="ServiceDeploy\ServiceDeploy.csproj" />
+    <ProjectFile Include="WorkflowRunnerLib.Services\WorkflowRunnerLib.Services.csproj" />
+    <ProjectFile Include="Workflow.Services\Workflow.Services.csproj" />
+    <ProjectFile Include="WARM.Workflow.Services.Prod\WARM.Workflow.Services.Prod.proj" />
+    <ProjectFile Include="WARM.Workflow.Services.Int\WARM.Workflow.Services.Int.proj" />
+  </ItemGroup>
+  <Import Project="$(BuildExtensionsPath)\Traversal.targets" />
+</Project>

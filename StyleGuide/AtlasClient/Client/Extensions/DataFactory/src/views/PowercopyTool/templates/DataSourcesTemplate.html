@@ -1,0 +1,70 @@
+﻿<!-- ko if: isSource -->
+<div class="wizardStepTitle">
+    Source data store
+</div>
+<div class="wizardStepSubtitle">
+    Specify the source data store for the copy task. You can use an existing data store linked service (or) specify a new data store.
+</div>
+<!-- /ko -->
+<!-- ko ifnot: isSource -->
+<div class="wizardStepTitle">
+    Destination data store
+</div>
+<div class="wizardStepSubtitle">
+    Specify the destination data store for the copy task. You can use an existing data store linked service (or) specify a new data store.
+</div>
+<!-- /ko -->
+
+<!-- ko ifnot: EC.ADF.pctShowExistingDatasetTab-->
+<div class="tabContainer">
+    <div class="tab" data-bind="css:{selected:useExistingLinkedService()}, event: {click:selectExistingLinkedService}">
+        from existing linked services
+    </div>
+    <div class="tab" data-bind="css:{selected:createNewDataStore()}, event: {click:selectNewLinkedService}">
+        connect to a data store
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if: EC.ADF.pctShowExistingDatasetTab -->
+<div class="tabContainer">
+    <div class="tab" data-bind="css: {selected: useNewDataset()}, event: {click: selectNewLinkedService}">
+        create new dataset 
+    </div>
+    <!-- ko if: isSource -->
+    <div class="tab" data-bind="css:{selected:useExistingDataset()}, event: {click:selectExistingDataset}, text: existingDatasetViewModel.tabTitle"></div>
+    <!-- /ko -->
+</div>
+
+<!-- ko if: useNewDataset -->
+<div class="row">
+    <input type="radio" id="idExistingLinkedService" value="existingLinkedService" data-bind="checked: groupType" />
+    <label class="radioLabel" for="idExistingLinkedService">from existing linked services</label>
+    <input type="radio" id="idCreateNewDataStore" value="newDataStore" data-bind="checked: groupType" />
+    <label class="radioLabel" for="idCreateNewDataStore">connect to a data store</label>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+
+<!-- ko if: useExistingLinkedService  -->
+%%LINKED_SERVICES_GRID%%
+<!-- /ko -->
+<!-- ko if: createNewDataStore  -->
+<div class="dataStoresGridContainer">
+
+    <!-- ko foreach:newLinkedServiceDataSources -->
+    <div class="dataSourceItemContainer" data-bind="css:{selected:value===$parent.selectedDataSource()},event:{click:$parent.selectDataSource.bind($parent)}">
+        <div class="iconDiv" data-bind="html: icon">
+        </div>
+        <div class="datasourceName" data-bind="text:displayText">
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+
+<!-- ko if: (isSource && useExistingDataset()) -->
+<!-- ko with: existingDatasetViewModel-->
+<div data-bind="htmlWith: {template: template, viewModel: $data}"></div>
+<!-- /ko -->
+<!-- /ko -->

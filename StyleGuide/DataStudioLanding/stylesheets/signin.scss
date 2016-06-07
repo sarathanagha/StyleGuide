@@ -1,0 +1,225 @@
+﻿.atlasSignInPage {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 0;
+  flex-shrink: 0;
+
+  $accentColor: #03b092;
+
+  a span, a div {
+    color: initial
+  }
+
+  %section {
+    padding-bottom: 1em;
+    padding-right: 6em;
+    padding-left: 6em;
+    background-size: cover;
+    flex-shrink: 0;
+  }
+
+  .section1 {
+    @extend %section;
+
+    background-image: url("../Images/BW_Bijan_07.png");
+
+    min-height: 40em;
+    max-height: 40em;
+    height: 40em;
+
+    .row.signIn {
+      justify-content: flex-end;
+      padding-bottom: 2em;
+
+      button {
+        cursor: pointer;
+        background-color: $accentColor;
+        padding: 0.8em;
+        align-self: flex-end;
+      }
+    }
+
+    .header {
+      padding-bottom: 2em;
+
+      h1 {
+        font-size: 3.5em;
+        font-weight: 600;
+        max-width: 10em;
+      }
+    }
+
+    .learnMore {
+      padding-bottom: 2em;
+
+      button {
+        cursor: pointer;
+        max-width: 3em;
+        background-color: $accentColor;
+        color: #ffffff;
+        font-weight: 800;
+      }
+    }
+  }
+
+  .section2 {
+    @extend %section;
+
+    background-color: $accentColor;
+    min-height: 8em;
+    justify-content: center;
+    align-items: center;
+
+    div {
+    justify-content: center;
+    align-items: center;
+    }
+
+    .title {
+
+      h1 {
+        color: #ffffff;
+        font-size: 3em;
+        font-weight: 600;
+        padding-right: 3em;
+        top: 50%;
+        position: relative;
+      }
+    }
+
+    .button {
+
+      button {
+        color: $accentColor;
+        background-color: #ffffff;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding-right: 1em;
+        padding-left: 1em;
+        margin-right: 2em;
+        min-width: 10em;
+      }
+    }
+  }
+
+  .section3 {
+
+    @extend %section;
+
+    align-self: center;
+
+    .dataExploreItem {
+      cursor: pointer;
+      padding: 2em;
+
+      .icon {
+        font-size: 6em;
+        align-items: center;
+      }
+
+      img {
+        align-self: center;
+      }
+
+      .title {
+        color: $accentColor;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+
+      .description {
+        max-width: 20em;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .section4 {
+    @extend %section;
+
+    background-image: url("../Images/BW_Chris_01.png");
+    padding-top: 6em;
+    padding-bottom: 25em;
+    min-height: 10em;
+
+    h1 {
+      max-width: 10em;
+      font-size: 3.5em;
+      font-weight: 600;
+
+      .atlasText {
+        color: $accentColor;
+      }
+    }
+
+    p {
+      max-width: 25em;
+      font-size: 1.2em;
+      font-weight: 400;
+    }
+  }
+
+  .section5 {
+    @extend %section;
+
+    padding-top: 3em;
+    padding-bottom: 3em;
+
+    > .row.title {
+      padding-bottom: 4em;
+      justify-content: center;
+    }
+
+    h1 {
+      align-self: center;
+      font-weight: 600;
+      font-size: 3.5em;
+    }
+
+    .dataTechnologyItem {
+      cursor: pointer;
+      padding-left: 1em;
+      padding-right: 1em;
+      flex-grow: 1;
+
+      .icon {
+        font-size: 6em;
+        align-items: center;
+        color: $accentColor;
+      }
+
+      .title {
+        align-items: center;
+        font-size: 1em;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .sectionFooter {
+    @extend %section;
+
+    background-color: #3d4351;
+  }
+
+}
+
+@media(max-width: 500px) {
+
+    .footerSection1 {
+        flex-direction: column;
+    }
+
+    .footerListItem 
+    {
+      align-items : center;
+    }
+
+    .row.icons
+    {
+      flex-direction: column;
+    }
+}
+

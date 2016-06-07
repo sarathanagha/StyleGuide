@@ -1,0 +1,225 @@
+@import "../../stylesheets/_AdfSpecific.scss";
+
+.wizardPanel {
+    $navItemHeight: 56px;
+    $navItemNumberDimension: $navItemHeight / 2;
+    $navItemMargin: 22px;
+    $paddingTop: 20px;
+    padding-top: $paddingTop;
+    height: calc(100% - #{$paddingTop});
+    bottom: 0;
+    width: 252px;
+    float: left;
+    background-color: $darkSlateColor;
+    color: $grayLightColor;
+    font-family: 'Segoe UI';
+
+    .navItemSelected {
+        color: $darkSlateColor;
+        background-color: white;
+
+        .navItemContainer {
+            .navItemSpacer {
+                .navItemText.completed {
+                    color: $darkSlateColor;
+                }
+            }
+        }
+    }
+
+    .navItemContainer {
+        overflow: hidden;
+        height: $navItemHeight;
+        line-height: $navItemHeight / 2;
+        font-size: 16px;
+
+        &.completed {
+            // TODO rigoutam: this should be based on whether we have a 2nd row of text
+            height: $navItemHeight + 8;
+        }
+
+        .navItemSpacer {
+            margin-top: 10px;
+
+            .navItemNumber {
+                float: left;
+                border-radius: 50%;
+                border: solid 2px;
+                width: $navItemNumberDimension;
+                height: $navItemNumberDimension;
+                text-align: center;
+                margin-left: $navItemMargin;
+                font-size: 14px;
+                margin-bottom: -2px;
+
+                &.finalItemNumber {
+                    border: none;
+                }
+            }
+
+            .navItemNumber.completed {
+                background-color: $atlasTeal;
+                border-color: $atlasTeal;
+                color: white;
+            }
+
+            .navItemTextContainer {
+                float: left;
+                margin-left: 8px;
+            }
+
+            .navItemText {
+                font-family: 'Segoe UI Semibold';
+                font-size: 18px;
+                line-height: $navItemHeight / 2;
+            }
+
+            .navItemSubheaderText {
+                float: left;
+                font-family: 'Segoe UI';
+                font-size: 12px;
+                line-height: 16px;
+            }
+
+            .navItemText.completed {
+                font-weight: bold;
+                color: white;
+
+                .selected & {
+                    color: violet;
+                }
+            }
+        }
+    }
+
+    $pivotCircleSize: 20px;
+
+    .pivotContainer {
+        $pivotHeight: 37px;
+        overflow: hidden;
+        line-height: $pivotCircleSize;
+        height: $pivotHeight;
+        font-size: 14px;
+        font-style: normal;
+        $pivotNumberMarginLeft: $navItemMargin + $navItemNumberDimension + 8;
+
+        .pivotNumberContainer {
+            position: relative;
+
+            .pivotNumber {
+                float: left;
+                width: $pivotCircleSize;
+                height: $pivotCircleSize;
+                margin-left: $pivotNumberMarginLeft;
+                background-color: lightgray;
+                border-radius: 50%;
+                box-sizing: border-box;
+
+                .pivotSvg {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .connectorLine {
+                position: absolute;
+                top: $pivotCircleSize;
+                left: $pivotCircleSize / 2 + $pivotNumberMarginLeft - 1;
+                height: $pivotHeight - $pivotCircleSize;
+                border: solid lightgray 1px;
+            }
+
+            .connectorLine.completed {
+                border-color: $atlasTeal;
+            }
+        }
+
+        .pivotNumber.completed {
+            background-color: $atlasTeal;
+        }
+
+        .pivotNumber.selected {
+            border-width: 2px;
+            border-color: $atlasTeal;
+            border-style: solid;
+            background-color: white;
+        }
+
+        .pivotText {
+            float: left;
+            margin-left: 8px;
+        }
+    }
+
+    .toolNavItemNumber {
+        background-color: green;
+    }
+
+    .toolNavItemNumberSelected {
+    }
+
+    .toolNavItemText {
+    }
+
+    .toolNavItemTextSelected {
+    }
+}
+
+$contentAreaPadding: 40px;
+
+.wizardContentArea {
+    /** To overwrite WinJS CSS stylings being applied everywhere **/
+    input[type=checkbox] {
+        margin: initial;
+        width: initial;
+        height: initial;
+    }
+    height:100%;
+
+    a {
+        color: #008272 !important;
+        text-decoration: underline !important;
+    }
+
+    display: flex;
+    @extend %col;
+
+    .wizardHeader {
+        padding-left: $contentAreaPadding;
+    }
+
+    .wizardContent {
+        padding-left: $contentAreaPadding;
+        overflow-y: auto;
+        flex: auto;
+    }
+
+    .wizardFooter {
+        display: flex;
+        padding: 12px 0 16px $contentAreaPadding;
+
+        .nextButton {
+            margin-left: 16px;
+        }
+    }
+}
+
+.wizardErrorMessage {
+    margin-left:$contentAreaPadding;
+    margin-bottom:5px;
+    .errorMessageText {
+        float:left;
+        margin-top: 5px;
+        margin-left: 7px;
+    }
+}
+
+.loadingShield {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.4;
+    background-color: black;
+}

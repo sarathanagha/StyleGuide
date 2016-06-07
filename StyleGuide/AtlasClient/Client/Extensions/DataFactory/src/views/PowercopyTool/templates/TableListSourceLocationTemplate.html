@@ -1,0 +1,48 @@
+﻿<div style="height:100%" class="verticalFlex">
+    <div class="verticalInflexibleElement">
+
+        <div class="wizardStepTitle">Select tables from which to copy the data (or) use a custom query.</div>
+        <div class="wizardStepSubtitle">You can select multiple tables, or you can provide single custom query</div>
+
+        <div class="tabContainer">
+            <div class="tab" data-bind="css:{selected:useTableList()}, event: {click:selectUseTableList}">
+                existing tables
+            </div>
+            <div class="tab" data-bind="css:{selected:!useTableList()}, event: {click:selectUseQuery}">
+                use query
+            </div>
+        </div>
+    </div>
+
+    <div class="verticalFlex verticalFlexibleElement">
+        <div class="verticallyResizableSubordinant">
+            <div data-bind="visible:useTableList" style="height:100%">
+                <!-- ko if: loading-->
+                <div data-bind="text:loadingTablesMessage"></div>
+                <!-- /ko -->
+                <!-- ko with: winJsTableList-->
+
+                <!-- ko ifnot: $parent.loading -->
+                <!-- ko with: selectAllVM -->
+                <div style="margin-left: 17px; margin-bottom: 10px">
+                    <label style="padding: 3px">
+                        <input type="checkbox" name="checkbox" data-bind="indeterminate: indeterminate, checked: checked, click: onSelectAllClicked"
+                        style="margin-right: 8px;" />(Select all)</label>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+
+                <div data-bind="winjslist: winJSListViewBindingOptions" style="height:100%" id="tableList"></div>
+                <!-- /ko -->
+            </div>
+            <div data-bind="visible:!useTableList()" style="height:100%;width:95%">
+                <!-- ko with: customQueryTable -->
+                %%CUSTOMQUERY%%
+                <!-- /ko -->
+            </div>
+        </div>
+        <div class="verticallyResizableMasterPreviewAndSchema" data-bind="splitter:{startSize: '30%', location:'top', key: 'copyToolSQLPreviewPanel'}">
+            %%PREVIEWANDSCHEMA%%
+        </div>
+    </div>
+</div>

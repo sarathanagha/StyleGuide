@@ -1,0 +1,50 @@
+.learnerContainer {
+    padding-left: 20px;
+}
+
+.learnerName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #656565;
+}
+
+.learnerTableContainer {
+    margin: 30px 0 15px 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.learnerTableHeader {
+    font-size: 18px;
+	margin: 15px 0 10px 0;
+    color: #3aa0cc;
+}
+
+.learnerTable {
+    margin: 10px 0 0 10px;
+    width: auto;
+}
+
+.learnerTableContainer table {
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.learnerTableContainer table td, .learnerTableContainer table th {
+    max-width: 200px;
+    height: 26px;
+}
+
+.learnerTableContainer table td {
+    padding: 2px 10px 2px 10px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.learnerTableContainer table th {
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 1px solid #3da0c3;
+}

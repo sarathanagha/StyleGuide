@@ -1,0 +1,79 @@
+﻿<div class="wizardStepTitle">
+    Table mapping
+</div>
+<div class="wizardStepSubtitle">
+    For each table you have selected to copy in the source data store, select a corresponding table in the destination data store
+    (or) specify the stored procedure to run at the destination.
+</div>
+
+<div class="headerText" data-bind="style:{width:sourceTableTextWidth}">
+    Source
+</div>
+<div class="headerText destinationHeader">
+    Destination
+</div>
+<div style="clear:both">
+</div>
+<!-- ko foreach: destinationTableViewModels -->
+<div class="tableMappingContainer">
+    <div class="tableMappingWarningLine" data-bind="visible: !tableMappingValid()"></div>
+    <div class="sourceTableText" data-bind="text:inputTable.sqlTableName,style:{width:$parent.sourceTableTextWidth}">
+    </div>
+    <div class="tableMappingArrow">
+    </div>
+
+    <div class="destinationSelectContainer">
+        <!--select data-bind="options: destinationViewModel.tableListOptions, optionsText:'displayText',optionsValue:'value',value: existingTable.value"></!--select-->
+        <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: existingTable}}"></div>
+        <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: newTableName}}"></div>
+        <!-- ko if: createNewTableSupported -->
+        <div class="linkContainer">
+            <span data-bind="click: toggleSyncMethod" class="link linkSpan"><a data-bind="text:syncMethodToggleLinkText"></a></span>
+        </div>
+        <!-- /ko -->
+    </div>
+
+    <div class="tableMappingExpander expander" data-bind="event:{click:$parent.expandDestinationTable.bind($parent)},css:{expanded:expandedInTableMappingList}"></div>
+
+    <div style="clear:both">
+    </div>
+
+    <div class="expandedContent" data-bind="css:{mappingExpanded:expandedInTableMappingList}">        
+        <!-- ko if:storedProcSupported -->
+        <div class="storeProcCheckboxContainer">
+            <input type="checkbox" data-bind="checked: useStoredProcedure,attr:{id:idSprocCheckbox}" />
+            <label data-bind="attr:{for:idSprocCheckbox}" class="radioText">Use stored procedure</label>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if: isPreviewSchemaTableVisible -->
+        <!-- ko with: destinationViewModel -->
+        %%PREVIEWANDSCHEMA%%
+        <!-- /ko -->
+        <!-- /ko -->
+
+        <!-- ko if: syncMethodFormField.value() === syncMethods.storedProcedure -->
+        <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: storedProcName}}" style="margin-top:10px"></div>
+        <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: storedProcTableType}}"></div>
+
+        <div style="overflow:hidden" data-bind="visible:storedProcParameters().length">
+            <div class="nameTypeValueText">Parameters</div>
+        </div>
+
+        <!-- ko foreach:storedProcParameters -->
+        <div class="spFieldContainer">
+            <div><input type="text" data-bind="value:name" class="spFieldInput" placeholder="Enter name" /></div>
+            <div><input type="text" data-bind="value:type" class="spFieldInput" placeholder="Enter type" /></div>
+            <div><input type="text" data-bind="value:value" class="spFieldInput" placeholder="Enter value" /></div>
+            <div><a data-bind="event:{click:$parent.removeSPParameter.bind($parent)}" class="addLink">Remove</a></div>
+        </div>
+        <!-- /ko -->
+
+        <a data-bind="event:{click:addSPParameter}" class="addLink">+ Add parameter</a>
+        <div style="height:8px"></div>
+
+        <!-- /ko -->
+
+    </div>
+</div>
+<!-- /ko -->

@@ -1,0 +1,29 @@
+﻿<div class="blobBrowser">
+    <div class="blobBrowserNavBar">
+        <div class="blobBrowserArrowButtonContainer">
+            <button class="blobBrowserArrowButton" data-bind="event:{click:vm.navigateBack.bind(vm)},enable:vm.backButtonEnabled.bind(vm)"></button>
+        </div>
+        <div class="blobBrowserBreadcrumbsContainer">
+        <!-- ko foreach: vm.breadCrumbs -->
+        <a class="adf-breadcrumb" data-bind="text:name, attr:{title:name}, event:{click:$parent.vm.breadCrumbClick.bind($parent.vm)}"></a>
+        <span class="adf-breadcrumb"> > </span>
+        <!-- /ko -->
+        </div>
+    </div>
+    <div class="blobBrowserListContainer adf-scroll" data-bind="event:{click:vm.click.bind(vm)}">
+        <div data-bind="visible:vm.loading">
+            Loading . . .
+        </div>
+        <!-- ko with: vm.listItems -->
+        <div class=''>
+            <div style="height: 100%" data-bind="winjslist: winJSListViewBindingOptions"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <div class="blobBrowserFooter">
+        <div class="blobBrowserCancelChooseContainer">
+            <button data-bind="event:{click:vm.close.bind(vm)}" class="btn">Cancel</button>
+            <button data-bind="event:{click:vm.choose.bind(vm) }" class="nextButton btn btn-primary">Choose</button>
+        </div>
+    </div>
+</div>

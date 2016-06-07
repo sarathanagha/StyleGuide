@@ -1,0 +1,27 @@
+<!-- ko if: !solutionIsActive() -->
+<div class="default-container">No solution selected</div>
+<!-- /ko -->
+<!-- ko if: solutionIsActive() -->
+<div class="right-panel template-detail-panel">
+    <div class="side-pane-section-header">Properties</div>
+    <div class="resource-container">
+        <div class="resource-header">Template Name</div>
+        <div class="resource-contents" data-bind="text: templateName"></div>
+    </div>
+    <div class="resource-container">
+        <div class="resource-header">Deployment Status</div>
+        <div class="status-icon" data-bind="visible: !!statusIconCssClass(), css: statusIconCssClass()"></div>
+        <div class="resource-contents" data-bind="text: statusMessage()"></div>
+    </div>
+    <div class="resource-container">
+        <div class="resource-header">Source Template</div>
+        <div class="resource-contents" data-bind="text: sourceTemplate"></div>
+    </div>
+    <div class="resource-container" data-bind="visible: showCallToAction()">
+        <div class="resource-contents" data-bind="html: callToAction"></div>
+    </div>
+    <div class="resource-container">
+        <div class="resource-contents" data-bind="html: description"></div>
+    </div>
+</div>
+<!-- /ko -->

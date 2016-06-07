@@ -1,0 +1,554 @@
+﻿@import "../../../styles/app";
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$provision-banner-height: 280px;
+$provision-contents-width: 1295px;
+
+#admin-catalog {
+    @include apptheme;
+
+    .main {
+        @include absolute(0, 0, 0, 0);
+        overflow: auto;
+
+        .banner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: $provision-banner-height;
+        }
+
+        .admin-contents {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: $provision-contents-width;
+            left: 50%;
+            margin-left: -($provision-contents-width/2);
+            font-family: 'Segoe UI',sans-serif;
+
+            .banner-contents {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: $provision-banner-height;
+                padding: 50px 450px 0 125px;
+
+                .enter-settings-text {
+                    font-size: 58px;
+                    line-height: 58px;
+                    font-weight: bold;
+                }
+
+                .product-name {
+                    font-size: 58px;
+                    line-height: 58px;
+                    font-weight: bold;
+                    text-transform: capitalize;
+                }
+
+                .settings-long {
+                    font-size: 15px;
+                    line-height: 20px;
+                    width: 575px;
+                    margin-top: 15px;
+                }
+            }
+
+            .admin-provision-contents {
+                position: absolute;
+                top: $provision-banner-height;
+                left: 0;
+                right: 0;
+                padding: 0 100px 125px 100px;
+
+                .settings-section {
+                    margin-top: 40px;
+
+                    .heading-row {
+                        position: relative;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #BEC2C9;
+
+                        img {
+                            cursor: pointer;
+                            position: absolute;
+                            left: 0;
+                            top: 5px;
+                        }
+
+                        .heading {
+                            padding-left: 25px;
+                            font-size: 21px;
+                            line-height: 25px;
+                            text-transform: capitalize;
+
+                            &:after {
+                                content: ":";
+                            }
+
+                            &.no-colon {
+                                &:after {
+                                    content: "";
+                                }
+                            }
+                        }
+
+                        .summary {
+                            font-size: 15px;
+                            line-height: 25px;
+                        }
+                    }
+
+                    .setting-box {
+                        width: 100%;
+                        padding: 20px 20px 30px 20px;
+                        display: none;
+
+                        .setting-title {
+                            font-size: 17px;
+                            line-height: 25px;
+                            padding-bottom: 30px;
+                        }
+
+                        .attribute-text {
+                            max-width: 1000px;
+                        }
+                    }
+
+                    &.expanded {
+                        .setting-box {
+                            display: block;
+                        }
+                    }
+                }
+
+                .dropdown {
+                    padding: 1px 9px 3px;
+                    font-size: 14px;
+
+                    a {
+                        text-decoration: none;
+                        cursor: pointer;
+                        line-height: 25px;
+                        width: 100%;
+                        display: block;
+
+                        img {
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                        }
+
+                        .progress-indicator {
+                            position: absolute;
+                            right: 10px;
+                            top: 0;
+                        }
+                    }
+
+                    .dropdown-menu {
+                        border-radius: 0;
+                        font-size: 12px;
+                        margin: 0;
+                        padding: 3px 0;
+                        left: 0;
+                        right: 0;
+                    }
+                }
+
+                .validation-error {
+                    font-size: 12px;
+                    font-style: italic;
+                    display: block;
+                    padding-top: 5px;
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+
+                .catalog {
+                    .table {
+                        margin-bottom: 0;
+
+                        .table-cell {
+                            width: 33%;
+                            padding-right: 40px;
+
+                            .catalog-label {
+                                text-transform: capitalize;
+                                font-size: 15px;
+                                line-height: 25px;
+                                margin-bottom: 5px;
+
+                                &:after {
+                                    content: ":";
+                                }
+                            }
+
+                            .catalog-label-value {
+                                font-size: 15px;
+                                font-weight: bold;
+                                line-height: 25px;
+                                margin-bottom: 5px;
+                            }
+
+                            input {
+                                width: 100%;
+                                outline: 0;
+                                padding: 2px 5px;
+                                font-size: 14px;
+                                line-height: 25px;
+                                height: 31px;
+                            }
+
+                            @mixin info {
+                                float: right;
+                                font-style: italic;
+                                font-size: 12px;
+                            }
+
+                            .mixin {
+                                @include info;
+                            }
+
+                            .required {
+                                @include info;
+                            }
+                        }
+                    }
+                }
+
+                .pricing {
+                    .pricing-box {
+                        display: inline-block;
+                        padding: 20px;
+                        cursor: pointer;
+                        position: relative;
+
+                        &.selected {
+
+                            .selection {
+                                display: block;
+                            }
+                        }
+
+
+                        .selection {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            height: 28px;
+                            width: 28px;
+                            text-align: center;
+                            z-index: 1;
+                            display: none;
+
+                            .outline {
+                                position: relative;
+                                margin: 0;
+                                padding: 0;
+                                height: 15px;
+                                width: 15px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                @include vertical-center();
+
+                                img {
+                                    position: relative;
+                                    top: -4px;
+                                    left: -1px;
+                                }
+                            }
+                        }
+
+                        .pricing-name {
+                            text-transform: uppercase;
+                            margin-bottom: 25px;
+                        }
+
+                        .standard-text {
+                            display: inline-block;
+                            padding-right: 20px;
+                            position: relative;
+
+                            .seperator {
+                                position: absolute;
+                                right: 0;
+                                top: 45%;
+                                bottom: 0;
+                                width: 1px;
+                            }
+                        }
+
+                        .standard-units {
+                            display: inline-block;
+                            width: 300px;
+                            height: 100%;
+                            vertical-align: top;
+                            position: relative;
+
+                            > div {
+                                padding-left: 20px;
+                                position: relative;
+                                top: 50px;
+
+                                .unit-wrapper {
+                                    position: relative;
+                                    display: inline-block;
+
+                                    img {
+                                        position: absolute;
+                                        left: 12px;
+
+                                        &.up {
+                                            bottom: 100%;
+                                        }
+
+                                        &.down {
+                                            top: 100%;
+                                        }
+                                    }
+
+                                    input {
+                                        width: 40px;
+                                        text-align: center;
+                                        outline: 0;
+                                    }
+                                }
+
+                                .progress-indicator {
+                                    display: inline-block;
+                                    position: relative;
+                                    top: -2px;
+                                    left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .cancel-button {
+                    position: absolute;
+                    right: 155px;
+                    margin: 30px 100px 0 0;
+                    width: 100px;
+                    height: 50px;
+                    text-align: center;
+                    bottom: 30px;
+
+                    span {
+                        cursor: pointer;
+                        font-size: 21px;
+                        line-height: 25px;
+                        text-transform: capitalize;
+                    }
+                }
+
+                .action-button {
+                    position: absolute;
+                    right: 0;
+                    margin-top: 30px;
+                    width: 150px;
+                    height: 50px;
+                    cursor: pointer;
+                    text-align: center;
+
+                    &.update {
+                        right: 0;
+                        margin-right: 100px;
+                    }
+
+                    &.delete {
+                        position: relative;
+                        margin: 0;
+                    }
+
+                    span {
+                        font-size: 27px;
+                        line-height: 46px;
+                        text-transform: capitalize;
+                    }
+
+                    img {
+                        position: relative;
+                        top: -5px;
+                        right: -5px;
+                    }
+
+                    &.disabled {
+                        @include opacity(.1);
+                        cursor: default;
+                    }
+
+                    &.working {
+                        cursor: default;
+                    }
+
+                    .progress-indicator {
+                        position: relative;
+                        top: 15px;
+                    }
+                }
+
+                .update-notice {
+                    position: absolute;
+                    right: 0;
+                    margin-right: 100px;
+                    padding-top: 5px;
+                }
+
+                #user-group-disclaimer {
+                    padding: 5px;
+                    margin-bottom: 10px;
+
+                    #enable-groups {
+                        position: relative;
+                        top: 2px;
+                    }
+
+                    &.disabled {
+                        @include opacity(.5);
+                        cursor: default;
+                    }
+                }
+            }
+        }
+
+        .important-label {
+            text-transform: uppercase;
+
+            &:after {
+                content: ":";
+            }
+        }
+    }
+
+    @mixin theme {
+        $body-color: $default-body-color;
+        $body-color-light: $default-body-color-light;
+        $body-color-med: $default-body-color-med;
+        $body-color-dark: $default-body-color-dark;
+        $home-tile-background: $default-home-tile-background;
+        $selected-tile: $default-selected-tile;
+        $font-color-light: $default-font-color-light;
+        $font-color-dark: $default-font-color-dark;
+        $input-text-color: $default-input-text-color;
+        $input-outline: $default-input-outline;
+        $input-background-color: $default-input-background-color;
+        $error-text-color: $default-error-text-color;
+        $light-border: $default-light-border;
+        $dark-border: $default-dark-border;
+        $light-border-alpha: $default-light-border-alpha;
+
+        & {
+            .main {
+                .banner-bg {
+                    background-color: $home-tile-background;
+                }
+                .admin-contents {
+                    .banner-contents {
+                        .enter-settings-text {
+                            color: $font-color-light;
+                        }
+                        .product-name {
+                            color: $font-color-dark;
+                        }
+                        .settings-long {
+                            color: $font-color-light;
+                        }
+                    }
+                    .admin-provision-contents {
+                        .settings-section {
+                            .heading-row {
+                                border-bottom: 1px solid $dark-border;
+                                .heading {
+                                    color: $input-text-color;
+                                }
+                                .summary {
+                                    color: $font-color-dark;
+                                }
+                            }
+                            .setting-box {
+                                background-color: $body-color-light;
+                                .setting-title {
+                                    color: $input-text-color;
+                                }
+                            }
+                        }
+                        .dropdown {
+                            border: 1px solid $dark-border;
+                            a {
+                                color: $input-text-color;
+                            }
+                        }
+                        .validation-error {
+                            color: $error-text-color !important;
+                            a {
+                                color: $error-text-color;
+                            }
+                        }
+                        .catalog {
+                            .table {
+                                .table-cell {
+                                    .catalog-label {
+                                        color: $input-text-color;
+                                    }
+                                    .catalog-label-value {
+                                        color: $input-text-color;
+                                    }
+                                    input {
+                                        border: 1px solid $dark-border;
+                                    }
+                                    .required {
+                                        color: $body-color-med;
+                                    }
+                                }
+                            }
+                        }
+                        .pricing {
+                            .pricing-box {
+                                background-color: $body-color;
+                                border: 3px solid $light-border;
+                                &.selected {
+                                    border-color: $selected-tile;
+                                }
+                                .selection {
+                                    background-color: $selected-tile;
+
+                                    .outline {
+                                        border: 1px solid $light-border-alpha;
+                                    }
+                                }
+                                .standard-text {
+                                    .seperator {
+                                        background-color: $input-outline;
+                                    }
+                                }
+                            }
+                        }
+                        .cancel-button {
+                            color: $input-text-color;
+                        }
+                        .action-button {
+                            color: $font-color-light;
+                            background-color: $body-color-dark;
+                        }
+                        #user-group-disclaimer {
+                            border: 1px solid $input-background-color;
+                        }
+                    }
+                }
+                .important-label {
+                    color: $error-text-color;
+                }
+            }
+        }
+    }
+
+     @include theme;
+}

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{CADBE728-7653-4214-9719-EB38E6074036}</ProjectGuid>
+    <TypeScriptOutDir>bin\views</TypeScriptOutDir>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="src\startup\DataCatalog.Bootstrapper.csproj">
+      <Project>{6B63DC25-9731-4E22-B761-245110F60136}</Project>
+      <Name>DataCatalog.Bootstrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\References.d.ts" />
+    <TypeScriptCompile Include="src\views\admin\admin\admin.ts" />
+    <TypeScriptCompile Include="src\views\browse\BaseBrowseResultsViewModel.ts" />
+    <TypeScriptCompile Include="src\views\browse\attributes\attributes.ts" />
+    <TypeScriptCompile Include="src\views\browse\batchmanagement\batchmanagement.ts" />
+    <TypeScriptCompile Include="src\views\browse\batchproperties\batchproperties.ts" />
+    <TypeScriptCompile Include="src\views\browse\batchschema\batchschema.ts" />
+    <TypeScriptCompile Include="src\views\browse\browse\browse.ts" />
+    <TypeScriptCompile Include="src\views\browse\connectionstringdisplay\connectionstringdisplay.ts" />
+    <TypeScriptCompile Include="src\views\browse\connectionstrings\connectionstrings.ts" />
+    <TypeScriptCompile Include="src\views\browse\container\container.ts" />
+    <TypeScriptCompile Include="src\views\browse\dataprofile\dataprofile.ts" />
+    <TypeScriptCompile Include="src\views\browse\details\details.ts" />
+    <TypeScriptCompile Include="src\views\browse\documentation\documentation.ts" />
+    <TypeScriptCompile Include="src\views\browse\editschema\editschema.ts" />
+    <TypeScriptCompile Include="src\views\browse\filter\filter.ts" />
+    <TypeScriptCompile Include="src\views\browse\list\list.ts" />
+    <TypeScriptCompile Include="src\views\browse\management\management.ts" />
+    <TypeScriptCompile Include="src\views\browse\preview\preview.ts" />
+    <TypeScriptCompile Include="src\views\browse\properties\properties.ts" />
+    <TypeScriptCompile Include="src\views\browse\savedsearches\savedsearches.ts" />
+    <TypeScriptCompile Include="src\views\browse\schema\schema.ts" />
+    <TypeScriptCompile Include="src\views\browse\schemaitemeditor\schemaitemeditor.ts" />
+    <TypeScriptCompile Include="src\views\browse\search\search.ts" />
+    <TypeScriptCompile Include="src\views\browse\start\start.ts" />
+    <TypeScriptCompile Include="src\views\browse\tiles\tiles.ts" />
+    <TypeScriptCompile Include="src\views\default\default.ts" />
+    <TypeScriptCompile Include="src\views\home\attributetile\attributetile.ts" />
+    <TypeScriptCompile Include="src\views\home\browselist\browselist.ts" />
+    <TypeScriptCompile Include="src\views\home\commandBar\commandBar.ts" />
+    <TypeScriptCompile Include="src\views\home\home\home.ts" />
+    <TypeScriptCompile Include="src\views\home\pinnabletile\pinnabletile.ts" />
+    <TypeScriptCompile Include="src\views\home\savedsearchestile\savedsearchestile.ts" />
+    <TypeScriptCompile Include="src\views\home\statstile\statstile.ts" />
+    <TypeScriptCompile Include="src\views\provision\catalog\catalog.ts" />
+    <TypeScriptCompile Include="src\views\publish\manualentry\manualentry.ts" />
+    <TypeScriptCompile Include="src\views\publish\publish\publish.ts" />
+    <TypeScriptCompile Include="src\views\shell\app\app.ts" />
+    <TypeScriptCompile Include="src\views\shell\checkboxlist\checkboxlist.ts" />
+    <TypeScriptCompile Include="src\views\shell\footer\footer.ts" />
+    <TypeScriptCompile Include="src\views\shell\layout\layout.ts" />
+    <TypeScriptCompile Include="src\views\shell\list\list.ts" />
+    <TypeScriptCompile Include="src\views\shell\paging\paging.ts" />
+    <TypeScriptCompile Include="src\views\shell\searchbox\searchbox.ts" />
+    <TypeScriptCompile Include="src\views\shell\textarea\textarea.ts" />
+    <TypeScriptCompile Include="src\views\shell\textfield\textfield.ts" />
+    <TypeScriptCompile Include="src\views\shell\treemap\treemap.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+  <ItemGroup>
+    <HTMLFiles Include="src\**\*.html" />
+    <SASSFilesToBuild Include="src\**\*.scss" Exclude="src\**\_*.scss" />
+    <SASSFilesNotToBuild Include="src\**\_*.scss" />
+    <CSSFiles Include="src\styles\**\*.css" />
+    <ImageFiles Include="src\**\*.png;src\**\*.gif;src\**\*.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.json" />
+    <None Include="src\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gulpfile-msbuild.js" />
+    <Content Include="translate-resx.js" />
+  </ItemGroup>
+  <Target Name="BuildResx" BeforeTargets="PrepareForBuild" Inputs="resources\Strings.json" Outputs="bin\nls\root\resx.js">
+    <Message Text="Building resx.js" />
+    <MakeDir Directories="$(DataCatalogExtensionRoot)\bin" />
+    <Exec Command="$(NodeExe) translate-resx.js resources bin/nls/resx.js 1" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="node.exe exit code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Building resx.js failed, please see above output!" />
+  </Target>
+  <Target Name="GulpBuildTasks" AfterTargets="Build" 
+      Inputs="src\%(SASSFilesToBuild.RecursiveDir)%(SASSFilesToBuild.FileName).scss"
+      Outputs="bin\%(SASSFilesToBuild.RecursiveDir)%(SASSFilesToBuild.FileName).css">
+    <PropertyGroup>
+      <GulpBuildCommand>$(GulpCmd) --gulpfile gulpfile-msbuild.js build-sass</GulpBuildCommand>
+    </PropertyGroup>
+    <Message Text="Executing gulp tasks for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed!" />
+  </Target>
+  <Target Name="CopyStaticFiles" AfterTargets="GulpBuildTasks">
+    <Copy SourceFiles="@(HTMLFiles)" DestinationFolder="bin\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(CSSFiles)" DestinationFolder="bin\styles\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ImageFiles)" DestinationFolder="bin\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="src\package.json" DestinationFolder="bin" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

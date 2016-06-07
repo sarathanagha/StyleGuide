@@ -1,0 +1,20 @@
+﻿<!-- ko if: format.value() === "TextFormat" -->
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: escapeChar} }"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: quoteChar} }"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: nullValue} }"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: encodingName} }"></div>
+    <!-- ko ifnot: isSource -->
+    <div class="datasetLocationSummaryContainer">
+        <input type="checkbox" data-bind="checked: blobWriterAddHeader" id="idblobwriteraddheader" /><label class="toolLabel"
+                                                                                                        for="idblobwriteraddheader">&nbsp;Add header to file</label>
+        <div class="infoDiv" data-bind="callout: {innerHtml: 'Specify whether to add a header to the output file.'}"></div>
+    </div>
+    <!-- /ko -->
+<!-- /ko -->
+<!-- ko if: format.value() === 'TextFormat' -->
+    <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: compressionType} }"></div>
+
+    <!-- ko if: compressionLevelRelevant -->
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: compressionLevel} }"></div>
+    <!-- /ko -->
+<!-- /ko -->

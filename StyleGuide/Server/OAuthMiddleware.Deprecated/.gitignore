@@ -1,0 +1,6 @@
+OAuthMiddleware/obj/
+OAuthMiddleware/bin/
+packages/
+.vs/
+*.suo
+*.user

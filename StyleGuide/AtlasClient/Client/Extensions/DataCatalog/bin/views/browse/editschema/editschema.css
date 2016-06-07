@@ -1,0 +1,70 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#edit-schema {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  font-size: 12px; }
+  #edit-schema .tool-bar {
+    position: absolute;
+    left: 30px;
+    top: 30px; }
+    #edit-schema .tool-bar .tool-bar-button {
+      display: inline-block;
+      cursor: pointer;
+      padding: 3px 5px;
+      font-size: 14px;
+      text-decoration: none;
+      text-transform: capitalize;
+      height: 28px;
+      line-height: 20px; }
+      #edit-schema .tool-bar .tool-bar-button.disabled {
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        cursor: default; }
+  #edit-schema .scrollable-table {
+    padding: 0 30px;
+    position: absolute; }
+    #edit-schema .scrollable-table.header {
+      top: 63px;
+      left: 0;
+      right: 0;
+      height: 27px; }
+    #edit-schema .scrollable-table.content {
+      padding: 0 13px 0 30px;
+      top: 93px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      overflow-x: auto;
+      overflow-y: scroll;
+      zoom: 1; }
+    #edit-schema .scrollable-table table {
+      table-layout: fixed;
+      width: 100%; }
+      #edit-schema .scrollable-table table th {
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: normal;
+        padding: 5px 10px; }
+  #edit-schema .tool-bar-button {
+    color: #FFF;
+    background: #006F94;
+    border: 1px solid #006F94; }
+  #edit-schema table th {
+    background-color: #EFF0F0; }
+
+/*# sourceMappingURL=editschema.css.map */

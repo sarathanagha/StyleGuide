@@ -1,0 +1,1771 @@
+﻿{
+    "contentVersion": "1.0.0.0",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    /* parameter section */
+    "parameters": {
+        "dataFactoryName": { "type": "string", "defaultValue": "maintenancesa02ADF" },
+        "storageAccountName": { "type": "string", "defaultValue": "maintenancesa02st" },
+
+        /*"storageAccountKey":{"type": "string", "defaultValue": "nUz25X6MAi5DsrmlnhjUntz5WF7YDAbH0E0Aksi0+lwpEHSmdMQoKgU3QnleRKTuW8yj5B5nZCxkkyqZnnecGA==" },*/
+
+        "sqlServerUserName": { "type": "string", "defaultValue": "mylogin" },
+        "sqlServerPassword": { "type": "string", "defaultValue": "pa$$Word" },
+        "sqlServerName": { "type": "string", "defaultValue": "maintenancesa02srv" },
+        "ingestEventHubName": { "type": "string", "defaultValue": "maintenancesa02ingest" },
+        "publishEventHubName": { "type": "string", "defaultValue": "maintenancesa02publish" },
+
+        "streamingJobBlobName": { "type": "string", "defaultValue": "maintenancesa02asablob" },
+        "streamingJobPBIName": { "type": "string", "defaultValue": "maintenancesa02asapbi" },
+        "namespaceName": { "type": "string", "defaultValue": "maintenancesa02ns" },
+        "streamingJobName": { "type": "string", "defaultValue": "maintenancestream" },
+        "mLEndpointBatchLocation": { "type": "string", "defaultValue": "https://ussouthcentral.services.azureml.net/workspaces/967e3adb74ae461abf6fc81c9ffe8b48/services/515b0434cf454edc895af592806b4e27/jobs" },
+        "mLEndpointKey": { "type": "string", "defaultValue": "fCXuGvRK4Akd29P/cKC246ZQuMslg0ZA7oDE3fG9k39iXcwSlITavX32pbaFDHKNxAxEEZQkGNHC8vpS82x2fQ==" },
+        /* "sasBlobStartTime": {"type": "string", "defaultValue": "2015-10-27T013:30:00Z"}, */
+        "startTime": { "type": "string", "defaultValue": "2015-11-30T00:00:00Z" },
+        "endTime": { "type": "string", "defaultValue": "2025-11-30T00:00:00Z" },
+        "nowTime": { "type": "string", "defaultValue": "2015-11-30T00:00:00Z" },
+        "nowPlusTenYearsTime": { "type": "string", "defaultValue": "2025-11-30T00:00:00Z" }
+    },
+    /* variables section */
+    "variables": {
+        "apiVersion": "2015-09-01",
+        "dataFactoryName": "[parameters('dataFactoryName')]",
+        "storageAccountName": "[parameters('storageAccountName')]",
+        "sqlServerUserName": "[parameters('sqlServerUserName')]",
+        "sqlServerPassword": "[parameters('sqlServerPassword')]",
+        "sqlServerName": "[parameters('sqlServerName')]",
+        "location": "centralus",
+        "databasename": "pmaintenancedb",
+        "namespaceName": "[parameters('namespaceName')]",
+        "accountType": "Standard-GRS",
+        "consumerGroupBlobName": "blobcg",
+        "consumerGroupPBIName": "pbicg",
+        "ingestEventHubName": "[parameters('ingestEventHubName')]",
+        "publishEventHubName": "[parameters('publishEventHubName')]",
+        "streamingJobBlobName": "[parameters('streamingJobBlobName')]",
+        "streamingJobPBIName": "[parameters('streamingJobPBIName')]",
+        "SharedAccessPolicyName": "RootManageSharedAccessKey",
+        "singleQuote": "'",
+        /*************************************/
+
+        /* storage container name, the name here should be good enough but each team may change to whatever you prefer and hardcode here*/
+        "dataContainerName": "maintenancesadata",
+        "scriptContainerName": "maintenancesascript",
+        "HiveScriptDir": "\\script\\hive\\",
+
+        /*for ADF part that are generic across all projects */
+        "azureSqlLinkedServiceName": "AzureSqlLinkedService",
+        "storageLinkedServiceName": "StorageLinkedService",
+        "hdInsightStorageLinkedServiceName": "HDInsightStorageLinkedService",
+        "hdInsightLinkedServiceName": "HDInsightLinkedService",
+        "AzureMLLinkedServiceName": "AzuremLEndpointBatchLocation",
+        "hdInsightLiveTime": "3:00:00",
+
+        /**********************************/
+        /* for ADF part each project needs to specify differently, you may need to add more ADF tables and pipelines */
+        "PartitioneRawDataName": "flightrawdata1sec",
+        "PartitioneRawDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/rawdata')]",
+        "PartitioneRawDataADFTableName": "PartitioneRawDataTable",
+
+        "AggFlightInfoDataName": "aggflightinfo",
+        "AggFlightInfoDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/aggregated/', variables('AggFlightInfoDataName'), '/')]",
+        "AggFlightInfoDataADFTableName": "AggFlightInfoDataTable",
+
+        "AggregateFlightInfoADFPipelineName": "AggregateFlightInfoPipeline",
+
+        "AggregateFlightInfoHiveFile": "AggregateFlightInfo.hql",
+        "PrepareMLInputHiveFile": "PrepareMLInput.hql",
+
+        /* 5. these are the variable for the forth ADF table in the workflow that is the data produced by a copy activity and stored in blob as one CSV file */
+        "IntermediateMLInputDataName": "mldata",
+        "IntermediateMLInputDataBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/intermediate/', variables('IntermediateMLInputDataName'))]",
+        "IntermediateMLInputDataADFTableName": "IntermediateMLInputDataTable",
+
+        "IntermediateMLInputDataCSVName": "mlcsvdata",
+        "IntermediateMLInputDataCSVBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/intermediate/', variables('IntermediateMLInputDataCSVName'), '/')]",
+        "IntermediateMLInputDataCSVADFTableName": "IntermediateMLInputDataCSVTable",
+
+        "MLScoringADFPipelineName": "MLScoringPipeline",
+
+        /* 7. these are the variable for the fifth ADF table in the workflow that is the result of ML scoring, it is also partitioned */
+        "ScoredResultName": "scoredresult",
+        "ScoredResultBlobDir": "[concat('wasb://',variables('dataContainerName'), '@',variables('storageAccountName'),'.blob.core.windows.net/', variables('ScoredResultName'), '/')]",
+        "ScoredResultADFTableName": "ScoredResultTable",
+
+        /* 8. these are the variable for the Third ADF pipeline in the workflow that is copying the scoring result to SQLAzure */
+        "CopyAggFlightInfoDataADFPipelineName": "CopyAggFlightInfoADFPipeline",
+        "CopyScoredResultADFPipelineName": "CopyScoredResultPipeline",
+
+        "SQLFlightInfoDataADFTableName": "SQLFlightInfoDataTable",
+
+        /* 9. these are the variable for the fifth ADF table in the workflow that is the result of ML scoring, it is also partitioned */
+        "SQLScoredResultADFTableName": "SQLScoredResultTable",
+        "SQLAggFlightInfoDataADFTableName": "SQLAggFlightInfoDataADFTable"
+        /********************************/
+    },
+    /* resource section */
+    "resources": [
+        /* create data factory and its child resources */
+        {
+            "name": "[variables('dataFactoryName')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "type": "Microsoft.DataFactory/datafactories",
+            "location": "westus",
+            "resources": [
+                /* SQLAzure Linked Service */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('azureSqlLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureSqlDatabase",
+                        "typeProperties": {
+                            "connectionString": "[concat('Server=tcp:',variables('sqlServerName'),'.database.windows.net,1433;Database=',variables('databasename'),';User ID=',variables('sqlServerUserName'),';Password=',variables('sqlServerPassword'),';Trusted_Connection=False;Encrypt=True;Connection Timeout=30')]"
+                        }
+                    }
+                },
+                /* Storage Linked Service */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('storageLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureStorage",
+                        "typeProperties": {
+                            "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey)]"
+                        }
+                    }
+                },
+                /* hdInsightStorage Linked Service */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('hdInsightStorageLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureStorage",
+                        "typeProperties": {
+                            "connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey)]"
+                        }
+                    }
+                },
+                /* hdInsight Linked Service */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedservices/', variables('hdInsightStorageLinkedServiceName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('hdInsightLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "HDInsightOnDemand",
+                        "typeProperties": {
+                            "clusterSize": "1",
+                            "jobsContainer": "adfjobs",
+                            "timeToLive": "[variables('hdInsightLiveTime')]",
+                            "linkedServiceName": "[variables('hdInsightStorageLinkedServiceName')]"
+                        }
+                    }
+                },
+                /* ML_link */
+                /* question: how could we get the ML copied?*/
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]"
+                    ],
+                    "type": "linkedservices",
+                    "name": "[variables('AzureMLLinkedServiceName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "type": "AzureML",
+                        "typeProperties": {
+                            "mLEndpoint": "[parameters('mLEndpointBatchLocation')]",
+                            "apiKey": "[parameters('mLEndpointKey')]"
+                        }
+                    }
+                },
+                /* PartitioneRawDataADFTable */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('PartitioneRawDataADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        /* the structure need to change according to each project */
+                        "structure": [
+                            {
+                                "name": "processed",
+                                "type": "String"
+                            },
+                            {
+                                "name": "id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "counter",
+                                "type": "String"
+                            },
+                            {
+                                "name": "endofcycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s21",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/rawdata/date={Year}-{Month}-{Day}/hour={Hour}')]",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "Hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "hour",
+                            "interval": 3,
+                            "style": "startofinterval"
+                        },
+                        "external": true,
+                        "policy": {
+                            "externalData": {
+                                "dataDelay": "00:01:00",
+                                "retryInterval": "00:01:00",
+                                "retryTimeout": "00:20:00",
+                                "maximumRetry": 3
+                            }
+                        }
+                    }
+                },
+                /* AggFlightInfoDataADFTable */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('AggFlightInfoDataADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        /* the structure need to change according to each project */
+                        "structure": [
+                            {
+                                "name": "aggredatedt",
+                                "type": "String"
+                            },
+                            {
+                                "name": "id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "counter",
+                                "type": "String"
+                            },
+                            {
+                                "name": "endofcycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s21",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/aggregated/', variables('AggFlightInfoDataName'),'/date={Year}-{Month}-{Day}/hour={Hour}')]",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "Hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ]
+                        },
+                        /* may need to change according to to the project*/
+                        "availability": {
+                            "frequency": "hour",
+                            "interval": 3,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                /* This is the ADF table the ETLed by Hive for preparing the data for ML scoring*/
+                /* IntermediateMLInputDataADFTable*/
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('IntermediateMLInputDataADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s21",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a21",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd21",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataName'),'/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            },
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "Hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "Hour",
+                            "interval": 3,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                /* This is the ADF table point to the CSV file prepared as the input for ML scoring */
+                /* */ /* This is the ADF table the ETLed by Hive for preparing the data for ML scoring*/
+                /* IntermediateMLInputDataCSVADFTableName*/
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('IntermediateMLInputDataCSVADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "setting3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "s21",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "a21",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd1",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd2",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd3",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd4",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd5",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd6",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd7",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd8",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd9",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd10",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd11",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd12",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd13",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd14",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd15",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd16",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd17",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd18",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd19",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd20",
+                                "type": "String"
+                            },
+                            {
+                                "name": "sd21",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureBlob",
+                        "linkedServiceName": "[variables('storageLinkedServiceName')]",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/intermediate/', variables('IntermediateMLInputDataCSVName'),'/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+                            "fileName": "[concat(variables('IntermediateMLInputDataCSVName'),'.csv')]",
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            },
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "Hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ]
+                        },
+                        "availability": {
+                            "frequency": "hour",
+                            "interval": 3,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                /* this is the ADF table point to the blob produced by ML scoring*/
+                /* ScoredResultADFTable */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('ScoredResultADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Rul",
+                                "type": "String"
+                            }
+                        ],
+                        "type": "AzureBlob",
+                        "linkedServiceName": "StorageLinkedService",
+                        "typeProperties": {
+                            "folderPath": "[concat(variables('dataContainerName'),'/',variables('ScoredResultName'),'/date={Year}-{Month}-{Day}/hour={Hour}/')]",
+                            "filename": "[concat(variables('ScoredResultName'),'.csv')]",
+                            "partitionedBy": [
+                                {
+                                    "name": "Year",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "yyyy"
+                                    }
+                                },
+                                {
+                                    "name": "Month",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "MM"
+                                    }
+                                },
+                                {
+                                    "name": "Day",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "dd"
+                                    }
+                                },
+                                {
+                                    "name": "Hour",
+                                    "value": {
+                                        "type": "DateTime",
+                                        "date": "SliceStart",
+                                        "format": "HH"
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "type": "TextFormat",
+                                "columnDelimiter": ","
+                            }
+                        },
+                        "availability": {
+                            "frequency": "Hour",
+                            "interval": 3,
+                            "style": "startofinterval"
+                        }
+                    }
+                },
+                /* this is the ADF table point to the Azure SQL that store the ML result */
+                /* SQLScoredResultADFTable */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]"
+                    ],
+                    "type": "datasets",
+                    "name": "[variables('SQLScoredResultADFTableName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "structure": [
+                            {
+                                "name": "Id",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Cycle",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Rul",
+                                "type": "String"
+                            }
+                        ],
+                        "published": false,
+                        "type": "AzureSqlTable",
+                        "linkedServiceName": "AzureSqlLinkedService",
+                        "typeProperties": {
+                            "tableName": "PMResult"
+                        },
+                        "availability": {
+                            "frequency": "hour",
+                            "interval": 3,
+                            "style": "StartOfInterval"
+                        }
+                    }
+                },
+                /* AggregateFlightInfoADFPipeline */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('PartitioneRawDataADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggFlightInfoDataADFTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('AggregateFlightInfoADFPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is a pipeline to aggregate the 30 seconds raw data(partitioned by ASA) to 1hr in substation level",
+						"start": "[parameters('nowTime')]",
+                        "end": "[parameters('nowPlusTenYearsTime')]",
+                        "activities": [
+                            {
+                                "name": "BlobPartitionHiveActivity",
+                                "inputs": [
+                                    {
+                                        "name": "[variables('PartitioneRawDataADFTableName')]"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "[variables('AggFlightInfoDataADFTableName')]"
+                                    }
+                                ],
+                                "linkedServiceName": "[variables('hdInsightLinkedServiceName')]",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('AggregateFlightInfoHiveFile'))]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "RAWINPUT": "[variables('PartitioneRawDataBlobDir')]",
+                                        "AGGREGATEDOUTPUT": "[variables('AggFlightInfoDataBlobDir')]",
+                                        "Date1": "$$Text.Format('{0:yyyy-MM-dd}',Time.AddMinutes(SliceStart, -180))",
+                                        "Hour1": "$$Text.Format('{0:HH}',Time.AddMinutes(SliceStart, -180))",
+                                        "Date2": "$$Text.Format('{0:yyyy-MM-dd}',Time.AddMinutes(SliceStart, -120))",
+                                        "Hour2": "$$Text.Format('{0:HH}',Time.AddMinutes(SliceStart, -120))",
+                                        "Date3": "$$Text.Format('{0:yyyy-MM-dd}',Time.AddMinutes(SliceStart, -60))",
+                                        "Hour3": "$$Text.Format('{0:HH}',Time.AddMinutes(SliceStart, -60))",
+                                        "CurrentDate": "$$Text.Format('{0:yyyy-MM-dd}', SliceStart)",
+                                        "CurrentHour": "$$Text.Format('{0:HH}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "OldestFirst",
+                                    "retry": 3,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+                },
+
+                /* This is the pipeline call ML scoring to make prediction */
+                /* it includes 3 activities 1. prepare the data into blob by Hive ETL, 2 copy to a CSV file 3. call ML scoring */
+                /* MLScoringADFPipeline */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('storageLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggFlightInfoDataADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateMLInputDataADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('IntermediateMLInputDataCSVADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultADFTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('MLScoringADFPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "This is pipeline call ML scoring to make prediction",
+						"start": "[parameters('nowTime')]",
+                        "end": "[parameters('nowPlusTenYearsTime')]",
+                        "activities": [
+                            {
+                                "name": "SchemaPrepForML",
+                                "inputs": [
+                                    {
+                                        "name": "[variables('AggFlightInfoDataADFTableName')]"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "[variables('IntermediateMLInputDataADFTableName')]"
+                                    }
+                                ],
+                                "linkedServiceName": "HDInsightLinkedService",
+                                "type": "HDInsightHive",
+                                "typeProperties": {
+                                    "scriptpath": "[concat(variables('scriptContainerName'), variables('HiveScriptDir'), variables('PrepareMLInputHiveFile'))]",
+                                    "scriptLinkedService": "StorageLinkedService",
+                                    "defines": {
+                                        "AGGREGATEDINPUT": "[variables('AggFlightInfoDataBlobDir')]",
+                                        "PREPOUTPUT": "[variables('IntermediateMLInputDataBlobDir')]",
+                                        "CurrentDate": "$$Text.Format('{0:yyyy-MM-dd}', SliceStart)",
+                                        "CurrentHour": "$$Text.Format('{0:HH}',SliceStart)"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "OldestFirst",
+                                    "retry": 3,
+                                    "timeout": "01:00:00"
+                                }
+                            },
+                            {
+                                "name": "FileExtensionPrepforMLActivity",
+                                "inputs": [
+                                    {
+                                        "name": "[variables('IntermediateMLInputDataADFTableName')]"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "[variables('IntermediateMLInputDataCSVADFTableName')]"
+                                    }
+                                ],
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource"
+                                    },
+                                    "sink": {
+                                        "type": "BlobSink",
+                                        "writeBatchSize": 10000,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "OldestFirst",
+                                    "retry": 3,
+                                    "timeout": "01:00:00"
+                                }
+                            },
+                            {
+                                "name": "AMLBatchScoring",
+                                "inputs": [
+                                    {
+                                        "name": "[variables('IntermediateMLInputDataCSVADFTableName')]"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "[variables('ScoredResultADFTableName')]"
+                                    }
+                                ],
+                                "type": "AzureMLBatchScoring",
+                                "linkedServiceName": "[variables('AzureMLLinkedServiceName')]",
+                                "policy": {
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "OldestFirst",
+                                    "retry": 3,
+                                    "timeout": "01:00:00"
+                                }
+                            }
+                        ]
+                    }
+                },
+                /* CopyAggFlightInfoDataADFPipeline */
+                /*
+        {
+          "dependsOn": [
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('AggFlightInfoDataADFTableName'))]",
+            "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLFlightInfoDataADFTableName'))]"
+          ],
+          "type": "datapipelines",
+          "name": "[variables('CopyAggFlightInfoDataADFPipelineName')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "properties": {
+            "description": "Copy Aggregated Demand to Sql Azure",
+			"start": "[parameters('nowTime')]",
+            "end": "[parameters('nowPlusTenYearsTime')]",
+            "activities": [
+              {
+                "type": "Copy",
+                "typeProperties": {
+                  "source": {
+                    "type": "BlobSource",
+                    "treatEmptyAsNull": true
+                  },
+                  "sink": {
+                    "type": "SqlSink",
+        "SqlWriterTableType": "PMResultType",
+     "SqlWriterStoredProcedureName": "sp_loadResult", 
+                    "writeBatchSize": 0,
+                    "writeBatchTimeout": "01:00:00"
+                  }
+                },
+                "inputs": [
+                  {
+                    "name": "[variables('AggFlightInfoDataADFTableName')]"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "[variables('SQLFlightInfoDataADFTableName')]"
+                  }
+                ],
+                "policy": {
+                  "timeout": "10:00:00",
+                  "concurrency": 1,
+                  "executionPriorityOrder": "OldestFirst",
+                  "retry": 3
+                },
+                "name": "CopyAggDemandtoSqlAzure",
+                "description": "Copy Demand table to Sql Azure"
+              }
+            ]
+          }
+        },
+  */
+                /* this is the pipeline for copying ml result from blob to AzureSQL*/
+                /* CopyScoredResultADFPipeline */
+                {
+                    "dependsOn": [
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('azureSqlLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/linkedServices/', variables('hdInsightLinkedServiceName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('ScoredResultADFTableName'))]",
+                        "[concat('Microsoft.DataFactory/dataFactories/', variables('dataFactoryName'), '/datasets/', variables('SQLScoredResultADFTableName'))]"
+                    ],
+                    "type": "datapipelines",
+                    "name": "[variables('CopyScoredResultADFPipelineName')]",
+                    "apiVersion": "[variables('apiVersion')]",
+                    "properties": {
+                        "description": "Copy predication to Sql Azure",
+						"start": "[parameters('nowTime')]",
+                        "end": "[parameters('nowPlusTenYearsTime')]",
+                        "activities": [
+                            {
+                                "type": "Copy",
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "BlobSource",
+                                        "treatEmptyAsNull": true,
+                                        "skipHeaderLineCount": 1
+                                    },
+                                    "sink": {
+                                        "type": "SqlSink",
+                                        "SqlWriterTableType": "PMResultType",
+                                        "SqlWriterStoredProcedureName": "sp_loadScoreResult",
+                                        "writeBatchSize": 0,
+                                        "writeBatchTimeout": "01:00:00"
+                                    }
+                                },
+                                "inputs": [
+                                    {
+                                        "name": "[variables('ScoredResultADFTableName')]"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "name": "[variables('SQLScoredResultADFTableName')]"
+                                    }
+                                ],
+                                "policy": {
+                                    "timeout": "10:00:00",
+                                    "concurrency": 1,
+                                    "executionPriorityOrder": "OldestFirst",
+                                    "retry": 3
+                                },
+                                "name": "CopyMLResulttoSqlAzure",
+                                "description": "Copy ML result table to Sql Azure"
+                            }
+                        ]
+                    }
+                },
+            ]
+        },
+
+        /* create ASA jobs for Blob*/
+        {
+            "apiVersion": "2015-10-01",
+            "type": "Microsoft.StreamAnalytics/streamingJobs",
+            "name": "[variables('streamingJobBlobName')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "sku": {
+                    "name": "standard"
+                },
+                "EventsOutOfOrderMaxDelayInSeconds": 10,
+                "EventsOutOfOrderPolicy": "Adjust",
+                "inputs": [
+                    {
+                        "name": "EventHubSource",
+                        "properties": {
+                            "type": "stream",
+                            "serialization": {
+                                "type": "CSV",
+                                "properties": {
+                                    "fieldDelimiter": ",",
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "EventHubName": "[variables('ingestEventHubName')]",
+                                    "ServiceBusNamespace": "[variables('namespaceName')]",
+                                    "SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                    "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',variables('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                                    "SourcePartitionCount": 16,
+                                    "consumerGroupName": "[variables('consumerGroupBlobName')]"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "transformation": {
+                    "name": "PushDatatoBlob",
+                    "properties": {
+                        "streamingUnits": 1,
+                        "query": "select * into RawDataBlobSink from EventHubSource"
+                    }
+                },
+                "outputs": [
+                    {
+                        "name": "RawDataBlobSink",
+                        "properties": {
+                            "serialization": {
+                                "type": "CSV",
+                                "properties": {
+                                    "fieldDelimiter": ",",
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.Storage/Blob",
+                                "properties": {
+                                    "storageAccounts": [
+                                        {
+                                            "accountName": "[variables('storageAccountName')]",
+                                            "accountKey": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', variables('storageAccountName')), '2014-06-01').primaryKey]",
+                                        }
+                                    ],
+                                    "container": "[variables('dataContainerName')]",
+                                    "PathPattern": "rawdata/date={date}/hour={time}",
+                                    "DateFormat": "yyyy-MM-dd",
+                                    "TimeFormat": "HH"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "OutputStartMode": "CustomTime",
+                "OutputStartTime": "[parameters('startTime')]"
+            }
+        },
+        /* create ASA jobs for PBI */
+        {
+            "apiVersion": "2015-10-01",
+            "type": "Microsoft.StreamAnalytics/streamingJobs",
+            "name": "[variables('streamingJobPBIName')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "sku": {
+                    "name": "standard"
+                },
+                "EventsOutOfOrderMaxDelayInSeconds": 10,
+                "EventsOutOfOrderPolicy": "Adjust",
+                "inputs": [
+                    {
+                        "name": "EventHubSource",
+                        "properties": {
+                            "type": "stream",
+                            "serialization": {
+                                "type": "CSV",
+                                "properties": {
+                                    "fieldDelimiter": ",",
+                                    "encoding": "UTF8"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "EventHubName": "[variables('ingestEventHubName')]",
+                                    "ServiceBusNamespace": "[variables('namespaceName')]",
+                                    "SharedAccessPolicyName": "[variables('SharedAccessPolicyName')]",
+                                    "SharedAccessPolicyKey": "[listKeys(resourceid('Microsoft.Eventhub/namespaces/authorizationRules',variables('namespaceName'),variables('SharedAccessPolicyName') ), '2014-09-01').primaryKey]",
+                                    "SourcePartitionCount": 16,
+                                    "consumerGroupName": "[variables('consumerGroupPBIName')]"
+                                }
+                            }
+                        }
+                    }
+
+                ],
+                "transformation": {
+                    "name": "PushDatatoPBI",
+                    "properties": {
+                        "streamingUnits": 1,
+                        "query": "SELECT CAST(processed as Datetime) as processed,id,cycle,endofcycle,CAST(s9 as float) as s9,CAST(s11 as float) as s11,CAST(s14 as float) as s14,CAST(s15 as float) as s15,9152.56 as s9_alert,48.26 as s11_alert,8212.57 as s14_alert,8.54 as s15_alert INTO aircraftmonitor FROM EventHubSource; select id,max(CAST(processed as Datetime)) as processed,avg(s11) as avg_s11,count(*) as alerts INTO aircraftalert FROM EventHubSource Group BY id,TumblingWindow(second,5) HAVING avg_s11 > 48.26; select count(endofcycle),max(CAST(processed as Datetime)) as processed into Flightsbyhour from EventHubSource group by endofcycle, tumblingwindow(hour,1) having CAST(endofcycle as bigint)=1;"
+                    }
+                }
+            }
+        }
+    ] /*,
+  "outputs": {
+  "DataFactoryName" : {
+   "type" : "string",
+   "value": "[variables('dataFactoryName')]"
+  },
+  "ingestEventHubName" : {
+   "type" : "string",
+   "value": "[parameters('ingestEventHubName')]"
+  }, 
+  "IngestEventHubConnectString" : {
+   "type" : "string",
+   "value": "[parameters('IngestEventHubConnectString')]"
+  }, 
+  "storageAccountName" : {
+   "type" : "string",
+   "value": "[parameters('storageAccountName')]"
+  },
+  "storageAccountKey" : {
+   "type" : "string",
+   "value": "[parameters('storageAccountKey')]"
+  }  
+ }   */
+}

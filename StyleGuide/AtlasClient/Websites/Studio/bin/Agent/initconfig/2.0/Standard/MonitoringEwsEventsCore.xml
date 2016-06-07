@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" timestamp="2011-05-12T20:08:38.0823856Z" >
+
+    <Events>
+
+        <Plugins>
+            <PlugIn module="EwsListener.dll" runAsExtension="true" >
+
+                <!-- The EWS listener uses multischema tables that are shared by the -->
+                <!-- individual detectors to reduce the local overhead required for EWS data-->
+                <Event eventName="EwsAnomaly" storeType="Local" duration="PT5M" deadline="PT10M"/>
+                <Event eventName="EwsDynamicData" storeType="Local" />
+                <Event eventName="EwsNetworkConfiguration" storeType="Local" />
+                <Event eventName="EwsNetworkStatistics"  storeType="Local" />
+                <Event eventName="EwsSystemConfiguration" storeType="Local" />
+
+                <!--
+                    These paths comprise the union of settings from the following baselines:
+                        MemberServer.WS2008R2SP1.scm.xml
+                        MemberServer.WS2008SP2.scm.xml
+                        MemberServer.WS2012.scm.xml
+                    plus built-in extra locations:
+                        SOFTWARE\Microsoft\Microsoft Antimalware\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Scan\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Extensions\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Paths\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Processes\
+                        SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\TemporaryPaths\
+                        SOFTWARE\Microsoft\Windows Azure\CurrentVersion\
+
+
+                       - Currently disabled:
+                        <EwsDetector type="FirewallSettings"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="900000" >
+                        </EwsDetector>
+                -->
+                <Body>
+                    <![CDATA[
+                    <EwsDetectors>
+                        <EwsDetector type="ActiveProcesses"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="900000" >
+                        </EwsDetector>
+                        <EwsDetector type="Certificates"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="86400000" >
+                        </EwsDetector>
+                        <EwsDetector type="DosDetect"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="60000" >
+                        </EwsDetector>
+                        <EwsDetector type="LocalGroups"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="300000" >
+                        </EwsDetector>
+                        <EwsDetector type="LocalUsers"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="300000" >
+                          <AnomalyCheck name="DisallowedValueViolation" >Environment=Jumpbox value=msnlocal MatchType=IgnoreCase</AnomalyCheck>
+                        </EwsDetector>
+                        <EwsDetector type="SecureBaseline"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="900000"
+                                     useDefaults="false" >
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Extensions\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Paths\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\Processes\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Exclusions\TemporaryPaths\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Microsoft Antimalware\Scan\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Windows Azure\CurrentVersion\"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole\securitylevel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole\setcommand"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateCDRoms"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateFloppies"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI\EnableSecureCredentialPrompting"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\CredUI\EnumerateAdministrators"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisableLocalMachineRun"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisableLocalMachineRunOnce"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDriveTypeAutoRun"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoPublishingWizard"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoWebServices"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorAdmin"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorUser"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableCAD"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUserName"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLockedUserId"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableInstallerDetection"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableSecureUIAPaths"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableUIADesktopToggle"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableVirtualization"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\FilterAdministratorToken"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\MaxDevicePasswordFailedAttempts"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\PromptOnSecureDesktop"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\ScForceOption"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\ShutdownWithoutLogon"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\UndockWithoutLogon"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Microsoft\Windows\CurrentVersion\Policies\System\ValidateAdminCodeSignatures"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002\Functions"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Cryptography\ForceKeyProtection"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Messenger\Client\CEIP"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Messenger\Client\PreventRun"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\SearchCompanion\DisableContentFileUpdates"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\DCOM\MachineAccessRestriction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\DCOM\MachineLaunchRestriction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\Printers\DisableHTTPPrinting"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\Printers\DisableWebPnPDownload"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\Rpc\EnableAuthEpResolution"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows NT\Rpc\RestrictRemoteClients"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\DisablePasswordSaving"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\policies\Microsoft\Windows NT\Terminal Services\fAllowToGetHelp"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\policies\Microsoft\Windows NT\Terminal Services\fAllowUnsolicited"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDenyTSConnections"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableCdm"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fPromptForPassword"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MinEncryptionLevel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\DriverSearching\DontSearchWindowsUpdate"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\Application\MaxSize"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\Application\Retention"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\Security\MaxSize"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\Security\Retention"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\System\MaxSize"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\EventLog\System\Retention"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}\NoBackgroundPolicy"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\Safer\CodeIdentifiers\AuthenticodeEnabled"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUAsDefaultShutdownOption"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUShutdownOption"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAutoRebootWithLoggedOnUsers"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAutoUpdate"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\AU\RescheduleWaitTimeEnabled"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\Windows\WindowsUpdate\UseWUServer"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AllowLocalIPsecPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AllowLocalPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultInboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultOutboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\DisableNotifications"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\DisableUnicastResponsesToMulticastBroadcast"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\AllowLocalIPsecPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\AllowLocalPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\DefaultInboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\DefaultOutboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\DisableNotifications"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\DisableUnicastResponsesToMulticastBroadcast"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PrivateProfile\EnableFirewall"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\AllowLocalIPsecPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\AllowLocalPolicyMerge"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\DefaultInboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\DefaultOutboundAction"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\DisableNotifications"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\DisableUnicastResponsesToMulticastBroadcast"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="Software\Policies\Microsoft\WindowsFirewall\PublicProfile\EnableFirewall"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SYSTEM\CurrentControlSet\Control\CrashControl\AutoReboot"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\AuditBaseObjects"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\CrashOnAuditFail"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\DisableDomainCreds"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\EveryoneIncludesAnonymous"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy\Enabled"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\ForceGuest"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\FullPrivilegeAuditing"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\LmCompatibilityLevel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\allownullsessionfallback"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\AuditReceivingNTLMTraffic"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\ClientAllowedNTLMServers"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinClientSec"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinServerSec"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\RestrictReceivingNTLMTraffic"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\MSV1_0\RestrictSendingNTLMTraffic"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\NoLMHash"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\pku2u\AllowOnlineID"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\RestrictAnonymous"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\RestrictAnonymousSAM"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\SubmitControl"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Lsa\UseMachineId"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\Machine"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Session Manager\Kernel\ObCaseInsensitive"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Session Manager\Memory Management\ClearPageFileAtShutdown"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Session Manager\ProtectionMode"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SYSTEM\CurrentControlSet\Control\Session Manager\SafeDllSearchMode"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Control\Session Manager\SubSystems\optional"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\IPSEC\NoDefaultExempt"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\autodisconnect"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanmanServer\Parameters\AutoShareServer"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\enableforcedlogoff"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\enablesecuritysignature"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Lanmanserver\Parameters\Hidden"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionPipes"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionShares"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\requiresecuritysignature"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\RestrictNullSessAccess"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanManServer\Parameters\SMBServerNameHardeningLevel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnableSecuritySignature"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LanmanWorkstation\Parameters\RequireSecuritySignature"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\LDAP\LDAPClientIntegrity"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netbt\Parameters\NoNameReleaseOnDemand"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\AuditNTLMInDomain"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\DCAllowedNTLMServers"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\disablepasswordchange"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\maximumpasswordage"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\requiresignorseal"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\requirestrongkey"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\RestrictNTLMInDomain"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\sealsecurechannel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Netlogon\Parameters\signsecurechannel"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="SYSTEM\CurrentControlSet\Services\RasMan\Parameters\DisableSavePassword"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip\Parameters\EnableICMPRedirect"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip\Parameters\PerformRouterDiscovery"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip6\Parameters\DisableIPSourceRouting"</AnomalyCheck>
+                            <AnomalyCheck name="RegistryPath" >Operation=Add Path="System\CurrentControlSet\Services\Tcpip6\Parameters\TcpMaxDataRetransmissions"</AnomalyCheck>
+                        </EwsDetector>
+                        <EwsDetector type="ServicesAndDrivers"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="900000" >
+                        </EwsDetector>
+                        <EwsDetector type="SystemSettings"
+                                     mode="DetectChanges"
+                                     intervalMillisecs="900000" >
+                          <AnomalyCheck name="RequiredValueViolation" >Environment=Jumpbox RegKey="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system\scforceoption" value=1 MatchType=Numeric</AnomalyCheck>
+                        </EwsDetector>
+                        <EwsDetector type="TcpStatistics"
+                                     mode="Query"
+                                     intervalMillisecs="300000" >
+                        </EwsDetector>
+                    </EwsDetectors>
+                    ]]>
+                </Body>
+            </PlugIn>
+        </Plugins>
+
+        <DerivedEvents>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsServicesAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 2 && ServiceType > 2
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          ReasonId,
+                          ServiceName,
+                          ImagePath,
+                          Arguments,
+                          ImageVersion,
+                          Username,
+                          Privileges,
+                          ServiceControls,
+                          ServiceFlags,
+                          ServiceState,
+                          ServiceType
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsDriversAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 2 && ServiceType < 3
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          ReasonId,
+                          ServiceName as DriverName,
+                          ImagePath,
+                          Arguments,
+                          ImageVersion,
+                          Username,
+                          Privileges,
+                          ServiceControls,
+                          ServiceFlags,
+                          ServiceState,
+                          ServiceType
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsLocalGroupsAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 4
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          ReasonId,
+                          GroupName,
+                          Membership,
+                          PreviousMembership
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsLocalUsersAnomalyR3"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 3
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          ReasonId,
+                          AnomalyDesc,
+                          Username,
+                          PrivilegeLevel,
+                          UserFlags,
+                          AuthFlags,
+                          BadPwCount,
+                          NumLogons,
+                          UserId,
+                          PrimaryGroupId,
+                          LogonServer,
+                          Expiration,
+                          LastLogon,
+                          LastLogoff
+                      ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsDosDetectAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 13
+                      groupby Identity()
+                      select Identity(),
+                          MetricName,
+                          RemoteAddress,
+                          Threshold,
+                          Value
+                      ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsSystemConfigurationAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 7 && Category == 3
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          DetectorMode,
+                          ReasonId,
+                          SettingName,
+                          SettingValue,
+                          PreviousValue,
+                          Scope,
+                          Category
+                      ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsPolicySettingAnomalyR1"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                      where DetectorType == 17
+                      groupby Identity()
+                      select Identity(),
+                          HostId,
+                          FirstSeen,
+                          LastSeen,
+                          DetectorMode,
+                          ReasonId,
+                          PolicySource,
+                          PolicyPath,
+                          PolicyValue,
+                          PreviousValue
+                      ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsCertificatesAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+                    where (DetectorType == 18) and ((Store == "My") or (Store == "MY") or (Store == "Root") or (Store == "ROOT"))
+                    groupby Identity()
+                    select Identity(),
+                        HostId,
+                        DetectorMode,
+                        ReasonId,
+                        AnomalyDesc,
+                        Location,
+                        Store,
+                        Thumbprint,
+                        Subject,
+                        Issuer,
+                        ValidFrom,
+                        ValidTo,
+                        CertificateVersion
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+            <!-- R2 of the policy snapshot adds the PolicyPresent existence column -->
+            <DerivedEvent source="EwsSystemConfiguration"
+                          eventName="EwsPolicySettingSnapshotR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT24H"
+                          deadline="PT1H" >
+                <Query>
+                    <![CDATA[
+                    var snapGroup = where DetectorType == 17 groupby SnapshotTime let maxSnap = MAX(SnapshotTime);
+                    where DetectorType == 17 join snapGroup on SnapshotTime equals maxSnap 
+                    groupby Identity(), PolicySource, PolicyPath
+                    select Identity(),
+                        HostId,
+                        FirstSeen,
+                        LastSeen,
+                        SnapshotTime,
+                        PolicySource,
+                        PolicyPath,
+                        PolicyValue,
+                        PolicyPresent
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsSystemConfiguration"
+                          eventName="EwsCertificatesSnapshotR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          retentionInDays="30"
+                          duration="PT24H"
+                          deadline="PT2H" >
+                <Query>
+                    <![CDATA[
+                    var snapGroup = where (DetectorType == 18) and ((Store == "My") or (Store == "MY")) groupby SnapshotTime let maxSnap = MAX(SnapshotTime);
+                    where (DetectorType == 18) and ((Store == "My") or (Store == "MY") or (Store == "Root") or (Store == "ROOT")) join snapGroup on SnapshotTime equals maxSnap 
+                    groupby Identity(), Store, Thumbprint
+                    select Identity(),
+                        HostId,
+                        SnapshotTime,
+                        Location,
+                        Store,
+                        Thumbprint,
+                        Subject,
+                        Issuer,
+                        ValidFrom,
+                        ValidTo,
+                        CertificateVersion
+                    ]]>
+                </Query>
+            </DerivedEvent>
+
+        </DerivedEvents>
+
+    </Events>
+
+</MonitoringManagement>
+

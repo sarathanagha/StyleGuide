@@ -1,0 +1,69 @@
+<!-- ko if: canTakeOwnership() || atLeastOneIsOwned() || showVisibilityInformation() -->
+<div class="browse-batchmanagement">
+    <div data-bind="text: resx.management" class="property-label"></div>
+    <div data-bind="adc-spinner: isResolvingObjectIds" class="small"></div>
+    <!-- ko ifnot: isResolvingObjectIds-->
+    <div class="authorization-box">
+        <!-- ko if: canTakeOwnership -->
+        <div data-bind="text: resx.takeOwnership, click: takeOwnership" class="take-ownership"></div>
+        <!-- /ko -->
+
+        <!-- ko if: atLeastOneIsOwned -->
+        <div data-bind="text: resx.owners" class="property-label light"></div>
+        <div class="spinner-wrapper">
+            <div data-bind="adc-spinner: validatingOwners" class="small"></div>
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: snapshot().ownersOnAll,
+                                            attributesOnSome: snapshot().ownersOnSome,
+                                            onRemoved: onOwnerRemoved,
+                                            placeholderText: resx.addOwnersAndGroups,
+                                            hideAddButton: !doesOwnAll(),
+                                            onValidate: function(upns){ return onValidateUpns.bind($data)(upns, 'owners');}
+                                        }
+                                   }" class="owners-control"></div>
+            <span data-bind="text: invalidOwnersText" class="validation-error"></span>
+            <span data-bind="text: failedOwnersText" class="validation-error"></span>
+            <span data-bind="text: duplicatedOwnersText" class="validation-error"></span>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if: showVisibilityInformation -->
+        <div data-bind="text: resx.visibility" class="property-label light"></div>
+        <div class="spinner-wrapper" style="padding-bottom: 3px">
+
+            <!-- ko if: canChangeVisibility -->
+            <div class="visibility-toggle">
+                <div data-bind="text: resx.everyone, css: { selected: allAreVisibleToEveryone }, click: changeVisibilityToAll"></div>
+                <div data-bind="text: resx.ownersAndTheseUsers, css: { selected: !allAreVisibleToEveryone() }, click: changeVisibilityToSome"></div>
+            </div>
+            <!-- /ko -->
+
+            <div data-bind="adc-spinner: validatingUsers" class="small"></div>
+            <!-- ko ifnot: allAreVisibleToEveryone -->
+            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: snapshot().usersOnAll,
+                                            attributesOnSome: snapshot().usersOnSome,
+                                            placeholderText: resx.addUsersAndGroups,
+                                            hideAddButton: !canChangeVisibility() || isMixedVisibility(),
+                                            onValidate: function(upns){ return onValidateUpns.bind($data)(upns, 'users');}
+                                        }
+                                   }" class="users-control"></div>
+            <span data-bind="text: invalidUsersText" class="validation-error"></span>
+            <span data-bind="text: failedUsersText" class="validation-error"></span>
+            <span data-bind="text: duplicatedUsersText" class="validation-error"></span>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!--ko if: someAreOwnedByOthersAndNotMe -->
+        <div data-bind="text: resx.unavailableVisibilityInfo" style="font-style: italic"></div>
+        <!-- /ko -->
+
+
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->

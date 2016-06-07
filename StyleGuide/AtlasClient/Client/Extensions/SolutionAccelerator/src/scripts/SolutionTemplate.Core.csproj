@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A8D31B6B-3962-470D-AFF5-44FC161E8CE1}</ProjectGuid>
+    <TypeScriptOutFile>..\Module.js</TypeScriptOutFile>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="LoggerFactory.ts" />
+    <TypeScriptCompile Include="SolutionAcceleratorModule.ts" />
+    <TypeScriptCompile Include="Config\SolutionAcceleratorConfig.ts" />
+    <TypeScriptCompile Include="knockout\BindingHandler.ts" />
+    <TypeScriptCompile Include="knockout\KnockoutExtensions.ts" />
+    <TypeScriptCompile Include="Managers\SidePanelManager.ts" />
+    <TypeScriptCompile Include="Managers\SolutionAcceleratorDataManager.ts" />
+    <TypeScriptCompile Include="Managers\SolutionAcceleratorManager.ts" />
+    <TypeScriptCompile Include="Model\GraphNodeStatus.ts" />
+    <TypeScriptCompile Include="Model\GraphNodeType.ts" />
+    <TypeScriptCompile Include="Model\Resource.ts" />
+    <TypeScriptCompile Include="Model\SolutionAccelerator.ts" />
+    <TypeScriptCompile Include="Model\SolutionProvisionState.ts" />
+    <TypeScriptCompile Include="Services\SolutionAcceleratorService.ts" />
+    <TypeScriptCompile Include="Services\SolutionAcceleratorServiceImpl.ts" />
+    <TypeScriptCompile Include="Services\Mocks\SolutionAcceleratorEditorialContent.ts" />
+    <TypeScriptCompile Include="Services\Mocks\SolutionAcceleratorServiceMock.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

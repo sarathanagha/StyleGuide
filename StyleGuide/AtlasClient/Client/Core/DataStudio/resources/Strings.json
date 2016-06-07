@@ -1,0 +1,18 @@
+{
+    "blueprint": "blueprint",
+    "cortanaanalytics": "Cortana Analytics",
+    "cortanaanalyticsstudio": "Cortana Analytics Studio",
+    "data": "Data",
+    "datafactory": "Data Factory",
+	"deploy": "Deploy",
+	"deploying": "Deploying",
+	"guest": "Guest",
+	"projects": "Projects",
+	"resources": "Resources",
+	"signIn": "Sign In",
+	"signOut": "Sign Out",
+    "splashinitializing": "Initializing...",
+    "splashauthorizing": "Authorizing...",
+    "splashloadingmodules": "Loading modules...",
+	"yourSessionHasTimedOut": "Your session has timed out. Please click the OK button to login again."
+}

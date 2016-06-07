@@ -1,0 +1,18 @@
+.parameterRangeCount {
+    width: 40px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-family: "Segoe UI";
+}
+
+.parameterRangeSlider {
+    margin: 5px, 10px;
+}
+
+.parameterRangeLabel {
+    font-size: 12px;
+    line-height: 16.25px;
+    font-family: "Segoe UI";
+}

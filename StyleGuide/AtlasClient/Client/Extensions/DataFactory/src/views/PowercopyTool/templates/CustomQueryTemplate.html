@@ -1,0 +1,44 @@
+﻿
+<div style="overflow:hidden">
+    <div class="formFieldLabel" style="display:inline-block" data-bind="attr:{id:idCustomQuery}">
+        <label data-bind="attr:{for:idCustomQuery}">Query</label>
+    </div>
+    <div class="infoDiv" data-bind="callout:{innerHtml:'Query used to filter input data. Can contain macro expressions with variables WindowStart and WindowEnd - in case it contains macro expressions it needs to start with $$$$.'}">
+    </div>
+</div>
+<textarea data-bind="value:query,valueUpdate:'input'" rows="3" class="queryBox" spellcheck="false"></textarea>
+
+<!-- ko if: tableNameField -->
+<div data-bind="component: {name:'datafactory-validatedselectbox', params: {vm: tableNameField}}"></div>
+<!-- /ko -->
+<div data-bind="datetimeRange: windowStartEnd">
+    <div style="overflow:hidden;margin-top:10px" data-bind="visible:variablesVisible">
+        <div style="float:left">
+            <div class="formFieldLabel">
+                <label for="idWindowStart">WindowStart</label>
+                <span class="infoDiv" data-bind="callout:{innerHtml:'Start of time interval for current activity run window.'}"></span>
+            </div>
+
+            <div class="dateInput">
+                <input type="text" class="datetimeRangeStartDate" id="idWindowStart" />
+            </div>
+        </div>
+
+        <div style="float:left;margin-left:10px">
+            <div class="formFieldLabel">
+                <label for="idWindowEnd">WindowEnd</label>
+                <span class="infoDiv" data-bind="callout:{innerHtml:'End of time interval for current activity run window.'}"></span>
+            </div>
+
+            <div class="dateInput">
+                <input type="text" class="datetimeRangeEndDate" id="idWindowEnd" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<button data-bind="event:{click:runQuery},text:validatingButtonText" class="btn">
+    Validate Query
+</button>
+<div data-bind="text:queryErrorMessage" class="SRFont" style="color: red;margin-top:10px">
+</div>

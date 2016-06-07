@@ -1,0 +1,8 @@
+﻿<div class="alertIconWrapper" data-bind="visible: message">
+    <div class="statusWarning" data-bind="visible: !isSuccessMessage(), event: {mouseover: function(){showMessage(true)}, mouseout: function(){showMessage(false)}}"></div>
+    <div class="statusSuccess" data-bind="visible: isSuccessMessage, event: {mouseover: function(){showMessage(true)}, mouseout: function(){showMessage(false)}}"></div>
+    <div class="statusMessageWrapper" data-bind="fadeVisible: showMessage">
+        <div class="statusMessageCaret"></div>
+        <div class="statusMessage" data-bind="html: message"></div>
+    </div>
+</div>

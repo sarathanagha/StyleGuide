@@ -1,0 +1,46 @@
+.rOutputContainer {
+    padding-left: 20px;
+}
+
+.rOutputLogContainer {
+    margin-top: 20px;
+}
+
+.rLogHeader {
+    font-size: 18px;
+    color: #3aa0cc;
+
+}
+
+.rOutputLog {
+    white-space: pre-wrap;
+    margin-left: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    max-width: 800px;
+}
+
+.rExpanderContainer {
+    height: 25px;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.rExpander {
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    -webkit-flex: none;
+    -ms-flex: none;
+    width: 9px;
+    height: 9px;
+}
+
+.rGraphicsDevice {
+    margin-top: 20px;
+}
+
+.rImage {
+    display: block;
+}

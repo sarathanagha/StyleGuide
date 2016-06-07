@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ConfigList>
+  <Config Name="CAStudioInt-Authoring" Type="Sealed" Base="CAStudioInt">
+    <Settings>
+      <Setting Name="ADCEndpoint">https://{0}.api.datacatalog.azure.com/catalogs/{1}/{2}</Setting>
+      <Setting Name="PackagePath">..\Binaries\ServiceGroupRoot\bin\CAV2Clientpackage.cspkg</Setting>
+      <Setting Name="DeploymentName">studio-preview</Setting>
+    </Settings>
+  </Config>
+</ConfigList>

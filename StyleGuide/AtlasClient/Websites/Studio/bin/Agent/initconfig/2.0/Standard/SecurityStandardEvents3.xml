@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2011-08-23T20:08:38.0823856Z" >
+
+  <Events>
+
+    <!-- plugin Audit API component -->
+    <EtwProviders>
+      <EtwProvider guid="648f8286-7880-4169-8098-86da03c4e4ef" format="Manifest" storeType="Central" priority="Low" deadline="PT5M">
+        <Event id="0" eventName="AuditTraceEvent" />
+        <Event id="1" eventName="AuditTraceEvent" />
+        <Event id="3" eventName="AuditTraceEvent" />
+      </EtwProvider>
+    </EtwProviders>
+
+    <!-- IMPORTANT, below configuration uses "AuditStore" alias attribute defined in the main MDS config Account element which a new capbility from MDS21 -->
+    <WindowsEventLogSubscriptions>
+      <Subscription eventName="ApplicationSecurityEvents"
+                    query="Security!*[System[Provider[@Name='WindowsAzureApplicationAudits']]]"
+                    storeType="CentralCompress"
+                    priority="Low"
+                    retryTimeout="PT10080M"
+                    account="AuditStore"
+                    duration="PT1M"
+                    retentionInDays="180">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName" defaultAssignment="">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID" defaultAssignment="">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result" defaultAssignment="">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated" defaultAssignment="">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID" defaultAssignment="">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer" defaultAssignment="">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="ActorContextId" defaultAssignment="">
+          <Value>/Event/EventData/Data[4]</Value>
+        </Column>
+        <Column name="TargetContextId" defaultAssignment="">
+          <Value>/Event/EventData/Data[5]</Value>
+        </Column>
+        <Column name="EventData" defaultAssignment="">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="ManagementSecurityEvents"
+                    query="Security!*[System[Provider[@Name='WindowsAzureManagementAudits']]]"
+                    storeType="CentralCompress"
+                    priority="Low"
+                    retryTimeout="PT10080M"
+                    account="AuditStore"
+                    duration="PT1M"
+                    retentionInDays="90">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName" defaultAssignment="">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID" defaultAssignment="">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result" defaultAssignment="">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated" defaultAssignment="">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID" defaultAssignment="">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer" defaultAssignment="">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData" defaultAssignment="">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="SystemSecurityEvents"
+                    query="Security!*[System[Provider[@Name!='WindowsAzureApplicationAudits' and @Name!='WindowsAzureManagementAudits' and @Name!='WindowsAzureTestEvent']]]"
+                    storeType="CentralCompress"
+                    priority="Low"
+                    retryTimeout="PT10080M"
+                    account="AuditStore"
+                    deadline="PT7M"
+                    retentionInDays="90">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName" defaultAssignment="">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+
+        <Column name="EventID" defaultAssignment="">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Version" defaultAssignment="">
+          <Value>/Event/System/Version</Value>
+        </Column>
+        <Column name="Level" defaultAssignment="">
+          <Value>/Event/System/Level</Value>
+        </Column>
+        <Column name="Task" defaultAssignment="">
+          <Value>/Event/System/Task</Value>
+        </Column>
+        <Column name="OpCode" defaultAssignment="">
+          <Value>/Event/System/Opcode</Value>
+        </Column>
+        <Column name="Keywords" defaultAssignment="">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated" defaultAssignment="">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID" defaultAssignment="">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Correlation" defaultAssignment="">
+          <Value>/Event/System/Correlation</Value>
+        </Column>
+        <Column name="ProcessId" defaultAssignment="">
+          <Value>/Event/System/Execution/@ProcessID</Value>
+        </Column>
+        <Column name="ThreadId" defaultAssignment="">
+          <Value>/Event/System/Execution/@ThreadID</Value>
+        </Column>
+        <Column name="Computer" defaultAssignment="">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData" defaultAssignment="">
+          <Value>/Event/EventData/Data | /Event/UserData/*/* | /Event/EventData</Value>
+        </Column>
+      </Subscription>
+      <Subscription eventName="HeartBeatAuditEvents"
+                    query="Security!*[System[Provider[@Name='WindowsAzureTestEvent']]]"
+                    storeType="CentralCompress"
+                    retryTimeout="PT10080M"
+                    priority="Low"
+                    deadline="PT7M">
+        <Column name="EventDescription">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="ProviderName" defaultAssignment="">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventID" defaultAssignment="">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Result" defaultAssignment="">
+          <Value>/Event/System/Keywords</Value>
+        </Column>
+        <Column name="TimeCreated" defaultAssignment="">
+          <Value>/Event/System/TimeCreated/@SystemTime</Value>
+        </Column>
+        <Column name="EventRecordID" defaultAssignment="">
+          <Value>/Event/System/EventRecordID</Value>
+        </Column>
+        <Column name="Computer" defaultAssignment="">
+          <Value>/Event/System/Computer</Value>
+        </Column>
+        <Column name="EventData" defaultAssignment="">
+          <Value>/Event/EventData/Data | /Event/UserData/*/*</Value>
+        </Column>
+      </Subscription>
+    </WindowsEventLogSubscriptions>
+
+  </Events>
+
+</MonitoringManagement>

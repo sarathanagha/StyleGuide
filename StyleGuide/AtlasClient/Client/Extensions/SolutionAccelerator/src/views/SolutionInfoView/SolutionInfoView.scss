@@ -1,0 +1,269 @@
+﻿@import "../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+@import "../../../../../Core/DataStudio/src/stylesheets/Framework/Base/layoutBase.scss";
+
+.editorArea {
+    position: relative;
+}
+
+.solution-info-view-container {
+    background-color: #E6E6E6;
+    height: 100%;
+
+    .fade-container {
+        bottom: 0;
+        display: block;
+        height: calc(100% - 58px);
+        position: absolute;
+        width: 100%;
+
+        .fade-box {
+            background-color: #F1F1F1;
+            display: block;
+            height: 100%;
+            left: 0;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .progress-container {
+            display: block;
+            font-size: 2em;
+            line-height: 2em;
+            position: relative;
+            text-align: center;
+            top: 40%;
+            z-index: 1;
+        }
+    }
+
+    .solution-header {
+        background-color: #fff;
+        color: $darkCharColor;
+        display: block;
+        font-size: 1.1em;
+        font-weight: 400;
+        padding: 18px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        .solution-type {
+            color: $grayLightColor;
+        }
+    }
+
+    .no-selection-message {
+        background-color: #F2F2F2;
+        color: #7D7D7D;
+        font-size: 2em;
+        height: 100vh;
+        padding-top: 25%;
+        text-align: center;
+
+        a {
+            color: $atlasDarkTeal !important;
+        }
+    }
+
+    .deployment-notification-banner {
+        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+        left: 20%;
+        margin: 0 auto;
+        position: absolute;
+        width: 60%;
+        z-index: 1; 
+
+        .notification-container {
+            align-items: center;
+            background-color: #3B444E;
+            display: flex;
+            flex-direction: vertical;
+            height: 44px;
+            padding-left: 0px;
+            position: relative;
+
+            .btn {
+                display: none;
+                height: 36px;
+                margin-right: 4px;
+                padding: 11px;
+            }
+
+            .message {
+                color: #FFF;
+                font-size: 0.95em;
+                padding: 0px 12px;
+                position: relative;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: calc(100% - 33px);
+
+                @extend .small;
+
+                .error-pill {
+                    background-color: $errorRed;
+                    display: none;
+                    line-height: 1.3em;
+                    margin-right: 4px;
+                    padding: 3px 8px;
+                    text-transform: uppercase;
+                }
+
+                .statusImage {
+                    background-repeat: no-repeat;
+                    bottom: -2px;
+                    display: none;
+                    height: 1em;
+                    position: relative;
+                    width: 1em;
+
+                    &.statusSuccessImage {
+                        background-image: url("./icons/status_success.svg");
+                        background-repeat: no-repeat;
+                    } 
+
+                    &.statusFailedImage {
+                        background-image: url("./icons/status_fail.svg");
+                        background-repeat: no-repeat;
+                    } 
+                }
+            }
+        }
+
+        .deployment-progress {
+            display: block;
+
+            /* Override progress bar default values */
+            .progress {
+                padding: 0px !important;
+
+                .progress-bar {
+                    background-color: #D2D3D3;
+                    height: 5px;
+
+                    span {
+                        height: 5px;
+                        background-color: $successGreen;
+                    }
+                }
+            }
+        }
+
+        &.success {
+            .notification-container {
+                .close-btn {
+                    display: inline-block;
+                }
+            }
+        }
+
+        &.failed {
+            .notification-container {
+                .message {
+                    .statusFailedImage {
+                        display: inline-block !important;
+                    }
+
+                    .error-pill {
+                        display: inline-block;
+                    }
+                }
+
+                .details-btn, .delete-btn {
+                    display: inline-block;
+                }
+            }
+        }
+
+        &.red-bar {
+            .progress-bar span {
+                background-color: $errorRed !important;
+            }
+        }
+
+        @media screen and (max-width: 1400px) {
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    .graph-content-container {
+        -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+        background: #e6e6e6;
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        position: relative;
+        width: 100%;
+
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+
+        .content {
+            position: relative;
+            top: 200px;
+
+            .title {
+                color: $atlasGreenColor;
+                font-family: 'Segoe UI Light';
+                font-size: 40px;
+            }
+
+            .message {
+                color: $darkSlateColor;
+                font-family: 'Segoe UI';
+                font-size: 16px;
+            }
+        }
+
+        #graph-control-container
+        {
+            height: calc(100vh - 98px);
+            width: 100%;
+            position: relative;
+        }
+    }    
+}
+
+$caution-icon-size: 30px;
+
+.start-over-modal {
+    .icon-caution {
+        background-image: url("./icons/Caution.svg");
+        background-repeat: no-repeat;
+        background-size: $caution-icon-size $caution-icon-size;
+        bottom: -7px;
+        display: inline-block;
+        height: $caution-icon-size;
+        position: relative;
+        width: $caution-icon-size;
+    }
+}
+
+$critical-icon-size: 32px;
+
+.deployment-details-modal {
+    .icon-critical {
+        background-image: url("./icons/status_critical.svg");
+        background-repeat: no-repeat;
+        background-size: $critical-icon-size $critical-icon-size;
+        bottom: -7px;
+        display: inline-block;
+        height: $critical-icon-size;
+        position: relative;
+        margin-right: 10px;
+        width: $critical-icon-size;
+    }
+
+    .modal-message {
+        font-weight: 500;
+    }
+}

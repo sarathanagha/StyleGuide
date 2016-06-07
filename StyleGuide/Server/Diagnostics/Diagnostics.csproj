@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4F30CD3B-6BA4-4DA8-9E73-F3BAFC8EC316}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.DataStudio.Diagnostics</RootNamespace>
+    <AssemblyName>Microsoft.DataStudio.Diagnostics</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientUX\MDSLoggerClient.cs" />
+    <Compile Include="EventSources\ApiServiceTracingEventSource.cs" />
+    <Compile Include="EventSources\AtlasBaseEventSource.cs" />
+    <Compile Include="EventSources\ClientUXUsageEventSource.cs" />
+    <Compile Include="EventSources\EventSources.cs" />
+    <Compile Include="EventSources\ExternalApiCallsEventSource.cs" />
+    <Compile Include="EventSources\RestApiCallsEventSource.cs" />
+    <Compile Include="EventSources\UxServiceTracingEventSource.cs" />
+    <Compile Include="Helpers\ActivityIdScope.cs" />
+    <Compile Include="Models\IApiCallsLogger.cs" />
+    <Compile Include="Models\ILoggerApiService.cs" />
+    <Compile Include="Models\ILoggerClientUX.cs" />
+    <Compile Include="Helpers\LogHelpers.cs" />
+    <Compile Include="Helpers\MdsUtilities.cs" />
+    <Compile Include="EventSources\ClientUXTracingEventSource.cs" />
+    <Compile Include="LoggerFactory.cs" />
+    <Compile Include="Models\LoggerSettings.cs" />
+    <Compile Include="EventSources\ServiceTracingEventSource.cs" />
+    <Compile Include="Service\ApiCallsLogger.cs" />
+    <Compile Include="Service\BaseListener.cs" />
+    <Compile Include="Service\DebugListener.cs" />
+    <Compile Include="Service\ILogListener.cs" />
+    <Compile Include="Service\MDSListener.cs" />
+    <Compile Include="Service\ServiceLogger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="$(NugetPack)\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll">
+      <Private>True</Private>
+      <Name>Newtonsoft.Json</Name>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

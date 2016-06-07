@@ -1,0 +1,22 @@
+﻿<div class="variableExplanationText" data-bind="visible:!isOneTime()">
+    You can use variables in the folder path to copy data from a folder that is determined at runtime. The supported variables
+    are: {year}, {month}, {day}, {hour}, {minute} and {custom}. See <a href="http://go.microsoft.com/fwlink/?LinkId=734876"
+                                                                       target="_blank" class="link">Data Movement Activities</a> article for details about these variables. Example:
+    inputfolder/{year}/{month}/{day}.
+</div>
+<table>
+    <tbody data-bind="foreach:partitions">
+        <tr>
+            <td><span class="fileFolderText" data-bind="text:name"></span></td>
+            <td>
+                <!-- ko if: formatOptions.length === 0 -->
+                <input data-bind="value:format" type="text" />
+                <!-- /ko -->
+                <!-- TODO paverma This needs to be converted to a combobox. -->
+                <!-- ko ifnot: formatOptions.length === 0 -->
+                <select data-bind="value:format,optionsText:'displayText',optionsValue:'value',options:formatOptions"></select>
+                <!-- /ko -->
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,94 @@
+<div id="browse-schema" data-bind="if: selected() && selected().hasSchema()">
+
+    <div class="schema-tools">
+        <span class="empty-schema-message" data-bind="text: resx.noSchema, visible: showEditMessage"></span>
+        <div class="edit-button" data-bind="text: resx.editSchema, 
+                                            click: function(){onEditSchema();}"
+                                    ></div>
+    </div>
+    <div class="table-container">
+        <div class="scrollable-table header" data-bind="css: {'has-message': showEditMessage()}">
+            <table>
+                <colgroup>
+                    <col style="width: 125px" />
+                    <col style="width: 100px" />
+                    <col style="width: 200px" />
+                    <col style="width: 200px" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th data-bind="text: resx.columnName"></th>
+                        <th data-bind="text: resx.dataType"></th>
+                        <th data-bind="text: resx.tags"></th>
+                        <th data-bind="text: resx.description"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="scrollable-table content" data-bind="css: {'has-message': showEditMessage}">
+            <table>
+                <colgroup>
+                    <col style="width: 125px" />
+                    <col style="width: 100px" />
+                    <col style="width: 200px" />
+                    <col style="width: 200px" />
+                </colgroup>
+                <tbody>
+                    <!-- ko foreach: { data: applicableColumns, as: 'bindableColumn' } -->
+                    <tr>
+                        <td data-bind="adc-highlight: bindableColumn.columnName" style="overflow: hidden; text-overflow: ellipsis"></td>
+                        <td data-bind="adc-highlight: $parent.getColumnByName(bindableColumn.columnName).type"></td>
+                        <td class="tags">
+                            <div data-bind="adc-spinner: { working: isSettingTags(), success: successUpdatingTags() }" class="small"></div>
+                            <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: bindableColumn.tagAttributes,
+                                            placeholderText: $parent.resx.addYourTags,
+                                            onAdd: function(tags){ $parent.addUserTags.bind($parent)(bindableColumn, tags); },
+                                            onRemove: function(tag){ $parent.removeUserTag.bind($parent)(bindableColumn, tag); },
+                                            showTooltip:true
+                                        }
+                                   }" class="tags-control"></div>
+
+                        </td>
+                        <td>
+                            <div data-bind="adc-spinner: { working: isChangingDesc() || isSettingDesc(), success: successUpdatingDesc() }" class="small"></div>
+                            <textarea class="desc" data-bind="textInput: bindableColumn.plainDescription,
+                                                  event: {
+                                                      change: function(d, e){ $parent.updateUserSchemaDesc(bindableColumn, bindableColumn.isSettingDesc, bindableColumn.successUpdatingDesc); },
+                                                      keydown: function(){ isChangingDesc(true); return true; },
+                                                      blur: function(){ isChangingDesc(false); return true; }
+                                                  },
+                                                  attr: {placeholder: $parent.resx.addYourDesc + '...' }" spellcheck="false"></textarea>
+
+                            <div class="other-descriptions">
+                                <div data-bind="foreach:{ data: bindableColumn.otherDescriptions, as: 'otherDesc' }">
+                                    <span data-bind="text: $context.$component.resx.from, visible: !otherDesc.isExpertDesc()" class="desc-label from"></span>
+                                    <span data-bind="text: $context.$component.resx.fromExpert, visible: otherDesc.isExpertDesc()" class="desc-label from"></span>
+                                    <span data-bind="adc-highlight: otherDesc.displayCreatedBy()" class="desc-label lower"></span>
+                                    <span data-bind="text: otherDesc.displayDate()" class="desc-label"></span>
+                                    <div data-bind="adc-highlight: otherDesc.description()" class="other-desc"></div>
+                                </div>
+                                <a data-bind="text: bindableColumn.expandText, click: bindableColumn.onSeeMore, visible: bindableColumn.expandable" data-target="#" class="expand-desc"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div data-bind="if: multiSelected().length > 1">
+    <div data-bind="component: {
+                                    name: 'datacatalog-browse-batchschema',
+                                    params: {}
+                                }"></div>
+</div>

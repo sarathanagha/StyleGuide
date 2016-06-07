@@ -1,0 +1,159 @@
+﻿<div id="activityRunDetailsContent">
+    <!-- ko if: loading() -->
+    <div data-bind="loading:{}"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: loading() -->
+    <!-- ko if: isEmpty() -->
+    <div id="emptyRunDetailsMessage" data-bind="text: ClientResources.activityRunDetailsEmptyMessage" class="row no-shrink"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: isEmpty() -->
+    <div class="activityWindowSubsection col" data-bind="collapsible: explorerCollapsible">
+        <div class="activityWindowDetailsHeader row">
+            <div class="activityHeaderText" data-bind="text: ClientResources.activityWindowTitle"></div>
+        </div>
+        <div class="activityRunDetailCalendar no-shrink row" data-bind="statusCalendar: {id: 'activityRunDetail', viewModel: statusCalendar}, telemetry: {areaId: 'ActivityRunDetailsCalendar', configs: ['click']}"></div>
+    </div>
+
+    <div class="activityWindowSubsection col" data-bind="collapsible: detailsCollapsible">
+        <div class="activityWindowDetailsHeader row">
+            <div class="activityHeaderText" data-bind="text: ClientResources.activityWindowDetailsTitle"></div>
+        </div>
+        <div class="activityDetails row">
+            <div class="adf-activityRunsToolbar adf-darkicontoolbar activityDetailsToolbar" data-bind=" winjstoolbar: {toolbar: activityRunDetailsToolbar}"></div>
+            <div class="activityPropertiesWrapper">
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.startAndEndTitle"></span>
+                    <span id="activityRunDetails-window" data-bind="titleText:{text: activityWindow()().windowPair.UTC, alt: activityWindow()().windowPair.UTC}"></span>
+                </div>
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.activityRunListStateTitle"></span>
+                    <span id="activityRunDetails-statusHTML" data-bind="html: activityWindow()().displayStateHtml, attr:{title:activityWindow()().displayState}"></span>
+                </div>
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.activityAssetText"></span>
+                    <span class="hover" data-bind="titleText: activity().name, click: entityClick.bind($data, activity())"></span>
+                </div>
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.pipelineAssetText"></span>
+                    <span class="hover" data-bind="titleText: pipeline().name, click: entityClick.bind($data, pipeline())"></span>
+                </div>
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.activityRunDetailsInputsTitle"></span>
+                    <!-- ko foreach : activityWindow()().inputDatasets -->
+                    <span class="hover" data-bind="titleText: $data, click: $parent.tableClick.bind($parent, $data)"></span>
+                    <!-- /ko -->
+                </div>
+                <div class="activityRunDetailsProperty col">
+                    <span data-bind="text: ClientResources.activityRunDetailsOutputsTitle"></span>
+                    <!-- ko foreach : activityWindow()().outputDatasets -->
+                    <span class="hover" data-bind="titleText: $data, click: $parent.tableClick.bind($parent, $data)"></span>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ko if: runRecordsExist -->
+    <div class="activityWindowSubsection col no-shrink" data-bind="collapsible: runRecordsCollapsible">
+        <div class="activityWindowDetailsHeader">
+            <div class="activityHeaderText" data-bind="text: ClientResources.activityRunDetailsTitle"></div>
+        </div>
+
+        <div id="activityRunDetailAccordion" class="no-shrink" data-bind="foreach: activityRunDetails">
+            <div class="accordionItem" data-bind="collapsible: $data">
+                <div class="itemHeader">
+                    <div class="headerIcon" data-bind="html: icon()"></div>
+                    <div class="headerContent" data-bind="text: date, attr: { title: $data.tooltipDate() }"></div>
+                </div>
+                <div class="itemContent">
+                    <div class="attemptStatus">
+                        <span data-bind="text: status"></span>
+                        <span data-bind="text: percentComplete"></span>
+                    </div>
+                    <div class="adf-attemptProperties">
+                        <span data-bind="text: $data.properties().details">
+                        </span>
+                        <span data-bind="text: $data.properties().throughput">
+                        </span>
+                    </div>
+                    <div class="attemptMessage" data-bind="css: $data.status() == 'Succeeded' ? '' : 'overflowMessage', visible: $data.messageVisible">
+                        <span data-bind="titleText: message">
+                        </span>
+                    </div>
+                    <div class="messageExpander" data-bind="click: $parent.toggleMessageOverflow, visible: $data.messageVisible ">More</div>
+                    <!-- ko if: $data.logs().length > 0 -->
+                    <div class="subSection">
+                        <div class="row subSectionHeader">
+                            <div class="subSectionHeaderIcon" data-bind="html: $parent.logIcon"></div>
+                            <div class="subSectionHeaderText">Log Files</div>
+                        </div>
+                        <div class="col" data-bind="foreach: $data.logs()">
+                            <a class="attemptLogLink" data-bind="attr: { href: sasUri, title: fileName } " download>
+                                <div class="attemptLogRow row">
+                                    <div class="logIcon" data-bind="html: icon"></div>
+                                    <div class="sasuri" data-bind="text: fileName"></div>
+                                    <div class="date" data-bind="text: date, attr: { title: tooltipDate } "></div>
+                                    <div class="filesize" data-bind="text: size, attr: { title: size } "></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: activityInputProperties -->
+                    <div class="subSection" data-bind="collapsible: activityInputProperties">
+                        <div class="row subSectionHeader">
+                            <div class="subSectionHeaderText" data-bind="titleText: activityInputProperties.header"></div>
+                        </div>
+                        <div class="col" data-bind="foreach: activityInputProperties.properties">
+                            <div class="row">
+                                <span class="propertyName dataFactory-text-ellipsis" data-bind="titleText: $data[0]"></span>
+                                <span class="propertyValue dataFactory-text-ellipsis" data-bind="titleText: $data[1]"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+     <!-- ko if: upstreamActivityWindows().length > 0 -->
+    <div class="activityWindowSubsection col no-shrink" data-bind="collapsible: upstreamCollapsible">
+        <div class="activityWindowDetailsHeader">
+            <div class="activityHeaderText" data-bind="text: ClientResources.upstreamDependenciesTitle"></div>
+        </div>
+
+        <div id="activityRunDetailAccordion" class="no-shrink" data-bind="foreach: upstreamActivityWindows">
+            <div class="accordionItem" data-bind="collapsible: $data">
+                <div class="itemHeader">
+                    <div class="headerIcon" data-bind="html: icon()"></div>
+                    <div class="headerContent" data-bind="text: tableName, attr: { title: tableName }"></div>
+                </div>
+                <div class="itemContent">
+                    <div class="subSection">
+                        <div class="upstreamActivityRow row">
+                            <div class="statusIcon header"></div>
+                            <div class="statusText header" data-bind="titleText: ClientResources.activityRunListStateTitle"></div>
+                            <div class="startDate header" data-bind="titleText: ClientResources.activityRunListWindowStartTitle"></div>
+                            <div class="endDate header" data-bind="titleText: ClientResources.activityRunListWindowEndTitle"></div>
+                        </div>
+                        <div class="col" data-bind="foreach: $data.slices">
+                            <div class="upstreamActivityRow row">
+                                <div class="statusIcon" data-bind="html: icon, attr: { title: status }"></div>
+                                <div class="statusText" data-bind="titleText: status"></div>
+                                <div class="startDate" data-bind="titleText: start"></div>
+                                <div class="endDate" data-bind="titleText: end"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- END ifnot: isEmpty() -->
+    <!-- /ko -->
+    <!-- END ifnot: loading() -->
+</div>

@@ -1,0 +1,8 @@
+{
+    "adf": {
+        "defaultModule": "datafactory",
+        "modules": [ "datafactory" ],
+        "applicationName": "datafactory",
+        "optimize": "adf.js"
+    }
+}

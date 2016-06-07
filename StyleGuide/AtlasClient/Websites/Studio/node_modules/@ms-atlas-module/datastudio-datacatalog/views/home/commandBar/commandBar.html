@@ -1,0 +1,29 @@
+<section id="home-commandbar" class="row space-between align-items-center" data-bind="event: {keyup: onSectionSelect}, attr: {tabindex: isSelectedSection()? '-1':'0'}">
+
+    <div class="commandbar-left-area row grow align-items-center">
+        <div class="commandbar-item commandbar-page-title" data-bind="text: resx.commandBar_data"></div>
+
+        <div class="search-box" data-bind="component: { name: 'datacatalog-shell-searchbox', params: {
+                                                        text: searchTerm,
+                                                        placeholderText: resx.search,
+                                                        onChange: doSearch.bind($data),
+                                                        focusId: id
+                                                      } }"></div>
+    </div>
+
+    <div class="commandbar-right-area row align-items-center">
+        <a role="button" class="commandbar-btn" data-bind="attr: {title: resx.commandBar_glossary, tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="text" data-bind="text: resx.commandBar_glossary"></span>
+        </a>
+        <a role="button" class="commandbar-btn" data-bind="datastudio-ux-selectmenu: publishOptions, attr: {title: resx.commandBar_publishData, tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="icon sort-descending-btn"></span>
+            <span class="text" data-bind="text: resx.commandBar_publishData"></span>
+            <span class="icon icon-right chevron-down-btn"></span>
+        </a>
+        <a role="button" class="commandbar-btn" data-bind="attr: {title: resx.commandBar_copyData, tabindex: isSelectedSection()? '0':'-1'}">
+            <span class="icon copy-btn"></span>
+            <span class="text" data-bind="text: resx.commandBar_copyData"></span>
+        </a>
+    </div>
+
+</section>

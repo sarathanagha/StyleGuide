@@ -1,0 +1,32 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.checkbox-list .checkbox-list-window {
+  overflow: hidden; }
+  .checkbox-list .checkbox-list-window ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .checkbox-list .checkbox-list-window label {
+    margin: 0;
+    font-weight: normal;
+    font-size: 13px;
+    display: inline; }
+
+.checkbox-list a {
+  cursor: pointer;
+  padding-left: 18px; }
+
+.checkbox-list a {
+  color: #2AB7D8; }
+
+/*# sourceMappingURL=checkboxlist.css.map */

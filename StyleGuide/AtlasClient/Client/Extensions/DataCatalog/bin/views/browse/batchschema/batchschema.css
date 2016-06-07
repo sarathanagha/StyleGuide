@@ -1,0 +1,94 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-batchschema {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+  #browse-batchschema .scrollable-table {
+    padding: 0 30px;
+    position: absolute; }
+    #browse-batchschema .scrollable-table.header {
+      top: 30px;
+      left: 0;
+      right: 0;
+      height: 27px; }
+    #browse-batchschema .scrollable-table.content {
+      padding: 0 13px 0 30px;
+      top: 57px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      overflow-x: auto;
+      overflow-y: scroll;
+      zoom: 1; }
+    #browse-batchschema .scrollable-table table {
+      table-layout: fixed;
+      width: 100%; }
+      #browse-batchschema .scrollable-table table th {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: normal;
+        padding: 5px 10px; }
+      #browse-batchschema .scrollable-table table tbody tr td {
+        font-size: 12px;
+        padding: 15px 10px 0 10px;
+        cursor: default;
+        vertical-align: top; }
+        #browse-batchschema .scrollable-table table tbody tr td.tags {
+          width: 260px; }
+        #browse-batchschema .scrollable-table table tbody tr td textarea {
+          margin-bottom: 15px;
+          height: 40px;
+          width: 100%;
+          padding: 10px; }
+        #browse-batchschema .scrollable-table table tbody tr td .other-descriptions {
+          width: 265px; }
+          #browse-batchschema .scrollable-table table tbody tr td .other-descriptions a {
+            float: right;
+            cursor: pointer;
+            margin-bottom: 15px;
+            text-decoration: none; }
+        #browse-batchschema .scrollable-table table tbody tr td .desc-label.from {
+          text-transform: capitalize; }
+          #browse-batchschema .scrollable-table table tbody tr td .desc-label.from:after {
+            content: ":"; }
+          #browse-batchschema .scrollable-table table tbody tr td .desc-label.from.lower {
+            text-transform: lowercase; }
+          #browse-batchschema .scrollable-table table tbody tr td .desc-label.from.cap {
+            text-transform: capitalize; }
+        #browse-batchschema .scrollable-table table tbody tr td .other-desc {
+          margin-bottom: 15px; }
+  #browse-batchschema .no-common-columns {
+    position: absolute;
+    top: 30px;
+    left: 30px; }
+  #browse-batchschema .tags-control {
+    margin-bottom: 20px; }
+  #browse-batchschema table th {
+    background-color: #EFF0F0; }
+  #browse-batchschema table tbody tr {
+    border-bottom: 1px solid #D8DBDE; }
+    #browse-batchschema table tbody tr td {
+      color: #474F5A; }
+      #browse-batchschema table tbody tr td textarea {
+        border: 1px solid #BEC2C9;
+        color: #474F5A; }
+      #browse-batchschema table tbody tr td .desc-label {
+        color: #8A96A2; }
+      #browse-batchschema table tbody tr td .other-descriptions a {
+        color: #006F94; }
+
+/*# sourceMappingURL=batchschema.css.map */

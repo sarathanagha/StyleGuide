@@ -1,0 +1,148 @@
+﻿// Note: Add any shared style specifications here. This file is included in other .scss files, and gets copied to each
+// in the output. Hence keep only sass specific stuff like mixins over here.
+
+@import "../../../../Core/DataStudio/src/stylesheets/Common/_shellConstants";
+@import "../../../../Core/DataStudio/src/stylesheets/Framework/Base/_layoutBase";
+
+/* Mixins */
+
+/* Creates all of the styles for an SVG */
+@mixin adf-fixedWidth($width) {
+    width: $width;
+    min-width: $width;
+    max-width: $width;
+}
+
+@mixin adf-fixedHeight($height) {
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+}
+
+@mixin adf-button-dims($height, $width) {
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+    width: $width;
+    min-width: $width;
+    max-width: $width;
+}
+
+@mixin adf-left-aligned-toolbar() {
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+@mixin adf-text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+$themeSecondaryLightestColor: #596574;
+$grayDarkest: $darkCharColor;
+$formfieldwidth: 360px;
+$highlightColor: #b9ddd9;
+$highlightTextColor: black;
+$selectedColor: #55606E;
+$selectedTextColor: white;
+
+@mixin adf-hovered {
+    background-color: rgba(0, 0, 0, .1) !important;
+}
+
+%adfScroll {
+    @include atlasScroll();
+}
+
+/* Toolbar/WinJS Command Styles */
+// Other places should derive from their icon definitions from here to maintain consistency.
+// Dark icons   [on a light background]
+@mixin adf-darkIconToolbar() {
+    & button.win-command {
+        & svg {
+            @include svg-icon-styles($darkSlateColor);
+        }
+
+        &:hover:not(:disabled), &.adf-hovered, &:active {
+            svg {
+                @include svg-icon-styles($atlasDarkTeal);
+            }
+
+            @include adf-hovered;
+        }
+
+        &:disabled svg {
+            @include svg-icon-styles($darkSlateColor);
+            opacity: 0.3;
+        }
+
+        &[aria-checked=true] {
+            &::before {
+                background-color: transparent !important;
+                border: none !important;
+            }
+
+            svg {
+                @include svg-icon-styles($atlasGreenColor);
+            }
+        }
+    }
+}
+
+// Light icons  [on a dark background]
+@mixin adf-lightIconToolbar () {
+    & button.win-command {
+        & svg {
+            @include svg-icon-styles($whiteColor);
+        }
+
+        &:hover:not(:disabled), &.adf-hovered {
+            svg {
+                @include svg-icon-styles($atlasDarkTeal);
+            }
+
+            @include adf-hovered;
+        }
+
+        &:disabled svg {
+            @include svg-icon-styles($whiteColor);
+            opacity: 0.3;
+        }
+
+        &[aria-checked=true] {
+            &::before {
+                background-color: transparent !important;
+                border: none !important;
+            }
+
+            svg {
+                @include svg-icon-styles($atlasGreenColor);
+            }
+        }
+    }
+}
+
+/* Modals */
+$modalHeaderBarHeight: 60px;
+$modalScreenMargin: 160px;
+$modalMaxScreenHeight: 768px;
+$modalMaxScreenWidth: 1366px;
+$modalDataPadding: 40px;
+$modalBorderLine: 1px solid $cloudColor;
+
+// TODO paverma Should be picked up from shell. Can't find the design.
+%input {
+    padding-left: 12px;
+}
+
+%smallInput {
+    @extend %input;
+    height: 28px;
+}
+
+%largeInput {
+    @extend %input;
+    height: 36px;
+}

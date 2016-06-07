@@ -1,0 +1,191 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+#browse-schema {
+    @include absolute();
+
+    .table-container {
+        height: auto;
+        width: 100%;
+        overflow: auto;
+        margin-top: 8px;
+    }
+
+    .scrollable-table {
+        padding: 0 30px;
+        position: absolute;
+
+        &.header {
+            left: 0;
+            right: 0;
+            height: 27px;
+
+            &.has-message {
+
+            }
+        }
+
+        &.content {
+            padding: 0 13px 0 30px;
+            top: 93px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            overflow-x: auto;
+            zoom: 1;
+
+            &.has-message {
+                top: 121px;
+            }
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            th {
+                text-transform: capitalize;
+                font-size: 12px;
+                font-weight: normal;
+                padding: 5px 10px;
+            }
+            tbody tr {
+                td {
+                    font-size: 12px;
+                    padding: 18px 10px 0 10px;
+                    cursor: default;
+                    vertical-align: top;
+                    position: relative;
+
+                    &.tags {
+                        width: 260px;
+                    }
+
+                    textarea {
+                        margin-bottom: 15px;
+                        height: 40px;
+                        width: 100%;
+                        padding: 10px;
+                    }
+                    .other-descriptions {
+                        width: 265px;
+
+                        a {
+                            float: right;
+                            cursor: pointer;
+                            margin-bottom: 15px;
+                            text-decoration: none;
+                        }
+                    }
+
+                    .desc-label.from {
+                        text-transform: capitalize;
+
+                        &:after {
+                            content: ":";
+                        }
+                        &.lower {
+                            text-transform: lowercase;
+                        }
+                        &.cap {
+                            text-transform: capitalize;
+                        }
+                    }
+                    .other-desc {
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .tags-control {
+        margin-bottom: 20px;
+    }
+
+    .tokyo-spinner {
+        position: absolute;
+        top: 0;
+        right: 10px;
+    }
+
+    .schema-tools {
+        padding-left: 30px;
+        padding-top: 24px;
+        height: auto;
+        overflow: auto;
+    }
+
+    .empty-schema-message {
+        float:left;
+        margin-bottom: 8px;
+    }
+
+    .edit-button {
+        display: inline-block;
+        cursor: pointer;
+        padding: 3px 5px;
+        text-decoration: none;
+        text-transform: capitalize;
+        text-align: left;
+        height: 28px;
+        line-height: 20px;
+        float:left;
+        clear:both;
+        margin-top:5px;
+
+        &.disabled {
+            @include opacity(.5);
+            cursor: default;
+        }
+    }
+
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $light-border: $default-light-border;
+        $body-color-light: $default-body-color-light;
+        $font-color-light: $default-font-color-light;
+        $font-color-med: $default-font-color-med;
+        $input-text-color: $default-input-text-color;
+        $input-outline: $default-input-outline;
+        $body-navigation-selected-color: $default-navigation-selected-color;
+
+        & {
+           table {
+               th {
+                   background-color: $light-border;
+               }
+
+               tbody tr {
+                    border-bottom: 1px solid $lighter-gray;
+
+                    td {
+                        color: $input-text-color;
+
+                        textarea {
+                            border: 1px solid $input-outline;
+                            color: $input-text-color;
+                        }
+
+                        .desc-label {
+                            color: $font-color-med;
+                        }
+
+                        .other-descriptions a {
+                            color: $body-navigation-selected-color;
+                        }
+                    }
+                }
+           }
+
+           .edit-button {
+               background-color: $body-navigation-selected-color;
+                    border: 1px solid $body-navigation-selected-color;
+                    color: $font-color-light;
+           }
+        }
+    }
+
+    //use themes
+    @include theme;
+}

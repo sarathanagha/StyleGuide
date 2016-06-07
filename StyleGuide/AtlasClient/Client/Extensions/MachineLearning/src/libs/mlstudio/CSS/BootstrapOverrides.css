@@ -1,0 +1,34 @@
+﻿/* BootStrap Style overrideds*/
+.navbar-wrapper {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+#fxshell-navpane,
+div.experiment-container {
+    top: 40px !important;
+}
+
+#aux-foreground *,
+.fx-dialog {
+    -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.fx-dialog * {
+    -webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+#aux-foreground .propertyEditor-content *, /* corrects size of module parameters */
+#ExperimentEditor .customUX .visualizationTopHeader,
+#ExperimentEditor .customUX .visualizationTopHeader *,
+#ExperimentEditor .customUX .visualizationContentWrapper,
+#ExperimentEditor .customUX statsAndGraphsHeader {
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

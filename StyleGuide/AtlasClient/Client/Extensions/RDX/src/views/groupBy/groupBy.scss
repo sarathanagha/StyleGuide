@@ -1,0 +1,46 @@
+﻿@import "../../stylesheets/main";
+
+.groupByPanelWrapper{
+    .groupByLabel{
+        @extend .textMSB;
+        width: auto;
+        padding-bottom: 4px;
+        padding-top: 20px;
+        border-top: $cardBoarder;
+    }
+
+    .groupByPanel{
+        margin-bottom: 20px;
+        .panelTitle{
+            padding-bottom: 15px;
+        }
+    }
+    select{
+        background: white;
+        max-width: 160px;
+        padding: 0;
+        height: 29px;
+    }
+    .measurePanel{
+        margin-top: 36px;
+        margin-bottom: 20px;
+
+        .show{
+            padding-top: 0;
+            border: none;
+        }
+    }
+
+    .intervalPanel{
+        div{
+            input{
+                width: 32px;
+            }
+        }
+    }
+
+    .refreshButton{
+        margin-top: 48px;
+        width: auto;
+    }
+}

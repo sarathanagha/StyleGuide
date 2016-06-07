@@ -1,0 +1,27 @@
+<div class="viewsSidePanel">
+    <div class="col adf-alerts-header panelHeaderContainer">
+        <div class="header-name header">Alerts</div>
+    </div>
+
+    <div class="col">
+        <div class="action-button center" data-bind="winjsbutton:{options: addButton, buttonClass: 'adf-greenButton small'}"></div>
+        <!-- ko if: activeRequests() > 0 -->
+        <div data-bind="loading:{}"></div>
+        <!-- /ko -->
+        <!-- END if activeRequests() > 0 -->
+
+        <!-- ko if: shouldShowAlertsList -->
+        <div data-bind="text: emptyAlertListText" class="row"></div>
+        <!-- /ko -->
+        <!-- ko ifnot: shouldShowAlertsList -->
+        <div id="adf-alerts-list" data-bind="foreach: alertsList" class="col">
+            <div class="row adf-alert" data-bind="css: $data.isEnabled() ? '' : 'disabled'">
+                <div class="adf-alert-name" data-bind="text: $data.name()"></div>
+                <div class = "grow toolbar-container">
+                    <div class="adf-darkIconToolbar adf-alert-toolbar" data-bind="winjstoolbar: {toolbar:$parent.toolbar($data)}"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko-->
+    </div>
+</div>

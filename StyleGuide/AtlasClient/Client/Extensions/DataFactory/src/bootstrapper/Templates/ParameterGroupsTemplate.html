@@ -1,0 +1,19 @@
+﻿<!-- ko foreach: groups -->
+<div data-bind="text: title" class="paramHeader">
+</div>
+
+<div class="col paramBag">
+    <div class="row">
+        <div class="paramName paramHeader" data-bind="text: $parent.paramNameHeading"></div>
+        <div class="paramHeader" data-bind="text: $parent.paramValueHeading"></div>
+    </div>
+    <!-- ko foreach: params -->
+    <div class="row paramRow">
+        <!-- ko if: $parents[1].readOnly -->
+        <div data-bind="text: key" class="paramName"></div>
+        <!-- /ko -->
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox' , params: {vm: form} }" class="paramVal"></div>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->

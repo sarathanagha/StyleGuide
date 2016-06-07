@@ -1,0 +1,104 @@
+﻿//TODO: Remove explicit assignment of styles to the ID
+#atlasNotificationPage {
+    flex-direction: row;
+}
+
+.atlasNotificationPage {
+  display: flex;
+  align-items: stretch;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 0;
+
+  .leftPane {
+      width: 200px;
+      min-height: 1000px;
+      background-color: #03b092;
+  }
+
+  .notificationPane {
+      flex: 1;
+
+      %notificationItem {
+          width: 40%;
+          padding-left: 4em;
+          justify-content: space-between;
+      }
+
+      %hrBase {
+          width: 40%;
+          padding-left: 4em;
+      }
+
+      .disabled {
+          opacity: 0.6;
+      }
+
+      .header {
+          padding-left: 1.5em;
+          padding-top: 2em;
+          padding-bottom: 1.5em;
+          font-size: 1.5em;
+          font-weight: 500;
+      }
+
+      .icon {
+          align-self: center;
+          padding-right: 0.9em;
+          font-size: 1.5em;
+      }
+
+      .checkbox {
+          align-items: center;
+      }
+
+      .activeNotifications {
+          padding-bottom: 1em;
+
+          .activeNotificationItem {
+              @extend %notificationItem;
+              padding-bottom: 1em;
+
+              .textArea {
+                  align-self: center;
+
+                  .title {
+                      padding-bottom: 0.4em;
+                  }
+              }
+          }
+
+          .urlDisplay { //TODO: Fix the <a> tag so this styling is automatically taken care of
+              color: #0000ee;
+              text-decoration: underline;
+          }
+
+          .hr {
+              @extend %hrBase;
+              padding-bottom: 1em;
+          }
+      }
+
+      .archivedNotifications {
+
+          .archiveHeader {
+              padding-left: 1.5em;
+              padding-bottom: 0.6em;
+              font-size: 1.2em;
+              font-weight: 500;
+          }
+
+          .archivedNotificationItem {
+              @extend %notificationItem;
+
+              .title {
+                  align-self: center;
+              }
+          }
+
+          .hr {
+              @extend %hrBase;
+          }
+      }
+  }
+}

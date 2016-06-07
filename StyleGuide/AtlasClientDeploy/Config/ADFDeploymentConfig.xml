@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ConfigList>
+  <Config Name="ADFProd" Type="Sealed" Base="ADFCommon">
+    <Settings>
+      <!--0.2 Windows azure deployment setting-->
+      <Setting Name="SecretStore">https://production.secretstore.core.windows.net</Setting>
+      <Setting Name="DeploymentName">adfuxprod</Setting>
+      <Setting Name="EnvironmentType">PROD</Setting>
+      <Setting Name="PackagePath">..\Binaries\ServiceGroupRoot\bin\ADFClientPackage.cspkg</Setting>
+    </Settings>
+    <ScaleUnit Type="ScaleUnit" Name="SU01">
+      <HostedService Type="Microsoft.DataStudio.Deployment" Name="$(DeploymentName)">
+        <Service>
+          <Role Name="AtlasClientRole">
+          </Role>
+        </Service>
+      </HostedService>
+    </ScaleUnit>
+  </Config>
+  <Config Name="ADFInt" Type="Sealed" Base="Common">
+    <Settings>
+      <!--0.2 Windows azure deployment setting-->
+      <Setting Name="SecretStore">https://test.secretstore.core.azure-test.net/CertSvc.svc</Setting>
+      <Setting Name="DeploymentName">adf-preview</Setting>
+      <Setting Name="EnvironmentType">INT</Setting>
+      <Setting Name="PackagePath">..\Binaries\ServiceGroupRoot\bin\ADFClientPackage.cspkg</Setting>
+    </Settings>
+    <ScaleUnit Type="ScaleUnit" Name="SU01">
+      <HostedService Type="Microsoft.DataStudio.Deployment" Name="$(DeploymentName)">
+        <Service>
+          <Role Name="AtlasClientRole"></Role>
+        </Service>
+      </HostedService>
+    </ScaleUnit>
+  </Config>
+</ConfigList>

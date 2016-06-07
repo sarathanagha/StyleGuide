@@ -1,0 +1,21 @@
+﻿@import "../../stylesheets/main";
+
+.progressBarOuter{
+    background-color: $canvas;
+    width: 250px; 
+    height: 8px;
+
+    .progressBarInner{
+        background-color: $atlasTeal;
+        height: 8px;
+    }
+}
+
+.progressMessageSmall{
+    @extend .textSR;
+    white-space: nowrap;
+}
+
+.progressMessageLarge{
+    white-space: nowrap;
+}

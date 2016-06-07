@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" timestamp="2011-05-12T20:08:38.0823856Z" >
+
+    <Events>
+
+        <Plugins>
+            <PlugIn module="EwsListener.dll" runAsExtension="true" >
+
+                <!-- The EWS listener uses multischema tables that are shared by the -->
+                <!-- individual detectors to reduce the local overhead required for EWS data-->
+                <Event eventName="EwsAnomaly" storeType="Local" duration="PT5M" deadline="PT10M"/>
+                <Event eventName="EwsDynamicData" storeType="Local" />
+                <Event eventName="EwsNetworkConfiguration" storeType="Local" />
+                <Event eventName="EwsNetworkStatistics"  storeType="Local" />
+                <Event eventName="EwsSystemConfiguration" storeType="Local" />
+
+                <Body>
+                    <![CDATA[
+            <EwsDetectors>
+                <EwsDetector type="ActiveProcesses"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000" >
+                </EwsDetector>
+                <EwsDetector type="Certificates"
+                             mode="DetectChanges"
+                             intervalMillisecs="86400000" >
+                </EwsDetector>
+                <EwsDetector type="DosDetect"
+                             mode="DetectChanges"
+                             intervalMillisecs="60000" >
+                </EwsDetector>
+                <EwsDetector type="FirewallSettings"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000" >
+                </EwsDetector>
+                <EwsDetector type="Ip4Connections"
+                             mode="Query"
+                             intervalMillisecs="900000" >
+                </EwsDetector>
+                <EwsDetector type="Ip4Statistics"
+                             mode="Query"
+                             intervalMillisecs="300000" >
+                </EwsDetector>
+                <EwsDetector type="LocalGroups"
+                             mode="DetectChanges"
+                             intervalMillisecs="300000" >
+                </EwsDetector>
+                <EwsDetector type="LocalUsers"
+                             mode="DetectChanges"
+                             intervalMillisecs="300000" >
+                  <AnomalyCheck name="DisallowedValueViolation" >Environment=Jumpbox value=msnlocal MatchType=IgnoreCase</AnomalyCheck>
+                </EwsDetector>
+                <EwsDetector type="NetFilterRules"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000" >
+                </EwsDetector>
+                <EwsDetector type="SecureBaseline"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000"
+                             useDefaults="true" >
+                </EwsDetector>
+                <EwsDetector type="ServicesAndDrivers"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000" >
+                </EwsDetector>
+                <EwsDetector type="SystemSettings"
+                             mode="DetectChanges"
+                             intervalMillisecs="900000" >
+                  <AnomalyCheck name="RequiredValueViolation" >Environment=Jumpbox RegKey="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system\scforceoption" value=1 MatchType=Numeric</AnomalyCheck>
+                </EwsDetector>
+                <EwsDetector type="TcpStatistics"
+                             mode="Query"
+                             intervalMillisecs="300000" >
+                </EwsDetector>
+                <EwsDetector type="VfpMetrics"
+                             mode="DetectChanges"
+                             intervalMillisecs="120000" >
+                  <!-- Connections/sec > 20 -->
+                  <AnomalyCheck name="ThresholdExceeded" >metric=TcpCurrentInCxn type=Counter thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=TcpCurrentOutCxn type=Counter thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=TcpMaxInCxn type=Maximum thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=TcpMaxOutCxn type=Maximum thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=UdpCurrentInCxn type=Counter thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=UdpCurrentOutCxn type=Counter thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=UdpMaxInCxn type=Maximum thresholdPerSecond="20"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=UdpMaxOutCxb type=Maximum thresholdPerSecond="20"</AnomalyCheck>
+                  <!-- SYN and SYN/ACK rates > 100/sec -->
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynPacketsIn type=Counter thresholdPerSecond="100"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynPacketsOut type=Counter thresholdPerSecond="100"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynAckPacketsIn type=Counter thresholdPerSecond="100"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynAckPacketsOut type=Counter thresholdPerSecond="100"</AnomalyCheck>
+                  <!-- Bytes in/out >25Mbps ~ 3MB/s -->
+                  <AnomalyCheck name="ThresholdExceeded" >metric=BytesIn type=Counter thresholdPerSecond="3000000"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=BytesOut type=Counter thresholdPerSecond="3000000"</AnomalyCheck>
+                  <!-- Normal packet traffic can be heavy, so threshold is high -->
+                  <AnomalyCheck name="ThresholdExceeded" >metric=PacketsIn type=Counter thresholdPerSecond="1000"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=PacketsOut type=Counter thresholdPerSecond="1000"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=DroppedPacketsIn type=Counter thresholdPerSecond="10"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=DroppedPacketsOut type=Counter thresholdPerSecond="10"</AnomalyCheck>
+                  <!-- Averaging more that 1 SYN SYN/ACK mismatch per sec is interesting -->
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynAckInDiff type=Counter thresholdPerSecond="1"</AnomalyCheck>
+                  <AnomalyCheck name="ThresholdExceeded" >metric=SynAckOutDiff type=Counter thresholdPerSecond="1"</AnomalyCheck>
+                </EwsDetector>
+            </EwsDetectors>
+            ]]>
+                </Body>
+            </PlugIn>
+        </Plugins>
+
+        <DerivedEvents>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsServicesAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 2 && ServiceType > 2
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              ReasonId,
+              ServiceName,
+              ImagePath,
+              Arguments,
+              ImageVersion,
+              Username,
+              Privileges,
+              ServiceControls,
+              ServiceFlags,
+              ServiceState,
+              ServiceType
+        ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsDriversAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 2 && ServiceType < 3
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              ReasonId,
+              ServiceName as DriverName,
+              ImagePath,
+              Arguments,
+              ImageVersion,
+              Username,
+              Privileges,
+              ServiceControls,
+              ServiceFlags,
+              ServiceState,
+              ServiceType
+        ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsLocalGroupsAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 4
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              ReasonId,
+              GroupName,
+              Membership,
+              PreviousMembership
+        ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsLocalUsersAnomalyR3"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 3
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              ReasonId,
+              AnomalyDesc,
+              Username,
+              PrivilegeLevel,
+              UserFlags,
+              AuthFlags,
+              BadPwCount,
+              NumLogons,
+              UserId,
+              PrimaryGroupId,
+              LogonServer,
+              Expiration,
+              LastLogon,
+              LastLogoff
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsDosDetectAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 13
+          groupby Identity()
+          select Identity(),
+              MetricName,
+              RemoteAddress,
+              Threshold,
+              Value
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsVfpMetricsAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 14
+          groupby Identity()
+          select Identity(),
+              HostId,
+              ReasonId,
+              MetricName,
+              ThresholdValue,
+              CurrentValue,
+              AnomalyDescription,
+              Address,
+              MAC,
+              VNIC,
+              VMPort,
+              Vip,
+              TcpCurrentInCxn,
+              TcpCurrentOutCxn,
+              TcpMaxInCxn,
+              TcpMaxOutCxn,
+              UdpCurrentInCxn,
+              UdpCurrentOutCxn,
+              UdpMaxInCxn,
+              UdpMaxOutCxn,
+              PacketsIn,
+              PacketsOut,
+              DroppedPacketsIn,
+              DroppedPacketsOut,
+              SynPacketsIn,
+              SynPacketsOut,
+              SynAckPacketsIn,
+              SynAckPacketsOut,
+              BytesIn,
+              BytesOut
+        ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsSystemConfigurationAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 7 && Category == 3
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              DetectorMode,
+              ReasonId,
+              SettingName,
+              SettingValue,
+              PreviousValue,
+              Scope,
+              Category
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsPolicySettingAnomalyR1"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 17
+          groupby Identity()
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              DetectorMode,
+              ReasonId,
+              PolicySource,
+              PolicyPath,
+              PolicyValue,
+              PreviousValue
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsAnomaly"
+                          eventName="EwsCertificatesAnomalyR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          duration="PT5M"
+                          deadline="PT10M">
+                <Query>
+                    <![CDATA[
+          where (DetectorType == 18) and ((Store == "My") or (Store == "MY") or (Store == "Root") or (Store == "ROOT"))
+          groupby Identity()
+          select Identity(),
+              HostId,
+              DetectorMode,
+              ReasonId,
+              AnomalyDesc,
+              Location,
+              Store,
+              Thumbprint,
+              Subject,
+              Issuer,
+              ValidFrom,
+              ValidTo,
+              CertificateVersion
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsSystemConfiguration"
+                        eventName="EwsPolicySettingSnapshotR1"
+                        storeType="Central"
+                        whereToRun="Local"
+                        duration="PT24H"
+                        deadline="PT1H" >
+                <Query>
+                    <![CDATA[
+          var snapGroup = where DetectorType == 17 groupby SnapshotTime let maxSnap = MAX(SnapshotTime);
+          where DetectorType == 17 join snapGroup on SnapshotTime equals maxSnap 
+          groupby Identity(), PolicySource, PolicyPath
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              SnapshotTime,
+              PolicySource,
+              PolicyPath,
+              PolicyValue
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsSystemConfiguration"
+                          eventName="EwsCertificatesSnapshotR2"
+                          storeType="Central"
+                          whereToRun="Local"
+                          retentionInDays="30"
+                          duration="PT24H"
+                          deadline="PT2H" >
+                <Query>
+                    <![CDATA[
+          var snapGroup = where (DetectorType == 18) and ((Store == "My") or (Store == "MY")) groupby SnapshotTime let maxSnap = MAX(SnapshotTime);
+          where (DetectorType == 18) and ((Store == "My") or (Store == "MY") or (Store == "Root") or (Store == "ROOT")) join snapGroup on SnapshotTime equals maxSnap 
+          groupby Identity(), Store, Thumbprint
+          select Identity(),
+              HostId,
+              SnapshotTime,
+              Location,
+              Store,
+              Thumbprint,
+              Subject,
+              Issuer,
+              ValidFrom,
+              ValidTo,
+              CertificateVersion
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+            <DerivedEvent source="EwsSystemConfiguration"
+                        eventName="EwsVmConfigurationSnapshotR1"
+                        storeType="Central"
+                        whereToRun="Local"
+                        duration="PT8H"
+                        deadline="PT30M">
+                <Query>
+                    <![CDATA[
+          where DetectorType == 7 && Category == 4
+          groupby Identity(), SettingName, SettingValue, Scope
+          select Identity(),
+              HostId,
+              FirstSeen,
+              LastSeen,
+              SettingName,
+              SettingValue,
+              Scope
+          ]]>
+                </Query>
+            </DerivedEvent>
+
+        </DerivedEvents>
+
+    </Events>
+
+</MonitoringManagement>
+

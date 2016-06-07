@@ -1,0 +1,38 @@
+.xe-graph-container {
+    position: relative;
+    height: 100%;
+}
+
+.xe-utilityPanel {
+    overflow-y: auto;
+    /* Height of utilityPanelRoot minus height of palette search box and collapse arrow. */
+    height: calc(100% - 78px);
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+
+.xe-utilityPanelRoot 
+{
+    float: left;
+    height: 100%;
+    position: relative;
+    border-right: 1px solid #ededed;
+}
+
+/* 
+        Avoid text selection in IE
+        http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting 
+*/
+.xe-surface, .xe-utilityPanel {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.xe-surface {
+    height: 100%;
+}

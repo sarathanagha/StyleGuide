@@ -1,0 +1,43 @@
+@import "../../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+
+@mixin sidePanelMargin()
+{
+    margin:20px;
+}
+
+$horizontal-padding: 20px;
+
+.right-panel {
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 300px;
+
+    .side-pane-section-header {
+        color: #2C3137;
+        display: block;
+        font-size: 1.3em;
+        font-weight: 400;
+        padding: $horizontal-padding $horizontal-padding 10px $horizontal-padding;
+        word-wrap: break-word;
+    }
+
+    .sub-section-header {
+        display: block;
+        font-size: 1.1em;
+        font-weight: 400;
+        padding: 0px $horizontal-padding 10px $horizontal-padding;
+        word-wrap: break-word;
+    }
+
+    .titleName, .titleStatus
+    {
+        @include fontStyleMediumRegular();
+        color: $grayLightColor;
+        padding-bottom: 4px;    // todo - sbian - needs designer revision
+    }
+
+    .resourceName
+    {
+        @include fontStyleMediumSemiBold();
+    }
+}

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<ConfigList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Config Type="Abstract" Name="MonitoringDev2" Base="MonitoringCommon">
+    <Settings>
+      <Setting Name="WASubscriptionID">d3bb3b2e-9a7e-4194-9960-5171bd192117</Setting>
+      <Setting Name="WALocation">East US 2</Setting>
+      <Setting Name="SecretStore">test</Setting>
+      <Setting Name="ServiceName">$(RootNamespace)/test/$(DeploymentName)</Setting>
+      <Setting Name="ManagementCertPathInSecretStore">$(RootNamespace)/test/WAAPICertificate</Setting>
+    </Settings>
+    <HostedService Type="Package" Name="$(DeploymentName)">
+    </HostedService>    
+  </Config>
+  <!-- deployment tooling requires one non-abstract target environment; its values will be set from the deployment tool -->
+  <Config Type="Sealed" Name="MonitoringDev2-base" Base="MonitoringDev">
+  </Config>
+</ConfigList>

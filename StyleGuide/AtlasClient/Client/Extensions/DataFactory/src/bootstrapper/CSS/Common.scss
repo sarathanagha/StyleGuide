@@ -1,0 +1,21 @@
+﻿.validationImage {
+    width: 26px;
+    height: 26px;
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    &.progresso {
+        background-image: url('../images/ProgressRing.svg');
+        animation: spin 1s linear infinite;
+    }
+
+    &.successo {
+        background-image: url('../images/StatusReady.svg');
+    }
+
+    &.failo {
+        background-image: url('../images/ErrorStatus.svg');
+    }
+}
+

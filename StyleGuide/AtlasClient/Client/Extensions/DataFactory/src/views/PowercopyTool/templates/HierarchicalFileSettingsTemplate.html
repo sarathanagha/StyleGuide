@@ -1,0 +1,27 @@
+﻿<div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: format} }"></div>
+
+<div data-bind="visible:format.value() === 'TextFormat'">
+    <div data-bind="visible: useCustomColumnDelimiter">
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: customColumnDelimiter} }"></div>
+    </div>
+    <div data-bind="visible: !useCustomColumnDelimiter()">
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: standardColumnDelimiter} }"></div>
+    </div>
+    <div class="datasetLocationSummaryContainer">
+        <input type="checkbox" data-bind="checked:useCustomColumnDelimiter" id="idcolumndelimiterbox" /><label class="toolLabel" for="idcolumndelimiterbox">&nbsp;Use custom delimiter</label>
+    </div>
+
+    <div data-bind="visible: useCustomRowDelimiter">
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: customRowDelimiter} }"></div>
+    </div>
+    <div data-bind="visible: !useCustomRowDelimiter()">
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: standardRowDelimiter} }"></div>
+    </div>
+    <div class="datasetLocationSummaryContainer">
+        <input type="checkbox" data-bind="checked:useCustomRowDelimiter" id="idrowdelimiterbox" /><label class="toolLabel" for="idrowdelimiterbox">&nbsp;Use custom delimiter</label>
+    </div>
+
+    <!-- ko if: isSource -->
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: skipHeaderLineCount} }"></div>
+    <!-- /ko -->
+</div>

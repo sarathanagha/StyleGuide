@@ -1,0 +1,23 @@
+﻿<div class="infoHeader">The filtering language is <span onclick="window.open('https://msdn.microsoft.com/en-us/library/ae5bf541%28v=vs.100%29.aspx', '_blank');">regular expressions</span>:</div>
+<table>
+    <tr>
+        <td>hello</td>
+        <td>Returns items containing "hello"</td>
+    </tr>
+    <tr>
+        <td>^hello</td>
+        <td>Returns items starting with "hello"</td>
+    </tr>
+    <tr>
+        <td>hello$</td>
+        <td>Returns items ending with "hello"</td>
+    </tr>
+    <tr>
+        <td>h.?llo</td>
+        <td>Returns items containing "h" optionally followed <br />by any character, then followed by "llo" <br /> e.g. "hello", 'hkllo", "hllo"</td>
+    </tr>
+    <tr>
+        <td>h(el|le)lo</td>
+        <td>Returns items containing "h" followed by "el" or <br />"le", followed by "lo" <br /> e.g. "hello", "hlelo"</td>
+    </tr>
+</table>

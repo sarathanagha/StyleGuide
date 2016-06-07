@@ -1,0 +1,97 @@
+<div id="manual-entry" class="bootstrap">
+    <div class="scrollable-content">
+        <div class="error-message" data-bind="text: resx.manualEntryInvalid, visible: isInvalid"></div>
+        <div class="source-name">
+            <div class="manual-entry-label">
+                <div data-bind="text: resx.sourceName" class="with-required"></div> <span class="required-label" data-bind="text:resx.required"></span>
+            </div>
+            <input data-bind="textInput: sourceName, css:{required:sourceNameError}" spellcheck="false" class="manual-entry-input" />
+        </div>
+        <div class="friendly-name">
+            <div data-bind="text: resx.friendlyName" class="manual-entry-label"></div>
+            <input data-bind="textInput: friendlyName" spellcheck="false" class="manual-entry-input" />
+        </div>
+        <div class="desc">
+            <div data-bind="text: resx.description" class="manual-entry-label"></div>
+            <textarea data-bind="textInput: description" spellcheck="false"></textarea>
+        </div>
+        <div class="request-access">
+            <div data-bind="text: resx.requestAccess" class="manual-entry-label"></div>
+            <textarea data-bind="textInput: requestAccess" spellcheck="false"></textarea>
+        </div>
+        
+        <div class="source-type">
+            <span data-bind="text: resx.sourceType" class="manual-entry-label"></span>
+            <!-- ko if: sourceTypesArray().length === 1 -->
+            <span data-bind="text: sourceTypesArray()[0]" class="manual-entry-single-option"></span>
+            <!-- /ko -->
+            <!-- ko if: sourceTypesArray().length > 1 -->
+            <select class="manual-entry-select" data-bind="options: sourceTypesArray, value: sourceType, optionsText: 'label', optionsValue: 'sourceType'"></select>
+            <!-- /ko -->
+        </div>
+        <div class="object-type">
+            <span data-bind="text: resx.objectType" class="manual-entry-label"></span>
+            <!-- ko if: objectTypes().length === 1 -->
+            <span data-bind="text: singleObjectType" class="manual-entry-single-option"></span>
+            <!-- /ko -->
+            <!-- ko if: objectTypes().length > 1 -->
+            <select class="manual-entry-select" data-bind="options: objectTypes, value: objectType, optionsText: 'editLabel', optionsValue: 'objectType'"></select>
+            <!-- /ko -->
+        </div>
+        <div class="source-authentication">
+            <span data-bind="text: resx.authentication" class="manual-entry-label"></span>
+            <!-- ko if: authenticationTypes().length === 1 -->
+            <span data-bind="text: singleAuthentication().label" class="manual-entry-single-option"></span>
+            <!-- /ko -->
+            <!-- ko if: authenticationTypes().length > 1 -->
+            <select class="manual-entry-select" data-bind="options: authenticationTypes, value: authentication, optionsText: 'label', optionsValue: 'name'"></select>
+            <!-- /ko -->
+        </div>
+        <div class="connection-info">
+            <div class="manual-entry-label">
+                <span data-bind="text: resx.connectionInfo" class="with-required"></span> <span class="required-label" data-bind="text:resx.required"></span>
+            </div>
+            <div class="connection-info-fields">
+                <!-- ko foreach: {data: inputFields, as: 'inputField' } -->
+                <div data-bind="component: {
+                                name: inputField.editForm,
+                                params: {
+                                    label: inputField.editFormParams.label,
+                                    placeholderText: inputField.editFormParams.placeHolder || '',
+                                    bindingPath: inputField.editFormParams.bindingPath,
+                                    validatePattern: inputField.editFormParams.validatePattern
+                                    }
+                                }"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <div class="experts">
+            <span data-bind="text: resx.experts" class="manual-entry-facet-label"></span>
+            <div data-bind="component: {
+                        name: 'datacatalog-browse-attributes',
+                        params: {
+                            attributesOnAll:expertAttributes,
+                            placeholderText: resx.addAnExpert,
+                            onAdd: addExperts.bind($data),
+                            onRemove: removeExpert.bind($data),
+                            showTooltip: false,
+                            onValidate: validateEmail
+                        }
+                    }"></div>
+
+        </div>
+        <div class="tags">
+            <span data-bind="text: resx.tags" class="manual-entry-facet-label"></span>
+            <div data-bind="component: {
+                                name: 'datacatalog-browse-attributes',
+                                params: {
+                                    attributesOnAll:tagAttributes,
+                                    placeholderText: resx.addYourTags,
+                                    onAdd: addUserTags.bind($data),
+                                    onRemove: removeUserTag.bind($data),
+                                    showToolTip:false
+                                    }
+                            }"></div>
+        </div>
+    </div>
+</div>

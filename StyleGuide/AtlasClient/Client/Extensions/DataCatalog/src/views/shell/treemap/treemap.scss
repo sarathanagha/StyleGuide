@@ -1,0 +1,138 @@
+﻿@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+#tree-map {
+    left: 0;
+    right: 0;
+    min-height: 400px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+
+    .treemap-label {
+        text-transform: capitalize;
+        font-size: 22px;
+    }
+
+    .tile-container {
+        margin-left:-10px;
+
+        ul {
+            width:100%;
+            height: 350px;
+            list-style:none;
+            margin-left:0px;
+            padding-left: 0px;
+
+            li {
+                display:inline-block;
+                margin:10px;
+                text-align:center;
+                float:left;
+
+                span {
+                    position:relative;
+                    top:50%;
+                    transform:translateY(-50%);
+                    font-size:22px;
+                }
+
+            }
+            .small {
+                width: 225px;
+                height: 70px;
+            }
+
+            .medium {
+                width: 225px;
+                height: 160px;
+            }
+
+            .large {
+                width: 470px;
+                height: 160px;
+            }
+        }
+    }
+
+    .expanded-list {
+        ul {
+            width:100%;
+            margin-left: 0px;
+            padding-left: 10px;
+            padding-top: 10px;
+
+            li {
+                display:inline-block;
+                width:235px;
+                font-size: 14px;
+                text-indent: 35px;
+                padding-bottom: 15px;
+            }
+        }
+    }
+
+    a {
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: capitalize;
+            float:right;
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+    
+    @mixin theme {
+        $lighter-gray: $default-lighter-gray;
+        $body-color-light: $default-body-color-light;
+        $body-color-med: $default-body-color-med;
+        $body-color-dark: $default-body-color-dark;
+        $font-color-med: $default-font-color-med;
+        $font-color-dark: $default-font-color-dark;
+        $body-color-med: $default-body-color-med;
+        $font-color-light: $default-font-color-light;
+        $tile-color-light: $default-block-light;
+        $tile-color-med: $default-block-med;
+        $tile-color-dark: $default-body-color-dark;
+
+        & {
+
+            .treemap-label {
+                color: $font-color-dark;
+            }
+
+            ul {
+
+                li {
+                    color: $font-color-light;
+                }
+                .small {
+                    background-color: $tile-color-dark;
+                }
+
+                .medium {
+                    background-color: $tile-color-med;
+                }
+
+                .large {
+                    background-color: $tile-color-dark;
+                }
+            }
+
+            a {
+                color: $font-color-dark;
+            }
+
+            .expanded-list {
+                li {
+                    border-right: 1px solid $lighter-gray;
+                    color: $font-color-dark;
+
+                    &:nth-child(4n+4) {
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    @include theme;
+}

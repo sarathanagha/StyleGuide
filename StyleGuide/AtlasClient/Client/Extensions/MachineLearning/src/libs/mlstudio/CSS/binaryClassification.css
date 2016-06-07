@@ -1,0 +1,200 @@
+.pageContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.viewModelContainer {
+    padding-right: 50px;
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+}
+
+.sectionContainer {
+    margin: 10px;
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+}
+
+.tabHeaders {
+    height: 20px;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.xAxisContainer {
+    height: 30px; 
+}
+
+.yAxisContainer {
+    width: 30px;
+}
+
+.xAxisLabel {
+    margin-top: -10px;
+    margin-left: -20px;
+}
+
+.yAxisLabel {
+    margin-top: 15px;
+    width:20px; 
+}
+
+.gridLine .tick {
+    stroke: lightgrey;
+    opacity: 0.6;
+}
+.gridLine path {
+    stroke-width: 0;
+}
+
+.diagonalGridLine {
+    stroke: lightgrey;
+    stroke-width: 2;
+    opacity: 0.4;
+}
+
+.vertical-text {
+    -ms-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    white-space:nowrap;
+}
+
+.horz-text {
+    width: 100%;
+}
+
+.chartContainer {
+    width: 100%;
+}
+
+.graphContainer {
+    min-height:1px; 
+    min-width:1px; 
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+    background-color:white;
+}
+
+.chartCurve {
+    fill: none;
+}
+
+.legendContainer {
+    margin-top: 100px;
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+}
+
+.legendInstance {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.legendColor {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.legendLabel {
+    margin-top: 2px;
+}
+
+.legendInstance.selected {
+    background-color: #c7ecfd;
+}
+
+.tab {
+    float: left;
+    margin-left: 10px;
+    opacity: .5;
+    cursor: pointer;
+}
+
+.tab.selected {
+    color:#070707;
+    opacity: 1.0;
+}
+
+.confusionMatrixTable {
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+    height: 100%;
+}
+
+.numeric-box { 
+    padding-right:10px;
+    padding-bottom:10px;
+    width:80px;
+    text-align:right;
+}
+
+.numeric-box.selected {
+    border-color: rgb(7, 7, 7);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.numeric-header {
+    font-size: 12px;
+}
+
+.numeric-field {
+    border: 1px solid black; 
+    border-color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.thresholdBox {
+    width: 100px;
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    -ms-flex: none;
+    -webkit-flex: none;
+}
+
+.thresholdText {
+    width: 100px; 
+    text-align: right;
+}
+
+.buckets-data {
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align:center;
+    margin-bottom: 5px;
+}
+
+.buckets-data td, .buckets-data th {
+    font-size: 14px;
+}
+
+.buckets-data th {
+    padding: 4px 8px 4px 8px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 1px solid #3da0c3;
+}
+
+.buckets-data td {
+    padding: 3px 10px 3px 10px;
+    font-weight: 300;
+}

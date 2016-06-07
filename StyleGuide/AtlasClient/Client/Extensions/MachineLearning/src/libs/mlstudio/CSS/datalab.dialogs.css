@@ -1,0 +1,43 @@
+/* Validation wrappers should be consistent with typical dialog inputs */
+
+.datalab-dialog .datalab-validation-wrapper {
+    width: 343px; /* This width agrees with content + padding + border for input fields in an AzureFX dialog. */
+}
+
+.datalab-dialog .datalab-validation-wrapper input, .datalab-dialog .datalab-validation-wrapper select {
+    width: 100%; /* We want input controls to fill the content area of the wrapper (so the total width is 320px) */
+    margin-bottom: 20px;
+}
+
+.datalab-dialog .datalab-validation-wrapper input[type="file"] {
+    height: auto;
+}
+
+/* Additional control styling */
+
+.datalab-dialog textarea {
+    width: 315px;
+    resize: vertical;
+    display: block;
+    padding: 5px;
+}
+
+.datalab-dialog .dataset-form {
+    height: 80px;
+}
+
+.datalab-dialog .animation-wrapper {
+    transition-property: height;
+    transition-duration: 300ms;
+    overflow: hidden;
+    max-height: 80px;
+    height: 100%;
+}
+
+.datalab-dialog .animation-wrapper.hide {
+    height: 0%;
+}
+
+.datalab-dialog .deprecate-header {
+    margin-bottom: 7px;
+}

@@ -1,0 +1,58 @@
+<tr class="schema-column-editor" data-bind="css: {'row-selected': rowSelected}">
+    <td>
+        <!-- ko if: includeCheckbox -->
+        <input type="checkbox" class="column-editor-select" data-bind="checked: rowSelected, click: onRowSelect" />
+        <!-- /ko -->
+    </td>
+    <td>
+        <div class="schema-input-wrapper column-name">
+            <div data-bind="adc-spinner: {working: isChangingName, success: successUpdatingName}" class="small"></div>
+            <input class="schema-input" data-bind="textInput: columnName,
+                                                                    event: {
+                                                                        keydown: function() { isChangingName(true); return true; },
+                                                                        blur: onUpdateColumn
+                                                                    },
+                                                                    css: {'duplicate-error': duplicateErrorBorder},
+                                                                    attr: {placeholder: resx.columnName}" />
+                <span data-bind="text: resx.duplicateColumnName, visible: duplicateErrorMessage" class="duplicate-error-message"></span>
+            </div>
+    </td>
+    <td>
+        <div class="schema-input-wrapper column-type">
+            <div data-bind="adc-spinner: {working: isChangingType, success: successUpdatingType}" class="small"></div>
+            <input class="schema-input" data-bind="textInput: columnType,
+                                                            event: {
+                                                                keydown: function() { isChangingType(true); return true; },
+                                                                blur: onUpdateColumn
+                                                            },
+                                                            attr: {placeholder: resx.dataType}" />
+        </div>
+    </td>
+    <td class="tags">
+        <!-- ko if: descriptionEnabled -->
+        <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: tags,
+                                            placeholderText: '',
+                                            onAdd: function(tags){ addUserTags(bindableColumn(), tags); },
+                                            onRemove: function(tag){ removeUserTag(bindableColumn(), tag); },
+                                            showTooltip:true
+                                        }
+                                   }" class="tags-control"></div>
+        <!-- /ko -->        
+        <!-- ko ifnot: descriptionEnabled -->
+        <div class="disabled-add-btn" data-bind="text: resx.add" tabindex="0"></div>
+        <!-- /ko -->
+    </td>
+    <td>
+        <div data-bind="adc-spinner: {working: isChangingDescription, success: successUpdatingDescription}"></div>
+        <textarea class="desc" data-bind="textInput: description,
+                                    event: {
+                                            change: function(d, e){ },
+                                            keydown: function(){ if (!duplicateErrorBorder()) {isChangingDescription(true); } return true; },
+                                            blur: onUpdateDescription
+                                        },
+                                        attr: {placeholder: resx.addYourDesc + '...', disabled: !descriptionEnabled() }" spellcheck="false"></textarea>
+    </td>
+</tr>

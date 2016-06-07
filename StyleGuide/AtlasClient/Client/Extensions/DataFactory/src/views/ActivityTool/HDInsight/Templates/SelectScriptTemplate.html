@@ -1,0 +1,24 @@
+<div class="wizardStepSubtitle">
+    Specify the activity's script.
+</div>
+
+<div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded:scriptProperties.scriptInput.visible, iconFirst: true}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Script Input</div>
+    </div>
+    <div class="dataFactory-activityTool-body col">
+        <div><textarea class="dataFactory-activityTool-scriptInput" data-bind="value: scriptProperties.scriptInput.content" rows="10"></textarea></div>
+        <div><input type="file" id="scriptInput" data-bind="event: { change: handleScriptSelection.bind($data, $element.files[0]) }" /></div>
+    </div>
+</div>
+
+<div data-bind="htmlWith: {viewModel: scriptProperties.storageLinkedService, template: storageLinkedServiceTemplate}"></div>
+
+<div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded:scriptProperties.scriptParameters.visible, iconFirst: true}">
+    <div class="dataFactory-activityTool-header row">
+        <div class="dataFactory-activityTool-headerText">Script Parameters</div>
+    </div>
+    <div class="dataFactory-activityTool-body">
+        Coming soon...
+    </div>
+</div>

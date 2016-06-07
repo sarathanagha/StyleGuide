@@ -1,0 +1,95 @@
+﻿
+/* Cortona Analytics Color Guide */
+
+/* Theme colors */
+
+$themePrimaryDarkColor       : #00526D;
+$themePrimaryColor           : #006F94; 
+$themePrimaryLightColor      : #008CBB;
+$themePrimaryLighterColor    : #009BCF;
+$themePrimaryLightestColor   : #33AAD2;
+$themeSecondaryDarkColor     : #202428;
+$themeSecondaryColor         : #2C3137;
+$themeSecondaryLightColor    : #343A41;
+$themeSecondaryLighterColor  : #48525E;
+$themeSecondaryLightestColor : #596574;
+
+/*Netural colors */
+
+$neutralDarkColor             : #171717;
+$neutralPrimaryColor          : #1F1F1F;
+$neutralSecondaryColor        : #2B2B2B;
+$neutralSecondaryColorAlt     : #393939;
+$neutralTertiaryColor         : #767676;
+$neutralTertiaryColorAlt      : #acacac;
+$neutralTertiaryColorAlt2     : #cccccc;
+
+/* Message colors */
+
+$alertColor        : #FFB900;
+$warningColor      : #E81123;
+$successColor      : #7FBA00;
+$infoColor         : #596574;
+$infoColorlighter  : #BDC1C7;
+
+/* Netural colors */
+
+$darkCloud          : #B5B7B9;
+$cloud              : #D3D3D4;
+$neutralLight       : #E6E6E6;
+$neutralLighter     : #F2F2F2;
+$white              : #FFFFFF;
+
+/* Legacy Colors- START */
+/* WARNING: Do not add further dependencies on these colors  */
+
+/* Primary colors */
+
+$atlasDarkTeal   : #008272;
+$atlasTeal       : #00B294;
+$canvas          : #E6E6E6;
+$charcoal        : #343a41;
+$cloud           : #D3D3D4;
+$darkCharcoal    : #2C3137;
+$darkOrange      : #CA5010;
+$darkSlate       : #48525E;
+$darkWaveBlue    : #00526d;
+$lightCanvas     : #F2F2F2;
+$primaryOrange   : #F7630C;
+$slate           : #55606E;
+$waveBlue        : #006F94;
+$waveBlueLight   : #008cbb;
+$waveBlueLighter : #009bcf;
+$white           : #FFF;
+
+/* Iconography, status, and selection colors*/
+
+$blue          : #00BCF2;
+$darkBlue      : #0099BC;
+$darkGreen     : #498205;
+$darkRed       : #A4262C;
+$darkYellow    : #D48C00;
+$green         : #6BB700;
+$red           : #D13438;
+$yellow        : #EAA300;
+
+/* Text only colors*/
+
+$gray          : #808387;
+$grayDark      : #585A5F;
+$grayDarkest   : $darkCharcoal; // Same as dark charcoal
+$grayLight     : #ABADAF;
+$grayLightest  : #D5D6D7;
+
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+
+$atlasDarkTealHover  : #005E50;
+$atlasDarkTealActive : #004B40;
+$grayDarkestActive   : #9C9DA0;
+
+/* Legacy colors - END */
+
+
+
+
+

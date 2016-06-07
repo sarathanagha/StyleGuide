@@ -1,0 +1,62 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+.browse-batchmanagement .authorization-box {
+  padding: 10px; }
+  .browse-batchmanagement .authorization-box .take-ownership {
+    display: inline-block;
+    color: white;
+    padding: 3px 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    height: 28px;
+    line-height: 20px; }
+  .browse-batchmanagement .authorization-box .owners-control {
+    margin-top: 5px;
+    margin-bottom: 10px; }
+  .browse-batchmanagement .authorization-box .validation-error {
+    font-size: 12px;
+    font-style: italic;
+    display: block;
+    padding-top: 5px; }
+    .browse-batchmanagement .authorization-box .validation-error a {
+      text-decoration: underline; }
+
+.browse-batchmanagement .visibility-toggle {
+  text-transform: capitalize;
+  display: table;
+  width: 100%;
+  margin-bottom: 5px; }
+  .browse-batchmanagement .visibility-toggle div {
+    display: table-cell;
+    text-align: center;
+    cursor: pointer;
+    padding: 3px 0; }
+    .browse-batchmanagement .visibility-toggle div:first-child {
+      padding: 3px 10px; }
+
+.browse-batchmanagement .authorization-box {
+  background-color: #EFF0F0; }
+  .browse-batchmanagement .authorization-box .take-ownership {
+    background-color: #006F94; }
+  .browse-batchmanagement .authorization-box .validation-error {
+    color: #E02D71 !important; }
+    .browse-batchmanagement .authorization-box .validation-error a {
+      color: #E02D71; }
+
+.browse-batchmanagement .visibility-toggle {
+  border: 1px solid #26357F; }
+  .browse-batchmanagement .visibility-toggle div.selected {
+    color: #FFF;
+    background-color: #26357F; }
+
+/*# sourceMappingURL=batchmanagement.css.map */

@@ -1,0 +1,98 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#manual-entry {
+  font-size: 12px; }
+  #manual-entry .scrollable-content {
+    padding-right: 30px;
+    max-height: 600px;
+    overflow: auto; }
+    #manual-entry .scrollable-content > div {
+      margin-top: 20px; }
+      #manual-entry .scrollable-content > div .manual-entry-label {
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: bold;
+        width: 100%; }
+      #manual-entry .scrollable-content > div .manual-entry-facet-label {
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: bold; }
+      #manual-entry .scrollable-content > div input.manual-entry-input {
+        width: 100%;
+        padding: 5px;
+        font-size: 12px;
+        padding-left: 10px;
+        margin-top: 10px; }
+      #manual-entry .scrollable-content > div textarea {
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        font-size: 12px;
+        margin-top: 10px; }
+    #manual-entry .scrollable-content .manual-entry-single-option {
+      width: 100%;
+      margin-top: 10px;
+      text-transform: capitalize;
+      float: left;
+      height: 22px;
+      text-indent: 5px;
+      margin-bottom: 10px; }
+    #manual-entry .scrollable-content .manual-entry-select {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 10px; }
+      #manual-entry .scrollable-content .manual-entry-select option {
+        text-transform: capitalize; }
+    #manual-entry .scrollable-content .connection-info-fields {
+      padding: 10px; }
+      #manual-entry .scrollable-content .connection-info-fields span:after {
+        content: ""; }
+    #manual-entry .scrollable-content .error-message {
+      width: 100%;
+      font-size: 14px;
+      padding: 2px; }
+    #manual-entry .scrollable-content .required-label {
+      padding-left: 5px;
+      text-transform: lowercase;
+      font-style: italic;
+      font-size: 12px; }
+    #manual-entry .scrollable-content .with-required {
+      float: left; }
+  #manual-entry .scrollable-content > div input.manual-entry-input {
+    border: 1px solid #BEC2C9;
+    background-color: #E1E3E5; }
+    #manual-entry .scrollable-content > div input.manual-entry-input:focus {
+      background-color: #FFFFFF; }
+  #manual-entry .scrollable-content > div textarea {
+    border: 1px solid #BEC2C9;
+    background-color: #E1E3E5; }
+    #manual-entry .scrollable-content > div textarea:focus {
+      background-color: #FFFFFF; }
+  #manual-entry .scrollable-content .manual-entry-single-option {
+    background-color: #EFF0F0;
+    border: 1px solid #BEC2C9;
+    color: #8A96A2; }
+  #manual-entry .scrollable-content .manual-entry-select {
+    background-color: #EFF0F0; }
+  #manual-entry .scrollable-content .connection-info-fields {
+    background-color: #EFF0F0; }
+  #manual-entry .scrollable-content .error-message {
+    color: #E02D71; }
+  #manual-entry .scrollable-content .required {
+    border: 1px solid #E02D71 !important;
+    background-color: #FFFFFF !important; }
+  #manual-entry .scrollable-content .required-label {
+    color: #2BA9E1; }
+
+/*# sourceMappingURL=manualentry.css.map */

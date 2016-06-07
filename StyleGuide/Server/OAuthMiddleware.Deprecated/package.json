@@ -1,0 +1,8 @@
+{
+  "name": "@ms-atlas/datastudio-server-oauthmiddleware",
+  "version": "0.1.9",
+  "description": "Azure Data Studio OAuth Middleware.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {}
+}

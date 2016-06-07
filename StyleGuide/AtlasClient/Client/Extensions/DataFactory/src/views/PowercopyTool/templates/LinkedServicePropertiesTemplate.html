@@ -1,0 +1,16 @@
+﻿<div class="wizardStepTitle" style="margin-bottom: 20px">
+    Linked Service Properties
+</div>
+<!-- ko foreach: existingLinkedServiceProperties.enhancedLinkedService().propertyBag -->
+<div class="summaryLineContainer">
+    <div class="summaryPropertyKey" data-bind="text:displayText"></div>
+    <div class="summaryPropertyValue" data-bind="text:value"></div>
+</div>
+<!-- /ko -->
+<!-- ko if: existingLinkedServiceProperties.isStorageDataType()  -->
+<div class="MSBFontSectionTitle">
+    Select Azure storage service that you want to connect to
+</div>
+
+<div data-bind="component: {name:'datafactory-validatedselectbox', params: {vm: existingLinkedServiceProperties.storageServiceSelection}}"></div>
+<!-- /ko -->

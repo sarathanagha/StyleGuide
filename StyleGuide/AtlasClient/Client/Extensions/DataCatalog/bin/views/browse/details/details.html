@@ -1,0 +1,24 @@
+﻿<div id="browse-details">
+    <ul class="details-tabs">
+        <li data-bind="if: selected() && selected().hasPreviewLink()">
+            <a data-target="#" data-bind="text: resx.preview, click: function(data, event){ updateDetails('datacatalog-browse-preview', data, event); }, css: { active: detailsManager.isShowingPreview}"></a>
+        </li>
+        <li data-bind="if: selected() && selected().hasSchema">
+            <a data-target="#" data-bind="text: resx.schema, click: function(data, event){ updateDetails('datacatalog-browse-schema', data, event); }, css: { active: detailsManager.isShowingSchema}"></a>
+        </li>
+        <li data-bind="if: (selected() && selected().hasDataProfile())">
+            <a data-target="#" data-bind="text: resx.dataProfile, click: function(data, event){ updateDetails('datacatalog-browse-dataprofile', data, event); }, css: { active: detailsManager.isShowingDataProfile}"></a>
+        </li>
+        <li data-bind="if: (selected() && selected().hasDocumentation())">
+            <a data-target="#" data-bind="text: resx.documentation, click: function(data, event){ updateDetails('datacatalog-browse-documentation', data, event); }, css: { active: detailsManager.isShowingDocs}"></a>
+        </li>
+    </ul>
+    <!-- ko if: activeComponent() -->
+    <div data-bind="component: { name: activeComponent, params: {} }" class="details-content"></div>
+    <!-- /ko -->
+</div>
+
+<div id="browse-details-empty" data-bind="if: !multiSelected().length">
+    <span data-bind="text: resx.selectForDetails"></span>
+    <img src="../../../../images/indicators/arrows_2.png" alt="" />
+</div>

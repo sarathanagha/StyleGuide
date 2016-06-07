@@ -1,0 +1,10 @@
+<div class="wizardStepTitle" data-bind="text: newConnectionTitle">
+</div>
+<div class="wizardStepSubtitle"></div>
+
+<div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: newLinkedServiceName} }"></div>
+
+<!-- ko foreach: formFields-->
+
+%%CONNECTIONFORM%%
+<!-- /ko -->

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2013-06-02T00:00:00.000Z" >
+  <Events>
+    <IisLogSubscriptions>
+      <Subscription eventName="IisLogs"
+                    storeType="CentralBond"
+                    filter=".*" />
+    </IisLogSubscriptions>
+  </Events>
+</MonitoringManagement>

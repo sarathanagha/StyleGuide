@@ -1,0 +1,18 @@
+﻿<div class="applicationHeader">
+    <!-- Logo and Workspaces -->
+    <div class="menuComponent" data-bind='component: {name: "Menu", params: menu}'></div>
+    <div class="headerCenter"></div>
+
+    <!-- User -->
+    <div class="headerItem ">
+        <a href="#" data-bind="dropdown: 'headerUserMenu'">
+            <img id="idUserIcon" class="userIcon" src="/content/images/profile_white.svg">
+        </a>
+
+        <ul id="headerUserMenu" class="headerDropDown userSignOut">
+            <li>
+                <a href="#" id="idSignOutButton" class="click-close" onclick="Microsoft.DataStudio.Managers.AuthenticationManager.instance.logout()" data-bind="text: resx.signOut"></a>
+            </li>
+        </ul>
+    </div>
+</div>

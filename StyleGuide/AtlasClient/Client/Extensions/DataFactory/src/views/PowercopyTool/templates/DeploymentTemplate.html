@@ -1,0 +1,36 @@
+﻿<!-- ko with: deployer -->
+<div class="wizardStepTitle" data-bind="text:deploymentStatusMessage"></div>
+<!-- /ko -->
+
+<!-- ko with: copySummaryViewModel -->
+%%PICTURE_TEMPLATE%%
+<!-- /ko -->
+
+<!-- ko with: deployer -->
+<div class="wizardStepSubtitle">
+</div>
+<!-- ko foreach: entityGroups -->
+<div>
+    <div style="overflow:hidden">
+        <div class="expander small" data-bind="css:{expanded:expanded},event:{click:$parent.toggleExpanded}"></div>
+        <div class="statusHeaderText" data-bind="text:displayName"></div>
+        <div style="float:left" data-bind="attr:{class:statusClass}"></div>
+    </div>
+    <!-- ko if: expanded -->
+    <!-- ko foreach: entities -->
+    <div style="overflow:hidden">
+        <div class="individualStatus" data-bind="text:name"></div>
+        <div style="float:left" data-bind="attr:{class:statusClass,title:statusMessage}"></div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+
+<div data-bind="text: deploymentError" style="margin-bottom: 20px">
+</div>
+<!-- /ko -->
+
+<a data-bind="event:{click:gotoMonitoring},visible:deployer.deploymentDone" style="color:blue">
+    Click here to monitor copy pipeline
+</a>

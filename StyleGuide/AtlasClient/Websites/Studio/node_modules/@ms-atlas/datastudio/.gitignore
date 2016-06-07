@@ -1,0 +1,20 @@
+# Bower
+bower_modules/
+bin/
+
+*.asax
+
+# Scripts ignores
+
+*.d.ts
+*.js
+*.js.map
+/scripts/typings
+!/scripts/libs/*.js
+
+/stylesheets/**/*.css
+/stylesheets/**/*.css.map
+
+/uxshell/**/*.css
+/uxshell/**/*.js
+/uxshell/**/*.map

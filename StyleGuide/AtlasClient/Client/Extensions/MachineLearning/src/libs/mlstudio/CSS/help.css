@@ -1,0 +1,131 @@
+.helpSearch{
+    position: absolute;
+}
+
+.helpIcon {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.helpIcon:before {
+    content: url("../Images/icon-drawer-help.png");
+}
+
+.helpIconNoSearch {
+    right: 40px;
+}
+
+.helpIconWithSearch {
+    right: 200px;
+}
+
+#searchBox{
+    position: absolute;
+    top: 17px;
+    bottom: 20px;
+    right: 20px;
+    height: 20px;
+    padding-left: 2px;
+    padding-right: 22px;
+    width: 140px;
+}
+
+#helpLoader{
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    right: 26px;
+}
+
+#helpLoader:before {
+    content: url("/Content/Images/ajax-loader.gif");
+}
+
+#helpSearchResults {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: #3C454F;
+    width: 300px;
+    padding-bottom: 2px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+
+#contextualHelpResults {
+    position: absolute;
+    bottom: 48px;
+    right: 36px;
+    background-color: #E5E5E5;
+    color: black;
+    width: 200px;
+    padding-bottom: 2px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+#contextualHelpResults ul{
+    list-style: none;
+}
+
+#contextualHelpResults li{
+     padding-left: 6px;
+     padding: 4px;
+}
+
+#contextualHelpResults li:hover{
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
+.helpResultsTitle{
+    cursor: default;
+    padding: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+#helpResultsDivider{
+    border-top: 1px solid #94979A;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+#helpResultsDownArrow{
+    position:absolute;
+    right: 0px;
+    padding: 4px;
+    top: 0px;
+    cursor: pointer;
+}
+
+#helpResultsDownArrow:before {    
+    content: url("/Content/Images/fxs.headerbar.chevron-down.png");
+}
+
+#semanticSynonymsQueryResults {
+    list-style: none;
+}
+
+#helpSearchQueryResults {
+    list-style: none;
+}
+
+#helpSearchResults li{    
+    padding-left: 6px;
+    padding: 4px;
+    float: none;
+}
+
+#helpSearchResults li:hover{
+    cursor: pointer;
+    background-color: #8A8F95;
+}

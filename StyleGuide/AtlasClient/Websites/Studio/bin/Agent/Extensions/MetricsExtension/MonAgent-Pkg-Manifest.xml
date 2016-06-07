@@ -1,0 +1,5 @@
+<AgentPackageManifestConfig>
+   <PackageType>Extension</PackageType>
+   <ExtensionName>MetricsExtension</ExtensionName>
+   <Version>01.15.0000</Version>
+</AgentPackageManifestConfig>

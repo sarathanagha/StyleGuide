@@ -1,0 +1,13 @@
+﻿<div class="pivotContainer col">
+    <div class="pivotHeaderContainer row">
+        <!-- ko foreach: displayPivotItems -->
+        <div class="pivotHeader" data-bind="titleText: header, event: {click: handlePivotItemSelection.bind($data)}, css: {selected: selected}"></div>
+        <!-- /ko -->
+    </div>
+
+    <div class="pivotContentContainer">
+        <!-- ko foreach: displayPivotItems -->
+        <div data-bind="htmlWith: { template: template, viewModel: viewModel }, visible: selected"></div>
+        <!-- /ko -->
+    </div>
+</div>

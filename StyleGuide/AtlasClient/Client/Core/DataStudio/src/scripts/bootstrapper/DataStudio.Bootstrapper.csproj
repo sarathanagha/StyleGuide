@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{BAC310AD-1329-4EF7-9FB3-0F5544AE5CF0}</ProjectGuid>
+    <TypeScriptOutFile>..\..\datastudio.bootstrapper.js</TypeScriptOutFile>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\application\shared\DataStudio.Application.Shared.csproj">
+      <Project>{48793D08-0888-49CC-8C05-AB91BC691BE7}</Project>
+      <Name>DataStudio.Application.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\application\mainpage\DataStudio.Application.Mainpage.csproj">
+      <Project>{C1A1B0C2-AE4B-49BC-9415-1EEAC0B6F5A6}</Project>
+      <Name>DataStudio.Application.Mainpage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="bootstrapper.ts" />
+    <TypeScriptCompile Include="ModuleCatalogImpl.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

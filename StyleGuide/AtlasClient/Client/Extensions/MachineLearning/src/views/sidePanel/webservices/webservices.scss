@@ -1,0 +1,18 @@
+webservicessSidePanel {
+    .header {
+        font-size: 10pt;
+        text-transform: uppercase;
+    }
+
+    >.row {
+        margin-bottom: 20px;
+    }
+
+    .treeViewName {
+        font-weight: bold;
+    }
+
+    .treeViewSwitchElement {
+        width: 1em;
+    }
+}

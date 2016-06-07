@@ -1,0 +1,63 @@
+﻿{
+    "Id": "HiveActivity",
+    "Name": "Hive Activity",
+    "Description": "ADF Hive Activity",
+    "FamilyId": "1",
+    "Category": "ADF",
+    "Items": null,
+    "Parameters": [
+        {
+            "ParameterName": "Name",
+            "ParameterValue": "NameValue",
+            "IsOptional": false,
+            "ParameterType": 0,
+            "ParameterRules": null,
+            "HasDefaultValue": false,
+            "DefaultValue": "",
+            "ScriptName": "",
+            "Description": "Activity name",
+            "FriendlyName": "Activity Name"
+        },
+        {
+            "ParameterName": "Description",
+            "IsOptional": true,
+            "ParameterType": 0,
+            "ParameterRules": null,
+            "HasDefaultValue": false,
+            "DefaultValue": "",
+            "ScriptName": "",
+            "Description": "Activity Description",
+            "FriendlyName": "Activity Description",
+            "Parameters": [
+                {
+                    "ParameterName": "Timeout",
+                    "IsOptional": false,
+                    "ParameterType": 0,
+                    "ParameterRules": {
+                        "Pattern": "((\\d+)\\.)?(\\d\\d):(60|([0-5][0-9])):(60|([0-5][0-9]))"
+                    },
+                    "HasDefaultValue": false,
+                    "DefaultValue": "",
+                    "ScriptName": "",
+                    "Description": "LinkedService name where the Activity Runs.",
+                    "FriendlyName": "LinkedServiceName",
+                        "Parameters": [
+                            {
+                                "ParameterName": "ChildOfTimeOut",
+                                "IsOptional": false,
+                                "ParameterType": 0,
+                                "ParameterRules": {
+                                    "Pattern": "((\\d+)\\.)?(\\d\\d):(60|([0-5][0-9])):(60|([0-5][0-9]))"
+                                },
+                                "HasDefaultValue": false,
+                                "DefaultValue": "",
+                                "ScriptName": "",
+                                "Description": "LinkedService name where the Activity Runs.",
+                                "FriendlyName": "LinkedServiceName"
+                            }
+                        ]
+                }
+            ]
+        }
+    ]
+}

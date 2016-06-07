@@ -1,0 +1,261 @@
+﻿@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$header-height: 40px; // temp place holder
+$user-info-height: 205px;
+$header-z-index: 10;
+$user-info-z-index: $header-z-index - 1;
+$upgrade-notice-z-index: $user-info-z-index - 1;
+$upgrade-notice-height: 40px;
+
+div#app {
+    header#edd-header {
+        position: absolute;
+	    top:0;
+	    left: 0;
+        right: 0;
+	    height: $header-height;
+        font-size: 17px;
+        padding: 0 30px;
+        font-family: 'Segoe UI Light','Segoe UI', sans-serif;
+        z-index: $header-z-index;
+
+        #title {
+            font-size: 24px;
+            line-height: 60px;
+            text-transform: capitalize;
+            cursor: default;
+        }
+    }
+
+    div#user-info {
+        position: absolute;
+        right: 15px;
+        top: -($user-info-height - $header-height);
+        height: $user-info-height;
+        width: 175px;
+        z-index: $user-info-z-index;
+        @include transition(top .15s ease-out);
+        cursor: default;
+        font-size: 11px;
+
+        > div {
+            padding: 5px 10px 0 10px;
+            overflow: hidden;
+            @include text-overflow(ellipsis);
+            white-space: nowrap;
+
+            &:first-child {
+                padding-top: 15px;
+            }
+        }
+
+        .user-label {
+            text-transform: capitalize;
+        }
+
+        .user-spacer {
+            margin: 12px 10px;
+            padding: 1px 0 0 0;
+
+            + div {
+                padding-top: 0;
+            }
+        }
+
+        .clear-search-history {
+            position: relative;
+            cursor: pointer;
+
+            &.isWorking {
+                padding-right: 40px;
+            }
+
+            .tokyo-spinner {
+                position: absolute;
+                top: 0;
+                right: 10px;
+            }
+        }
+
+        .sign-out {
+            cursor: pointer;
+        }
+
+        &.show {
+            top: $header-height;
+        }
+    }
+
+    nav#main-navigation {
+	    position: absolute;
+	    top: 0;
+	    right: 15px;
+	    height: $header-height;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: inline-block;
+                font-size: 12px;
+
+                a {
+                    display: inline-block;
+                    min-width: $header-height;
+                    height: $header-height;
+                    text-align: center;
+                    text-decoration: none;
+                    padding: 0 15px;
+                    outline: 0;
+
+                    img {
+                        margin-top: 15px;
+                }
+
+                    div {
+                        margin-top: 8px;
+                        text-transform: capitalize;
+                        font-size: 10px;
+                    }
+                }
+
+                &.disabled a {
+                    @include opacity(.5);
+                    cursor: default;
+                }
+
+                &.non-navigation a {
+                    border-top: 3px solid transparent !important;
+                }
+            }
+        }
+    }
+
+    #upgrade-notice {
+        z-index: $upgrade-notice-z-index;
+        position: absolute;
+        top: $header-height - $upgrade-notice-height;
+        @include transition(top .15s ease-out);
+        left: 0;
+        right: 0;
+        height: $upgrade-notice-height;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 18px;
+
+        > span {
+            position: absolute;
+            left: 10px;
+            right: 40px;
+            overflow: hidden;
+            @include text-overflow(ellipsis);
+            white-space: nowrap;
+        }
+
+        #upgrade-notice-action {
+            text-transform: capitalize;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #upgrade-notice-close {
+            float: right;
+            cursor: pointer;
+        }
+    }
+
+    .app-content {
+        @include absolute($header-height, 0, $footer-height, 0);
+        @include transition(top .15s ease-out);
+    }
+
+    &.upgrade-available {
+        #upgrade-notice {
+            top: $header-height;
+        }
+
+        .app-content {
+            @include absolute($header-height + $upgrade-notice-height, 0, $footer-height, 0);
+        }
+    }
+
+    // Define theme mixin for various colors
+    @mixin theme {
+        $font-color-light: $default-font-color-light;
+        $header-color: $default-header-color;
+        $brand-color: $default-brand-color;
+        $navigation-text-color: $default-navigation-text-color;
+        $navigation-selected-color: $default-navigation-selected-color;
+        $block-med: $default-block-med;
+        $body-color-med: $default-body-color-med;
+
+        //scope these colors to this theme
+        & {
+
+            header#edd-header {
+                color: $font-color-light;
+	            background-color: $header-color;
+                #title {
+                    span#brand {
+                        color: $font-color-light;
+                    }
+                }
+            }
+
+            nav#main-navigation {
+	            color: $navigation-text-color;
+                ul {
+                    li {
+                        a {
+                            color: $navigation-text-color;
+                            &:hover {
+                                background-color: $navigation-selected-color;
+                                border-top: 3px solid $navigation-selected-color;
+                            }
+                        }
+
+                        &.selected {
+                            a {
+                                border-top: 3px solid $navigation-text-color;
+                                background-color: $navigation-selected-color;
+                            }
+                            a:hover {
+                                border-top: 3px solid $navigation-text-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #upgrade-notice {
+                background-color: $block-med;
+                color: $font-color-light;
+            }
+
+            .app-content {
+                &.loading {
+                    background-color: $body-color-med;
+                }
+            }
+
+            div#user-info {
+                color:$navigation-text-color;
+                background-color: $navigation-selected-color;
+
+                .user-spacer {
+                    background-color: $navigation-text-color;
+                }
+            }
+        }
+    }
+
+    @include theme;
+
+    //use themes
+    //.theme();
+    //.theme(grayscale);
+    
+}

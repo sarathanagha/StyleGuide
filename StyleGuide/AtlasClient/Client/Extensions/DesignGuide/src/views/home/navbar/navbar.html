@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="sideDiv1" id="Sidemenu">
+            <div class="waveBlueDark deskwave">
+                <span>Cortana Analytics Studio</span>
+                <h4>Style Guide</h4>
+
+            </div>
+
+            <span class="glyphicon glyphicon-remove" id="closeMenu"></span>
+           
+            <ul id="nav" class="nav" data-bind="foreach:views,css:{'scrollbarnav':heightnav}">
+                <li class="MainList" data-bind="event:{click:$parent.enabledetails},css: { 'active': $data.name == $parent.currentTab() }">
+                    <a data-bind="text:$data.name, attr:{href:'#' + $data.name}"></a>
+                  
+                    <ul class="nav sub-menu closed" data-bind="css: {'slider':$data.name == $parent.currentTab() && $data.visible()},stopBubble: true">
+                        <!-- ko foreach: children -->
+                        <li class="subNav" data-bind="event:{click:$parents[1].enableChildView($data.name,$index)},css: { 'active': $data.name == $parents[1].currentSubTab()}">
+                            <a data-bind="text:$data.name, attr:{href:'#' + $data.name}">
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </li>
+            </ul>
+            
+        </div>
+
+       
+
+    </div>
+</div>

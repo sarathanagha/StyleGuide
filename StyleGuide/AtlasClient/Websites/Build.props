@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  
+  <Import Project="$(MSBuildThisFileDirectory)\..\Build.props" />
+  
+  <PropertyGroup>
+    <IndexHtmlFile>$(MSBuildThisFileDirectory)\Shared\index.html</IndexHtmlFile>
+    <AccessTokenHtmlFile>$(MSBuildThisFileDirectory)\Shared\accessToken.html</AccessTokenHtmlFile>
+    <BootstrapperFile>$(MSBuildThisFileDirectory)\Shared\datastudio.root.bootstrapper.js</BootstrapperFile>
+  </PropertyGroup>
+
+  <Target Name="SetupWebroot" AfterTargets="Build">
+    <Exec Command="&quot;$(AtlasClientWebsitesRoot)\Shared\SetupWebroot.bat&quot; &quot;$(ConfigName)&quot; &quot;$(OutDir)..\DataStudio.UxService\&quot; &quot;$(MSBuildProjectDirectory)&quot;" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="SetupWebroot.bat exit code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="SetupWebroot.bat failed, please see above output!" />
+  </Target>
+
+  <Target Name="GulpBuildTasks" AfterTargets="SetupWebroot" Inputs="$(IndexHtmlFile);$(AccessTokenHtmlFile);$(BootstrapperFile)" Outputs="$(MSBuildProjectDirectory)\index.html;$(MSBuildProjectDirectory)\accessToken.html;$(MSBuildProjectDirectory)\datastudio.root.bootstrapper.js">
+    <PropertyGroup>
+      <GulpBuildCommand>$(GulpCmd) --gulpfile "$(MSBuildProjectDirectory)\gulpfile-msbuild.js" buildConfig --config=$(ConfigName) --versionFull=$(VersionFull)</GulpBuildCommand>
+    </PropertyGroup>
+    <Message Text="Executing the gulp for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed!" />
+  </Target>
+
+  <Target Name="CopyWebsiteToOutput" AfterTargets="GulpBuildTasks" Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+    <ItemGroup>
+      <SourcePayload Include="$(MSBuildProjectDirectory)\**\*.*" Exclude="$(MSBuildProjectDirectory)\config\*.*;$(MSBuildProjectDirectory)\gulpfile*.js;$(MSBuildProjectDirectory)\*.bat;$(MSBuildProjectDirectory)\*.csproj*;$(MSBuildProjectDirectory)\*build.log" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourcePayload)" DestinationFolder="$(OutDir)..\AtlasMain\src\$(ConfigName)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+  <!--If you want to minify you should run msbuild /p:Minify=true-->
+  <Target Name="MinifyWebsite" AfterTargets="CopyWebsiteToOutput" Condition="'$(Minify)'=='true' AND '$(ConfigName)' != ''">
+    <ItemGroup>
+      <SourcePayloadMin Include="$(OutDir)..\AtlasMain\src\$(ConfigName)\**\*.*" />
+    </ItemGroup>
+    <PropertyGroup>
+      <GulpMinifyCommand>$(GulpCmd) --gulpfile "$(MSBuildProjectDirectory)\gulpfile-msbuild.js" minify --config=$(ConfigName) --output=$(OutDir)</GulpMinifyCommand>
+    </PropertyGroup>
+    <Copy SourceFiles="@(SourcePayloadMin)" DestinationFolder="$(OutDir)..\AtlasMain\bin\$(ConfigName)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Message Text="Executing the gulp-minify for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpMinifyCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp minification failed!" />
+  </Target>
+
+  <Target Name="DeleteWebsiteSoftlinks" AfterTargets="AfterClean">
+    <Exec Command="&quot;$(AtlasClientWebsitesRoot)\Shared\DeleteWebsiteSoftlinks.bat&quot;" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="DeleteWebsiteSoftlinks.bat exit code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="DeleteWebsiteSoftlinks.bat failed, please see above output!" />
+  </Target>
+
+  <Target Name="CleanWebsiteRoot" AfterTargets="DeleteWebsiteSoftlinks">
+    <ItemGroup>
+      <BuildGeneratedFiles Include="$(MSBuildProjectDirectory)\*.*" Exclude="$(MSBuildProjectDirectory)\*.config;$(MSBuildProjectDirectory)\*.csproj*" />
+    </ItemGroup>
+    <Message Text="Removing outputs at: $(MSBuildProjectDirectory)" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\bin;$(MSBuildProjectDirectory)\node_modules" ContinueOnError="false" />
+    <Delete Files="@(BuildGeneratedFiles)" />
+  </Target>
+</Project>

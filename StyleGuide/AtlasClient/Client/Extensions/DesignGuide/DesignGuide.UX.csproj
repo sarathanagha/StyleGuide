@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{D1C20558-F96A-4F57-BC4B-BE8890FDAAED}</ProjectGuid>
+    <TypeScriptOutDir>bin\views\home</TypeScriptOutDir>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="src\startup\DesignGuide.Bootstrapper.csproj">
+      <Project>{7D6702AA-9404-4F0F-BFA5-F19470FBE781}</Project>
+      <Name>DesignGuide.Bootstrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\views\home\about\about.ts" />
+    <TypeScriptCompile Include="src\views\home\component\component.ts" />
+    <TypeScriptCompile Include="src\views\home\design\design.ts" />
+    <TypeScriptCompile Include="src\views\home\home\home.ts" />
+    <TypeScriptCompile Include="src\views\home\home\navmodel.ts" />
+    <TypeScriptCompile Include="src\views\home\home\scrollSpy.ts" />
+    <TypeScriptCompile Include="src\views\home\layout\layout.ts" />
+    <TypeScriptCompile Include="src\views\home\navbar\navbar.ts" />
+    <TypeScriptCompile Include="src\views\home\navigation\navigation.ts" />
+    <TypeScriptCompile Include="src\views\home\patterns\patterns.ts" />
+    <TypeScriptCompile Include="src\views\home\resource\resource.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+  <ItemGroup>
+    <HTMLFiles Include="src\**\*.html" />
+    <SASSFilesToBuild Include="src\**\*.scss" Exclude="src\**\_*.scss" />
+    <SASSFilesNotToBuild Include="src\scripts\style\iconstyle\css\_sprite.scss" />
+    <SASSFilesNotToBuild Include="src\views\home\design\css\_sprite.scss" />
+    <ImageFiles Include="src\**\*.png;src\**\*.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gulpfile-msbuild.js" />
+  </ItemGroup>
+  <Target Name="GulpBuildTasks" AfterTargets="Build" Inputs="src\%(SASSFilesToBuild.RecursiveDir)%(SASSFilesToBuild.FileName).scss" Outputs="bin\%(SASSFilesToBuild.RecursiveDir)%(SASSFilesToBuild.FileName).css">
+    <PropertyGroup>
+      <GulpBuildCommand>$(GulpCmd) --gulpfile gulpfile-msbuild.js build-sass</GulpBuildCommand>
+    </PropertyGroup>
+    <Message Text="Executing gulp tasks for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed!" />
+  </Target>
+  <Target Name="GulpSpriteTasks" AfterTargets="Build">
+    <PropertyGroup>
+      <GulpBuildCommand>$(GulpCmd) --gulpfile gulpfile-msbuild.js build-sprite</GulpBuildCommand>
+    </PropertyGroup>
+    <Message Text="Executing gulp tasks for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed!" />
+  </Target>
+  <Target Name="CopyStaticFiles" AfterTargets="GulpBuildTasks">
+    <Copy SourceFiles="@(HTMLFiles)" DestinationFolder="bin\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ImageFiles)" DestinationFolder="bin\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="src\package.json" DestinationFolder="bin" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AfterClean">
+    <RemoveDir Directories="bin" />
+  </Target>
+</Project>

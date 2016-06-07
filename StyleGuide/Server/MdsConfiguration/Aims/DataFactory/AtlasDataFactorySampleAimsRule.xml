@@ -1,0 +1,61 @@
+<Configuration>
+    <OutputExtensions>
+      <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+        <Setting Name="tenant" Value="AzureDataFactory"/>
+      </OutputExtension>
+    </OutputExtensions>
+
+    <GlobalDefinitions>
+    <![CDATA[
+        let ConfigOwnerAlias = "rskumar@microsoft.com"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+    ]]>
+    </GlobalDefinitions>
+
+  <Rule id="TestWarningIncident" windowSize="PT15M" windowHopSize="PT5M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasTraceLog.*", 0)
+          where TaskName == "LogWarning" and moduleName == "DataFactory"
+          groupby SourceTableName, Tenant, Role, RoleInstance
+        let EventName = "TestWarning"
+        let Title = "Test alert - warnings in $(SourceTableName)\$(RoleInstance)"
+        let Description = "Check warnings in table - $(SourceTableName)"
+
+        let IcmAlertSeverity = AlertSeverity3
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = "$(ServiceNameAbbr)_$(EventName)"
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+
+  <Rule id="TestErrorIncident" windowSize="PT15M" windowHopSize="PT5M" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from ExpandTableName("AtlasTraceLog.*", 0)
+          where TaskName == "LogError" and moduleName == "DataFactory"
+          groupby SourceTableName, Tenant, Role, RoleInstance
+        let EventName = "TestError"
+        let Title = "Test alert - errors in $(SourceTableName)\$(RoleInstance)"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+
+        let IcmAlertSeverity = AlertSeverity2
+        let IcmRoutingId = "ATLAS_DATA_STUDIO_$(IcmEnvironment)_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = "$(ServiceNameAbbr)_$(EventName)"
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+    </Rule>
+</Configuration>

@@ -1,0 +1,61 @@
+$cloud: #D3D3D4;
+$grayDark: #585A5F;
+$grayLight: #ABADAF;
+$menuBorderColor: #C3C3C3;
+$slate: #55606E;
+$white: #FFF;
+
+#datastudio-ux-contextual-menu 
+{
+    border-top: 1px solid $menuBorderColor;
+    display:block;
+    overflow: hidden;
+    position:absolute;
+    z-index: 10;
+
+    .contents 
+    {
+        background-color: #fff;
+        background-color: $white;
+        border: 1px solid $menuBorderColor;
+        border-top: none;
+        color: $grayDark;
+        display:block;
+        left:0px;
+        overflow: hidden;
+        padding: 4px 0px;
+        position:relative;
+        top: -4000px;
+        width: 180px;
+
+        a 
+        {
+            color: $grayDark;
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            padding: 0px 12px;
+            text-decoration: none;
+            width: calc(100% - 24px);
+
+            &:hover, &:focus 
+            {
+                background-color: $cloud;
+                color: $grayDark;
+            }
+
+            &.selected 
+            {
+                background-color: $slate;
+                color: $white;
+            }
+
+            &.disabled 
+            {
+                background-color: $white;
+                color: $grayLight;
+                cursor: default;
+            }
+        }
+    }
+}

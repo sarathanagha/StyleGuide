@@ -1,0 +1,20 @@
+<UPLOAD TO PROD SECRET STORE COMMANDS> 
+
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/ProtectedSettingsDecryptionCertificate -password:eKtnb1Wuft7QqvgaZMRQ6CJZEbtclv0i -file:"E:\certificates\ProtectedSettingsDecryptionCertificate.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/ProtectedSettingsEncryptionCertificate -file:"E:\certificates\ProtectedSettingsEncryptionCertificate.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/WADIDeploymentCert -password:atlas123 -file:"E:\certificates\AtlasDeployManagement.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/AtlasClientRole/SSLCert -password:YFRaUT78PI16JfO0?jwXti3G4w0mTDk0tuUq/LbX6CY3qMza -file:"E:\certificates\adf.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/AtlasClientRole/ADCert -password:atlas123 -file:"f:\certs\Atlas_AAD_PPE_Cert.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/AtlasClientRole/MdsCert -password:mdclxvi -file:"f:\certs\AtlasMdsCert_Temp.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient saadd -env:prod -name:AzureDataStudio/ADS-Server/AtlasProd/Storage –prop:ActiveKey=Key1 -account:testatlaspreview -Key1:Ff2vlWgKFi6QqXjgOLn+5xArA4gzzBk+MYftZANz7+I+GV+BYXdsNekgM+XtOslpRzTxwF0eCerlU7If3sGanQ==  -Key2:Ff2vlWgKFi6QqXjgOLn+5xArA4gzzBk+MYftZANz7+I+GV+BYXdsNekgM+XtOslpRzTxwF0eCerlU7If3sGanQ== -owner:redmond\raghum;redmond\rajdey
+
+
+<UPLOAD TO TEST SECRET STORE COMMANDS> 
+
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/ProtectedSettingsDecryptionCertificate -password:eKtnb1Wuft7QqvgaZMRQ6CJZEbtclv0i -file:"E:\certificates\ProtectedSettingsDecryptionCertificate.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/ProtectedSettingsEncryptionCertificate -file:"E:\certificates\ProtectedSettingsEncryptionCertificate.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/WADIDeploymentCert -password:atlas123 -file:"E:\certificates\AtlasDeployManagement.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/AtlasClientRole/SSLCert -password:YFRaUT78PI16JfO0?jwXti3G4w0mTDk0tuUq/LbX6CY3qMza -file:"E:\certificates\adf.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/AtlasClientRole/ADCert -password:atlas123 -file:"f:\certs\Atlas_AAD_PPE_Cert.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient cadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/AtlasClientRole/MdsCert -password:mdclxvi -file:"f:\certs\AtlasMdsCert_Temp.pfx" -owner:redmond\raghum;redmond\rajdey
+stashclient saadd -env:test -name:AzureDataStudio/ADS-Server/AtlasInt/Storage –prop:ActiveKey=Key1 -account:testatlaspreview -Key1:Ff2vlWgKFi6QqXjgOLn+5xArA4gzzBk+MYftZANz7+I+GV+BYXdsNekgM+XtOslpRzTxwF0eCerlU7If3sGanQ==  -Key2:Ff2vlWgKFi6QqXjgOLn+5xArA4gzzBk+MYftZANz7+I+GV+BYXdsNekgM+XtOslpRzTxwF0eCerlU7If3sGanQ== -owner:redmond\raghum;redmond\rajdey

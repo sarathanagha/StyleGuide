@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+  <RelativeOutputPath>$([System.IO.Path]::Combine('PlatformV2', '$(RelativeOutputPath)'))\</RelativeOutputPath>
+  <EnableSSIndex Condition="'$(EnableSSIndex)'==''">true</EnableSSIndex>
+  <SigningType Condition="'$(SigningType)'==''">Product</SigningType>
+</PropertyGroup>
+<Import Project="..\Build.props" />
+
+<PropertyGroup>
+  <SpecsRoot>$(EnlistmentRoot)\Product\SourceNotInTraversal\GitHub\hydra-specs-pr\DataFactories\Microsoft.Azure.Management.DataFactories.Specification\DataFactories\DataPipeline</SpecsRoot>
+  <HyakRoot>$(EnlistmentRoot)\Product\SourceNotInTraversal\GitHub\hydra-specs-pr</HyakRoot>
+</PropertyGroup>
+
+</Project>

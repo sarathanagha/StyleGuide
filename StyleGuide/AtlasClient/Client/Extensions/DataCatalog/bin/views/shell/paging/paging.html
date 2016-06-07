@@ -1,0 +1,61 @@
+<ul class="paging" data-bind="visible: firstPage < lastPage">
+    <li>
+        <!-- ko if: currentPage > 1 -->
+        <a data-target="#" class="arrow left" data-bind="click: arrowBack">
+            <img src="../../../../images/paging/active_back.png" />
+        </a>
+        <!-- /ko -->
+        <!-- ko if: currentPage == 1 -->
+        <a data-target="#" class="arrow left disabled">
+            <img src="../../../../images/paging/inactive_back.png" />
+        </a>
+        <!-- /ko -->
+    </li><li>
+        <a data-taget="#" data-bind="css: { current: currentPage == firstPage }, click: pageClick">
+            <div data-bind="text: firstPage"></div>
+        </a>
+    </li><li  data-bind="visible: firstBoxNumber && (firstBoxNumber != (firstPage + 1))">
+
+        <span>...</span>
+
+    </li><li data-bind="visible: firstBoxNumber">
+
+        <a data-taget="#" data-bind="css: { current: currentPage == firstBoxNumber }, click: pageClick">
+            <div data-bind="text: firstBoxNumber"></div>
+        </a>
+
+    </li><li data-bind="visible: secondBoxNumber">
+
+        <a data-taget="#" data-bind="css: { current: currentPage == secondBoxNumber }, click: pageClick">
+            <div data-bind="text: secondBoxNumber"></div>
+        </a>
+
+    </li><li data-bind="visible: thirdBoxNumber">
+
+        <a data-taget="#" data-bind="css: { current: currentPage == thirdBoxNumber }, click: pageClick">
+            <div data-bind="text: thirdBoxNumber"></div>
+        </a>
+
+    </li><li data-bind="visible: thirdBoxNumber && (thirdBoxNumber + 1) != lastPage">
+        
+        <span>...</span>
+
+    </li><li data-bind="visible: lastPage > 1">
+
+        <a data-taget="#" data-bind="css: { current: currentPage == lastPage }, click: pageClick">
+            <div data-bind="text: lastPage"></div>
+        </a>
+
+    </li><li class="last">
+        <!-- ko if: currentPage != lastPage -->
+            <a data-target="#" class="arrow right" data-bind="click: arrowNext">
+                <img src="../../../../images/paging/active_next.png" />
+            </a>
+        <!-- /ko -->
+        <!-- ko if: currentPage == lastPage -->
+        <a data-target="#" class="arrow right disabled">
+            <img src="../../../../images/paging/inactive_next.png" />
+        </a>
+        <!-- /ko -->
+    </li>
+</ul>

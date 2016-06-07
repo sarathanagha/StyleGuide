@@ -1,0 +1,210 @@
+<div id="admin-catalog">
+    <div class="main">
+        <div class="banner-bg"></div>
+        <div class="admin-contents">
+            <img src="../../../../images/provision/banner.png" />
+            <div class="banner-contents">
+                <div data-bind="text: resx.settingsForYourHeader" class="enter-settings-text"></div>
+                <div data-bind="text: resx.productName" class="product-name"></div>
+                <div data-bind="text: resx.settingsLongText" class="settings-long"></div>
+            </div>
+            <div class="admin-provision-contents">
+
+                <!-- Catalog Settings -->
+                <div class="settings-section catalog expanded">
+                    <div class="heading-row">
+                        <span data-bind="text: resx.catalogSettings" class="heading"></span>
+                    </div>
+                    <div class="setting-box">
+                        <div class="table">
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    <div class="catalog-label" data-bind="text: resx.dataCatalogName"></div>
+                                    <div class="catalog-label-value" data-bind="text: dataCatalogName"></div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="catalog-label" data-bind="text: resx.subscription"></div>
+                                    <div class="catalog-label-value" data-bind="text: subscription"></div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="catalog-label" data-bind="text: resx.catalogLocation"></div>
+                                    <div class="catalog-label-value" data-bind="text: resx[location()] || location()"></div>
+                                    <div data-bind="text: resx.locationDisclaimer" class="info"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing -->
+                <div class="settings-section pricing" data-bind="css: { expanded: pricingExpanded() }">
+                    <div class="heading-row">
+                        <img data-bind="attr: { src: pricingExpanded() ? '../../../../images/provision/arrow_d.png' : '../../../../images/provision/arrow_r.png' }, click: function(){pricingExpanded(!pricingExpanded());}" />
+                        <span data-bind="text: resx.pricing" class="heading"></span>
+                        <span data-bind="text: pricingSummary" class="summary"></span>
+                    </div>
+                    <div class="setting-box">
+                        <div class="setting-title" data-bind="text: resx.pricingSettingTitle"></div>
+
+                        <div class="free-pricing pricing-box" data-bind="css: { selected: selectedPricing() === 'Free'}, click: function(){ selectedPricing('Free'); }">
+
+                            <div class="selection">
+                                <div class="outline">
+                                    <img src="../../../../images/checkmark_white.png" />
+                                </div>
+                            </div>
+
+                            <div data-bind="text: resx.freeEdition" class="pricing-name"></div>
+                            <div data-bind="text: resx.freePricingTermsUsers" class="pricing-terms"></div>
+                            <div data-bind="text: resx.freePricingTermsAssets" class="pricing-terms"></div>
+                        </div>
+
+                        <div class="standard-pricing pricing-box" data-bind="css: { selected: selectedPricing() === 'Standard'}, click: function(){ selectedPricing('Standard'); }">
+                            <div class="selection">
+                                <div class="outline">
+                                    <img src="../../../../images/checkmark_white.png" />
+                                </div>
+                            </div>
+                            <div class="standard-text">
+                                <div data-bind="text: resx.standardEdition" class="pricing-name"></div>
+                                <div data-bind="text: resx.standardPricingTermsUsers" class="pricing-terms"></div>
+                                <div data-bind="text: resx.standardPricingTermsAssets" class="pricing-terms"></div>
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="standard-units">
+                                <div>
+                                    <!-- ko ifnot: enableUserGroups -->
+                                    <div class="unit-wrapper">
+                                        <img src="../../../../images/edd_up_arrow.png" class="up" data-bind="click: function(){ numberOfUnits(parseInt(numberOfUnits() || 0,10)+1)}"/>
+                                        <img src="../../../../images/edd_down_arrow.png" class="down" data-bind="click: function(){ numberOfUnits(Math.max(numberOfUnits()-1,1))}"/>
+                                        <input type="text" data-bind="adc-numeric: numberOfUnits, textInput: numberOfUnits"/>
+                                    </div>
+                                    <!-- /ko -->
+
+                                    <!-- ko ifnot: calculatingNumberOfUnits -->
+                                    <span data-bind="text: unitsText"></span>
+                                    <!-- /ko -->
+
+                                    <div data-bind="adc-spinner: calculatingNumberOfUnits " class="small progress-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Catalog Users -->
+                <div class="settings-section users" data-bind="css: { expanded: usersExpanded() }">
+                    <div class="heading-row">
+                        <img data-bind="attr: { src: usersExpanded() ? '../../../../images/provision/arrow_d.png' : '../../../../images/provision/arrow_r.png' }, click: function(){usersExpanded(!usersExpanded());}" />
+                        <span data-bind="text: resx.catalogUsers" class="heading"></span>
+                        <span data-bind="text: catalogUsersSummary" class="summary"></span>
+                    </div>
+                    <div class="setting-box">
+                        <div id="user-group-disclaimer"
+                             data-trigger="hover"
+                             data-placement="top"
+                             data-bind="adc-popover: selectedPricing() !== 'Standard',
+                                        attr: {'data-content': resx.standardSkuRequired },
+                                        css: { disabled: selectedPricing() !== 'Standard' }">
+                            <div>
+                                <input type="checkbox"
+                                       id="enable-groups"
+                                       data-bind="checked: enableUserGroups,
+                                                  enable: selectedPricing() === 'Standard'" />
+
+                                <label for="enable-groups" id="enable-groups-label" data-bind="text: resx.enableGroupsLabel"></label>
+                            </div>
+                            <div>
+                                <span class="important-label" data-bind="text: resx.important"></span>
+                                <span data-bind="html: resx.userGroupsDisclaimer"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-title" data-bind="text: resx.catalogUsersSettingTitle"></div>
+                        <div data-bind="spinner: loadingUsers " class="small progress-indicator"></div>
+                        <!-- ko ifnot: loadingUsers -->
+                        <div data-bind="adc-spinner: validatingUsers " class="small progress-indicator"></div>
+                        <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: users,
+                                            placeholderText: resx.addUsers,
+                                            onValidate: function(upns){ return onValidateUsers.bind($data)(upns, 'users');}
+                                        }
+                                   }"></div>
+
+                        <span data-bind="text: invalidUsersText" class="validation-error"></span>
+                        <span data-bind="text: failedUsersText" class="validation-error"></span>
+                        <span data-bind="text: duplicatedUsersText" class="validation-error"></span>
+                        <span data-bind="html: securityGroupsWarningText" class="validation-error"></span>
+
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+                <!-- Catalog Administrators -->
+                <div class="settings-section admins" data-bind="css: { expanded: adminsExpanded() }">
+                    <div class="heading-row">
+                        <img data-bind="attr: { src: adminsExpanded() ? '../../../../images/provision/arrow_d.png' : '../../../../images/provision/arrow_r.png' }, click: function(){adminsExpanded(!adminsExpanded());}"/>
+                        <span data-bind="text: resx.catalogAdministrators" class="heading"></span>
+                        <span data-bind="text: catalogAdministratorsSummary" class="summary"></span>
+                    </div>
+                    <div class="setting-box">
+                        <div class="setting-title" data-bind="text: resx.catalogAdministratorsSettingTitle"></div>
+                        <div data-bind="adc-spinner: loadingAdmins " class="small progress-indicator"></div>
+                        <!-- ko ifnot: loadingAdmins -->
+                        <div data-bind="adc-spinner: validatingAdmins " class="small progress-indicator"></div>
+                        <div data-bind="component: {
+                                        name: 'datacatalog-browse-attributes',
+                                        params: {
+                                            attributesOnAll: admins,
+                                            placeholderText: resx.addAdmins,
+                                            onValidate: function(upns){return onValidateUsers.bind($data)(upns, 'admins');}
+                                        }
+                                   }"></div>
+                        <span data-bind="text: invalidAdminsText" class="validation-error"></span>
+                        <span data-bind="text: failedAdminsText" class="validation-error"></span>
+                        <span data-bind="text: duplicatedAdminsText" class="validation-error"></span>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+                <!-- Delete Catalog -->
+                <div class="settings-section delete-catalog" data-bind="css: { expanded: deleteExpanded() }">
+                    <div class="heading-row">
+                        <img data-bind="attr: { src: deleteExpanded() ? '../../../../images/provision/arrow_d.png' : '../../../../images/provision/arrow_r.png' }, click: function(){deleteExpanded(!deleteExpanded());}" />
+                        <span data-bind="text: resx.deleteCatalog" class="heading no-colon"></span>
+                    </div>
+                    <div class="setting-box">
+                        <div class="setting-title" data-bind="text: deleteCatalogSettingsTitle"></div>
+                        <!-- ko ifnot: updatingCatalog -->
+                        <div class="action-button delete" data-bind="css: { working: deletingCatalog }, click: deleteCatalog">
+                            <!-- ko ifnot: deletingCatalog -->
+                            <span data-bind="text: resx.deleteStr"></span>
+                            <!-- /ko -->
+                            <div data-bind="adc-spinner: deletingCatalog " class="light large progress-indicator"></div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+
+                
+
+            <!-- ko ifnot: deletingCatalog -->
+                <div class="cancel-button"><span data-bind="text: resx.cancelUpdate, click: cancel"></span></div>
+                <div class="action-button update" data-bind="css: { disabled: !isUpdatable(), working: updatingCatalog }, click: updateCatalog">
+                    <!-- ko ifnot: updatingCatalog -->
+                    <span data-bind="text: resx.saveCatalog"></span>
+                    <!-- /ko -->
+                    <div data-bind="adc-spinner: updatingCatalog " class="light large progress-indicator"></div>
+                </div>
+                <!-- ko if: updatingCatalog -->
+                <span data-bind="text: resx.updatingCatalog" class="validation-error update-notice"></span>
+                <!-- /ko -->
+            <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>

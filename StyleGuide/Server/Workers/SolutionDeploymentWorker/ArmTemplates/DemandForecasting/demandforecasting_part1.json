@@ -1,0 +1,232 @@
+{
+  "contentVersion": "1.0.0.0",
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  /* parameter section */
+ 	"parameters": {
+		"dataFactoryName": { "type": "string", "defaultValue": "energyforecast02" }, 
+		"storageAccountName": { "type": "string", "defaultValue": "energyforecast02st" }, 
+		"sqlServerUserName": { "type": "string", "defaultValue": "mylogin"}, 
+		"sqlServerPassword": { "type": "string", "defaultValue": "pa$$Word" }, 
+		"sqlServerName": { "type": "string", "defaultValue": "energyforecast02srv" }, 
+		"IngestEventHubName": { "type": "string", "defaultValue": "energyforecast02ingest" }, 
+		"PublishEventHubName": { "type": "string", "defaultValue": "energyforecast02pulish" }, 
+		"streamingJobName": { "type": "string", "defaultValue": "energyforecast02asablob"}, 
+		"namespaceName": { "type": "string", "defaultValue": "energyforecast02ns" }
+	}, 
+  /* variables section */
+  "variables": {
+	/*************************************/
+		"apiVersion": "2015-09-01",
+		"storageAccountName": "[parameters('storageAccountName')]",
+		"sqlServerUserName": "[parameters('sqlServerUserName')]",
+		"sqlServerPassword": "[parameters('sqlServerPassword')]",
+		"sqlServerName": "[parameters('sqlServerName')]",
+		"location": "centralus",
+		"databasename": "[concat(parameters('sqlServerName'),'db')]",
+		"edition": "Basic",
+		"collation": "SQL_Latin1_General_CP1_CI_AS",
+		"maxSizeBytes": "2147483648",
+		"storageAccountType": "Standard-GRS",
+		"startIpAddress": "0.0.0.0",
+		"endIpAddress": "255.255.255.255",
+		"dataFactoryName": "[parameters('dataFactoryName')]",		
+		"namespaceName": "[parameters('namespaceName')]",
+
+		"streamingJobName":  "[concat(parameters('streamingJobName'),'asablob')]", 		
+		"streamingJobPBIName":  "[concat(parameters('streamingJobName'),'asapbi')]", 
+		
+		"consumerGroupBlobName":  "[concat(parameters('sqlServerName'),'blobcg')]", 
+		"consumerGroupPBIName":  "[concat(parameters('sqlServerName'),'pbicg')]",	
+		"IngestEventHubName": "[parameters('IngestEventHubName')]",
+		"PublishEventHubName": "[parameters('PublishEventHubName')]",
+		"SharedAccessPolicyName": "RootManageSharedAccessKey",
+		"singleQuote": "'",
+
+		"dataContainerName": "energysadata",
+		"scriptContainerName": "demandforecasting",
+		
+        "sbVersion": "[providers('Microsoft.Eventhub', 'namespaces').apiVersions[0]]",
+        "sbKeyName": "RootManageSharedAccessKey",
+        "sbResourceId": "[resourceId('Microsoft.Eventhub/namespaces/authorizationRules', parameters('namespaceName'), variables('sbKeyName'))]",
+		
+		/* "scoringExperimentLink": "http://gallery.azureml.net/Details/7be7c73ce05e402d8c02144d23e5c35a"	*/
+		
+        "scoringExperimentLink": "https://storage.azureml.net/directories/c8bde5940b3b4c8cba4267ff29ed2173/items",
+        "scoringCommunityUri": "http://gallery.azureml.net/Details/63f7044bb8f5478fbc3903db66bbe141"
+
+	 /* "trainingExperimentLink": "https://storage.azureml.net/directories/1a2f4bdffa1a45b9bb0b2b8e8d5241a4/items",
+	  "trainingCommunityUri": "http://gallery.azureml.net/Details/5243057fede64fbcb6ce2162617ca1c6"		*/
+  },
+  /* resource section */
+  "resources": [
+    /* create a sql server, database and configure ip addresses */
+    {
+      "name": "[variables('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[variables('location')]",
+      "apiVersion": "2.0",
+      "properties": {
+        "administratorLogin": "[variables('sqlServerUserName')]",
+        "administratorLoginPassword": "[variables('sqlServerPassword')]"
+      },
+      "resources": [
+        {
+          "name": "[variables('databasename')]",
+          "type": "databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2.0",
+          "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+          "properties": {
+            "edition": "[variables('edition')]",
+            "collation": "[variables('collation')]",
+            "maxSizeBytes": "[variables('maxSizeBytes')]"
+          }
+        },
+        {
+          "apiVersion": "2.0",
+          "dependsOn": [ "[concat('Microsoft.Sql/servers/', variables('sqlServerName'))]" ],
+          "location": "[variables('location')]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "[variables('startIpAddress')]",
+            "endIpAddress": "[variables('endIpAddress')]"
+          },
+          "type": "firewallrules"
+        }
+      ]
+    },
+
+    /* create a storage account */
+    {
+      "apiVersion": "2014-06-01",
+      "name": "[variables('storageAccountName')]",
+      "type": "Microsoft.ClassicStorage/StorageAccounts",
+      "location": "[variables('location')]",
+      "properties": {
+        "accountType": "[variables('storageAccountType')]"
+      }
+    },
+
+    /* create a service bus namespace */
+    /* create the ingest event hub */	
+	{
+      "apiVersion": "2014-09-01",
+      "name": "[variables('namespaceName')]",
+      "type": "Microsoft.EventHub/namespaces",
+      "location": "[variables('location')]",
+      "properties": {
+        "region": "[variables('location')]"
+      },
+     "resources": [
+        {
+          "apiVersion": "2014-09-01",
+          "name": "[variables('IngestEventHubName')]",
+          "type": "eventHubs",
+          "location": "[variables('location')]",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', variables('namespaceName'))]"
+          ],
+          "properties": {
+            "path": "[variables('IngestEventHubName')]"
+          },
+		 "resources": [
+			/* Consumer Group for Blob*/ 
+			{
+				"apiVersion": "2014-09-01",
+				"type": "ConsumerGroups",
+				"name": "[variables('consumerGroupBlobName')]",
+				"dependsOn": [
+					"[variables('IngestEventHubName')]"
+				],
+				"properties": {
+					"enableCheckpoint": "false"
+				}
+			},
+			/* Consumer Group for PBI*/ 
+			{
+				"apiVersion": "2014-09-01",
+				"type": "ConsumerGroups",
+				"name": "[variables('consumerGroupPBIName')]",
+				"dependsOn": [
+					"[variables('IngestEventHubName')]"
+				],
+				"properties": {
+					"enableCheckpoint": "false"
+				}
+			},			
+			],
+			"metadata": {
+				"description": "Create the Ingest Event Hub"
+			}
+        }
+      ]
+    }
+  ],
+  /* output */
+  "outputs": 
+   {
+        "storageAccountName": { //Required 
+            "type": "string", 
+            "value": "[parameters('storageAccountName')]" 
+        },
+        "storageAccountConnectionString": {
+            "type": "string",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey)]"
+        },
+        "eventHubName": {
+            "type": "string",
+            "value": "[parameters('namespaceName')]"
+        },
+        "eventHubConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('sbResourceId'), variables('sbVersion')).primaryConnectionString]"
+        },		
+        "ingestEventHubName": { //Optional only need when updating config in the sample data generator exe 
+            "type": "string", 
+            "value": "[parameters('IngestEventHubName')]" 
+        }, 
+        "publishEventHubName": {
+            "type": "string",
+            "value": "[parameters('PublishEventHubName')]"
+        },
+		
+        "databaseName": { // Required 
+            "type": "string", 
+            "value": "[variables('databasename')]" 
+        }, 
+        "scriptContainerName": { //Required 
+            "type": "string", 
+            "value": "[variables('scriptContainerName')]" 
+        }, 
+        "dataContainerName": { //Optional 
+            "type": "string", 
+            "value": "[variables('dataContainerName')]" 
+        },
+        "sqlScript": { //Required to create tables in the destination database 
+            "type": "string",
+            "value": "script/SQL/EnergySAAzureSqlDB.sql" 
+        }, 
+        "dataGenerator": { //Optional only need when updating config in the sample data generator exe
+            "type": "object",
+            "value": {
+                "containerName": "[variables('scriptContainerName')]",
+                "generatorNames": [
+                    {
+                        "name": "DemandForecastingDataGeneratorv1.0", //Name of the zip file in the blob storage which has the exe
+                        "config": "generator" // Actual name of the exe/config file that needs to be configured.
+                    }
+                ]
+            }
+        },
+        "mlExperiments": { //Required if there is ML provisioning step needed. If left empty the ML step will be ignored 
+            "type": "object", 
+            "value": { 
+                "scoringExperiment": "[variables('scoringExperimentLink')]",
+                "scoringCommunityUri": "[variables('scoringCommunityUri')]"
+                    /*,
+                "trainingExperiment":  "[variables('trainingExperimentLink')]",
+                "trainingCommunityUri": "[variables('trainingCommunityUri')]"*/			
+            } 
+        }
+	}   
+}

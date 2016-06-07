@@ -1,0 +1,28 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #505050 !important;
+
+    .fragment {
+        font-family: $font-segoe;
+        font-weight: 300; /* Semilight */
+        overflow: hidden;
+
+        a {
+            color: white;
+            text-decoration: none !important;
+        }
+    }
+}
+
+input {
+    font-family: $font-segoe !important;
+}
+
+
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+}

@@ -1,0 +1,213 @@
+﻿{
+    "contentVersion": "1.0.0.0",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "parameters": {
+        "dataFactoryName": { "type": "string", "defaultValue": "[concat('storage', uniquestring(deployment().name))]" },
+        "sqlServerUserName": { "type": "string" },
+        "sqlServerPassword": { "type": "securestring" },
+
+        "storageAccountName": {
+            "type": "string",
+            "defaultValue": "[concat('storage', uniquestring(deployment().name))]"
+        },
+
+        "sqlServerName": { "type": "string", "defaultValue": "[concat('sqlserver-', uniquestring(deployment().name))]" },
+        "IngestEventHubName": { "type": "string", "defaultValue": "[concat('ingest-', uniquestring(deployment().name))]" },
+        "PublishEventHubName": { "type": "string", "defaultValue": "[concat('publish-', uniquestring(deployment().name))]" },
+        "streamingJobName": { "type": "string", "defaultValue": "[concat('sjob-', uniquestring(deployment().name))]" },
+        "namespaceName": { "type": "string", "defaultValue": "[concat('namespace-', uniquestring(deployment().name))]" }
+    },
+    "variables": {
+        "apiVersion": "2015-09-01",
+        "location": "centralus",
+
+        // Storage Account
+        // storageAccountName": "[uniquestring(deployment().name, '-storage')]",
+        "containerName": "connectedcar",
+        "accountType": "Standard-GRS",
+
+        // SQL Server and Database
+        //"sqlServerName": "[uniquestring(deployment().name, '-sqlserver')]",
+        "databaseName": "connectedcar", //"[uniquestring(deployment().name, '-cc-database')]",
+        "sqlScript": "scripts/connectedcar.sql",
+        "edition": "Basic",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": "2147483648",
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "255.255.255.255",
+
+        //EventHubNames
+        //"IngestEventHubName": "[uniquestring(deployment().name, '-ingest')]",
+        //"PublishEventHubName": "[uniquestring(deployment().name, '-publish')]",
+        //"namespaceName": "[uniquestring(deployment().name, '-namespace')]",
+        "sbVersion": "[providers('Microsoft.Eventhub', 'namespaces').apiVersions[0]]",
+        "sbKeyName": "RootManageSharedAccessKey",
+        "sbResourceId": "[resourceId('Microsoft.Eventhub/namespaces/authorizationRules', parameters('namespaceName'), variables('sbKeyName'))]",
+
+        // MachineLearning Parameters
+        "scoringExperimentLink": "https://storage.azureml.net/directories/3a3b81a0ddb84b0fa00a87dc26e3fd83/items",
+        "trainingExperimentLink": "https://storage.azureml.net/directories/65c556c0a44b445b8353336e39f09aa6/items"
+    },
+    "resources": [
+        /* create a sql server, database and configure ip addresses */
+        {
+            "name": "[parameters('sqlServerName')]",
+            "type": "Microsoft.Sql/servers",
+            "location": "[variables('location')]",
+            "apiVersion": "2014-04-01-preview",
+            "properties": {
+                "administratorLogin": "[parameters('sqlServerUserName')]",
+                "administratorLoginPassword": "[parameters('sqlServerPassword')]"
+            },
+            "resources": [
+                {
+                    "name": "[variables('databaseName')]",
+                    "type": "databases",
+                    "location": "[variables('location')]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [ "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]" ],
+                    "properties": {
+                        "edition": "[variables('edition')]",
+                        "collation": "[variables('collation')]",
+                        "maxSizeBytes": "[variables('maxSizeBytes')]"
+                    }
+                },
+                {
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [ "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]" ],
+                    "location": "[variables('location')]",
+                    "name": "AllowAllWindowsAzureIps",
+                    "properties": {
+                        "startIpAddress": "[variables('startIpAddress')]",
+                        "endIpAddress": "[variables('endIpAddress')]"
+                    },
+                    "type": "firewallrules"
+                }
+            ]
+        },
+        /* create a storage account */
+        {
+            "apiVersion": "2014-06-01",
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.ClassicStorage/storageAccounts",
+            "location": "[variables('location')]",
+            "properties": {
+                "accountType": "[variables('accountType')]"
+            }
+        },
+        {
+            "apiVersion": "2014-09-01",
+            "name": "[parameters('namespaceName')]",
+            "type": "Microsoft.EventHub/namespaces",
+            "location": "[variables('location')]",
+            "properties": {
+                "region": "[variables('location')]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "2014-09-01",
+                    "name": "[parameters('IngestEventHubName')]",
+                    "type": "eventHubs",
+                    "location": "[variables('location')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.EventHub/namespaces/', parameters('namespaceName'))]"
+                    ],
+                    "properties": {
+                        "path": "[parameters('IngestEventHubName')]"
+                    }
+                },
+                {
+                    "apiVersion": "2014-09-01",
+                    "name": "[parameters('PublishEventHubName')]",
+                    "type": "eventHubs",
+                    "location": "[variables('location')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.EventHub/namespaces/', parameters('namespaceName'))]"
+                    ],
+                    "properties": {
+                        "path": "[parameters('PublishEventHubName')]"
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "storageAccountName": {
+            "type": "string",
+            "value": "[parameters('storageAccountName')]"
+        },
+        "storageAccountConnectionString": {
+            "type": "string",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'),';AccountKey=', listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey)]"
+        },
+        "storageAccountKey": {
+            "type": "string",
+            "value": "[listKeys(concat('Microsoft.ClassicStorage/storageAccounts/', parameters('storageAccountName')), '2014-06-01').primaryKey]"
+        },
+        "eventHubName": {
+            "type": "string",
+            "value": "[parameters('namespaceName')]"
+        },
+        "eventHubConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('sbResourceId'), variables('sbVersion')).primaryConnectionString]"
+        },
+        "ingestEventHubName": {
+            "type": "string",
+            "value": "[parameters('IngestEventHubName')]"
+        },
+        "publishEventHubName": {
+            "type": "string",
+            "value": "[parameters('PublishEventHubName')]"
+        },
+        "databaseName": {
+            "type": "string",
+            "value": "[variables('databaseName')]"
+        },
+        "scriptContainerName": {
+            "type": "string",
+            "value": "[variables('containerName')]"
+        },
+        "dataContainerName": {
+            "type": "string",
+            "value": "[variables('dataContainerName')]"
+        },
+        "sqlScript": {
+            "type": "string",
+            "value": "[variables('sqlScript')]"
+        },
+        "dataGenerator": {
+            "type": "object",
+            "value": {
+                "containerName": "[variables('containerName')]",
+                "generatorNames": [
+                    {
+                        "name": "careventgenerator"
+                    },
+                    {
+                        "name": "RealtimeDashboardApp"
+                    }
+                ]
+            }
+        },
+        "mlExperiments": {
+            "type": "object",
+            "value": {
+                "scoringExperiment": "[variables('scoringExperimentLink')]",
+                "trainingExperiment": "[variables('trainingExperimentLink')]"
+            }
+        },
+        "sqlServerName": {
+            "type": "string",
+            "value": "[parameters('sqlServerName')]"
+        },
+        "sqlServerUserName": {
+            "type": "string",
+            "value": "[parameters('sqlServerUserName')]"
+        },
+        "namespaceName": {
+            "type": "string",
+            "value": "[parameters('namespaceName')]"
+        }
+    }
+}

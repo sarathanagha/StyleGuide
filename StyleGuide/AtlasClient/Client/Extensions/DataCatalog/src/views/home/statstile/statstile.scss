@@ -1,0 +1,54 @@
+﻿@import "../../../styles/variables";
+
+.home-stats-tile {
+
+    .home-stats-tile-content {
+        width: 300px;
+        height: 185px;
+        margin-right: 35px; // TODO (stpryor): Change to use flexbox for alignment
+        padding: 20px;
+        position: relative;
+
+        .home-stat {
+            width: 100%;
+
+            .progress-indicator {
+                height: 35px;
+            }
+
+            .home-stat-value {
+                font-size: 38px;
+                line-height: 35px;
+            }
+
+            .home-stat-label {
+                font-size: 18px;
+                text-transform: capitalize;
+
+            }
+
+            &:nth-child(2n+2) {
+                bottom: 20px;
+                position: absolute;
+            }
+
+            .stat-annotation {
+                margin-left: -14px;
+            }
+        }
+    }
+
+    @mixin theme {
+        $body-color-med: $default-body-color-med;
+        $font-color-light: $default-font-color-light;
+
+        & {
+            .home-stats-tile-content {
+                background-color: #006F94;//$body-color-med;
+                color: $font-color-light;
+            }
+        }
+    }
+
+    @include theme;
+}

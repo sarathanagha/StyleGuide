@@ -1,0 +1,5 @@
+module.d.ts
+**/*.css
+**/*.js
+**/*.map
+!gulpfile.js

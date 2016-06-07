@@ -1,0 +1,94 @@
+﻿@import "colors";
+
+// Variables
+$verticalPadding: 12px;
+$horizontalPadding: 16px;
+
+/* Action Buttons */
+.btn, body.datastudio button.btn {
+    background-color: $lightCanvas;
+    border: none;
+    color: $grayDarkest;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1em;
+    min-width: 88px;
+    outline: none;
+    padding: $verticalPadding $horizontalPadding;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    // Default Button
+    &:hover {
+        color: $grayDarkest;
+        background-color: $canvas;
+    }
+
+    &:focus {
+        color: $grayDarkest;
+        background-color: $lightCanvas;
+        outline: 1px dotted $waveBlueLighter;
+    }
+
+    &:active {
+        background-color: $darkCloud;
+    }
+
+    &:disabled {
+        background-color: $lightCanvas;
+        color: $grayLight;
+        cursor: default;
+    }
+
+    // Primary Button
+    &.btn-primary {
+        background-color: $waveBlue;
+        color: $white;
+
+        &:hover {
+            color: $white;
+            background-color: $darkWaveBlue;
+        }
+
+        &:focus {
+            color: $white;
+            background-color: $waveBlue;
+            outline: 1px dotted $waveBlueLighter;
+        }
+
+        &:active {
+            color: $white;
+            background-color: $darkWaveBlue;
+        }
+
+        &:disabled {
+            background-color: $cloud;
+            color: $grayLight;
+            cursor: default;
+        }
+    }
+
+
+    // Primary Dark Button
+    &.btn-primary-dark {
+        color: $grayDarkest;
+        background-color: $cloud;
+
+        &:hover, &:focus {
+            background-color: $darkCloud;
+        }
+
+        &:active {
+            background-color: $grayDarkestActive;
+        }
+
+        &:disabled {
+            color: $grayLight;
+            background-color: $cloud;
+            cursor: default;
+        }
+    }
+}

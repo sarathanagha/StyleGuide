@@ -1,0 +1,1137 @@
+.svg-Business-glossary-term, .svg-activity-window, .svg-add-all, .svg-alerts, .svg-analyze, .svg-arrow-down, .svg-arrow-left, .svg-arrow-right, .svg-arrow-up, .svg-arrows-up-down, .svg-auto-align, .svg-auto-layout, .svg-back, .svg-business-glossary, .svg-calendar, .svg-cancel, .svg-card-view, .svg-caret-down, .svg-caret-downright, .svg-caret-left, .svg-caret-right, .svg-caution, .svg-chart, .svg-checkbox, .svg-checkboxcomposite, .svg-checkboxindeterminate, .svg-checkmark, .svg-chevron-down, .svg-chevron-left, .svg-chevron-right, .svg-chevron-up, .svg-circle, .svg-circlefill, .svg-close, .svg-col-type-boolean, .svg-col-type-number, .svg-col-type-string, .svg-col-type-timedate, .svg-connect, .svg-copy, .svg-dashboard, .svg-data-catalog, .svg-data-preview, .svg-data-profile, .svg-database, .svg-delete, .svg-dimension, .svg-directory, .svg-documentation, .svg-download, .svg-edit, .svg-error, .svg-file, .svg-filter, .svg-filter-clear-all, .svg-fit-to-100, .svg-folder, .svg-folder_open, .svg-gripper, .svg-hd-insight, .svg-help, .svg-home, .svg-horizontal-bar, .svg-inactive, .svg-input, .svg-kpi, .svg-link, .svg-list-view, .svg-lock, .svg-logs, .svg-maximize-window, .svg-measure, .svg-minimize-window, .svg-minus, .svg-minus-all-objects, .svg-monitor_views, .svg-more-info, .svg-new-glossary-admin, .svg-new-search-relevance, .svg-new-window, .svg-notification, .svg-notifications, .svg-output, .svg-pin-off, .svg-pin-on, .svg-plus, .svg-profile, .svg-publish, .svg-query, .svg-refine, .svg-refresh, .svg-report, .svg-resource-explorer, .svg-restore-window, .svg-sad, .svg-save, .svg-schema, .svg-script, .svg-search, .svg-settings, .svg-share, .svg-shrink, .svg-skip, .svg-smiley, .svg-sort-ascending, .svg-sort-descending, .svg-star, .svg-status-critical, .svg-status-fail, .svg-status-none, .svg-status-success, .svg-status-warning, .svg-status_inprogress, .svg-stream-set, .svg-success-check, .svg-table, .svg-table-function, .svg-table-view, .svg-tag, .svg-toggle-off, .svg-toggle-on, .svg-toolbox, .svg-undo, .svg-unlock, .svg-views, .svg-waiting, .svg-web, .svg-zoom-in, .svg-zoom-out, .svg-zoom-to-fit {
+  background: url("img/sprite.svg") no-repeat; }
+
+.svg-Business-glossary-term {
+  background-position: 0 0; }
+
+.svg-Business-glossary-term-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-activity-window {
+  background-position: 0.7678676904902539% 0.7789095266626722%; }
+
+.svg-activity-window-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-add-all {
+  background-position: 1.5357353809805079% 1.5578190533253444%; }
+
+.svg-add-all-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-alerts {
+  background-position: 2.303603071470762% 2.3367285799880166%; }
+
+.svg-alerts-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-analyze {
+  background-position: 3.0714707619610158% 3.115638106650689%; }
+
+.svg-analyze-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-arrow-down {
+  background-position: 3.83933845245127% 3.8945476333133615%; }
+
+.svg-arrow-down-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-arrow-left {
+  background-position: 4.607206142941524% 4.673457159976033%; }
+
+.svg-arrow-left-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-arrow-right {
+  background-position: 5.375073833431778% 5.4523666866387055%; }
+
+.svg-arrow-right-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-arrow-up {
+  background-position: 6.1429415239220315% 6.231276213301378%; }
+
+.svg-arrow-up-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-arrows-up-down {
+  background-position: 6.910809214412286% 7.01018573996405%; }
+
+.svg-arrows-up-down-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-auto-align {
+  background-position: 7.67867690490254% 7.789095266626723%; }
+
+.svg-auto-align-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-auto-layout {
+  background-position: 8.446544595392794% 8.568004793289395%; }
+
+.svg-auto-layout-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-back {
+  background-position: 9.214412285883048% 9.346914319952067%; }
+
+.svg-back-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-business-glossary {
+  background-position: 9.982279976373302% 10.12582384661474%; }
+
+.svg-business-glossary-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-calendar {
+  background-position: 10.750147666863556% 10.904733373277411%; }
+
+.svg-calendar-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-cancel {
+  background-position: 11.51801535735381% 11.683642899940084%; }
+
+.svg-cancel-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-card-view {
+  background-position: 12.285883047844063% 12.462552426602755%; }
+
+.svg-card-view-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-caret-down {
+  background-position: 13.03834808259587% 13.22561340514662%; }
+
+.svg-caret-down-dims {
+  width: 22px;
+  height: 22px; }
+
+.svg-caret-downright {
+  background-position: 13.687315634218288% 13.883901855176541%; }
+
+.svg-caret-downright-dims {
+  width: 22px;
+  height: 22px; }
+
+.svg-caret-left {
+  background-position: 14.336283185840708% 14.542190305206462%; }
+
+.svg-caret-left-dims {
+  width: 22px;
+  height: 22px; }
+
+.svg-caret-right {
+  background-position: 14.985250737463128% 15.200478755236386%; }
+
+.svg-caret-right-dims {
+  width: 22px;
+  height: 22px; }
+
+.svg-caution {
+  background-position: 15.652687536916716% 15.877771120431396%; }
+
+.svg-caution-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-chart {
+  background-position: 16.420555227406968% 16.656680647094067%; }
+
+.svg-chart-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-checkbox {
+  background-position: 17.188422917897224% 17.43559017375674%; }
+
+.svg-checkbox-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-checkboxcomposite {
+  background-position: 17.956290608387476% 18.214499700419413%; }
+
+.svg-checkboxcomposite-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-checkboxindeterminate {
+  background-position: 18.724158298877732% 18.993409227082086%; }
+
+.svg-checkboxindeterminate-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-checkmark {
+  background-position: 19.492025989367985% 19.772318753744756%; }
+
+.svg-checkmark-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-chevron-down {
+  background-position: 20.25989367985824% 20.55122828040743%; }
+
+.svg-chevron-down-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-chevron-left {
+  background-position: 21.027761370348493% 21.330137807070102%; }
+
+.svg-chevron-left-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-chevron-right {
+  background-position: 21.79562906083875% 22.109047333732775%; }
+
+.svg-chevron-right-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-chevron-up {
+  background-position: 22.563496751329% 22.887956860395445%; }
+
+.svg-chevron-up-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-circle {
+  background-position: 23.331364441819257% 23.666866387058118%; }
+
+.svg-circle-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-circlefill {
+  background-position: 24.09923213230951% 24.44577591372079%; }
+
+.svg-circlefill-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-close {
+  background-position: 24.867099822799762% 25.224685440383464%; }
+
+.svg-close-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-col-type-boolean {
+  background-position: 25.634967513290018% 26.003594967046137%; }
+
+.svg-col-type-boolean-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-col-type-number {
+  background-position: 26.40283520378027% 26.782504493708807%; }
+
+.svg-col-type-number-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-col-type-string {
+  background-position: 27.170702894270526% 27.56141402037148%; }
+
+.svg-col-type-string-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-col-type-timedate {
+  background-position: 27.93857058476078% 28.340323547034153%; }
+
+.svg-col-type-timedate-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-connect {
+  background-position: 28.706438275251035% 29.119233073696826%; }
+
+.svg-connect-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-copy {
+  background-position: 29.474305965741287% 29.898142600359495%; }
+
+.svg-copy-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-dashboard {
+  background-position: 30.242173656231543% 30.67705212702217%; }
+
+.svg-dashboard-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-data-catalog {
+  background-position: 31.010041346721795% 31.45596165368484%; }
+
+.svg-data-catalog-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-data-preview {
+  background-position: 31.777909037212048% 32.23487118034751%; }
+
+.svg-data-preview-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-data-profile {
+  background-position: 32.545776727702304% 33.013780707010184%; }
+
+.svg-data-profile-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-database {
+  background-position: 33.31364441819256% 33.79269023367286%; }
+
+.svg-database-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-delete {
+  background-position: 34.08151210868281% 34.57159976033553%; }
+
+.svg-delete-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-dimension {
+  background-position: 34.849379799173064% 35.350509286998204%; }
+
+.svg-dimension-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-directory {
+  background-position: 35.61724748966332% 36.12941881366088%; }
+
+.svg-directory-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-documentation {
+  background-position: 36.385115180153576% 36.90832834032355%; }
+
+.svg-documentation-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-download {
+  background-position: 37.152982870643825% 37.687237866986216%; }
+
+.svg-download-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-edit {
+  background-position: 37.92085056113408% 38.46614739364889%; }
+
+.svg-edit-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-error {
+  background-position: 38.68871825162434% 39.24505692031156%; }
+
+.svg-error-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-file {
+  background-position: 39.45658594211459% 40.023966446974235%; }
+
+.svg-file-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-filter {
+  background-position: 40.22445363260484% 40.80287597363691%; }
+
+.svg-filter-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-filter-clear-all {
+  background-position: 40.9923213230951% 41.58178550029958%; }
+
+.svg-filter-clear-all-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-fit-to-100 {
+  background-position: 41.760189013585354% 42.360695026962254%; }
+
+.svg-fit-to-100-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-folder {
+  background-position: 42.5280567040756% 43.13960455362493%; }
+
+.svg-folder-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-folder_open {
+  background-position: 43.29592439456586% 43.9185140802876%; }
+
+.svg-folder_open-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-gripper {
+  background-position: 44.063792085056114% 44.69742360695027%; }
+
+.svg-gripper-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-hd-insight {
+  background-position: 45.04451038575667% 45.6953642384106%; }
+
+.svg-hd-insight-dims {
+  width: 42px;
+  height: 42px; }
+
+.svg-help {
+  background-position: 46.07206142941524% 46.734571599760336%; }
+
+.svg-help-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-home {
+  background-position: 46.83992911990549% 47.51348112642301%; }
+
+.svg-home-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-horizontal-bar {
+  background-position: 47.60779681039575% 48.09069212410501%; }
+
+.svg-horizontal-bar-dims {
+  width: 26px;
+  height: 12px; }
+
+.svg-inactive {
+  background-position: 48.375664500886% 48.65188735769922%; }
+
+.svg-inactive-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-input {
+  background-position: 49.14353219137625% 49.4307968843619%; }
+
+.svg-input-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-kpi {
+  background-position: 49.91139988186651% 50.20970641102456%; }
+
+.svg-kpi-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-link {
+  background-position: 50.679267572356764% 50.988615937687236%; }
+
+.svg-link-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-list-view {
+  background-position: 51.44713526284702% 51.76752546434991%; }
+
+.svg-list-view-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-lock {
+  background-position: 52.21500295333727% 52.54643499101258%; }
+
+.svg-lock-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-logs {
+  background-position: 52.982870643827525% 53.325344517675255%; }
+
+.svg-logs-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-maximize-window {
+  background-position: 53.75073833431778% 54.10425404433793%; }
+
+.svg-maximize-window-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-measure {
+  background-position: 54.51860602480803% 54.8831635710006%; }
+
+.svg-measure-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-minimize-window {
+  background-position: 55.286473715298285% 55.662073097663274%; }
+
+.svg-minimize-window-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-minus {
+  background-position: 56.05434140578854% 56.44098262432594%; }
+
+.svg-minus-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-minus-all-objects {
+  background-position: 56.8222090962788% 57.21989215098861%; }
+
+.svg-minus-all-objects-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-monitor_views {
+  background-position: 57.590076786769046% 57.99880167765129%; }
+
+.svg-monitor_views-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-more-info {
+  background-position: 58.3579444772593% 58.77771120431396%; }
+
+.svg-more-info-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-new-glossary-admin {
+  background-position: 59.12581216774956% 59.55662073097663%; }
+
+.svg-new-glossary-admin-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-new-search-relevance {
+  background-position: 59.893679858239814% 60.335530257639306%; }
+
+.svg-new-search-relevance-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-new-window {
+  background-position: 60.66154754873006% 61.11443978430198%; }
+
+.svg-new-window-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-notification {
+  background-position: 61.42941523922032% 61.89334931096465%; }
+
+.svg-notification-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-notifications {
+  background-position: 62.197282929710575% 62.672258837627325%; }
+
+.svg-notifications-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-output {
+  background-position: 62.96515062020082% 63.45116836428999%; }
+
+.svg-output-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-pin-off {
+  background-position: 63.73301831069108% 64.23007789095267%; }
+
+.svg-pin-off-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-pin-on {
+  background-position: 64.50088600118133% 65.00898741761534%; }
+
+.svg-pin-on-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-plus {
+  background-position: 65.26875369167159% 65.78789694427802%; }
+
+.svg-plus-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-profile {
+  background-position: 66.03662138216184% 66.56680647094068%; }
+
+.svg-profile-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-publish {
+  background-position: 66.8044890726521% 67.34571599760335%; }
+
+.svg-publish-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-query {
+  background-position: 67.57235676314235% 68.12462552426602%; }
+
+.svg-query-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-refine {
+  background-position: 68.3402244536326% 68.9035350509287%; }
+
+.svg-refine-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-refresh {
+  background-position: 69.10809214412286% 69.68244457759137%; }
+
+.svg-refresh-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-report {
+  background-position: 69.87595983461311% 70.46135410425404%; }
+
+.svg-report-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-resource-explorer {
+  background-position: 70.64382752510336% 71.24026363091671%; }
+
+.svg-resource-explorer-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-restore-window {
+  background-position: 71.41169521559362% 72.01917315757939%; }
+
+.svg-restore-window-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-sad {
+  background-position: 72.17956290608387% 72.79808268424206%; }
+
+.svg-sad-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-save {
+  background-position: 72.94743059657412% 73.57699221090473%; }
+
+.svg-save-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-schema {
+  background-position: 73.71529828706439% 74.35590173756741%; }
+
+.svg-schema-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-script {
+  background-position: 74.48316597755463% 75.13481126423008%; }
+
+.svg-script-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-search {
+  background-position: 75.2510336680449% 75.91372079089275%; }
+
+.svg-search-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-settings {
+  background-position: 76.01890135853515% 76.69263031755543%; }
+
+.svg-settings-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-share {
+  background-position: 76.7867690490254% 77.4715398442181%; }
+
+.svg-share-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-shrink {
+  background-position: 77.55463673951566% 78.25044937088077%; }
+
+.svg-shrink-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-skip {
+  background-position: 78.3225044300059% 79.02935889754345%; }
+
+.svg-skip-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-smiley {
+  background-position: 79.09037212049616% 79.8082684242061%; }
+
+.svg-smiley-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-sort-ascending {
+  background-position: 79.85823981098642% 80.58717795086878%; }
+
+.svg-sort-ascending-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-sort-descending {
+  background-position: 80.62610750147667% 81.36608747753145%; }
+
+.svg-sort-descending-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-star {
+  background-position: 81.39397519196692% 82.14499700419412%; }
+
+.svg-star-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status-critical {
+  background-position: 82.16184288245718% 82.9239065308568%; }
+
+.svg-status-critical-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status-fail {
+  background-position: 82.92971057294743% 83.70281605751947%; }
+
+.svg-status-fail-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status-none {
+  background-position: 83.69757826343769% 84.48172558418214%; }
+
+.svg-status-none-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status-success {
+  background-position: 84.46544595392794% 85.26063511084482%; }
+
+.svg-status-success-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status-warning {
+  background-position: 85.23331364441819% 86.03954463750749%; }
+
+.svg-status-warning-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-status_inprogress {
+  background-position: 86.00118133490845% 86.81845416417016%; }
+
+.svg-status_inprogress-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-stream-set {
+  background-position: 86.7690490253987% 87.59736369083284%; }
+
+.svg-stream-set-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-success-check {
+  background-position: 87.53691671588895% 88.37627321749551%; }
+
+.svg-success-check-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-table {
+  background-position: 88.30478440637921% 89.15518274415818%; }
+
+.svg-table-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-table-function {
+  background-position: 89.07265209686946% 89.93409227082086%; }
+
+.svg-table-function-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-table-view {
+  background-position: 89.84051978735971% 90.71300179748353%; }
+
+.svg-table-view-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-tag {
+  background-position: 90.60838747784997% 91.4919113241462%; }
+
+.svg-tag-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-toggle-off {
+  background-position: 91.81008902077151% 92.23075656170927%; }
+
+.svg-toggle-off-dims {
+  width: 42px;
+  height: 24.55px; }
+
+.svg-toggle-on {
+  background-position: 93.05637982195846% 92.97938283250237%; }
+
+.svg-toggle-on-dims {
+  width: 42px;
+  height: 24.55px; }
+
+.svg-toolbox {
+  background-position: 93.85705847607797% 93.76872378669862%; }
+
+.svg-toolbox-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-undo {
+  background-position: 94.62492616656822% 94.54763331336129%; }
+
+.svg-undo-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-unlock {
+  background-position: 95.39279385705848% 95.32654284002396%; }
+
+.svg-unlock-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-views {
+  background-position: 96.16066154754873% 96.10545236668663%; }
+
+.svg-views-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-waiting {
+  background-position: 96.92852923803899% 96.88436189334931%; }
+
+.svg-waiting-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-web {
+  background-position: 97.69639692852924% 97.66327142001198%; }
+
+.svg-web-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-zoom-in {
+  background-position: 98.46426461901949% 98.44218094667465%; }
+
+.svg-zoom-in-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-zoom-out {
+  background-position: 99.23213230950975% 99.22109047333733%; }
+
+.svg-zoom-out-dims {
+  width: 26px;
+  height: 26px; }
+
+.svg-zoom-to-fit {
+  background-position: 100% 100%; }
+
+.svg-zoom-to-fit-dims {
+  width: 26px;
+  height: 26px; }
+
+/* Cortona Analytics Color Guide */
+/* Theme colors */
+/*Netural colors */
+/* Message colors */
+/* Netural colors */
+/* Legacy Colors- START */
+/* WARNING: Do not add further dependencies on these colors  */
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Legacy colors - END */
+/* Cortona Analytics Color Guide */
+/* Theme colors */
+/*Netural colors */
+/* Message colors */
+/* Netural colors */
+/* Legacy Colors- START */
+/* WARNING: Do not add further dependencies on these colors  */
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Legacy colors - END */
+/* Font Size */
+/* Font Weight */
+/* Font Size Class Name */
+.dsux-font-super {
+  font-size: 42px; }
+
+.dsux-font-xxl {
+  font-size: 28px; }
+
+.dsux-font-xl {
+  font-size: 21px; }
+
+.dsux-font-l {
+  font-size: 17px; }
+
+.dsux-font-m {
+  font-size: 14px; }
+
+.dsux-font-s {
+  font-size: 12px; }
+
+/* Font Weight */
+.dsux-weight-r {
+  font-weight: normal; }
+
+.dsux-weight-l {
+  font-weight: light; }
+
+.dsux-weight-sl {
+  font-weight: semilight; }
+
+.dsux-weight-sb {
+  font-weight: semibold; }
+
+/* Typography */
+h1, h2, h3 {
+  color: #acacac;
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
+h1 {
+  font-weight: light;
+  font-size: 42px;
+  line-height: 58px; }
+
+h2 {
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 40px; }
+
+h3 {
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 40px; }
+
+h4 {
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 40px; }
+
+h5 {
+  font-weight: semibold;
+  font-size: 14px;
+  line-height: 40px; }
+
+h6 {
+  font-weight: semibold;
+  font-size: 12px;
+  line-height: 40px; }
+
+p {
+  font-size: 14px;
+  line-height: 20px; }
+
+.subtle {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 20px; }
+
+.themePrimaryDarkColor {
+  color: #FFF;
+  background-color: #00526D; }
+
+.themePrimaryColor {
+  color: #FFF;
+  background-color: #006F94; }
+
+.themePrimaryLightColor {
+  color: #FFF;
+  background-color: #008CBB; }
+
+.themePrimaryLighterColor {
+  color: #FFF;
+  background-color: #009BCF; }
+
+.themePrimaryLightestColor {
+  color: #FFF;
+  background-color: #33AAD2; }
+
+.themeSecondaryDarkColor {
+  color: #FFF;
+  background-color: #202428; }
+
+.themeSecondaryColor {
+  color: #FFF;
+  background-color: #2C3137; }
+
+.themeSecondaryLightColor {
+  color: #FFF;
+  background-color: #343A41; }
+
+.themeSecondaryLighterColor {
+  color: #FFF;
+  background-color: #48525E; }
+
+.themeSecondaryLightestColor {
+  color: #FFF;
+  background-color: #596574; }
+
+.neutralDarkColor {
+  color: #FFF;
+  background-color: #171717; }
+
+.neutralPrimaryColor {
+  color: #FFF;
+  background-color: #1F1F1F; }
+
+.neutralSecondaryColor {
+  color: #FFF;
+  background-color: #2B2B2B; }
+
+.neutralSecondaryColorAlt {
+  color: #FFF;
+  background-color: #393939; }
+
+.neutralTertiaryColor {
+  color: #FFF;
+  background-color: #767676; }
+
+.neutralTertiaryColorAlt {
+  color: #585A5F;
+  background-color: #acacac; }
+
+.neutralTertiaryColorAlt2 {
+  color: #585A5F;
+  background-color: #cccccc; }
+
+.neutralLight {
+  color: #585A5F;
+  background-color: #E6E6E6; }
+
+.neutralLighter {
+  color: #585A5F;
+  background-color: #F2F2F2; }
+
+.alertColor {
+  color: #585A5F;
+  background-color: #FFB900; }
+
+.warningColor {
+  color: #585A5F;
+  background-color: #E81123; }
+
+.successColor {
+  color: #585A5F;
+  background-color: #7FBA00; }
+
+.infoColor {
+  color: #FFF;
+  background-color: #596574; }
+
+.infoColorlighter {
+  color: #585A5F;
+  background-color: #BDC1C7; }
+
+.white {
+  color: #585A5F;
+  background-color: #FFF; }
+
+.gray-lightest {
+  color: #585A5F;
+  background-color: #D5D6D7; }
+
+.gray-light {
+  color: #585A5F;
+  background-color: #ABADAF; }
+
+.gray {
+  color: #FFF;
+  background-color: #808387; }
+
+.gray-dark {
+  color: #FFF;
+  background-color: #585A5F; }
+
+.gray-darkest {
+  color: #FFF;
+  background-color: #2C3137; }
+
+/*# sourceMappingURL=design.css.map */

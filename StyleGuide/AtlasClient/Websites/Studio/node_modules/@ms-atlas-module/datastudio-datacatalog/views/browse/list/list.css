@@ -1,0 +1,172 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 50px; }
+  #browse-list .loading-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    margin-left: -121px; }
+  #browse-list #browse-list-container {
+    width: 100%;
+    float: left; }
+    #browse-list #browse-list-container table {
+      min-width: 100%; }
+      #browse-list #browse-list-container table tr {
+        cursor: default; }
+      #browse-list #browse-list-container table thead th {
+        padding: 5px; }
+        #browse-list #browse-list-container table thead th:first-child {
+          border-left: 0;
+          padding: 10px;
+          width: 10px; }
+        #browse-list #browse-list-container table thead th span {
+          font-weight: normal;
+          text-transform: uppercase;
+          font-size: 12px;
+          white-space: nowrap; }
+      #browse-list #browse-list-container table tbody tr td {
+        padding: 5px; }
+        #browse-list #browse-list-container table tbody tr td:first-child {
+          padding: 10px; }
+        #browse-list #browse-list-container table tbody tr td div, #browse-list #browse-list-container table tbody tr td span {
+          white-space: nowrap;
+          font-size: 12px; }
+        #browse-list #browse-list-container table tbody tr td .delete-info {
+          display: none; }
+        #browse-list #browse-list-container table tbody tr td .checkmark {
+          visibility: hidden; }
+        #browse-list #browse-list-container table tbody tr td .list-pin {
+          width: 16px;
+          height: 16px;
+          cursor: pointer; }
+        #browse-list #browse-list-container table tbody tr td .name,
+        #browse-list #browse-list-container table tbody tr td .tags,
+        #browse-list #browse-list-container table tbody tr td .desc {
+          display: block;
+          overflow: hidden;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis; }
+          #browse-list #browse-list-container table tbody tr td .name.name,
+          #browse-list #browse-list-container table tbody tr td .tags.name,
+          #browse-list #browse-list-container table tbody tr td .desc.name {
+            max-width: 150px; }
+          #browse-list #browse-list-container table tbody tr td .name.tags,
+          #browse-list #browse-list-container table tbody tr td .tags.tags,
+          #browse-list #browse-list-container table tbody tr td .desc.tags {
+            max-width: 150px; }
+          #browse-list #browse-list-container table tbody tr td .name.desc,
+          #browse-list #browse-list-container table tbody tr td .tags.desc,
+          #browse-list #browse-list-container table tbody tr td .desc.desc {
+            max-width: 200px; }
+        #browse-list #browse-list-container table tbody tr td .data-source-type,
+        #browse-list #browse-list-container table tbody tr td .data-object-type {
+          text-transform: capitalize; }
+        #browse-list #browse-list-container table tbody tr td .data-object-type-image,
+        #browse-list #browse-list-container table tbody tr td .data-source-type-image {
+          opacity: 0.5;
+          filter: alpha(opacity=50); }
+      #browse-list #browse-list-container table tbody tr.selected .checkmark {
+        visibility: visible; }
+      #browse-list #browse-list-container table tbody tr.deleted td {
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        background-color: transparent; }
+        #browse-list #browse-list-container table tbody tr.deleted td .delete-info {
+          display: inline; }
+        #browse-list #browse-list-container table tbody tr.deleted td .checkmark {
+          display: none; }
+        #browse-list #browse-list-container table tbody tr.deleted td:first-child {
+          opacity: 1;
+          filter: alpha(opacity=100); }
+      #browse-list #browse-list-container table a {
+        cursor: pointer;
+        font-size: 12px; }
+  #browse-list .heading {
+    display: block;
+    margin: 0 0 40px 15px;
+    font-size: 15px; }
+    #browse-list .heading .results-data {
+      position: relative;
+      top: -6px; }
+      #browse-list .heading .results-data .spacer {
+        border-left: 1px solid #474f5a;
+        padding-left: 20px;
+        margin-left: 20px;
+        display: inline-block;
+        position: relative;
+        height: 24px;
+        top: 6px; }
+      #browse-list .heading .results-data .select-all {
+        text-transform: capitalize;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+        #browse-list .heading .results-data .select-all .select-all-text {
+          margin-left: 10px; }
+        #browse-list .heading .results-data .select-all .outline {
+          margin: 0;
+          padding: 0;
+          height: 15px;
+          width: 15px;
+          border: 1px solid #474f5a;
+          position: relative;
+          top: 2px;
+          display: inline-block; }
+          #browse-list .heading .results-data .select-all .outline img {
+            position: absolute;
+            top: -1px;
+            left: -1px; }
+  #browse-list .paging-container {
+    float: right;
+    margin-right: 20px; }
+    #browse-list .paging-container.top {
+      position: relative;
+      top: -3px; }
+    #browse-list .paging-container.bottom {
+      margin-top: 20px; }
+  #browse-list .heading {
+    color: #474F5A; }
+  #browse-list table th {
+    background-color: #D8DBDE;
+    border-left: 1px solid #EFF0F0; }
+  #browse-list table tbody tr {
+    border-bottom: 1px solid rgba(38, 53, 127, 0.1);
+    background-color: #FFFFFF; }
+    #browse-list table tbody tr:hover {
+      background-color: rgba(38, 53, 127, 0.1); }
+    #browse-list table tbody tr.selected {
+      background-color: rgba(38, 53, 127, 0.25); }
+
+#browse-list-no-results div {
+  margin: 5px 0; }
+  #browse-list-no-results div .clear-button {
+    display: inline-block;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 5px 20px;
+    cursor: pointer; }
+
+#browse-list-no-results .clear-button {
+  background-color: #00BCF2;
+  color: #FFF; }
+
+/*# sourceMappingURL=list.css.map */

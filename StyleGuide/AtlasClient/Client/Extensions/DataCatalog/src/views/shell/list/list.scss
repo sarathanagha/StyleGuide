@@ -1,0 +1,47 @@
+﻿@import "../../../styles/variables";
+
+.shell-list {
+    .list-container {
+
+        .list-label {
+            font-size: 19px;
+            text-transform: capitalize;
+
+            &:after {
+                content:":";
+            }
+        }
+
+        .list {
+            padding-top: 20px;
+            list-style:none;
+            margin-left: 0px;
+            padding-left: 0px;
+
+            li {
+                font-size: 14px;
+                margin-bottom: 15px;
+                padding-right: 35px;
+            }
+        }
+    }
+
+        a {
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+    @mixin theme {
+        $link-color: $default-navigation-text-color;
+        $font-color-dark: $default-font-color-dark;
+
+        & {
+            a {
+                color: $link-color;
+            }
+        }
+    }
+
+    @include theme;
+}

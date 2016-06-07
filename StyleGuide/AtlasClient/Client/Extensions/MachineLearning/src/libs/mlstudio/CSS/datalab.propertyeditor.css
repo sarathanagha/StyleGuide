@@ -1,0 +1,695 @@
+.datalab-propertyEditor {
+    font-family: "Segoe UI";
+    font-size: 12px;
+}
+
+.datalab-gridCellKeyWrapper {
+    overflow: hidden;
+}
+
+.datalab-gridCellKeyWrapper .datalab-gridCellKey {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.datalab-gridCellValue {
+    padding-left: 4px;
+    overflow: hidden;
+}
+
+
+.propertyEditor-globalParameters .datalab-gridCellKey {
+    overflow: hidden;
+}
+
+.propertyEditor-competitionProperties,
+.propertyEditor-experimentProperties, 
+.propertyEditor-globalParameters, 
+.propertyEditor-entityParameters {
+    clear: both;
+    margin: 0 20px 0 10px;
+}
+
+.datalab-gridCellTextArea {
+    margin-right: 50px;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.propertyEditor-textAreaItem .datalab-gridCellValue {
+    margin-left: 20px;
+    clear: both;
+    float: none;
+}
+
+.datalab-gridCellPropertyItem {
+    overflow: hidden;
+    float: left;
+    padding: 0px;
+    width: 100%;
+}
+
+.datalab-gridCellPropertyItem:hover {
+    border-color: #27aae1;
+}
+
+.multiselectSelected {
+    overflow: hidden;
+    float: left;
+    padding: 0px;
+    width: 100%;
+    background-color: lightblue;
+}
+.multiselectSelected:hover .multiselectSelected:focus{
+    border-color: #27aae1;
+}
+
+.multiselectNotSelected {
+    overflow: hidden;
+    float: left;
+    padding: 0px;
+    width: 100%;
+}
+
+.multiSelectMenu {
+    width:inherit; 
+    margin-right:50px;
+    position:absolute;
+}
+
+.multiSelectButton {
+    padding-left:4px; 
+    padding-right:3px; 
+    border:1px solid black;
+}
+
+.monaco-container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid lightgray;
+    overflow: visible;
+    position: absolute;
+    top: 0px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+}
+
+.monaco-container.focused {
+    border-color: #27aae1;
+}
+
+.monaco-container-VertResize {
+    width: 100%;
+    height: 8px;
+    cursor: ns-resize;
+    clear: both;
+    background-color:transparent;
+}
+
+.datalab-staticProperty {
+    margin-top: 4px;
+}
+
+.datalab-gridCellPropertyItem.disabled {
+    background-color: #ededed;
+    color: black;
+}
+
+.datalab-gridCellPropertyItem:focus {
+    border-color: #27aae1;
+}
+
+.quickHelpContent {
+    background-color: whitesmoke;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.quickHelpIcon {
+    content: url("../Images/icon-help.png");
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    margin-left: 5px;
+}
+
+.datalab-propertyEditor {
+    height: 100%;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    border-left-color: #ededed;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+.propertyEditorContainer {
+    height: 100%;
+}
+
+.propertyEditorHeader {
+    height:20px;
+}
+
+.propertyEditorContentContainer {  
+    position: relative;
+    display: none;
+}
+
+.maximized .propertyEditorContentContainer {  
+    display: inherit;
+}
+
+.quickHelpContainer {
+    position: relative;
+    width: 100%;
+    border-top-color: #ededed;
+    border-top-width: 1px;
+    border-top-style: solid; 
+    background-color: whitesmoke;  
+    box-sizing: border-box; /* Height includes the border so we don't get scrollbars when we drag all the way up */
+}
+
+.quickHelpHeader {
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    height: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.quickHelpTitle {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px; /*Leave space between text and collapse icon.*/
+}
+
+.quickHelpTitle::before {
+    content: url("../Images/icon-help.png");
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+.quickHelpExpander {
+    width: 9px;
+    height: 6px;
+    margin-right: 16px;
+    margin-top: -2px;
+}
+
+.maximized .quickHelpContainer {
+    display: inherit;
+}
+
+.quickHelpContainer {
+    display: none;
+}
+
+.minimized .drawerCollapser {
+    visibility: hidden;
+}
+
+.drawerExpander {
+    margin-top: 10px;
+    margin-right: 4px;
+    height: 20px;
+    width: 20px;
+}
+
+.datalab-propertyEditor.maximized .drawerExpander:before, .datalab-propertyEditor.maximizing .drawerExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.datalab-propertyEditor.minimized .drawerExpander:before, .datalab-propertyEditor.minimizing .drawerExpander:before {
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.maximized .drawerTitle {
+    display: none;
+}
+
+.drawerExpandedTitle {
+    margin-top: 10px;
+    margin-left: 17px;
+    font-size: 1.3em;
+    display: none;
+}
+
+.maximized .drawerExpandedTitle {
+    display: inline-block;
+}
+
+.drawerTitle {
+    display: block;
+    font-family: "Segoe UI";
+    font-weight: 300; /* Segoe UI Semilight */
+    font-size: 16px;
+    color: #737373;
+    position: relative;
+    left: 2px;
+    top: 68px;
+    width: 25px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.datalab-propertyEditor, .datalab-propertyEditor input, .datalab-propertyEditor select, .datalab-propertyEditor a {
+    font-family: "Segoe UI";
+    font-size: small;
+}
+
+.datalab-propertyEditor input  {
+    padding-left: 8px;
+    padding-right: 8px;
+    border-style: solid;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    height: 24px;
+}
+
+.datalab-propertyEditor select {
+    padding-left: 2px;
+    width: 100%;
+    height: 24px;
+}
+
+.datalab-propertyEditor input[type=checkbox] {
+    margin-left: 1px;
+    margin-right: 9px;
+    margin-top: 1px;
+    border: 0px;
+    height: 14px;
+    width: 14px;
+    padding: 0px 0px 0px 0px;
+}
+
+/** 
+  * We use max-height for our transitions because going between auto and some fixed valued doesn't
+  * work in IE or chrome
+ **/
+.propertyEditor-content {
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin-right: -18px;
+    clear: both;
+}
+
+.propertyEditor-expander {
+    float: left;
+    height: 17px;
+    width: 9px;
+    margin-bottom: 3px;
+    margin-right: 5px;
+}
+
+.propertyEditor-heading {
+    cursor: pointer;
+}
+
+.propertyEditor-competitionProperties.maximized .propertyEditor-expander:before, 
+.propertyEditor-competitionProperties.maximizing .propertyEditor-expander:before,
+.propertyEditor-experimentProperties.maximized .propertyEditor-expander:before, 
+.propertyEditor-experimentProperties.maximizing .propertyEditor-expander:before,
+.propertyEditor-entityParameters.maximized .propertyEditor-expander:before, 
+.propertyEditor-entityParameters.maximizing .propertyEditor-expander:before,
+.experimentSummary.maximized .propertyEditor-expander:before,
+.experimentSummary.maximizing .propertyEditor-expander:before,
+.experimentDetails.maximized .propertyEditor-expander:before,
+.experimentDetails.maximizing .propertyEditor-expander:before
+{
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.propertyEditor-competitionProperties.minimized .propertyEditor-expander:before, 
+.propertyEditor-competitionProperties.minimizing .propertyEditor-expander:before,
+.propertyEditor-experimentProperties.minimized .propertyEditor-expander:before, 
+.propertyEditor-experimentProperties.minimizing .propertyEditor-expander:before,
+.propertyEditor-entityParameters.minimized .propertyEditor-expander:before, 
+.propertyEditor-entityParameters.minimizing .propertyEditor-expander:before,
+.experimentSummary.minimized .propertyEditor-expander:before,
+.experimentSummary.minimizing .propertyEditor-expander:before,
+.experimentDetails.minimized .propertyEditor-expander:before,
+.experimentDetails.minimizing .propertyEditor-expander:before
+{
+    /* sprite set in ee-sprite.css */
+    content: "";
+}
+
+.propertyEditor-expanderHeader {
+    margin-right: 10px;
+    margin-bottom: 0px;
+    text-overflow: ellipsis;
+    color: #1e83ae;
+    font-family: "Segoe UI";
+    font-weight: 600; /* Segoe UI Semibold */
+    font-size: 14px;
+    line-height: 17.5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.propertyEditor-drawer {
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 20; /* Goes on top of the other elements. It's just a click target for resizing the drawer. */
+    cursor: w-resize;
+    background-color: transparent;
+    border-left-color: #ededed;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+/** This is the child div of the flex item. It's must be position absolute.
+  * http://stackoverflow.com/questions/8633964/using-percentage-values-to-fill-flexbox-items
+ **/
+.propertyEditor-right {
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    left: 11px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.datalab-propertyEditor textarea {
+    /* Textareas in the property editor are often used for scripts, which are best shown with a monospace font. */
+    font-family: "Consolas", "Lucida Console", Monaco, monospace;
+    width: 100%; /* Fill the content box established by textarea-container */
+    overflow: auto;
+    resize: vertical;
+    white-space: pre;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.propertyEditor-headingCellWrapper {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/* TODO [#1389505]: This is a quick fix, need to refactor property editor template at some stage. */
+.propertyEditor-headingCellWrapper.isLink {
+    height: 24px;
+}
+
+.propertyEditor-headingCellWrapper.isButton {
+    height: 28px;
+}
+
+.propertyEditor-headingCell {
+    margin-top: 6px;
+    margin-right: 24px;
+    margin-left: 20px;
+}
+
+.propertyEditor-valueCellWrapper {
+    margin-top: 2px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.propertyEditor-checkboxValueCellWrapper {
+    height: 18px;
+}
+
+.propertyEditor-sideButtonWrapper {
+    float: right;
+}
+
+.propertyEditor-checkboxValueCellWrapper .propertyEditor-sideButtonWrapper {
+    top: 0px;
+}
+
+.propertyEditor-item {
+    overflow-y: hidden;
+    height: 24px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.propertyEditor-textAreaItem {
+    overflow-y: hidden;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.propertyEditorButton {
+    float: right;
+    overflow: hidden;
+    width: 20px;
+    height:20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.removeParameter {
+    height: 16px;
+    width: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+    overflow: hidden;
+    float: left;
+}
+
+.removeParameter:before {
+    content: url("../Images/para-close-idle.png");
+}
+
+.removeParameter:hover:before {
+    content: url("../Images/para-close-hover.png");
+}
+
+.previousParameter {
+    width: 12px;
+    height: 15px;
+}
+
+.previousParameter:before {
+    content: url("../Images/para-prev-idle.png");    
+}
+
+.previousParameter:hover:before {
+    content: url("../Images/para-prev-hover.png");
+}
+
+.nextParameter {
+    width: 12px;
+    height: 15px;
+}
+
+.nextParameter:before {
+    content: url("../Images/para-next-idle.png");
+}
+
+.nextParameter:hover:before {
+    content: url("../Images/para-next-hover.png");
+}
+
+.linkStatus {
+    background-size: contain;
+}
+
+.dropMenu {
+    margin-top: 0px;
+}
+
+.propertyEditor-textAreaItem:hover .propertyEditorButton {
+    visibility:visible;
+}
+
+.editParameterName {
+    height: 16px;
+    margin-right: 2px;
+}
+
+.editParameterName:before {
+    content: url("../Images/edit-idle.png");
+}
+
+.editParameterName:hover:before {
+    content: url("../Images/edit-select.png");    
+}
+
+.editParameterNameSelected:before {
+    content: url("../Images/edit-select.png");
+    visibility: visible;
+}
+
+.propertyEditorHeadingCellWrapperEditingName {
+    height: 30px;
+}
+
+.propertyEditorHeadingCellWrapperEditingName .propertyEditorButton {
+    margin-top: 3px;
+    visibility: visible;
+}
+
+.propertyEditorHeadingCellWrapperEditingName input[type=checkbox] {
+    margin-top: 5px;
+}
+
+.parameterIsLinked {
+    margin-left: 2px;
+    margin-top: 0px;
+    float: right;
+    margin-right: 2px;
+}
+
+.propertyEditor-staticTextAreaItem {
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+/* TODO [#1389505]: This is a quick fix, need to refactor property editor template at some stage. */
+.propertyEditor-staticTextAreaItem.isLink {
+    margin-top: 10px;
+}
+
+.propertyEditor-staticHeadingCell {
+    color: #888e94;
+    float: left;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    width: 91px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-right: 16px;
+    margin-top: 6px;
+}
+
+.propertyEditor-staticValueCell {
+    margin-top: 5px;
+}
+
+.propertyEditor-staticValueCell .datalab-gridCellTextArea .datalab-staticProperty {
+    font-family: Segoe UI;
+    font-size: 13px;
+    margin-top: 0px;
+    color: #000000;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+
+.noParameters {
+    font-family: Segoe UI;
+    font-size: 13px;
+    margin-left: 20px;
+    margin-top: 6px;
+    color: #000000;
+}
+
+.propertyLink {
+    -webkit-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+.propertyLinkMetaData {
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+}
+
+.columnPickerRules {
+    max-height: 200px;
+    overflow: auto;
+    padding: 5px;
+    width: 90%;
+    border-style: solid;
+    border-width: 1px; 
+    margin-bottom: 5px;
+    background: #dddddd;
+}
+
+.pointerText {
+    cursor: pointer;
+}
+
+.propertyEditor-experimentProperties .experimentSummary .editableTextAreaProperty {
+    height: 125px;
+}
+
+.propertyEditor-experimentProperties .experimentDetails .editableTextArea {
+    height: 298px;
+}
+
+.propertyEditor-experimentProperties .experimentSummary, 
+.propertyEditor-experimentProperties .experimentDetails {
+    margin-left: 10px;    
+}
+
+.propertyEditor-experimentProperties .experimentSummary-heading,
+.propertyEditor-experimentProperties .experimentDetails-heading {
+    cursor: pointer;
+    padding-bottom: 5px;    
+}
+
+.experimentDetails-content,
+.experimentSummary-content {
+    margin-left: 10px;
+    overflow: auto;
+    padding-right: 15px;   
+    color: black;
+} 
+
+.propertyEditor-experimentProperties .editableTextArea {
+    resize: none;
+    white-space: normal;
+    float: none;
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+
+    font-size: 12px;
+    font-family: "Segoe UI";
+    color: #323232;
+    line-height: 20px;
+
+    border: 1px solid #D3D3D3;
+}
+
+.propertyEditor-experimentProperties .experimentDetails .editableTextArea {
+     resize: vertical;
+}
+
+.propertyEditor-experimentProperties .original-experiment-documentation-link {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.propertyEditor-competitionProperties .submitButton {
+    font-family: "Segoe UI";
+    text-transform: uppercase;
+}

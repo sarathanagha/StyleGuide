@@ -1,0 +1,13 @@
+﻿<div class="viewsSidePanel">
+    <div class="row panelHeaderContainer">
+        <div class="header">Monitoring Views</div>
+    </div>
+
+    <div id="monitoringViewsList"
+         class="col collapsable"
+         data-bind="jsTree: {
+            data: treeData,
+            config: treeConfig,
+            handlers: {'changed':onSelectNode, 'hover_node': onHoverNode, 'loaded': loaded} }">
+    </div>
+</div>

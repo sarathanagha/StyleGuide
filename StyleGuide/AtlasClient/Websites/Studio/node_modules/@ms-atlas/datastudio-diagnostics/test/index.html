@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<title>Diagnostics Testing</title>
+	<script src="scripts/es6-promise-2.0.1.min.js"></script>
+	<script src="../lib/datastudio.diagnostics.js"></script>
+</head>
+
+<body>
+	<p id="hello1">Hello</p>
+
+	<script>
+
+    function bar() {
+      throw new Error("No worries, bar always throws errors.")
+    }
+
+    function test() {
+      bar();
+    }
+
+    var Logging = Microsoft.DataStudio.Diagnostics.Logging;
+    var Hub = Microsoft.DataStudio.Diagnostics.Hub;
+
+    var loggerFactory = new Logging.LoggerFactory({ moduleName: "TestModule1" });
+
+    var logger1 = loggerFactory.getLogger({ loggerName: "Logger1", category: "Networking", sendWithEachLog: "foobar" });
+    var logger2 = loggerFactory.getLogger({ loggerName: "Logger2" });
+
+    Hub.DiagnosticsHub.configureSession({ sessionId: "session_abc", userId: "userId_def" });
+    Hub.DiagnosticsHub.configureSusbscription({ subscriptionId: "E7F1178A-E131-4701-9530-BC07E9C448E8", resourceGroupName: "TestResourceGroup", resourceName: "TestResource", provider: "Microsoft.DiagnosticsTest" });
+
+    logger1.logInfo("Event 1");
+    logger2.logDebug("Event 2");
+    logger1.logInfo("Event 3", { category: "bear" });
+
+    //Hub.DiagnosticsHub.configureEndpoint("http://httpbin.org/post");
+    Hub.DiagnosticsHub.configureEndpoint("http://localhost:5329/api/diagnosticshub/publish");
+
+    logger1.logInfo("Hello, World!", { bar1: { bar2: 2, bob: true }, p1: document.getElementById("hello1"), bar3: null } );
+    logger2.logWarning("Something bad going on.", { serverUrl: "http://localhost:8080/", cause: "it happens" });
+    logger2.logError("This is a serious error.");
+
+    try {
+      test();
+    } catch (e) {
+      logger2.logError("This is a serious error from bar.", {
+        cause: "bar is not working",
+        error: e,
+        correlationId: "13219032183091238120938213",
+        what: "so wat?"
+      })
+    }
+
+    logger1.logUsage(Logging.UsageEventType.ActionButton, "DeployButtonClick");
+    logger2.logUsage(Logging.UsageEventType.Interaction, "ActivityRunClick", { activityRunId: "foobar" });
+    logger1.logUsage(Logging.UsageEventType.TopNavBar, "DataFactoryExtensionSelected");
+    logger2.logUsage(Logging.UsageEventType.Navigation, "FooNavigationEvent", { url: "www.bing.com" });
+    logger1.logUsage(Logging.UsageEventType.AppLaunch, "RealtimeDashboardAppLaunch", { exePath: "C:\\Temp\\foobar.exe" });
+    logger2.logUsage(Logging.UsageEventType.Custom, "DeploymentSucceeded", { deploymentName: "some guid" });
+    logger1.logUsage(Logging.UsageEventType.Custom, "SomeOtherCustomEvent", { foo: 1, bar: "2", car: { nested: "yes" } });
+
+    logger1.logInfo("All seems good!");
+  </script>
+</body>
+</html>

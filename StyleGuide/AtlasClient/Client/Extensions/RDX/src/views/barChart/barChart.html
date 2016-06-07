@@ -1,0 +1,12 @@
+﻿<div class="barChartWrapper">
+    <span class="chartTypeToggle" data-bind="visible: rdxContext.barChartAvailable, click: function(){heatmap.selectedVisualization('line'); heatmap.triggerRerender()}, style: {left: legendVisible() ? '510px' : '280px'}" title="Show as lines"><span class="fa-lineChart"></span></span>
+    <div class="crystalBarChartLegendWrapper" data-bind="visible: legendVisible">
+        <div class="legendTitle"><div class="fa chevron-left" data-bind="click: function(){legendVisible(false);heatmap.triggerRerender();}"></div> Legend</div>
+        <input class="atlasInput" data-bind="textInput: rdxContext.heatmap.filter" placeholder="Filter dimension names..." />
+        <div class="crystalBarChartLegend"></div>
+    </div>
+    <div class="crystalBarChartLegendSlider" data-bind="visible: !legendVisible(), click: function(){legendVisible(!legendVisible()); heatmap.triggerRerender();}"><div><div class="fa chevron-right"></div> Legend</div></div>
+    <div class="crystalBarChart" id="crystalBarChart" data-bind="slideVisible: visible, event: {mousemove: handleMouseover, mousedown: handleMousedown, mouseup: handleMouseup, mouseleave: handleMouseleave}">
+        <div class="multiselectGhost"></div>
+    </div>
+</div>

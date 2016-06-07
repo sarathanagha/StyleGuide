@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{33FE5E8C-A7A1-45C0-B36F-799D2B18A90C}</ProjectGuid>
+    <TypeScriptVersion>1.5</TypeScriptVersion>
+    <TypeScriptOutFile>..\..\bin\Module.js</TypeScriptOutFile>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudioUX\DataStudio.Controls.csproj">
+      <Project>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</Project>
+      <Name>DataStudio.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="DataCatalogModule.ts" />
+    <TypeScriptCompile Include="LoggerFactory.ts" />
+    <TypeScriptCompile Include="Managers\focusManager.ts" />
+    <TypeScriptCompile Include="Tokyo.ts" />
+    <TypeScriptCompile Include="Bindings\bindings.ts" />
+    <TypeScriptCompile Include="Bindings\layoutBindings.ts" />
+    <TypeScriptCompile Include="Config\DataCatalogConfig.ts" />
+    <TypeScriptCompile Include="core\0resxManager.ts" />
+    <TypeScriptCompile Include="core\connectionStringUtilities.ts" />
+    <TypeScriptCompile Include="core\constants.ts" />
+    <TypeScriptCompile Include="core\SourceTypes.ts" />
+    <TypeScriptCompile Include="core\utilities.ts" />
+    <TypeScriptCompile Include="Interfaces\IAllSettledResult.ts" />
+    <TypeScriptCompile Include="Interfaces\IAssetChanges.ts" />
+    <TypeScriptCompile Include="Interfaces\IAttributeParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IBindableResult.ts" />
+    <TypeScriptCompile Include="Interfaces\IBindableSnapshot.ts" />
+    <TypeScriptCompile Include="Interfaces\IBrowseSettings.ts" />
+    <TypeScriptCompile Include="Interfaces\ICheckboxListParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IConnectApplication.ts" />
+    <TypeScriptCompile Include="Interfaces\IConnectionString.ts" />
+    <TypeScriptCompile Include="Interfaces\ICreateCatalog.ts" />
+    <TypeScriptCompile Include="Interfaces\IEditSchemaParams.ts" />
+    <TypeScriptCompile Include="Interfaces\IErrorNotice.ts" />
+    <TypeScriptCompile Include="Interfaces\IFacetResponseItem.ts" />
+    <TypeScriptCompile Include="Interfaces\IFilterCollection.ts" />
+    <TypeScriptCompile Include="Interfaces\IGlobalContext.ts" />
+    <TypeScriptCompile Include="Interfaces\IHomeTiles.ts" />
+    <TypeScriptCompile Include="Interfaces\IInput.ts" />
+    <TypeScriptCompile Include="Interfaces\IInputParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IKeyValue.ts" />
+    <TypeScriptCompile Include="Interfaces\IListParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\ILoggingService.ts" />
+    <TypeScriptCompile Include="Interfaces\IManualEntry.ts" />
+    <TypeScriptCompile Include="Interfaces\IModalParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IModalResolver.ts" />
+    <TypeScriptCompile Include="Interfaces\INameIdPair.ts" />
+    <TypeScriptCompile Include="Interfaces\IPagingParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IPin.ts" />
+    <TypeScriptCompile Include="Interfaces\IRecent.ts" />
+    <TypeScriptCompile Include="Interfaces\ISavedSearches.ts" />
+    <TypeScriptCompile Include="Interfaces\ISearchBoxParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\ISearchOptions.ts" />
+    <TypeScriptCompile Include="Interfaces\ISearchResult.ts" />
+    <TypeScriptCompile Include="Interfaces\ISourceType.ts" />
+    <TypeScriptCompile Include="Interfaces\ITreeMapParameters.ts" />
+    <TypeScriptCompile Include="Interfaces\IUserResolution.ts" />
+    <TypeScriptCompile Include="Interfaces\IViewModels.ts" />
+    <TypeScriptCompile Include="knockout\BindingHandler.ts" />
+    <TypeScriptCompile Include="Managers\appManager.ts" />
+    <TypeScriptCompile Include="Managers\batchManagementManager.ts" />
+    <TypeScriptCompile Include="Managers\batchSchemaManager.ts" />
+    <TypeScriptCompile Include="Managers\browseManager.ts" />
+    <TypeScriptCompile Include="Managers\detailsManager.ts" />
+    <TypeScriptCompile Include="Managers\homeManager.ts" />
+    <TypeScriptCompile Include="Managers\layoutManager.ts" />
+    <TypeScriptCompile Include="models\BindableColumn.ts" />
+    <TypeScriptCompile Include="models\BindableDataEntity.ts" />
+    <TypeScriptCompile Include="models\BindableDescription.ts" />
+    <TypeScriptCompile Include="models\BindableDocumentation.ts" />
+    <TypeScriptCompile Include="models\BindableExpert.ts" />
+    <TypeScriptCompile Include="models\BindableOfficeTelemetry.ts" />
+    <TypeScriptCompile Include="models\BindableOfficeTelemetryRule.ts" />
+    <TypeScriptCompile Include="models\BindablePermission.ts" />
+    <TypeScriptCompile Include="models\BindablePinnableListItem.ts" />
+    <TypeScriptCompile Include="models\BindableResult.ts" />
+    <TypeScriptCompile Include="models\BindableRole.ts" />
+    <TypeScriptCompile Include="models\BindableSchema.ts" />
+    <TypeScriptCompile Include="models\BindableSchemaDescription.ts" />
+    <TypeScriptCompile Include="models\DataSourceType.ts" />
+    <TypeScriptCompile Include="models\FilterCollection.ts" />
+    <TypeScriptCompile Include="models\SavedSearch.ts" />
+    <TypeScriptCompile Include="services\baseService.ts" />
+    <TypeScriptCompile Include="services\catalogService.ts" />
+    <TypeScriptCompile Include="services\connectService.ts" />
+    <TypeScriptCompile Include="services\errorService.ts" />
+    <TypeScriptCompile Include="services\modalService.ts" />
+    <TypeScriptCompile Include="services\provisioningService.ts" />
+    <TypeScriptCompile Include="services\searchService.ts" />
+    <TypeScriptCompile Include="services\userProfileService.ts" />
+    <TypeScriptCompile Include="services\userService.ts" />
+    <TypeScriptCompile Include="typings\utilities.d.ts" />
+    <!-- Task DataStudio#7296844 is tracking for a better fix to solve this problem than including a generated file like below 
+         Please look at the above task description for more details as to why we needed to do this -->
+    <TypeScriptCompile Include="..\..\bin\IResx.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+</Project>

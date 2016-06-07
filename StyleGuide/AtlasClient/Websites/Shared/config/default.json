@@ -1,0 +1,14 @@
+{
+    "default": {
+        "//": "Name to be used in title and splash screen",
+        "applicationName": "Cortana Analytics",
+        "//": "Default module to be loaded by the shell",
+        "defaultModule": "blueprint",
+        "//": "Array of modules that will be loaded (supports globbing)",
+        "modules": [ "*" ],
+        "//": "Whether or not the output will be copied to a different folder",
+        "debug": false,
+        "//": "Whether we will use an external API endpoint (like atlasmainapi.cloudapp.net) or the local one",
+        "useExternalAPI": false
+    }
+}

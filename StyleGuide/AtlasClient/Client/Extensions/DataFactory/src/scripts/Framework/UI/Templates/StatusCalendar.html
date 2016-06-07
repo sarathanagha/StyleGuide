@@ -1,0 +1,57 @@
+<div class="dataFactory-statusCalendar dataFactory-statusCalendar-type col" data-bind="css: type" style="position: relative">
+    <div class="dataFactory-statusCalendar-header">
+        <div data-bind="text: header, attr: {title: header}" class="dataFactory-text-ellipsis"></div>
+    </div>
+    <div class="dataFactory-statusCalendar-header">
+        <div data-bind="text: subHeader, attr: {title: subHeader}" class="dataFactory-text-ellipsis"></div>
+    </div>
+    <div data-bind="foreach: {data: pages, as: 'page'}" class="row grow">
+        <div data-bind="with: page" class="col grow dataFactory-statusCalendar-page">
+            <div class="row shrink centerY dataFactory-statusCalendar-pageHeader">
+                <div data-bind='winjsbutton:{options: $parents[1].previousButtonOptions}' class="no-shrink dataFactory-statusCalendar-icon adf-darkIconToolbar"></div>
+                <div class="shrink">
+                    <div data-bind="text: pageHeader, attr: {title: pageHeader}" class="dataFactory-text-ellipsis"></div>
+                </div>
+                <div data-bind='winjsbutton:{options: $parents[1].nextButtonOptions}' class="no-shrink dataFactory-statusCalendar-icon adf-darkIconToolbar"></div>
+            </div>
+            <!-- ko if: colLabels().length > 0 -->
+            <div class="row shrink">
+                <!-- ko if: rowLabels().length > 0 -->
+                <div class="dataFactory-statusCalendar-rowLabel"></div>
+                <!-- /ko -->
+                <div data-bind="foreach: {data: colLabels, as: 'colLabel'}" class="row grow">
+                    <div class="dataFactory-statusCalendar-columnLabelOuter col grow">
+                        <div data-bind="text: colLabel, attr: {title: colLabel}" class="row dataFactory-statusCalendar-columnLabel"></div>
+                        <div class="row dataFactory-statusCalendar-columnTicker shrink"></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="dataFactory-statusCalendar-rowSeparator center shrink" />
+            <!-- /ko -->
+            <div class="row grow">
+                <!-- ko if: rowLabels().length > 0 -->
+                <div data-bind="foreach: {data: rowLabels, as: 'rowLabel'}" class="col dataFactory-statusCalendar-rowLabel">
+                    <div class="row centerY grow">
+                        <div data-bind="text: rowLabel, attr: {title: rowLabel}" class="dataFactory-text-ellipsis"></div>
+                    </div>
+                    <hr class="dataFactory-statusCalendar-rowSeparator center shrink" />
+                </div>
+                <!-- /ko -->
+                <div data-bind="foreach: {data: statusBoxRows, as: 'statusBoxRow'}" class="col grow">
+                    <div data-bind="foreach: {data: statusBoxRow, as: 'statusBox'}" class="row grow centerY" style="justify-content: flex-end;">
+                        <div data-bind="statusBox: statusBox, css: {selected: $root.selectedDate() && $root.selectedDate().getTime() === statusBox.date.getTime()}"></div>
+                    </div>
+                    <!-- ko if: $parent.rowSeparatorCount() > 0 -->
+                    <hr class="dataFactory-statusCalendar-rowSeparator center shrink" />
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dataFactory-text-muted dataFactory-statusCalendar-footer">
+        <div data-bind="foreach: footer()">
+            <div data-bind="html: $data, attr: {title: $data}" class="dataFactory-text-ellipsis"></div>
+        </div>
+    </div>
+    <div data-bind="loader: loading"></div>
+</div>

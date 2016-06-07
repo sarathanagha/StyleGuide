@@ -1,0 +1,76 @@
+<!-- TODO iannight: use ADFModule vars in rule -->
+<Configuration>
+    <OutputExtensions>
+      <OutputExtension id="IcmExtension" name="AimsOutputExtensionIcm2">
+        <Setting Name="tenant" Value="AzureDataFactory"/>
+      </OutputExtension>
+    <OutputExtension id="console" name="AimsOutputExtensionConsole">
+    </OutputExtension>
+    </OutputExtensions>
+    <GlobalQuery>
+      <![CDATA[
+          var AtlasTraces = from ExpandTableName("AtlasTraceLogErrorTenMinRollup.*", 2);
+        ]]>
+    </GlobalQuery>
+
+    <GlobalDefinitions>
+      <![CDATA[
+        let ConfigOwnerAlias = "adflivesitemonitor@microsoft.com"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+        let AlertSeverity2 = "2"
+        let AlertSeverity3 = "3"
+        let AlertSeverity4 = "4"
+
+        let IcmEnvironment = "PROD"
+        let IcmDeviceName = "altasdatastudio"
+        let IcmIncidentType = "LiveSite"
+
+        let ADFModuleName = "DataFactory"
+        let DefaultShortMessageLength = 100
+    ]]>
+    </GlobalDefinitions>
+  <Rule id="UxTraceLogErrors" windowSize="PT12H" windowHopSize="PT12H" queryDelay="PT5M" output="IcmExtension">
+    <![CDATA[
+        from AtlasTraces
+          where moduleName == ADFModuleName
+          let ShortMessage = message.Substring(0, DefaultShortMessageLength)
+
+        groupby SourceTableName, Tenant, Role, RoleInstance, ShortMessage
+        
+        let Area = Last(loggerName)
+        let ErrorCount = Count()
+        let ErrorMessage = Last(message)
+        let MinTimestamp = Min(PreciseTimeStamp)
+        let MaxTimestamp = Max(PreciseTimeStamp)
+          
+        groupby SourceTableName, Tenant, Role, RoleInstance
+        
+        forgroup{
+          let ErrorMessageLength = Length(ErrorMessage)
+          let ShortErrorMessage = IIF(ErrorMessageLength > DefaultShortMessageLength, Concat("", Substring(ErrorMessage, 0 ,DefaultShortMessageLength), "..."), ErrorMessage)
+          select Area, ErrorCount, ShortErrorMessage, MinTimestamp, MaxTimestamp
+        }
+         
+        let IcmHtmlDescription = HtmlTable()
+      
+        let EventName = "ADFAtlasTraceLogErrors"
+        
+        let BeginWindowIntervalInPacificTime = AddMinutes(BeginWindowInterval, -7 * 60)
+        let BeginDateInPacificTime = MatchAndExtract( BeginWindowIntervalInPacificTime ,"([0-9\-]+)T([0-9:]+)\.0+(Z)")
+        let Title = "$(Tenant) AzureDataFactory Module: UX error logs report for the last 12 hours on $(BeginDateInPacificTime)"
+        let Description = "Check errors in table - $(SourceTableName)"
+
+        let ServiceName = "AtlasDataStudio"
+        let ServiceNameAbbr = "AtlasDataStudio"
+
+        let IcmAlertSeverity = AlertSeverity4
+        let IcmRoutingId = "ADF_UX_SEV$(IcmAlertSeverity)"
+        let IcmCorrelationId = "$(ServiceName)_$(SourceTableName)_$(RoleInstance)"
+        let IcmTsgId = "1400606"
+        let IcmAlertTitle = Title
+        let IcmAlertDescription = Description
+    ]]>
+  </Rule>
+</Configuration>

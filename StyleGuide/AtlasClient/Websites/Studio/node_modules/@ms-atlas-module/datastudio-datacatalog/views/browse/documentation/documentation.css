@@ -1,0 +1,52 @@
+/* Cortana Analytics Color Guide*/
+/* Primary colors */
+/* Iconography, status, and selection colors*/
+/* Text only colors*/
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+/* Tentative colors - END */
+/*
+    grayscale theme, more-or-less just an example of how themes will be used.
+    this is just a grayscale version of the default theme for illustration 
+    purposes. Could be adjusted to be high-contrast or something else later on
+    if desired.
+*/
+#browse-documentation {
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute; }
+  #browse-documentation #browse-documentation-container {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    overflow: auto; }
+    #browse-documentation #browse-documentation-container #browse-documentation-contents {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      right: 30px;
+      padding-bottom: 30px; }
+      #browse-documentation #browse-documentation-container #browse-documentation-contents .tokyo-spinner {
+        position: absolute;
+        bottom: 100%;
+        right: 5px;
+        margin-bottom: 1px; }
+      #browse-documentation #browse-documentation-container #browse-documentation-contents .doc-label {
+        color: #8A96A2;
+        font-size: 12px;
+        text-transform: capitalize; }
+        #browse-documentation #browse-documentation-container #browse-documentation-contents .doc-label.lower {
+          text-transform: lowercase; }
+        #browse-documentation #browse-documentation-container #browse-documentation-contents .doc-label.from:after {
+          content: ":"; }
+      #browse-documentation #browse-documentation-container #browse-documentation-contents .other-documentation-box {
+        border: 1px solid #c9c9c9;
+        padding: 5px 10px;
+        margin-top: 10px; }
+      #browse-documentation #browse-documentation-container #browse-documentation-contents .k-editable-area {
+        padding-left: 5px; }
+
+/*# sourceMappingURL=documentation.css.map */

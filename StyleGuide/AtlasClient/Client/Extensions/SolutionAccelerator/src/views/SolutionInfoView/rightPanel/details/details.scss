@@ -1,0 +1,131 @@
+@import "../../../../../../../Core/DataStudio/src/stylesheets/Framework/constants.scss";
+
+@mixin sidePanelMargin()
+{
+    margin:20px;
+}
+
+.detail-panel
+{
+    .deploymentStatusBox
+    {
+        @include sidePanelMargin();
+
+        .statusImage
+        {
+            background-repeat: no-repeat;
+            bottom: -2px;
+            display: none;
+            height: 1em;
+            position: relative;
+            width: 1em;
+
+            &.success
+            {
+                display: inline-block !important;
+                background-image: url("/Images/icons/status_success.svg");
+                background-repeat: no-repeat;
+            }
+
+            &.failed
+            {
+                display: inline-block !important;
+                background-image: url("/Images/icons/status_fail.svg");
+                background-repeat: no-repeat;
+            }
+
+            &.inprogress
+            {
+                display: inline-block !important;
+                background-image: url("/Images/icons/status_inprogress.svg");
+            }
+        }
+
+        .statusMessage
+        {
+            @include fontStyleExtraSmallSemiBold();
+            display: inline;
+        }
+    }
+
+    .error-container {
+        @include fontStyleMediumRegular();
+
+        .error-message {
+            display:block;
+            margin-bottom: 10px;
+
+		    .message {
+                display: block;
+                padding: 4px 0px;
+		    }
+        }
+	}
+
+    .detail
+    {
+        @include fontStyleExtraSmallSemiBold();
+        @include sidePanelMargin();
+        height: 100%;
+
+        a
+        {
+            @include fontStyleExtraSmallSemiBold();
+            align-content: flex-start;
+            align-items: flex-start;
+            align-self: stretch;
+            color: $atlasDarkTeal;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+
+        h4
+        {
+            @include fontStyleSmallBold();
+            margin-bottom: 20px;
+        }
+    }
+
+    .horizontalBar
+    {
+        display:block;
+        height: 2px;
+        background: $cloudColor;
+        @include sidePanelMargin();
+    }
+
+    .openButton
+    {
+        background: #008272;
+        display: inline-block;
+        @include sidePanelMargin();
+        margin-top: 0px;
+        position: relative;
+        line-height: 16px;
+
+        &:focus
+        {
+            background: $atlasTeal;
+        }
+
+        .linkImage
+        {
+            background-image: url("/Images/icons/node_arrow-01.svg");
+            background-size: 12px 12px;
+            background-position-y: 4px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            height: 16px;
+            margin-left: 8px;
+            width: 16px;
+        }
+    }
+
+    .resourceBox, .deploymentStatusBox
+    {
+        @include sidePanelMargin();
+    }
+}

@@ -1,0 +1,15 @@
+﻿<div class="wizardStepSubtitle">
+    Specify the settings for the SQL server. You can use an existing SQL server or specify a new SQL server.<br />
+</div>
+
+<div class="dataFactory-activityTool-radioOptions">
+    <input type="radio" data-bind="checked: sqlServerSelectionType, checkedValue: sqlServerSelection.Existing">Existing
+    <input type="radio" data-bind="checked: sqlServerSelectionType, checkedValue: sqlServerSelection.New">New
+</div>
+
+<!-- ko if: sqlServerSelectionType() === sqlServerSelection.Existing -->
+<div data-bind="htmlWith: {template: linkedServicesGridTemplate}"></div>
+<!-- /ko -->
+<!-- ko if: sqlServerSelectionType() === sqlServerSelection.New -->
+<div data-bind="htmlWith: {template: newSqlServerTemplate}"></div>
+<!-- /ko -->

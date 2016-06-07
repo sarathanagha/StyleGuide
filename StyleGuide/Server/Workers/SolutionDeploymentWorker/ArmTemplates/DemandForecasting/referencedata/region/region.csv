@@ -1,0 +1,4 @@
+RegionID,Name,TimeZone,Latitude,Longitude,Unit
+101,North,UTC,39.232253,-122.069092,MW
+102,Central,UTC,37.753344,-122.13501,MW
+103,South,UTC,34.939985,-119.630127,MW

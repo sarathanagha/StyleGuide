@@ -1,0 +1,71 @@
+﻿<div class="adf-alert-step">
+    <div class="adf-alerts-header">
+        <div>
+            <span class="header-name header" data-bind="text: ClientResources.alertStepHeader"></span>
+            <span class="step-name" data-bind="text: ClientResources.alertStepTwoTitle"></span>
+            <span class="action-button" data-bind="html: closeIcon, click: onCloseClicked"></span>
+        </div>
+    </div>
+    <div>
+        <div class="adf-alerts-item">
+            <div class="row">
+                <div data-bind="text: ClientResources.alertEventTitle"></div>
+                <div class="infoDiv" data-bind="html: infoIcon, callout: { innerHtml: ClientResources.alertEventTooltip }"></div>
+            </div>
+                <select data-bind="options: operationNames,
+                                    optionsText: function (item) { return operationNameMap[item.name] },
+                                    optionsValue: function (item) { return item.name },
+                                    value: selectedOperationName"></select>
+        </div>
+        <div class="adf-alerts-item">
+            <div class="row">
+                <div data-bind="text: ClientResources.alertStatusTitle"></div>
+                <div class="infoDiv" data-bind="html: infoIcon, callout: { innerHtml: ClientResources.alertStatusTooltip }"></div>
+            </div>
+            <select data-bind="options: statuses,
+                                optionsText: function (item) { return statusMap[item.name] },
+                                optionsValue: function (item) { return item.name },
+                                value: selectedStatus"></select>
+        </div>
+        <div class="adf-alerts-item">
+            <div class="row">
+                <div data-bind="text: ClientResources.alertSubstatusTitle"></div>
+                <div class="infoDiv" data-bind="html: infoIcon, callout: { innerHtml: ClientResources.alertSubstatusTooltip }"></div>
+            </div>
+            <select data-bind="options: substatuses,
+                                optionsText: function (substatus) { return substatusMap[substatus] },
+                                optionsValue: function (substatus) { return substatus },
+                                value: selectedSubstatus"></select>
+        </div>
+        <!-- only metric alerts support aggregation so removing until we add those
+        <div class="adf-alerts-item">
+            <label>
+                <div class="row">
+                    <div><input data-bind="checked: shouldAggregateEvents" type="checkbox" /></div>
+                    <div data-bind="text: ClientResources.alertAggregationTitle"></div>
+                    <div class="infoDiv" data-bind="html: infoIcon, callout: { innerHtml: ClientResources.alertAggregationTooltip }"></div>
+                </div>
+            </label>
+        </div>
+        <div data-bind="visible: shouldAggregateEvents">
+            <div>
+                <label data-bind="text: ClientResources.alertConditionTitle"></label>
+                <select data-bind="options: aggregationOperators,
+                                    optionsText: 'displayValue',
+                                    optionsValue: 'value',
+                                    value: selectedAggregationOperator"></select>
+            </div>
+            <div>
+                <input type="text" data-bind="textInput: aggregationThreshold">
+            </div>
+            <div>
+                <label data-bind="text: ClientResources.alertTimeTitle"></label>
+                <select data-bind="options: aggregationWindowSizes,
+                                    optionsText: 'displayValue',
+                                    optionsValue: 'value',
+                                    value: selectedAggregationWindowSize"></select>
+            </div>
+        </div>
+        -->
+    </div>
+</div>

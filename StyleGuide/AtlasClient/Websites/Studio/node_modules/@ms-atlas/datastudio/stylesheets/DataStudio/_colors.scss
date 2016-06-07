@@ -1,0 +1,43 @@
+﻿/* Cortana Analytics Color Guide*/
+
+/* Primary colors */
+$atlasDarkTeal   : #008272;
+$atlasTeal       : #00B294;
+$canvas          : #E6E6E6;
+$charcoal        : #343a41;
+$cloud           : #D3D3D4;
+$darkCharcoal    : #2C3137;
+$darkCloud       : #B5B7B9;
+$darkOrange      : #CA5010;
+$darkSlate       : #48525E;
+$darkWaveBlue    : #00526d;
+$lightCanvas     : #F2F2F2;
+$primaryOrange   : #F7630C;
+$slate           : #55606E;
+$waveBlue        : #006F94;
+$waveBlueLight   : #008cbb;
+$waveBlueLighter : #009bcf;
+$white           : #FFF;
+
+/* Iconography, status, and selection colors*/
+$blue          : #00BCF2;
+$darkBlue      : #0099BC;
+$darkGreen     : #498205;
+$darkRed       : #A4262C;
+$darkYellow    : #D48C00;
+$green         : #6BB700;
+$red           : #D13438;
+$yellow        : #EAA300;
+
+/* Text only colors*/
+$gray          : #808387;
+$grayDark      : #585A5F;
+$grayDarkest   : $darkCharcoal; // Same as dark charcoal
+$grayLight     : #ABADAF;
+$grayLightest  : #D5D6D7;
+
+/* Tentative colors - START - need more exlicit sign for these hover/active colors from design */
+$atlasDarkTealHover  : #005E50;
+$atlasDarkTealActive : #004B40;
+$grayDarkestActive   : #9C9DA0;
+/* Tentative colors - END */

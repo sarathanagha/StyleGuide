@@ -1,0 +1,40 @@
+﻿<!-- ko with: viewModel -->
+<div data-bind="datastudio-ux-modal: { isVisible: isVisible, modalContainerClass: 'adf-gateway', disableFadeClose: true }">
+    <span class="close-wizard-btn" data-bind="click: onHideClicked"></span>
+
+    <div class="create" data-bind="visible: !showStepTwo()">
+        <div class="wizard-header">Create Gateway</div>
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: name} }"></div>
+        <div class="descriptionBox">
+            <textarea rows="3" id="idDescriptionBox" data-bind="value:description, attr: {placeholder: ClientResources.enterDescription}"></textarea>
+        </div>
+        <div class="buttonContainer middle">
+            <div class="wizard-description">
+                <span data-bind="text: message"></span>
+            </div>
+            <input type="button" data-bind="click: onCreateClicked, value: buttonText" class="btn btn-primary" />
+        </div>
+    </div>
+
+    <div class="register" data-bind="visible: showStepTwo()">
+        <div class="wizard-header">Register Gateway</div>
+        <div class="wizard-description">Gateway created. Please register your gateway in order to use it.</div>
+        <div>
+            <a href='http://go.microsoft.com/fwlink/?LinkId=734875' target='_blank class=' link '>Download and install gateway</a></div>
+
+        <div class="key">
+            <input class="grow atlas-input" data-bind="value: key, enable: key, attr: { placeholder: key() ? ' ' : 'Retrieving...' }" ></input>
+            <button class="grow adf-greenButton" data-bind="click: onCopyClicked, enable: key">Copy</button>
+        </div>
+
+        <div class="buttonContainer middle">
+            <div class="adf-statusImage wizard-description">
+                <span data-bind="html: successIcon, visible: successIconVisible"></span>
+                <span data-bind="text: message"></span>
+            </div>
+
+            <input type="button" data-bind="click: onButtonClicked, value: buttonText" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+<!-- /ko -->

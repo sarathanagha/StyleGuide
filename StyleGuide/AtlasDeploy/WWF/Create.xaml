@@ -1,0 +1,141 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Microsoft.Streaming.Service.NrtDeploy.Create" this:Create.ResumePoint="[Nothing]" this:Create.Environment="[Nothing]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdd="clr-namespace:Microsoft.DPG.Deployment;assembly=Microsoft.DPG.WadiActivities"
+ xmlns:mddc="clr-namespace:Microsoft.DPG.Deployment.Configuration;assembly=Microsoft.DPG.WadiConfiguration"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:this="clr-namespace:Microsoft.Streaming.Service.NrtDeploy"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ResumePoint" Type="InArgument(x:String)" />
+    <x:Property Name="Environment" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Microsoft.Streaming.Service.NrtDeploy.Create_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.Streaming.Service.DeployActivity</x:String>
+      <x:String>Microsoft.DPG.Deployment</x:String>
+      <x:String>Microsoft.DPG.Deployment.Configuration</x:String>
+      <x:String>Microsoft.Streaming.Service.DeployActivity.Emulator</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Streaming.Service.DeployActivity</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiActivities</AssemblyReference>
+      <AssemblyReference>Microsoft.DPG.WadiConfiguration</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mddc:ConfigType" Default="[Nothing]" Name="Config" />
+      <Variable x:TypeArguments="mddc:ConfigType" Default="[Nothing]" Name="SecondaryConfig" />
+    </Sequence.Variables>
+    <Sequence DisplayName="Prerequisite Steps" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <mdd:InitLog sap2010:WorkflowViewState.IdRef="InitLog_2" />
+      <mdd:LoadConfig ExternalSymbols="{x:Null}" IdentifySecrets="{x:Null}" OfflineLoad="{x:Null}" Config="[Config]" ConfigFolder="Config" EnableEncryption="False" Environment="[Environment]" sap2010:WorkflowViewState.IdRef="LoadConfig_2" />
+      <mdd:ValidateConfig Config="[Config]" sap2010:WorkflowViewState.IdRef="ValidateConfig_2" />
+      <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_1" Text="*****Start to upload crtificate*****" />
+      <mdd:UploadCertificates RetryCount="{x:Null}" RetryWaitSeconds="{x:Null}" SideLoadCertificatesChunkSize="{x:Null}" Config="[Config]" sap2010:WorkflowViewState.IdRef="UploadCertificates_1" />
+      <mdd:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_2" Text="*****Upload Cert Done*****" />
+      <Sequence DisplayName="Deploy Service To WA" sap2010:WorkflowViewState.IdRef="Sequence_9">
+        <mdd:DeployStage Enabled="{x:Null}" DisplayName="Deploy Service To Staging Slot" sap2010:WorkflowViewState.IdRef="DeployStage_5" Name="DeployServiceToStagingSlot" ResumePoint="[ResumePoint]">
+          <mdd:DeployStage.Body>
+            <ForEach x:TypeArguments="mddc:HostedServiceType" DisplayName="For Each Service " sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Config.GetDeployItem(Of HostedServiceType)(&quot;*&quot;, &quot;*&quot;)]">
+              <ActivityAction x:TypeArguments="mddc:HostedServiceType">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="mddc:HostedServiceType" Name="item" />
+                </ActivityAction.Argument>
+                <mdd:WAServiceDeployStagingSlot AsyncException="{x:Null}" sap2010:WorkflowViewState.IdRef="WAServiceDeployStagingSlot_1" ItemConfig="[item]" />
+              </ActivityAction>
+            </ForEach>
+          </mdd:DeployStage.Body>
+        </mdd:DeployStage>
+        <mdd:DeployStage Enabled="{x:Null}" DisplayName="Swap WA Slot" sap2010:WorkflowViewState.IdRef="DeployStage_6" Name="SwapWASlot" ResumePoint="[ResumePoint]">
+          <mdd:DeployStage.Body>
+            <ForEach x:TypeArguments="mddc:HostedServiceType" DisplayName="For Each Service" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[Config.GetDeployItem(Of HostedServiceType)(&quot;*&quot;, &quot;*&quot;)]">
+              <ActivityAction x:TypeArguments="mddc:HostedServiceType">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="mddc:HostedServiceType" Name="item" />
+                </ActivityAction.Argument>
+                <mdd:WAServiceSwapVip SwapPerformed="{x:Null}" sap2010:WorkflowViewState.IdRef="WAServiceSwapVip_1" ItemConfig="[item]" />
+              </ActivityAction>
+            </ForEach>
+          </mdd:DeployStage.Body>
+        </mdd:DeployStage>
+      </Sequence>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d0dFOlxURlNcRGVwbG95TWFpblxQcm9kdWN0XFNvdXJjZVxQbGF0Zm9ybVYyXEF0bGFzRGVwbG95XFdXRlxDcmVhdGUueGFtbCMBegGEAQEDAZ4BAagBAQI+A2YOAgEBQDtARgIBA0E7QUYCAQJDBWQQAgEERAdEQgIBKUUHRfIBAgEiRgdGYgIBH0cHR3QCAR1IB0jFAQIBGkkHSWoCARhKB2MSAgEFRYMBRYsBAgEoRbEBRcABAgEmRWtFdQIBJEWdAUWkAQIBI0YiRiwCASBHS0dxAgEeSIEBSIsBAgEbSUtJZwIBGUsJVhsCAQ9XCWIbAgEGS7gBS8cBAgERS48BS6sBAgEQTQ1UFwIBE1eWAVelAQIBCFd9V4kBAgEHWQ1gFwIBCk2UAU3gAQIBF1IRUqABAgEUWZMBWd8BAgEOXhFeiwECAQtSlQFSnQECARVegAFeiAECAQw=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InitLog_2" sap:VirtualizedContainerService.HintSize="323.2,22.4" />
+      <sap2010:ViewStateData Id="LoadConfig_2" sap:VirtualizedContainerService.HintSize="323.2,22.4" />
+      <sap2010:ViewStateData Id="ValidateConfig_2" sap:VirtualizedContainerService.HintSize="323.2,22.4" />
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="323.2,62.4" />
+      <sap2010:ViewStateData Id="UploadCertificates_1" sap:VirtualizedContainerService.HintSize="323.2,22.4" />
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="323.2,62.4" />
+      <sap2010:ViewStateData Id="WAServiceDeployStagingSlot_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="ForEach`1_3" sap:VirtualizedContainerService.HintSize="286.4,208" />
+      <sap2010:ViewStateData Id="DeployStage_5" sap:VirtualizedContainerService.HintSize="300.8,321.6" />
+      <sap2010:ViewStateData Id="WAServiceSwapVip_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="286.4,208" />
+      <sap2010:ViewStateData Id="DeployStage_6" sap:VirtualizedContainerService.HintSize="300.8,321.6" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="323.2,808">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="345.6,1387.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="368,1512">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Microsoft.Streaming.Service.NrtDeploy.Create_1" sap:VirtualizedContainerService.HintSize="408,1592" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

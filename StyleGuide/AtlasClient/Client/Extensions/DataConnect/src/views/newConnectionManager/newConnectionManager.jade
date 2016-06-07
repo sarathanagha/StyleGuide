@@ -1,0 +1,37 @@
+div(class="dataconnect-container col grow")
+  h1 New Connection Manager
+  div(class="row grow content")
+    div(class="col form", data-bind="with: formFields")
+      .form-field
+        p Name
+        p
+          input(type="text", data-bind="value: name")
+      .form-field
+        p Description
+        p
+          textarea(data-bind="value: description", rows="5")
+      .form-field
+        p Subscription
+        p
+          select(data-bind="value: subscriptionId")
+            option(value="56da09f0-439b-4c60-b192-7317721a9a39") Juan's Azure Subscription 1
+            option(value="3434bd25-ae1d-4e7a-b85f-b8f7fadc4327") Juan's Azure Subscription 2
+      .form-field
+        p Resource Group
+        p
+          select(data-bind="value: resourceGroup")
+            option(value="Resource Group 1") Resource Group 1
+            option(value="Resource Group 2") Resource Group 2
+      .form-field
+        p Region
+        p
+          select(data-bind="value: region")
+            option(value="westus") West US
+            option(value="northeurope") North Europe
+      p(class="form-buttons")
+        button Create
+        button Cancel
+    .col
+      h3 Creating a connection manager
+      p
+        iframe(width="448", height="252", src="https://www.youtube.com/embed/IrG-uuwRfSI", frameborder="0", allowfullscreen)

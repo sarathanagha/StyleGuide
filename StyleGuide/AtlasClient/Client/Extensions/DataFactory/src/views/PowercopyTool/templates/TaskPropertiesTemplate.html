@@ -1,0 +1,42 @@
+﻿<div class="wizardStepTitle">
+    Properties
+</div>
+<div class="wizardStepSubtitle">
+    Enter name and description for the copy data task and specify how often you want to run the task.<br />
+</div>
+
+<!-- ko with: pipelineProperties -->
+<div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: pipelineName}}">}"></div>
+
+<div class="formFieldLabel"><label for="idDescriptionBox">Task description</label></div>
+<div class="descriptionBox"><textarea rows="3" id="idDescriptionBox" data-bind="value:description, attr: {placeholder: ClientResources.enterDescription}"></textarea></div>
+<div class="formFieldLabel">
+    Task cadence (or) Task schedule
+</div>
+<div>
+    <input type="radio" name="onetime" value="OneTime" data-bind="checked: pipelineMode" id="idrunonce" /><label class="radioText" for="idrunonce">Run once now</label>
+</div>
+<div>
+    <input type="radio" name="scheduled" value="Scheduled" data-bind="checked: pipelineMode" id="idrunscheduled" /><label class="radioText" for="idrunscheduled">Run regularly on schedule</label>
+</div>
+<!-- /ko -->
+<!-- ko if: pipelineProperties.pipelineMode() === "Scheduled" -->
+<div data-bind="htmlWith: {template: frequencyIntervalTemplate, viewModel: copyActivityProperties}"></div>
+
+<div data-bind="datetimeRange: pipelineProperties.startEnd" class="col" style="margin-top: -20px">
+    <div class="formFieldLabel">
+        <label for="idCopyToolPipelineStartDate">Start date time (UTC)</label>
+    </div>
+    <div class="dateInput">
+        <input type="text" class="datetimeRangeStartDate" id="idCopyToolPipelineStartDate" />
+    </div>
+    <div class="formFieldLabel">
+        <label for="idCopyToolPipelineEndDate">End date time (UTC)</label>
+    </div>
+
+    <div class="dateInput">
+        <input type="text" class="datetimeRangeEndDate" id="idCopyToolPipelineEndDate" />
+    </div>
+</div>
+
+<!-- /ko -->

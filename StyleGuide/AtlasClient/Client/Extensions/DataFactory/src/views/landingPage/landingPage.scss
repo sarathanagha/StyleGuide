@@ -1,0 +1,81 @@
+﻿@import "../../stylesheets/_AdfSpecific.scss";
+
+$darkBlue: #0099BC;
+
+.atlasHome {
+  background-color: white;
+  padding: 1em 2em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  a span, a div {
+    color: initial
+  }
+
+  .header {
+    h1 {
+      font-size: 3em;
+      font-weight: 200; /* Light */
+    }
+    padding-bottom: 2em;
+  }
+
+  .content {
+    > .col {
+      margin-right: 2em;
+    }
+  }
+
+  /* TODO Change to h? tag and move to the DataStudio css, update all references */
+  .sectionTitle {
+    font-weight: 400;
+    font-size: 1.1em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    line-height: 2.6em;
+  }
+
+  .content.row > .col {
+    padding-right: 2em;
+  }
+
+ .homeSection1 {
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+
+     svg {
+         height: 100%;
+         width: 100%;
+     }
+
+    .content {
+        top: 200px;
+        position: relative;
+
+        .title{
+            font-family: 'Segoe UI Light';
+            font-size: 40px;
+            color: $atlasGreenColor;
+        }
+
+        a {
+          color: $darkBlue;
+
+          &:hover {
+            color: $atlasDarkTeal;
+          }
+        }
+
+        .message{
+            font-family: 'Segoe UI';
+            font-size: 16px;
+            color: $darkSlateColor;
+        }
+
+     }
+
+ }
+}

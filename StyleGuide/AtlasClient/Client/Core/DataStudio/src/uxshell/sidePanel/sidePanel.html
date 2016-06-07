@@ -1,0 +1,22 @@
+﻿<div class="sidePanel col grow collapse width"
+     data-bind="collapse: {
+            switch:'#sidePanelSwitch',
+            collapsedSwitch: 'icon-Atlas_expand',
+            expandedSwitch: 'icon-Atlas_collapse',
+            expandOnClick:true
+        },
+        css: sidePanelConfig().cssClass">
+    <div id="sidePanelSwitch" class="col"></div>
+    <div class="col grow sidePanelElements">
+    <!-- ko foreach : sidePanelConfig().top -->
+    <div class="row">
+        <div class="col grow sidePanelElement" data-bind="shellComponent: $data"></div>
+    </div>
+    <!-- /ko -->
+    </div>
+    <div class="row sidePanelElements grow footer">
+        <!-- ko foreach : sidePanelConfig().bottom -->
+        <div class="row grow" data-bind="shellComponent: $data"></div>
+        <!-- /ko -->
+    </div>
+</div>

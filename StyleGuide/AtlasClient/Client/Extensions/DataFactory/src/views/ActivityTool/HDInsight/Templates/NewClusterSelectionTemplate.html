@@ -1,0 +1,42 @@
+<div class="tabContainer noBorder">
+    <div class="tab" data-bind="css: {selected: newClusterType() === 0}, event: {click: setNewClusterType.bind($data, 0)}">
+        Bring Your Own HDInsight Cluster
+    </div>
+    <div class="tab" data-bind="css: {selected: newClusterType() === 1}, event: {click: setNewClusterType.bind($data, 1)}">
+        On Demand HDInsight Cluster
+    </div>
+</div>
+
+<div data-bind="visible: newClusterType() === 0">
+    <div class="typeFilter" data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: byocProperties.clusterUris} }"></div>
+    <!-- ko if: byocProperties.clusterUris.value() === byocManuallyEntered -->
+        <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: byocProperties.manuallyEnteredUri} }"></div>
+    <!-- /ko -->
+    <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: byocProperties.username} }"></div>
+    <div data-bind="component:{ name: 'datafactory-validatedpasswordbox', params: {vm: byocProperties.password} }"></div>
+</div>
+
+<div data-bind="visible: newClusterType() === 1">
+    <div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded:createOnDemandProperties.properties.visible, iconFirst: true}">
+        <div class="dataFactory-activityTool-header row">
+            <div class="dataFactory-activityTool-headerText">Properties</div>
+        </div>
+        <div class="dataFactory-activityTool-body">
+            <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: createOnDemandProperties.properties.version}}"></div>
+            <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: createOnDemandProperties.properties.clusterSize}}"></div>
+            <div data-bind="component:{ name: 'datafactory-validatedtextbox', params: {vm: createOnDemandProperties.properties.timeToLive} }"></div>
+            <div class="typeFilter" data-bind="component:{name:'datafactory-validatedselectbox', params:{vm: createOnDemandProperties.properties.osType}}"></div>
+        </div>
+    </div>
+
+    <div data-bind="htmlWith: {viewModel: createOnDemandProperties.storageLinkedService, template: storageLinkedServiceTemplate}"></div>
+
+    <div class="dataFactory-activityTool-expandableSection" data-bind="collapsible:{isExpanded:createOnDemandProperties.advancedSettings.visible, iconFirst: true}">
+        <div class="dataFactory-activityTool-header row">
+            <div class="dataFactory-activityTool-headerText">Advanced Settings</div>
+        </div>
+        <div class="dataFactory-activityTool-body">
+            Coming soon...
+        </div>
+    </div>
+</div>

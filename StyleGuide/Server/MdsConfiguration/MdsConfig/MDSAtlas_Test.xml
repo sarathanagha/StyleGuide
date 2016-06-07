@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement eventVersion="9" timestamp="2011-11-02T20:08:38.0823856Z" namespace="Atlas" version="1.0">
+  <!--IMPORTANT
+  Please keep the eventVersion attribute in sync in these three files:
+  
+  MDSAtlas_Common.xml
+  MDSAtlas_Test.xml
+  MDSAtlas_Prod.xml
+  
+  IMPORTANT -->
+
+  <Imports>
+    <Import file="MDSAtlas_Common.xml" />
+  </Imports>
+
+  <!--If you add or change the accounts for MdsAtlasEastUSTest account moniker, you need to incorporate new bootstrap keys for those new accounts into your MA configuration.-->
+  <Accounts>
+    <Account moniker="MdsAtlasEastUSTest" autoKey="true" isDefault ="true" />
+  </Accounts>
+  <EventStreamingAnnotations>
+    <EventStreamingAnnotation name="^ApiServiceLog$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^UxUsageLog$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^UxServiceLog$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^TraceLog$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^RestApiCalls$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^ExternalApiCalls$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+    <EventStreamingAnnotation name="^IisLogs$">
+      <Cosmos>
+        <Content>
+          <![CDATA[<Config />]]>
+        </Content>
+      </Cosmos>
+    </EventStreamingAnnotation>
+  </EventStreamingAnnotations>
+</MonitoringManagement>

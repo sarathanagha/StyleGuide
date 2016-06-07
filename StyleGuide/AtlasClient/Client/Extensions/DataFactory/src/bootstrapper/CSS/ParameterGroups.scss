@@ -1,0 +1,24 @@
+﻿@import "../../stylesheets/_AdfSpecific";
+@import "../../stylesheets/Authoring/Fonts";
+
+.paramName {
+    width: 200px;
+    line-height: 30px;
+}
+
+.paramVal {
+    width: 150px;
+    height: 30px;
+}
+
+.paramHeader {
+    @include MSBFont;
+}
+
+.paramBag {
+    margin-bottom: 20px;
+}
+
+.paramRow {
+    margin-top: 10px;
+}

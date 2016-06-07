@@ -1,0 +1,5 @@
+<!-- ko if:buttons().length > 0 -->
+<div data-bind="foreach: buttons">
+    <button data-bind="text: $data.name, click: $data.action"></button>
+</div>
+<!-- /ko -->

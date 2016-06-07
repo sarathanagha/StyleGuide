@@ -1,0 +1,6 @@
+<div data-bind="jqueryUI: portUIConfig($element), attr:{'data-id': parent.id}, css: displayClasses, style: style" class="port grow">
+    <div class="basic" data-bind="html: basicIcon"></div><div class="active" data-bind="html: activeIcon"></div>
+</div>
+<div class="line" data-bind="style: line().style"></div>
+<div class="ball" data-bind="style: line().startAnchor().style"></div>
+<div class="arrow" data-bind="style: line().endAnchor().style"></div>

@@ -1,0 +1,114 @@
+<div class="browse-attributes">
+
+    <div>
+        <!-- ko if: mode == 'multi' -->
+        <span data-bind="text: resx.onAll" class="group-label"></span>
+        <!-- /ko -->
+        <ul data-bind="foreach: attributesOnAll" class="pills">
+            <!-- ko if: $data.tooltips && $data.tooltips.length && $parent.showTooltip -->
+            <li data-bind="css: {
+                                    readOnly: $data.readOnly,
+                                    isfiltered: $parent.isFilteredByTag.bind($parent)($data),
+                                    'tokyo-highlight': $parent.isHighlighted($data.name)
+                                },
+                                attr: {'title':$parent.escapeHtml($parent.plainText($data.name)), 'data-content': $parent.getTooltipText($data.tooltips)}, adc-popover: {}"
+                data-placement="auto bottom"
+                data-trigger="hover"
+                data-container="body"
+                data-html="true"
+                class="dismiss-popover-on-scroll">
+                <span data-bind="click: $parent.onAttributeClick.bind($parent), css: { clickable: !!$parent.groupTypeName }">
+                    <span data-bind="text: $parent.removeHtmlTags($data.name)" class="attribute-text"></span>
+                </span>
+                <!-- ko if: !$data.readOnly-->
+                <div class="remove-button" data-bind="click: function(d) {$parent.removeAttributeFrom.call($parent, d, $parent.attributesOnAll);}">
+                    <img src="../../../../images/properties/tag_x.png" alt="remove" />
+                </div>
+                <!-- /ko -->
+            </li>
+
+            <!-- /ko -->
+            <!-- ko if: !$parent.showTooltip || !$data.tooltips || !$data.tooltips.length -->
+            <li data-bind="css: {
+                                    readOnly: $data.readOnly,
+                                    isfiltered: $parent.isFilteredByTag.bind($parent)($data),
+                                    'tokyo-highlight': $parent.isHighlighted($data.name)
+                                }">
+                <span data-bind="click: $parent.onAttributeClick.bind($parent), css: { clickable: !!$parent.groupTypeName }">
+                    <span data-bind="text: $parent.removeHtmlTags($data.name)" class="attribute-text"></span>
+                </span>
+                <!-- ko if: !$data.readOnly-->
+                <div class="remove-button" data-bind="click: function(d) {$parent.removeAttributeFrom.call($parent, d, $parent.attributesOnAll)}">
+                    <img src="../../../../images/properties/tag_x.png" alt="remove" />
+                </div>
+                <!-- /ko -->
+            </li>
+            <!-- /ko -->
+                
+        </ul>
+    </div>
+
+    <!-- ko ifnot: hideAddButton -->
+    <div class="add-btn-container">
+        <div class="add-btn" data-bind="click: clickAdd, visible: !showInput(), text: resx.add"></div>
+        <div class="input-box" data-bind="css: {focus: inputHasFocus}, visible: showInput()">
+            <span>
+                <input type="text" data-bind="textInput: attributesToAdd, hasFocus: inputHasFocus, attr: { placeholder: placeholderText }, event: { keyup: onInputKeyUp, blur: addAttributes }" />
+            </span>
+            <img data-bind="click: addAttributes" src="../../../../images/checkmark.png" />
+        </div>
+        <span class="error" data-bind="text: errorMessage, visible: showValidationError"></span>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: mode === 'multi' && attributesOnSome().length > 0 -->
+    <div>
+        <span data-bind="text: resx.onSome" class="group-label"></span>
+        <ul data-bind="foreach: attributesOnSome" class="pills">
+            <!-- ko if: $data.tooltips && $data.tooltips.length -->
+            <li data-bind="css : {
+                                    readOnly: $data.readOnly,
+                                    'tokyo-highlight': $parent.isHighlighted($data.name)
+                                },
+                                attr: {'title':$parent.plainText($data.name), 'data-content': $parent.getTooltipText($data.tooltips)}, adc-popover: {}"
+                data-placement="auto bottom"
+                data-trigger="hover"
+                data-container="body"
+                data-html="true"
+                class="dismiss-popover-on-scroll">
+                <span data-bind="click: $parent.addAttributeToAll.bind($parent), css: { clickable: !$parent.hideAddButton }">
+                    <span data-bind="text: $parent.removeHtmlTags($data.name)" class="attribute-text"></span>
+                    <!--ko ifnot: $parent.hideAddButton -->
+                    <span data-bind="text: $parent.resx.addToAll" class="add-to-all"></span>
+                    <!-- /ko -->
+                </span>
+                <!-- ko if: !$data.readOnly-->
+                <div class="remove-button" data-bind="click: function(d) {$parent.removeAttributeFrom.call($parent, d, $parent.attributesOnSome);}">
+                    <img src="../../../../images/properties/tag_x.png" />
+                </div>
+                <!-- /ko -->
+            </li>
+            <!-- /ko -->
+            <!-- ko if: !$data.tooltips || !$data.tooltips.length -->
+            <li data-bind="css : {
+                                    readOnly: $data.readOnly,
+                                    'tokyo-highlight': $parent.isHighlighted($data.name)
+                                }">
+                <span data-bind="click: $parent.addAttributeToAll.bind($parent), css: { clickable: !$parent.hideAddButton }">
+                    <span data-bind="text: $parent.removeHtmlTags($data.name)" class="attribute-text"></span>
+                    <!--ko ifnot: $parent.hideAddButton -->
+                    <span data-bind="text: $parent.resx.addToAll" class="add-to-all"></span>
+                    <!-- /ko -->
+                </span>
+                <!-- ko if: !$data.readOnly-->
+                <div class="remove-button" data-bind="click: function(d) {$parent.removeAttributeFrom.call($parent, d, $parent.attributesOnSome)}">
+                    <img src="../../../../images/properties/tag_x.png" />
+                </div>
+                <!-- /ko -->
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    <!-- /ko -->
+
+</div>

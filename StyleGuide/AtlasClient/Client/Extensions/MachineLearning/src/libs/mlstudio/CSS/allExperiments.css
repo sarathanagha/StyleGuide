@@ -1,0 +1,80 @@
+#experiments {
+    white-space: nowrap;
+}
+
+#experiments #grid {
+    width: 60%;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+#experiments .fx-grid-full {
+    padding-bottom: 3px; /* work-around for IE-getting-scrollHeight-off-by-one-pixel at 125% zoom */
+}
+
+#experiments #previewPane {
+    width: 40%;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-left: 2px solid lightgray;
+}
+
+#thumbnailContainer {
+    display: inline-block;
+    position: relative;
+    margin: 5px auto;
+    padding: 1px 0; /* avoid margin collapse */
+    width: 100%;
+    height: 100%;
+}
+
+#thumbnailContainer .svgRoot {
+    padding: 6px;
+    overflow: hidden;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#thumbnailContainer .shield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 1, 1, 0); /* for blocking clicks on IE10 */
+}
+
+#thumbnailContainer .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+}
+
+#thumbnailContainer .spinner.thumbnailLoading {
+    background: url("../Images/spinner-md.gif") no-repeat center center;
+}
+
+.selection-info {
+    padding: 25px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.fxs-notification-details-text .bound-height {
+    max-height: 300px;
+    overflow-y: auto;
+}

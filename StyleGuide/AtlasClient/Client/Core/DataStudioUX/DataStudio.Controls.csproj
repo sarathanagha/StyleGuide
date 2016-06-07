@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4A6D65CE-A8B3-4AC6-8FA8-6378116173B0}</ProjectGuid>
+    <TypeScriptOutFile>src\lib\datastudio.ux.js</TypeScriptOutFile>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Build.props))\Build.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\DataStudio.Contracts\DataStudio.Contracts.csproj">
+      <Project>{615ED084-D353-49A6-AC71-05AF96BA86B1}</Project>
+      <Name>DataStudio.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(AtlasClientCoreRoot)\Diagnostics\DataStudio.Diagnostics.csproj">
+      <Project>{56B2E9D9-BD67-41C5-BCCE-6FF173E951C0}</Project>
+      <Name>DataStudio.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="src\GraphControl\DataStudio.Controls.GraphControl.csproj">
+      <Project>{623532F8-9A60-450E-8E70-AB6B6A020429}</Project>
+      <Name>DataStudio.Controls.GraphControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\Bindings\menu.ts" />
+     <TypeScriptCompile Include="src\Bindings\datepicker.ts" />
+    <TypeScriptCompile Include="src\requireStylesheets.ts" />
+    <TypeScriptCompile Include="src\Bindings\DropDown\DropdownBindingHandler.ts" />
+    <TypeScriptCompile Include="src\Bindings\LoaderControl\loaderControlBinding.ts" />
+    <TypeScriptCompile Include="src\Bindings\ModalControl\modalControl.ts" />
+    <TypeScriptCompile Include="src\Bindings\ProgressControl\progressControl.ts" />
+    <TypeScriptCompile Include="src\Bindings\SelectMenu\SelectMenu.ts" />
+    <TypeScriptCompile Include="src\Bindings\SingleContextualMenu\singleContextualMenuControl.ts" />
+    <TypeScriptCompile Include="src\Bindings\SplitterControl\splitterControlBinding.ts" />
+    <TypeScriptCompile Include="src\Bindings\svgLoader.ts" />
+    <TypeScriptCompile Include="src\Common\EventListner.ts" />
+    <TypeScriptCompile Include="src\Helpers\keycodes.ts" />
+    <TypeScriptCompile Include="src\Helpers\modalHelper.ts" />
+    <TypeScriptCompile Include="src\Interfaces\controlDefinitions.ts" />
+    <TypeScriptCompile Include="src\Interfaces\IModalInterfaces.ts" />
+    <TypeScriptCompile Include="src\Interfaces\ISelectMenuInterfaces.ts" />
+    <TypeScriptCompile Include="src\Interfaces\IMenuInterfaces.ts" />
+    <TypeScriptCompile Include="src\Managers\modalManager.ts" />
+    <TypeScriptCompile Include="src\Managers\Notifications\Balloon.ts" />
+    <TypeScriptCompile Include="src\Managers\Notifications\NotificationManager.ts" />
+    <TypeScriptCompile Include="src\Managers\ToasterManager\ToasterManager.ts" />
+  </ItemGroup>
+  <Import Project="$(AtlasClientRoot)\TypeScriptTarget.targets" />
+  <ItemGroup>
+    <HtmlFiles Include="src\**\*.html" Exclude="src\lib\**\*.html" />
+    <SASSFiles Include="src\**\*.scss" Exclude="src\lib\**\*.scss;src\**\_*.scss" />
+    <ImageFiles Include="src\Images\*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\gulpfile-msbuild.js" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <GraphControlFiles Include="src\GraphControl\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(HtmlFiles)" DestinationFolder="src\lib\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ImageFiles)" DestinationFolder="src\lib\Images\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(GraphControlFiles)" DestinationFolder="src\lib\GraphControl\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AfterClean">
+    <RemoveDir Directories="src\lib\" />
+  </Target>
+  <PropertyGroup>
+    <!-- todo: vija add environment parameters support later-->
+    <GulpBuildSASSCommand>$(GulpCmd) --gulpfile src/gulpfile-msbuild.js build-sass</GulpBuildSASSCommand>
+    <GulpStripCommand>$(GulpCmd) --gulpfile src/gulpfile-msbuild.js build-fix-dts</GulpStripCommand>
+  </PropertyGroup>
+  <Target Name="GulpBuildSassTasks" AfterTargets="Build" Inputs="src\%(SASSFiles.RecursiveDir)%(SASSFiles.FileName).scss" Outputs="src\lib\%(SASSFiles.RecursiveDir)%(SASSFiles.FileName).css">
+    <Message Text="Executing the gulp build-sass for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpBuildSASSCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp build failed." />
+  </Target>
+  <Target Name="GulpStripTasks" AfterTargets="Build">
+    <Message Text="Executing the gulp strip task for project: $(MSBuildProjectName)" />
+    <Exec Command="$(GulpStripCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="BuildOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="BuildExitCode" />
+    </Exec>
+    <Message Text="Gulp Exit Code: $(BuildExitCode)" />
+    <Error Condition="$(BuildExitCode) != 0" Text="Gulp strip failed." />
+  </Target>
+</Project>

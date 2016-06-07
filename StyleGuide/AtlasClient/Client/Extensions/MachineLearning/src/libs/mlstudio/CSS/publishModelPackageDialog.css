@@ -1,0 +1,20 @@
+#publishModelPackageDialogContent
+{
+    margin-left: 20px;
+    height: 100%;
+}
+    #publishModelPackageDialogContent #packageNameLabel 
+    {
+        font-size: medium;
+    }
+
+    #publishModelPackageDialogContent #packageNameBox
+    {
+        width: 360px;
+    }
+
+    #publishModelPackageDialogContent #webServiceInfoBox
+    {
+        font-size: x-small;
+        font-style: italic;
+    }

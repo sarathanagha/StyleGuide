@@ -1,0 +1,73 @@
+﻿@import "../../stylesheets/Framework/Base/layoutBase";
+@import "../../stylesheets/DataStudio/colors";
+
+$atlas-green: #03b092;
+$atlas-dark-green: #328b7c;
+$atlas-mediumDark-grey: #ccc;
+$atlas-medium-grey: #dbdde0;
+$atlas-light-grey: #e6e6e6;
+$atlas-light-canvas: #F2F2F2;
+$atlas-reserve-white: #fff;
+
+$sidePanel-bgcolor: $atlas-light-canvas;
+$rightSidePanel-tabs-bgColor: $atlas-light-canvas;
+$sidePanel-tabs-bgcolor: $atlas-green;
+$sidePanel-tabs-fontColor: $atlas-reserve-white;
+$sidePanel-tabs-hoverColor: $atlas-dark-green;
+$sidePanel-tabs-active-hoverColor: $atlas-mediumDark-grey;
+$sidePanel-tabs-active-fontColor: $atlas-green;
+$topPanel-search-bgcolor: $atlas-reserve-white;
+
+.applicationHeader {
+	.headerLogo {
+		width: 240px;
+    	margin-left: 16px;
+	}
+	
+	.headerTabs {
+		font-size: 14px;
+	
+		a {
+            // TODO: Convert the ul and li to flexbox links
+			text-transform: uppercase;
+			display: inline-block;
+			list-style-type: none;
+			color: rgba(255, 255, 255, .6);
+            background-color: $darkSlate;
+            padding: 0px 20px;
+            height: 100%;
+            cursor: pointer;
+            float: left;
+			
+            &:hover {
+				color: rgba(255, 255, 255, .6);
+                background-color: $charcoal;
+			} 
+
+            &.focus {
+				color: rgba(255, 255, 255, 1);
+                background-color: $charcoal;
+			} 
+
+			&.active {
+			    background: rgba(255, 255, 255, .1);
+                color: rgba(255, 255, 255, 1);
+			}
+		}
+	}
+
+    .headerItem {
+        a {
+            height: 100%;
+        }
+    }
+
+    .deployButton {
+        &:hover{
+            background: white;
+            color: black;
+        }
+    }
+}
+
+

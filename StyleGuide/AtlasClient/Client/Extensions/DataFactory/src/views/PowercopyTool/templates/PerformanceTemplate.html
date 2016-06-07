@@ -1,0 +1,60 @@
+﻿<div class="wizardStepTitle">
+    Performance settings
+</div>
+<div class="wizardStepSubtitle">
+    Performance improvement options
+</div>
+<div>
+    <div data-bind="visible:parallelCopyEnabled">
+        <div style="cursor:pointer" class="row">
+            <div class="sectionTitle">
+                Parallel copy
+            </div>
+            <div class="infoDiv" data-bind="callout: { innerHtml: parallelCopyInfo }"></div>
+        </div>
+        <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: cloudUnits}}">}"></div>
+        <div data-bind="component:{name:'datafactory-validatedselectbox',params:{vm: parallelCopies}}">}"></div>
+    </div>
+
+    <div data-bind="visible:polybaseEnabled">
+        <div class="row">
+            <div class="sectionTitle">
+                Polybase
+            </div>
+            <div class="infoDiv" data-bind="callout: { innerHtml: polybaseInfo }"></div>
+        </div>
+        <div style="overflow:hidden;margin-bottom:10px">
+            <input type="checkbox" data-bind="checked: allowPolybase, enable: polybaseEnabled" id="idallowpolybasecheckbox" />
+            <label class="toolLabel" for="idallowpolybasecheckbox">Allow polybase</label>
+            <div class="infoDiv" data-bind="callout: { innerHtml: 'Use polybase for improved performance of loading data in SQL data warehouse' }"></div>
+        </div>
+        <div data-bind="visible:allowPolybase">
+            <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: rejectValue}}">}"></div>
+            <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: rejectType} }"></div>
+            <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: rejectSampleValue}}">}"></div>
+            <div style="overflow:hidden">
+                <input type="checkbox" data-bind="checked: useTypeDefault, enable: polybaseEnabled" id="idusetypedefault" />
+                <label class="toolLabel" for="idallowpolybasecheckbox">Use Type default</label>
+            </div>
+        </div>
+    </div>
+
+    <div data-bind="visible:stagingAccountEnabled">
+        <div class="row">
+            <div class="sectionTitle">
+                Staging storage account
+            </div>
+            <div class="infoDiv" data-bind="callout: { innerHtml: stagingInfo }"></div>
+        </div>
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: stagingOption} }"></div>
+        <!-- ko if: stagingOption.value() === "existing" -->
+        <div data-bind="component:{ name: 'datafactory-validatedselectbox', params: {vm: stagingAccountExistingLinkedService} }"></div>
+        <!-- /ko -->
+        <!-- ko if: stagingOption.value() === "newLinkedService" -->
+        <div data-bind="component:{name:'datafactory-validatedtextbox',params:{vm: newStorageLinkedServiceName}}">}"></div>
+        <!-- ko foreach: connectionFormFields -->
+        %%CONNECTIONFORM%%
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>

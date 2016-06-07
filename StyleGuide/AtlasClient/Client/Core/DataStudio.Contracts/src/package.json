@@ -1,0 +1,8 @@
+{
+  "name": "@ms-atlas/datastudio-contracts",
+  "version": "0.1.29",
+  "description": "Azure Data Studio API.",
+  "license": "Microsoft Corporation",
+  "repository": {},
+  "devDependencies": {}
+}
